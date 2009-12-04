@@ -1,0 +1,28 @@
+# CMake files
+CMakeFiles
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Docs
+*.bz2
+
+#Backup
+*~
+
+# Build stuff
+*.cxx
+*.qm
+ui_*.h
+*.so
+
+# AQEMU binary
+aqemu
+
+# IDE Files
+AQEMU.kdevelop
+AQEMU.kdevelop.filelist
+AQEMU.kdevelop.pcs
+AQEMU.kdevses
+.kdbgrc.aqemu
+Doxyfile

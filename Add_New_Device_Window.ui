@@ -1,0 +1,504 @@
+<ui version="4.0" >
+ <author>Andrey Rijov</author>
+ <class>Add_New_Device_Window</class>
+ <widget class="QDialog" name="Add_New_Device_Window" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>329</width>
+    <height>345</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>New Storage Device</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="images.qrc" >
+    <normaloff>:/blockdevice.png</normaloff>:/blockdevice.png</iconset>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>9</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="1" column="0" colspan="3" >
+    <layout class="QGridLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item row="1" column="0" >
+      <widget class="QCheckBox" name="CH_Bus_Unit" >
+       <property name="text" >
+        <string>Bus, Unit (For SCSI)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" colspan="2" >
+      <widget class="QSpinBox" name="SB_Index" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" >
+      <widget class="QSpinBox" name="SB_Unit" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" >
+      <widget class="QSpinBox" name="SB_Bus" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" >
+      <widget class="QCheckBox" name="CH_Index" >
+       <property name="text" >
+        <string>Index (For IDE, Floppy)</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QCheckBox" name="CH_Snapshot" >
+     <property name="text" >
+      <string>&amp;Snapshot</string>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3" >
+    <layout class="QHBoxLayout" >
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Button_OK" >
+       <property name="text" >
+        <string>&amp;OK</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Button_Cancel" >
+       <property name="text" >
+        <string>&amp;Cancel</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="2" >
+    <widget class="QCheckBox" name="CH_Cache" >
+     <property name="text" >
+      <string>Cac&amp;he</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="3" >
+    <layout class="QGridLayout" >
+     <property name="margin" >
+      <number>0</number>
+     </property>
+     <property name="spacing" >
+      <number>6</number>
+     </property>
+     <item row="1" column="1" colspan="2" >
+      <widget class="QComboBox" name="CB_Media" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>Disk</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>CD-ROM</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="1" colspan="2" >
+      <widget class="QComboBox" name="CB_Interface" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <item>
+        <property name="text" >
+         <string>ide</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>scsi</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>sd</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>mtd</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>floppy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>pflash</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="1" >
+      <widget class="QLineEdit" name="Edit_File_Path" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2" >
+      <widget class="QToolButton" name="TB_File_Path_Browse" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="text" >
+        <string>...</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" >
+      <widget class="QCheckBox" name="CH_Media" >
+       <property name="text" >
+        <string>&amp;Media</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" >
+      <widget class="QCheckBox" name="CH_File" >
+       <property name="text" >
+        <string>&amp;File</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" >
+      <widget class="QCheckBox" name="CH_Interface" >
+       <property name="text" >
+        <string>&amp;Interface</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="1" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0" colspan="3" >
+    <widget class="QGroupBox" name="GB_hdachs_Settings" >
+     <property name="title" >
+      <string>Settings for -hdachs Option</string>
+     </property>
+     <property name="checkable" >
+      <bool>true</bool>
+     </property>
+     <property name="checked" >
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="1" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>10</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="2" >
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="1" column="1" >
+         <widget class="QLineEdit" name="Edit_Trans" />
+        </item>
+        <item row="0" column="1" >
+         <widget class="QLineEdit" name="Edit_Secs" />
+        </item>
+        <item row="0" column="0" >
+         <widget class="QLabel" name="Label_Secs" >
+          <property name="text" >
+           <string>s&amp;ecs</string>
+          </property>
+          <property name="buddy" >
+           <cstring>Edit_Secs</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="Label_Trans" >
+          <property name="text" >
+           <string>&amp;trans</string>
+          </property>
+          <property name="buddy" >
+           <cstring>Edit_Trans</cstring>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="0" >
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="0" column="0" >
+         <widget class="QLabel" name="Label_Cyls" >
+          <property name="text" >
+           <string>c&amp;yls</string>
+          </property>
+          <property name="buddy" >
+           <cstring>Edit_Cyls</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QLineEdit" name="Edit_Cyls" />
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="Label_Heads" >
+          <property name="text" >
+           <string>&amp;heads</string>
+          </property>
+          <property name="buddy" >
+           <cstring>Edit_Heads</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QLineEdit" name="Edit_Heads" />
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>CH_Interface</tabstop>
+  <tabstop>CB_Interface</tabstop>
+  <tabstop>CH_Media</tabstop>
+  <tabstop>CB_Media</tabstop>
+  <tabstop>CH_File</tabstop>
+  <tabstop>Edit_File_Path</tabstop>
+  <tabstop>TB_File_Path_Browse</tabstop>
+  <tabstop>CH_Index</tabstop>
+  <tabstop>SB_Index</tabstop>
+  <tabstop>CH_Bus_Unit</tabstop>
+  <tabstop>SB_Bus</tabstop>
+  <tabstop>SB_Unit</tabstop>
+  <tabstop>CH_Snapshot</tabstop>
+  <tabstop>CH_Cache</tabstop>
+  <tabstop>Edit_Cyls</tabstop>
+  <tabstop>Edit_Heads</tabstop>
+  <tabstop>Edit_Secs</tabstop>
+  <tabstop>Edit_Trans</tabstop>
+  <tabstop>Button_OK</tabstop>
+  <tabstop>Button_Cancel</tabstop>
+ </tabstops>
+ <resources>
+  <include location="images.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>Button_Cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>Add_New_Device_Window</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>306</x>
+     <y>321</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>316</x>
+     <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Interface</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CB_Interface</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>57</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>258</x>
+     <y>14</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Media</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CB_Media</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>54</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>259</x>
+     <y>50</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_File</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_File_Path</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>40</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>160</x>
+     <y>83</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_File</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_File_Path_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>77</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>298</x>
+     <y>79</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Index</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_Index</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>107</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>223</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Bus_Unit</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_Bus</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>105</x>
+     <y>142</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>209</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Bus_Unit</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_Unit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>64</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>278</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

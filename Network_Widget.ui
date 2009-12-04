@@ -1,0 +1,1218 @@
+<ui version="4.0" >
+ <class>Network_Widget</class>
+ <widget class="QWidget" name="Network_Widget" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>360</width>
+    <height>798</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>AQEMU Network Widget</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3" >
+   <item row="0" column="0" >
+    <widget class="QLabel" name="Label_Items_List" >
+     <property name="text" >
+      <string>Items List:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QFrame" name="frame" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Maximum" hsizetype="Minimum" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape" >
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Plain</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <property name="spacing" >
+       <number>5</number>
+      </property>
+      <item rowspan="3" row="0" column="0" >
+       <widget class="QListWidget" name="Items_List" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize" >
+         <size>
+          <width>16777215</width>
+          <height>100</height>
+         </size>
+        </property>
+        <property name="editTriggers" >
+         <set>QAbstractItemView::NoEditTriggers</set>
+        </property>
+        <property name="selectionBehavior" >
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
+        <property name="verticalScrollMode" >
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+        <property name="horizontalScrollMode" >
+         <enum>QAbstractItemView::ScrollPerPixel</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QPushButton" name="Button_Add" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string>&amp;Add</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="images.qrc" >
+          <normaloff>:/add.png</normaloff>:/add.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <spacer name="verticalSpacer_2" >
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0" >
+         <size>
+          <width>20</width>
+          <height>13</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QPushButton" name="Button_Delete" >
+        <property name="sizePolicy" >
+         <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text" >
+         <string>&amp;Delete</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="images.qrc" >
+          <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="Line" name="line" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <widget class="QWidget" native="1" name="General_Widget" >
+     <layout class="QVBoxLayout" name="verticalLayout" >
+      <property name="margin" >
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QGridLayout" name="gridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="Label_Network_Type" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Connection Type</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <layout class="QHBoxLayout" name="horizontalLayout_3" >
+          <property name="spacing" >
+           <number>4</number>
+          </property>
+          <property name="sizeConstraint" >
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <widget class="QComboBox" name="CB_Network_Type" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="currentIndex" >
+             <number>0</number>
+            </property>
+            <item>
+             <property name="text" >
+              <string>nic</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>user</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>channel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>tap</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>socket</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>multicast socket</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>vde</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>dump</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="TB_Help" >
+            <property name="text" >
+             <string>?</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="images.qrc" >
+              <normaloff>:/help.png</normaloff>:/help.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="Label_model" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>Model</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QComboBox" name="CB_model" >
+          <property name="enabled" >
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QCheckBox" name="CH_macaddr" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>macaddr</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <layout class="QHBoxLayout" name="horizontalLayout_4" >
+          <property name="spacing" >
+           <number>4</number>
+          </property>
+          <property name="sizeConstraint" >
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="Edit_macaddr" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>aa:bb:cc:dd:ee</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="TB_Generate_New_MAC" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="toolTip" >
+             <string>Generate New MAC</string>
+            </property>
+            <property name="text" >
+             <string/>
+            </property>
+            <property name="icon" >
+             <iconset resource="images.qrc" >
+              <normaloff>:/update.png</normaloff>:/update.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QCheckBox" name="CH_vlan" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>vlan</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <widget class="QSpinBox" name="SB_vlan" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" >
+         <widget class="QCheckBox" name="CH_name" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>name</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <widget class="QLineEdit" name="Edit_name" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" >
+         <widget class="QCheckBox" name="CH_hostname" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>hostname</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1" >
+         <widget class="QLineEdit" name="Edit_hostname" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0" >
+         <widget class="QLabel" name="Label_port_dev" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>port:dev</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1" >
+         <widget class="QLineEdit" name="Edit_port_dev" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="0" >
+         <widget class="QCheckBox" name="CH_fd" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>fd</string>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="1" >
+         <widget class="QSpinBox" name="SB_fd" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0" >
+         <widget class="QCheckBox" name="CH_ifname" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>ifname</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1" >
+         <widget class="QLineEdit" name="Edit_ifname" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="0" >
+         <widget class="QCheckBox" name="CH_script" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>script</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1" >
+         <layout class="QHBoxLayout" name="horizontalLayout" >
+          <property name="spacing" >
+           <number>4</number>
+          </property>
+          <property name="sizeConstraint" >
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="Edit_script" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="TB_Browse_script" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>...</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="images.qrc" >
+              <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="10" column="0" >
+         <widget class="QCheckBox" name="CH_downscript" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>downscript</string>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="1" >
+         <layout class="QHBoxLayout" name="horizontalLayout_2" >
+          <property name="spacing" >
+           <number>4</number>
+          </property>
+          <property name="sizeConstraint" >
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <widget class="QLineEdit" name="Edit_downscript" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="TB_Browse_downscript" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>...</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="images.qrc" >
+              <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="11" column="0" >
+         <widget class="QCheckBox" name="CH_listen" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>listen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="1" >
+         <widget class="QLineEdit" name="Edit_listen" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="0" >
+         <widget class="QCheckBox" name="CH_connect" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>connect</string>
+          </property>
+         </widget>
+        </item>
+        <item row="12" column="1" >
+         <widget class="QLineEdit" name="Edit_connect" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="0" >
+         <widget class="QCheckBox" name="CH_mcast" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>mcast</string>
+          </property>
+         </widget>
+        </item>
+        <item row="13" column="1" >
+         <widget class="QLineEdit" name="Edit_mcast" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="0" >
+         <widget class="QCheckBox" name="CH_sock" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>sock</string>
+          </property>
+         </widget>
+        </item>
+        <item row="14" column="1" >
+         <widget class="QLineEdit" name="Edit_sock" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="0" >
+         <widget class="QCheckBox" name="CH_port" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>port</string>
+          </property>
+         </widget>
+        </item>
+        <item row="15" column="1" >
+         <widget class="QSpinBox" name="SB_port" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximum" >
+           <number>65000</number>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="0" >
+         <widget class="QCheckBox" name="CH_group" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>group</string>
+          </property>
+         </widget>
+        </item>
+        <item row="16" column="1" >
+         <widget class="QLineEdit" name="Edit_group" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="0" >
+         <widget class="QCheckBox" name="CH_mode" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>mode</string>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="1" >
+         <widget class="QLineEdit" name="Edit_mode" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="0" >
+         <widget class="QCheckBox" name="CH_file" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>file</string>
+          </property>
+         </widget>
+        </item>
+        <item row="18" column="1" >
+         <widget class="QLineEdit" name="Edit_file" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="0" >
+         <widget class="QCheckBox" name="CH_len" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Maximum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text" >
+           <string>len</string>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="1" >
+         <widget class="QComboBox" name="CB_len" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <item>
+           <property name="text" >
+            <string>64Kb (default)</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>128Kb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>512Kb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>1Mb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>5Mb</string>
+           </property>
+          </item>
+          <item>
+           <property name="text" >
+            <string>10Mb</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="4" column="0" >
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>348</width>
+       <height>3</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="9" />
+ <tabstops>
+  <tabstop>Items_List</tabstop>
+  <tabstop>Button_Add</tabstop>
+  <tabstop>Button_Delete</tabstop>
+  <tabstop>TB_Generate_New_MAC</tabstop>
+  <tabstop>CB_Network_Type</tabstop>
+  <tabstop>TB_Help</tabstop>
+  <tabstop>CH_vlan</tabstop>
+  <tabstop>SB_vlan</tabstop>
+  <tabstop>CH_name</tabstop>
+  <tabstop>Edit_name</tabstop>
+  <tabstop>CH_hostname</tabstop>
+  <tabstop>Edit_hostname</tabstop>
+  <tabstop>Edit_port_dev</tabstop>
+  <tabstop>CH_fd</tabstop>
+  <tabstop>SB_fd</tabstop>
+  <tabstop>CH_ifname</tabstop>
+  <tabstop>Edit_ifname</tabstop>
+  <tabstop>CH_script</tabstop>
+  <tabstop>Edit_script</tabstop>
+  <tabstop>TB_Browse_script</tabstop>
+  <tabstop>CH_downscript</tabstop>
+  <tabstop>Edit_downscript</tabstop>
+  <tabstop>TB_Browse_downscript</tabstop>
+  <tabstop>CH_listen</tabstop>
+  <tabstop>Edit_listen</tabstop>
+  <tabstop>CH_connect</tabstop>
+  <tabstop>Edit_connect</tabstop>
+  <tabstop>CH_mcast</tabstop>
+  <tabstop>Edit_mcast</tabstop>
+  <tabstop>CH_sock</tabstop>
+  <tabstop>Edit_sock</tabstop>
+  <tabstop>CH_port</tabstop>
+  <tabstop>SB_port</tabstop>
+  <tabstop>CH_group</tabstop>
+  <tabstop>Edit_group</tabstop>
+  <tabstop>CH_mode</tabstop>
+  <tabstop>Edit_mode</tabstop>
+  <tabstop>CH_file</tabstop>
+  <tabstop>Edit_file</tabstop>
+  <tabstop>CH_len</tabstop>
+  <tabstop>CB_len</tabstop>
+  <tabstop>CH_macaddr</tabstop>
+  <tabstop>CB_model</tabstop>
+  <tabstop>Edit_macaddr</tabstop>
+ </tabstops>
+ <resources>
+  <include location="images.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>CH_vlan</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_vlan</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>51</x>
+     <y>247</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>269</x>
+     <y>247</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_macaddr</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_macaddr</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>60</x>
+     <y>216</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>248</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_name</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_name</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>63</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>234</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_hostname</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_hostname</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>65</x>
+     <y>306</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>225</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_fd</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_fd</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>42</x>
+     <y>366</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>244</x>
+     <y>366</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_ifname</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_ifname</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>69</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>241</x>
+     <y>396</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_script</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_script</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>59</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>224</x>
+     <y>428</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_script</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_Browse_script</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>61</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>410</x>
+     <y>430</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_downscript</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_downscript</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>83</x>
+     <y>463</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>223</x>
+     <y>463</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_downscript</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_Browse_downscript</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>19</x>
+     <y>463</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>410</x>
+     <y>465</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_listen</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_listen</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>61</x>
+     <y>495</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>238</x>
+     <y>496</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_connect</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_connect</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>74</x>
+     <y>525</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>253</x>
+     <y>526</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_mcast</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_mcast</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>54</x>
+     <y>555</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>259</x>
+     <y>556</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_sock</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_sock</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>57</x>
+     <y>585</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>218</x>
+     <y>586</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_port</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_port</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>53</x>
+     <y>615</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>224</x>
+     <y>615</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_group</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_group</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>62</x>
+     <y>644</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>227</x>
+     <y>645</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_mode</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_mode</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>59</x>
+     <y>674</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>237</x>
+     <y>675</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_file</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_file</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>48</x>
+     <y>704</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>249</x>
+     <y>705</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_len</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CB_len</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>49</x>
+     <y>734</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>241</x>
+     <y>734</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_macaddr</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_Generate_New_MAC</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>33</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>396</x>
+     <y>208</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

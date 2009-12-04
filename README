@@ -1,0 +1,50 @@
+AQEMU is a graphical interface to QEMU and KVM emulators.
+
+
+AQEMU compiling and running ONLY on Linux and *BSD systems!
+(Windows port in developing process)
+
+AQEMU Minimal Version Dependencies:
+ * Qt 4.4
+ * QEMU 0.9.0 or KVM
+ * GCC >= 3.4 or 4.X
+
+
+!!! ATTENTION READ THIS FIRST !!!
+
+In AQEMU 0.7 added support "Embedded VNC Display".
+This is experimental function, many bugs not fixed!
+
+In QEMU 0.9.1 with patch "CVE-2008-0928" is NOT correct work save VM, and snapshots!
+
+Installation is now verifies the existence of previous versions AQEMU
+and remove them before installing (If you installed AQEMU not in /usr/share/aqemu
+or /usr/share/apps/aqemu, you will have to delete a folder with the
+resources last version AQEMU manually!)
+
+Files VM versions below 0.5 are NOT supported!
+When you upgrade from version 0.5 or above, simply
+click "Apply" for each VM to keep it in the new version.
+
+
+INSTALLATION:
+
+ 1. Extract AQEMU source code.
+
+ 2. `cd' to AQEMU directory and `cmake -DCMAKE_INSTALL_PREFIX=/usr/'
+ 
+    For change AQEMU installation path, you be run:
+	`cmake -DCMAKE_INSTALL_PREFIX="your_path_to_folder"'
+    Sample `cmake -DCMAKE_INSTALL_PREFIX=/usr/local/' this install AQEMU binary in /usr/local/bin
+    and install data in /usr/local/share/aqemu
+	
+    For build without support "Embedded VNC Display" run: `cmake --DWITHOUT-EMBEDDED-DISPLAY'
+
+ 3. type `make'
+
+ 4. Enter root mode and `make install'
+
+ 5. Installation complete! For start AQEMU type: `aqemu' in shell.
+
+
+Sorry For Bad English.
