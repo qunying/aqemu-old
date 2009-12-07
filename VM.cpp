@@ -4590,6 +4590,13 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				// Set
 				tmp_usb.Set_USB_QEMU_Devices( usb_k, usb_m, usb_t, usb_wt, usb_b );
 				
+				// Next code for compatibity old versions
+				if( usb_k == false &&
+					usb_m == false &&
+					usb_t == false &&
+					usb_wt == false &&
+					usb_b == false ) tmp_usb.Set_Use_Host_Device( true );
+				
 				// Add device
 				USB_Ports << tmp_usb;
 			}
@@ -5745,50 +5752,49 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 			for( int ux = 0; ux < USB_Ports.count(); ++ux )
 			{
 				// Check Off
-				if( Build_QEMU_Args_for_Tab_Info == false )
+				// Compare VM USB device and Host USB Device
+				bool usb_cmpr = false;
+				
+				for( int ix = 0; ix < all_usb.count(); ix++ )
 				{
-					// Compare VM USB device and Host USB Device
-					bool usb_cmpr = false;
-					
+					if( all_usb[ix] == USB_Ports[ux] )
+					{
+						usb_cmpr = true;
+						all_usb.removeAt( ix );
+						break;
+					}
+				}
+				
+				// Find device by Vendor and Product ID's
+				if( usb_cmpr == false )
+				{
 					for( int ix = 0; ix < all_usb.count(); ix++ )
 					{
-						if( all_usb[ix] == USB_Ports[ux] )
+						if( all_usb[ix].Get_Vendor_ID() == USB_Ports[ux].Get_Vendor_ID() &&
+							all_usb[ix].Get_Product_ID() == USB_Ports[ux].Get_Product_ID() )
 						{
 							usb_cmpr = true;
 							all_usb.removeAt( ix );
 							break;
 						}
 					}
+				}
+				
+				// Error! Not Found
+				if( Build_QEMU_Args_for_Tab_Info == false && usb_cmpr == false )
+				{
+					AQGraphic_Warning( tr("Warning!"), tr("USB Device %1 %2 Not Found!").arg(USB_Ports[ux].Get_Vendor_ID())
+																						.arg(USB_Ports[ux].Get_Product_ID()) );
 					
-					// Find device by Vendor and Product ID's
-					if( usb_cmpr == false )
-					{
-						for( int ix = 0; ix < all_usb.count(); ix++ )
-						{
-							if( all_usb[ix].Get_Vendor_ID() == USB_Ports[ux].Get_Vendor_ID() &&
-								all_usb[ix].Get_Product_ID() == USB_Ports[ux].Get_Product_ID() )
-							{
-								usb_cmpr = true;
-								all_usb.removeAt( ix );
-								break;
-							}
-						}
-					}
-					
-					// Error! Not Found
-					if( usb_cmpr == false )
-					{
-						AQGraphic_Error( tr("QStringList Virtual_Machine::Build_QEMU_Args()"),
-										tr("Error!"), tr("USB Device %1 %2 Not Found!").arg(USB_Ports[ux].Get_Vendor_ID()).
-																						arg(USB_Ports[ux].Get_Product_ID()) );
-						continue;
-					}
+					continue;
 				}
 				
 				if( USB_Ports[ux].Get_Use_Host_Device() )
 				{
-					Args << "-usbdevice" << "host:" + USB_Ports[ux].Get_BusAddr();
-						 //<< "host:" + USB_Ports[ux].Get_Vendor_ID() + ":" + USB_Ports[ux].Get_Product_ID();
+					if( usb_cmpr )
+						Args << "-usbdevice" << "host:" + USB_Ports[ux].Get_BusAddr();
+					else
+						Args << "-usbdevice" << "host:" + USB_Ports[ux].Get_Vendor_ID() + ":" + USB_Ports[ux].Get_Product_ID();
 				}
 				else
 				{
@@ -5804,7 +5810,8 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 					else if( usb_b ) Args << "-usbdevice" << "braille";
 					else
 					{
-						// FIXME
+						AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+								"Incorrcect Device!" );
 					}
 				}
 			}

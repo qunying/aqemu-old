@@ -63,8 +63,8 @@ void Add_USB_Port_Window::Set_Port( const VM_USB &port )
 {
 	Current_Item = port;
 	
-	if( port.Get_Use_Host_Device() ) on_RB_Host_USB_clicked( true );
-	else on_RB_QEMU_USB_clicked( true );
+	if( port.Get_Use_Host_Device() == false ) on_RB_QEMU_USB_clicked( true );
+	else on_RB_Host_USB_clicked( true );
 	
 	bool usb_k, usb_m, usb_t, usb_wt, usb_b;
 	usb_k = usb_m = usb_t = usb_wt = usb_b = false;

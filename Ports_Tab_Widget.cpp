@@ -161,23 +161,19 @@ void Ports_Tab_Widget::Clear_Old_Ports()
 
 QString Ports_Tab_Widget::Get_Port_Info( const VM_Port &port )
 {
-	
+	return "(This function not complete)"; // FIXME
 }
 
 QString Ports_Tab_Widget::Get_USB_Port_Info( const VM_USB &port )
 {
-	if( port.Get_Use_Host_Device() )
-	{
-		return tr("%1 %2 (BusAddr: %3)").arg( port.Get_Manufacturer_Name() ).arg( port.Get_Product_Name() ).arg( port.Get_BusAddr() );
-	}
-	else
+	if( port.Get_Use_Host_Device() == false )
 	{
 		QString devName = "";
 		
 		bool usb_k, usb_m, usb_t, usb_wt, usb_b;
 		usb_k = usb_m = usb_t = usb_wt = usb_b = false;
 		port.Get_USB_QEMU_Devices( usb_k, usb_m, usb_t, usb_wt, usb_b );
-	
+		
 		if( usb_k ) devName = tr("Keyboard");
 		else if( usb_m ) devName = tr("Mouse");
 		else if( usb_t ) devName = tr("Tablet");
@@ -190,6 +186,22 @@ QString Ports_Tab_Widget::Get_USB_Port_Info( const VM_USB &port )
 		}
 		
 		return tr( "Virtual QEMU/KVM Device: %1" ).arg(devName);
+	}
+	else
+	{
+		if( port.Get_BusAddr().isEmpty() )
+		{
+			return tr("%1 %2 (Vendor ID: %3 Product ID: %4)").arg( port.Get_Manufacturer_Name() )
+									  .arg( port.Get_Product_Name() )
+									  .arg( port.Get_Vendor_ID() )
+									  .arg( port.Get_Product_ID() );
+		}
+		else
+		{
+			return tr("%1 %2 (BusAddr: %3)").arg( port.Get_Manufacturer_Name() )
+											.arg( port.Get_Product_Name() )
+											.arg( port.Get_BusAddr() );
+		}
 	}
 }
 
