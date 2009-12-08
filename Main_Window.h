@@ -190,6 +190,7 @@ class Main_Window: public QMainWindow
 		bool Save_Virtual_Machines();
 		
 		QString Get_QEMU_Args();
+		QString Get_Current_Binary_Name();
 		bool Boot_Is_Correct();
 		bool No_Device_Found( const QString &name, const QString &path, VM::Boot_Device type );
 		

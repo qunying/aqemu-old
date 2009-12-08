@@ -4070,38 +4070,47 @@ QString Main_Window::Get_QEMU_Args()
 	}
 	else
 	{
-		Emulator cur_emul;
-		
-		if( ui.CB_Emulator_Version->currentIndex() > 0 ) cur_emul = Get_Emulator_By_Name( ui.CB_Emulator_Version->currentText() );
-		else
-		{
-			if( ui.CB_Emulator_Type->currentText() == "QEMU" ) cur_emul = Get_Default_Emulator( "QEMU" );
-			else if( ui.CB_Emulator_Type->currentText() == "KVM" ) cur_emul = Get_Default_Emulator( "KVM" );
-			else
-			{
-				cur_emul = Get_Default_Emulator( "QEMU" );
-				
-				AQError( "QString Main_Window::Get_QEMU_Args()", "Incorrect Emulator Type. Use Default: QEMU" );
-			}
-		}
-		
-		QMap<QString, QString> bin_list = cur_emul.Get_Binary_Files();
-		QString find_name = Get_Devices_Info()[ ui.CB_Computer_Type->currentIndex() ].System.QEMU_Name;
-		
-		for( QMap<QString, QString>::const_iterator iter = bin_list.constBegin(); iter != bin_list.constEnd(); iter++ )
-		{
-			if( iter.key() == find_name ||
-				(find_name == "qemu-system-x86" && iter.key() == "qemu") ||
-				(find_name == "qemu-kvm" && iter.key() == "kvm") )
-			{
-				line = iter.value();
-				break;
-			}
-		}
+		line = Get_Current_Binary_Name();
 		
 		QStringList all_args = VM_List[ ui.Machines_List->currentRow() ].Build_QEMU_Args_For_Tab_Info();
 		
 		for( int i = 0; i < all_args.count(); ++i ) line += " " + all_args[i];
+	}
+	
+	return line;
+}
+
+QString Main_Window::Get_Current_Binary_Name()
+{
+	QString line = "";
+	Emulator cur_emul;
+	
+	if( ui.CB_Emulator_Version->currentIndex() > 0 ) cur_emul = Get_Emulator_By_Name( ui.CB_Emulator_Version->currentText() );
+	else
+	{
+		if( ui.CB_Emulator_Type->currentText() == "QEMU" ) cur_emul = Get_Default_Emulator( "QEMU" );
+		else if( ui.CB_Emulator_Type->currentText() == "KVM" ) cur_emul = Get_Default_Emulator( "KVM" );
+		else
+		{
+			cur_emul = Get_Default_Emulator( "QEMU" );
+			
+			AQError( "QString Main_Window::Get_Current_Binary_Name()",
+					 "Incorrect Emulator Type. Use Default: QEMU" );
+		}
+	}
+	
+	QMap<QString, QString> bin_list = cur_emul.Get_Binary_Files();
+	QString find_name = Get_Devices_Info()[ ui.CB_Computer_Type->currentIndex() ].System.QEMU_Name;
+	
+	for( QMap<QString, QString>::const_iterator iter = bin_list.constBegin(); iter != bin_list.constEnd(); iter++ )
+	{
+		if( iter.key() == find_name ||
+			(find_name == "qemu-system-x86" && iter.key() == "qemu") ||
+			(find_name == "qemu-kvm" && iter.key() == "kvm") )
+		{
+			line = iter.value();
+			break;
+		}
 	}
 	
 	return line;
@@ -4834,10 +4843,10 @@ void Main_Window::on_actionCreate_Shell_Script_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
 	
-	QString script_code = "#!/bin/sh\n#This script created by AQEMU\n";
+	QString script_code = "#!/bin/sh\n# This script created by AQEMU\n" + Get_Current_Binary_Name();
 	QStringList all_args = VM_List[ui.Machines_List->currentRow()].Build_QEMU_Args_For_Script();
 	
-	foreach( QString line, all_args ) script_code += line;
+	for( int ix = 0; ix < all_args.count(); ix++ ) script_code += " " + all_args[ ix ];
 	
 	script_code = script_code.remove( "-monitor stdio" );
 	
