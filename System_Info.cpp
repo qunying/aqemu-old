@@ -1893,7 +1893,19 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 	list.clear();
 	QDir dir("/sys/bus/usb/devices/");
 	
-	QStringList usb_dirs = dir.entryList( QStringList("usb*"), QDir::Dirs, QDir::Name );
+	QStringList usb_dirs;
+	QStringList all_usb_dirs = dir.entryList( QStringList("*"), QDir::Dirs, QDir::Name );
+	
+	// add only unique usb device folders
+	QRegExp re_usbNum = QRegExp( "usb\\d+" ); // like: usb5
+	QRegExp re_NumNum = QRegExp( "\\d+[-]\\d+" ); // like: 1-2
+	
+	foreach( QString cur_dir, all_usb_dirs )
+	{
+		if( re_usbNum.exactMatch(cur_dir) ) usb_dirs << cur_dir;
+		else if( re_NumNum.exactMatch(cur_dir) ) usb_dirs << cur_dir;
+		else continue;
+	}
 	
 	if( usb_dirs.isEmpty() )
 	{
