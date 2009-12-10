@@ -2125,9 +2125,10 @@ VM_USB::VM_USB()
 	Vendor_ID = "";
 	Product_ID = "";
 	BusAddr = "";
+	Speed = 0;
+	Serial_Number = "";
 	USB_Keyboard = USB_Tablet = USB_WacomTablet = USB_Braille = false;
 	USB_Mouse = true;
-	Speed = 0;
 }
 
 VM_USB::VM_USB( const VM_USB &u )
@@ -2138,8 +2139,9 @@ VM_USB::VM_USB( const VM_USB &u )
 	Vendor_ID = u.Get_Vendor_ID();
 	Product_ID = u.Get_Product_ID();
 	BusAddr = u.Get_BusAddr();
-	u.Get_USB_QEMU_Devices( USB_Keyboard, USB_Mouse, USB_Tablet, USB_WacomTablet, USB_Braille );
+	Serial_Number = u.Get_Serial_Number();
 	Speed = u.Get_Speed();
+	u.Get_USB_QEMU_Devices( USB_Keyboard, USB_Mouse, USB_Tablet, USB_WacomTablet, USB_Braille );
 }
 
 bool VM_USB::operator==( const VM_USB &u ) const
@@ -2150,16 +2152,14 @@ bool VM_USB::operator==( const VM_USB &u ) const
 	u.Get_USB_QEMU_Devices( k, m, t, wt, b );
 	
 	if( Use_Host_Device == u.Get_Use_Host_Device() &&
-		Manufacturer_Name == u.Get_Manufacturer_Name() &&
-		Product_Name == u.Get_Product_Name() &&
 		Vendor_ID == u.Get_Vendor_ID() &&
 		Product_ID == u.Get_Product_ID() &&
+		Serial_Number == u.Get_Serial_Number() &&
 		USB_Keyboard == k &&
 		USB_Mouse == m &&
 		USB_Tablet == t &&
 		USB_WacomTablet == wt &&
-		USB_Braille == b &&
-		Speed == u.Get_Speed() )
+		USB_Braille == b )
 	{
 		return true;
 	}
@@ -2253,6 +2253,26 @@ void VM_USB::Set_BusAddr( const QString &busAddr )
 	BusAddr = busAddr;
 }
 
+QString VM_USB::Get_Serial_Number() const
+{
+	return Serial_Number;
+}
+
+void VM_USB::Set_Serial_Number( const QString &serial )
+{
+	Serial_Number = serial;
+}
+
+int VM_USB::Get_Speed() const
+{
+	return Speed;
+}
+
+void VM_USB::Set_Speed( int speed )
+{
+	Speed = speed;
+}
+
 void VM_USB::Get_USB_QEMU_Devices( bool &keyboard, bool &mouse, bool &tablet, bool &wacomTablet, bool &braille ) const
 {
 	keyboard = USB_Keyboard;
@@ -2269,16 +2289,6 @@ void VM_USB::Set_USB_QEMU_Devices( bool keyboard, bool mouse, bool tablet, bool 
 	USB_Tablet = tablet;
 	USB_WacomTablet = wacomTablet;
 	USB_Braille = braille;
-}
-
-int VM_USB::Get_Speed() const
-{
-	return Speed;
-}
-
-void VM_USB::Set_Speed( int speed )
-{
-	Speed = speed;
 }
 
 //===========================================================================

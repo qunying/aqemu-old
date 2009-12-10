@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>528</width>
+    <width>481</width>
     <height>265</height>
    </rect>
   </property>
@@ -15,151 +15,134 @@
   </property>
   <layout class="QGridLayout" name="gridLayout" >
    <item row="0" column="0" >
-    <layout class="QHBoxLayout" name="horizontalLayout_5" >
-     <item>
-      <widget class="QToolButton" name="TB_Add_Serial_Port" >
-       <property name="text" >
-        <string>Add COM Port</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images.qrc" >
-         <normaloff>:/port.png</normaloff>:/port.png</iconset>
-       </property>
-       <property name="iconSize" >
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="toolButtonStyle" >
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
-       </property>
-       <property name="autoRaise" >
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="TB_Add_Parallel_Port" >
-       <property name="text" >
-        <string>Add LPT Port</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images.qrc" >
-         <normaloff>:/port.png</normaloff>:/port.png</iconset>
-       </property>
-       <property name="iconSize" >
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="toolButtonStyle" >
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
-       </property>
-       <property name="autoRaise" >
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="TB_Add_USB_Port" >
-       <property name="text" >
-        <string>Add USB Port</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images.qrc" >
-         <normaloff>:/usb.png</normaloff>:/usb.png</iconset>
-       </property>
-       <property name="iconSize" >
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="toolButtonStyle" >
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
-       </property>
-       <property name="autoRaise" >
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer" >
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0" >
-        <size>
-         <width>13</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QToolButton" name="TB_Edit_Port" >
-       <property name="text" >
-        <string>Edit Port</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images.qrc" >
-         <normaloff>:/edit.png</normaloff>:/edit.png</iconset>
-       </property>
-       <property name="iconSize" >
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="toolButtonStyle" >
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
-       </property>
-       <property name="autoRaise" >
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_12" >
-       <property name="orientation" >
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0" >
-        <size>
-         <width>17</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QToolButton" name="TB_Delete_Port" >
-       <property name="text" >
-        <string>Delete Port</string>
-       </property>
-       <property name="icon" >
-        <iconset resource="images.qrc" >
-         <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
-       </property>
-       <property name="iconSize" >
-        <size>
-         <width>32</width>
-         <height>32</height>
-        </size>
-       </property>
-       <property name="toolButtonStyle" >
-        <enum>Qt::ToolButtonTextUnderIcon</enum>
-       </property>
-       <property name="autoRaise" >
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QToolButton" name="TB_Add_Serial_Port" >
+     <property name="text" >
+      <string>Add COM Port</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images.qrc" >
+       <normaloff>:/port.png</normaloff>:/port.png</iconset>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextUnderIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>false</bool>
+     </property>
+    </widget>
    </item>
-   <item row="1" column="0" >
+   <item row="0" column="1" >
+    <widget class="QToolButton" name="TB_Add_Parallel_Port" >
+     <property name="text" >
+      <string>Add LPT Port</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images.qrc" >
+       <normaloff>:/port.png</normaloff>:/port.png</iconset>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextUnderIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2" >
+    <widget class="QToolButton" name="TB_Add_USB_Port" >
+     <property name="text" >
+      <string>Add USB Port</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images.qrc" >
+       <normaloff>:/usb.png</normaloff>:/usb.png</iconset>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextUnderIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3" >
+    <widget class="QToolButton" name="TB_Edit_Port" >
+     <property name="text" >
+      <string>Edit Port</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images.qrc" >
+       <normaloff>:/edit.png</normaloff>:/edit.png</iconset>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextUnderIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4" >
+    <widget class="QToolButton" name="TB_Delete_Port" >
+     <property name="text" >
+      <string>Delete Port</string>
+     </property>
+     <property name="icon" >
+      <iconset resource="images.qrc" >
+       <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
+     </property>
+     <property name="iconSize" >
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="toolButtonStyle" >
+      <enum>Qt::ToolButtonTextUnderIcon</enum>
+     </property>
+     <property name="autoRaise" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="5" >
+    <spacer name="horizontalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>18</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" colspan="6" >
     <layout class="QHBoxLayout" name="horizontalLayout_4" >
      <item>
       <widget class="QLabel" name="Label_Pors" >
@@ -183,7 +166,7 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0" >
+   <item row="2" column="0" colspan="6" >
     <widget class="QTableWidget" name="Ports_Table" >
      <property name="editTriggers" >
       <set>QAbstractItemView::NoEditTriggers</set>

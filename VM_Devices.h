@@ -725,11 +725,14 @@ class VM_USB
 		QString Get_BusAddr() const;
 		void Set_BusAddr( const QString &busAddr );
 		
-		void Get_USB_QEMU_Devices( bool &keyboard, bool &mouse, bool &tablet, bool &wacomTablet, bool &braille ) const;
-		void Set_USB_QEMU_Devices( bool keyboard, bool mouse, bool tablet, bool wacomTablet, bool braille );
+		QString Get_Serial_Number() const;
+		void Set_Serial_Number( const QString &serial );
 		
 		int Get_Speed() const;
 		void Set_Speed( int speed );
+		
+		void Get_USB_QEMU_Devices( bool &keyboard, bool &mouse, bool &tablet, bool &wacomTablet, bool &braille ) const;
+		void Set_USB_QEMU_Devices( bool keyboard, bool mouse, bool tablet, bool wacomTablet, bool braille );
 		
 	private:
 		bool Use_Host_Device;
@@ -738,9 +741,9 @@ class VM_USB
 		QString Vendor_ID;
 		QString Product_ID;
 		QString BusAddr;
-		bool USB_Keyboard, USB_Mouse, USB_Tablet, USB_WacomTablet, USB_Braille;
-		
+		QString Serial_Number;
 		int Speed;
+		bool USB_Keyboard, USB_Mouse, USB_Tablet, USB_WacomTablet, USB_Braille;
 };
 
 // Initial Graphical Mode

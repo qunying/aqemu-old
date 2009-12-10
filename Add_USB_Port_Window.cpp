@@ -91,6 +91,9 @@ void Add_USB_Port_Window::Set_Port( const VM_USB &port )
 
 void Add_USB_Port_Window::on_Button_Update_Host_USB_clicked()
 {
+	// Update USB Info
+	System_Info::Update_Host_USB();
+	
 	// Update User Interface
 	ui.Table_Host_USB->clearContents();
 	for( int rx = 0; rx < ui.Table_Host_USB->rowCount(); ) ui.Table_Host_USB->removeRow( rx );
@@ -117,6 +120,7 @@ void Add_USB_Port_Window::on_Button_Update_Host_USB_clicked()
 		return;
 	}
 	
+	// Add new items
 	for( int ux = 0; ux < USB_Host_List.count(); ++ux )
 	{
 		ui.Table_Host_USB->insertRow( ui.Table_Host_USB->rowCount() );

@@ -5746,55 +5746,44 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		{
 			Args << "-usb";
 			
+			if( Build_QEMU_Args_for_Tab_Info == false ) System_Info::Update_Host_USB();
 			QList<VM_USB> all_usb = System_Info::Get_All_Host_USB();
 			
 			// Add usb
-			for( int ux = 0; ux < USB_Ports.count(); ++ux )
+			for( int ux = 0; ux < USB_Ports.count(); ux++ )
 			{
-				// Check Off
 				// Compare VM USB device and Host USB Device
+				// Find device by Vendor and Product ID's
 				bool usb_cmpr = false;
+				VM_USB current_USB_Device;
 				
 				for( int ix = 0; ix < all_usb.count(); ix++ )
 				{
-					if( all_usb[ix] == USB_Ports[ux] )
+					if( all_usb[ix].Get_Vendor_ID() == USB_Ports[ux].Get_Vendor_ID() &&
+						all_usb[ix].Get_Product_ID() == USB_Ports[ux].Get_Product_ID() &&
+						all_usb[ix].Get_Serial_Number() == USB_Ports[ux].Get_Serial_Number() )
 					{
 						usb_cmpr = true;
+						current_USB_Device = all_usb[ ix ];
 						all_usb.removeAt( ix );
 						break;
-					}
-				}
-				
-				// Find device by Vendor and Product ID's
-				if( usb_cmpr == false )
-				{
-					for( int ix = 0; ix < all_usb.count(); ix++ )
-					{
-						if( all_usb[ix].Get_Vendor_ID() == USB_Ports[ux].Get_Vendor_ID() &&
-							all_usb[ix].Get_Product_ID() == USB_Ports[ux].Get_Product_ID() )
-						{
-							usb_cmpr = true;
-							all_usb.removeAt( ix );
-							break;
-						}
 					}
 				}
 				
 				// Error! Not Found
 				if( Build_QEMU_Args_for_Tab_Info == false && usb_cmpr == false )
 				{
-					AQGraphic_Warning( tr("Warning!"), tr("USB Device %1 %2 Not Found!").arg(USB_Ports[ux].Get_Vendor_ID())
-																						.arg(USB_Ports[ux].Get_Product_ID()) );
+					AQGraphic_Warning( tr("Warning!"), tr("USB Device %1 %2 (%3 %4) Not Found!").arg(USB_Ports[ux].Get_Manufacturer_Name())
+																								.arg(USB_Ports[ux].Get_Product_Name())
+																								.arg(USB_Ports[ux].Get_Vendor_ID())
+																								.arg(USB_Ports[ux].Get_Product_ID()) );
 					
 					continue;
 				}
 				
 				if( USB_Ports[ux].Get_Use_Host_Device() )
 				{
-					if( usb_cmpr )
-						Args << "-usbdevice" << "host:" + USB_Ports[ux].Get_BusAddr();
-					else
-						Args << "-usbdevice" << "host:" + USB_Ports[ux].Get_Vendor_ID() + ":" + USB_Ports[ux].Get_Product_ID();
+					Args << "-usbdevice" << "host:" + current_USB_Device.Get_BusAddr();
 				}
 				else
 				{
