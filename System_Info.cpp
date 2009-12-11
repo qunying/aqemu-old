@@ -1928,7 +1928,7 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		else
 		{
 			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "" );
+					 "Cannot read idVendor from /sys/bus/usb/devices/" );
 			continue;
 		}
 		
@@ -1940,7 +1940,7 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		else
 		{
 			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "" );
+					 "Cannot read idProduct from /sys/bus/usb/devices/" );
 			continue;
 		}
 		
@@ -1952,7 +1952,7 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		else
 		{
 			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "" );
+					 "Cannot read manufacturer from /sys/bus/usb/devices/" );
 			continue;
 		}
 		
@@ -1964,7 +1964,7 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		else
 		{
 			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "" );
+					 "Cannot read product from /sys/bus/usb/devices/" );
 			continue;
 		}
 		
@@ -1976,7 +1976,19 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		else
 		{
 			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "" );
+					 "Cannot read speed from /sys/bus/usb/devices/" );
+			continue;
+		}
+		
+		// Serial Number
+		if( Read_SysFS_File(usb_path + "serial", data) )
+		{
+			tmp_usb.Set_Serial_Number( data );
+		}
+		else
+		{
+			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
+					 "Cannot read serial from /sys/bus/usb/devices/" );
 			continue;
 		}
 		
@@ -1993,14 +2005,14 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 			else
 			{
 				AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-						 "" );
+						 "Cannot read devnum from /sys/bus/usb/devices/" );
 				continue;
 			}
 		}
 		else
 		{
 			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "" );
+					 "Cannot read busnum from /sys/bus/usb/devices/" );
 			continue;
 		}
 		
@@ -2072,7 +2084,8 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 				
 				if( line.startsWith("P:") ||
 					line.startsWith("S:  Manufacturer") ||
-					line.startsWith("S:  Product") ) tmp_str << line;
+					line.startsWith("S:  Product") ||
+					line.startsWith("S:  SerialNumber") ) tmp_str << line;
 				else if( line.startsWith("E:") ) break;
 			}
 			
@@ -2105,6 +2118,9 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 	// S:  Product=Super USB Device
 	QRegExp product = QRegExp( "S:[\\s]+Product=(.+)" );
 	
+	// S:  SerialNumber=0000:00:12.2
+	QRegExp serialNumber = QRegExp( "S:[\\s]+SerialNumber=(.+)" );
+	
 	for( int ix = 0; ix < linux_usb_dev.count(); ix++ )
 	{
 		if( linux_usb_dev[ix].count() <= 0 )
@@ -2118,6 +2134,7 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 		QStringList idHex_list;
 		QStringList manufacturer_list;
 		QStringList product_list;
+		QStringList serialNumber_list;
 		
 		for( int bx = 0; bx < linux_usb_dev[ix].count(); bx++ )
 		{
@@ -2176,6 +2193,20 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 							 "Cannot Match product! String: " + linux_usb_dev[ix][bx] );
 				}
 			}
+			
+			if( serialNumber_list.count() <= 0 )
+			{
+				if( serialNumber.exactMatch(linux_usb_dev[ix][bx]) )
+				{
+					serialNumber_list = serialNumber.capturedTexts();
+					continue;
+				}
+				else
+				{
+					AQError( "bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )",
+							 "Cannot Match serialNumber! String: " + linux_usb_dev[ix][bx] );
+				}
+			}
 		}
 		
 		// Create VM_USB
@@ -2203,6 +2234,11 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 					QString busStr = (busAddr_list[1][0] == '0') ? QString(busAddr_list[1][1]) : busAddr_list[1];
 					tmp_usb.Set_BusAddr( busStr + ":" + busAddr_list[2] );
 					tmp_usb.Set_Speed( busAddr_list[3].toInt() );
+				}
+				
+				if( serialNumber_list.count() > 0 )
+				{
+					tmp_usb.Set_Serial_Number( serialNumber_list[1] );
 				}
 				
 				list << tmp_usb;

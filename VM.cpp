@@ -2921,6 +2921,14 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 			
 			VM_Element.appendChild( Dom_Element );
 			
+			// Serial Number
+			Sec_Element = New_Dom_Document.createElement( "Serial_Number" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( USB_Ports[ux].Get_Serial_Number() );
+			Sec_Element.appendChild( Dom_Text );
+			
+			VM_Element.appendChild( Dom_Element );
+			
 			// Speed
 			Sec_Element = New_Dom_Document.createElement( "Speed" );
 			Dom_Element.appendChild( Sec_Element );
@@ -4566,6 +4574,7 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				tmp_usb.Set_Vendor_ID( Second_Element.firstChildElement("Vendor_ID").text() );
 				tmp_usb.Set_Product_ID( Second_Element.firstChildElement("Product_ID").text() );
 				tmp_usb.Set_BusAddr( Second_Element.firstChildElement("BusAddr").text() );
+				tmp_usb.Set_Serial_Number( Second_Element.firstChildElement("Serial_Number").text() );
 				tmp_usb.Set_Speed( Second_Element.firstChildElement("Speed").text().toInt() );
 				
 				// QEMU USB Devices
