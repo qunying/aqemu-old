@@ -996,189 +996,6 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )
 		tmp_vm.Set_HDD( tmp_hd );
 	}
 	
-	// Floppy A
-	if( tmp_vm.Get_FD0().Get_Enabled() )
-	{
-		if( tmp_vm.Get_FD0().Get_Host_Device() )
-		{
-			if( ! QFile::exists(tmp_vm.Get_FD0().Get_Host_File_Name()) )
-			{
-				if( ! No_Device_Found("Floppy A", tmp_vm.Get_FD0().Get_Host_File_Name(), VM::Boot_From_FDD) )
-				{
-					return false;
-				}
-				else
-				{
-					VM_Floppy tmp_fd = tmp_vm.Get_FD0();
-					tmp_fd.Set_Enabled( false );
-					tmp_vm.Set_FD0( tmp_fd );
-				}
-			}
-		}
-		else
-		{
-			if( ! QFile::exists(tmp_vm.Get_FD0().Get_Image_File_Name()) )
-			{
-				if( ! No_Device_Found("Floppy A", tmp_vm.Get_FD0().Get_Image_File_Name(), VM::Boot_From_FDD) )
-				{
-					return false;
-				}
-				else
-				{
-					VM_Floppy tmp_fd = tmp_vm.Get_FD0();
-					tmp_fd.Set_Enabled( false );
-					tmp_vm.Set_FD0( tmp_fd );
-				}
-			}
-		}
-	}
-	
-	// Floppy B
-	if( tmp_vm.Get_FD1().Get_Enabled() )
-	{
-		if( tmp_vm.Get_FD1().Get_Host_Device() )
-		{
-			if( ! QFile::exists(tmp_vm.Get_FD1().Get_Host_File_Name()) )
-			{
-				if( ! No_Device_Found("Floppy B", tmp_vm.Get_FD1().Get_Host_File_Name(), VM::Boot_From_FDD) )
-				{
-					return false;
-				}
-				else
-				{
-					VM_Floppy tmp_fd = tmp_vm.Get_FD1();
-					tmp_fd.Set_Enabled( false );
-					tmp_vm.Set_FD1( tmp_fd );
-				}
-			}
-		}
-		else
-		{
-			if( ! QFile::exists(tmp_vm.Get_FD1().Get_Image_File_Name()) )
-			{
-				if( ! No_Device_Found("Floppy B", tmp_vm.Get_FD1().Get_Image_File_Name(), VM::Boot_From_FDD) )
-				{
-					return false;
-				}
-				else
-				{
-					VM_Floppy tmp_fd = tmp_vm.Get_FD1();
-					tmp_fd.Set_Enabled( false );
-					tmp_vm.Set_FD1( tmp_fd );
-				}
-			}
-		}
-	}
-	
-	// CD-ROM
-	if( tmp_vm.Get_CD_ROM().Get_Enabled() )
-	{
-		if( tmp_vm.Get_CD_ROM().Get_Host_Device() )
-		{
-			if( ! QFile::exists(tmp_vm.Get_CD_ROM().Get_Host_File_Name()) )
-			{
-				if( ! No_Device_Found("CD-ROM", tmp_vm.Get_CD_ROM().Get_Host_File_Name(), VM::Boot_From_CDROM) )
-				{
-					return false;
-				}
-				else
-				{
-					VM_CDROM tmp_cd = tmp_vm.Get_CD_ROM();
-					tmp_cd.Set_Enabled( false );
-					tmp_vm.Set_CD_ROM( tmp_cd );
-				}
-			}
-		}
-		else
-		{
-			if( ! QFile::exists(tmp_vm.Get_CD_ROM().Get_Image_File_Name()) )
-			{
-				if( ! No_Device_Found("CD-ROM", tmp_vm.Get_CD_ROM().Get_Image_File_Name(), VM::Boot_From_CDROM) )
-				{
-					return false;
-				}
-				else
-				{
-					VM_CDROM tmp_cd = tmp_vm.Get_CD_ROM();
-					tmp_cd.Set_Enabled( false );
-					tmp_vm.Set_CD_ROM( tmp_cd );
-				}
-			}
-		}
-	}
-	
-	// HDA
-	if( tmp_vm.Get_HDA().Get_Enabled() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_HDA().Get_Image_File_Name()) )
-		{
-			if( ! No_Device_Found("HDA", tmp_vm.Get_HDA().Get_Image_File_Name(), VM::Boot_From_HDD) )
-			{
-				return false;
-			}
-			else
-			{
-				VM_HDD tmp_hd = tmp_vm.Get_HDA();
-				tmp_hd.Set_Enabled( false );
-				tmp_vm.Set_HDA( tmp_hd );
-			}
-		}
-	}
-	
-	// HDB
-	if( tmp_vm.Get_HDB().Get_Enabled() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_HDB().Get_Image_File_Name()) )
-		{
-			if( ! No_Device_Found("HDB", tmp_vm.Get_HDB().Get_Image_File_Name(), VM::Boot_From_HDD) )
-			{
-				return false;
-			}
-			else
-			{
-				VM_HDD tmp_hd = tmp_vm.Get_HDB();
-				tmp_hd.Set_Enabled( false );
-				tmp_vm.Set_HDB( tmp_hd );
-			}
-		}
-	}
-	
-	// HDC
-	if( tmp_vm.Get_HDC().Get_Enabled() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_HDC().Get_Image_File_Name()) )
-		{
-			if( ! No_Device_Found("HDC", tmp_vm.Get_HDC().Get_Image_File_Name(), VM::Boot_From_HDD) )
-			{
-				return false;
-			}
-			else
-			{
-				VM_HDD tmp_hd = tmp_vm.Get_HDC();
-				tmp_hd.Set_Enabled( false );
-				tmp_vm.Set_HDC( tmp_hd );
-			}
-		}
-	}
-	
-	// HDD
-	if( tmp_vm.Get_HDD().Get_Enabled() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_HDD().Get_Image_File_Name()) )
-		{
-			if( ! No_Device_Found("HDD", tmp_vm.Get_HDD().Get_Image_File_Name(), VM::Boot_From_HDD) )
-			{
-				return false;
-			}
-			else
-			{
-				VM_HDD tmp_hd = tmp_vm.Get_HDD();
-				tmp_hd.Set_Enabled( false );
-				tmp_vm.Set_HDD( tmp_hd );
-			}
-		}
-	}
-	
 	// Network Tab
 	tmp_vm.Set_Use_Network( ui.CH_Use_Network->isChecked() );
 	
@@ -1243,36 +1060,6 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )
 	tmp_vm.Set_Initrd_Path( ui.Edit_Linux_Initrd_Path->text() );
 	tmp_vm.Set_Kernel_ComLine( ui.Edit_Linux_Command_Line->text() );
 	
-	// Linux Kernel Files
-	if( tmp_vm.Get_Use_Linux_Boot() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_bzImage_Path()) )
-		{
-			if( ! No_Device_Found(tr("bzImage"), tmp_vm.Get_bzImage_Path(), VM::Boot_None) )
-			{
-				return false;
-			}
-			else
-			{
-				ui.CH_Use_Linux_Boot->setChecked( false );
-				tmp_vm.Set_Use_Linux_Boot( false );
-			}
-		}
-		
-		if( ! QFile::exists(tmp_vm.Get_Initrd_Path()) )
-		{
-			if( ! No_Device_Found(tr("Initrd"), tmp_vm.Get_Initrd_Path(), VM::Boot_None) )
-			{
-				return false;
-			}
-			else
-			{
-				ui.CH_Use_Linux_Boot->setChecked( false );
-				tmp_vm.Set_Use_Linux_Boot( false );
-			}
-		}
-	}
-	
 	// Optional Images
 	// ROM File
 	tmp_vm.Set_Use_ROM_File( ui.CH_ROM_File->isChecked() );
@@ -1289,74 +1076,6 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )
 	// Parallel Flash Image
 	tmp_vm.Use_PFlash_File( ui.CH_PFlash->isChecked() );
 	tmp_vm.Set_PFlash_File( ui.Edit_PFlash_File->text() );
-	
-	// ROM File
-	if( tmp_vm.Get_Use_ROM_File() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_ROM_File()) )
-		{
-			if( ! No_Device_Found(tr("ROM File"), tmp_vm.Get_ROM_File(), VM::Boot_None) )
-			{
-				return false;
-			}
-			else
-			{
-				ui.CH_ROM_File->setChecked( false );
-				tmp_vm.Set_Use_ROM_File( false );
-			}
-		}
-	}
-	
-	// On-Board Flash Image
-	if( tmp_vm.Use_MTDBlock_File() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_MTDBlock_File()) )
-		{
-			if( ! No_Device_Found(tr("On-Board Flash"), tmp_vm.Get_MTDBlock_File(), VM::Boot_None) )
-			{
-				return false;
-			}
-			else
-			{
-				ui.CH_MTDBlock->setChecked( false );
-				tmp_vm.Use_MTDBlock_File( false );
-			}
-		}
-	}
-	
-	// SecureDigital Card Image
-	if( tmp_vm.Use_SecureDigital_File() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_SecureDigital_File()) )
-		{
-			if( ! No_Device_Found(tr("SecureDigital Card"), tmp_vm.Get_SecureDigital_File(), VM::Boot_None) )
-			{
-				return false;
-			}
-			else
-			{
-				ui.CH_SD_Image->setChecked( false );
-				tmp_vm.Use_SecureDigital_File( false );
-			}
-		}
-	}
-	
-	// Parallel Flash Image
-	if( tmp_vm.Use_PFlash_File() )
-	{
-		if( ! QFile::exists(tmp_vm.Get_PFlash_File()) )
-		{
-			if( ! No_Device_Found(tr("Parallel Flash"), tmp_vm.Get_PFlash_File(), VM::Boot_None) )
-			{
-				return false;
-			}
-			else
-			{
-				ui.CH_PFlash->setChecked( false );
-				tmp_vm.Use_PFlash_File( false );
-			}
-		}
-	}
 	
 	// GDB
 	tmp_vm.Use_GDB( ui.CH_Use_GDB->isChecked() );
@@ -1478,42 +1197,6 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )
 	
 	// No_Use_Embedded_Display
 	tmp_vm.Use_No_Use_Embedded_Display( ui.CH_No_Use_Embedded_Display->isChecked() );
-	
-	// VNC Sertificates
-	if( tmp_vm.Use_VNC() && tmp_vm.Use_VNC_TLS() )
-	{
-		if( tmp_vm.Use_VNC_x509() )
-		{
-			if( ! QFile::exists(tmp_vm.Get_VNC_x509_Folder_Path()) )
-			{
-				if( ! No_Device_Found(tr("VNC x509 Folder"), tmp_vm.Get_VNC_x509_Folder_Path(), VM::Boot_None) )
-				{
-					return false;
-				}
-				else
-				{
-					ui.CH_Use_VNC_TLS->setChecked( false );
-					tmp_vm.Use_VNC_x509( false );
-				}
-			}
-		}
-		
-		if( tmp_vm.Use_VNC_x509verify() )
-		{
-			if( ! QFile::exists(tmp_vm.Get_VNC_x509verify_Folder_Path()) )
-			{
-				if( ! No_Device_Found(tr("VNC x509verify Folder"), tmp_vm.Get_VNC_x509verify_Folder_Path(), VM::Boot_None) )
-				{
-					return false;
-				}
-				else
-				{
-					ui.CH_Use_VNC_TLS->setChecked( false );
-					tmp_vm.Use_VNC_x509verify( false );
-				}
-			}
-		}
-	}
 	
 	return true;
 }
@@ -3933,7 +3616,8 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 		return;
 	}
 	
-	if( ui.Machines_List->row(previous) < 0 ) return;
+	if( ui.Machines_List->row(previous) < 0 ||
+		Boot_Is_Correct(VM_List[ui.Machines_List->row(previous)]) == false ) return;
 	
 	Virtual_Machine tmp_vm;
 	
@@ -4016,6 +3700,8 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 		if( ui.Machines_List->row(current) >= 0 && ui.Machines_List->row(current) < ui.Machines_List->count() )
 		{
 			Update_VM_Ui();
+			
+			if( Boot_Is_Correct(VM_List[ui.Machines_List->row(current)]) == false ) return;
 		}
 		else
 		{
@@ -4116,12 +3802,370 @@ QString Main_Window::Get_Current_Binary_Name()
 	return line;
 }
 
-bool Main_Window::Boot_Is_Correct()
+bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 {
-	switch( VM_List[ui.Machines_List->currentRow()].Get_Boot_Device() )
+	bool update_UI = false;
+	
+	// Floppy A
+	if( tmp_vm.Get_FD0().Get_Enabled() )
+	{
+		if( tmp_vm.Get_FD0().Get_Host_Device() )
+		{
+			if( ! QFile::exists(tmp_vm.Get_FD0().Get_Host_File_Name()) )
+			{
+				if( ! No_Device_Found("Floppy A", tmp_vm.Get_FD0().Get_Host_File_Name(), VM::Boot_From_FDD) )
+				{
+					return false;
+				}
+				else
+				{
+					VM_Floppy tmp_fd = tmp_vm.Get_FD0();
+					tmp_fd.Set_Enabled( false );
+					tmp_vm.Set_FD0( tmp_fd );
+					
+					update_UI = true;
+				}
+			}
+		}
+		else
+		{
+			if( ! QFile::exists(tmp_vm.Get_FD0().Get_Image_File_Name()) )
+			{
+				if( ! No_Device_Found("Floppy A", tmp_vm.Get_FD0().Get_Image_File_Name(), VM::Boot_From_FDD) )
+				{
+					return false;
+				}
+				else
+				{
+					VM_Floppy tmp_fd = tmp_vm.Get_FD0();
+					tmp_fd.Set_Enabled( false );
+					tmp_vm.Set_FD0( tmp_fd );
+					
+					update_UI = true;
+				}
+			}
+		}
+	}
+	
+	// Floppy B
+	if( tmp_vm.Get_FD1().Get_Enabled() )
+	{
+		if( tmp_vm.Get_FD1().Get_Host_Device() )
+		{
+			if( ! QFile::exists(tmp_vm.Get_FD1().Get_Host_File_Name()) )
+			{
+				if( ! No_Device_Found("Floppy B", tmp_vm.Get_FD1().Get_Host_File_Name(), VM::Boot_From_FDD) )
+				{
+					return false;
+				}
+				else
+				{
+					VM_Floppy tmp_fd = tmp_vm.Get_FD1();
+					tmp_fd.Set_Enabled( false );
+					tmp_vm.Set_FD1( tmp_fd );
+					
+					update_UI = true;
+				}
+			}
+		}
+		else
+		{
+			if( ! QFile::exists(tmp_vm.Get_FD1().Get_Image_File_Name()) )
+			{
+				if( ! No_Device_Found("Floppy B", tmp_vm.Get_FD1().Get_Image_File_Name(), VM::Boot_From_FDD) )
+				{
+					return false;
+				}
+				else
+				{
+					VM_Floppy tmp_fd = tmp_vm.Get_FD1();
+					tmp_fd.Set_Enabled( false );
+					tmp_vm.Set_FD1( tmp_fd );
+					
+					update_UI = true;
+				}
+			}
+		}
+	}
+	
+	// CD-ROM
+	if( tmp_vm.Get_CD_ROM().Get_Enabled() )
+	{
+		if( tmp_vm.Get_CD_ROM().Get_Host_Device() )
+		{
+			if( ! QFile::exists(tmp_vm.Get_CD_ROM().Get_Host_File_Name()) )
+			{
+				if( ! No_Device_Found("CD-ROM", tmp_vm.Get_CD_ROM().Get_Host_File_Name(), VM::Boot_From_CDROM) )
+				{
+					return false;
+				}
+				else
+				{
+					VM_CDROM tmp_cd = tmp_vm.Get_CD_ROM();
+					tmp_cd.Set_Enabled( false );
+					tmp_vm.Set_CD_ROM( tmp_cd );
+					
+					update_UI = true;
+				}
+			}
+		}
+		else
+		{
+			if( ! QFile::exists(tmp_vm.Get_CD_ROM().Get_Image_File_Name()) )
+			{
+				if( ! No_Device_Found("CD-ROM", tmp_vm.Get_CD_ROM().Get_Image_File_Name(), VM::Boot_From_CDROM) )
+				{
+					return false;
+				}
+				else
+				{
+					VM_CDROM tmp_cd = tmp_vm.Get_CD_ROM();
+					tmp_cd.Set_Enabled( false );
+					tmp_vm.Set_CD_ROM( tmp_cd );
+					
+					update_UI = true;
+				}
+			}
+		}
+	}
+	
+	// HDA
+	if( tmp_vm.Get_HDA().Get_Enabled() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_HDA().Get_Image_File_Name()) )
+		{
+			if( ! No_Device_Found("HDA", tmp_vm.Get_HDA().Get_Image_File_Name(), VM::Boot_From_HDD) )
+			{
+				return false;
+			}
+			else
+			{
+				VM_HDD tmp_hd = tmp_vm.Get_HDA();
+				tmp_hd.Set_Enabled( false );
+				tmp_vm.Set_HDA( tmp_hd );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// HDB
+	if( tmp_vm.Get_HDB().Get_Enabled() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_HDB().Get_Image_File_Name()) )
+		{
+			if( ! No_Device_Found("HDB", tmp_vm.Get_HDB().Get_Image_File_Name(), VM::Boot_From_HDD) )
+			{
+				return false;
+			}
+			else
+			{
+				VM_HDD tmp_hd = tmp_vm.Get_HDB();
+				tmp_hd.Set_Enabled( false );
+				tmp_vm.Set_HDB( tmp_hd );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// HDC
+	if( tmp_vm.Get_HDC().Get_Enabled() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_HDC().Get_Image_File_Name()) )
+		{
+			if( ! No_Device_Found("HDC", tmp_vm.Get_HDC().Get_Image_File_Name(), VM::Boot_From_HDD) )
+			{
+				return false;
+			}
+			else
+			{
+				VM_HDD tmp_hd = tmp_vm.Get_HDC();
+				tmp_hd.Set_Enabled( false );
+				tmp_vm.Set_HDC( tmp_hd );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// HDD
+	if( tmp_vm.Get_HDD().Get_Enabled() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_HDD().Get_Image_File_Name()) )
+		{
+			if( ! No_Device_Found("HDD", tmp_vm.Get_HDD().Get_Image_File_Name(), VM::Boot_From_HDD) )
+			{
+				return false;
+			}
+			else
+			{
+				VM_HDD tmp_hd = tmp_vm.Get_HDD();
+				tmp_hd.Set_Enabled( false );
+				tmp_vm.Set_HDD( tmp_hd );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// Linux Kernel Files
+	if( tmp_vm.Get_Use_Linux_Boot() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_bzImage_Path()) )
+		{
+			if( ! No_Device_Found(tr("bzImage"), tmp_vm.Get_bzImage_Path(), VM::Boot_None) )
+			{
+				return false;
+			}
+			else
+			{
+				ui.CH_Use_Linux_Boot->setChecked( false );
+				tmp_vm.Set_Use_Linux_Boot( false );
+				
+				update_UI = true;
+			}
+		}
+		
+		if( ! QFile::exists(tmp_vm.Get_Initrd_Path()) )
+		{
+			if( ! No_Device_Found(tr("Initrd"), tmp_vm.Get_Initrd_Path(), VM::Boot_None) )
+			{
+				return false;
+			}
+			else
+			{
+				ui.CH_Use_Linux_Boot->setChecked( false );
+				tmp_vm.Set_Use_Linux_Boot( false );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// ROM File
+	if( tmp_vm.Get_Use_ROM_File() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_ROM_File()) )
+		{
+			if( ! No_Device_Found(tr("ROM File"), tmp_vm.Get_ROM_File(), VM::Boot_None) )
+			{
+				return false;
+			}
+			else
+			{
+				ui.CH_ROM_File->setChecked( false );
+				tmp_vm.Set_Use_ROM_File( false );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// On-Board Flash Image
+	if( tmp_vm.Use_MTDBlock_File() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_MTDBlock_File()) )
+		{
+			if( ! No_Device_Found(tr("On-Board Flash"), tmp_vm.Get_MTDBlock_File(), VM::Boot_None) )
+			{
+				return false;
+			}
+			else
+			{
+				ui.CH_MTDBlock->setChecked( false );
+				tmp_vm.Use_MTDBlock_File( false );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// SecureDigital Card Image
+	if( tmp_vm.Use_SecureDigital_File() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_SecureDigital_File()) )
+		{
+			if( ! No_Device_Found(tr("SecureDigital Card"), tmp_vm.Get_SecureDigital_File(), VM::Boot_None) )
+			{
+				return false;
+			}
+			else
+			{
+				ui.CH_SD_Image->setChecked( false );
+				tmp_vm.Use_SecureDigital_File( false );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// Parallel Flash Image
+	if( tmp_vm.Use_PFlash_File() )
+	{
+		if( ! QFile::exists(tmp_vm.Get_PFlash_File()) )
+		{
+			if( ! No_Device_Found(tr("Parallel Flash"), tmp_vm.Get_PFlash_File(), VM::Boot_None) )
+			{
+				return false;
+			}
+			else
+			{
+				ui.CH_PFlash->setChecked( false );
+				tmp_vm.Use_PFlash_File( false );
+				
+				update_UI = true;
+			}
+		}
+	}
+	
+	// VNC Sertificates
+	if( tmp_vm.Use_VNC() && tmp_vm.Use_VNC_TLS() )
+	{
+		if( tmp_vm.Use_VNC_x509() )
+		{
+			if( ! QFile::exists(tmp_vm.Get_VNC_x509_Folder_Path()) )
+			{
+				if( ! No_Device_Found(tr("VNC x509 Folder"), tmp_vm.Get_VNC_x509_Folder_Path(), VM::Boot_None) )
+				{
+					return false;
+				}
+				else
+				{
+					ui.CH_Use_VNC_TLS->setChecked( false );
+					tmp_vm.Use_VNC_x509( false );
+					
+					update_UI = true;
+				}
+			}
+		}
+		
+		if( tmp_vm.Use_VNC_x509verify() )
+		{
+			if( ! QFile::exists(tmp_vm.Get_VNC_x509verify_Folder_Path()) )
+			{
+				if( ! No_Device_Found(tr("VNC x509verify Folder"), tmp_vm.Get_VNC_x509verify_Folder_Path(), VM::Boot_None) )
+				{
+					return false;
+				}
+				else
+				{
+					ui.CH_Use_VNC_TLS->setChecked( false );
+					tmp_vm.Use_VNC_x509verify( false );
+					
+					update_UI = true;
+				}
+			}
+		}
+	}
+	
+	if( update_UI ) Update_VM_Ui();
+	
+	// Boot is correct?
+	switch( tmp_vm.Get_Boot_Device() )
 	{
 		case VM::Boot_From_FDD:
-			if( VM_List[ui.Machines_List->currentRow()].Get_FD0().Get_Enabled() )
+			if( tmp_vm.Get_FD0().Get_Enabled() )
 			{
 				return true;
 			}
@@ -4134,7 +4178,7 @@ bool Main_Window::Boot_Is_Correct()
 			break;
 			
 		case VM::Boot_From_CDROM:
-			if( VM_List[ui.Machines_List->currentRow()].Get_CD_ROM().Get_Enabled() )
+			if( tmp_vm.Get_CD_ROM().Get_Enabled() )
 			{
 				return true;
 			}
@@ -4147,7 +4191,7 @@ bool Main_Window::Boot_Is_Correct()
 			break;
 			
 		case VM::Boot_From_HDD:
-			if( VM_List[ui.Machines_List->currentRow()].Get_HDA().Get_Enabled() )
+			if( tmp_vm.Get_HDA().Get_Enabled() )
 			{
 				return true;
 			}
@@ -4160,7 +4204,7 @@ bool Main_Window::Boot_Is_Correct()
 			break;
 			
 		case VM::Boot_From_Network:
-			if( VM_List[ui.Machines_List->currentRow()].Get_Use_Network() )
+			if( tmp_vm.Get_Use_Network() )
 			{
 				return true;
 			}
@@ -4189,19 +4233,8 @@ bool Main_Window::No_Device_Found( const QString &name, const QString &path, VM:
 										tr("%1 Image \"%2\" Not Exist! Continue Without It Image?").arg(name).arg(path),
 										QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 	
-	if( retVal == QMessageBox::No )
-	{
-		return false;
-	}
-	else
-	{
-		if( VM_List[ui.Machines_List->currentRow()].Get_Boot_Device() == type ) // Change Boot Device is Possible
-		{
-			QMessageBox::critical( this, tr("Error!"), tr("No Boot Devices Found!"), QMessageBox::Ok );
-			return false;
-		}
-		else return true;
-	}
+	if( retVal == QMessageBox::No ) return false;
+	else return true;
 }
 
 void Main_Window::on_actionChange_Icon_triggered()
@@ -4590,7 +4623,7 @@ void Main_Window::on_actionPower_On_triggered()
 		}
 	}
 	
-	if( ! Boot_Is_Correct() ) return;
+	if( ! Boot_Is_Correct(VM_List[ui.Machines_List->currentRow()]) ) return;
 	
 	if( VM_List[ui.Machines_List->currentRow()].Start() )
 	{

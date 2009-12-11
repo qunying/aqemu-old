@@ -191,7 +191,7 @@ class Main_Window: public QMainWindow
 		
 		QString Get_QEMU_Args();
 		QString Get_Current_Binary_Name();
-		bool Boot_Is_Correct();
+		bool Boot_Is_Correct( Virtual_Machine &tmp_vm );
 		bool No_Device_Found( const QString &name, const QString &path, VM::Boot_Device type );
 		
 		QString Copy_VM_Hard_Drive( const QString &vm_name, const QString &hd_name, const VM_HDD &hd );
