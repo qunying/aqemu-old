@@ -3616,8 +3616,8 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 		return;
 	}
 	
-	if( ui.Machines_List->row(previous) < 0 ||
-		Boot_Is_Correct(VM_List[ui.Machines_List->row(previous)]) == false ) return;
+	if( ui.Machines_List->row(previous) < 0 ) return;
+	//else Boot_Is_Correct( VM_List[ui.Machines_List->row(previous)] );
 	
 	Virtual_Machine tmp_vm;
 	
@@ -3701,7 +3701,7 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 		{
 			Update_VM_Ui();
 			
-			if( Boot_Is_Correct(VM_List[ui.Machines_List->row(current)]) == false ) return;
+			Boot_Is_Correct( VM_List[ui.Machines_List->row(current)] );
 		}
 		else
 		{
@@ -3823,7 +3823,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 					tmp_fd.Set_Enabled( false );
 					tmp_vm.Set_FD0( tmp_fd );
 					
-					update_UI = true;
+					if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_Floppy0->setChecked( false );
 				}
 			}
 		}
@@ -3841,7 +3841,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 					tmp_fd.Set_Enabled( false );
 					tmp_vm.Set_FD0( tmp_fd );
 					
-					update_UI = true;
+					if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_Floppy0->setChecked( false );
 				}
 			}
 		}
@@ -3864,7 +3864,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 					tmp_fd.Set_Enabled( false );
 					tmp_vm.Set_FD1( tmp_fd );
 					
-					update_UI = true;
+					if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_Floppy1->setChecked( false );
 				}
 			}
 		}
@@ -3882,7 +3882,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 					tmp_fd.Set_Enabled( false );
 					tmp_vm.Set_FD1( tmp_fd );
 					
-					update_UI = true;
+					if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_Floppy1->setChecked( false );
 				}
 			}
 		}
@@ -3905,7 +3905,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 					tmp_cd.Set_Enabled( false );
 					tmp_vm.Set_CD_ROM( tmp_cd );
 					
-					update_UI = true;
+					if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_CDROM->setChecked( false );
 				}
 			}
 		}
@@ -3923,7 +3923,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 					tmp_cd.Set_Enabled( false );
 					tmp_vm.Set_CD_ROM( tmp_cd );
 					
-					update_UI = true;
+					if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_CDROM->setChecked( false );
 				}
 			}
 		}
@@ -3944,7 +3944,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 				tmp_hd.Set_Enabled( false );
 				tmp_vm.Set_HDA( tmp_hd );
 				
-				update_UI = true;
+				if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_HDA->setChecked( false );
 			}
 		}
 	}
@@ -3964,7 +3964,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 				tmp_hd.Set_Enabled( false );
 				tmp_vm.Set_HDB( tmp_hd );
 				
-				update_UI = true;
+				if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_HDB->setChecked( false );
 			}
 		}
 	}
@@ -3984,7 +3984,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 				tmp_hd.Set_Enabled( false );
 				tmp_vm.Set_HDC( tmp_hd );
 				
-				update_UI = true;
+				if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_HDC->setChecked( false );
 			}
 		}
 	}
@@ -4004,8 +4004,17 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 				tmp_hd.Set_Enabled( false );
 				tmp_vm.Set_HDD( tmp_hd );
 				
-				update_UI = true;
+				if( Settings.value("Use_Device_Manager", "").toString() == "no" ) ui.GB_HDD->setChecked( false );
 			}
+		}
+	}
+	
+	if( Settings.value("Use_Device_Manager", "").toString() == "yes" )
+	{
+		if( ui.Machines_List->currentRow() >= 0 &&
+			ui.Machines_List->currentRow() < VM_List.count() )
+		{
+			Dev_Manager->Set_VM( VM_List[ui.Machines_List->currentRow()] );
 		}
 	}
 	
@@ -4022,8 +4031,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			{
 				ui.CH_Use_Linux_Boot->setChecked( false );
 				tmp_vm.Set_Use_Linux_Boot( false );
-				
-				update_UI = true;
 			}
 		}
 		
@@ -4037,8 +4044,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			{
 				ui.CH_Use_Linux_Boot->setChecked( false );
 				tmp_vm.Set_Use_Linux_Boot( false );
-				
-				update_UI = true;
 			}
 		}
 	}
@@ -4056,8 +4061,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			{
 				ui.CH_ROM_File->setChecked( false );
 				tmp_vm.Set_Use_ROM_File( false );
-				
-				update_UI = true;
 			}
 		}
 	}
@@ -4075,8 +4078,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			{
 				ui.CH_MTDBlock->setChecked( false );
 				tmp_vm.Use_MTDBlock_File( false );
-				
-				update_UI = true;
 			}
 		}
 	}
@@ -4094,8 +4095,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			{
 				ui.CH_SD_Image->setChecked( false );
 				tmp_vm.Use_SecureDigital_File( false );
-				
-				update_UI = true;
 			}
 		}
 	}
@@ -4113,8 +4112,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			{
 				ui.CH_PFlash->setChecked( false );
 				tmp_vm.Use_PFlash_File( false );
-				
-				update_UI = true;
 			}
 		}
 	}
@@ -4134,8 +4131,6 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 				{
 					ui.CH_Use_VNC_TLS->setChecked( false );
 					tmp_vm.Use_VNC_x509( false );
-					
-					update_UI = true;
 				}
 			}
 		}
@@ -4152,14 +4147,10 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 				{
 					ui.CH_Use_VNC_TLS->setChecked( false );
 					tmp_vm.Use_VNC_x509verify( false );
-					
-					update_UI = true;
 				}
 			}
 		}
 	}
-	
-	if( update_UI ) Update_VM_Ui();
 	
 	// Boot is correct?
 	switch( tmp_vm.Get_Boot_Device() )
@@ -4221,7 +4212,8 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )
 			break;
 			
 		default:
-			AQError( "bool Main_Window::Boot_Is_Correct()", "Default Section!" );
+			AQError( "bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )",
+					 "Default Section!" );
 			return false;
 			break;
 	}
@@ -4234,7 +4226,16 @@ bool Main_Window::No_Device_Found( const QString &name, const QString &path, VM:
 										QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 	
 	if( retVal == QMessageBox::No ) return false;
-	else return true;
+	else
+	{
+		if( ui.Machines_List->currentRow() >= 0 &&
+			ui.Machines_List->currentRow() < VM_List.count() )
+		{
+			VM_List[ ui.Machines_List->currentRow() ].Save_VM();
+		}
+		
+		return true;
+	}
 }
 
 void Main_Window::on_actionChange_Icon_triggered()
