@@ -60,12 +60,12 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;/head>
 &lt;body>
 &lt;p>AQEMU is Frontend for QEMU and KVM Emulators&lt;/p>
-&lt;p>Version: 0.8 of XX.XX.200X&lt;/p>
+&lt;p>Version: 0.8 of XX.XX.20XX&lt;/p>
 &lt;p>License: GNU GPL Version 2&lt;/p>
 &lt;p>Author: Andrey Rijov (a.k.a. RDron)&lt;/p>
 &lt;p>E-Mail: &lt;a href="mailto:ANDron142@yandex.ru">ANDron142@yandex.ru&lt;/a>&lt;/p>
 &lt;p>Web Site: &lt;a href="http://sourceforge.net/projects/aqemu/">http://sourceforge.net/projects/aqemu/&lt;/a>&lt;/p>
-&lt;p>Supported Emulators: QEMU 0.9.0-0.11 and KVM 60-88&lt;/p>
+&lt;p>Supported Emulators: QEMU 0.9.0-0.11.1 and KVM 60-88-0.11.1&lt;/p>
 &lt;/body>
 &lt;/html></string>
          </property>

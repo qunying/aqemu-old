@@ -3617,7 +3617,6 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 	}
 	
 	if( ui.Machines_List->row(previous) < 0 ) return;
-	//else Boot_Is_Correct( VM_List[ui.Machines_List->row(previous)] );
 	
 	Virtual_Machine tmp_vm;
 	
@@ -5216,10 +5215,6 @@ QStringList Main_Window::Create_Info_HDD_String( const QString &disk_format, con
 	ret << tr("Virtual Size: ") + QString::number(virtual_size.Size) + " " + suf_v + "\n" + tr("Cluster Size: ") + QString::number(cluster_size);
 	
 	return ret;
-	
-	/*
-	return tr("Image Format: ") + disk_format + tr("\t\tVirtual Size: ") + QString::number(virtual_size.Size) + " " + suf_v +
-		   tr("\nAllocated Disk Space: ") + QString::number(disk_size.Size) + " " + suf_d + tr("\t\tCluster Size: ") + QString::number(cluster_size);*/
 }
 
 void Main_Window::Update_HDA_Info()
