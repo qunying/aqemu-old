@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -72,11 +72,13 @@ class Emulator_Control_Window: public QMainWindow
 		void on_actionFD0_dev_null_triggered();
 		void on_actionFD0_Other_triggered();
 		void on_actionFD0_Eject_triggered();
+		void Open_Recent_Floppy0_Image();
 		
 		void on_actionFD1_dev_fd0_triggered();
 		void on_actionFD1_dev_null_triggered();
 		void on_actionFD1_Other_triggered();
 		void on_actionFD1_Eject_triggered();
+		void Open_Recent_Floppy1_Image();
 		
 		void on_actionCDROM_dev_cdrom_triggered();
 		void on_actionCDROM_dev_null_triggered();
@@ -125,19 +127,22 @@ class Emulator_Control_Window: public QMainWindow
 		bool Show_Close_Warning;
 		Virtual_Machine *Cur_VM;
 		QSettings Settings;
-		QList<QAction*> Recent_Files_Items;
+		QList<QAction*> Recent_Files_CD_Items;
+		QList<QAction*> Recent_Files_FD0_Items;
+		QList<QAction*> Recent_Files_FD1_Items;
 		
 		#ifdef VNC_DISPLAY
 		MachineView *Machine_View;
 		#endif
 		
 		void Update_Recent_CD_ROM_Images_List();
+		void Update_Recent_Floppy_Images_List();
 		
 		bool CD_ROM_Available();
 		bool FD0_Available();
 		bool FD1_Available();
 		
-		void Set_Device( const QString &dev_name, bool host_dev, const QString &path );
+		void Set_Device( const QString &dev_name, const QString &path );
 };
 
 #endif

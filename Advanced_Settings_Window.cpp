@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -77,23 +77,6 @@ Advanced_Settings_Window::Advanced_Settings_Window( QWidget *parent )
 	
 	// Jpeg Quality
 	ui.HS_Jpeg_Quality->setValue( Settings.value("Jpeg_Quality", "75").toString().toInt() );
-	
-	// Save to QEMU Log
-	ui.CH_QEMU_Log_out_asm->setChecked( Settings.value("QLOG/out_asm", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_in_asm->setChecked( Settings.value("QLOG/in_asm", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_cpu->setChecked( Settings.value("QLOG/cpu", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_pcall->setChecked( Settings.value("QLOG/pcall", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_op_opt->setChecked( Settings.value("QLOG/op_opt", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_int->setChecked( Settings.value("QLOG/int", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_op->setChecked( Settings.value("QLOG/op", "no").toString() == "yes" );
-	
-	ui.CH_QEMU_Log_exec->setChecked( Settings.value("QLOG/exec", "no").toString() == "yes" );
 	
 	// Additional CDROM
 	int cdrom_count = Settings.value( "Additional_CDROM_Devices/Count", "0" ).toString().toInt();
@@ -215,8 +198,11 @@ Advanced_Settings_Window::Advanced_Settings_Window( QWidget *parent )
 	
 	ui.CH_Log_Error->setChecked( Settings.value("Log/Save_Error", "yes").toString() == "yes" );
 	
-	// Recent Count
-	ui.SB_Recent_Count->setValue( Settings.value("CD_ROM_Exits_Images/Max", "4").toString().toInt() );
+	// Recent CD Count
+	ui.SB_Recent_CD_Count->setValue( Settings.value("CD_ROM_Exits_Images/Max", "5").toString().toInt() );
+	
+	// Recent FDD Count
+	ui.SB_Recent_FDD_Count->setValue( Settings.value("Floppy_Exits_Images/Max", "5").toString().toInt() );
 	
 	// First VNC Port for Embedded Display
 	ui.SB_First_VNC_Port->setValue( Settings.value("First_VNC_Port", "6000").toString().toInt() );
@@ -305,79 +291,6 @@ void Advanced_Settings_Window::on_Button_OK_clicked()
 	for( int ix = 0; ix < ui.CDROM_List->count(); ix++ )
 	{
 		Settings.setValue( "Additional_CDROM_Devices/Device" + QString::number(ix), ui.CDROM_List->item(ix)->text() );
-	}
-	
-	// Save to QEMU Log
-	if( ui.CH_QEMU_Log_out_asm->isChecked() )
-	{
-		Settings.setValue( "QLOG/out_asm", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/out_asm", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_in_asm->isChecked() )
-	{
-		Settings.setValue( "QLOG/in_asm", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/in_asm", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_cpu->isChecked() )
-	{
-		Settings.setValue( "QLOG/cpu", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/cpu", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_pcall->isChecked() )
-	{
-		Settings.setValue( "QLOG/pcall", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/pcall", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_op_opt->isChecked() )
-	{
-		Settings.setValue( "QLOG/op_opt", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/op_opt", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_int->isChecked() )
-	{
-		Settings.setValue( "QLOG/int", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/int", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_op->isChecked() )
-	{
-		Settings.setValue( "QLOG/op", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/op", "no" );
-	}
-	
-	if( ui.CH_QEMU_Log_exec->isChecked() )
-	{
-		Settings.setValue( "QLOG/exec", "yes" );
-	}
-	else
-	{
-		Settings.setValue( "QLOG/exec", "no" );
 	}
 	
 	// Information in Info Tab
@@ -873,8 +786,11 @@ void Advanced_Settings_Window::on_Button_OK_clicked()
 	// QEMU_AUDIO_DRV
 	Settings.setValue( "QEMU_AUDIO/QEMU_AUDIO_DRV", ui.CB_Host_Sound_System->currentText() );
 	
-	// Recent Count
-	Settings.setValue( "CD_ROM_Exits_Images/Max", QString::number(ui.SB_Recent_Count->value()) );
+	// Recent CD Count
+	Settings.setValue( "CD_ROM_Exits_Images/Max", QString::number(ui.SB_Recent_CD_Count->value()) );
+	
+	// Recent FDD Count
+	Settings.setValue( "Floppy_Exits_Images/Max", QString::number(ui.SB_Recent_FDD_Count->value()) );
 	
 	// First VNC Port for Embedded Display
 	Settings.setValue( "First_VNC_Port", QString::number(ui.SB_First_VNC_Port->value()) );

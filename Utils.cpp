@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -47,6 +47,7 @@ static bool Stdout_Warning;
 static bool Stdout_Error;
 
 static QStringList Recent_CD_Images;
+static QStringList Recent_FDD_Images;
 
 void AQDebug( const QString &sender, const QString &mes )
 {
@@ -427,6 +428,16 @@ QString Get_Last_Dir_Path( const QString &path )
 	}
 }
 
+bool It_Host_Device( const QString &path )
+{
+	#ifdef Q_OS_WIN32
+	// FIXME
+	#else
+	if( path.startsWith("/dev/") ) return true;
+	else return false;
+	#endif
+}
+
 void Check_AQEMU_Permissions()
 {
 	QSettings settings;
@@ -490,7 +501,7 @@ void Check_AQEMU_Permissions()
 	}
 }
 
-VM::QEMU_Version String_To_QEMU_Version( const QString &str )
+VM::Emulator_Version String_To_QEMU_Version( const QString &str )
 {
 	if( str.isEmpty() )
 	{
@@ -527,7 +538,7 @@ VM::QEMU_Version String_To_QEMU_Version( const QString &str )
 	}
 }
 
-VM::KVM_Version String_To_KVM_Version( const QString &str )
+VM::Emulator_Version String_To_KVM_Version( const QString &str )
 {
 	if( str.isEmpty() )
 	{
@@ -769,13 +780,29 @@ int Get_Random( int min, int max )
 void Load_Recent_Images_List()
 {
 	QSettings settings;
-	int max = settings.value( "CD_ROM_Exits_Images/Max", "5" ).toString().toInt();
+	
+	// CD
+	int max_cd = settings.value( "CD_ROM_Exits_Images/Max", "5" ).toString().toInt();
 	
 	Recent_CD_Images.clear();
 	
-	for( int ix = 0; ix < max; ++ix )
+	for( int ix = 0; ix < max_cd; ++ix )
 	{
-		Recent_CD_Images << settings.value( "CD_ROM_Exits_Images/item" + QString::number(ix), "" ).toString();
+		QString tmp = settings.value( "CD_ROM_Exits_Images/item" + QString::number(ix), "" ).toString();
+		
+		if( ! tmp.isEmpty() ) Recent_CD_Images << tmp;
+	}
+	
+	// FDD
+	int max_fdd = settings.value( "Floppy_Exits_Images/Max", "5" ).toString().toInt();
+	
+	Recent_FDD_Images.clear();
+	
+	for( int ix = 0; ix < max_fdd; ++ix )
+	{
+		QString tmp = settings.value( "Floppy_Exits_Images/item" + QString::number(ix), "" ).toString();
+		
+		if( ! tmp.isEmpty() ) Recent_FDD_Images << tmp;
 	}
 }
 
@@ -784,7 +811,7 @@ const QStringList &Get_CD_Recent_Images_List()
 	return Recent_CD_Images;
 }
 
-void Add_To_Recent_Files( const QString &path )
+void Add_To_Recent_CD_Files( const QString &path )
 {
 	QSettings settings;
 	int max = settings.value( "CD_ROM_Exits_Images/Max", "5" ).toString().toInt();
@@ -794,9 +821,18 @@ void Add_To_Recent_Files( const QString &path )
 	{
 		if( Recent_CD_Images[fx] == path )
 		{
-			AQDebug( "void Add_To_Recent_Files( const QString &path )",
+			AQDebug( "void Add_To_Recent_CD_Files( const QString &path )",
 					 "CD-ROM Path Not Unique." );
-			return;
+			
+			// Up it path in list
+			if( fx < Recent_CD_Images.count()-1 )
+			{
+				// swap items
+				QString tmp = Recent_CD_Images[ fx+1 ];
+				Recent_CD_Images[ fx+1 ] = Recent_CD_Images[ fx ];
+				Recent_CD_Images[ fx ] = tmp;
+			}
+			else return;
 		}
 	}
 	
@@ -804,18 +840,78 @@ void Add_To_Recent_Files( const QString &path )
 	if( Recent_CD_Images.count() < max )
 	{
 		Recent_CD_Images << path;
+		settings.setValue( "CD_ROM_Exits_Images/item" + QString::number(Recent_CD_Images.count()-1), path );
 	}
 	else
 	{
+		// Delete first element and add new to end
 		for( int ix = 0; ix < Recent_CD_Images.count() -1 && ix < max -1; ++ix )
 		{
 			Recent_CD_Images[ ix ] = Recent_CD_Images[ ix +1 ];
 		}
 		
 		Recent_CD_Images[ max -1 ] = path;
+		
+		// Save Items
+		for( int ix = 0; ix < Recent_CD_Images.count(); ix++ )
+		{
+			settings.setValue( "CD_ROM_Exits_Images/item" + QString::number(ix), Recent_CD_Images[ix] );
+		}
+	}
+}
+
+const QStringList &Get_FDD_Recent_Images_List()
+{
+	return Recent_FDD_Images;
+}
+
+void Add_To_Recent_FDD_Files( const QString &path )
+{
+	QSettings settings;
+	int max = settings.value( "Floppy_Exits_Images/Max", "5" ).toString().toInt();
+	
+	// This Unique Path?
+	for( int fx = 0; fx < Recent_FDD_Images.count() && fx < max; ++fx )
+	{
+		if( Recent_FDD_Images[fx] == path )
+		{
+			AQDebug( "void Add_To_Recent_FDD_Files( const QString &path )",
+					 "Floppy Path Not Unique." );
+			
+			// Up it path in list
+			if( fx < Recent_FDD_Images.count()-1 )
+			{
+				// swap items
+				QString tmp = Recent_FDD_Images[ fx+1 ];
+				Recent_FDD_Images[ fx+1 ] = Recent_FDD_Images[ fx ];
+				Recent_FDD_Images[ fx ] = tmp;
+			}
+			else return;
+		}
 	}
 	
-	settings.setValue( "CD_ROM_Exits_Images/item" + QString::number(Recent_CD_Images.count()-1), path );
+	// Add to List
+	if( Recent_FDD_Images.count() < max )
+	{
+		Recent_FDD_Images << path;
+		settings.setValue( "Floppy_Exits_Images/item" + QString::number(Recent_FDD_Images.count()-1), path );
+	}
+	else
+	{
+		// Delete first element and add new to end
+		for( int ix = 0; ix < Recent_FDD_Images.count() -1 && ix < max -1; ++ix )
+		{
+			Recent_FDD_Images[ ix ] = Recent_FDD_Images[ ix +1 ];
+		}
+		
+		Recent_FDD_Images[ max -1 ] = path;
+		
+		// Save Items
+		for( int ix = 0; ix < Recent_FDD_Images.count(); ix++ )
+		{
+			settings.setValue( "Floppy_Exits_Images/item" + QString::number(ix), Recent_FDD_Images[ix] );
+		}
+	}
 }
 
 static bool Show_Error_Window;

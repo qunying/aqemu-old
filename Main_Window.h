@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -91,6 +91,8 @@ class Main_Window: public QMainWindow
 		void on_CB_Computer_Type_currentIndexChanged( int index );
 		void on_CB_Emulator_Type_currentIndexChanged( int index );
 		void on_CB_Emulator_Version_currentIndexChanged( int index );
+		void on_TB_Show_Boot_Settings_Window_clicked();
+		void on_TB_Show_SMP_Settings_Window_clicked();
 		void Apply_Emulator( int mode );
 		
 		void on_CH_Local_Time_toggled( bool on );
@@ -104,18 +106,22 @@ class Main_Window: public QMainWindow
 		void on_TB_HDA_SetPath_clicked();
 		void on_TB_HDA_Create_HDD_clicked();
 		void on_TB_HDA_Format_HDD_clicked();
+		void on_TB_HDA_Advanced_Settings_clicked();
 		
 		void on_TB_HDB_SetPath_clicked();
 		void on_TB_HDB_Create_HDD_clicked();
 		void on_TB_HDB_Format_HDD_clicked();
+		void on_TB_HDB_Advanced_Settings_clicked();
 		
 		void on_TB_HDC_SetPath_clicked();
 		void on_TB_HDC_Create_HDD_clicked();
 		void on_TB_HDC_Format_HDD_clicked();
+		void on_TB_HDC_Advanced_Settings_clicked();
 		
 		void on_TB_HDD_SetPath_clicked();
 		void on_TB_HDD_Create_HDD_clicked();
 		void on_TB_HDD_Format_HDD_clicked();
+		void on_TB_HDD_Advanced_Settings_clicked();
 		
 		QStringList Create_Info_HDD_String( const QString &disk_format, const VM::Device_Size &virtual_size,
 											const VM::Device_Size &disk_size, int cluster_size );
@@ -129,16 +135,19 @@ class Main_Window: public QMainWindow
 		
 		// FD0
 		void on_TB_FD0_SetPath_clicked();
-		void on_RB_FD0_Use_Host_Device_toggled( bool on );
+		void on_TB_FD0_Advanced_Settings_clicked();
+		void on_CB_FD0_Devices_editTextChanged( const QString &text );
 		
 		// FD1
 		void on_TB_FD1_SetPath_clicked();
-		void on_RB_FD1_Use_Host_Device_toggled( bool on );
+		void on_TB_FD1_Advanced_Settings_clicked();
+		void on_CB_FD1_Devices_editTextChanged( const QString &text );
 		
 		// CDROM
 		void on_TB_CDROM_SetPath_clicked();
-		void on_RB_CDROM_Use_Host_Device_toggled( bool on );
-		void on_GB_CDROM_toggled( bool on ); // CD-ROM or HDC...
+		void on_TB_CDROM_Advanced_Settings_clicked();
+		void on_CH_CDROM_toggled( bool on ); // CD-ROM or HDC...
+		void on_CB_CDROM_Devices_editTextChanged( const QString &text );
 		
 		// Network Tab
 		void on_RB_Network_Mode_New_toggled( bool on );
@@ -171,12 +180,15 @@ class Main_Window: public QMainWindow
 		void closeEvent( QCloseEvent *event );
 		
 	private:
+		Virtual_Machine *Get_VM_By_UID( const QString &uid );
+		Virtual_Machine *Get_Current_VM();
+		
 		void Connect_Signals();
 		
 		QList<Averable_Devices> &Get_Devices_Info();
-		bool Current_Emulator_Version_Good( VM::QEMU_Version qver, VM::KVM_Version kver );
+		bool Current_Emulator_Version_Good( VM::Emulator_Version qver, VM::Emulator_Version kver ); // FIXME
 		
-		bool Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index );
+		bool Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index );
 		
 		bool Load_Settings();
 		bool Save_Settings();
@@ -185,17 +197,21 @@ class Main_Window: public QMainWindow
 		void Update_VM_Port_Number();
 		void Update_Info_Text( int info_mode = 0 );
 		void Update_Disabled_Controls();
+		void Update_Recent_CD_ROM_Images_List();
+		void Update_Recent_Floppy_Images_List();
+		
+		QString Get_Storage_Device_Info_String( const QString &path );
 		
 		bool Load_Virtual_Machines();
 		bool Save_Virtual_Machines();
 		
 		QString Get_QEMU_Args();
 		QString Get_Current_Binary_Name();
-		bool Boot_Is_Correct( Virtual_Machine &tmp_vm );
+		bool Boot_Is_Correct( Virtual_Machine *tmp_vm );
 		bool No_Device_Found( const QString &name, const QString &path, VM::Boot_Device type );
 		
 		QString Copy_VM_Hard_Drive( const QString &vm_name, const QString &hd_name, const VM_HDD &hd );
-		QString Copy_VM_Floppy( const QString &vm_name, const QString &fd_name, const VM_Floppy &fd );
+		QString Copy_VM_Floppy( const QString &vm_name, const QString &fd_name, const VM_Storage_Device &fd );
 		
 		Ui::Main_Window ui;
 		QMenu *Icon_Menu; // Context menu for vm icons
@@ -205,7 +221,7 @@ class Main_Window: public QMainWindow
 		bool GUI_User_Mode;
 		QString VM_Folder;
 		
-		QList<Virtual_Machine> VM_List;
+		QList<Virtual_Machine*> VM_List;
 		QList<Emulator> All_Emulators_List;
 		
 		HDD_Image_Info* HDA_Info;

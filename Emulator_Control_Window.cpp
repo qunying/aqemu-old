@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -175,17 +175,48 @@ void Emulator_Control_Window::Init()
 	for( int ix = 0; ix < max; ++ix )
 	{
 		QAction *tmp_act = new QAction( this );
-		Recent_Files_Items << tmp_act;
+		Recent_Files_CD_Items << tmp_act;
 		
-		Recent_Files_Items[ ix ]->setText( "" );
-		Recent_Files_Items[ ix ]->setData( "" );
-		Recent_Files_Items[ ix ]->setVisible( false );
+		Recent_Files_CD_Items[ ix ]->setText( "" );
+		Recent_Files_CD_Items[ ix ]->setData( "" );
+		Recent_Files_CD_Items[ ix ]->setVisible( false );
 		
-		connect( Recent_Files_Items[ix], SIGNAL(triggered()),
+		connect( Recent_Files_CD_Items[ix], SIGNAL(triggered()),
 				 this, SLOT(Open_Recent_CD_ROM_Image()) );
 	}
 	
 	Update_Recent_CD_ROM_Images_List();
+	
+	// Floppy
+	max = Settings.value( "Floppy_Exits_Images/Max", "5" ).toString().toInt();
+	
+	for( int ix = 0; ix < max; ++ix )
+	{
+		QAction *tmp_act = new QAction( this );
+		Recent_Files_FD0_Items << tmp_act;
+		
+		Recent_Files_FD0_Items[ ix ]->setText( "" );
+		Recent_Files_FD0_Items[ ix ]->setData( "" );
+		Recent_Files_FD0_Items[ ix ]->setVisible( false );
+		
+		connect( Recent_Files_FD0_Items[ix], SIGNAL(triggered()),
+				 this, SLOT(Open_Recent_Floppy0_Image()) );
+	}
+	
+	for( int ix = 0; ix < max; ++ix )
+	{
+		QAction *tmp_act = new QAction( this );
+		Recent_Files_FD1_Items << tmp_act;
+		
+		Recent_Files_FD1_Items[ ix ]->setText( "" );
+		Recent_Files_FD1_Items[ ix ]->setData( "" );
+		Recent_Files_FD1_Items[ ix ]->setVisible( false );
+		
+		connect( Recent_Files_FD1_Items[ix], SIGNAL(triggered()),
+				 this, SLOT(Open_Recent_Floppy1_Image()) );
+	}
+	
+	Update_Recent_Floppy_Images_List();
 	
 	// Use VNC Embedded Display
 	#ifdef VNC_DISPLAY
@@ -360,7 +391,7 @@ void Emulator_Control_Window::on_actionFD0_dev_fd0_triggered()
 	if( ! FD0_Available() ) return;
 	
 	on_actionFD0_Eject_triggered();
-	Set_Device( "fda", true, "/dev/fd0" );
+	Set_Device( "fda", "/dev/fd0" );
 }
 
 void Emulator_Control_Window::on_actionFD0_dev_null_triggered()
@@ -368,23 +399,14 @@ void Emulator_Control_Window::on_actionFD0_dev_null_triggered()
 	if( ! FD0_Available() ) return;
 	
 	on_actionFD0_Eject_triggered();
-	Set_Device( "fda", false, "/dev/null" );
+	Set_Device( "fda", "/dev/null" );
 }
 
 void Emulator_Control_Window::on_actionFD0_Other_triggered()
 {
 	if( ! FD0_Available() ) return;
 	
-	QString prev_file;
-	
-	if( Cur_VM->Get_FD0().Get_Host_Device() )
-	{
-		prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD0().Get_Host_File_Name() );
-	}
-	else
-	{
-		prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD0().Get_Image_File_Name() );
-	}
+	QString prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD0().Get_File_Name() );
 	
 	QFileDialog::Options options;
 	QString selectedFilter;
@@ -402,7 +424,11 @@ void Emulator_Control_Window::on_actionFD0_Other_triggered()
 	else
 	{
 		on_actionFD0_Eject_triggered();
-		Set_Device( "fda", false, file_name );
+		Set_Device( "fda", file_name );
+		
+		// Add to Recent Menu
+		Add_To_Recent_FDD_Files( file_name );
+		Update_Recent_Floppy_Images_List();
 	}
 }
 
@@ -420,12 +446,23 @@ void Emulator_Control_Window::on_actionFD0_Eject_triggered()
 	}
 }
 
+void Emulator_Control_Window::Open_Recent_Floppy0_Image()
+{
+	QAction *tmp_act = qobject_cast<QAction*>( sender() );
+	
+	if( tmp_act )
+	{
+		on_actionFD0_Eject_triggered();
+		Set_Device( "fda", tmp_act->data().toString() );
+	}
+}
+
 void Emulator_Control_Window::on_actionFD1_dev_fd0_triggered()
 {
 	if( ! FD1_Available() ) return;
 	
 	on_actionFD1_Eject_triggered();
-	Set_Device( "fdb", true, "/dev/fd0" );
+	Set_Device( "fdb", "/dev/fd0" );
 }
 
 void Emulator_Control_Window::on_actionFD1_dev_null_triggered()
@@ -433,23 +470,14 @@ void Emulator_Control_Window::on_actionFD1_dev_null_triggered()
 	if( ! FD1_Available() ) return;
 	
 	on_actionFD1_Eject_triggered();
-	Set_Device( "fdb", false, "/dev/null" );
+	Set_Device( "fdb", "/dev/null" );
 }
 
 void Emulator_Control_Window::on_actionFD1_Other_triggered()
 {
 	if( ! FD1_Available() ) return;
 	
-	QString prev_file;
-	
-	if( Cur_VM->Get_FD1().Get_Host_Device() )
-	{
-		prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD1().Get_Host_File_Name() );
-	}
-	else
-	{
-		prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD1().Get_Image_File_Name() );
-	}
+	QString prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD1().Get_File_Name() );
 	
 	QFileDialog::Options options;
 	QString selectedFilter;
@@ -467,7 +495,11 @@ void Emulator_Control_Window::on_actionFD1_Other_triggered()
 	else
 	{
 		on_actionFD1_Eject_triggered();
-		Set_Device( "fdb", false, file_name );
+		Set_Device( "fdb", file_name );
+		
+		// Add to Recent Menu
+		Add_To_Recent_FDD_Files( file_name );
+		Update_Recent_Floppy_Images_List();
 	}
 }
 
@@ -485,12 +517,23 @@ void Emulator_Control_Window::on_actionFD1_Eject_triggered()
 	}
 }
 
+void Emulator_Control_Window::Open_Recent_Floppy1_Image()
+{
+	QAction *tmp_act = qobject_cast<QAction*>( sender() );
+	
+	if( tmp_act )
+	{
+		on_actionFD1_Eject_triggered();
+		Set_Device( "fdb", tmp_act->data().toString() );
+	}
+}
+
 void Emulator_Control_Window::on_actionCDROM_dev_cdrom_triggered()
 {
 	if( ! CD_ROM_Available() ) return;
 	
 	on_actionCDROM_Eject_triggered();
-	Set_Device( "cdrom", true, "/dev/cdrom" );
+	Set_Device( "cdrom", "/dev/cdrom" );
 }
 
 void Emulator_Control_Window::on_actionCDROM_dev_null_triggered()
@@ -498,23 +541,14 @@ void Emulator_Control_Window::on_actionCDROM_dev_null_triggered()
 	if( ! CD_ROM_Available() ) return;
 	
 	on_actionCDROM_Eject_triggered();
-	Set_Device( "cdrom", true, "/dev/null" );
+	Set_Device( "cdrom", "/dev/null" );
 }
 
 void Emulator_Control_Window::on_actionCDROM_Other_triggered()
 {
 	if( ! CD_ROM_Available() ) return;
 	
-	QString prev_file;
-	
-	if( Cur_VM->Get_CD_ROM().Get_Host_Device() )
-	{
-		prev_file = Get_Last_Dir_Path( Cur_VM->Get_CD_ROM().Get_Host_File_Name() );
-	}
-	else
-	{
-		prev_file = Get_Last_Dir_Path( Cur_VM->Get_CD_ROM().Get_Image_File_Name() );
-	}
+	QString prev_file = Get_Last_Dir_Path( Cur_VM->Get_CD_ROM().Get_File_Name() );
 	
 	QFileDialog::Options options;
 	QString selectedFilter;
@@ -532,10 +566,10 @@ void Emulator_Control_Window::on_actionCDROM_Other_triggered()
 	else
 	{
 		on_actionCDROM_Eject_triggered();
-		Set_Device( "cdrom", false, file_name );
+		Set_Device( "cdrom", file_name );
 		
 		// Add to Recent Menu
-		Add_To_Recent_Files( file_name );
+		Add_To_Recent_CD_Files( file_name );
 		Update_Recent_CD_ROM_Images_List();
 	}
 }
@@ -563,7 +597,7 @@ void Emulator_Control_Window::Open_Recent_CD_ROM_Image()
 		if( ! CD_ROM_Available() ) return;
 	
 		on_actionCDROM_Eject_triggered();
-		Set_Device( "cdrom", true, tmp_act->data().toString() );
+		Set_Device( "cdrom", tmp_act->data().toString() );
 	}
 }
 
@@ -917,26 +951,26 @@ bool Emulator_Control_Window::CD_ROM_Available()
 void Emulator_Control_Window::Update_Recent_CD_ROM_Images_List()
 {
 	// Clear Menu
-	for( int dx = 0; dx < Recent_Files_Items.count(); ++dx )
+	for( int dx = 0; dx < Recent_Files_CD_Items.count(); ++dx )
 	{
-		Recent_Files_Items[ dx ]->setText( "" );
-		Recent_Files_Items[ dx ]->setData( "" );
-		Recent_Files_Items[ dx ]->setVisible( false );
+		Recent_Files_CD_Items[ dx ]->setText( "" );
+		Recent_Files_CD_Items[ dx ]->setData( "" );
+		Recent_Files_CD_Items[ dx ]->setVisible( false );
 	}
 	
 	// Add New
 	int max = Settings.value( "CD_ROM_Exits_Images/Max", "5" ).toString().toInt();
 	
-	while( max > Recent_Files_Items.count() )
+	while( max > Recent_Files_CD_Items.count() )
 	{
 		QAction *tmp_act = new QAction( this );
-		Recent_Files_Items << tmp_act;
+		Recent_Files_CD_Items << tmp_act;
 		
-		Recent_Files_Items[ Recent_Files_Items.count() -1 ]->setText( "" );
-		Recent_Files_Items[ Recent_Files_Items.count() -1 ]->setData( "" );
-		Recent_Files_Items[ Recent_Files_Items.count() -1 ]->setVisible( false );
+		Recent_Files_CD_Items[ Recent_Files_CD_Items.count() -1 ]->setText( "" );
+		Recent_Files_CD_Items[ Recent_Files_CD_Items.count() -1 ]->setData( "" );
+		Recent_Files_CD_Items[ Recent_Files_CD_Items.count() -1 ]->setVisible( false );
 		
-		connect( Recent_Files_Items[Recent_Files_Items.count() -1], SIGNAL(triggered()),
+		connect( Recent_Files_CD_Items[Recent_Files_CD_Items.count() -1], SIGNAL(triggered()),
 				 this, SLOT(Open_Recent_CD_ROM_Image()) );
 	}
 	
@@ -946,16 +980,90 @@ void Emulator_Control_Window::Update_Recent_CD_ROM_Images_List()
 		{
 			QFileInfo info = QFileInfo( Get_CD_Recent_Images_List()[ix] );
 			
-			Recent_Files_Items[ ix ]->setText( info.fileName() );
-			Recent_Files_Items[ ix ]->setData( Get_CD_Recent_Images_List()[ix] );
-			Recent_Files_Items[ ix ]->setVisible( true );
+			Recent_Files_CD_Items[ ix ]->setText( info.fileName() );
+			Recent_Files_CD_Items[ ix ]->setData( Get_CD_Recent_Images_List()[ix] );
+			Recent_Files_CD_Items[ ix ]->setVisible( true );
 			
-			ui.menuCDROM_Recent_Files->addAction( Recent_Files_Items[ix] );
+			ui.menuCDROM_Recent_Files->addAction( Recent_Files_CD_Items[ix] );
 		}
 	}
 }
 
-void Emulator_Control_Window::Set_Device( const QString &dev_name, bool host_dev, const QString &path )
+void Emulator_Control_Window::Update_Recent_Floppy_Images_List()
+{
+	// Clear Menu
+	for( int dx = 0; dx < Recent_Files_FD0_Items.count(); ++dx )
+	{
+		Recent_Files_FD0_Items[ dx ]->setText( "" );
+		Recent_Files_FD0_Items[ dx ]->setData( "" );
+		Recent_Files_FD0_Items[ dx ]->setVisible( false );
+		
+		Recent_Files_FD1_Items[ dx ]->setText( "" );
+		Recent_Files_FD1_Items[ dx ]->setData( "" );
+		Recent_Files_FD1_Items[ dx ]->setVisible( false );
+	}
+	
+	// Add New
+	int max = Settings.value( "CD_ROM_Exits_Images/Max", "5" ).toString().toInt();
+	
+	while( max > Recent_Files_FD0_Items.count() )
+	{
+		QAction *tmp_act = new QAction( this );
+		Recent_Files_FD0_Items << tmp_act;
+		
+		Recent_Files_FD0_Items[ Recent_Files_FD0_Items.count() -1 ]->setText( "" );
+		Recent_Files_FD0_Items[ Recent_Files_FD0_Items.count() -1 ]->setData( "" );
+		Recent_Files_FD0_Items[ Recent_Files_FD0_Items.count() -1 ]->setVisible( false );
+		
+		connect( Recent_Files_FD0_Items[Recent_Files_FD0_Items.count() -1], SIGNAL(triggered()),
+				 this, SLOT(Open_Recent_Floppy0_Image()) );
+	}
+	
+	while( max > Recent_Files_FD1_Items.count() )
+	{
+		QAction *tmp_act = new QAction( this );
+		Recent_Files_FD1_Items << tmp_act;
+		
+		Recent_Files_FD1_Items[ Recent_Files_FD1_Items.count() -1 ]->setText( "" );
+		Recent_Files_FD1_Items[ Recent_Files_FD1_Items.count() -1 ]->setData( "" );
+		Recent_Files_FD1_Items[ Recent_Files_FD1_Items.count() -1 ]->setVisible( false );
+		
+		connect( Recent_Files_FD1_Items[Recent_Files_FD1_Items.count() -1], SIGNAL(triggered()),
+				 this, SLOT(Open_Recent_Floppy1_Image()) );
+	}
+	
+	QStringList fd_list = Get_FDD_Recent_Images_List();
+	
+	for( int ix = 0; ix < max; ++ix )
+	{
+		if( ix < fd_list.count() && fd_list[ix].isEmpty() == false )
+		{
+			QFileInfo info = QFileInfo( fd_list[ix] );
+			
+			Recent_Files_FD0_Items[ ix ]->setText( info.fileName() );
+			Recent_Files_FD0_Items[ ix ]->setData( fd_list[ix] );
+			Recent_Files_FD0_Items[ ix ]->setVisible( true );
+			
+			ui.menuFD0_Recent_Files->addAction( Recent_Files_FD0_Items[ix] );
+		}
+	}
+	
+	for( int ix = 0; ix < max; ++ix )
+	{
+		if( ix < fd_list.count() && fd_list[ix].isEmpty() == false )
+		{
+			QFileInfo info = QFileInfo( fd_list[ix] );
+			
+			Recent_Files_FD1_Items[ ix ]->setText( info.fileName() );
+			Recent_Files_FD1_Items[ ix ]->setData( fd_list[ix] );
+			Recent_Files_FD1_Items[ ix ]->setVisible( true );
+			
+			ui.menuFD1_Recent_Files->addAction( Recent_Files_FD1_Items[ix] );
+		}
+	}
+}
+
+void Emulator_Control_Window::Set_Device( const QString &dev_name, const QString &path )
 {
 	if( Cur_VM->Version_Good(VM::QEMU_0_9_1, VM::KVM_7X) )
 	{
@@ -989,18 +1097,15 @@ void Emulator_Control_Window::Set_Device( const QString &dev_name, bool host_dev
 	
 	if( dev_name == "fda" )
 	{
-		Cur_VM->Set_FD0( VM_Floppy(true, host_dev ? path : "",
-						 ! host_dev ? path : "", host_dev) );
+		Cur_VM->Set_FD0( VM_Storage_Device(true, path) );
 	}
 	else if( dev_name == "fdb" )
 	{
-		Cur_VM->Set_FD1( VM_Floppy(true, host_dev ? path : "",
-						 ! host_dev ? path : "", host_dev) );
+		Cur_VM->Set_FD1( VM_Storage_Device(true, path) );
 	}
 	else if( dev_name == "cdrom" )
 	{
-		Cur_VM->Set_CD_ROM( VM_CDROM(true, host_dev ? path : "",
-							! host_dev ? path : "", host_dev) );
+		Cur_VM->Set_CD_ROM( VM_Storage_Device(true, path) );
 	}
 	else
 	{

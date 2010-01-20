@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -34,12 +34,12 @@ Add_New_Device_Window::Add_New_Device_Window( QWidget *parent )
 	resize( width(), minimumSizeHint().height() );
 }
 
-VM_Storage_Device Add_New_Device_Window::Get_Device() const
+VM_Nativ_Storage_Device Add_New_Device_Window::Get_Device() const
 {
 	return Device;
 }
 
-void Add_New_Device_Window::Set_Device( const VM_Storage_Device &dev )
+void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )
 {
 	Device = dev;
 	
@@ -75,7 +75,7 @@ void Add_New_Device_Window::Set_Device( const VM_Storage_Device &dev )
 			break;
 			
 		default:
-			AQError( "void Add_New_Device_Window::Set_Device( const VM_Storage_Device &dev )",
+			AQError( "void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )",
 					 "Interface Default Section! Use IDE!" );
 			break;
 	}
@@ -94,7 +94,7 @@ void Add_New_Device_Window::Set_Device( const VM_Storage_Device &dev )
 			break;
 			
 		default:
-			AQError( "void Add_New_Device_Window::Set_Device( const VM_Storage_Device &dev )",
+			AQError( "void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )",
 					 "Media Default Section! Use Disk!" );
 			break;
 	}

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -296,7 +296,7 @@ bool Snapshots_Window::Update_Info()
 	
 	QProcess *qimg = new QProcess( this );
 	QStringList qimg_args;
-	qimg_args << "info" << Current_VM->Get_HDA().Get_Image_File_Name();
+	qimg_args << "info" << Current_VM->Get_HDA().Get_File_Name();
 	
 	QString img_path = Current_VM->Get_Current_Emulator_Binary_Path( "qemu-img kvm-img" );
 	

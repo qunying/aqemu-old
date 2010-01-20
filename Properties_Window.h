@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -34,12 +34,12 @@ class Properties_Window: public QDialog
 	public:
 		Properties_Window( QWidget *parent = 0 );
 		
-		const VM_Floppy &Get_Floppy();
-		const VM_CDROM &Get_CD_ROM();
-		const VM_HDD &Get_HDD();
+		const VM_Storage_Device &Get_Floppy();
+		const VM_Storage_Device &Get_CD_ROM();
+		const VM_HDD&Get_HDD();
 		
-		void Set_Floppy( const VM_Floppy &fd, const QString &name );
-		void Set_CD_ROM( const VM_CDROM &cd, const QString &name );
+		void Set_Floppy( const VM_Storage_Device &fd, const QString &name );
+		void Set_CD_ROM( const VM_Storage_Device &cd, const QString &name );
 		void Set_HDD( const VM_HDD &hd, const QString &name );
 		
 	private slots:
@@ -54,15 +54,12 @@ class Properties_Window: public QDialog
 		void on_Button_HDD_New_clicked();
 		void on_Button_HDD_Format_clicked();
 		
-		void on_RB_FD_Host_toggled( bool on );
-		void on_RB_CDROM_Host_toggled( bool on );
-		
 		void Update_HDD();
 		
 	private:
 		Ui::Properties_Window ui;
-		VM_Floppy PW_Floppy;
-		VM_CDROM PW_CDROM;
+		VM_Storage_Device PW_Floppy;
+		VM_Storage_Device PW_CDROM;
 		VM_HDD PW_HDD;
 		HDD_Image_Info* HDD_Info;
 };

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -73,9 +73,9 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	
 	if( vm.Version_Good(VM::QEMU_0_9_1, VM::KVM_7X) ) ui.TB_Add_Device->setEnabled( true );
 	
-	Floppy1 = VM_Floppy( vm.Get_FD0() );
+	Floppy1 = VM_Storage_Device( vm.Get_FD0() );
 	
-	if( Floppy1.Get_Host_File_Name().isEmpty() )
+	if( Floppy1.Get_File_Name().isEmpty() )
 	{
 		QStringList fd_list = System_Info::Get_Host_FDD_List();
 		
@@ -86,13 +86,13 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 		}
 		else
 		{
-			Floppy1.Set_Host_File_Name( fd_list[0] );
+			Floppy1.Set_File_Name( fd_list[0] );
 		}
 	}
 	
-	Floppy2 = VM_Floppy( vm.Get_FD1() );
+	Floppy2 = VM_Storage_Device( vm.Get_FD1() );
 	
-	if( Floppy2.Get_Host_File_Name().isEmpty() )
+	if( Floppy2.Get_File_Name().isEmpty() )
 	{
 		QStringList fd_list = System_Info::Get_Host_FDD_List();
 		
@@ -103,13 +103,13 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 		}
 		else
 		{
-			Floppy2.Set_Host_File_Name( fd_list[0] );
+			Floppy2.Set_File_Name( fd_list[0] );
 		}
 	}
 	
-	CD_ROM = VM_CDROM( vm.Get_CD_ROM() );
+	CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
 	
-	if( CD_ROM.Get_Host_File_Name().isEmpty() )
+	if( CD_ROM.Get_File_Name().isEmpty() )
 	{
 		QStringList cd_list = System_Info::Get_Host_CDROM_List();
 		
@@ -120,7 +120,7 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 		}
 		else
 		{
-			CD_ROM.Set_Host_File_Name( cd_list[0] );
+			CD_ROM.Set_File_Name( cd_list[0] );
 		}
 	}
 	
@@ -129,24 +129,24 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	HDC = VM_HDD( vm.Get_HDC() );
 	HDD = VM_HDD( vm.Get_HDD() );
 	
-	if( QFile::exists(HDA.Get_Image_File_Name()) )
+	if( QFile::exists(HDA.Get_File_Name()) )
 	{
-		HDA_Info->Update_Disk_Info( HDA.Get_Image_File_Name() );
+		HDA_Info->Update_Disk_Info( HDA.Get_File_Name() );
 	}
 	
-	if( QFile::exists(HDB.Get_Image_File_Name()) )
+	if( QFile::exists(HDB.Get_File_Name()) )
 	{
-		HDB_Info->Update_Disk_Info( HDB.Get_Image_File_Name() );
+		HDB_Info->Update_Disk_Info( HDB.Get_File_Name() );
 	}
 	
-	if( QFile::exists(HDC.Get_Image_File_Name()) )
+	if( QFile::exists(HDC.Get_File_Name()) )
 	{
-		HDC_Info->Update_Disk_Info( HDC.Get_Image_File_Name() );
+		HDC_Info->Update_Disk_Info( HDC.Get_File_Name() );
 	}
 	
-	if( QFile::exists(HDD.Get_Image_File_Name()) )
+	if( QFile::exists(HDD.Get_File_Name()) )
 	{
-		HDD_Info->Update_Disk_Info( HDD.Get_Image_File_Name() );
+		HDD_Info->Update_Disk_Info( HDD.Get_File_Name() );
 	}
 	
 	Storage_Devices.clear();
@@ -224,13 +224,13 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 			
 			if( ui.Devices_List->currentItem()->data(512).toString() == "fd1" )
 			{
-				if( Floppy1.Get_Host_Device() )
+				if( It_Host_Device(Floppy1.Get_File_Name()) )
 				{
 					ui.Label_Connected_To->setText( tr("Type: Host Device") );
 				}
 				else
 				{
-					QFileInfo fd_img = QFileInfo( Floppy1.Get_Image_File_Name() );
+					QFileInfo fd_img = QFileInfo( Floppy1.Get_File_Name() );
 					
 					if( fd_img.exists() )
 					{
@@ -239,30 +239,30 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 						if( size_in_bytes <= 0 )
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number(0) + tr("Mb") );
+									tr("On Disk Size: ") + QString::number(0) + tr("Kb") );
 						}
 						else
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number((float)size_in_bytes / 1024.0 / 1024.0) + tr("Mb") );
+									tr("On Disk Size: ") + QString::number((int)size_in_bytes / 1024.0) + tr("Kb") );
 						}
 					}
 					else
 					{
 						ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-								tr("On Disk Size: ") + QString::number(0) + tr("Mb") );
+								tr("On Disk Size: ") + QString::number(0) + tr("Kb") );
 					}
 				}
 			}
 			else
 			{
-				if( Floppy2.Get_Host_Device() )
+				if( It_Host_Device(Floppy2.Get_File_Name()) )
 				{
 					ui.Label_Connected_To->setText( tr("Type: Host Device") );
 				}
 				else
 				{
-					QFileInfo fd_img = QFileInfo( Floppy2.Get_Image_File_Name() );
+					QFileInfo fd_img = QFileInfo( Floppy2.Get_File_Name() );
 					
 					if( fd_img.exists() )
 					{
@@ -271,12 +271,12 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 						if( size_in_bytes <= 0 )
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number(0) + tr("Mb") );
+									tr("On Disk Size: ") + QString::number(0) + tr("Kb") );
 						}
 						else
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number((float)size_in_bytes / 1024.0 / 1024.0) + tr("Mb") );
+									tr("On Disk Size: ") + QString::number((int)size_in_bytes / 1024.0) + tr("Kb") );
 						}
 					}
 					else
@@ -301,13 +301,13 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 			ui.TB_Quick_Format->setEnabled( false );
 			ui.actionQuick_Format->setEnabled( false );
 			
-			if( CD_ROM.Get_Host_Device() )
+			if( It_Host_Device(CD_ROM.Get_File_Name()) )
 			{
 				ui.Label_Connected_To->setText( tr("Type: Host Device") );
 			}
 			else
 			{
-				QFileInfo cd_img = QFileInfo( CD_ROM.Get_Image_File_Name() );
+				QFileInfo cd_img = QFileInfo( CD_ROM.Get_File_Name() );
 				
 				if( cd_img.exists() )
 				{
@@ -321,7 +321,7 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 					else
 					{
 						ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-								tr("On Disk Size: ") + QString::number((int)(size_in_bytes / 1024.0 / 1024.0)) + tr("Mb") );
+								tr("On Disk Size: ") + QString::number((float)(size_in_bytes / 1024.0 / 1024.0), 'f', 2) + tr("Mb") );
 					}
 				}
 				else
@@ -350,7 +350,7 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 			
 			if( ui.Devices_List->currentItem()->data(512).toString() == "hda" )
 			{
-				HDA_Info->Update_Disk_Info( HDA.Get_Image_File_Name() );
+				HDA_Info->Update_Disk_Info( HDA.Get_File_Name() );
 				
 				ui.Label_Connected_To->setText( tr("Image Virtual Size: ") + QString::number(HDA.Get_Virtual_Size().Size) +
 												Get_TR_Size_Suffix(HDA.Get_Virtual_Size()) + "\n" +
@@ -359,7 +359,7 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 			}
 			else if( ui.Devices_List->currentItem()->data(512).toString() == "hdb" )
 			{
-				HDB_Info->Update_Disk_Info( HDB.Get_Image_File_Name() );
+				HDB_Info->Update_Disk_Info( HDB.Get_File_Name() );
 				
 				ui.Label_Connected_To->setText( tr("Image Virtual Size: ") + QString::number(HDB.Get_Virtual_Size().Size) +
 												Get_TR_Size_Suffix(HDB.Get_Virtual_Size()) + "\n" +
@@ -368,7 +368,7 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 			}
 			else if( ui.Devices_List->currentItem()->data(512).toString() == "hdc" )
 			{
-				HDC_Info->Update_Disk_Info( HDC.Get_Image_File_Name() );
+				HDC_Info->Update_Disk_Info( HDC.Get_File_Name() );
 				
 				ui.Label_Connected_To->setText( tr("Image Virtual Size: ") + QString::number(HDC.Get_Virtual_Size().Size) +
 												Get_TR_Size_Suffix(HDC.Get_Virtual_Size())  + "\n" +
@@ -377,7 +377,7 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 			}
 			else if( ui.Devices_List->currentItem()->data(512).toString() == "hdd" )
 			{
-				HDD_Info->Update_Disk_Info( HDD.Get_Image_File_Name() );
+				HDD_Info->Update_Disk_Info( HDD.Get_File_Name() );
 				
 				ui.Label_Connected_To->setText( tr("Image Virtual Size: ") + QString::number(HDD.Get_Virtual_Size().Size) +
 												Get_TR_Size_Suffix(HDD.Get_Virtual_Size())  + "\n" +
@@ -561,21 +561,12 @@ void Device_Manager_Widget::on_actionAdd_Floppy_triggered()
 		{
 			Floppy1 = pw->Get_Floppy();
 			
-			QString dev_name;
-		
-			if( Floppy1.Get_Host_Device() )
-			{
-				dev_name = Floppy1.Get_Host_File_Name();
-			}
-			else
-			{
-				dev_name = Floppy1.Get_Image_File_Name();
-			}
-		
+			QString dev_name = Floppy1.Get_File_Name();
+			
 			QListWidgetItem *fdit = new QListWidgetItem( QIcon(":/fdd.png"),
 														 tr("Floppy 1") + " (" + dev_name + ")" );
 			fdit->setData( 512, "fd1" );
-		
+			
 			ui.Devices_List->addItem( fdit );
 			
 			emit Device_Changet();
@@ -590,16 +581,7 @@ void Device_Manager_Widget::on_actionAdd_Floppy_triggered()
 		{
 			Floppy2 = pw->Get_Floppy();
 			
-			QString dev_name;
-			
-			if( Floppy2.Get_Host_Device() )
-			{
-				dev_name = Floppy2.Get_Host_File_Name();
-			}
-			else
-			{
-				dev_name = Floppy2.Get_Image_File_Name();
-			}
+			QString dev_name = Floppy2.Get_File_Name();
 			
 			QListWidgetItem *fdit = new QListWidgetItem( QIcon(":/fdd.png"),
 														 tr("Floppy 2") + " (" + dev_name + ")" );
@@ -628,16 +610,7 @@ void Device_Manager_Widget::on_actionAdd_CD_ROM_triggered()
 		{
 			CD_ROM = pw->Get_CD_ROM();
 			
-			QString dev_name;
-			
-			if( CD_ROM.Get_Host_Device() )
-			{
-				dev_name = CD_ROM.Get_Host_File_Name();
-			}
-			else
-			{
-				dev_name = CD_ROM.Get_Image_File_Name();
-			}
+			QString dev_name = CD_ROM.Get_File_Name();
 			
 			QListWidgetItem *cdit = new QListWidgetItem( QIcon(":/cdrom.png"),
 														 tr("CD-ROM") + " (" + dev_name + ")" , ui.Devices_List );
@@ -667,7 +640,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 			HDA = pw->Get_HDD();
 			
 			QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-														 tr("HDA") + " (" + HDA.Get_Image_File_Name() + ")", ui.Devices_List );
+														 tr("HDA") + " (" + HDA.Get_File_Name() + ")", ui.Devices_List );
 			hdit->setData( 512, "hda" );
 			
 			ui.Devices_List->addItem( hdit );
@@ -685,7 +658,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 			HDB = pw->Get_HDD();
 			
 			QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-														 tr("HDB") + " (" + HDB.Get_Image_File_Name() + ")", ui.Devices_List );
+														 tr("HDB") + " (" + HDB.Get_File_Name() + ")", ui.Devices_List );
 			hdit->setData( 512, "hdb" );
 			
 			ui.Devices_List->addItem( hdit );
@@ -703,7 +676,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 			HDC = pw->Get_HDD();
 			
 			QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-														 tr("HDC") + " (" + HDC.Get_Image_File_Name() + ")", ui.Devices_List );
+														 tr("HDC") + " (" + HDC.Get_File_Name() + ")", ui.Devices_List );
 			hdit->setData( 512, "hdc" );
 		
 			ui.Devices_List->addItem( hdit );
@@ -721,7 +694,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 			HDD = pw->Get_HDD();
 			
 			QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-														 tr("HDD") + " (" + HDD.Get_Image_File_Name() + ")", ui.Devices_List );
+														 tr("HDD") + " (" + HDD.Get_File_Name() + ")", ui.Devices_List );
 			hdit->setData( 512, "hdd" );
 			
 			ui.Devices_List->addItem( hdit );
@@ -739,7 +712,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 void Device_Manager_Widget::on_actionAdd_Device_triggered()
 {
 	Device_Window = new Add_New_Device_Window();
-	VM_Storage_Device tmp_dev;
+	VM_Nativ_Storage_Device tmp_dev;
 	Device_Window->Set_Device( tmp_dev );
 	
 	if( Device_Window->exec() == QDialog::Accepted )
@@ -769,18 +742,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				Floppy1 = pw->Get_Floppy();
 				
-				QString dev_name;
-				
-				if( Floppy1.Get_Host_Device() )
-				{
-					dev_name = Floppy1.Get_Host_File_Name();
-				}
-				else
-				{
-					dev_name = Floppy1.Get_Image_File_Name();
-				}
-				
-				ui.Devices_List->currentItem()->setText( tr("Floppy 1") + " (" + dev_name + ")" );
+				ui.Devices_List->currentItem()->setText( tr("Floppy 1") + " (" + Floppy1.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -797,18 +759,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				Floppy2 = pw->Get_Floppy();
 				
-				QString dev_name;
-				
-				if( Floppy2.Get_Host_Device() )
-				{
-					dev_name = Floppy2.Get_Host_File_Name();
-				}
-				else
-				{
-					dev_name = Floppy2.Get_Image_File_Name();
-				}
-				
-				ui.Devices_List->currentItem()->setText( tr("Floppy 2") + " (" + dev_name + ")" );
+				ui.Devices_List->currentItem()->setText( tr("Floppy 2") + " (" + Floppy2.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -825,18 +776,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				CD_ROM = pw->Get_CD_ROM();
 				
-				QString dev_name;
-				
-				if( CD_ROM.Get_Host_Device() )
-				{
-					dev_name = CD_ROM.Get_Host_File_Name();
-				}
-				else
-				{
-					dev_name = CD_ROM.Get_Image_File_Name();
-				}
-				
-				ui.Devices_List->currentItem()->setText( tr("CD-ROM") + " (" + dev_name + ")" );
+				ui.Devices_List->currentItem()->setText( tr("CD-ROM") + " (" + CD_ROM.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -853,7 +793,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				HDA = pw->Get_HDD();
 				
-				ui.Devices_List->currentItem()->setText( tr("HDA") + " (" + HDA.Get_Image_File_Name() + ")" );
+				ui.Devices_List->currentItem()->setText( tr("HDA") + " (" + HDA.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -870,7 +810,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				HDB = pw->Get_HDD();
 				
-				ui.Devices_List->currentItem()->setText( tr("HDB") + " (" + HDB.Get_Image_File_Name() + ")" );
+				ui.Devices_List->currentItem()->setText( tr("HDB") + " (" + HDB.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -887,7 +827,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				HDC = pw->Get_HDD();
 				
-				ui.Devices_List->currentItem()->setText( tr("HDC") + " (" + HDC.Get_Image_File_Name() + ")" );
+				ui.Devices_List->currentItem()->setText( tr("HDC") + " (" + HDC.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -904,7 +844,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 			{
 				HDD = pw->Get_HDD();
 				
-				ui.Devices_List->currentItem()->setText( tr("HDD") + " (" + HDC.Get_Image_File_Name() + ")" );
+				ui.Devices_List->currentItem()->setText( tr("HDD") + " (" + HDC.Get_File_Name() + ")" );
 				
 				emit Device_Changet();
 			}
@@ -956,15 +896,15 @@ void Device_Manager_Widget::on_actionDelete_triggered()
 	
 	if( ui.Devices_List->currentItem()->data(512).toString() == "fd1" )
 	{
-		Floppy1 = VM_Floppy( false, "", "", true );
+		Floppy1 = VM_Storage_Device();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "fd2" )
 	{
-		Floppy2 = VM_Floppy( false, "", "", true );
+		Floppy2 = VM_Storage_Device();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "cd" )
 	{
-		CD_ROM = VM_CDROM( false, "", "", true );
+		CD_ROM = VM_Storage_Device();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hda" )
 	{
@@ -1015,22 +955,22 @@ void Device_Manager_Widget::on_actionFormat_HDD_triggered()
 	
 	if( ui.Devices_List->currentItem()->data(512).toString() == "hda" )
 	{
-		hdd_win->Set_Image_File_Name( HDA.Get_Image_File_Name() );
+		hdd_win->Set_Image_File_Name( HDA.Get_File_Name() );
 		hdd_win->exec();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdb" )
 	{
-		hdd_win->Set_Image_File_Name( HDB.Get_Image_File_Name() );
+		hdd_win->Set_Image_File_Name( HDB.Get_File_Name() );
 		hdd_win->exec();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdc" )
 	{
-		hdd_win->Set_Image_File_Name( HDC.Get_Image_File_Name() );
+		hdd_win->Set_Image_File_Name( HDC.Get_File_Name() );
 		hdd_win->exec();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdd" )
 	{
-		hdd_win->Set_Image_File_Name( HDD.Get_Image_File_Name() );
+		hdd_win->Set_Image_File_Name( HDD.Get_File_Name() );
 		hdd_win->exec();
 	}
 	else
@@ -1057,7 +997,7 @@ void Device_Manager_Widget::on_actionQuick_Format_triggered()
 	
 	if( ui.Devices_List->currentItem()->data(512).toString() == "hda" )
 	{
-		if( Format_HDD_Image(HDA.Get_Image_File_Name(), HDA_Info->Get_Disk_Info()) )
+		if( Format_HDD_Image(HDA.Get_File_Name(), HDA_Info->Get_Disk_Info()) )
 		{
 			QMessageBox::information( this, tr("Information"), tr("Complete!") );
 		}
@@ -1068,7 +1008,7 @@ void Device_Manager_Widget::on_actionQuick_Format_triggered()
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdb" )
 	{
-		if( Format_HDD_Image(HDB.Get_Image_File_Name(), HDB_Info->Get_Disk_Info()) )
+		if( Format_HDD_Image(HDB.Get_File_Name(), HDB_Info->Get_Disk_Info()) )
 		{
 			QMessageBox::information( this, tr("Information"), tr("Complete!") );
 		}
@@ -1079,7 +1019,7 @@ void Device_Manager_Widget::on_actionQuick_Format_triggered()
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdc" )
 	{
-		if( Format_HDD_Image(HDC.Get_Image_File_Name(), HDC_Info->Get_Disk_Info()) )
+		if( Format_HDD_Image(HDC.Get_File_Name(), HDC_Info->Get_Disk_Info()) )
 		{
 			QMessageBox::information( this, tr("Information"), tr("Complete!") );
 		}
@@ -1090,7 +1030,7 @@ void Device_Manager_Widget::on_actionQuick_Format_triggered()
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdd" )
 	{
-		if( Format_HDD_Image(HDD.Get_Image_File_Name(), HDD_Info->Get_Disk_Info()) )
+		if( Format_HDD_Image(HDD.Get_File_Name(), HDD_Info->Get_Disk_Info()) )
 		{
 			QMessageBox::information( this, tr("Information"), tr("Complete!") );
 		}
@@ -1131,19 +1071,8 @@ void Device_Manager_Widget::Update_Icons()
 	
 	if( Floppy1.Get_Enabled() )
 	{
-		QString dev_name;
-		
-		if( Floppy1.Get_Host_Device() )
-		{
-			dev_name = Floppy1.Get_Host_File_Name();
-		}
-		else
-		{
-			dev_name = Floppy1.Get_Image_File_Name();
-		}
-		
 		QListWidgetItem *fdit = new QListWidgetItem( QIcon(":/fdd.png"),
-													 tr("Floppy 1") + " (" + dev_name + ")" );
+													 tr("Floppy 1") + " (" + Floppy1.Get_File_Name() + ")" );
 		fdit->setData( 512, "fd1" );
 		
 		ui.Devices_List->addItem( fdit );
@@ -1151,19 +1080,8 @@ void Device_Manager_Widget::Update_Icons()
 	
 	if( Floppy2.Get_Enabled() )
 	{
-		QString dev_name;
-		
-		if( Floppy2.Get_Host_Device() )
-		{
-			dev_name = Floppy2.Get_Host_File_Name();
-		}
-		else
-		{
-			dev_name = Floppy2.Get_Image_File_Name();
-		}
-		
 		QListWidgetItem *fdit = new QListWidgetItem( QIcon(":/fdd.png"),
-													 tr("Floppy 2") + " (" + dev_name + ")" );
+													 tr("Floppy 2") + " (" + Floppy2.Get_File_Name() + ")" );
 		fdit->setData( 512, "fd2" );
 		
 		ui.Devices_List->addItem( fdit );
@@ -1171,19 +1089,8 @@ void Device_Manager_Widget::Update_Icons()
 	
 	if( CD_ROM.Get_Enabled() )
 	{
-		QString dev_name;
-		
-		if( CD_ROM.Get_Host_Device() )
-		{
-			dev_name = CD_ROM.Get_Host_File_Name();
-		}
-		else
-		{
-			dev_name = CD_ROM.Get_Image_File_Name();
-		}
-		
 		QListWidgetItem *cdit = new QListWidgetItem( QIcon(":/cdrom.png"),
-													 tr("CD-ROM") + " (" + dev_name + ")" , ui.Devices_List );
+													 tr("CD-ROM") + " (" + CD_ROM.Get_File_Name() + ")" , ui.Devices_List );
 		cdit->setData( 512, "cd" );
 		
 		ui.Devices_List->addItem( cdit );
@@ -1192,7 +1099,7 @@ void Device_Manager_Widget::Update_Icons()
 	if( HDA.Get_Enabled() )
 	{
 		QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-													 tr("HDA") + " (" + HDA.Get_Image_File_Name() + ")", ui.Devices_List );
+													 tr("HDA") + " (" + HDA.Get_File_Name() + ")", ui.Devices_List );
 		hdit->setData( 512, "hda" );
 		
 		ui.Devices_List->addItem( hdit );
@@ -1201,7 +1108,7 @@ void Device_Manager_Widget::Update_Icons()
 	if( HDB.Get_Enabled() )
 	{
 		QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-													 tr("HDB") + " (" + HDB.Get_Image_File_Name() + ")", ui.Devices_List );
+													 tr("HDB") + " (" + HDB.Get_File_Name() + ")", ui.Devices_List );
 		hdit->setData( 512, "hdb" );
 		
 		ui.Devices_List->addItem( hdit );
@@ -1210,7 +1117,7 @@ void Device_Manager_Widget::Update_Icons()
 	if( HDC.Get_Enabled() )
 	{
 		QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-													 tr("HDC") + " (" + HDC.Get_Image_File_Name() + ")", ui.Devices_List );
+													 tr("HDC") + " (" + HDC.Get_File_Name() + ")", ui.Devices_List );
 		hdit->setData( 512, "hdc" );
 		
 		ui.Devices_List->addItem( hdit );
@@ -1219,7 +1126,7 @@ void Device_Manager_Widget::Update_Icons()
 	if( HDD.Get_Enabled() )
 	{
 		QListWidgetItem *hdit = new QListWidgetItem( QIcon(":/hdd.png"),
-													 tr("HDD") + " (" + HDD.Get_Image_File_Name() + ")", ui.Devices_List );
+													 tr("HDD") + " (" + HDD.Get_File_Name() + ")", ui.Devices_List );
 		hdit->setData( 512, "hdd" );
 		
 		ui.Devices_List->addItem( hdit );

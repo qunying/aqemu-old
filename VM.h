@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -77,6 +77,9 @@ class Virtual_Machine: public QObject
 		void Load_VM_State( const QString &tag );
 		bool Start_Snapshot( const QString &tag );
 		void Delete_Snapshot( const QString &tag );
+		
+		const QString &Get_UID() const;
+		void Set_UID( const QString &uid );
 		
 		// Emu_Ctl
 		void Show_Emu_Ctl_Win();
@@ -175,23 +178,20 @@ class Virtual_Machine: public QObject
 		bool Use_Start_CPU() const;
 		void Use_Start_CPU( bool start );
 		
-		bool Use_QEMU_Log() const;
-		void Use_QEMU_Log( bool use );
-		
 		bool Use_No_Reboot() const;
 		void Use_No_Reboot( bool use );
 		
 		bool Use_No_Shutdown() const;
 		void Use_No_Shutdown( bool use );
 		
-		const VM_Floppy &Get_FD0() const;
-		void Set_FD0( const VM_Floppy &floppy );
+		const VM_Storage_Device &Get_FD0() const;
+		void Set_FD0( const VM_Storage_Device &floppy );
 		
-		const VM_Floppy &Get_FD1() const;
-		void Set_FD1( const VM_Floppy &floppy );
+		const VM_Storage_Device &Get_FD1() const;
+		void Set_FD1( const VM_Storage_Device &floppy );
 		
-		const VM_CDROM &Get_CD_ROM() const;
-		void Set_CD_ROM( const VM_CDROM &cdrom );
+		const VM_Storage_Device &Get_CD_ROM() const;
+		void Set_CD_ROM( const VM_Storage_Device &cdrom );
 		
 		const VM_HDD &Get_HDA() const;
 		void Set_HDA( const VM_HDD &hdd );
@@ -213,8 +213,8 @@ class Virtual_Machine: public QObject
 		
 		void Set_Snapshot( int index, const VM_Snapshot &s );
 		
-		const QList<VM_Storage_Device> &Get_Storage_Devices_List() const;
-		void Set_Storage_Devices_List( const QList<VM_Storage_Device> &list );
+		const QList<VM_Nativ_Storage_Device> &Get_Storage_Devices_List() const;
+		void Set_Storage_Devices_List( const QList<VM_Nativ_Storage_Device> &list );
 		
 		bool Get_Use_Network() const;
 		void Set_Use_Network( bool use );
@@ -293,12 +293,6 @@ class Virtual_Machine: public QObject
 		
 		const QString &Get_ROM_File() const;
 		void Set_ROM_File( const QString &path );
-		
-		bool Use_GDB() const;
-		void Use_GDB( bool use );
-		
-		uint Get_GDB_Port() const;
-		void Set_GDB_Port( uint port );
 		
 		bool Use_MTDBlock_File() const;
 		void Use_MTDBlock_File( bool use );
@@ -404,7 +398,7 @@ class Virtual_Machine: public QObject
 		bool Use_No_Use_Embedded_Display() const;
 		void Use_No_Use_Embedded_Display( bool use );
 		
-		bool Version_Good( VM::QEMU_Version qver, VM::KVM_Version kver ) const;
+		bool Version_Good( VM::Emulator_Version qver, VM::Emulator_Version kver ) const; // FIXME
 		
 		// Window for control qemu/kvm
 		Emulator_Control_Window *Emu_Ctl;
@@ -436,6 +430,10 @@ class Virtual_Machine: public QObject
 		// for Emulator_Control_Window
 		void Execute_Emu_Ctl_Command( const QString &com );
 		
+		VM_Nativ_Storage_Device Load_VM_Nativ_Storage_Device( const QDomElement &Second_Element ) const;
+		void Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Document, QDomElement &Dom_Element,
+										   const VM_Nativ_Storage_Device &device ) const;
+		
 	private:
 		QProcess *QEMU_Process;
 		VM::VM_State State; // Saved, Running, etc...
@@ -447,6 +445,8 @@ class Virtual_Machine: public QObject
 		bool Dont_Reinit;
 		bool Build_QEMU_Args_for_Tab_Info;
 		bool Build_QEMU_Args_for_Script_Mode;
+		
+		QString UID;
 		
 		QString Emulator_Type;
 		Emulator Current_Emulator;
@@ -466,6 +466,7 @@ class Virtual_Machine: public QObject
 		int SMP_CPU_Count; // smp mode cpu's number
 		QString Keyboard_Layout; // language en, ru, jp...
 		VM::Boot_Device Boot_Device; // boot device
+		QList<VM::Boot_Order> Boot_Order_List; // New boot order
 		QString Video_Card; // std vga, cirus logic
 		VM::Acseleration_Mode KQEMU_Mode; // acceleration mode
 		VM::Sound_Cards Audio_Card; // sb16, es1370
@@ -480,20 +481,19 @@ class Virtual_Machine: public QObject
 		bool ACPI;
 		bool Snapshot_Mode;
 		bool Start_CPU;
-		bool QEMU_Log;
 		bool No_Reboot;
 		bool No_Shutdown;
 		
 		// storage devices
-		VM_Floppy FD0; // floppy 0
-		VM_Floppy FD1; // floppy 1
-		VM_CDROM CD_ROM; // cdrom device ide2
+		VM_Storage_Device FD0; // floppy 0
+		VM_Storage_Device FD1; // floppy 1
+		VM_Storage_Device CD_ROM; // cdrom device ide2
 		VM_HDD HDA; // ide0
 		VM_HDD HDB; // ide1
 		VM_HDD HDC; // ide2 if cdrom is enabled, hdc be disabled
 		VM_HDD HDD; // ide3
 		QList<VM_Snapshot> Snapshots; // VM State Snapshots
-		QList<VM_Storage_Device> Storage_Devices; // For QEMU 0.9.1 Device Style
+		QList<VM_Nativ_Storage_Device> Storage_Devices; // For QEMU 0.9.1 Device Style
 		
 		// Network
 		bool Use_Network;
@@ -524,9 +524,6 @@ class Virtual_Machine: public QObject
 		
 		bool Use_ROM_File;
 		QString ROM_File; // ROM File for EtherBoot
-		
-		bool GDB; // GNU Debuger
-		uint GDB_Port;
 		
 		// QEMU 0.9.1 Options
 		bool MTDBlock;

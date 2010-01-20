@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -36,7 +36,7 @@ class VM_Wizard_Window: public QDialog
 	
 	public:
 		VM_Wizard_Window( QWidget *parent = 0 );
-		void Set_VM_List( QList<Virtual_Machine> *list );
+		void Set_VM_List( QList<Virtual_Machine*> *list );
 		
 		Virtual_Machine *New_VM;
 		
@@ -70,7 +70,7 @@ class VM_Wizard_Window: public QDialog
 		Ui::VM_Wizard_Window ui;
 		
 		QFileInfoList OS_Templates_List;
-		QList<Virtual_Machine> *VM_List;
+		QList<Virtual_Machine*> *VM_List;
 		
 		Emulator Current_Emulator;
 		Averable_Devices* Current_Devices;

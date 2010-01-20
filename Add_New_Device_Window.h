@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -35,8 +35,8 @@ class Add_New_Device_Window: public QDialog
 	public:
 		Add_New_Device_Window( QWidget *parent = 0 );
 		
-		VM_Storage_Device Get_Device() const;
-		void Set_Device( const VM_Storage_Device &dev );
+		VM_Nativ_Storage_Device Get_Device() const;
+		void Set_Device( const VM_Nativ_Storage_Device &dev );
 	
 	private slots:
 		void on_CB_Interface_currentIndexChanged( const QString &text );
@@ -44,7 +44,7 @@ class Add_New_Device_Window: public QDialog
 		void on_Button_OK_clicked();
 	
 	private:
-		VM_Storage_Device Device;
+		VM_Nativ_Storage_Device Device;
 		Ui::Add_New_Device_Window ui;
 };
 

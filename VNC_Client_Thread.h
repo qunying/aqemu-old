@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2009-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of KDE, QtEMU, AQEMU.
 **

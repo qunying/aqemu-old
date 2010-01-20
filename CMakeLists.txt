@@ -15,6 +15,7 @@ SET( aqemu_headers
 	Add_Port_Window.h
 	Add_USB_Port_Window.h
 	Advanced_Settings_Window.h
+	Boot_Device_Window.h
 	Convert_HDD_Image_Window.h
 	Copy_VM_Window.h
 	Create_HDD_Image_Window.h
@@ -34,6 +35,7 @@ SET( aqemu_headers
 	QEMU_Binary_Window.h
 	Select_Icon_Window.h
 	Settings_Window.h
+	SMP_Settings_Window.h
 	Snapshot_Properties_Window.h
 	Snapshots_Window.h
 	System_Info.h
@@ -50,6 +52,7 @@ SET( aqemu_sources
 	Add_Port_Window.cpp
 	Add_USB_Port_Window.cpp
 	Advanced_Settings_Window.cpp
+	Boot_Device_Window.cpp
 	Convert_HDD_Image_Window.cpp
 	Copy_VM_Window.cpp
 	Create_HDD_Image_Window.cpp
@@ -70,6 +73,7 @@ SET( aqemu_sources
 	QEMU_Binary_Window.cpp
 	Select_Icon_Window.cpp
 	Settings_Window.cpp
+	SMP_Settings_Window.cpp
 	Snapshot_Properties_Window.cpp
 	Snapshots_Window.cpp
 	System_Info.cpp
@@ -86,6 +90,7 @@ SET( aqemu_ui
 	Add_Port_Window.ui
 	Add_USB_Port_Window.ui
 	Advanced_Settings_Window.ui
+	Boot_Device_Window.ui
 	Convert_HDD_Image_Window.ui
 	Copy_VM_Window.ui
 	Create_HDD_Image_Window.ui
@@ -104,6 +109,7 @@ SET( aqemu_ui
 	QEMU_Binary_Window.ui
 	Select_Icon_Window.ui
 	Settings_Window.ui
+	SMP_Settings_Window.ui
 	Snapshot_Properties_Window.ui
 	Snapshots_Window.ui
 	VM_Wizard_Window.ui

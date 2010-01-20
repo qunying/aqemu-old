@@ -5,8 +5,9 @@ AQEMU compiling and running ONLY on Linux and *BSD systems!
 (Windows port in developing process)
 
 AQEMU Minimal Version Dependencies:
- * Qt 4.4
- * QEMU 0.9.0 or KVM
+ * Qt >= 4.4
+ * CMake >= 2.6
+ * QEMU >= 0.9.0 or KVM or QEMU-KVM
  * GCC >= 3.4 or 4.X
 
 

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -38,14 +38,14 @@ class Device_Manager_Widget: public QWidget
 		~Device_Manager_Widget();
 		void Set_VM( const Virtual_Machine &vm );
 		
-		VM_Floppy Floppy1; // FD0
-		VM_Floppy Floppy2; // FD1
-		VM_CDROM CD_ROM; // cdrom device ide2
+		VM_Storage_Device Floppy1; // FD0
+		VM_Storage_Device Floppy2; // FD1
+		VM_Storage_Device CD_ROM; // cdrom device ide2
 		VM_HDD HDA; // ide0
 		VM_HDD HDB; // ide1
 		VM_HDD HDC; // ide2 if cdrom is enabled, hdc be disibled
 		VM_HDD HDD; // ide3
-		QList<VM_Storage_Device> Storage_Devices;
+		QList<VM_Nativ_Storage_Device> Storage_Devices;
 		
 	public slots:
 		void Update_Enabled_Actions();

@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -56,7 +56,7 @@ VM_Wizard_Window::VM_Wizard_Window( QWidget *parent )
 	}
 }
 
-void VM_Wizard_Window::Set_VM_List( QList<Virtual_Machine> *list )
+void VM_Wizard_Window::Set_VM_List( QList<Virtual_Machine*> *list )
 {
 	VM_List = list;
 }
@@ -399,7 +399,7 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 	{
 		for( int vx = 0; vx < VM_List->count(); ++vx )
 		{
-			if( VM_List->at(vx).Get_Machine_Name() == ui.Edit_VM_Name->text() )
+			if( VM_List->at(vx)->Get_Machine_Name() == ui.Edit_VM_Name->text() )
 			{
 				AQGraphic_Warning( tr("Warning"), tr("This VM Name is Already Exists!") );
 				return;

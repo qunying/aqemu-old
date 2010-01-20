@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -30,7 +30,7 @@
 #include "Utils.h"
 #include "HDD_Image_Info.h"
 
-// VM_Storage_Device --------------------------------------------------------
+// VM_Nativ_Storage_Device --------------------------------------------------------
 
 Emulator::Emulator()
 {
@@ -222,11 +222,21 @@ void Emulator::Set_Binary_Files( const QMap<QString, QString> &files )
 	Binary_Files = files;
 }
 
+const QList<Averable_Devices> *Emulator::Get_Devices() const
+{
+	return Devices;
+}
+
+void Emulator::Set_Devices( const QList<Averable_Devices> *devices )
+{
+	Devices = devices;
+}
+
 //---------------------------------------------------------------------------
 
-// VM_Storage_Device --------------------------------------------------------
+// VM_Nativ_Storage_Device --------------------------------------------------------
 
-VM_Storage_Device::VM_Storage_Device()
+VM_Nativ_Storage_Device::VM_Nativ_Storage_Device()
 {
 	UFile_Path = false;
 	File_Path = "";
@@ -248,7 +258,7 @@ VM_Storage_Device::VM_Storage_Device()
 	Cache = false;
 }
 
-VM_Storage_Device::VM_Storage_Device( const VM_Storage_Device &sd )
+VM_Nativ_Storage_Device::VM_Nativ_Storage_Device( const VM_Nativ_Storage_Device &sd )
 {
 	UFile_Path = sd.Use_File_Path();
 	File_Path = sd.Get_File_Path();
@@ -270,13 +280,13 @@ VM_Storage_Device::VM_Storage_Device( const VM_Storage_Device &sd )
 	Cache = sd.Get_Cache();
 }
 
-QString VM_Storage_Device::Get_QEMU_Device_Name() const
+QString VM_Nativ_Storage_Device::Get_QEMU_Device_Name() const
 {
 	// FIXME Get_QEMU_Device_Name()
 	return "ide0-hd1";
 }
 
-bool VM_Storage_Device::operator==( const VM_Storage_Device &sd ) const
+bool VM_Nativ_Storage_Device::operator==( const VM_Nativ_Storage_Device &sd ) const
 {
 	if( UFile_Path == sd.Use_File_Path() &&
 		File_Path == sd.Get_File_Path() &&
@@ -305,428 +315,282 @@ bool VM_Storage_Device::operator==( const VM_Storage_Device &sd ) const
 	}
 }
 
-bool VM_Storage_Device::operator!=( const VM_Storage_Device &sd ) const
+bool VM_Nativ_Storage_Device::operator!=( const VM_Nativ_Storage_Device &sd ) const
 {
 	return ! ( operator==(sd) );
 }
 
-bool VM_Storage_Device::Use_File_Path() const
+bool VM_Nativ_Storage_Device::Use_File_Path() const
 {
 	return UFile_Path;
 }
 
-void VM_Storage_Device::Use_File_Path( bool use )
+void VM_Nativ_Storage_Device::Use_File_Path( bool use )
 {
 	UFile_Path = use;
 }
 
-const QString &VM_Storage_Device::Get_File_Path() const
+const QString &VM_Nativ_Storage_Device::Get_File_Path() const
 {
 	return File_Path;
 }
 
-void VM_Storage_Device::Set_File_Path( const QString &path )
+void VM_Nativ_Storage_Device::Set_File_Path( const QString &path )
 {
 	File_Path = path;
 }
 
-bool VM_Storage_Device::Use_Interface() const
+bool VM_Nativ_Storage_Device::Use_Interface() const
 {
 	return UInterface;
 }
 
-void VM_Storage_Device::Use_Interface( bool use )
+void VM_Nativ_Storage_Device::Use_Interface( bool use )
 {
 	UInterface = use;
 }
 
-VM::Device_Interface VM_Storage_Device::Get_Interface() const
+VM::Device_Interface VM_Nativ_Storage_Device::Get_Interface() const
 {
 	return Interface;
 }
 
-void VM_Storage_Device::Set_Interface( VM::Device_Interface di )
+void VM_Nativ_Storage_Device::Set_Interface( VM::Device_Interface di )
 {
 	Interface = di;
 }
 
-bool VM_Storage_Device::Use_Bus_Unit() const
+bool VM_Nativ_Storage_Device::Use_Bus_Unit() const
 {
 	return UBus_Unit;
 }
 
-void VM_Storage_Device::Use_Bus_Unit( bool use )
+void VM_Nativ_Storage_Device::Use_Bus_Unit( bool use )
 {
 	UBus_Unit = use;
 }
 
-int VM_Storage_Device::Get_Bus() const
+int VM_Nativ_Storage_Device::Get_Bus() const
 {
 	return Bus;
 }
 
-void VM_Storage_Device::Set_Bus( int bus )
+void VM_Nativ_Storage_Device::Set_Bus( int bus )
 {
 	Bus = bus;
 }
 
-int VM_Storage_Device::Get_Unit() const
+int VM_Nativ_Storage_Device::Get_Unit() const
 {
 	return Unit;
 }
 
-void VM_Storage_Device::Set_Unit( int unit )
+void VM_Nativ_Storage_Device::Set_Unit( int unit )
 {
 	Unit = unit;
 }
 
-bool VM_Storage_Device::Use_Index() const
+bool VM_Nativ_Storage_Device::Use_Index() const
 {
 	return UIndex;
 }
 
-void VM_Storage_Device::Use_Index( bool use )
+void VM_Nativ_Storage_Device::Use_Index( bool use )
 {
 	UIndex = use;
 }
 
-int VM_Storage_Device::Get_Index() const
+int VM_Nativ_Storage_Device::Get_Index() const
 {
 	return Index;
 }
 
-void VM_Storage_Device::Set_Index( int index )
+void VM_Nativ_Storage_Device::Set_Index( int index )
 {
 	Index = index;
 }
 
-bool VM_Storage_Device::Use_Media() const
+bool VM_Nativ_Storage_Device::Use_Media() const
 {
 	return UMedia;
 }
 
-void VM_Storage_Device::Use_Media( bool use )
+void VM_Nativ_Storage_Device::Use_Media( bool use )
 {
 	UMedia = use;
 }
 
-VM::Device_Media VM_Storage_Device::Get_Media() const
+VM::Device_Media VM_Nativ_Storage_Device::Get_Media() const
 {
 	return Media;
 }
 
-void VM_Storage_Device::Set_Media( VM::Device_Media media )
+void VM_Nativ_Storage_Device::Set_Media( VM::Device_Media media )
 {
 	Media = media;
 }
 
-bool VM_Storage_Device::Use_hdachs() const
+bool VM_Nativ_Storage_Device::Use_hdachs() const
 {
 	return Uhdachs;
 }
 
-void VM_Storage_Device::Use_hdachs( bool use )
+void VM_Nativ_Storage_Device::Use_hdachs( bool use )
 {
 	Uhdachs = use;
 }
 
-qulonglong VM_Storage_Device::Get_Cyls() const
+qulonglong VM_Nativ_Storage_Device::Get_Cyls() const
 {
 	return Cyls;
 }
 
-void VM_Storage_Device::Set_Cyls( qulonglong cyls )
+void VM_Nativ_Storage_Device::Set_Cyls( qulonglong cyls )
 {
 	Cyls = cyls;
 }
 
-qulonglong VM_Storage_Device::Get_Heads() const
+qulonglong VM_Nativ_Storage_Device::Get_Heads() const
 {
 	return Heads;
 }
 
-void VM_Storage_Device::Set_Heads( qulonglong heads )
+void VM_Nativ_Storage_Device::Set_Heads( qulonglong heads )
 {
 	Heads = heads;
 }
 
-qulonglong VM_Storage_Device::Get_Secs() const
+qulonglong VM_Nativ_Storage_Device::Get_Secs() const
 {
 	return Secs;
 }
 
-void VM_Storage_Device::Set_Secs( qulonglong secs )
+void VM_Nativ_Storage_Device::Set_Secs( qulonglong secs )
 {
 	Secs = secs;
 }
 
-qulonglong VM_Storage_Device::Get_Trans() const
+qulonglong VM_Nativ_Storage_Device::Get_Trans() const
 {
 	return Trans;
 }
 
-void VM_Storage_Device::Set_Trans( qulonglong trans )
+void VM_Nativ_Storage_Device::Set_Trans( qulonglong trans )
 {
 	Trans = trans;
 }
 
-bool VM_Storage_Device::Get_Snapshot() const
+bool VM_Nativ_Storage_Device::Get_Snapshot() const
 {
 	return Snapshot;
 }
 
-void VM_Storage_Device::Set_Snapshot( bool snapshot )
+void VM_Nativ_Storage_Device::Set_Snapshot( bool snapshot )
 {
 	Snapshot = snapshot;
 }
 
-bool VM_Storage_Device::Get_Cache() const
+bool VM_Nativ_Storage_Device::Get_Cache() const
 {
 	return Cache;
 }
 
-void VM_Storage_Device::Set_Cache( bool cache )
+void VM_Nativ_Storage_Device::Set_Cache( bool cache )
 {
 	Cache = cache;
 }
 
-//---------------------------------------------------------------------------
-
-// VM_Floppy Class ----------------------------------------------------------
-
-VM_Floppy::VM_Floppy()
-{
-	Enabled = false;
-	Host_Device = true;
-	Host_File_Name = "";
-	Image_File_Name = "";
-}
-
-VM_Floppy::VM_Floppy( const VM_Floppy &fd )
-{
-	Enabled = fd.Get_Enabled();
-	Host_File_Name = fd.Get_Host_File_Name();
-	Image_File_Name = fd.Get_Image_File_Name();
-	Host_Device = fd.Get_Host_Device();
-}
-
-VM_Floppy::VM_Floppy( bool enabled, const QString &host_path,
-					  const QString &image_path, bool host_device )
-{
-	Enabled = enabled;
-	Host_File_Name = host_path;
-	Image_File_Name = image_path;
-	Host_Device = host_device;
-	
-	if( Enabled && Host_Device == false && Image_File_Name.isEmpty() )
-	{
-		AQWarning( "VM_Floppy::VM_Floppy( bool enabled, const QString &host_path,"
-				   "const QString &image_path, bool host_device )",
-			       "Image File Name is Empty!" );
-	}
-}
-
-bool VM_Floppy::operator==( const VM_Floppy &v ) const
-{
-	if( Enabled == v.Get_Enabled() &&
-		Image_File_Name == v.Get_Image_File_Name() &&
-		Host_Device == v.Get_Host_Device() )
-	{
-		if( Host_File_Name == v.Get_Host_File_Name() ||
-			v.Get_Host_File_Name().isEmpty() ||
-			Host_File_Name.isEmpty() )
-		{
-			return true;
-		}
-		else return false;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-bool VM_Floppy::operator!=( const VM_Floppy &v ) const
-{
-	return ! ( operator==(v) );
-}
-
-bool VM_Floppy::Get_Enabled() const
-{
-	return Enabled;
-}
-
-void VM_Floppy::Set_Enabled( bool enabled )
-{
-	Enabled = enabled;
-}
-
-const QString &VM_Floppy::Get_Host_File_Name() const
-{
-	return Host_File_Name;
-}
-
-void VM_Floppy::Set_Host_File_Name( const QString &file_path )
-{
-	if( file_path.isEmpty() && Enabled )
-	{
-		AQWarning( "void VM_Floppy::Set_Host_File_Name( const QString &file_path )",
-				   "File Name is Empty!" );
-		Host_File_Name = "";
-	}
-	else
-	{
-		Host_File_Name = file_path;
-	}
-}
-
-const QString &VM_Floppy::Get_Image_File_Name() const
-{
-	return Image_File_Name;
-}
-
-void VM_Floppy::Set_Image_File_Name( const QString &file_path )
-{
-	if( file_path.isEmpty() && Enabled )
-	{
-		AQWarning( "void VM_Floppy::Set_Image_File_Name( const QString &file_path )",
-				   "File Name is Empty!" );
-		Image_File_Name = "";
-	}
-	else
-	{
-		Image_File_Name = file_path;
-	}
-}
-
-bool VM_Floppy::Get_Host_Device() const
-{
-	return Host_Device;
-}
-
-void VM_Floppy::Set_Host_Device( bool enabled )
-{
-	Host_Device = enabled;
-}
-
 //===========================================================================
 
-// VM_CDROM Class -----------------------------------------------------------
+// VM_Storage_Device Class --------------------------------------------------
 
-VM_CDROM::VM_CDROM()
+VM_Storage_Device::VM_Storage_Device()
 {
 	Enabled = false;
-	Host_File_Name = "";
-	Image_File_Name = "";
-	Host_Device = true;
+	File_Name = "";
+	Nativ_Mode = false;
+	Nativ_Device = VM_Nativ_Storage_Device();
 }
 
-VM_CDROM::VM_CDROM( const VM_CDROM &cd )
+VM_Storage_Device::VM_Storage_Device( const VM_Storage_Device &device )
 {
-	Enabled = cd.Get_Enabled();
-	Host_File_Name = cd.Get_Host_File_Name();
-	Image_File_Name = cd.Get_Image_File_Name();
-	Host_Device = cd.Get_Host_Device();
+	Enabled = device.Get_Enabled();
+	File_Name = device.Get_File_Name();
+	Nativ_Mode = device.Get_Nativ_Mode();
+	Nativ_Device = device.Get_Nativ_Device();
 }
 
-VM_CDROM::VM_CDROM( bool enabled, const QString &host_path,
-					const QString &image_path, bool host_device )
+VM_Storage_Device::VM_Storage_Device( bool enabled, const QString &file_name )
 {
 	Enabled = enabled;
-	Host_File_Name = host_path;
-	Image_File_Name = image_path;
-	Host_Device = host_device;
-	
-	if( Enabled && Host_Device == false && Image_File_Name.isEmpty() )
-	{
-		AQWarning( "VM_CDROM::VM_CDROM( bool enabled, const QString &host_path,"
-				   "const QString &image_path, bool host_device )",
-				   "Image File Name is Empty!" );
-	}
+	File_Name = file_name;
+	Nativ_Mode = false;
+	Nativ_Device = VM_Nativ_Storage_Device();
 }
 
-bool VM_CDROM::operator==( const VM_CDROM &v ) const
+VM_Storage_Device::VM_Storage_Device( bool enabled, const QString &file_name, bool nativ_mode, VM_Nativ_Storage_Device &device )
 {
-	if( Enabled == v.Get_Enabled() &&
-		Image_File_Name == v.Get_Image_File_Name() &&
-		Host_Device == v.Get_Host_Device() )
-	{
-		// This for users without CD/DVD-ROM
-		if( Host_File_Name == v.Get_Host_File_Name() ||
-			v.Get_Host_File_Name().isEmpty() ||
-			Host_File_Name.isEmpty() )
-		{
-			return true;
-		}
-		else return false;
-	}
-	else
-	{
-		return false;
-	}
+	Enabled = enabled;
+	File_Name = file_name;
+	Nativ_Mode = nativ_mode;
+	Nativ_Device = device;
 }
 
-bool VM_CDROM::operator!=( const VM_CDROM &v ) const
+bool VM_Storage_Device::operator==( const VM_Storage_Device &device ) const
 {
-	return ! ( operator==(v) );
+	if( Enabled == device.Get_Enabled() &&
+		File_Name == device.Get_File_Name() &&
+		Nativ_Mode == device.Get_Nativ_Mode() &&
+		Nativ_Device == device.Get_Nativ_Device() )
+	{
+		return true;
+	}
+	else return false;
 }
 
-bool VM_CDROM::Get_Enabled() const
+bool VM_Storage_Device::operator!=( const VM_Storage_Device &device ) const
+{
+	return ! operator==( device );
+}
+
+bool VM_Storage_Device::Get_Enabled() const
 {
 	return Enabled;
 }
 
-void VM_CDROM::Set_Enabled( bool enabled )
+void VM_Storage_Device::Set_Enabled( bool enabled )
 {
 	Enabled = enabled;
 }
 
-const QString &VM_CDROM::Get_Host_File_Name() const
+const QString &VM_Storage_Device::Get_File_Name() const
 {
-	return Host_File_Name;
+	return File_Name;
 }
 
-void VM_CDROM::Set_Host_File_Name( const QString &file_path )
+void VM_Storage_Device::Set_File_Name( const QString &file_name )
 {
-	if( file_path.isEmpty() && Enabled )
-	{
-		AQWarning( "void VM_CDROM::Set_Host_File_Name( const QString &file_path )",
-				   "File Name is Empty!" );
-		Host_File_Name = "";
-	}
-	else
-	{
-		Host_File_Name = file_path;
-	}
+	File_Name = file_name;
 }
 
-const QString &VM_CDROM::Get_Image_File_Name() const
+bool VM_Storage_Device::Get_Nativ_Mode() const
 {
-	return Image_File_Name;
+	return Nativ_Mode;
 }
 
-void VM_CDROM::Set_Image_File_Name( const QString &file_path )
+void VM_Storage_Device::Set_Nativ_Mode( bool enabled )
 {
-	if( file_path.isEmpty() && Enabled )
-	{
-		AQWarning( "void VM_CDROM::Set_Image_File_Name( const QString &file_path )",
-				   "File Name is Empty!" );
-		Image_File_Name = "";
-	}
-	else
-	{
-		Image_File_Name = file_path;
-	}
+	Nativ_Mode = enabled;
 }
 
-bool VM_CDROM::Get_Host_Device() const
+const VM_Nativ_Storage_Device &VM_Storage_Device::Get_Nativ_Device() const
 {
-	return Host_Device;
+	return Nativ_Device;
 }
 
-void VM_CDROM::Set_Host_Device( bool enabled )
+void VM_Storage_Device::Set_Nativ_Device( const VM_Nativ_Storage_Device &device )
 {
-	Host_Device = enabled;
+	Nativ_Device = device;
 }
 
 //===========================================================================
@@ -736,7 +600,7 @@ void VM_CDROM::Set_Host_Device( bool enabled )
 VM_HDD::VM_HDD()
 {
 	Enabled = false;
-	Image_File_Name = "";
+	File_Name = "";
 	
 	Disk_Format = "";
 	
@@ -753,9 +617,9 @@ VM_HDD::VM_HDD()
 VM_HDD::VM_HDD( const VM_HDD &hd  )
 {
 	Enabled = hd.Get_Enabled();
-	Image_File_Name = hd.Get_Image_File_Name();
+	File_Name = hd.Get_File_Name();
 	
-	if( Image_File_Name.isEmpty() )
+	if( File_Name.isEmpty() )
 	{
 		Disk_Format = "";
 		
@@ -773,7 +637,7 @@ VM_HDD::VM_HDD( const VM_HDD &hd  )
 VM_HDD::VM_HDD( bool enabled, const QString &im_pach )
 {
 	Enabled = enabled;
-	Image_File_Name = im_pach;
+	File_Name = im_pach;
 	
 	if( im_pach.isEmpty() )
 	{
@@ -793,7 +657,7 @@ VM_HDD::VM_HDD( bool enabled, const QString &im_pach )
 bool VM_HDD::operator==( const VM_HDD &v ) const
 {
 	if( Enabled == v.Get_Enabled() &&
-		Image_File_Name == v.Get_Image_File_Name() )
+		File_Name == v.Get_File_Name() )
 	{
 		return true;
 	}
@@ -808,26 +672,11 @@ bool VM_HDD::operator!=( const VM_HDD &v ) const
 	return ! ( operator==(v) );
 }
 
-bool VM_HDD::Get_Enabled() const
-{
-	return Enabled;
-}
-
-void VM_HDD::Set_Enabled( bool enabled )
-{
-	Enabled = enabled;
-}
-
-const QString &VM_HDD::Get_Image_File_Name() const
-{
-	return Image_File_Name;
-}
-
-void VM_HDD::Set_Image_File_Name( const QString &file_name )
+void VM_HDD::Set_File_Name( const QString &file_name )
 {
 	if( file_name.isEmpty() && Enabled )
 	{
-		Image_File_Name = "";
+		File_Name = "";
 		Disk_Format = "";
 	
 		VM::Device_Size zero_size;
@@ -843,7 +692,7 @@ void VM_HDD::Set_Image_File_Name( const QString &file_name )
 	{
 		if( file_name.isEmpty() )
 		{
-			Image_File_Name = "";
+			File_Name = "";
 			Disk_Format = "";
 	
 			VM::Device_Size zero_size;
@@ -857,7 +706,7 @@ void VM_HDD::Set_Image_File_Name( const QString &file_name )
 		}
 		else
 		{
-			Image_File_Name = file_name;
+			File_Name = file_name;
 		}
 	}
 }

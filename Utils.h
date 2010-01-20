@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -55,10 +55,13 @@ QString Get_TR_Size_Suffix( VM::Device_Size suf );
 
 QString Get_Last_Dir_Path( const QString &path );
 
+bool It_Host_Device( const QString &path );
+
 void Check_AQEMU_Permissions();
 
-VM::QEMU_Version String_To_QEMU_Version( const QString &str );
-VM::KVM_Version String_To_KVM_Version( const QString &str );
+// FIXME emulator ver
+VM::Emulator_Version String_To_QEMU_Version( const QString &str );
+VM::Emulator_Version String_To_KVM_Version( const QString &str );
 
 bool Update_Emulators_List();
 const QList<Emulator> &Get_Emulators_List();
@@ -71,7 +74,9 @@ int Get_Random( int min, int max );
 
 void Load_Recent_Images_List();
 const QStringList &Get_CD_Recent_Images_List();
-void Add_To_Recent_Files( const QString &path );
+void Add_To_Recent_CD_Files( const QString &path );
+const QStringList &Get_FDD_Recent_Images_List();
+void Add_To_Recent_FDD_Files( const QString &path );
 
 bool Get_Show_Error_Window();
 void Set_Show_Error_Window( bool show );

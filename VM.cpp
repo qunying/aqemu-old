@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -77,6 +77,7 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->VM_XML_File_Path = vm.Get_VM_XML_File_Path();
 	Build_QEMU_Args_for_Script_Mode = false;
 	Build_QEMU_Args_for_Tab_Info = false;
+	UID = vm.Get_UID();
 	
 	// Emulator
 	Emulator_Type = vm.Get_Emulator_Type();
@@ -123,14 +124,13 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->ACPI = vm.Use_ACPI();
 	this->Snapshot_Mode = vm.Use_Snapshot_Mode();
 	this->Start_CPU = vm.Use_Start_CPU();
-	this->QEMU_Log = vm.Use_QEMU_Log();
 	this->No_Reboot = vm.Use_No_Reboot();
 	this->No_Shutdown = vm.Use_No_Shutdown();
 	
 	// FDD/CD/DVD Tab
-	this->FD0 = VM_Floppy( vm.Get_FD0() );
-	this->FD1 = VM_Floppy( vm.Get_FD1() );
-	this->CD_ROM = VM_CDROM( vm.Get_CD_ROM() );
+	this->FD0 = VM_Storage_Device( vm.Get_FD0() );
+	this->FD1 = VM_Storage_Device( vm.Get_FD1() );
+	this->CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
 	
 	// HDD Tab
 	this->HDA = VM_HDD( vm.Get_HDA() );
@@ -195,8 +195,6 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	
 	this->Use_ROM_File = vm.Get_Use_ROM_File();
 	this->ROM_File = vm.Get_ROM_File();
-	this->GDB = vm.Use_GDB();
-	this->GDB_Port = vm.Get_GDB_Port();
 	
 	this->MTDBlock = vm.Use_MTDBlock_File();
 	this->MTDBlock_File = vm.Get_MTDBlock_File();
@@ -274,6 +272,7 @@ void Virtual_Machine::Shared_Constructor()
 	VM_XML_File_Path = "";
 	Build_QEMU_Args_for_Script_Mode = false;
 	Build_QEMU_Args_for_Tab_Info = false;
+	UID = "";
 	
 	// Emulator
 	Emulator_Type = "";
@@ -318,13 +317,12 @@ void Virtual_Machine::Shared_Constructor()
 	ACPI = true;
 	Snapshot_Mode = false;
 	Start_CPU = true;
-	QEMU_Log = false;
 	No_Reboot = false;
 	No_Shutdown = false;
 	
-	FD0 = VM_Floppy();
-	FD1 = VM_Floppy();
-	CD_ROM = VM_CDROM();
+	FD0 = VM_Storage_Device();
+	FD1 = VM_Storage_Device();
+	CD_ROM = VM_Storage_Device();
 	HDA = VM_HDD();
 	HDB = VM_HDD();
 	HDC = VM_HDD();
@@ -347,8 +345,6 @@ void Virtual_Machine::Shared_Constructor()
 	
 	Use_ROM_File = false;
 	ROM_File = "";
-	GDB = false;
-	GDB_Port = 1024;
 	
 	MTDBlock = false;
 	MTDBlock_File = "";
@@ -427,7 +423,6 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		this->Snapshot_Mode == vm.Use_Snapshot_Mode() &&
 		this->No_Shutdown == vm.Use_No_Shutdown() &&
 		this->Start_CPU == vm.Use_Start_CPU() &&
-		this->QEMU_Log == vm.Use_QEMU_Log() &&
 		this->No_Reboot == vm.Use_No_Reboot() &&
 		this->FD0 == vm.Get_FD0() &&
 		this->FD1 == vm.Get_FD1() &&
@@ -452,8 +447,6 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		this->Use_User_Emulator_Binary == vm.Get_Use_User_Emulator_Binary() &&
 		this->Use_ROM_File == vm.Get_Use_ROM_File() &&
 		this->ROM_File == vm.Get_ROM_File() &&
-		this->GDB == vm.Use_GDB() &&
-		this->GDB_Port == vm.Get_GDB_Port() &&
 		this->MTDBlock == vm.Use_MTDBlock_File() &&
 		this->MTDBlock_File == vm.Get_MTDBlock_File() &&
 		this->SecureDigital == vm.Use_SecureDigital_File() &&
@@ -586,6 +579,7 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	this->State = vm.Get_State();
 	Build_QEMU_Args_for_Script_Mode = false;
 	Build_QEMU_Args_for_Tab_Info = false;
+	UID = vm.Get_UID();
 	
 	// Emulator
 	Emulator_Type = vm.Get_Emulator_Type();
@@ -629,14 +623,13 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	this->ACPI = vm.Use_ACPI();
 	this->Snapshot_Mode = vm.Use_Snapshot_Mode();
 	this->Start_CPU = vm.Use_Start_CPU();
-	this->QEMU_Log = vm.Use_QEMU_Log();
 	this->No_Reboot = vm.Use_No_Reboot();
 	this->No_Shutdown = vm.Use_No_Shutdown();
 	
 	// FDD/CD/DVD Tab
-	this->FD0 = VM_Floppy( vm.Get_FD0() );
-	this->FD1 = VM_Floppy( vm.Get_FD1() );
-	this->CD_ROM = VM_CDROM( vm.Get_CD_ROM() );
+	this->FD0 = VM_Storage_Device( vm.Get_FD0() );
+	this->FD1 = VM_Storage_Device( vm.Get_FD1() );
+	this->CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
 	
 	// HDD Tab
 	this->HDA = VM_HDD( vm.Get_HDA() );
@@ -700,8 +693,6 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	
 	this->Use_ROM_File = vm.Get_Use_ROM_File();
 	this->ROM_File = vm.Get_ROM_File();
-	this->GDB = vm.Use_GDB();
-	this->GDB_Port = vm.Get_GDB_Port();
 	
 	this->MTDBlock = vm.Use_MTDBlock_File();
 	this->MTDBlock_File = vm.Get_MTDBlock_File();
@@ -793,7 +784,7 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Root_Element = New_Dom_Document.createElement( "AQEMU" );
 	}
 	
-	Root_Element.setAttribute( "version", "0.7.2" ); // This is AQEMU Version
+	Root_Element.setAttribute( "version", "0.8" ); // This is AQEMU Version
 	New_Dom_Document.appendChild( Root_Element );
 	
 	QDomElement VM_Element = New_Dom_Document.createElement( "Virtual_Machine" );
@@ -1169,21 +1160,6 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	
 	Dom_Element.appendChild( Dom_Text );
 	
-	// QEMU_Log
-	Dom_Element = New_Dom_Document.createElement( "QEMU_Log" );
-	VM_Element.appendChild( Dom_Element );
-	
-	if( QEMU_Log )
-	{
-		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
-	else
-	{
-		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
-	
-	Dom_Element.appendChild( Dom_Text );
-	
 	// No_Reboot
 	Dom_Element = New_Dom_Document.createElement( "No_Reboot" );
 	VM_Element.appendChild( Dom_Element );
@@ -1313,43 +1289,21 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Enabled
 		Sec_Element = New_Dom_Document.createElement( "Enabled" );
 		Dom_Element.appendChild( Sec_Element );
-		
-		if( FD0.Get_Enabled() )
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
-		else
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
-		
-		Sec_Element.appendChild( Dom_Text );
-		
-		// Host File Name
-		Sec_Element = New_Dom_Document.createElement( "Host_File_Name" );
-		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( FD0.Get_Host_File_Name() );
+		if( FD0.Get_Enabled() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
 		// Image File Name
-		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Sec_Element = New_Dom_Document.createElement( "File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( FD0.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( FD0.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host Device
-		Sec_Element = New_Dom_Document.createElement( "Host_Device" );
+		// Nativ Mode
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Mode" );
 		Dom_Element.appendChild( Sec_Element );
-		
-		if( FD0.Get_Host_Device() )
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
-		else
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
-		
+		if( FD0.Get_Nativ_Mode() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
@@ -1360,43 +1314,21 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Enabled
 		Sec_Element = New_Dom_Document.createElement( "Enabled" );
 		Dom_Element.appendChild( Sec_Element );
-		
-		if( FD1.Get_Enabled() )
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
-		else
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
-		
-		Sec_Element.appendChild( Dom_Text );
-		
-		// Host File Name
-		Sec_Element = New_Dom_Document.createElement( "Host_File_Name" );
-		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( FD1.Get_Host_File_Name() );
+		if( FD1.Get_Enabled() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
 		// Image File Name
-		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Sec_Element = New_Dom_Document.createElement( "File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( FD1.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( FD1.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host Device
-		Sec_Element = New_Dom_Document.createElement( "Host_Device" );
+		// Nativ Mode
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Mode" );
 		Dom_Element.appendChild( Sec_Element );
-		
-		if( FD1.Get_Host_Device() )
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
-		else
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
-		
+		if( FD1.Get_Nativ_Mode() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
@@ -1407,46 +1339,26 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Enabled
 		Sec_Element = New_Dom_Document.createElement( "Enabled" );
 		Dom_Element.appendChild( Sec_Element );
-		
-		if( CD_ROM.Get_Enabled() )
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
-		else
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
-		
-		Sec_Element.appendChild( Dom_Text );
-		
-		// Host File Name
-		Sec_Element = New_Dom_Document.createElement( "Host_File_Name" );
-		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( CD_ROM.Get_Host_File_Name() );
+		if( CD_ROM.Get_Enabled() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
 		// Image File Name
-		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Sec_Element = New_Dom_Document.createElement( "File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( CD_ROM.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( CD_ROM.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host Device
-		Sec_Element = New_Dom_Document.createElement( "Host_Device" );
+		// Nativ Mode
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Mode" );
 		Dom_Element.appendChild( Sec_Element );
-		
-		if( CD_ROM.Get_Host_Device() )
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
-		else
-		{
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
-		
+		if( CD_ROM.Get_Nativ_Mode() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
+		
+		// FIXME Nativ Mode Element for FD0, 1, cd
 	}
 	
 	if( template_mode )
@@ -1695,7 +1607,7 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Image File Name
 		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( HDA.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( HDA.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
@@ -1721,7 +1633,7 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Image File Name
 		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( HDB.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( HDB.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
@@ -1747,7 +1659,7 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Image File Name
 		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( HDC.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( HDC.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
@@ -1773,7 +1685,7 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		// Image File Name
 		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( HDD.Get_Image_File_Name() );
+		Dom_Text = New_Dom_Document.createTextNode( HDD.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
@@ -1836,250 +1748,7 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		for( int sx = 0; sx < Storage_Devices.count(); ++sx )
 		{
 			Dom_Element = New_Dom_Document.createElement( "Storage_Device_" + QString::number(sx) );
-			
-			// Use File Path
-			Sec_Element = New_Dom_Document.createElement( "Use_File_Path" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Use_File_Path() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// File Path
-			Sec_Element = New_Dom_Document.createElement( "File_Path" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( Storage_Devices[sx].Get_File_Path() );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Use Interface
-			Sec_Element = New_Dom_Document.createElement( "Use_Interface" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Use_Interface() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Interface
-			switch( Storage_Devices[sx].Get_Interface() )
-			{
-				case VM::DI_IDE:
-					Sec_Element = New_Dom_Document.createElement( "Interface" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "IDE" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				case VM::DI_SCSI:
-					Sec_Element = New_Dom_Document.createElement( "Interface" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "SCSI" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				case VM::DI_SD:
-					Sec_Element = New_Dom_Document.createElement( "Interface" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "SD" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				case VM::DI_MTD:
-					Sec_Element = New_Dom_Document.createElement( "Interface" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "MTD" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				case VM::DI_Floppy:
-					Sec_Element = New_Dom_Document.createElement( "Interface" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "Floppy" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				case VM::DI_PFlash:
-					Sec_Element = New_Dom_Document.createElement( "Interface" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "PFlash" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				default:
-					AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
-							 "Storage Device Interface Default Section!" );
-					break;
-			}
-			
-			// Use Bus Unit
-			Sec_Element = New_Dom_Document.createElement( "Use_Bus_Unit" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Use_Bus_Unit() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Bus
-			Sec_Element = New_Dom_Document.createElement( "Bus" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Bus()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Unit
-			Sec_Element = New_Dom_Document.createElement( "Unit" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Unit()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Use Index
-			Sec_Element = New_Dom_Document.createElement( "Use_Index" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Use_Index() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Index
-			Sec_Element = New_Dom_Document.createElement( "Index" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Index()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Use Media
-			Sec_Element = New_Dom_Document.createElement( "Use_Media" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Use_Media() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Media
-			switch( Storage_Devices[sx].Get_Media() )
-			{
-				case VM::DM_Disk:
-					Sec_Element = New_Dom_Document.createElement( "Media" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "Disk" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				case VM::DM_CD_ROM:
-					Sec_Element = New_Dom_Document.createElement( "Media" );
-					Dom_Element.appendChild( Sec_Element );
-					Dom_Text = New_Dom_Document.createTextNode( "CD_ROM" );
-					Sec_Element.appendChild( Dom_Text );
-					break;
-					
-				default:
-					AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
-							 "Storage Device Media Default Section!" );
-					break;
-			}
-			
-			// Use hdachs
-			Sec_Element = New_Dom_Document.createElement( "Use_hdachs" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Use_hdachs() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Cyls
-			Sec_Element = New_Dom_Document.createElement( "Cyls" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Cyls()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Heads
-			Sec_Element = New_Dom_Document.createElement( "Heads" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Heads()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Secs
-			Sec_Element = New_Dom_Document.createElement( "Secs" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Secs()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Trans
-			Sec_Element = New_Dom_Document.createElement( "Trans" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices[sx].Get_Trans()) );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Snapshot
-			Sec_Element = New_Dom_Document.createElement( "Snapshot" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Get_Snapshot() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Cache
-			Sec_Element = New_Dom_Document.createElement( "Cache" );
-			Dom_Element.appendChild( Sec_Element );
-			
-			if( Storage_Devices[sx].Get_Cache() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			// END
+			Save_VM_Nativ_Storage_Device( New_Dom_Document, Dom_Element, Storage_Devices[sx] );
 			VM_Element.appendChild( Dom_Element );
 		}
 	}
@@ -3091,27 +2760,6 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Dom_Text = New_Dom_Document.createTextNode( PFlash_File );
 	Dom_Element.appendChild( Dom_Text );
 	
-	// GDB
-	Dom_Element = New_Dom_Document.createElement( "GDB" );
-	VM_Element.appendChild( Dom_Element );
-	
-	if( GDB )
-	{
-		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
-	else
-	{
-		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
-	
-	Dom_Element.appendChild( Dom_Text );
-	
-	// GDB_Port
-	Dom_Element = New_Dom_Document.createElement( "GDB_Port" );
-	VM_Element.appendChild( Dom_Element );
-	Dom_Text = New_Dom_Document.createTextNode( QString::number(GDB_Port) );
-	Dom_Element.appendChild( Dom_Text );
-	
 	// Additional Arguments
 	Dom_Element = New_Dom_Document.createElement( "Additional_Args" );
 	VM_Element.appendChild( Dom_Element );
@@ -3596,42 +3244,58 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			// Read All Data in File
 			QDomElement Child_Element = Root_Element.firstChildElement( "Virtual_Machine" );
 			bool load_emulator = true;
+			bool old_version_storage_devices = false;
+			QString aqemu_vm_file_version = "";
 			
-			if( Root_Element.hasAttribute("version") && Root_Element.attribute("version") != "0.7.2" )
+			if( Root_Element.hasAttribute("version") )
+			{
+				aqemu_vm_file_version = Root_Element.attribute( "version" );
+			}
+			
+			if( aqemu_vm_file_version == "0.8" )
+			{
+				AQDebug( "bool Virtual_Machine::Load_VM( const QString &file_name )",
+						 "This is AQEMU VM File Version 0.8!" );
+			}
+			else if( aqemu_vm_file_version == "0.7.2" )
 			{
 				AQWarning( "bool Virtual_Machine::Load_VM( const QString &file_name )",
-						   "This is not a AQEMU VM File Version 0.7.2!" );
+						   "This is AQEMU VM File Version 0.7.2!" );
 				
-				// Check Version
-				if( Root_Element.attribute("version") == "0.5" )
+				old_version_storage_devices = true;
+			}
+			else if( aqemu_vm_file_version == "0.5" )
+			{
+				AQWarning( "bool Virtual_Machine::Load_VM( const QString &file_name )",
+						   "Uses compatible mode for config version 0.5" );
+				
+				// KVM ?
+				if( Child_Element.firstChildElement("Computer_Type").text() == "qemu-kvm" )
 				{
-					AQWarning( "bool Virtual_Machine::Load_VM( const QString &file_name )",
-							   "Uses compatible mode for config version 0.5" );
-					
-					// KVM ?
-					if( Child_Element.firstChildElement("Computer_Type").text() == "qemu-kvm" )
-					{
-						Current_Emulator = Get_Default_Emulator( "KVM" );
-						Current_Emulator.Set_Name( "" );
-						Emulator_Type = "KVM";
-					}
-					else
-					{
-						Current_Emulator = Get_Default_Emulator( "QEMU" );
-						Current_Emulator.Set_Name( "" );
-						Emulator_Type = "QEMU";
-					}
-					
-					load_emulator = false;
+					Current_Emulator = Get_Default_Emulator( "KVM" );
+					Current_Emulator.Set_Name( "" );
+					Emulator_Type = "KVM";
 				}
 				else
 				{
-					int ret_but = QMessageBox::question( NULL, tr("Version Invalid!"),
-							tr("This Version on AQEMU VM File no 0.5\nLoad This File?"),
-							QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
-					
-					if( ret_but != QMessageBox::Yes ) return false;
+					Current_Emulator = Get_Default_Emulator( "QEMU" );
+					Current_Emulator.Set_Name( "" );
+					Emulator_Type = "QEMU";
 				}
+				
+				old_version_storage_devices = true;
+				load_emulator = false;
+			}
+			else
+			{
+				AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )",
+						 "This is AQEMU VM File Version Not Support!" );
+				
+				int ret_but = QMessageBox::question( NULL, tr("Version Invalid!"),
+													 tr("This Version on AQEMU VM File no 0.5\nLoad This File?"),
+													 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
+				
+				if( ret_but != QMessageBox::Yes ) return false;
 			}
 			
 			if( template_mode )
@@ -3825,9 +3489,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			// Start_CPU
 			Start_CPU = (Child_Element.firstChildElement("Start_CPU").text() == "true");
 			
-			// QEMU_Log
-			QEMU_Log = (Child_Element.firstChildElement("QEMU_Log").text() == "true");
-			
 			// No_Reboot
 			No_Reboot = (Child_Element.firstChildElement("No_Reboot").text() == "true");
 			
@@ -3839,45 +3500,83 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				Template_Opts ^ Create_Template_Window::Template_Save_FDD_CD )
 			{
 				// Floppy 0
-				FD0.Set_Enabled( false );
-				FD0.Set_Host_File_Name( "" );
-				FD0.Set_Image_File_Name( "" );
-				FD0.Set_Host_Device( true );
+				FD0 = VM_Storage_Device( false, "" );
 				
 				// Floppy 1
-				FD1.Set_Enabled( false );
-				FD1.Set_Host_File_Name( "" );
-				FD1.Set_Image_File_Name( "" );
-				FD1.Set_Host_Device( true );
+				FD1 = VM_Storage_Device( false, "" );
 				
 				// CD-ROM
-				CD_ROM.Set_Enabled( false );
-				CD_ROM.Set_Host_File_Name( "" );
-				CD_ROM.Set_Image_File_Name( "" );
-				CD_ROM.Set_Host_Device( true );
+				CD_ROM = VM_Storage_Device( false, "" );
 			}
 			else
 			{
-				// Floppy 0
-				Second_Element = Child_Element.firstChildElement( "FD0" );
-				FD0.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				FD0.Set_Host_File_Name( Second_Element.firstChildElement("Host_File_Name").text() );
-				FD0.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
-				FD0.Set_Host_Device( (Second_Element.firstChildElement("Host_Device").text() == "true") );
-				
-				// Floppy 1
-				Second_Element = Child_Element.firstChildElement( "FD1" );
-				FD1.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				FD1.Set_Host_File_Name( Second_Element.firstChildElement("Host_File_Name").text() );
-				FD1.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
-				FD1.Set_Host_Device( (Second_Element.firstChildElement("Host_Device").text() == "true") );
-				
-				// CD-ROM
-				Second_Element = Child_Element.firstChildElement( "CD_ROM" );
-				CD_ROM.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				CD_ROM.Set_Host_File_Name( Second_Element.firstChildElement("Host_File_Name").text() );
-				CD_ROM.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
-				CD_ROM.Set_Host_Device( (Second_Element.firstChildElement("Host_Device").text() == "true") );
+				if( old_version_storage_devices )
+				{
+					// Floppy 0
+					FD0 = VM_Storage_Device();
+					
+					Second_Element = Child_Element.firstChildElement( "FD0" );
+					FD0.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
+					
+					if( Second_Element.firstChildElement("Host_Device").text() == "true" )
+						FD0.Set_File_Name( Second_Element.firstChildElement("Host_File_Name").text() );
+					else
+						FD0.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+					
+					// Floppy 1
+					FD1 = VM_Storage_Device();
+					
+					Second_Element = Child_Element.firstChildElement( "FD1" );
+					FD1.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
+					
+					if( Second_Element.firstChildElement("Host_Device").text() == "true" )
+						FD1.Set_File_Name( Second_Element.firstChildElement("Host_File_Name").text() );
+					else
+						FD1.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+					
+					// CD-ROM
+					CD_ROM = VM_Storage_Device();
+					
+					Second_Element = Child_Element.firstChildElement( "CD_ROM" );
+					CD_ROM.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
+					
+					if( Second_Element.firstChildElement("Host_Device").text() == "true" )
+						CD_ROM.Set_File_Name( Second_Element.firstChildElement("Host_File_Name").text() );
+					else
+						CD_ROM.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+				}
+				else
+				{
+					// Floppy 0
+					FD0 = VM_Storage_Device();
+					Second_Element = Child_Element.firstChildElement( "FD0" );
+					FD0.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
+					FD0.Set_File_Name( Second_Element.firstChildElement("File_Name").text() );
+					FD0.Set_Nativ_Mode( (Second_Element.firstChildElement("Nativ_Mode").text() == "true") );
+					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					FD0.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+					
+					// Floppy 1
+					FD1 = VM_Storage_Device();
+					Second_Element = Child_Element.firstChildElement( "FD1" );
+					FD1.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
+					FD1.Set_File_Name( Second_Element.firstChildElement("File_Name").text() );
+					FD1.Set_Nativ_Mode( (Second_Element.firstChildElement("Nativ_Mode").text() == "true") );
+					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					FD1.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+					
+					// CD-ROM
+					CD_ROM = VM_Storage_Device();
+					Second_Element = Child_Element.firstChildElement( "CD_ROM" );
+					CD_ROM.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
+					CD_ROM.Set_File_Name( Second_Element.firstChildElement("File_Name").text() );
+					CD_ROM.Set_Nativ_Mode( (Second_Element.firstChildElement("Nativ_Mode").text() == "true") );
+					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					CD_ROM.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+				}
 			}
 			
 			// Hard Disk's
@@ -3914,22 +3613,22 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					// HDA
 					Second_Element = Child_Element.firstChildElement( "HDA" );
 					HDA.Set_Enabled( false );
-					HDA.Set_Image_File_Name( "" );
+					HDA.Set_File_Name( "" );
 					
 					// HDB
 					Second_Element = Child_Element.firstChildElement( "HDB" );
 					HDB.Set_Enabled( false );
-					HDB.Set_Image_File_Name( "" );
+					HDB.Set_File_Name( "" );
 				
 					// HDC
 					Second_Element = Child_Element.firstChildElement( "HDC" );
 					HDC.Set_Enabled( false );
-					HDC.Set_Image_File_Name( "" );
+					HDC.Set_File_Name( "" );
 				
 					// HDD
 					Second_Element = Child_Element.firstChildElement( "HDD" );
 					HDD.Set_Enabled( false );
-					HDD.Set_Image_File_Name( "" );
+					HDD.Set_File_Name( "" );
 				}
 			}
 			else
@@ -3938,25 +3637,25 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				Second_Element = Child_Element.firstChildElement( "HDA" );
 				
 				HDA.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				HDA.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+				HDA.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 				
 				// HDB
 				Second_Element = Child_Element.firstChildElement( "HDB" );
 				
 				HDB.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				HDB.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+				HDB.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 				
 				// HDC
 				Second_Element = Child_Element.firstChildElement( "HDC" );
 				
 				HDC.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				HDC.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+				HDC.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 				
 				// HDD
 				Second_Element = Child_Element.firstChildElement( "HDD" );
 				
 				HDD.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
-				HDD.Set_Image_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+				HDD.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 			}
 			
 			// Snapshots
@@ -3981,115 +3680,15 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				Snapshots << tmp_snapshot;
 			}
 			
-			// Storage Devices
+			// Nativ Storage Devices
 			int Storage_Device_Count = Child_Element.firstChildElement( "Storage_Device_Count" ).text().toInt();
 			
 			for( int sx = 0; sx < Storage_Device_Count; ++sx )
 			{
 				Second_Element = Child_Element.firstChildElement( "Storage_Device_" + QString::number(sx) );
 				
-				VM_Storage_Device tmp_device;
-				
-				// Use File Path
-				tmp_device.Use_File_Path( Second_Element.firstChildElement("Use_File_Path").text() == "true" );
-				
-				// File Path
-				tmp_device.Set_File_Path( Second_Element.firstChildElement("File_Path").text() );
-				
-				// Use Interface
-				tmp_device.Use_Interface( Second_Element.firstChildElement("Use_Interface").text() == "true" );
-				
-				// Interface
-				QString interface_str = Second_Element.firstChildElement( "Interface" ).text();
-				
-				if( interface_str == "IDE" )
-				{
-					tmp_device.Set_Interface( VM::DI_IDE );
-				}
-				else if( interface_str == "SCSI" )
-				{
-					tmp_device.Set_Interface( VM::DI_SCSI );
-				}
-				else if( interface_str == "SD" )
-				{
-					tmp_device.Set_Interface( VM::DI_SD );
-				}
-				else if( interface_str == "MTD" )
-				{
-					tmp_device.Set_Interface( VM::DI_MTD );
-				}
-				else if( interface_str == "Floppy" )
-				{
-					tmp_device.Set_Interface( VM::DI_Floppy );
-				}
-				else if( interface_str == "PFlash" )
-				{
-					tmp_device.Set_Interface( VM::DI_PFlash );
-				}
-				else
-				{
-					AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )",
-							 "Storage Device Interface Default Section!" );
-				}
-				
-				// Use Bus Unit
-				tmp_device.Use_Bus_Unit( Second_Element.firstChildElement("Use_Bus_Unit").text() == "true" );
-				
-				// Bus
-				tmp_device.Set_Bus( Second_Element.firstChildElement("Bus").text().toInt() );
-				
-				// Unit
-				tmp_device.Set_Bus( Second_Element.firstChildElement("Unit").text().toInt() );
-				
-				// Use Index
-				tmp_device.Use_Index( Second_Element.firstChildElement("Use_Index").text() == "true" );
-				
-				// Index
-				tmp_device.Set_Index( Second_Element.firstChildElement("Index").text().toInt() );
-				
-				// Use Media
-				tmp_device.Use_Media( Second_Element.firstChildElement("Use_Media").text() == "true" );
-				
-				// Media
-				QString media_str = Second_Element.firstChildElement( "Media" ).text();
-				
-				if( media_str == "Disk" )
-				{
-					tmp_device.Set_Index( VM::DM_Disk );
-				}
-				else if( media_str == "CD_ROM" )
-				{
-					tmp_device.Set_Index( VM::DM_CD_ROM );
-				}
-				else
-				{
-					AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )",
-							 "Storage Device Media Default Section!" );
-				}
-				
-				// Use hdachs
-				tmp_device.Use_hdachs( Second_Element.firstChildElement("Use_hdachs").text() == "true" );
-				
-				// Cyls
-				tmp_device.Set_Cyls( Second_Element.firstChildElement("Cyls").text().toULongLong() );
-				
-				// Heads
-				tmp_device.Set_Heads( Second_Element.firstChildElement("Heads").text().toULongLong() );
-				
-				// Secs
-				tmp_device.Set_Secs( Second_Element.firstChildElement("Secs").text().toULongLong() );
-				
-				// Trans
-				tmp_device.Set_Cyls( Second_Element.firstChildElement("Trans").text().toULongLong() );
-				
-				// Snapshot
-				tmp_device.Set_Snapshot( Second_Element.firstChildElement("Snapshot").text() == "true" );
-				
-				// Cache
-				tmp_device.Set_Cache( Second_Element.firstChildElement("Cache").text() == "true" );
-				
 				// Add Device
-				Storage_Devices << tmp_device;
+				Storage_Devices << Load_VM_Nativ_Storage_Device( Second_Element );
 			}
 			
 			// Use Network
@@ -4739,11 +4338,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			// No_Use_Embedded_Display
 			No_Use_Embedded_Display = (Child_Element.firstChildElement("No_Use_Embedded_Display").text() == "true");
 			
-			// GDB
-			GDB = (Child_Element.firstChildElement("GDB").text() == "true" );
-			
-			GDB_Port = (uint)Child_Element.firstChildElement( "GDB_Port" ).text().toInt();
-			
 			// Additional Arguments
 			Additional_Args = Child_Element.firstChildElement( "Additional_Args" ).text();
 			
@@ -4756,6 +4350,360 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			return true;
 		}
 	}
+}
+
+VM_Nativ_Storage_Device Virtual_Machine::Load_VM_Nativ_Storage_Device( const QDomElement &Second_Element ) const
+{
+	VM_Nativ_Storage_Device tmp_device;
+	
+	// Use File Path
+	tmp_device.Use_File_Path( Second_Element.firstChildElement("Use_File_Path").text() == "true" );
+	
+	// File Path
+	tmp_device.Set_File_Path( Second_Element.firstChildElement("File_Path").text() );
+	
+	// Use Interface
+	tmp_device.Use_Interface( Second_Element.firstChildElement("Use_Interface").text() == "true" );
+	
+	// Interface
+	QString interface_str = Second_Element.firstChildElement( "Interface" ).text();
+	
+	if( interface_str == "IDE" )
+	{
+		tmp_device.Set_Interface( VM::DI_IDE );
+	}
+	else if( interface_str == "SCSI" )
+	{
+		tmp_device.Set_Interface( VM::DI_SCSI );
+	}
+	else if( interface_str == "SD" )
+	{
+		tmp_device.Set_Interface( VM::DI_SD );
+	}
+	else if( interface_str == "MTD" )
+	{
+		tmp_device.Set_Interface( VM::DI_MTD );
+	}
+	else if( interface_str == "Floppy" )
+	{
+		tmp_device.Set_Interface( VM::DI_Floppy );
+	}
+	else if( interface_str == "PFlash" )
+	{
+		tmp_device.Set_Interface( VM::DI_PFlash );
+	}
+	else if( interface_str == "" ) ; // No Value
+	else
+	{
+		AQError( "VM_Nativ_Storage_Device Virtual_Machine::Load_VM_Nativ_Storage_Device( const QDomElement &Second_Element ) const",
+				 "Storage Device Interface Default Section! Value: \"" + interface_str + "\"" );
+	}
+	
+	// Use Bus Unit
+	tmp_device.Use_Bus_Unit( Second_Element.firstChildElement("Use_Bus_Unit").text() == "true" );
+	
+	// Bus
+	tmp_device.Set_Bus( Second_Element.firstChildElement("Bus").text().toInt() );
+	
+	// Unit
+	tmp_device.Set_Bus( Second_Element.firstChildElement("Unit").text().toInt() );
+	
+	// Use Index
+	tmp_device.Use_Index( Second_Element.firstChildElement("Use_Index").text() == "true" );
+	
+	// Index
+	tmp_device.Set_Index( Second_Element.firstChildElement("Index").text().toInt() );
+	
+	// Use Media
+	tmp_device.Use_Media( Second_Element.firstChildElement("Use_Media").text() == "true" );
+	
+	// Media
+	QString media_str = Second_Element.firstChildElement( "Media" ).text();
+	
+	if( media_str == "Disk" )
+	{
+		tmp_device.Set_Index( VM::DM_Disk );
+	}
+	else if( media_str == "CD_ROM" )
+	{
+		tmp_device.Set_Index( VM::DM_CD_ROM );
+	}
+	else if( media_str == "" ) ; // No value
+	else
+	{
+		AQError( "VM_Nativ_Storage_Device Virtual_Machine::Load_VM_Nativ_Storage_Device( const QDomElement &Second_Element ) const",
+				 "Storage Device Media Default Section!" );
+	}
+	
+	// Use hdachs
+	tmp_device.Use_hdachs( Second_Element.firstChildElement("Use_hdachs").text() == "true" );
+	
+	// Cyls
+	tmp_device.Set_Cyls( Second_Element.firstChildElement("Cyls").text().toULongLong() );
+	
+	// Heads
+	tmp_device.Set_Heads( Second_Element.firstChildElement("Heads").text().toULongLong() );
+	
+	// Secs
+	tmp_device.Set_Secs( Second_Element.firstChildElement("Secs").text().toULongLong() );
+	
+	// Trans
+	tmp_device.Set_Cyls( Second_Element.firstChildElement("Trans").text().toULongLong() );
+	
+	// Snapshot
+	tmp_device.Set_Snapshot( Second_Element.firstChildElement("Snapshot").text() == "true" );
+	
+	// Cache
+	tmp_device.Set_Cache( Second_Element.firstChildElement("Cache").text() == "true" );
+	
+	return tmp_device;
+}
+
+void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Document, QDomElement &Dom_Element,
+													const VM_Nativ_Storage_Device &device ) const
+{
+	// Use File Path
+	QDomElement Sec_Element = New_Dom_Document.createElement( "Use_File_Path" );
+	Dom_Element.appendChild( Sec_Element );
+	QDomText Dom_Text;
+	
+	if( device.Use_File_Path() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// File Path
+	Sec_Element = New_Dom_Document.createElement( "File_Path" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( device.Get_File_Path() );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use Interface
+	Sec_Element = New_Dom_Document.createElement( "Use_Interface" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Interface() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Interface
+	switch( device.Get_Interface() )
+	{
+		case VM::DI_IDE:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "IDE" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		case VM::DI_SCSI:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "SCSI" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		case VM::DI_SD:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "SD" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		case VM::DI_MTD:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "MTD" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		case VM::DI_Floppy:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "Floppy" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		case VM::DI_PFlash:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "PFlash" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		default:
+			AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
+					 "Storage Device Interface Default Section!" );
+			break;
+	}
+	
+	// Use Bus Unit
+	Sec_Element = New_Dom_Document.createElement( "Use_Bus_Unit" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Bus_Unit() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Bus
+	Sec_Element = New_Dom_Document.createElement( "Bus" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Bus()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Unit
+	Sec_Element = New_Dom_Document.createElement( "Unit" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Unit()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use Index
+	Sec_Element = New_Dom_Document.createElement( "Use_Index" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Index() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Index
+	Sec_Element = New_Dom_Document.createElement( "Index" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Index()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use Media
+	Sec_Element = New_Dom_Document.createElement( "Use_Media" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Media() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Media
+	switch( device.Get_Media() )
+	{
+		case VM::DM_Disk:
+			Sec_Element = New_Dom_Document.createElement( "Media" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "Disk" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		case VM::DM_CD_ROM:
+			Sec_Element = New_Dom_Document.createElement( "Media" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "CD_ROM" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
+		default:
+			AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
+						"Storage Device Media Default Section!" );
+			break;
+	}
+	
+	// Use hdachs
+	Sec_Element = New_Dom_Document.createElement( "Use_hdachs" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_hdachs() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Cyls
+	Sec_Element = New_Dom_Document.createElement( "Cyls" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Cyls()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Heads
+	Sec_Element = New_Dom_Document.createElement( "Heads" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Heads()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Secs
+	Sec_Element = New_Dom_Document.createElement( "Secs" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Secs()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Trans
+	Sec_Element = New_Dom_Document.createElement( "Trans" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Trans()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Snapshot
+	Sec_Element = New_Dom_Document.createElement( "Snapshot" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Get_Snapshot() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Cache
+	Sec_Element = New_Dom_Document.createElement( "Cache" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Get_Cache() )
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	}
+	else
+	{
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
 }
 
 bool Virtual_Machine::Save_VM()
@@ -4915,31 +4863,6 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	// Do not start CPU at startup
 	if( ! Start_CPU ) Args << "-S";
 	
-	// Enable QEMU Log
-	if( QEMU_Log )
-	{
-		QStringList log_items;
-		
-		if( Settings.value("QLOG/out_asm", "no").toString() == "yes" ) log_items << "out_asm";
-		if( Settings.value("QLOG/in_asm", "no").toString() == "yes" ) log_items << "in_asm";
-		if( Settings.value("QLOG/cpu", "no").toString() == "yes" ) log_items << "cpu";
-		if( Settings.value("QLOG/pcall", "no").toString() == "yes" ) log_items << "pcall";
-		if( Settings.value("QLOG/op_opt", "no").toString() == "yes" ) log_items << "op_opt";
-		if( Settings.value("QLOG/int", "no").toString() == "yes" ) log_items << "int";
-		if( Settings.value("QLOG/op", "no").toString() == "yes" ) log_items << "op";
-		if( Settings.value("QLOG/exec", "no").toString() == "yes" ) log_items << "exec";
-		
-		QString log_items_line = "";
-		
-		for( int ix = 0; ix < log_items.count(); ix++ )
-		{
-			if( ix != log_items.count()-1 ) log_items_line += log_items[ ix ] + ",";
-			else log_items_line += log_items[ ix ];
-		}
-		
-		if( ! log_items_line.isEmpty() ) Args << "-d" << log_items_line;
-	}
-	
 	// Exit instead of rebooting
 	if( No_Reboot ) Args << "-no-reboot";
 	
@@ -4958,149 +4881,119 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	// FD0
 	if( FD0.Get_Enabled() )
 	{
-		if( FD0.Get_Host_Device() )
+		if( QFile::exists(FD0.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-fda" << "\"" + FD0.Get_Host_File_Name() + "\"";
+				Args << "-fda" << "\"" + FD0.Get_File_Name() + "\"";
 			else
-				Args << "-fda" << FD0.Get_Host_File_Name();
+				Args << "-fda" << FD0.Get_File_Name();
 		}
 		else
 		{
-			if( QFile::exists(FD0.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
-			{
-				if( Build_QEMU_Args_for_Script_Mode )
-					Args << "-fda" << "\"" + FD0.Get_Image_File_Name() + "\"";
-				else
-					Args << "-fda" << FD0.Get_Image_File_Name();
-			}
-			else
-			{
-				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						 QString("Image \"%1\" Not Exists!").arg(FD0.Get_Image_File_Name()) );
-			}
+			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						QString("Image \"%1\" Not Exists!").arg(FD0.Get_File_Name()) );
 		}
 	}
 	
 	// FD1
 	if( FD1.Get_Enabled() )
 	{
-		if( FD1.Get_Host_Device() )
+		if( QFile::exists(FD1.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-fdb" << "\"" + FD1.Get_Host_File_Name() + "\"";
+				Args << "-fdb" << "\"" + FD1.Get_File_Name() + "\"";
 			else
-				Args << "-fdb" << FD1.Get_Host_File_Name();
+				Args << "-fdb" << FD1.Get_File_Name();
 		}
 		else
 		{
-			if( QFile::exists(FD1.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
-			{
-				if( Build_QEMU_Args_for_Script_Mode )
-					Args << "-fdb" << "\"" + FD1.Get_Image_File_Name() + "\"";
-				else
-					Args << "-fdb" << FD1.Get_Image_File_Name();
-			}
-			else
-			{
-				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						 QString("Image \"%1\" Not Exists!").arg(FD1.Get_Image_File_Name()) );
-			}
+			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						QString("Image \"%1\" Not Exists!").arg(FD1.Get_File_Name()) );
 		}
 	}
 	
 	// CD-ROM
 	if( CD_ROM.Get_Enabled() )
 	{
-		if( CD_ROM.Get_Host_Device() )
+		if( QFile::exists(CD_ROM.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-cdrom" << "\"" + CD_ROM.Get_Host_File_Name() + "\"";
+				Args << "-cdrom" << "\"" + CD_ROM.Get_File_Name() + "\"";
 			else
-				Args << "-cdrom" << CD_ROM.Get_Host_File_Name();
+				Args << "-cdrom" << CD_ROM.Get_File_Name();
 		}
 		else
 		{
-			if( QFile::exists(CD_ROM.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
-			{
-				if( Build_QEMU_Args_for_Script_Mode )
-					Args << "-cdrom" << "\"" + CD_ROM.Get_Image_File_Name() + "\"";
-				else
-					Args << "-cdrom" << CD_ROM.Get_Image_File_Name();
-			}
-			else
-			{
-				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						 QString("Image \"%1\" Not Exists!").arg(CD_ROM.Get_Image_File_Name()) );
-			}
+			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						QString("Image \"%1\" Not Exists!").arg(CD_ROM.Get_File_Name()) );
 		}
 	}
 	
 	// HDA
 	if( HDA.Get_Enabled() )
 	{
-		if( QFile::exists(HDA.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( QFile::exists(HDA.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hda" << "\"" + HDA.Get_Image_File_Name() + "\"";
+				Args << "-hda" << "\"" + HDA.Get_File_Name() + "\"";
 			else
-				Args << "-hda" << HDA.Get_Image_File_Name();
+				Args << "-hda" << HDA.Get_File_Name();
 		}
 		else
 		{
 			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDA.Get_Image_File_Name()) );
+					 QString("Image \"%1\" Not Exists!").arg(HDA.Get_File_Name()) );
 		}
 	}
 	
 	// HDB
 	if( HDB.Get_Enabled() )
 	{
-		if( QFile::exists(HDB.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( QFile::exists(HDB.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hdb" << "\"" + HDB.Get_Image_File_Name() + "\"";
+				Args << "-hdb" << "\"" + HDB.Get_File_Name() + "\"";
 			else
-				Args << "-hdb" << HDB.Get_Image_File_Name();
+				Args << "-hdb" << HDB.Get_File_Name();
 		}
 		else
 		{
 			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDB.Get_Image_File_Name()) );
+					 QString("Image \"%1\" Not Exists!").arg(HDB.Get_File_Name()) );
 		}
 	}
 	
 	// HDC
 	if( HDC.Get_Enabled() )
 	{
-		if( QFile::exists(HDC.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( QFile::exists(HDC.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hdc" << "\"" + HDC.Get_Image_File_Name() + "\"";
+				Args << "-hdc" << "\"" + HDC.Get_File_Name() + "\"";
 			else
-				Args << "-hdc" << HDC.Get_Image_File_Name();
+				Args << "-hdc" << HDC.Get_File_Name();
 		}
 		else
 		{
 			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDC.Get_Image_File_Name()) );
+					 QString("Image \"%1\" Not Exists!").arg(HDC.Get_File_Name()) );
 		}
 	}
 	
 	// HDD
 	if( HDD.Get_Enabled() )
 	{
-		if( QFile::exists(HDD.Get_Image_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( QFile::exists(HDD.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
 		{
 			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hdd" << "\"" + HDD.Get_Image_File_Name() + "\"";
+				Args << "-hdd" << "\"" + HDD.Get_File_Name() + "\"";
 			else
-				Args << "-hdd" << HDD.Get_Image_File_Name();
+				Args << "-hdd" << HDD.Get_File_Name();
 		}
 		else
 		{
 			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDD.Get_Image_File_Name()) );
+					 QString("Image \"%1\" Not Exists!").arg(HDD.Get_File_Name()) );
 		}
 	}
 	
@@ -5858,13 +5751,6 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		}
 	}
 	
-	// Wait gdb connection to port 1234
-	if( GDB )
-	{
-		Args << "-s";
-		Args << "-p" << QString::number( GDB_Port );
-	}
-	
 	// Start Date
 	if( Start_Date )
 	{
@@ -6356,6 +6242,16 @@ bool Virtual_Machine::Start_Snapshot( const QString &tag )
 void Virtual_Machine::Delete_Snapshot( const QString &tag )
 {
 	QEMU_Process->write( qPrintable("delvm " + tag + "\n") );
+}
+
+const QString &Virtual_Machine::Get_UID() const
+{
+	return UID;
+}
+
+void Virtual_Machine::Set_UID( const QString &uid )
+{
+	UID = uid;
 }
 
 void Virtual_Machine::Show_Emu_Ctl_Win()
@@ -7020,16 +6916,6 @@ void Virtual_Machine::Use_Start_CPU( bool start )
 	Start_CPU = start;
 }
 
-bool Virtual_Machine::Use_QEMU_Log() const
-{
-	return QEMU_Log;
-}
-
-void Virtual_Machine::Use_QEMU_Log( bool use )
-{
-	QEMU_Log = use;
-}
-
 bool Virtual_Machine::Use_No_Reboot() const
 {
 	return No_Reboot;
@@ -7060,34 +6946,34 @@ void Virtual_Machine::Use_Check_FDD_Boot_Sector( bool use )
 	Check_FDD_Boot_Sector = use;
 }
 
-const VM_Floppy &Virtual_Machine::Get_FD0() const
+const VM_Storage_Device &Virtual_Machine::Get_FD0() const
 {
 	return FD0;
 }
 
-void Virtual_Machine::Set_FD0( const VM_Floppy &floppy )
+void Virtual_Machine::Set_FD0( const VM_Storage_Device &floppy )
 {
-	FD0 = VM_Floppy( floppy );
+	FD0 = VM_Storage_Device( floppy );
 }
 
-const VM_Floppy &Virtual_Machine::Get_FD1() const
+const VM_Storage_Device &Virtual_Machine::Get_FD1() const
 {
 	return FD1;
 }
 
-void Virtual_Machine::Set_FD1( const VM_Floppy &floppy )
+void Virtual_Machine::Set_FD1( const VM_Storage_Device &floppy )
 {
-	FD1 = VM_Floppy( floppy );
+	FD1 = VM_Storage_Device( floppy );
 }
 
-const VM_CDROM &Virtual_Machine::Get_CD_ROM() const
+const VM_Storage_Device &Virtual_Machine::Get_CD_ROM() const
 {
 	return CD_ROM;
 }
 
-void Virtual_Machine::Set_CD_ROM( const VM_CDROM &cdrom )
+void Virtual_Machine::Set_CD_ROM( const VM_Storage_Device &cdrom )
 {
-	CD_ROM = VM_CDROM( cdrom );
+	CD_ROM = VM_Storage_Device( cdrom );
 }
 
 const VM_HDD &Virtual_Machine::Get_HDA() const
@@ -7174,18 +7060,18 @@ void Virtual_Machine::Set_Snapshot( int index, const VM_Snapshot &s )
 	}
 }
 
-const QList<VM_Storage_Device> &Virtual_Machine::Get_Storage_Devices_List() const
+const QList<VM_Nativ_Storage_Device> &Virtual_Machine::Get_Storage_Devices_List() const
 {
 	return Storage_Devices;
 }
 
-void Virtual_Machine::Set_Storage_Devices_List( const QList<VM_Storage_Device> &list )
+void Virtual_Machine::Set_Storage_Devices_List( const QList<VM_Nativ_Storage_Device> &list )
 {
 	Storage_Devices.clear();
 	
 	for( int ix = 0; ix < list.count(); ++ix )
 	{
-		Storage_Devices.append( VM_Storage_Device(list[ix]) );
+		Storage_Devices.append( VM_Nativ_Storage_Device(list[ix]) );
 	}
 }
 
@@ -7647,34 +7533,6 @@ void Virtual_Machine::Set_ROM_File( const QString &path )
 	ROM_File = path;
 }
 
-bool Virtual_Machine::Use_GDB() const
-{
-	return GDB;
-}
-
-void Virtual_Machine::Use_GDB( bool use )
-{
-	GDB = use;
-}
-
-uint Virtual_Machine::Get_GDB_Port() const
-{
-	return GDB_Port;
-}
-
-void Virtual_Machine::Set_GDB_Port( uint port )
-{
-	if( port > 0 && port < 65531 )
-	{
-		GDB_Port = port;
-	}
-	else
-	{
-		AQError( "void Virtual_Machine::Set_GDB_Port( uint port )",
-				 "GDB Port Incorrect!" );
-	}
-}
-
 bool Virtual_Machine::Use_MTDBlock_File() const
 {
 	return MTDBlock;
@@ -8020,7 +7878,7 @@ void Virtual_Machine::Use_No_Use_Embedded_Display( bool use )
 	No_Use_Embedded_Display = use;
 }
 
-bool Virtual_Machine::Version_Good( VM::QEMU_Version qver, VM::KVM_Version kver ) const
+bool Virtual_Machine::Version_Good( VM::Emulator_Version qver, VM::Emulator_Version kver ) const
 {
 	AQDebug( "bool Virtual_Machine::Version_Good( VM::QEMU_Version qver, VM::KVM_Version kver )", "Begin" );
 	if( Current_Emulator.Get_Type() == "QEMU" )

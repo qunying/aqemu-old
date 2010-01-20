@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2008-2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2008-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of AQEMU.
 **
@@ -34,8 +34,8 @@ class VM
 {
 	public:
 		// Emulators Version
-		enum QEMU_Version { QEMU_Old, QEMU_0_9_0, QEMU_0_9_1, QEMU_0_10, QEMU_New };
-		enum KVM_Version { KVM_Old, KVM_7X, KVM_8X, KVM_New };
+		enum Emulator_Version { QEMU_Old, QEMU_0_9_0, QEMU_0_9_1, QEMU_0_10, QEMU_New,
+								KVM_Old, KVM_7X, KVM_8X, KVM_New, QEMU_KVM_11_1 };
 		
 		// Virtual Machine State
 		enum VM_State { VMS_Running, VMS_Power_Off, VMS_Pause, VMS_Saved, VMS_In_Error };
@@ -86,6 +86,13 @@ class VM
 		// Boot Prioritet
 		enum Boot_Device { Boot_From_FDD, Boot_From_CDROM, Boot_From_HDD,
 						   Boot_From_Network, Boot_None };
+		
+		// Boot Order
+		struct Boot_Order
+		{
+			bool Enabled;
+			Boot_Device Type;
+		};
 		
 		// Kilobyte, Megabyte, Gigabyte
 		enum Size_Suffix { Size_Suf_Kb, Size_Suf_Mb, Size_Suf_Gb };
@@ -138,6 +145,102 @@ class Device_Map
 		QString QEMU_Name;
 };
 
+class Averable_Devices
+{
+	public:
+		// QEMU System
+		Device_Map System;
+		
+		// QEMU CPU
+		QList<Device_Map> CPU_List;
+		
+		// QEMU Machines
+		QList<Device_Map> Machine_List;
+		
+		// QEMU Network Card
+		QList<Device_Map> Network_Card_List;
+		
+		// QEMU Audio Card
+		VM::Sound_Cards Audio_Card_List;
+		
+		// QEMU Video Card
+		QList<Device_Map> Video_Card_List;
+		
+		// Platform Specific Options
+		unsigned short PSO_SMP_Count;
+		bool PSO_Initial_Graphic_Mode;
+		bool PSO_No_FB_Boot_Check;
+		bool PSO_Win2K_Hack;
+		bool PSO_Kernel_KQEMU;
+		bool PSO_No_ACPI;
+		bool PSO_PROM_ENV;
+		bool PSO_KVM;
+		bool PSO_RTC_TD_Hack;
+		
+		bool PSO_Drive;
+		bool PSO_MTDBlock;
+		bool PSO_SD;
+		bool PSO_PFlash;
+		bool PSO_Name;
+		bool PSO_Curses;
+		bool PSO_No_Frame;
+		bool PSO_Alt_Grab;
+		bool PSO_No_Quit;
+		bool PSO_SDL;
+		bool PSO_Portrait;
+		bool PSO_No_Shutdown;
+		bool PSO_Startdate;
+		bool PSO_Show_Cursor;
+		bool PSO_Bootp;
+		
+		bool PSO_net_type_vde;
+		bool PSO_net_type_dump;
+		
+		bool PSO_net_name;
+		bool PSO_net_addr;
+		bool PSO_net_vectors;
+		
+		bool PSO_net_net;
+		bool PSO_net_host;
+		bool PSO_net_restrict;
+		bool PSO_net_dhcpstart;
+		bool PSO_net_dns;
+		bool PSO_net_tftp;
+		bool PSO_net_bootfile;
+		bool PSO_net_smb;
+		bool PSO_net_hostfwd;
+		bool PSO_net_guestfwd;
+		
+		bool PSO_net_ifname;
+		bool PSO_net_script;
+		bool PSO_net_downscript;
+		
+		bool PSO_net_listen;
+		bool PSO_net_connect;
+		
+		bool PSO_net_mcast;
+		
+		bool PSO_net_sock;
+		bool PSO_net_port;
+		bool PSO_net_group;
+		bool PSO_net_mode;
+		
+		bool PSO_net_file;
+		bool PSO_net_len;
+		
+		bool PSO_Enable_KVM;
+		bool PSO_No_KVM;
+		bool PSO_No_KVM_IRQChip;
+		bool PSO_No_KVM_Pit;
+		bool PSO_No_KVM_Pit_Reinjection;
+		bool PSO_Enable_Nesting;
+		bool PSO_KVM_Shadow_Memory;
+		
+		bool PSO_TFTP;
+		bool PSO_SMB;
+		bool PSO_Std_VGA;
+};
+
 class Emulator
 {
 	public:
@@ -177,56 +280,27 @@ class Emulator
 		const QMap<QString, QString>& Get_Binary_Files() const;
 		void Set_Binary_Files( const QMap<QString, QString> &files );
 		
+		const QList<Averable_Devices> *Get_Devices() const;
+		void Set_Devices( const QList<Averable_Devices> *devices );
+		
 	private:
 		QString Type, Name, Default, Path, Check_QEMU_Version, QEMU_Version,
 				Check_KVM_Version, KVM_Version, Check_Available_Audio_Cards;
 		QMap<QString, QString> Binary_Files;
+		const QList<Averable_Devices> *Devices;
 };
 
-class Averable_Devices
+// Nativ Storage Device (QEMU >= 0.9.1 Device Style)
+class VM_Nativ_Storage_Device
 {
 	public:
-		// QEMU System
-		Device_Map System;
-		
-		// QEMU CPU
-		QList<Device_Map> CPU_List;
-		
-		// QEMU Machines
-		QList<Device_Map> Machine_List;
-		
-		// QEMU Network Card
-		QList<Device_Map> Network_Card_List;
-		
-		// QEMU Audio Card
-		VM::Sound_Cards Audio_Card_List;
-		
-		// QEMU Video Card
-		QList<Device_Map> Video_Card_List;
-		
-		// Platform Specific Options
-		unsigned short PSO_SMP_Count;
-		bool PSO_Initial_Graphic_Mode;
-		bool PSO_No_FB_Boot_Check;
-		bool PSO_Win2K_Hack;
-		bool PSO_Kernel_KQEMU;
-		bool PSO_No_ACPI;
-		bool PSO_PROM_ENV;
-		bool PSO_KVM;
-		bool PSO_RTC_TD_Hack;
-};
-
-// Storage Device (For QEMU 0.9.1 Device Style)
-class VM_Storage_Device
-{
-	public:
-		VM_Storage_Device();
-		VM_Storage_Device( const VM_Storage_Device &sd );
+		VM_Nativ_Storage_Device();
+		VM_Nativ_Storage_Device( const VM_Nativ_Storage_Device &sd );
 		
 		QString Get_QEMU_Device_Name() const;
 		
-		bool operator==( const VM_Storage_Device &sd ) const;
-		bool operator!=( const VM_Storage_Device &sd ) const;
+		bool operator==( const VM_Nativ_Storage_Device &sd ) const;
+		bool operator!=( const VM_Nativ_Storage_Device &sd ) const;
 		
 		bool Use_File_Path() const;
 		void Use_File_Path( bool use );
@@ -305,70 +379,39 @@ class VM_Storage_Device
 		bool Cache;
 };
 
-// Virtual Machine Floppy Device
-class VM_Floppy
+// Virtual Machine Storage Device (FDD, CD, HDD)
+class VM_Storage_Device
 {
 	public:
-		VM_Floppy();
-		VM_Floppy( const VM_Floppy &fd );
-		VM_Floppy( bool enabled, const QString &host_path,
-				   const QString &image_path, bool host_device );
+		VM_Storage_Device();
+		VM_Storage_Device( const VM_Storage_Device &device );
+		VM_Storage_Device( bool enabled, const QString &file_name );
+		VM_Storage_Device( bool enabled, const QString &file_name, bool nativ_mode, VM_Nativ_Storage_Device &device );
 		
-		bool operator==( const VM_Floppy &v ) const;
-		bool operator!=( const VM_Floppy &v ) const;
+		bool operator==( const VM_Storage_Device &device ) const;
+		bool operator!=( const VM_Storage_Device &device ) const;
 		
 		bool Get_Enabled() const;
 		void Set_Enabled( bool enabled );
 		
-		const QString &Get_Host_File_Name() const;
-		void Set_Host_File_Name( const QString &file_path );
+		const QString &Get_File_Name() const;
+		void Set_File_Name( const QString &file_name );
 		
-		const QString &Get_Image_File_Name() const;
-		void Set_Image_File_Name( const QString &file_path );
+		bool Get_Nativ_Mode() const;
+		void Set_Nativ_Mode( bool enabled );
 		
-		bool Get_Host_Device() const;
-		void Set_Host_Device( bool enabled );
+		const VM_Nativ_Storage_Device &Get_Nativ_Device() const;
+		void Set_Nativ_Device( const VM_Nativ_Storage_Device &device );
 		
-	private:
+	protected:
 		bool Enabled;
-		QString Host_File_Name;
-		QString Image_File_Name;
-		bool Host_Device;
-};
-
-// Virtual Machine CD-ROM Device
-class VM_CDROM
-{
-	public:
-		VM_CDROM();
-		VM_CDROM( const VM_CDROM &cd );
-		VM_CDROM( bool enabled, const QString &host_path,
-				  const QString &image_path, bool host_device );
-		
-		bool operator==( const VM_CDROM& v ) const;
-		bool operator!=( const VM_CDROM& v ) const;
-		
-		bool Get_Enabled() const;
-		void Set_Enabled( bool enabled );
-		
-		const QString &Get_Host_File_Name() const;
-		void Set_Host_File_Name( const QString &file_path );
-		
-		const QString &Get_Image_File_Name() const;
-		void Set_Image_File_Name( const QString &file_path );
-		
-		bool Get_Host_Device() const;
-		void Set_Host_Device( bool enabled );
-		
-	private:
-		bool Enabled;
-		QString Host_File_Name;
-		QString Image_File_Name;
-		bool Host_Device;
+		bool Nativ_Mode;
+		QString File_Name;
+		VM_Nativ_Storage_Device Nativ_Device;
 };
 
 // Virtual Machine Hard Drive Device
-class VM_HDD
+class VM_HDD: public VM_Storage_Device
 {
 	public:
 		VM_HDD();
@@ -378,11 +421,7 @@ class VM_HDD
 		bool operator==( const VM_HDD &v ) const;
 		bool operator!=( const VM_HDD &v ) const;
 		
-		bool Get_Enabled() const;
-		void Set_Enabled( bool enabled );
-		
-		const QString &Get_Image_File_Name() const;
-		void Set_Image_File_Name( const QString &file_name );
+		void Set_File_Name( const QString &file_name );
 		
 		void Set_Disk_Info( VM::Disk_Info info );
 		const QString &Get_Image_Format() const;
@@ -401,9 +440,7 @@ class VM_HDD
 		VM::Device_Size String_to_Device_Size( const QString &size ) const;
 	
 	private:
-		
-		bool Enabled;
-		QString Image_File_Name, Disk_Format;
+		QString Disk_Format;
 		VM::Device_Size Virtual_Size, Disk_Size;
 		int Cluster_Size;
 };
