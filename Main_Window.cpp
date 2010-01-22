@@ -938,12 +938,14 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 		
 		tmp_fd.Set_Enabled( ui.CH_Floppy0->isChecked() );
 		tmp_fd.Set_File_Name( ui.CB_FD0_Devices->currentText() );
+		tmp_fd.Set_Nativ_Device( Nativ_FD0 );
 		
 		tmp_vm->Set_FD0( tmp_fd );
 		
 		// Floppy 2
 		tmp_fd.Set_Enabled( ui.CH_Floppy1->isChecked() );
 		tmp_fd.Set_File_Name( ui.CB_FD1_Devices->currentText() );
+		tmp_fd.Set_Nativ_Device( Nativ_FD1 );
 		
 		tmp_vm->Set_FD1( tmp_fd );
 		
@@ -952,6 +954,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 		
 		tmp_cd.Set_Enabled( ui.CH_CDROM->isChecked() );
 		tmp_cd.Set_File_Name( ui.CB_CDROM_Devices->currentText() );
+		tmp_cd.Set_Nativ_Device( Nativ_CD_ROM );
 		
 		tmp_vm->Set_CD_ROM( tmp_cd );
 		
@@ -960,18 +963,22 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 		
 		tmp_hd.Set_Enabled( ui.GB_HDA->isChecked() );
 		tmp_hd.Set_File_Name( ui.Edit_HDA_Image_Path->text() );
+		tmp_hd.Set_Nativ_Device( Nativ_HDA );
 		tmp_vm->Set_HDA( tmp_hd );
 		
 		tmp_hd.Set_Enabled( ui.GB_HDB->isChecked() );
 		tmp_hd.Set_File_Name( ui.Edit_HDB_Image_Path->text() );
+		tmp_hd.Set_Nativ_Device( Nativ_HDB );
 		tmp_vm->Set_HDB( tmp_hd );
 		
 		tmp_hd.Set_Enabled( ui.GB_HDC->isChecked() );
 		tmp_hd.Set_File_Name( ui.Edit_HDC_Image_Path->text() );
+		tmp_hd.Set_Nativ_Device( Nativ_HDC );
 		tmp_vm->Set_HDC( tmp_hd );
 		
 		tmp_hd.Set_Enabled( ui.GB_HDD->isChecked() );
 		tmp_hd.Set_File_Name( ui.Edit_HDD_Image_Path->text() );
+		tmp_hd.Set_Nativ_Device( Nativ_HDD );
 		tmp_vm->Set_HDD( tmp_hd );
 	}
 	
@@ -1407,8 +1414,6 @@ void Main_Window::Update_VM_Ui()
 		return;
 	}
 	
-	//tmp_vm = VM_List[ ui.Machines_List->currentRow() ]; // FIXME 000000000000000000000000
-	
 	// Machine Name
 	ui.Edit_Machine_Name->setText( tmp_vm->Get_Machine_Name() );
 	
@@ -1666,31 +1671,38 @@ void Main_Window::Update_VM_Ui()
 		// Floppy 0
 		ui.CH_Floppy0->setChecked( tmp_vm->Get_FD0().Get_Enabled() );
 		ui.CB_FD0_Devices->lineEdit()->setText( tmp_vm->Get_FD0().Get_File_Name() );
+		Nativ_FD0 = tmp_vm->Get_FD0().Get_Nativ_Device();
 		
 		// Floppy 1
 		ui.CH_Floppy1->setChecked( tmp_vm->Get_FD1().Get_Enabled() );
 		ui.CB_FD1_Devices->lineEdit()->setText( tmp_vm->Get_FD1().Get_File_Name() );
+		Nativ_FD1 = tmp_vm->Get_FD1().Get_Nativ_Device();
 		
 		// CD-ROM
 		ui.CH_CDROM->setChecked( tmp_vm->Get_CD_ROM().Get_Enabled() );
 		ui.CB_CDROM_Devices->lineEdit()->setText( tmp_vm->Get_CD_ROM().Get_File_Name() );
+		Nativ_CD_ROM = tmp_vm->Get_CD_ROM().Get_Nativ_Device();
 		
 		// HDD's
 		ui.GB_HDA->setChecked( tmp_vm->Get_HDA().Get_Enabled() );
 		ui.Edit_HDA_Image_Path->setText( tmp_vm->Get_HDA().Get_File_Name() );
 		HDA_Info->Update_Disk_Info( tmp_vm->Get_HDA().Get_File_Name() );
+		Nativ_HDA = tmp_vm->Get_HDA().Get_Nativ_Device();
 		
 		ui.GB_HDB->setChecked( tmp_vm->Get_HDB().Get_Enabled() );
 		ui.Edit_HDB_Image_Path->setText( tmp_vm->Get_HDB().Get_File_Name() );
 		HDB_Info->Update_Disk_Info( tmp_vm->Get_HDB().Get_File_Name() );
+		Nativ_HDB = tmp_vm->Get_HDB().Get_Nativ_Device();
 		
 		ui.GB_HDC->setChecked( tmp_vm->Get_HDC().Get_Enabled() );
 		ui.Edit_HDC_Image_Path->setText( tmp_vm->Get_HDC().Get_File_Name() );
 		HDC_Info->Update_Disk_Info( tmp_vm->Get_HDC().Get_File_Name() );
+		Nativ_HDC = tmp_vm->Get_HDC().Get_Nativ_Device();
 		
 		ui.GB_HDD->setChecked( tmp_vm->Get_HDD().Get_Enabled() );
 		ui.Edit_HDD_Image_Path->setText( tmp_vm->Get_HDD().Get_File_Name() );
 		HDD_Info->Update_Disk_Info( tmp_vm->Get_HDD().Get_File_Name() );
+		Nativ_HDD = tmp_vm->Get_HDD().Get_Nativ_Device();
 	}
 	
 	// Network tab. Redirections
@@ -3395,15 +3407,24 @@ void Main_Window::VM_State_Changet( Virtual_Machine *vm, VM::VM_State s )
 
 void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 {
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	if( s == VM::VMS_Saved && Settings.value("Use_Screenshot_for_OS_Logo", "yes").toString() == "yes" )
 	{
-		ui.Machines_List->currentItem()->setIcon( QIcon(VM_List[ui.Machines_List->currentRow()]->Get_Screenshot_Path()) );
-		ui.Machines_List->currentItem()->setData( 128, VM_List[ui.Machines_List->currentRow()]->Get_Screenshot_Path() );
+		ui.Machines_List->currentItem()->setIcon( QIcon(cur_vm->Get_Screenshot_Path()) );
+		ui.Machines_List->currentItem()->setData( 128, cur_vm->Get_Screenshot_Path() );
 	}
 	else
 	{
-		ui.Machines_List->currentItem()->setIcon( QIcon(VM_List[ui.Machines_List->currentRow()]->Get_Icon_Path()) );
-		ui.Machines_List->currentItem()->setData( 128, VM_List[ui.Machines_List->currentRow()]->Get_Icon_Path() );
+		ui.Machines_List->currentItem()->setIcon( QIcon(cur_vm->Get_Icon_Path()) );
+		ui.Machines_List->currentItem()->setData( 128, cur_vm->Get_Icon_Path() );
 	}
 	
 	switch( s )
@@ -3541,6 +3562,15 @@ void Main_Window::VM_Changet()
 
 void Main_Window::Update_Emulator_Control()
 {
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::Update_Emulator_Control()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	// Check and Delete All Emulator Controls
 	if( ui.Tabs->tabText(0) == tr("Display") )
 	{
@@ -3549,7 +3579,7 @@ void Main_Window::Update_Emulator_Control()
 	}
 	
 	// Add new Emulator Control
-	VM::VM_State tmp_state = VM_List[ ui.Machines_List->currentRow() ]->Get_State();
+	VM::VM_State tmp_state = cur_vm->Get_State();
 	
 	if( tmp_state == VM::VMS_Running || tmp_state == VM::VMS_Pause )
 	{
@@ -3560,8 +3590,8 @@ void Main_Window::Update_Emulator_Control()
 				if( Settings.value("Use_VNC_Display", "no").toString() == "yes" )
 				{
 					// Display Tab
-					VM_List[ui.Machines_List->currentRow()]->Emu_Ctl->Use_Minimal_Size( false );
-					ui.Tabs->insertTab( 0, VM_List[ui.Machines_List->currentRow()]->Emu_Ctl, tr("Display") );
+					cur_vm->Emu_Ctl->Use_Minimal_Size( false );
+					ui.Tabs->insertTab( 0, cur_vm->Emu_Ctl, tr("Display") );
 					ui.Tabs->setCurrentIndex( 0 );
 				}
 				else
@@ -3569,13 +3599,13 @@ void Main_Window::Update_Emulator_Control()
 					delete ui.Tab_Info->layout();
 					
 					QVBoxLayout *layout = new QVBoxLayout;
-					VM_List[ui.Machines_List->currentRow()]->Emu_Ctl->setMaximumSize( 4096, 30 );
-					layout->addWidget( VM_List[ui.Machines_List->currentRow()]->Emu_Ctl );
+					cur_vm->Emu_Ctl->setMaximumSize( 4096, 30 );
+					layout->addWidget( cur_vm->Emu_Ctl );
 					layout->addWidget( ui.VM_Information_Text );
 					ui.Tab_Info->setLayout( layout );
 				}
 			}
-			else VM_List[ ui.Machines_List->currentRow() ]->Show_Emu_Ctl_Win();
+			else cur_vm->Show_Emu_Ctl_Win();
 		}
 	}
 }
@@ -3699,7 +3729,16 @@ void Main_Window::on_Machines_List_customContextMenuRequested( const QPoint &pos
 
 void Main_Window::on_Machines_List_itemDoubleClicked( QListWidgetItem *item )
 {
-	if( VM_List[ui.Machines_List->currentRow()]->Get_State() == VM::VMS_Saved )
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_Machines_List_itemDoubleClicked( QListWidgetItem *item )",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
+	if( cur_vm->Get_State() == VM::VMS_Saved )
 	{
 		AQGraphic_Warning( tr("Warning"), tr("Cannot Change Icon When VM in Save State.") );
 		return;
@@ -3716,12 +3755,21 @@ QString Main_Window::Get_QEMU_Args()
 		return "";
 	}
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "QString Main_Window::Get_QEMU_Args()",
+				 "cur_vm == NULL" );
+		return "";
+	}
+	
 	QString line = "";
 	
-	if( VM_List[ui.Machines_List->currentRow()]->Get_Use_User_Emulator_Binary() &&
-		VM_List[ui.Machines_List->currentRow()]->Get_Only_User_Args() )
+	if( cur_vm->Get_Use_User_Emulator_Binary() &&
+		cur_vm->Get_Only_User_Args() )
 	{
-		QStringList all_args = VM_List[ ui.Machines_List->currentRow() ]->Build_QEMU_Args_For_Tab_Info();
+		QStringList all_args = cur_vm->Build_QEMU_Args_For_Tab_Info();
 		line = all_args.takeAt( 0 );
 		
 		for( int i = 0; i < all_args.count(); ++i ) line += " " + all_args[i];
@@ -3730,7 +3778,7 @@ QString Main_Window::Get_QEMU_Args()
 	{
 		line = Get_Current_Binary_Name();
 		
-		QStringList all_args = VM_List[ ui.Machines_List->currentRow() ]->Build_QEMU_Args_For_Tab_Info();
+		QStringList all_args = cur_vm->Build_QEMU_Args_For_Tab_Info();
 		
 		for( int i = 0; i < all_args.count(); ++i ) line += " " + all_args[i];
 	}
@@ -3923,7 +3971,16 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine *tmp_vm )
 		if( ui.Machines_List->currentRow() >= 0 &&
 			ui.Machines_List->currentRow() < VM_List.count() )
 		{
-			Dev_Manager->Set_VM( *VM_List[ui.Machines_List->currentRow()] ); // FIXME Use pointer
+			Virtual_Machine *cur_vm = Get_Current_VM();
+	
+			if( cur_vm == NULL )
+			{
+				AQError( "bool Main_Window::Boot_Is_Correct( Virtual_Machine *tmp_vm )",
+						 "cur_vm == NULL" );
+				return false;
+			}
+			
+			Dev_Manager->Set_VM( *cur_vm ); // FIXME Use pointer
 		}
 	}
 	
@@ -4140,7 +4197,16 @@ bool Main_Window::No_Device_Found( const QString &name, const QString &path, VM:
 		if( ui.Machines_List->currentRow() >= 0 &&
 			ui.Machines_List->currentRow() < VM_List.count() )
 		{
-			VM_List[ ui.Machines_List->currentRow() ]->Save_VM();
+			Virtual_Machine *cur_vm = Get_Current_VM();
+	
+			if( cur_vm == NULL )
+			{
+				AQError( "bool Main_Window::No_Device_Found( const QString &name, const QString &path, VM::Boot_Device type )",
+						 "cur_vm == NULL" );
+				return false;
+			}
+			
+			cur_vm->Save_VM();
 		}
 		
 		return true;
@@ -4151,8 +4217,17 @@ void Main_Window::on_actionChange_Icon_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionChange_Icon_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	Select_Icon_Window *icon_win = new Select_Icon_Window( this );
-	icon_win->Set_Previous_Icon_Path( VM_List[ui.Machines_List->currentRow()]->Get_Icon_Path() );
+	icon_win->Set_Previous_Icon_Path( cur_vm->Get_Icon_Path() );
 	
 	if( QDialog::Accepted == icon_win->exec() )
 	{
@@ -4162,8 +4237,17 @@ void Main_Window::on_actionChange_Icon_triggered()
 			ui.Machines_List->currentItem()->setData( 128, icon_win->Get_New_Icon_Path() );
 		}
 		
-		VM_List[ ui.Machines_List->currentRow() ]->Set_Icon_Path( icon_win->Get_New_Icon_Path() );
-		VM_List[ ui.Machines_List->currentRow() ]->Save_VM();
+		Virtual_Machine *cur_vm = Get_Current_VM();
+	
+		if( cur_vm == NULL )
+		{
+			AQError( "void Main_Window::on_actionChange_Icon_triggered()",
+					 "cur_vm == NULL" );
+			return;
+		}
+		
+		cur_vm->Set_Icon_Path( icon_win->Get_New_Icon_Path() );
+		cur_vm->Save_VM();
 	}
 	
 	delete icon_win;
@@ -4186,14 +4270,22 @@ void Main_Window::on_actionDelete_VM_triggered()
 	if( VM_List.count() <= 0 ) return;
 	if( ui.Machines_List->currentRow() < 0 ) return;
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionDelete_VM_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	int mes_ret = QMessageBox::question( this, tr("Delete?"),
-										 tr("Delete \"") + VM_List[ ui.Machines_List->currentRow() ]->Get_Machine_Name() + tr("\" VM?"),
+										 tr("Delete \"") + cur_vm->Get_Machine_Name() + tr("\" VM?"),
 										 QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 	
 	if( mes_ret == QMessageBox::Yes )
 	{
-		//Update_VM_Ui(); // FIXME this be?
-		if( QFile::remove(VM_List[ ui.Machines_List->currentRow() ]->Get_VM_XML_File_Path()) )
+		if( QFile::remove(cur_vm->Get_VM_XML_File_Path()) )
 		{
 			int cur = ui.Machines_List->currentRow();
 			ui.Machines_List->takeItem( cur );
@@ -4569,7 +4661,16 @@ void Main_Window::on_actionSave_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
 	
-	if( VM_List[ui.Machines_List->currentRow()]->Use_Snapshot_Mode() )
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionSave_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
+	if( cur_vm->Use_Snapshot_Mode() )
 	{
 		AQGraphic_Warning( tr("Warning!"), tr("QEMU running in snapshot mode. VM can not be saved in this mode.") );
 		return;
@@ -4577,47 +4678,84 @@ void Main_Window::on_actionSave_triggered()
 	
 	if( Settings.value("Info/Show_Screenshot_in_Save_Mode", "no").toString() == "yes" )
 	{
-		QString img_path = Settings.value( "VM_Directory", "~" ).toString() +
-				Get_FS_Compatible_VM_Name( VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name() ) + "_screenshot";
+		Virtual_Machine *cur_vm = Get_Current_VM();
+	
+		if( cur_vm == NULL )
+		{
+			AQError( "void Main_Window::on_actionSave_triggered()",
+					 "cur_vm == NULL" );
+			return;
+		}
 		
-		VM_List[ ui.Machines_List->currentRow() ]->Take_Screenshot( img_path );
+		QString img_path = Settings.value( "VM_Directory", "~" ).toString() +
+										   Get_FS_Compatible_VM_Name( cur_vm->Get_Machine_Name() ) + "_screenshot";
+		
+		cur_vm->Take_Screenshot( img_path );
 	}
 	
-	VM_List[ ui.Machines_List->currentRow() ]->Save_VM_State();
+	cur_vm->Save_VM_State();
 }
 
 void Main_Window::on_actionPower_Off_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionPower_Off_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	if( QMessageBox::question(this, tr("You Sure?"),
-		tr("Shutdown VM \"%1\"?").arg(VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name()),
+		tr("Shutdown VM \"%1\"?").arg(cur_vm->Get_Machine_Name()),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::No )
 	{
 		return;
 	}
 	
-	VM_List[ ui.Machines_List->currentRow() ]->Stop();
+	cur_vm->Stop();
 }
 
 void Main_Window::on_actionPause_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
-	VM_List[ ui.Machines_List->currentRow() ]->Pause();
+	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionPause_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
+	cur_vm->Pause();
 }
 
 void Main_Window::on_actionReset_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionReset_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	if( QMessageBox::question(this, tr("You Sure?"),
-		tr("Reboot VM \"%1\"?").arg(VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name()),
+		tr("Reboot VM \"%1\"?").arg(cur_vm->Get_Machine_Name()),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::No )
 	{
 		return;
 	}
 	
-	VM_List[ ui.Machines_List->currentRow() ]->Reset();
+	cur_vm->Reset();
 }
 
 void Main_Window::on_actionLoad_VM_From_File_triggered()
@@ -4674,7 +4812,14 @@ void Main_Window::on_actionCopy_triggered()
 	if( copy_win->exec() == QDialog::Accepted )
 	{
 		// Copy VM Object
-		Virtual_Machine *new_vm = VM_List[ ui.Machines_List->currentRow() ];
+		Virtual_Machine *new_vm = Get_Current_VM();
+	
+		if( new_vm == NULL )
+		{
+			AQError( "void Main_Window::on_actionCopy_triggered()",
+					 "cur_vm == NULL" );
+			return;
+		}
 		
 		new_vm->Set_Machine_Name( copy_win->Get_New_VM_Name() );
 		new_vm->Set_VM_XML_File_Path( Get_Complete_VM_File_Path(copy_win->Get_New_VM_Name()) );
@@ -4743,10 +4888,20 @@ void Main_Window::on_actionCopy_triggered()
 void Main_Window::on_actionSave_As_Template_triggered()
 {
 	Create_Template_Window *templ_win = new Create_Template_Window();
+	Virtual_Machine *cur_vm = Get_Current_VM();
 	
-	if( VM_List.count() > 0 ) templ_win->Set_VM_Path( VM_List[ui.Machines_List->currentRow()]->Get_VM_XML_File_Path() );
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionSave_As_Template_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
 	
-	if( templ_win->exec() == QDialog::Accepted ) QMessageBox::information( this, tr("Information"), tr("New Template Created!") );
+	if( VM_List.count() > 0 )
+		templ_win->Set_VM_Path( cur_vm->Get_VM_XML_File_Path() );
+	
+	if( templ_win->exec() == QDialog::Accepted )
+		QMessageBox::information( this, tr("Information"), tr("New Template Created!") );
 	
 	delete templ_win;
 }
@@ -4755,8 +4910,17 @@ void Main_Window::on_actionShow_Emulator_Control_triggered()
 {
 	if( VM_List.count() < 0 || ui.Machines_List->currentRow() < 0 ) return;
 	
-	if( VM_List[ui.Machines_List->currentRow()]->Get_State() == VM::VMS_Running ||
-		VM_List[ui.Machines_List->currentRow()]->Get_State() == VM::VMS_Pause )
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionShow_Emulator_Control_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
+	if( cur_vm->Get_State() == VM::VMS_Running ||
+		cur_vm->Get_State() == VM::VMS_Pause )
 	{
 		// Emulator Control is Visible?
 		if( (Settings.value("Use_VNC_Display", "no").toString() == "yes" && ui.Tabs->tabText(0) == tr("Display")) )
@@ -4765,7 +4929,7 @@ void Main_Window::on_actionShow_Emulator_Control_triggered()
 		}
 		else
 		{
-			VM_List[ ui.Machines_List->currentRow() ]->Show_Emu_Ctl_Win();
+			cur_vm->Show_Emu_Ctl_Win();
 		}
 	}
 	else
@@ -4782,8 +4946,17 @@ void Main_Window::on_actionManage_Snapshots_triggered()
 		return;
 	}
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionManage_Snapshots_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	Snapshots_Window *snapshot_win = new Snapshots_Window( this );
-	snapshot_win->Set_VM( VM_List[ui.Machines_List->currentRow()] );
+	snapshot_win->Set_VM( cur_vm );
 	snapshot_win->exec();
 	
 	delete snapshot_win;
@@ -4799,8 +4972,17 @@ void Main_Window::on_actionCreate_Shell_Script_triggered()
 {
 	if( VM_List.count() <= 0 ) return;
 	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionCreate_Shell_Script_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
 	QString script_code = "#!/bin/sh\n# This script created by AQEMU\n" + Get_Current_Binary_Name();
-	QStringList all_args = VM_List[ui.Machines_List->currentRow()]->Build_QEMU_Args_For_Script();
+	QStringList all_args = cur_vm->Build_QEMU_Args_For_Script();
 	
 	for( int ix = 0; ix < all_args.count(); ix++ ) script_code += " " + all_args[ ix ];
 	
@@ -4818,7 +5000,7 @@ void Main_Window::on_actionCreate_Shell_Script_triggered()
 	QString fileName;
 	
 	fileName = QFileDialog::getSaveFileName( this, tr("Save VM to Script"),
-			"VM_" + Get_FS_Compatible_VM_Name(VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name()),
+			"VM_" + Get_FS_Compatible_VM_Name(cur_vm->Get_Machine_Name()),
 			tr("Shell Script Files (*.sh);;All Files (*)"), &selectedFilter );
 	
 	if( ! fileName.isEmpty() )
@@ -4849,10 +5031,18 @@ void Main_Window::on_actionCreate_Shell_Script_triggered()
 
 void Main_Window::on_actionShow_QEMU_Error_Log_Window_triggered()
 {
-	if( VM_List.count() < 0 ||
-		ui.Machines_List->currentRow() < 0 ) return;
+	if( VM_List.count() < 0 || ui.Machines_List->currentRow() < 0 ) return;
 	
-	VM_List[ ui.Machines_List->currentRow() ]->Show_Error_Log_Window();
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionShow_QEMU_Error_Log_Window_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
+	cur_vm->Show_Error_Log_Window();
 }
 
 void Main_Window::on_Memory_Size_valueChanged( int value )
@@ -4916,16 +5106,15 @@ void Main_Window::on_TB_FD0_SetPath_clicked()
 
 void Main_Window::on_TB_FD0_Advanced_Settings_clicked()
 {
-	// FIXME
-	/*Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device(  );
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_FD0 );
 	
 	if( dev_win->exec() == QDialog::Accepted )
 	{
-		dev_win->Get_Device();
+		Nativ_FD0 = dev_win->Get_Device();
 	}
 	
-	delete dev_win;*/
+	delete dev_win;
 }
 
 void Main_Window::on_CB_FD0_Devices_editTextChanged( const QString &text )
@@ -4953,7 +5142,15 @@ void Main_Window::on_TB_FD1_SetPath_clicked()
 
 void Main_Window::on_TB_FD1_Advanced_Settings_clicked()
 {
-	// FIXME
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_FD1 );
+	
+	if( dev_win->exec() == QDialog::Accepted )
+	{
+		Nativ_FD1 = dev_win->Get_Device();
+	}
+	
+	delete dev_win;
 }
 
 void Main_Window::on_CB_FD1_Devices_editTextChanged( const QString &text )
@@ -4981,7 +5178,15 @@ void Main_Window::on_TB_CDROM_SetPath_clicked()
 
 void Main_Window::on_TB_CDROM_Advanced_Settings_clicked()
 {
-	// FIXME
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_CD_ROM );
+	
+	if( dev_win->exec() == QDialog::Accepted )
+	{
+		Nativ_CD_ROM = dev_win->Get_Device();
+	}
+	
+	delete dev_win;
 }
 
 void Main_Window::on_CB_CDROM_Devices_editTextChanged( const QString &text )
@@ -5036,7 +5241,15 @@ void Main_Window::on_TB_HDA_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDA_Advanced_Settings_clicked()
 {
-	// FIXME
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_HDA );
+	
+	if( dev_win->exec() == QDialog::Accepted )
+	{
+		Nativ_HDA = dev_win->Get_Device();
+	}
+	
+	delete dev_win;
 }
 
 void Main_Window::on_TB_HDB_SetPath_clicked()
@@ -5087,7 +5300,15 @@ void Main_Window::on_TB_HDB_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDB_Advanced_Settings_clicked()
 {
-	// FIXME
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_HDB );
+	
+	if( dev_win->exec() == QDialog::Accepted )
+	{
+		Nativ_HDB = dev_win->Get_Device();
+	}
+	
+	delete dev_win;
 }
 
 void Main_Window::on_TB_HDC_SetPath_clicked()
@@ -5138,7 +5359,15 @@ void Main_Window::on_TB_HDC_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDC_Advanced_Settings_clicked()
 {
-	// FIXME
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_HDC );
+	
+	if( dev_win->exec() == QDialog::Accepted )
+	{
+		Nativ_HDC = dev_win->Get_Device();
+	}
+	
+	delete dev_win;
 }
 
 void Main_Window::on_TB_HDD_SetPath_clicked()
@@ -5185,7 +5414,15 @@ void Main_Window::on_TB_HDD_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDD_Advanced_Settings_clicked()
 {
-	// FIXME
+	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
+	dev_win->Set_Device( Nativ_HDD );
+	
+	if( dev_win->exec() == QDialog::Accepted )
+	{
+		Nativ_HDD = dev_win->Get_Device();
+	}
+	
+	delete dev_win;
 }
 
 void Main_Window::on_GB_HDC_toggled( bool on ) // CD-ROM or HDC
@@ -5542,34 +5779,41 @@ void Main_Window::on_Button_Apply_clicked()
 	AQDebug( "void Main_Window::on_Button_Apply_clicked()", "Begin" );
 	
 	Virtual_Machine *tmp_vm = new Virtual_Machine();
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_Button_Apply_clicked()",
+				 "cur_vm == NULL" );
+		return;
+	}
 	
 	if( Create_VM_From_Ui(tmp_vm, ui.Machines_List->currentRow()) == false ) return;
 	
 	QString old_path = "";
 	
-	if( VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name() != tmp_vm->Get_Machine_Name() )
+	if( cur_vm->Get_Machine_Name() != tmp_vm->Get_Machine_Name() )
 	{
-		old_path = VM_List[ ui.Machines_List->currentRow() ]->Get_VM_XML_File_Path();
+		old_path = cur_vm->Get_VM_XML_File_Path();
 	}
 	
 	// save all Settings
-	disconnect( VM_List[ui.Machines_List->currentRow()], SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+	disconnect( cur_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 				this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
-	VM_List[ ui.Machines_List->currentRow() ] = tmp_vm;
+	cur_vm = tmp_vm;
 	
-	connect( VM_List[ui.Machines_List->currentRow()], SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+	connect( cur_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 			 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
 	// save to file
 	if( ! old_path.isEmpty() )
 	{
 		// Create new file name
-		VM_List[ ui.Machines_List->currentRow() ]->Set_VM_XML_File_Path(
-				Get_Complete_VM_File_Path(VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name()) );
+		cur_vm->Set_VM_XML_File_Path( Get_Complete_VM_File_Path(cur_vm->Get_Machine_Name()) );
 	}
 	
-	if( VM_List[ui.Machines_List->currentRow()]->Save_VM() == false )
+	if( cur_vm->Save_VM() == false )
 	{
 		AQGraphic_Error( "void Main_Window::on_Button_Apply_clicked()",
 						 tr("Error!"), tr("Cannot Save This VM to File!") );
@@ -5585,7 +5829,7 @@ void Main_Window::on_Button_Apply_clicked()
 	}
 	
 	// Set VM Name
-	ui.Machines_List->currentItem()->setText( VM_List[ui.Machines_List->currentRow()]->Get_Machine_Name() );
+	ui.Machines_List->currentItem()->setText( cur_vm->Get_Machine_Name() );
 	
 	Update_Info_Text();
 	
