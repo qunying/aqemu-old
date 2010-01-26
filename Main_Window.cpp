@@ -716,9 +716,16 @@ bool Main_Window::Current_Emulator_Version_Good( VM::Emulator_Version qver, VM::
 	}
 }
 
-bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
+bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm )
 {
-	tmp_vm->Set_VM_XML_File_Path( VM_List[index]->Get_VM_XML_File_Path() );
+	if( old_vm == NULL )
+	{
+		AQError( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm )",
+				 "old_vm == NULL" );
+		return false;
+	}
+	
+	tmp_vm->Set_VM_XML_File_Path( old_vm->Get_VM_XML_File_Path() );
 	
 	// Machine Name
 	if( ui.Edit_Machine_Name->text().isEmpty() )
@@ -732,15 +739,21 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 	}
 	
 	// Icon Path
-	if( ui.Machines_List->item(index)->data(128).toString() ==
-		Settings.value("VM_Directory", "~").toString() + Get_FS_Compatible_VM_Name(ui.Edit_Machine_Name->text()) )
+	for( int ix = 0; ix < ui.Machines_List->count(); ix++ )
 	{
-		tmp_vm->Set_Icon_Path( VM_List[index]->Get_Icon_Path() );
-		tmp_vm->Set_Screenshot_Path( ui.Machines_List->item(index)->data(128).toString() );
-	}
-	else
-	{
-		tmp_vm->Set_Icon_Path( ui.Machines_List->item(index)->data(128).toString() );
+		if( ui.Machines_List->item(ix)->data(256).toString() == old_vm->Get_UID() )
+		{
+			if( ui.Machines_List->item(ix)->data(128).toString() ==
+				Settings.value("VM_Directory", "~").toString() + Get_FS_Compatible_VM_Name(ui.Edit_Machine_Name->text()) )
+			{
+				tmp_vm->Set_Icon_Path( old_vm->Get_Icon_Path() );
+				tmp_vm->Set_Screenshot_Path( ui.Machines_List->item(ix)->data(128).toString() );
+			}
+			else
+			{
+				tmp_vm->Set_Icon_Path( ui.Machines_List->item(ix)->data(128).toString() );
+			}
+		}
 	}
 	
 	Averable_Devices* cur_comp = &Get_Devices_Info()[ ui.CB_Computer_Type->currentIndex() ];
@@ -809,7 +822,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 			break;
 			
 		default:
-			AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )",
+			AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, QListWidgetItem *item )",
 					   "Set Default CPU Count: 1" );
 			tmp_vm->Set_SMP_CPU_Count( 1 );
 			break;
@@ -849,7 +862,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 			break;
 			
 		default:
-			AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )",
+			AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, QListWidgetItem *item )",
 					   "Use Default Boot Device: CD-ROM" );
 			tmp_vm->Set_Boot_Device( VM::Boot_From_CDROM );
 			break;
@@ -874,7 +887,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 	}
 	else
 	{
-		AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )",
+		AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, QListWidgetItem *item )",
 				   "Use Default KQEMU Mode: Default" );
 		tmp_vm->Set_KQEMU_Mode( VM::KQEMU_Default );
 	}
@@ -1114,7 +1127,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index )
 			break;
 			
 		default:
-			AQError( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine &tmp_vm, int index )",
+			AQError( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, QListWidgetItem *item )",
 					 "Initial Graphical Mode: Default Section!" );
 			tmp_mode.Set_Depth( 24 );
 			break;
@@ -3622,9 +3635,17 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 	if( ui.Machines_List->row(previous) < 0 ) return;
 	
 	Virtual_Machine *tmp_vm = new Virtual_Machine();
+	Virtual_Machine *old_vm = Get_VM_By_UID( previous->data(256).toString() );
 	
-	if( Create_VM_From_Ui(tmp_vm, ui.Machines_List->row(previous)) == false &&
-		VM_List[ui.Machines_List->row(previous)]->Get_State() != VM::VMS_In_Error )
+	if( old_vm == NULL )
+	{
+		AQError( "void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current, QListWidgetItem *previous )",
+				 "old_vm == NULL" );
+		return;
+	}
+	
+	if( Create_VM_From_Ui(tmp_vm, old_vm) == false &&
+		old_vm->Get_State() != VM::VMS_In_Error )
 	{
 		AQError( "void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )",
 				 "Cannot Create VM!" );
@@ -3642,15 +3663,15 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 			// discart changes
 			if( ui.Machines_List->row(current) >= 0 && ui.Machines_List->row(current) < ui.Machines_List->count() )
 			{
-				if( VM_List[ui.Machines_List->row(previous)]->Get_State() == VM::VMS_Saved )
+				if( old_vm->Get_State() == VM::VMS_Saved )
 				{
-					previous->setIcon( QIcon(VM_List[ui.Machines_List->row(previous)]->Get_Screenshot_Path()) );
-					previous->setData( 128, VM_List[ui.Machines_List->row(previous)]->Get_Screenshot_Path() );
+					previous->setIcon( QIcon(old_vm->Get_Screenshot_Path()) );
+					previous->setData( 128, old_vm->Get_Screenshot_Path() );
 				}
 				else
 				{
-					previous->setIcon( QIcon(VM_List[ui.Machines_List->row(previous)]->Get_Icon_Path()) );
-					previous->setData( 128, VM_List[ui.Machines_List->row(previous)]->Get_Icon_Path() );
+					previous->setIcon( QIcon(old_vm->Get_Icon_Path()) );
+					previous->setData( 128, old_vm->Get_Icon_Path() );
 				}
 				
 				Update_VM_Ui();
@@ -3664,31 +3685,31 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 	}
 	
 	// on priv machine Settings be changed
-	if( *VM_List[ui.Machines_List->row(previous)] != *tmp_vm &&
-		VM_List[ui.Machines_List->row(previous)]->Get_State() != VM::VMS_In_Error )
+	if( *old_vm != *tmp_vm &&
+		old_vm->Get_State() != VM::VMS_In_Error )
 	{
 		int mes_res = QMessageBox::question( this, tr("Warning!"), tr("VM be Changed. Save Changes?"),
 											 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 		
 		if( mes_res == QMessageBox::Yes )
 		{
-			VM_List[ ui.Machines_List->row(previous) ] = tmp_vm;
-			VM_List[ ui.Machines_List->row(previous) ]->Save_VM();
+			old_vm = tmp_vm;
+			old_vm->Save_VM();
 			Update_VM_Ui();
 			return;
 		}
 		else
 		{
 			// discart changes
-			if( VM_List[ui.Machines_List->row(previous)]->Get_State() == VM::VMS_Saved )
+			if( old_vm->Get_State() == VM::VMS_Saved )
 			{
-				previous->setIcon( QIcon(VM_List[ui.Machines_List->row(previous)]->Get_Screenshot_Path()) );
-				previous->setData( 128, VM_List[ui.Machines_List->row(previous)]->Get_Screenshot_Path() );
+				previous->setIcon( QIcon(old_vm->Get_Screenshot_Path()) );
+				previous->setData( 128, old_vm->Get_Screenshot_Path() );
 			}
 			else
 			{
-				previous->setIcon( QIcon(VM_List[ui.Machines_List->row(previous)]->Get_Icon_Path()) );
-				previous->setData( 128, VM_List[ui.Machines_List->row(previous)]->Get_Icon_Path() );
+				previous->setIcon( QIcon(old_vm->Get_Icon_Path()) );
+				previous->setData( 128, old_vm->Get_Icon_Path() );
 			}
 			
 			Update_VM_Ui();
@@ -3701,9 +3722,17 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 	{
 		if( ui.Machines_List->row(current) >= 0 && ui.Machines_List->row(current) < ui.Machines_List->count() )
 		{
-			Update_VM_Ui();
+			Virtual_Machine *cur_vm = Get_VM_By_UID( current->data(256).toString() );
 			
-			Boot_Is_Correct( VM_List[ui.Machines_List->row(current)] );
+			if( old_vm == NULL )
+			{
+				AQError( "void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current, QListWidgetItem *previous )",
+						 "cur_vm == NULL" );
+				return;
+			}
+			
+			Update_VM_Ui();
+			Boot_Is_Correct( cur_vm );
 		}
 		else
 		{
@@ -4287,9 +4316,13 @@ void Main_Window::on_actionDelete_VM_triggered()
 	{
 		if( QFile::remove(cur_vm->Get_VM_XML_File_Path()) )
 		{
-			int cur = ui.Machines_List->currentRow();
-			ui.Machines_List->takeItem( cur );
-			VM_List.removeAt( cur );
+			QString uid = ui.Machines_List->currentItem()->data( 256 ).toString();
+			ui.Machines_List->takeItem( ui.Machines_List->currentRow() );
+			
+			for( int ix = 0; ix < VM_List.count(); ix++ )
+			{
+				if( uid == VM_List[ix]->Get_UID() ) VM_List.removeAt( ix );
+			}
 		}
 		else
 		{
@@ -4344,10 +4377,10 @@ void Main_Window::on_actionShow_New_VM_Wizard_triggered()
 						  this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 		
 		QListWidgetItem *item = new QListWidgetItem( vm->Get_Machine_Name(), ui.Machines_List );
-		
+		item->setData( 256, vm->Get_UID() );
 		item->setIcon( QIcon(vm->Get_Icon_Path()) );
 		
-		ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 );
+		ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 ); // FIXME index by uid
 		
 		Update_VM_Ui();
 		on_Button_Apply_clicked();
@@ -4422,8 +4455,11 @@ void Main_Window::on_actionAdd_New_VM_triggered()
 	connect( VM_List[ VM_List.count()-1 ], SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 			 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
-	new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
-	ui.Machines_List->item(VM_List.count()-1)->setIcon( QIcon(new_vm->Get_Icon_Path()) );
+	QListWidgetItem *item = new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
+	item->setData( 256, new_vm->Get_UID() );
+	item->setIcon( QIcon(new_vm->Get_Icon_Path()) );
+	
+	//ui.Machines_List->item(VM_List.count()-1)->setIcon( QIcon(new_vm->Get_Icon_Path()) ); FIXME
 	
 	ui.Machines_List->setCurrentRow( ui.Machines_List->count() -1 );
 	
@@ -4606,7 +4642,7 @@ void Main_Window::on_actionPower_On_triggered()
 		return;
 	}
 	
-	if( Create_VM_From_Ui(tmp_vm, ui.Machines_List->currentRow()) == false )
+	if( Create_VM_From_Ui(tmp_vm, cur_vm) == false )
 	{
 		AQError( "void Main_Window::on_action_Power_On_triggered()",
 				 "Cannot Create VM From Ui!" );
@@ -5788,7 +5824,7 @@ void Main_Window::on_Button_Apply_clicked()
 		return;
 	}
 	
-	if( Create_VM_From_Ui(tmp_vm, ui.Machines_List->currentRow()) == false ) return;
+	if( Create_VM_From_Ui(tmp_vm, cur_vm) == false ) return;
 	
 	QString old_path = "";
 	

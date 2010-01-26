@@ -5934,7 +5934,8 @@ bool Virtual_Machine::Start()
 	QEMU_Error_Win = new Error_Log_Window();
 	
 	// Check KVM
-	if( Current_Emulator_Devices->PSO_KVM )
+	if( Current_Emulator_Devices->PSO_KVM &&
+		Settings.value("Disable_KVM_Module_Check", "no").toString() != "yes" )
 	{
 		QProcess lsmod;
 		
@@ -5975,14 +5976,55 @@ bool Virtual_Machine::Start()
 				
 				if( kvm_intel_mod.exactMatch(all_mod) ) kvm_ok = true;
 				else if( kvm_amd_mod.exactMatch(all_mod) ) kvm_ok = true;
+				kvm_ok = false;
+				if( ! kvm_ok )
+				{
+					// Module not found... KVM compiled into kernel?
+					QProcess zcat;
+					
+					zcat.start( "zcat", QStringList("/proc/config.gz") );
+					
+					if( ! zcat.waitForFinished(1000) )
+					{
+						AQError( "bool Virtual_Machine::Start()", "zcat not finished!" );
+					}
+					else
+					{
+						QString all_config = zcat.readAll();
+						
+						if( all_config.isEmpty() )
+						{
+							AQError( "bool Virtual_Machine::Start()", "all_config is empty!" );
+						}
+						else
+						{
+							QRegExp kvm_intel_conf = QRegExp( "*CONFIG_KVM_INTEL=y*" );
+							kvm_intel_conf.setPatternSyntax( QRegExp::Wildcard );
+							if( kvm_intel_conf.exactMatch(all_config) ) kvm_ok = true;
+							else
+							{
+								QRegExp kvm_amd_conf = QRegExp( "*CONFIG_KVM_AMD=y*" );
+								kvm_amd_conf.setPatternSyntax( QRegExp::Wildcard );
+								if( kvm_amd_conf.exactMatch(all_config) ) kvm_ok = true;
+							}
+						}
+					}
+				}
 				
 				if( ! kvm_ok )
 				{
-					AQGraphic_Warning( tr("Error!"),
-									   tr("KVM Kernel Module Not Loaded!\n"
-										  "For Loading KVM Module, Enter in Terminal by User \"root\": \"modprobe kvm-intel\". "
-										  "Or If Use AMD Processor: \"modprobe kvm-amd\".") );
-					return false;
+					int retVal = QMessageBox::question( NULL, tr("Error!"),
+										   tr("KVM Kernel Module Not Loaded!\n"
+										   "For Loading KVM Module, Enter in Terminal by User \"root\": \"modprobe kvm-intel\". "
+										   "Or If Use AMD Processor: \"modprobe kvm-amd\".\nIgnore This Error?"),
+										   QMessageBox::Yes | QMessageBox::No | QMessageBox::YesToAll,
+	 									   QMessageBox::No );
+					
+					if( retVal == QMessageBox::No ) return false;
+					else if( retVal == QMessageBox::YesToAll )
+					{
+						Settings.setValue( "Disable_KVM_Module_Check", "yes" );
+					}
 				}
 				else
 				{

@@ -188,7 +188,7 @@ class Main_Window: public QMainWindow
 		QList<Averable_Devices> &Get_Devices_Info();
 		bool Current_Emulator_Version_Good( VM::Emulator_Version qver, VM::Emulator_Version kver ); // FIXME
 		
-		bool Create_VM_From_Ui( Virtual_Machine *tmp_vm, int index );
+		bool Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm );
 		
 		bool Load_Settings();
 		bool Save_Settings();
