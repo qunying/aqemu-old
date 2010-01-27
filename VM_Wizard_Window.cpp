@@ -43,7 +43,7 @@ VM_Wizard_Window::VM_Wizard_Window( QWidget *parent )
 		// Find default template
 		for( int ix = 0; ix < ui.CB_OS_Type->count(); ++ix )
 		{
-			if( ui.CB_OS_Type->itemText(ix) == Settings.value("Default_VM_Template", "Linux_2_6").toString() )
+			if( ui.CB_OS_Type->itemText(ix) == Settings.value("Default_VM_Template", "Linux 2.6").toString() )
 			{
 				ui.CB_OS_Type->setCurrentIndex( ix );
 			}

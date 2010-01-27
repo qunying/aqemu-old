@@ -1414,8 +1414,12 @@ void Main_Window::Update_VM_Ui()
 	
 	if( ui.Machines_List->currentRow() < 0 )
 	{
+		AQWarning( "void Main_Window::Update_VM_Ui()",
+				   "VM Index Out of Range" );
+		/*
 		AQGraphic_Error( "void Main_Window::Update_VM_Ui()", tr("Critical Error!"),
-						 tr("VM Index Out of Range! Close AQEMU?"), true );
+						 tr("VM Index Out of Range! Close AQEMU?"), true );*/
+		return;
 	}
 	
 	Virtual_Machine *tmp_vm = Get_Current_VM();
@@ -3732,7 +3736,7 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 			}
 			
 			Update_VM_Ui();
-			Boot_Is_Correct( cur_vm );
+			//Boot_Is_Correct( cur_vm ); FIXME Delete this? Check only on starting VM?
 		}
 		else
 		{
@@ -4380,7 +4384,6 @@ void Main_Window::on_actionShow_New_VM_Wizard_triggered()
 		item->setData( 256, vm->Get_UID() );
 		
 		ui.Machines_List->setCurrentItem( item );
-		//ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 ); // FIXME index by uid
 		
 		Update_VM_Ui();
 		on_Button_Apply_clicked();
@@ -4425,16 +4428,16 @@ void Main_Window::on_actionAdd_New_VM_triggered()
 	
 	// load default template
 	if( QFile::exists( Settings.value("VM_Directory", "").toString() +
-		"os_templates/" + Settings.value("Default_VM_Template", "Linux_2_6").toString() + ".aqvmt") )
+		"os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt") )
 	{
 		new_vm->Load_VM( Settings.value("VM_Directory", "").toString() +
-			"os_templates/" + Settings.value("Default_VM_Template", "Linux_2_6").toString() + ".aqvmt" );
+			"os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt" );
 	}
 	else if( QFile::exists( Settings.value("AQEMU_Data_Folder", "").toString() +
-			 "os_templates/" + Settings.value("Default_VM_Template", "Linux_2_6").toString() + ".aqvmt") )
+			 "os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt") )
 	{
 		new_vm->Load_VM( Settings.value("AQEMU_Data_Folder", "").toString() +
-			"os_templates/" + Settings.value("Default_VM_Template", "Linux_2_6").toString() + ".aqvmt" );
+			"os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt" );
 	}
 	else
 	{
@@ -4459,7 +4462,7 @@ void Main_Window::on_actionAdd_New_VM_triggered()
 	item->setData( 256, new_vm->Get_UID() );
 	item->setIcon( QIcon(new_vm->Get_Icon_Path()) );
 	
-	ui.Machines_List->setCurrentRow( ui.Machines_List->count() -1 );
+	ui.Machines_List->setCurrentItem( item );
 	
 	Update_VM_Ui();
 	on_Button_Apply_clicked();

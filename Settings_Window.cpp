@@ -191,7 +191,7 @@ void Settings_Window::Load_Templates()
 		// Find default template
 		for( int ix = 0; ix < ui.CB_Default_VM_Template->count(); ++ix )
 		{
-			if( ui.CB_Default_VM_Template->itemText(ix) == Settings->value("Default_VM_Template", "Linux_2_6").toString() )
+			if( ui.CB_Default_VM_Template->itemText(ix) == Settings->value("Default_VM_Template", "Linux 2.6").toString() )
 			{
 				ui.CB_Default_VM_Template->setCurrentIndex( ix );
 			}

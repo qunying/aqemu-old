@@ -954,6 +954,11 @@ void Advanced_Settings_Window::on_TB_Find_All_Emulators_clicked()
 	delete first_start_win;
 }
 
+void Advanced_Settings_Window::on_Emulators_Table_cellDoubleClicked( int row, int column )
+{
+	on_TB_Edit_Emulator_clicked();
+}
+
 void Advanced_Settings_Window::on_Button_CDROM_Add_clicked()
 {
 	bool ok = false;

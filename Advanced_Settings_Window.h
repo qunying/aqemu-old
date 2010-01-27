@@ -48,7 +48,7 @@ class Advanced_Settings_Window: public QDialog
 		void on_TB_Edit_Emulator_clicked();
 		void on_TB_Use_Default_clicked();
 		void on_TB_Find_All_Emulators_clicked();
-		
+		void on_Emulators_Table_cellDoubleClicked( int row, int column );
 		void on_Button_CDROM_Add_clicked();
 		void on_Button_CDROM_Edit_clicked();
 		void on_Button_CDROM_Delete_clicked();
