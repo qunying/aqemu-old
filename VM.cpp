@@ -5976,7 +5976,7 @@ bool Virtual_Machine::Start()
 				
 				if( kvm_intel_mod.exactMatch(all_mod) ) kvm_ok = true;
 				else if( kvm_amd_mod.exactMatch(all_mod) ) kvm_ok = true;
-				kvm_ok = false;
+				
 				if( ! kvm_ok )
 				{
 					// Module not found... KVM compiled into kernel?

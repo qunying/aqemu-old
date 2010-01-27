@@ -4372,15 +4372,15 @@ void Main_Window::on_actionShow_New_VM_Wizard_triggered()
 		vm->Set_UID( QUuid::createUuid().toString() ); // Create UID
 		VM_List << vm;
 		
-		QObject::connect( VM_List[ VM_List.count()-1 ],
-						  SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+		QObject::connect( vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 						  this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 		
 		QListWidgetItem *item = new QListWidgetItem( vm->Get_Machine_Name(), ui.Machines_List );
-		item->setData( 256, vm->Get_UID() );
 		item->setIcon( QIcon(vm->Get_Icon_Path()) );
+		item->setData( 256, vm->Get_UID() );
 		
-		ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 ); // FIXME index by uid
+		ui.Machines_List->setCurrentItem( item );
+		//ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 ); // FIXME index by uid
 		
 		Update_VM_Ui();
 		on_Button_Apply_clicked();
@@ -4452,14 +4452,12 @@ void Main_Window::on_actionAdd_New_VM_triggered()
 	
 	VM_List << new_vm;
 	
-	connect( VM_List[ VM_List.count()-1 ], SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+	connect( new_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 			 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
 	QListWidgetItem *item = new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
 	item->setData( 256, new_vm->Get_UID() );
 	item->setIcon( QIcon(new_vm->Get_Icon_Path()) );
-	
-	//ui.Machines_List->item(VM_List.count()-1)->setIcon( QIcon(new_vm->Get_Icon_Path()) ); FIXME
 	
 	ui.Machines_List->setCurrentRow( ui.Machines_List->count() -1 );
 	
@@ -4515,16 +4513,25 @@ void Main_Window::on_actionShow_Settings_Window_triggered()
 		// Update Icons
 		for( int ix = 0; ix < VM_List.count(); ++ix )
 		{
-			if( VM_List[ix]->Get_State() == VM::VMS_Saved &&
+			Virtual_Machine *tmp_vm = Get_VM_By_UID( ui.Machines_List->item(ix)->data(256).toString() );
+			
+			if( tmp_vm == NULL )
+			{
+				AQError( "void Main_Window::on_actionShow_Settings_Window_triggered()",
+						 "tmp_vm == NULL" );
+				continue;
+			}
+			
+			if( tmp_vm->Get_State() == VM::VMS_Saved &&
 				Settings.value("Use_Screenshot_for_OS_Logo", "yes").toString() == "yes" )
 			{
-				ui.Machines_List->item(ix)->setIcon( QIcon(VM_List[ix]->Get_Screenshot_Path()) );
-				ui.Machines_List->item(ix)->setData( 128, VM_List[ix]->Get_Screenshot_Path() );
+				ui.Machines_List->item(ix)->setIcon( QIcon(tmp_vm->Get_Screenshot_Path()) );
+				ui.Machines_List->item(ix)->setData( 128, tmp_vm->Get_Screenshot_Path() );
 			}
 			else
 			{
-				ui.Machines_List->item(ix)->setIcon( QIcon(VM_List[ix]->Get_Icon_Path()) );
-				ui.Machines_List->item(ix)->setData( 128, VM_List[ix]->Get_Icon_Path() );
+				ui.Machines_List->item(ix)->setIcon( QIcon(tmp_vm->Get_Icon_Path()) );
+				ui.Machines_List->item(ix)->setData( 128, tmp_vm->Get_Icon_Path() );
 			}
 		}
 		
@@ -4824,13 +4831,15 @@ void Main_Window::on_actionLoad_VM_From_File_triggered()
 	
 	VM_List << new_vm;
 	
-	connect( VM_List[VM_List.count()-1], SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+	connect( new_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 			 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
-	new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
-	ui.Machines_List->item(VM_List.count()-1)->setIcon( QIcon(new_vm->Get_Icon_Path()) );
+	QListWidgetItem *item = new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
+	item->setIcon( QIcon(new_vm->Get_Icon_Path()) );
+	item->setData( 256, new_vm->Get_UID() );
 	
-	ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 );
+	ui.Machines_List->setCurrentItem( item );
+	//ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 );
 	
 	Update_VM_Ui();
 }
@@ -4907,13 +4916,15 @@ void Main_Window::on_actionCopy_triggered()
 		
 		VM_List << new_vm;
 		
-		connect( VM_List[ VM_List.count()-1 ], SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+		connect( new_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 				 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 		
-		new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
-		ui.Machines_List->item(VM_List.count()-1)->setIcon( QIcon(new_vm->Get_Icon_Path()) );
+		QListWidgetItem *item = new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
+		item->setIcon( QIcon(new_vm->Get_Icon_Path()) );
+		item->setData( 256, new_vm->Get_UID() );
 		
-		ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 );
+		ui.Machines_List->setCurrentItem( item );
+		//ui.Machines_List->setCurrentRow( ui.Machines_List->count()-1 );
 		
 		Update_VM_Ui();
 		
