@@ -725,7 +725,11 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 		return false;
 	}
 	
+	// Save file name
 	tmp_vm->Set_VM_XML_File_Path( old_vm->Get_VM_XML_File_Path() );
+	
+	// UID
+	tmp_vm->Set_UID( old_vm->Get_UID() );
 	
 	// Machine Name
 	if( ui.Edit_Machine_Name->text().isEmpty() )
@@ -925,6 +929,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 	tmp_vm->Use_Fullscreen_Mode( ui.CH_Fullscreen->isChecked() );
 	tmp_vm->Use_Win2K_Hack( ui.CH_Win2K_Hack->isChecked() );
 	tmp_vm->Use_Local_Time( ui.CH_Local_Time->isChecked() );
+	
 	tmp_vm->Use_Check_FDD_Boot_Sector( ui.CH_FDD_Boot->isChecked() );
 	tmp_vm->Use_ACPI( ui.CH_ACPI->isChecked() );
 	tmp_vm->Use_Snapshot_Mode( ui.CH_Snapshot->isChecked() );
@@ -3697,7 +3702,14 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 		
 		if( mes_res == QMessageBox::Yes )
 		{
-			old_vm = tmp_vm;
+			disconnect( old_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+						this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
+			
+			*old_vm = *tmp_vm;
+			
+			connect( old_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+					 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
+			
 			old_vm->Save_VM();
 			Update_VM_Ui();
 			return;
@@ -4667,7 +4679,14 @@ void Main_Window::on_actionPower_On_triggered()
 		
 			if( mes_res == QMessageBox::Yes )
 			{
-				cur_vm = tmp_vm;
+				disconnect( cur_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+							this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
+				
+				*cur_vm = *tmp_vm;
+				
+				connect( cur_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+						 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
+				
 				cur_vm->Save_VM();
 				Update_VM_Ui();
 			}
@@ -5851,7 +5870,7 @@ void Main_Window::on_Button_Apply_clicked()
 	disconnect( cur_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 				this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
-	cur_vm = tmp_vm;
+	*cur_vm = *tmp_vm;
 	
 	connect( cur_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 			 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
