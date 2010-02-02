@@ -1837,6 +1837,272 @@ QStringList System_Info::Find_KVM_Binary_Files( const QString &path )
 	return return_list;
 }
 
+Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
+{
+	if( ! QFile::exists(path) )
+	{
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				 "Emulator binary \"" + path + "\" not exists!" );
+		ok = false;
+		return Averable_Devices();
+	}
+	
+	// Device for return
+	Averable_Devices tmp_dev;
+	
+	// Get All Help
+	QString all_help = Get_Emulator_Help_Output( path );
+	
+	if( all_help.isEmpty() )
+	{
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				 "Cannot read emulator help text" );
+		ok = false;
+		return Averable_Devices();
+	}
+	
+	// Find Options
+	
+	// -M
+	bool scan_Machines_List = false;
+	QRegExp rx = QRegExp( ".*-M\\s+.*" );
+	if( rx.exactMatch(all_help) ) scan_Machines_List = true;
+	
+	// -cpu
+	bool scan_CPU_List = false;
+	rx = QRegExp( ".*-cpu\\s.*" );
+	if( rx.exactMatch(all_help) ) scan_CPU_List = true;
+	
+	// -drive
+	QString drive_str = "";
+	rx = QRegExp( ".*(-drive\\s+.*)-.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		tmp_dev.PSO_Drive = true;
+		
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) drive_str += rx_list[ 1 ];
+	}
+	
+	// -mtdblock
+	rx = QRegExp( ".*-mtdblock\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_MTDBlock = true;
+	
+	// -sd
+	rx = QRegExp( ".*-sd\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_SD = true;
+	
+	// -pflash
+	rx = QRegExp( ".*-pflash\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_PFlash = true;
+	
+	// -name
+	rx = QRegExp( ".*-name\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Name = true;
+	
+	// -curses
+	rx = QRegExp( ".*-curses\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Curses = true;
+	
+	// -no-frame
+	rx = QRegExp( ".*-no-frame\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_Frame = true;
+	
+	// -alt-grab
+	rx = QRegExp( ".*-alt-grab\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Alt_Grab = true;
+	
+	// -no-quit
+	rx = QRegExp( ".*-no-quit\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_Quit = true;
+	
+	// -sdl
+	rx = QRegExp( ".*-sdl\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_SDL = true;
+	
+	// -portrait
+	rx = QRegExp( ".*-portrait\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Portrait = true;
+	
+	// -win2k-hack
+	rx = QRegExp( ".*-win2k-hack\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Win2K_Hack = true;
+	
+	// -rtc-td-hack
+	rx = QRegExp( ".*-rtc-td-hack\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_RTC_TD_Hack = true;
+	
+	// -no-shutdown
+	rx = QRegExp( ".*-no-shutdown\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_Shutdown = true;
+	
+	// -startdate
+	rx = QRegExp( ".*-startdate\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Startdate = true;
+	
+	// -show-cursor
+	rx = QRegExp( ".*-show-cursor\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Show_Cursor = true;
+	
+	// -bootp
+	rx = QRegExp( ".*-bootp\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Bootp = true;
+	
+	// -net nic
+	QString net_str = "";
+	rx = QRegExp( ".*(-net\\s+nic\\s+.*)-net.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// -net user
+	rx = QRegExp( ".*(-net\\s+user\\s+.*)-net.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// -net tap
+	rx = QRegExp( ".*(-net\\s+tap\\s+.*)-net.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// -net socket
+	rx = QRegExp( ".*(-net\\s+socket\\s+.*)-net.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// -net vde
+	rx = QRegExp( ".*(-net\\s+vde\\s+.*)-net.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		tmp_dev.PSO_net_type_vde = true;
+		
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// -net dump
+	rx = QRegExp( ".*(-net\\s+dump\\s+.*)-net.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		tmp_dev.PSO_net_type_dump = true;
+		
+		QStringList rx_list = rx.capturedTexts();
+		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// -enable-kvm
+	rx = QRegExp( ".*-enable-kvm\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Enable_KVM = true;
+	
+	// -no-kvm
+	rx = QRegExp( ".*-no-kvm\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_KVM = true;
+	
+	// -no-kvm-irqchip
+	rx = QRegExp( ".*-no-kvm-irqchip\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_KVM_IRQChip = true;
+	
+	// -no-kvm-pit
+	rx = QRegExp( ".*-no-kvm-pit\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_KVM_Pit = true;
+	
+	// -no-kvm-pit-reinjection
+	rx = QRegExp( ".*-no-kvm-pit-reinjection\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_KVM_Pit_Reinjection = true;
+	
+	// -enable-nesting
+	rx = QRegExp( ".*-enable-nesting\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Enable_Nesting = true;
+	
+	// -kvm-shadow-memory
+	rx = QRegExp( ".*-kvm-shadow-memory\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_KVM_Shadow_Memory = true;
+	
+	// -tftp
+	rx = QRegExp( ".*-tftp\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_TFTP = true;
+	
+	// -smb
+	rx = QRegExp( ".*-smb\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_SMB = true;
+	
+	// -std-vga
+	rx = QRegExp( ".*-std-vga\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Std_VGA = true;
+	/*
+	// 
+	rx = QRegExp( ".*\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	
+	// 
+	rx = QRegExp( ".*\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	
+	// 
+	rx = QRegExp( ".*\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	
+	// 
+	rx = QRegExp( ".*\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	
+	// 
+	rx = QRegExp( ".*\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev. = true;*/
+
+}
+
+QString System_Info::Get_Emulator_Help_Output( const QString &path )
+{
+	QString result = Get_Emulator_Output( path, QStringList("-h") );
+	
+	if( result.isEmpty() )
+	{
+		result = Get_Emulator_Output( path, QStringList("-nographic") );
+		
+		if( result.isEmpty() )
+		{
+			AQError( "QString System_Info::Get_Emulator_Help_Output( const QString &path )",
+					 "Cannot get emulator help!" );
+			return "";
+		}
+	}
+	
+	return result;
+}
+
+QString System_Info::Get_Emulator_Output( const QString &path, const QStringList &args )
+{
+	QProcess *qemu_pr = new QProcess();
+	
+	qemu_pr->start( path, args );
+	
+	if( ! qemu_pr->waitForFinished(1000) )
+	{
+		AQError( "QStringList System_Info::Get_Emulator_Output( const QString &path, const QStringList &args )",
+				 "Time left" );
+		
+		qemu_pr->kill();
+		return QString();
+	}
+	
+	QString result = qemu_pr->readAll();
+	delete qemu_pr;
+	
+	return result;
+}
+
 const QList<VM_USB> &System_Info::Get_All_Host_USB()
 {
 	if( All_Host_USB.count() <= 0 ) Update_Host_USB();

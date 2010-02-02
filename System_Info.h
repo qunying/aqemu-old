@@ -39,6 +39,10 @@ class System_Info
 		static QStringList Find_QEMU_Binary_Files( const QString &path );
 		static QStringList Find_KVM_Binary_Files( const QString &path );
 		
+		static Averable_Devices Get_Emulator_Info( const QString &path, bool &ok );
+		static QString Get_Emulator_Help_Output( const QString &path );
+		static QString Get_Emulator_Output( const QString &path, const QStringList &args );
+		
 		static const QList<VM_USB> &Get_All_Host_USB();
 		static const QList<VM_USB> &Get_Used_USB_List();
 		static bool Add_To_Used_USB_List( const VM_USB &device );
