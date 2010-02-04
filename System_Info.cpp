@@ -1874,14 +1874,54 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	if( rx.exactMatch(all_help) ) scan_CPU_List = true;
 	
 	// -drive
-	QString drive_str = "";
 	rx = QRegExp( ".*(-drive\\s+.*)-.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		tmp_dev.PSO_Drive = true;
 		
+		QString drive_str = "";
 		QStringList rx_list = rx.capturedTexts();
 		if( rx_list.count() > 1 ) drive_str += rx_list[ 1 ];
+		
+		// Parse drive options list
+	}
+	
+	// -vga
+	rx = QRegExp( ".*-vga\\s+\\[(.*)\\].*" );
+	if( rx.exactMatch(all_help) )
+	{
+		// Parse vga devices list string
+		if( rx.capturedTexts().count() > 1 )
+		{
+			QStringList vga_devices_list = rx.capturedTexts()[1].split( "|", QString::SkipEmptyParts );
+			
+			if( vga_devices_list.isEmpty() )
+			{
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+						 "VGA Devices List is Empty. Data is: \"" + rx.capturedTexts()[0] + "\"" );
+			}
+			else
+			{
+				for( int ix = 0; ix < vga_devices_list.count(); ix++ )
+				{
+					if( vga_devices_list[ix] == "std" ) tmp_dev.PSO_VGA_Std = true;
+					else if( vga_devices_list[ix] == "cirrus" ) tmp_dev.PSO_VGA_Cirrus = true;
+					else if( vga_devices_list[ix] == "vmware" ) tmp_dev.PSO_VGA_VMWare = true;
+					else if( vga_devices_list[ix] == "xenfb" ) tmp_dev.PSO_VGA_XenFB = true;
+					else if( vga_devices_list[ix] == "none" ) tmp_dev.PSO_VGA_None = true;
+					else
+					{
+						AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+								 "Not Defined VGA Device Name. Data is: \"" + vga_devices_list[ix] + "\"" );
+					}
+				}
+			}
+		}
+		else
+		{
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+					 "Cannot parse VGA string regExp. Data is: \"" + rx.capturedTexts()[0] + "\"" );
+		}
 	}
 	
 	// -mtdblock
