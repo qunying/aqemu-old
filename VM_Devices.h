@@ -168,6 +168,25 @@ class Averable_Devices
 		
 		// Platform Specific Options
 		unsigned short PSO_SMP_Count;
+		bool PSO_SMP_Cores;
+		bool PSO_SMP_Threads;
+		bool PSO_SMP_Sockets;
+		bool PSO_SMP_MaxCPUs;
+		
+		bool PSO_Drive;
+		bool PSO_Drive_File;
+		bool PSO_Drive_If;
+		bool PSO_Drive_Bus_Unit;
+		bool PSO_Drive_Index;
+		bool PSO_Drive_Media;
+		bool PSO_Drive_Cyls_Heads_Secs_Trans;
+		bool PSO_Drive_Snapshot;
+		bool PSO_Drive_Cache;
+		bool PSO_Drive_AIO;
+		bool PSO_Drive_Format;
+		bool PSO_Drive_Serial;
+		bool PSO_Drive_ADDR;
+		
 		bool PSO_Initial_Graphic_Mode;
 		bool PSO_No_FB_Boot_Check;
 		bool PSO_Win2K_Hack;
@@ -183,7 +202,6 @@ class Averable_Devices
 		bool PSO_VGA_XenFB;
 		bool PSO_VGA_None;
 		
-		bool PSO_Drive;
 		bool PSO_MTDBlock;
 		bool PSO_SD;
 		bool PSO_PFlash;
@@ -199,40 +217,40 @@ class Averable_Devices
 		bool PSO_Show_Cursor;
 		bool PSO_Bootp;
 		
-		bool PSO_net_type_vde;
-		bool PSO_net_type_dump;
+		bool PSO_Net_type_vde;
+		bool PSO_Net_type_dump;
 		
-		bool PSO_net_name;
-		bool PSO_net_addr;
-		bool PSO_net_vectors;
+		bool PSO_Net_name;
+		bool PSO_Net_addr;
+		bool PSO_Net_vectors;
 		
-		bool PSO_net_net;
-		bool PSO_net_host;
-		bool PSO_net_restrict;
-		bool PSO_net_dhcpstart;
-		bool PSO_net_dns;
-		bool PSO_net_tftp;
-		bool PSO_net_bootfile;
-		bool PSO_net_smb;
-		bool PSO_net_hostfwd;
-		bool PSO_net_guestfwd;
+		bool PSO_Net_net;
+		bool PSO_Net_host;
+		bool PSO_Net_restrict;
+		bool PSO_Net_dhcpstart;
+		bool PSO_Net_dns;
+		bool PSO_Net_tftp;
+		bool PSO_Net_bootfile;
+		bool PSO_Net_smb;
+		bool PSO_Net_hostfwd;
+		bool PSO_Net_guestfwd;
 		
-		bool PSO_net_ifname;
-		bool PSO_net_script;
-		bool PSO_net_downscript;
+		bool PSO_Net_ifname;
+		bool PSO_Net_script;
+		bool PSO_Net_downscript;
 		
-		bool PSO_net_listen;
-		bool PSO_net_connect;
+		bool PSO_Net_listen;
+		bool PSO_Net_connect;
 		
-		bool PSO_net_mcast;
+		bool PSO_Net_mcast;
 		
-		bool PSO_net_sock;
-		bool PSO_net_port;
-		bool PSO_net_group;
-		bool PSO_net_mode;
+		bool PSO_Net_sock;
+		bool PSO_Net_port;
+		bool PSO_Net_group;
+		bool PSO_Net_mode;
 		
-		bool PSO_net_file;
-		bool PSO_net_len;
+		bool PSO_Net_file;
+		bool PSO_Net_len;
 		
 		bool PSO_Enable_KVM;
 		bool PSO_No_KVM;

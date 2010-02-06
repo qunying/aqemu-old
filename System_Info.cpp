@@ -1873,17 +1873,50 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	rx = QRegExp( ".*-cpu\\s.*" );
 	if( rx.exactMatch(all_help) ) scan_CPU_List = true;
 	
+	// -smp
+	rx = QRegExp( ".*-smp\\s.*" );
+	if( rx.exactMatch(all_help) )
+	{
+		// New Style?
+		rx = QRegExp( ".*-smp\\s+.*\\[(.*)\\].*" );
+		
+		if( rx.exactMatch(all_help) )
+		{
+			if( rx.capturedTexts().count() > 1 )
+			{
+				if( rx.capturedTexts()[1].indexOf("cores") != -1 ) tmp_dev.PSO_SMP_Cores = true;
+				else if( rx.capturedTexts()[1].indexOf("threads") != -1 ) tmp_dev.PSO_SMP_Threads = true;
+				else if( rx.capturedTexts()[1].indexOf("sockets") != -1 ) tmp_dev.PSO_SMP_Sockets = true;
+				else if( rx.capturedTexts()[1].indexOf("maxcpus") != -1 ) tmp_dev.PSO_SMP_MaxCPUs = true;
+			}
+		}
+	}
+	
 	// -drive
-	rx = QRegExp( ".*(-drive\\s+.*)-.*" );
+	rx = QRegExp( ".*-drive\\s+(\\[.*\\]).*-.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		tmp_dev.PSO_Drive = true;
 		
-		QString drive_str = "";
 		QStringList rx_list = rx.capturedTexts();
-		if( rx_list.count() > 1 ) drive_str += rx_list[ 1 ];
-		
-		// Parse drive options list
+		if( rx_list.count() > 1 )
+		{
+			// Parse drive options list
+			QString drive_str = rx_list[ 1 ];
+			
+			if( drive_str.indexOf("file=") != -1 ) tmp_dev.PSO_Drive_File = true;
+			else if( drive_str.indexOf("if=") != -1 ) tmp_dev.PSO_Drive_If = true;
+			else if( drive_str.indexOf("bus=") != -1 ) tmp_dev.PSO_Drive_Bus_Unit = true;
+			else if( drive_str.indexOf("index=") != -1 ) tmp_dev.PSO_Drive_Index = true;
+			else if( drive_str.indexOf("media=") != -1 ) tmp_dev.PSO_Drive_Media = true;
+			else if( drive_str.indexOf("cyls=") != -1 ) tmp_dev.PSO_Drive_Cyls_Heads_Secs_Trans = true;
+			else if( drive_str.indexOf("snapshot=") != -1 ) tmp_dev.PSO_Drive_Snapshot = true;
+			else if( drive_str.indexOf("cache=") != -1 ) tmp_dev.PSO_Drive_Cache = true;
+			else if( drive_str.indexOf("aio=") != -1 ) tmp_dev.PSO_Drive_AIO = true;
+			else if( drive_str.indexOf("format=") != -1 ) tmp_dev.PSO_Drive_Format = true;
+			else if( drive_str.indexOf("serial=") != -1 ) tmp_dev.PSO_Drive_Serial = true;
+			else if( drive_str.indexOf("addr=") != -1 ) tmp_dev.PSO_Drive_ADDR = true;
+		}
 	}
 	
 	// -vga
@@ -2025,7 +2058,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	rx = QRegExp( ".*(-net\\s+vde\\s+.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
-		tmp_dev.PSO_net_type_vde = true;
+		tmp_dev.PSO_Net_type_vde = true;
 		
 		QStringList rx_list = rx.capturedTexts();
 		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
@@ -2035,10 +2068,119 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	rx = QRegExp( ".*(-net\\s+dump\\s+.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
-		tmp_dev.PSO_net_type_dump = true;
+		tmp_dev.PSO_Net_type_dump = true;
 		
 		QStringList rx_list = rx.capturedTexts();
 		if( rx_list.count() > 1 ) net_str += rx_list[ 1 ];
+	}
+	
+	// Check Network Arguments
+	if( net_str.isEmpty() )
+	{
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				 "net_str is Empty" );
+	}
+	else
+	{
+		// name
+		rx = QRegExp( ".*name=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_name = true;
+		
+		// addr
+		rx = QRegExp( ".*addr=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_addr = true;
+		
+		// vectors
+		rx = QRegExp( ".*vectors=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_vectors = true;
+		
+		// net
+		rx = QRegExp( ".*net=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_net = true;
+		
+		// host
+		rx = QRegExp( ".*host=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_host = true;
+		
+		// restrict
+		rx = QRegExp( ".*restrict=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_restrict = true;
+		
+		// dhcpstart
+		rx = QRegExp( ".*dhcpstart=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_dhcpstart = true;
+		
+		// dns
+		rx = QRegExp( ".*dns=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_dns = true;
+		
+		// tftp
+		rx = QRegExp( ".*tftp=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_tftp = true;
+		
+		// bootfile
+		rx = QRegExp( ".*bootfile=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_bootfile = true;
+		
+		// smb
+		rx = QRegExp( ".*smb=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_smb = true;
+		
+		// hostfwd
+		rx = QRegExp( ".*hostfwd=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_hostfwd = true;
+		
+		// guestfwd
+		rx = QRegExp( ".*guestfwd=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_guestfwd = true;
+		
+		// ifname
+		rx = QRegExp( ".*ifname=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_ifname = true;
+		
+		// script
+		rx = QRegExp( ".*script=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_script = true;
+		
+		// downscript
+		rx = QRegExp( ".*downscript=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_downscript = true;
+		
+		// listen
+		rx = QRegExp( ".*listen=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_listen = true;
+		
+		// connect
+		rx = QRegExp( ".*connect=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_connect = true;
+		
+		// mcast
+		rx = QRegExp( ".*mcast=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_mcast = true;
+		
+		// sock
+		rx = QRegExp( ".*sock=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_sock = true;
+		
+		// port
+		rx = QRegExp( ".*port=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_port = true;
+		
+		// group
+		rx = QRegExp( ".*group=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_group = true;
+		
+		// mode
+		rx = QRegExp( ".*mode=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_mode = true;
+		
+		// file
+		rx = QRegExp( ".*file=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_file = true;
+		
+		// len
+		rx = QRegExp( ".*len=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_len = true;
 	}
 	
 	// -enable-kvm
@@ -2080,27 +2222,24 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	// -std-vga
 	rx = QRegExp( ".*-std-vga\\s.*" );
 	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Std_VGA = true;
-	/*
-	// 
-	rx = QRegExp( ".*\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev. = true;
 	
-	// 
-	rx = QRegExp( ".*\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	// Get CPU Models
+	QStringList args_list;
 	
-	// 
-	rx = QRegExp( ".*\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	args_list << "-cpu" << "?";
+	QString cpu_list_str = Get_Emulator_Output( path, args_list );
 	
-	// 
-	rx = QRegExp( ".*\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev. = true;
+	// Get Machines Models
+	args_list.clear();
+	args_list << "-M" << "?";
+	QString machines_list_str = Get_Emulator_Output( path, args_list );
 	
-	// 
-	rx = QRegExp( ".*\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev. = true;*/
-
+	// Get Network Card Models
+	args_list.clear();
+	args_list << "-net" << "nic,model=?";
+	QString net_list_str = Get_Emulator_Output( path, args_list );
+	
+	
 }
 
 QString System_Info::Get_Emulator_Help_Output( const QString &path )
