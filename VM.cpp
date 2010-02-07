@@ -5411,7 +5411,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						else
 						{
 							Args << "-net" << QString( "socket,vlan=" + QString::number(Network_Cards[nc].Get_VLAN()) +
-									",listen=" + Network_Cards[nc].Get_IP_Address() +
+									",listen=" + Network_Cards[nc].Get_IP_Address() + ":" +
 									QString::number(Network_Cards[nc].Get_Port()) );
 						}
 						break;
