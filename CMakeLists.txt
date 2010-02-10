@@ -20,6 +20,7 @@ SET( aqemu_headers
 	Copy_VM_Window.h
 	Create_HDD_Image_Window.h
 	Create_Template_Window.h
+	Delete_VM_Files_Window.h
 	Device_Manager_Widget.h
 	Edit_Emulator_Version_Window.h
 	Emulator_Control_Window.h
@@ -57,6 +58,7 @@ SET( aqemu_sources
 	Copy_VM_Window.cpp
 	Create_HDD_Image_Window.cpp
 	Create_Template_Window.cpp
+	Delete_VM_Files_Window.cpp
 	Device_Manager_Widget.cpp
 	Edit_Emulator_Version_Window.cpp
 	Emulator_Control_Window.cpp
@@ -95,6 +97,7 @@ SET( aqemu_ui
 	Copy_VM_Window.ui
 	Create_HDD_Image_Window.ui
 	Create_Template_Window.ui
+	Delete_VM_Files_Window.ui
 	Device_Manager_Widget.ui
 	Edit_Emulator_Version_Window.ui
 	Emulator_Control_Window.ui

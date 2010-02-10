@@ -29,6 +29,7 @@
 #include <QHeaderView>
 
 #include "Main_Window.h"
+#include "Delete_VM_Files_Window.h"
 #include "Device_Manager_Widget.h"
 #include "Select_Icon_Window.h"
 #include "Settings_Window.h"
@@ -4369,6 +4370,51 @@ void Main_Window::on_actionDelete_VM_triggered()
 		
 		Update_Info_Text( 1 );
 	}
+}
+
+void Main_Window::on_actionDelete_VM_And_Files_triggered()
+{
+	if( VM_List.count() <= 0 ) return;
+	if( ui.Machines_List->currentRow() < 0 ) return;
+	
+	Virtual_Machine *cur_vm = Get_Current_VM();
+	
+	if( cur_vm == NULL )
+	{
+		AQError( "void Main_Window::on_actionDelete_VM_And_Files_triggered()",
+				 "cur_vm == NULL" );
+		return;
+	}
+	
+	Delete_VM_Files_Window *del_win = new Delete_VM_Files_Window( cur_vm );
+	
+	if( del_win->exec() == QDialog::Accepted )
+	{
+		if( VM_List.count() <= 0 )
+		{
+			ui.actionPower_On->setEnabled( false );
+			ui.actionSave->setEnabled( false );
+			ui.actionPause->setEnabled( false );
+			ui.actionPower_Off->setEnabled( false );
+			ui.actionReset->setEnabled( false );
+			
+			ui.Tab_General->setEnabled( false );
+			ui.Tab_HDD->setEnabled( false );
+			ui.Tab_Removable_Disks->setEnabled( false );
+			Dev_Manager->setEnabled( false );
+			ui.Tab_Network->setEnabled( false );
+			Ports_Tab->setEnabled( false );
+			ui.Tab_Other->setEnabled( false );
+			ui.Tab_Advanced->setEnabled( false );
+			
+			ui.Button_Apply->setEnabled( false );
+			ui.Button_Cancel->setEnabled( false );
+			
+			Update_Info_Text( 1 );
+		}
+	}
+	
+	delete del_win;
 }
 
 void Main_Window::on_actionExit_triggered()

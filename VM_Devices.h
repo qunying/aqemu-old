@@ -118,7 +118,7 @@ class VM
 		// Storage Device Media
 		enum Device_Media { DM_Disk, DM_CD_ROM };
 		
-		// QEMU Serial Port Redirections
+		// Serial/Parallel Port Redirections
 		enum Port_Redirection { PR_Default, PR_vc, PR_pty, PR_none, PR_null, PR_dev,
 								PR_host_port, PR_file, PR_stdio, PR_pipe, PR_udp,
 								PR_tcp, PR_telnet, PR_unix, PR_com, PR_msmouse, PR_mon, PR_braille };

@@ -2225,9 +2225,21 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	
 	// Get CPU Models
 	QStringList args_list;
+	QString tmp = "";
 	
 	args_list << "-cpu" << "?";
 	QString cpu_list_str = Get_Emulator_Output( path, args_list );
+	QTextStream *text_stream = new QTextStream( &cpu_list_str );
+	
+	do
+	{
+		tmp = text_stream->readLine();
+		
+		if( tmp == "" )
+		{
+		}
+	}
+	while( ! tmp.isNull() );
 	
 	// Get Machines Models
 	args_list.clear();

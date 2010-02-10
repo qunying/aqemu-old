@@ -59,6 +59,7 @@ class Main_Window: public QMainWindow
 		void on_actionAbout_AQEMU_triggered();
 		void on_actionAbout_Qt_triggered();
 		void on_actionDelete_VM_triggered();
+		void on_actionDelete_VM_And_Files_triggered();
 		void on_actionExit_triggered();
 		void on_actionShow_New_VM_Wizard_triggered();
 		void on_actionAdd_New_VM_triggered();

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>666</width>
-    <height>594</height>
+    <width>687</width>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -3896,7 +3896,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>666</width>
+     <width>687</width>
      <height>27</height>
     </rect>
    </property>
@@ -3919,6 +3919,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
     </widget>
     <addaction name="menuNew_VM" />
     <addaction name="actionDelete_VM" />
+    <addaction name="actionDelete_VM_And_Files" />
     <addaction name="actionSave_As_Template" />
     <addaction name="actionCopy" />
     <addaction name="separator" />
@@ -4025,7 +4026,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
    </property>
    <property name="text" >
-    <string>&amp;Delete Current VM</string>
+    <string>&amp;Delete VM</string>
    </property>
   </action>
   <action name="actionExit" >
@@ -4260,6 +4261,15 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    </property>
    <property name="text" >
     <string>Create Shell Script</string>
+   </property>
+  </action>
+  <action name="actionDelete_VM_And_Files" >
+   <property name="icon" >
+    <iconset resource="images.qrc" >
+     <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
+   </property>
+   <property name="text" >
+    <string>Delete VM And Files</string>
    </property>
   </action>
  </widget>
