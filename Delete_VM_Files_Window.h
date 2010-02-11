@@ -54,6 +54,8 @@ class Delete_VM_Files_Window: public QDialog
 	private:
 		Ui::Delete_VM_Files_Window ui;
 		QList<File_List_Item> File_List_Items;
+		QString VM_Name;
+		QString VM_Path;
 };
 
 #endif

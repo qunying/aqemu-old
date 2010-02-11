@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Delete VM and files</string>
+   <string>Delete VM and Files</string>
   </property>
   <property name="windowIcon" >
    <iconset resource="images.qrc" >
@@ -185,5 +185,22 @@
  <resources>
   <include location="images.qrc" />
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>Button_Cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>Delete_VM_Files_Window</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>507</x>
+     <y>255</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>546</x>
+     <y>248</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

@@ -24,6 +24,7 @@
 #include "Utils.h"
 #include <QHeaderView>
 #include <QFile>
+#include <QMessageBox>
 
 Delete_VM_Files_Window::Delete_VM_Files_Window( QWidget *parent )
 	: QDialog( parent )
@@ -66,20 +67,15 @@ void Delete_VM_Files_Window::Set_VM( Virtual_Machine *vm )
 		return;
 	}
 	
+	// Clear List
 	Clear_List();
+	
+	VM_Name = vm->Get_Machine_Name();
 	
 	File_List_Item tmp;
 	
 	// VM File
-	if( Path_Valid(vm->Get_VM_XML_File_Path()) )
-	{
-		tmp.Hard_Drive = false;
-		tmp.Name = tr( "AQEMU VM File" );
-		tmp.Path = vm->Get_VM_XML_File_Path();
-		
-		File_List_Items << tmp;
-		Add_To_Files_List( tmp );
-	}
+	VM_Path = vm->Get_VM_XML_File_Path();
 	
 	// Screenshot
 	if( Path_Valid(vm->Get_Screenshot_Path()) )
@@ -279,37 +275,83 @@ void Delete_VM_Files_Window::Set_VM( Virtual_Machine *vm )
 		}
 	}
 	
-	/*
-	QList<VM_Nativ_Storage_Device> Storage_Devices;
-
-	QList<VM_Net_Card> Network_Cards;
-	QList<VM_Net_Card_Nativ> Network_Cards_Nativ;
-	
-	// 
-	if( Path_Valid(vm->) )
+	// Storage Devices
+	if( vm->Get_Storage_Devices_List().count() > 0 )
 	{
-		tmp.Hard_Drive = false;
-		tmp.Name = tr( "" );
-		tmp.Path = vm->;
+		QList<VM_Nativ_Storage_Device> tmp_dev = vm->Get_Storage_Devices_List();
 		
-		File_List_Items << tmp;
-		Add_To_Files_List( tmp );
+		for( int ix = 0; ix < tmp_dev.count(); ix++ )
+		{
+			if( Path_Valid(tmp_dev[ix].Get_File_Path()) )
+			{
+				if( tmp_dev[ix].Get_Media() == VM::DM_Disk ) tmp.Hard_Drive = true;
+				else tmp.Hard_Drive = false;
+				
+				tmp.Name = tr( "Storage Device" );
+				tmp.Path = tmp_dev[ix].Get_File_Path();
+				
+				File_List_Items << tmp;
+				Add_To_Files_List( tmp );
+			}
+		}
 	}
-	
-	// 
-	if( Path_Valid(vm->) )
-	{
-		tmp.Hard_Drive = false;
-		tmp.Name = tr( "" );
-		tmp.Path = vm->;
-		
-		File_List_Items << tmp;
-		Add_To_Files_List( tmp );
-	}*/
 }
 
 void Delete_VM_Files_Window::on_Button_Delete_clicked()
 {
+	int mes_ret = QMessageBox::question( this, tr("Confirm Delete"),
+										 tr("Delete \"") + VM_Name + tr("\" VM and Selected Files?"),
+										 QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
+	
+	QString no_Delete_Files_List;
+	
+	if( mes_ret == QMessageBox::Yes )
+	{
+		// Delete VM XML File
+		if( ! QFile::remove(VM_Path) )
+		{
+			AQError( "void Delete_VM_Files_Window::on_Button_Delete_clicked()",
+					 "Cannot Delete VM File: \"" + VM_Path + "\"" );
+			no_Delete_Files_List += VM_Path + "\n";
+		}
+		
+		// Delete Files
+		for( int ix = 0; ix < ui.Files_List->rowCount(); ix++ )
+		{
+			QTableWidgetItem *item_CheckBox = ui.Files_List->item( ix, 0 );
+			QTableWidgetItem *item_Text = ui.Files_List->item( ix, 2 );
+			
+			if( item_CheckBox == NULL || item_Text == NULL )
+			{
+				AQError( "void Delete_VM_Files_Window::on_Button_Delete_clicked()",
+						 "item_CheckBox == NULL || item_Text == NULL" );
+				continue;
+			}
+			
+			// Cheked?
+			if( item_CheckBox->checkState() == Qt::Checked )
+			{
+				if( ! QFile::remove(item_Text->text()) )
+				{
+					AQError( "void Delete_VM_Files_Window::on_Button_Delete_clicked()",
+							 "Cannot Delete File: \"" + item_Text->text() + "\"" );
+					no_Delete_Files_List += item_Text->text() + "\n";
+					continue;
+				}
+			}
+		}
+		
+		// Show Errors
+		if( ! no_Delete_Files_List.isEmpty() )
+		{
+			QMessageBox::information( this, tr("During removal errors occurred"),
+									tr("This Files Not Deleted:\n") + no_Delete_Files_List + tr("Please Check Permissions!"),
+									QMessageBox::Ok );
+		}
+		
+		// Send accept
+		accept();
+	}
 }
 
 void Delete_VM_Files_Window::on_RB_Show_HDD_toggled( bool checked )

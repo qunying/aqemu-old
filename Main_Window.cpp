@@ -4390,6 +4390,16 @@ void Main_Window::on_actionDelete_VM_And_Files_triggered()
 	
 	if( del_win->exec() == QDialog::Accepted )
 	{
+		// Delete VM
+		QString uid = ui.Machines_List->currentItem()->data( 256 ).toString();
+		ui.Machines_List->takeItem( ui.Machines_List->currentRow() );
+		
+		for( int ix = 0; ix < VM_List.count(); ix++ )
+		{
+			if( uid == VM_List[ix]->Get_UID() ) VM_List.removeAt( ix );
+		}
+		
+		// No VMs More?
 		if( VM_List.count() <= 0 )
 		{
 			ui.actionPower_On->setEnabled( false );
