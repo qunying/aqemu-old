@@ -1752,6 +1752,7 @@ QStringList System_Info::Find_QEMU_Binary_Files( const QString &path )
 {
 	QStringList find_names, return_list;
 	find_names << "qemu";
+	find_names << "qemu-kvm";
 	find_names << "qemu-img";
 	find_names << "qemu-system-arm";
 	find_names << "qemu-system-cris";
@@ -2223,10 +2224,71 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	rx = QRegExp( ".*-std-vga\\s.*" );
 	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Std_VGA = true;
 	
-	// Get CPU Models
+	// All system names
+	QStringList systems_names;
+	systems_names << "kvm";
+	systems_names << "qemu";
+	systems_names << "qemu-kvm";
+	systems_names << "qemu-system-arm";
+	systems_names << "qemu-system-cris";
+	systems_names << "qemu-system-m68k";
+	systems_names << "qemu-system-mips";
+	systems_names << "qemu-system-mipsel";
+	systems_names << "qemu-system-mips64";
+	systems_names << "qemu-system-mips64el";
+	systems_names << "qemu-system-ppc";
+	systems_names << "qemu-system-ppc64";
+	systems_names << "qemu-system-ppcemb";
+	systems_names << "qemu-system-sh4";
+	systems_names << "qemu-system-sh4eb";
+	systems_names << "qemu-system-sparc";
+	systems_names << "qemu-system-sparc64";
+	systems_names << "qemu-system-x86_64";
+	
+	// Get system name
+	QFileInfo tmp_info( path );
+	QString file_name = tmp_info.fileName();
+	QString system_name = "";
+	
+	for( int ix = 0; ix < systems_names.count(); ix++ )
+	{
+		if( file_name == systems_names[ix] )
+		{
+			system_name = systems_names[ ix ];
+			break;
+		}
+	}
+	
+	if( system_name.isEmpty() )
+	{
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				 "Cannot get system name!" );
+		return Averable_Devices();
+	}
+	
+	// Get Default Devices List
+	// FIXME KVM 0.12 NOT 8X
+	Averable_Devices default_device;
+	
+	for( int ix = 0; ix < Emulator_KVM_8X.count(); ix++ )
+	{
+		if( Emulator_KVM_8X[ix].System.QEMU_Name == system_name ) // FIXME QEMU, QEMU-KVM, KVM
+		{
+			default_device = Emulator_KVM_8X[ ix ];
+		}
+	}
+	
+	if( default_device.System.QEMU_Name.isEmpty() )
+	{
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				 "Cannot get system default device list!" );
+		return Averable_Devices();
+	}
+	
 	QStringList args_list;
 	QString tmp = "";
 	
+	// Get CPU Models
 	args_list << "-cpu" << "?";
 	QString cpu_list_str = Get_Emulator_Output( path, args_list );
 	QTextStream *text_stream = new QTextStream( &cpu_list_str );
@@ -2234,24 +2296,199 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	do
 	{
 		tmp = text_stream->readLine();
+		QString qemu_dev_name = "";
 		
-		if( tmp == "" )
+		// Get QEMU ID String
+		QRegExp tmp_rx = QRegExp( ".*\\s+([\\w-.]+)" );
+		if( tmp_rx.exactMatch(tmp) )
 		{
+			QStringList rx_list = tmp_rx.capturedTexts();
+			if( rx_list.count() > 1 ) qemu_dev_name = rx_list[ 1 ];
+			else
+			{
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+						 "Cannot get QEMU CPU ID string!" );
+				continue;
+			}
 		}
+		
+		bool cpu_finded = false;
+		for( int ix = 0; ix < default_device.CPU_List.count(); ix++ )
+		{
+			if( qemu_dev_name == default_device.CPU_List[ix].QEMU_Name )
+			{
+				tmp_dev.CPU_List << default_device.CPU_List[ ix ];
+				cpu_finded = true;
+			}
+		}
+		
+		// No this device name in default list
+		if( cpu_finded == false ) tmp_dev.CPU_List << Device_Map( qemu_dev_name, qemu_dev_name );
 	}
 	while( ! tmp.isNull() );
+	
+	// No CPU's... Set Default List
+	if( tmp_dev.CPU_List.count() < 2 )
+	{
+		tmp_dev.CPU_List = default_device.CPU_List; // FIXME Emul Version
+		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				   "Cannot get CPU's info from emulator. Use default list" );
+	}
 	
 	// Get Machines Models
 	args_list.clear();
 	args_list << "-M" << "?";
 	QString machines_list_str = Get_Emulator_Output( path, args_list );
+	text_stream = new QTextStream( &machines_list_str );
+	
+	do
+	{
+		tmp = text_stream->readLine();
+		Device_Map dev_map;
+		
+		// This description?
+		if( tmp.startsWith("Supported machines are") ) continue;
+		
+		// Get QEMU ID String
+		QRegExp tmp_rx = QRegExp( "([\\w-.]+)\\s+(\\S.*)" );
+		if( tmp_rx.exactMatch(tmp) )
+		{
+			QStringList rx_list = tmp_rx.capturedTexts();
+			if( rx_list.count() > 2 )
+			{
+				dev_map.Caption = rx_list[ 2 ];
+				dev_map.QEMU_Name = rx_list[ 1 ];
+			}
+			else
+			{
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+						 "Cannot get QEMU Machine ID string!" );
+				continue;
+			}
+		}
+		
+		bool machine_finded = false;
+		for( int ix = 0; ix < default_device.Machine_List.count(); ix++ )
+		{
+			if( dev_map.QEMU_Name == default_device.Machine_List[ix].QEMU_Name )
+			{
+				tmp_dev.Machine_List << default_device.Machine_List[ ix ];
+				machine_finded = true;
+			}
+		}
+		
+		// No this device name in default list
+		if( machine_finded == false ) tmp_dev.Machine_List << dev_map;
+	}
+	while( ! tmp.isNull() );
+	
+	// No Machines... Set Default List
+	if( tmp_dev.Machine_List.count() < 2 )
+	{
+		tmp_dev.Machine_List = default_device.Machine_List; // FIXME Emul Version
+		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				   "Cannot get machines info from emulator. Use default list" );
+	}
+	
+	// Get Audio Cards Models
+	args_list.clear();
+	args_list << "-soundhw" << "?";
+	QString audio_list_str = Get_Emulator_Output( path, args_list );
+	text_stream = new QTextStream( &audio_list_str );
+	
+	do
+	{
+		tmp = text_stream->readLine();
+		QString qemu_dev_name = "";
+		
+		// This description?
+		if( tmp.startsWith("Valid sound card names") ) continue;
+		
+		// Get QEMU ID String
+		QRegExp tmp_rx = QRegExp( "([\\w-.]+)\\s+.*" );
+		if( tmp_rx.exactMatch(tmp) )
+		{
+			QStringList rx_list = tmp_rx.capturedTexts();
+			if( rx_list.count() > 1 ) qemu_dev_name = rx_list[ 1 ];
+			else
+			{
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+						 "Cannot get QEMU Audio ID string!" );
+				continue;
+			}
+		}
+		
+		if( qemu_dev_name == "sb16" ) tmp_dev.Audio_Card_List.Audio_sb16 = true;
+		else if( qemu_dev_name == "es1370" ) tmp_dev.Audio_Card_List.Audio_es1370 = true;
+		else if( qemu_dev_name == "gus" ) tmp_dev.Audio_Card_List.Audio_Adlib = true;
+		else if( qemu_dev_name == "adlib" ) tmp_dev.Audio_Card_List.Audio_PC_Speaker = true;
+		else if( qemu_dev_name == "pcspk" ) tmp_dev.Audio_Card_List.Audio_GUS = true;
+		else if( qemu_dev_name == "ac97" ) tmp_dev.Audio_Card_List.Audio_AC97 = true;
+		else
+		{
+			AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+					   "Unregistred Sound Card Name: " + qemu_dev_name );
+			continue;
+		}
+	}
+	while( ! tmp.isNull() );
 	
 	// Get Network Card Models
 	args_list.clear();
 	args_list << "-net" << "nic,model=?";
 	QString net_list_str = Get_Emulator_Output( path, args_list );
+	text_stream = new QTextStream( &net_list_str );
 	
+	do
+	{
+		tmp = text_stream->readLine();
+		
+		// This description?
+		if( tmp.indexOf("models:") == -1 ) continue;
+		
+		// Get all models string
+		QString all_models = tmp.right( tmp.indexOf("models:") );
+		QStringList net_cards_models = all_models.split( ',', QString::SkipEmptyParts );
+		
+		if( net_cards_models.isEmpty() )
+		{
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+					 "Cannot get QEMU network card ID string!" );
+			continue;
+		}
+		
+		for( int ax = 0; ax < default_device.Network_Card_List.count(); ax++ )
+		{
+			bool net_finded = false;
+			QString net_dev_str = "";
+			
+			for( int bx = 0; bx < net_cards_models.count(); bx++ )
+			{
+				net_dev_str = net_cards_models[ bx ]; // This for code: if( net_finded == false )...
+				
+				if( net_cards_models[bx] == default_device.Network_Card_List[ax].QEMU_Name )
+				{
+					tmp_dev.Network_Card_List << default_device.Network_Card_List[ ax ];
+					net_finded = true;
+					break;
+				}
+			}
+			
+			// No this device name in default list
+			if( net_finded == false ) tmp_dev.Network_Card_List << Device_Map( net_dev_str, net_dev_str );
+		}
+		
+		break; // All Done
+	}
+	while( ! tmp.isNull() );
 	
+	// No Cards... Set Default List
+	if( tmp_dev.Network_Card_List.count() < 2 )
+	{
+		tmp_dev.Network_Card_List = default_device.Network_Card_List; // FIXME Emul Version
+		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				   "Cannot get net cards info from emulator. Use default list" );
+	}
 }
 
 QString System_Info::Get_Emulator_Help_Output( const QString &path )
