@@ -2048,12 +2048,6 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 			
 			Sec_Element.appendChild( Dom_Text );
 			
-			// Use_Card_Model()
-			Sec_Element = New_Dom_Document.createElement( "Use_Card_Model" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( Network_Cards_Nativ[nx].Use_Card_Model() ? "yes" : "no" );
-			Sec_Element.appendChild( Dom_Text );
-			
 			// QString &Get_Card_Model()
 			Sec_Element = New_Dom_Document.createElement( "Card_Model" );
 			Dom_Element.appendChild( Sec_Element );
@@ -3845,9 +3839,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					tmp_card.Set_Network_Type( VM::Net_Mode_Nativ_User );
 				}
 				
-				// Use_Card_Model()
-				tmp_card.Use_Card_Model( Second_Element.firstChildElement("Use_Card_Model").text() == "yes" );
-				
 				// QString &Get_Card_Model()
 				tmp_card.Set_Card_Model( Second_Element.firstChildElement("Card_Model").text() );
 				
@@ -5259,7 +5250,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 				if( Network_Cards_Nativ[nc].Use_MAC_Address() && u_macaddr )
 					nic_str += ",macaddr=" + Network_Cards_Nativ[ nc ].Get_MAC_Address();
 				
-				if( Network_Cards_Nativ[nc].Use_Card_Model() && u_model )
+				if( Network_Cards_Nativ[ nc ].Get_Card_Model().isEmpty() == false && u_model )
 					nic_str += ",model=" + Network_Cards_Nativ[ nc ].Get_Card_Model();
 				
 				if( Network_Cards_Nativ[nc].Use_Name() && u_name )

@@ -585,8 +585,6 @@ class VM_Net_Card_Nativ
 		VM::Network_Mode_Nativ Get_Network_Type() const;
 		void Set_Network_Type( VM::Network_Mode_Nativ mode );
 		
-		bool Use_Card_Model() const;
-		void Use_Card_Model( bool use );
 		const QString &Get_Card_Model() const;
 		void Set_Card_Model( const QString &m );
 		
@@ -700,10 +698,10 @@ class VM_Net_Card_Nativ
 		QString File;
 		int Len;
 		
-		bool _Use_Card_Model, _Use_MAC, _Use_VLAN, _Use_Name, _Use_Hostname,
-			 _Use_File_Descriptor, _Use_Interface_Name, _Use_TUN_TAP_Script,
-			 _Use_TUN_TAP_Down_Script, _Use_Listen, _Use_Connect, _Use_MCast,
-			 _Use_Sock, _Use_Port, _Use_Group, _Use_Mode, _Use_File, _Use_Len;
+		bool _Use_MAC, _Use_VLAN, _Use_Name, _Use_Hostname, _Use_File_Descriptor,
+			 _Use_Interface_Name, _Use_TUN_TAP_Script, _Use_TUN_TAP_Down_Script,
+			 _Use_Listen, _Use_Connect, _Use_MCast, _Use_Sock, _Use_Port, _Use_Group,
+			 _Use_Mode, _Use_File, _Use_Len;
 };
 
 class VM_Redirection

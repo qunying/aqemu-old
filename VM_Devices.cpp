@@ -1010,7 +1010,6 @@ VM_Net_Card_Nativ::VM_Net_Card_Nativ()
 	File = "";
 	Len = 0;
 	
-	_Use_Card_Model = false;
 	_Use_MAC = false;
 	_Use_VLAN = false;
 	_Use_Name = false;
@@ -1053,7 +1052,6 @@ VM_Net_Card_Nativ::VM_Net_Card_Nativ( const VM_Net_Card_Nativ &nc )
 	File = nc.Get_File();
 	Len = nc.Get_Len();
 	
-	_Use_Card_Model = nc.Use_Card_Model();
 	_Use_MAC = nc.Use_MAC_Address();
 	_Use_VLAN = nc.Use_VLAN();
 	_Use_Name = nc.Use_Name();
@@ -1095,7 +1093,6 @@ bool VM_Net_Card_Nativ::operator==( const VM_Net_Card_Nativ &nc ) const
 		Mode == nc.Get_Mode() &&
 		File == nc.Get_File() &&
 		Len == nc.Get_Len() &&
-		_Use_Card_Model == nc.Use_Card_Model() &&
 		_Use_MAC == nc.Use_MAC_Address() &&
 		_Use_VLAN == nc.Use_VLAN() &&
 		_Use_Name == nc.Use_Name() &&
@@ -1142,16 +1139,6 @@ VM::Network_Mode_Nativ VM_Net_Card_Nativ::Get_Network_Type() const
 void VM_Net_Card_Nativ::Set_Network_Type( VM::Network_Mode_Nativ mode )
 {
 	Network_Mode = mode;
-}
-
-bool VM_Net_Card_Nativ::Use_Card_Model() const
-{
-	return _Use_Card_Model;
-}
-
-void VM_Net_Card_Nativ::Use_Card_Model( bool use )
-{
-	_Use_Card_Model = use;
 }
 
 const QString &VM_Net_Card_Nativ::Get_Card_Model() const
