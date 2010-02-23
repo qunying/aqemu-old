@@ -548,7 +548,7 @@ bool System_Info::Update_VM_Computers_List()
 	Machine_Sparc << Device_Map( QObject::tr("SPARCcenter 2000 (Sun4d)"), "SS-2000" );
 	
 	// Net Cards
-	Network_Card_x86 << Device_Map( QObject::tr("NE2000 (Default)"), "" );
+	Network_Card_x86 << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_x86 << Device_Map( QObject::tr("NE2000 PCI"), "ne2k_pci" );
 	Network_Card_x86 << Device_Map( QObject::tr("NE2000 ISA"), "ne2k_isa" );
 	Network_Card_x86 << Device_Map( QObject::tr("i82551"), "i82551" );
@@ -557,7 +557,7 @@ bool System_Info::Update_VM_Computers_List()
 	Network_Card_x86 << Device_Map( QObject::tr("PCnet32 PCI"), "pcnet" );
 	Network_Card_x86 << Device_Map( QObject::tr("RTL8139"), "rtl8139" );
 	
-	Network_Card_x86_v090 << Device_Map( QObject::tr("NE2000 (Default)"), "" );
+	Network_Card_x86_v090 << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_x86_v090 << Device_Map( QObject::tr("NE2000 PCI"), "ne2k_pci" );
 	Network_Card_x86_v090 << Device_Map( QObject::tr("NE2000 ISA"), "ne2k_isa" );
 	Network_Card_x86_v090 << Device_Map( QObject::tr("RTL8139"), "rtl8139" );
@@ -579,7 +579,7 @@ bool System_Info::Update_VM_Computers_List()
 	Network_Card_PPC << Device_Map( QObject::tr("PCnet32 PCI"), "pcnet" );
 	Network_Card_PPC << Device_Map( QObject::tr("RTL8139"), "rtl8139" );
 	
-	Machine_SH4 << Device_Map( QObject::tr("shix card (Default)"), "" );
+	Machine_SH4 << Device_Map( QObject::tr("Default"), "" );
 	Machine_SH4 << Device_Map( QObject::tr("shix card"), "shix" );
 	Machine_SH4 << Device_Map( QObject::tr("r2d-plus board"), "r2d" );
 	
@@ -1178,7 +1178,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Machine_List << Device_Map( QObject::tr("Bare ETRAX FS board"), "bareetraxfs" );
 	ad.Machine_List << Device_Map( QObject::tr("AXIS devboard 88"), "axis-dev88" );
-	ad.Network_Card_List << Device_Map( QObject::tr("fseth (Default)"), "" );
+	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Network_Card_List << Device_Map( QObject::tr("fseth"), "fseth" );
 	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
@@ -1839,7 +1839,7 @@ QStringList System_Info::Find_KVM_Binary_Files( const QString &path )
 }
 
 Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
-{
+{	
 	if( ! QFile::exists(path) )
 	{
 		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
@@ -1917,44 +1917,6 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			else if( drive_str.indexOf("format=") != -1 ) tmp_dev.PSO_Drive_Format = true;
 			else if( drive_str.indexOf("serial=") != -1 ) tmp_dev.PSO_Drive_Serial = true;
 			else if( drive_str.indexOf("addr=") != -1 ) tmp_dev.PSO_Drive_ADDR = true;
-		}
-	}
-	
-	// -vga
-	rx = QRegExp( ".*-vga\\s+\\[(.*)\\].*" );
-	if( rx.exactMatch(all_help) )
-	{
-		// Parse vga devices list string
-		if( rx.capturedTexts().count() > 1 )
-		{
-			QStringList vga_devices_list = rx.capturedTexts()[1].split( "|", QString::SkipEmptyParts );
-			
-			if( vga_devices_list.isEmpty() )
-			{
-				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
-						 "VGA Devices List is Empty. Data is: \"" + rx.capturedTexts()[0] + "\"" );
-			}
-			else
-			{
-				for( int ix = 0; ix < vga_devices_list.count(); ix++ )
-				{
-					if( vga_devices_list[ix] == "std" ) tmp_dev.PSO_VGA_Std = true;
-					else if( vga_devices_list[ix] == "cirrus" ) tmp_dev.PSO_VGA_Cirrus = true;
-					else if( vga_devices_list[ix] == "vmware" ) tmp_dev.PSO_VGA_VMWare = true;
-					else if( vga_devices_list[ix] == "xenfb" ) tmp_dev.PSO_VGA_XenFB = true;
-					else if( vga_devices_list[ix] == "none" ) tmp_dev.PSO_VGA_None = true;
-					else
-					{
-						AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
-								 "Not Defined VGA Device Name. Data is: \"" + vga_devices_list[ix] + "\"" );
-					}
-				}
-			}
-		}
-		else
-		{
-			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
-					 "Cannot parse VGA string regExp. Data is: \"" + rx.capturedTexts()[0] + "\"" );
 		}
 	}
 	
@@ -2263,6 +2225,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	{
 		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
 				 "Cannot get system name!" );
+		ok = false;
 		return Averable_Devices();
 	}
 	
@@ -2270,11 +2233,11 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	// FIXME KVM 0.12 NOT 8X
 	Averable_Devices default_device;
 	
-	for( int ix = 0; ix < Emulator_KVM_8X.count(); ix++ )
+	for( int ix = 0; ix < Emulator_QEMU_0_10.count(); ix++ )
 	{
-		if( Emulator_KVM_8X[ix].System.QEMU_Name == system_name ) // FIXME QEMU, QEMU-KVM, KVM
+		if( Emulator_QEMU_0_10[ix].System.QEMU_Name == system_name ) // FIXME QEMU, QEMU-KVM, KVM
 		{
-			default_device = Emulator_KVM_8X[ ix ];
+			default_device = Emulator_QEMU_0_10[ ix ];
 		}
 	}
 	
@@ -2282,6 +2245,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	{
 		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
 				 "Cannot get system default device list!" );
+		ok = false;
 		return Averable_Devices();
 	}
 	
@@ -2390,6 +2354,59 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 				   "Cannot get machines info from emulator. Use default list" );
 	}
 	
+	// -vga
+	QString vga_list_string = "";
+	text_stream = new QTextStream( &all_help );
+	
+	// Find -vga line
+	do
+	{
+		vga_list_string = text_stream->readLine();
+		if( vga_list_string.startsWith("-vga") ) break;
+	}
+	while( ! vga_list_string.isNull() );
+	
+	// Get video cards names
+	rx = QRegExp( ".*-vga\\s+\\[(.*)\\].*" );
+	if( rx.exactMatch(vga_list_string) )
+	{
+		// Parse vga devices list string
+		if( rx.capturedTexts().count() > 1 )
+		{
+			QStringList vga_devices_list = rx.capturedTexts()[1].split( "|", QString::SkipEmptyParts );
+			
+			if( vga_devices_list.isEmpty() )
+			{
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+						 "VGA Devices List is Empty. Data is: \"" + rx.capturedTexts()[0] + "\"" );
+			}
+			else
+			{
+				for( int gx = 0; gx < vga_devices_list.count(); gx++ )
+				{
+					bool vga_finded = false;
+					
+					for( int ix = 0; ix < default_device.Video_Card_List.count(); ix++ )
+					{
+						if( vga_devices_list[gx] == default_device.Video_Card_List[ix].QEMU_Name )
+						{
+							tmp_dev.Video_Card_List << default_device.Video_Card_List[ ix ];
+							vga_finded = true;
+						}
+					}
+					
+					// No this device name in default list
+					if( vga_finded == false ) tmp_dev.Video_Card_List << Device_Map( vga_devices_list[gx], vga_devices_list[gx] );
+				}
+			}
+		}
+		else
+		{
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+					 "Cannot parse VGA string regExp. Data is: \"" + rx.capturedTexts()[0] + "\"" );
+		}
+	}
+	
 	// Get Audio Cards Models
 	args_list.clear();
 	args_list << "-soundhw" << "?";
@@ -2402,7 +2419,10 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		QString qemu_dev_name = "";
 		
 		// This description?
-		if( tmp.startsWith("Valid sound card names") ) continue;
+		if( tmp.startsWith("Valid sound card names") ||
+			tmp.startsWith("-soundhw") ||
+			tmp == "\n" ||
+			tmp.isEmpty() ) continue;
 		
 		// Get QEMU ID String
 		QRegExp tmp_rx = QRegExp( "([\\w-.]+)\\s+.*" );
@@ -2427,7 +2447,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		else
 		{
 			AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
-					   "Unregistred Sound Card Name: " + qemu_dev_name );
+					   "Unregistred Sound Card Name: \"" + qemu_dev_name + "\"" );
 			continue;
 		}
 	}
@@ -2436,6 +2456,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	// Get Network Card Models
 	args_list.clear();
 	args_list << "-net" << "nic,model=?";
+	
 	QString net_list_str = Get_Emulator_Output( path, args_list );
 	text_stream = new QTextStream( &net_list_str );
 	
@@ -2447,7 +2468,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		if( tmp.indexOf("models:") == -1 ) continue;
 		
 		// Get all models string
-		QString all_models = tmp.right( tmp.indexOf("models:") );
+		QString all_models = tmp.mid( tmp.indexOf("models:") + QString("models:").count(), tmp.count() );
 		QStringList net_cards_models = all_models.split( ',', QString::SkipEmptyParts );
 		
 		if( net_cards_models.isEmpty() )
@@ -2457,18 +2478,19 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			continue;
 		}
 		
-		for( int ax = 0; ax < default_device.Network_Card_List.count(); ax++ )
+		// Find names in devices list
+		for( int ax = 0; ax < net_cards_models.count(); ax++ )
 		{
 			bool net_finded = false;
 			QString net_dev_str = "";
 			
-			for( int bx = 0; bx < net_cards_models.count(); bx++ )
+			for( int bx = 0; bx < default_device.Network_Card_List.count(); bx++ )
 			{
-				net_dev_str = net_cards_models[ bx ]; // This for code: if( net_finded == false )...
+				net_dev_str = net_cards_models[ ax ];
 				
-				if( net_cards_models[bx] == default_device.Network_Card_List[ax].QEMU_Name )
+				if( net_dev_str == default_device.Network_Card_List[bx].QEMU_Name )
 				{
-					tmp_dev.Network_Card_List << default_device.Network_Card_List[ ax ];
+					tmp_dev.Network_Card_List << default_device.Network_Card_List[ bx ];
 					net_finded = true;
 					break;
 				}
@@ -2489,6 +2511,27 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
 				   "Cannot get net cards info from emulator. Use default list" );
 	}
+	
+	// Print all data (For tests)
+	qDebug( "\nCPU_List" );
+	for( int ix = 0; ix < tmp_dev.CPU_List.count(); ix++ )
+		qDebug( qPrintable(tmp_dev.CPU_List[ix].Caption + "\t\t\t\t" + tmp_dev.CPU_List[ix].QEMU_Name) );
+	
+	qDebug( "\nMachine_List" );
+	for( int ix = 0; ix < tmp_dev.Machine_List.count(); ix++ )
+		qDebug( qPrintable(tmp_dev.Machine_List[ix].Caption + "\t\t\t\t" + tmp_dev.Machine_List[ix].QEMU_Name) );
+	
+	qDebug( "\nNetwork_Card_List" );
+	for( int ix = 0; ix < tmp_dev.Network_Card_List.count(); ix++ )
+		qDebug( qPrintable(tmp_dev.Network_Card_List[ix].Caption + "\t\t\t\t" + tmp_dev.Network_Card_List[ix].QEMU_Name) );
+	
+	qDebug( "\nVideo_Card_List" );
+	for( int ix = 0; ix < tmp_dev.Video_Card_List.count(); ix++ )
+		qDebug( qPrintable(tmp_dev.Video_Card_List[ix].Caption + "\t\t\t\t" + tmp_dev.Video_Card_List[ix].QEMU_Name) );
+	
+	// Return info
+	ok = true;
+	return tmp_dev;
 }
 
 QString System_Info::Get_Emulator_Help_Output( const QString &path )
@@ -2525,7 +2568,8 @@ QString System_Info::Get_Emulator_Output( const QString &path, const QStringList
 		return QString();
 	}
 	
-	QString result = qemu_pr->readAll();
+	QString result = qemu_pr->readAllStandardOutput();
+	result += qemu_pr->readAllStandardError(); // readAll() not read cerr messages...
 	delete qemu_pr;
 	
 	return result;

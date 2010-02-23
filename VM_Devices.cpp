@@ -1622,30 +1622,15 @@ QString VM_Net_Card::Generate_MAC() const
 		
 		QString model = Get_Card_Model();
 		
-		if( model == "ne2k_pci" )
+		if( model == "ne2k_pci" || model == "ne2k_isa" )
 		{
 			int rm = Get_Random( 0,1 );
-			if( rm >= 0 ) nmac.prepend( novell_mac[rm] );
+			if( rm >= 0 && rm < novell_mac.count() ) nmac.prepend( novell_mac[rm] );
 		}
-		else if( model == "ne2k_isa" )
-		{
-			int rm = Get_Random( 0,1 );
-			if( rm >= 0 ) nmac.prepend( novell_mac[rm] );
-		}
-		else if( model == "i82551" )
+		else if( model == "i82551" || model == "i82557b" || model == "i82559er" || model == "e1000" )
 		{
 			int rm = Get_Random( 0,4 );
-			if( rm >= 0 ) nmac.prepend( intel_mac[rm] );
-		}
-		else if( model == "i82557b" )
-		{
-			int rm = Get_Random( 0,4 );
-			if( rm >= 0 ) nmac.prepend( intel_mac[rm] );
-		}
-		else if( model == "i82559er" )
-		{
-			int rm = Get_Random( 0,4 );
-			if( rm >= 0 ) nmac.prepend( intel_mac[rm] );
+			if( rm >= 0 && rm < intel_mac.count() ) nmac.prepend( intel_mac[rm] );
 		}
 		else if( model == "pcnet" )
 		{
@@ -1670,6 +1655,20 @@ QString VM_Net_Card::Generate_MAC() const
 		{
 			int rm = Get_Random( 0,4 );
 			if( rm >= 0 ) nmac.prepend( sun_mac[rm] );
+		}
+		else if( model == "fseth" )
+		{
+			// FIXME qemu-system-cris
+			nmac = QUuid::createUuid(); // Random HEX for MAC
+			nmac = nmac.mid( 25, 10 );
+			nmac.prepend( "00" ); // Two Zero First, For Valid MAC
+		}
+		else if( model == "xilinx-ethlite" )
+		{
+			// FIXME qemu-system-microblaze
+			nmac = QUuid::createUuid(); // Random HEX for MAC
+			nmac = nmac.mid( 25, 10 );
+			nmac.prepend( "00" ); // Two Zero First, For Valid MAC
 		}
 		else if( model == "" ) // Default 00 + Random
 		{

@@ -196,12 +196,6 @@ class Averable_Devices
 		bool PSO_KVM;
 		bool PSO_RTC_TD_Hack;
 		
-		bool PSO_VGA_Std;
-		bool PSO_VGA_Cirrus;
-		bool PSO_VGA_VMWare;
-		bool PSO_VGA_XenFB;
-		bool PSO_VGA_None;
-		
 		bool PSO_MTDBlock;
 		bool PSO_SD;
 		bool PSO_PFlash;
