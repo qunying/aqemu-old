@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2008 Ben Klopfenstein <benklop@gmail.com>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2009-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of QtEMU, AQEMU.
 **
@@ -43,9 +43,6 @@ MachineView::MachineView( QWidget *parent ) : QScrollArea( parent )
 	setFrameShape( QFrame::NoFrame );
 	Scaling = false;
 	Reinit_Timer = new QTimer( this );
-	
-	connect( View, SIGNAL(reinit_me()),
-			 this, SLOT(reinitView()) );
 }
 
 void MachineView::Set_VNC_URL( const QString &host, int port )
@@ -117,11 +114,8 @@ void MachineView::initView()
 	connect( View, SIGNAL(connected()),
 			 this, SLOT(VNC_Connected_OK()) );
 	
-	connect( View, SIGNAL(changeSize(int, int)),
+	connect( View, SIGNAL(framebufferSizeChanged(int, int)),
 			 this, SLOT(newViewSize(int, int)) );
-	
-	connect( View, SIGNAL(reinit_me()),
-			 this, SLOT(reinitView()) );
 }
 
 void MachineView::reinitView()
@@ -151,11 +145,8 @@ void MachineView::reinitVNC()
 		disconnect( View, SIGNAL(connected()),
 					this, SLOT(VNC_Connected_OK()) );
 		
-		disconnect( View, SIGNAL(changeSize(int, int)),
+		disconnect( View, SIGNAL(framebufferSizeChanged(int, int)),
 					this, SLOT(newViewSize(int, int)) );
-		
-		disconnect( View, SIGNAL(reinit_me()),
-					this, SLOT(reinitView()) );
 		
 		View = new VncView( this );
 		splashShown = true;

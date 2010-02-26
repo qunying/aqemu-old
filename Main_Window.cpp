@@ -1922,7 +1922,7 @@ void Main_Window::Update_VM_Ui()
 	ui.Edit_x509verify_Folder->setText( tmp_vm->Get_VNC_x509verify_Folder_Path() );
 	
 	// No_Use_Embedded_Display
-	if( Settings.value("Use_VNC_Display", "yes").toString() == "yes" )
+	if( Settings.value("Use_VNC_Display", "no").toString() == "yes" )
 	{
 		ui.Label_VNC_Warning->setVisible( true );
 		ui.CH_No_Use_Embedded_Display->setVisible( true );

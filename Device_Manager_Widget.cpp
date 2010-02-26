@@ -956,21 +956,25 @@ void Device_Manager_Widget::on_actionFormat_HDD_triggered()
 	if( ui.Devices_List->currentItem()->data(512).toString() == "hda" )
 	{
 		hdd_win->Set_Image_File_Name( HDA.Get_File_Name() );
+		hdd_win->Set_Image_Info( HDA_Info->Get_Disk_Info() );
 		hdd_win->exec();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdb" )
 	{
 		hdd_win->Set_Image_File_Name( HDB.Get_File_Name() );
+		hdd_win->Set_Image_Info( HDB_Info->Get_Disk_Info() );
 		hdd_win->exec();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdc" )
 	{
 		hdd_win->Set_Image_File_Name( HDC.Get_File_Name() );
+		hdd_win->Set_Image_Info( HDC_Info->Get_Disk_Info() );
 		hdd_win->exec();
 	}
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdd" )
 	{
 		hdd_win->Set_Image_File_Name( HDD.Get_File_Name() );
+		hdd_win->Set_Image_Info( HDD_Info->Get_Disk_Info() );
 		hdd_win->exec();
 	}
 	else

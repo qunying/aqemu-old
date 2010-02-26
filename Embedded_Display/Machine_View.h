@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright (C) 2008 Ben Klopfenstein <benklop@gmail.com>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2009-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
 ** This file is part of QtEMU, AQEMU.
 **
@@ -25,7 +25,7 @@
 #ifndef MACHINE_VIEW_H
 #define MACHINE_VIEW_H
 
-#include "VNC_View.h"
+#include "vncview.h"
 
 #include <QScrollArea>
 #include <QEvent>
@@ -53,6 +53,8 @@ class MachineView : public QScrollArea
 		void showSplash( bool show );
 		void captureAllKeys( bool enabled );
 		void sendKey( QKeyEvent *event );
+		
+	protected:
 		bool event( QEvent *event );
 		
 	public slots:

@@ -1,9 +1,8 @@
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
 **
-** This file is part of KDE, QtEMU, AQEMU.
+** This file is part of KDE.
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -22,11 +21,23 @@
 **
 ****************************************************************************/
 
-#include "VNC_View.h"
-#include "Utils.h"
+#include "vncview.h"
 
-#include <QMessageBox>
-#include <QInputDialog>
+#ifdef QTONLY
+    #include <QMessageBox>
+    #include <QInputDialog>
+    #define KMessageBox QMessageBox
+    #define error(parent, message, caption) \
+        critical(parent, caption, message)
+#else
+    #include "settings.h"
+    #include <KActionCollection>
+    #include <KMainWindow>
+    #include <KMessageBox>
+    #include <KPasswordDialog>
+    #include <KXMLGUIClient>
+#endif
+
 #include <QApplication>
 #include <QImage>
 #include <QPainter>
@@ -39,11 +50,10 @@
 #define KMOD_Control_L 	0x08
 #define KMOD_Shift_L	0x10
 
-VncView::VncView(QWidget *parent, const QUrl &url)
+VncView::VncView(QWidget *parent, const KUrl &url, KConfigGroup configGroup)
         : RemoteView(parent),
         m_initDone(false),
         m_buttonMask(0),
-        m_modifiersMask(0),
         m_repaint(false),
         m_quitFlag(false),
         m_firstPasswordTry(true),
@@ -65,10 +75,18 @@ VncView::VncView(QWidget *parent, const QUrl &url)
     m_clipboard = QApplication::clipboard();
     connect(m_clipboard, SIGNAL(selectionChanged()), this, SLOT(clipboardSelectionChanged()));
     connect(m_clipboard, SIGNAL(dataChanged()), this, SLOT(clipboardDataChanged()));
+    
+#ifndef QTONLY
+    m_hostPreferences = new VncHostPreferences(configGroup, this);
+#else
+    Q_UNUSED(configGroup);
+#endif
 }
 
 VncView::~VncView()
 {
+    unpressModifiers();
+
     // Disconnect all signals so that we don't get any more callbacks from the client thread
     disconnect(&vncThread, SIGNAL(imageUpdated(int, int, int, int)), this, SLOT(updateImage(int, int, int, int)));
     disconnect(&vncThread, SIGNAL(gotCut(const QString&)), this, SLOT(setCut(const QString&)));
@@ -111,18 +129,26 @@ QSize VncView::minimumSizeHint() const
 
 void VncView::scaleResize(int w, int h)
 {
-	AQDebug( "void VncView::scaleResize(int w, int h)",  QString::number(w) + "x" + QString::number(h) );
+    RemoteView::scaleResize(w, h);
+    
+    kDebug(5011) << w << h;
     if (m_scale) {
         m_verticalFactor = (qreal) h / m_frame.height();
         m_horizontalFactor = (qreal) w / m_frame.width();
 
+#ifndef QTONLY
+        if (Settings::keepAspectRatio()) {
+            m_verticalFactor = m_horizontalFactor = qMin(m_verticalFactor, m_horizontalFactor);
+        }
+#else
         m_verticalFactor = m_horizontalFactor = qMin(m_verticalFactor, m_horizontalFactor);
+#endif
 
-        qreal newW = m_frame.width() * m_horizontalFactor;
-        qreal newH = m_frame.height() * m_verticalFactor;
+        const qreal newW = m_frame.width() * m_horizontalFactor;
+        const qreal newH = m_frame.height() * m_verticalFactor;
         setMaximumSize(newW, newH); //This is a hack to force Qt to center the view in the scroll area
         resize(newW, newH);
-    }
+    } 
 }
 
 void VncView::updateConfiguration()
@@ -135,9 +161,9 @@ void VncView::updateConfiguration()
 
 void VncView::startQuitting()
 {
-	AQDebug( "void VncView::startQuitting()", "about to quit" );
+    kDebug(5011) << "about to quit";
 
-    bool connected = status() == RemoteView::Connected;
+    const bool connected = status() == RemoteView::Connected;
 
     setStatus(Disconnecting);
 
@@ -145,11 +171,13 @@ void VncView::startQuitting()
 
     if (connected) {
         vncThread.stop();
-    } else {
-        vncThread.quit();
     }
 
-    vncThread.wait(500);
+    vncThread.quit();
+
+    const bool quitSuccess = vncThread.wait(500);
+
+    kDebug(5011) << "Quit VNC thread success:" << quitSuccess;
 
     setStatus(Disconnected);
 }
@@ -164,21 +192,27 @@ bool VncView::start()
     vncThread.setHost(m_host);
     vncThread.setPort(m_port);
     RemoteView::Quality quality;
-
-    quality = (RemoteView::Quality)((QCoreApplication::arguments().count() > 2) ?
-        QCoreApplication::arguments().at(2).toInt() : 2);
+#ifdef QTONLY
+	quality = RemoteView::High;
+#else
+    quality = m_hostPreferences->quality();
+#endif
 
     vncThread.setQuality(quality);
 
     // set local cursor on by default because low quality mostly means slow internet connection
     if (quality == RemoteView::Low) {
         showDotCursor(RemoteView::CursorOn);
+#ifndef QTONLY
+        // KRDC does always just have one main window, so at(0) is safe
+        KXMLGUIClient *mainWindow = dynamic_cast<KXMLGUIClient*>(KMainWindow::memberList().at(0));
+        if (mainWindow)
+            mainWindow->actionCollection()->action("show_local_cursor")->setChecked(true);
+#endif
     }
 
     setStatus(Connecting);
 
-	setGrabAllKeys( true );
-	
     vncThread.start();
     return true;
 }
@@ -195,7 +229,7 @@ bool VncView::supportsLocalCursor() const
 
 void VncView::requestPassword()
 {
-    AQDebug( "void VncView::requestPassword()", "request password" );
+    kDebug(5011) << "request password";
 
     if (m_authenticaionCanceled) {
         startQuitting();
@@ -204,11 +238,23 @@ void VncView::requestPassword()
 
     setStatus(Authenticating);
 
+#ifndef QTONLY
+    if (m_hostPreferences->walletSupport()) {
+        QString walletPassword = readWalletPassword();
+
+        if (!walletPassword.isNull()) {
+            vncThread.setPassword(walletPassword);
+            return;
+        }
+    }
+#endif
+
     if (!m_url.password().isNull()) {
         vncThread.setPassword(m_url.password());
         return;
     }
 
+#ifdef QTONLY
     bool ok;
     QString password = QInputDialog::getText(this, //krazy:exclude=qclasses
                                              tr("Password required"),
@@ -219,11 +265,23 @@ void VncView::requestPassword()
         vncThread.setPassword(password);
     else
         m_authenticaionCanceled = true;
+#else
+    KPasswordDialog dialog(this);
+    dialog.setPrompt(m_firstPasswordTry ? i18n("Access to the system requires a password.")
+                                        : i18n("Authentication failed. Please try again."));
+    if (dialog.exec() == KPasswordDialog::Accepted) {
+        m_firstPasswordTry = false;
+        vncThread.setPassword(dialog.password());
+    } else {
+        kDebug(5011) << "password dialog not accepted";
+        m_authenticaionCanceled = true;
+    }
+#endif
 }
 
 void VncView::outputErrorMessage(const QString &message)
 {
-    AQDebug( "void VncView::outputErrorMessage(const QString &message)", message );
+    kDebug(5011) << message;
 
     if (message == "INTERNAL:APPLE_VNC_COMPATIBILTY") {
         setCursor(localDotCursor());
@@ -233,16 +291,23 @@ void VncView::outputErrorMessage(const QString &message)
 
     startQuitting();
 
-    AQError( "void VncView::outputErrorMessage(const QString &message)",
-             message );
-
-    emit reinit_me();
-
-    //emit errorMessage(tr("VNC failure"), message);
+#ifndef QTONLY
+    KMessageBox::error(this, message, i18n("VNC failure"));
+#endif
+    emit errorMessage(i18n("VNC failure"), message);
 }
+
+#ifndef QTONLY
+HostPreferences* VncView::hostPreferences()
+{
+    return m_hostPreferences;
+}
+#endif
 
 void VncView::updateImage(int x, int y, int w, int h)
 {
+//     kDebug(5011) << "got update" << width() << height();
+
     m_x = x;
     m_y = y;
     m_w = w;
@@ -267,16 +332,37 @@ void VncView::updateImage(int x, int y, int w, int h)
 
         setMouseTracking(true); // get mouse events even when there is no mousebutton pressed
         setFocusPolicy(Qt::WheelFocus);
-        resize(m_frame.width(), m_frame.height());
         setStatus(Connected);
-        emit changeSize(m_frame.width(), m_frame.height());
+//         emit framebufferSizeChanged(m_frame.width(), m_frame.height());
         emit connected();
+        
+        if (m_scale) {
+            if (parentWidget())
+                scaleResize(parentWidget()->width(), parentWidget()->height());
+        } 
+        
         m_initDone = true;
+
+#ifndef QTONLY
+        if (m_hostPreferences->walletSupport()) {
+            saveWalletPassword(vncThread.password());
+        }
+#endif
     }
 
     if ((y == 0 && x == 0) && (m_frame.size() != size())) {
-        resize(m_frame.width(), m_frame.height());
-        emit changeSize(m_frame.width(), m_frame.height());
+        kDebug(5011) << "Updating framebuffer size";
+        if (m_scale) {
+            setMaximumSize(QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX));
+            if (parentWidget())
+                scaleResize(parentWidget()->width(), parentWidget()->height());
+        } else {
+            kDebug(5011) << "Resizing: " << m_frame.width() << m_frame.height();
+            resize(m_frame.width(), m_frame.height());
+            setMaximumSize(m_frame.width(), m_frame.height()); //This is a hack to force Qt to center the view in the scroll area
+            setMinimumSize(m_frame.width(), m_frame.height());
+        }
+        emit framebufferSizeChanged(m_frame.width(), m_frame.height());
     }
 
     m_repaint = true;
@@ -287,6 +373,8 @@ void VncView::updateImage(int x, int y, int w, int h)
 void VncView::setViewOnly(bool viewOnly)
 {
     RemoteView::setViewOnly(viewOnly);
+
+    m_dontSendClipboard = viewOnly;
 
     if (viewOnly)
         setCursor(Qt::ArrowCursor);
@@ -307,6 +395,7 @@ void VncView::enableScaling(bool scale)
 
     if (scale) {
         setMaximumSize(QSize(QWIDGETSIZE_MAX, QWIDGETSIZE_MAX));
+        setMinimumSize(1, 1);
         if (parentWidget())
             scaleResize(parentWidget()->width(), parentWidget()->height());
     } else {
@@ -314,8 +403,8 @@ void VncView::enableScaling(bool scale)
         m_horizontalFactor = 1.0;
 
         setMaximumSize(m_frame.width(), m_frame.height()); //This is a hack to force Qt to center the view in the scroll area
+        setMinimumSize(m_frame.width(), m_frame.height());
         resize(m_frame.width(), m_frame.height());
-        emit changeSize(m_frame.width(), m_frame.height());
     }
 }
 
@@ -329,10 +418,10 @@ void VncView::setCut(const QString &text)
 
 void VncView::paintEvent(QPaintEvent *event)
 {
+//     kDebug(5011) << "paint event: x: " << m_x << ", y: " << m_y << ", w: " << m_w << ", h: " << m_h;
     if (m_frame.isNull() || m_frame.format() == QImage::Format_Invalid) {
-        AQDebug( "void VncView::paintEvent(QPaintEvent *event)", "no valid image to paint" );
+        kDebug(5011) << "no valid image to paint";
         RemoteView::paintEvent(event);
-        event->accept();
         return;
     }
 
@@ -341,25 +430,26 @@ void VncView::paintEvent(QPaintEvent *event)
     QPainter painter(this);
 
     if (m_repaint) {
-
+//         kDebug(5011) << "normal repaint";
         painter.drawImage(QRect(qRound(m_x*m_horizontalFactor), qRound(m_y*m_verticalFactor),
                                 qRound(m_w*m_horizontalFactor), qRound(m_h*m_verticalFactor)), 
                           m_frame.copy(m_x, m_y, m_w, m_h).scaled(qRound(m_w*m_horizontalFactor), 
                                                                   qRound(m_h*m_verticalFactor),
                                                                   Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
     } else {
+//         kDebug(5011) << "resize repaint";
         QRect rect = event->rect();
         if (rect.width() != width() || rect.height() != height()) {
-            AQDebug( "void VncView::paintEvent(QPaintEvent *event)", "Partial repaint" );
-            int sx = rect.x()/m_horizontalFactor;
-            int sy = rect.y()/m_verticalFactor;
-            int sw = rect.width()/m_horizontalFactor;
-            int sh = rect.height()/m_verticalFactor;
+//             kDebug(5011) << "Partial repaint";
+            const int sx = rect.x()/m_horizontalFactor;
+            const int sy = rect.y()/m_verticalFactor;
+            const int sw = rect.width()/m_horizontalFactor;
+            const int sh = rect.height()/m_verticalFactor;
             painter.drawImage(rect, 
                               m_frame.copy(sx, sy, sw, sh).scaled(rect.width(), rect.height(),
                                                                   Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
         } else {
-            AQDebug( "void VncView::paintEvent(QPaintEvent *event)", "Full repaint" );
+//             kDebug(5011) << "Full repaint" << width() << height() << m_frame.width() << m_frame.height();
             painter.drawImage(QRect(0, 0, width(), height()), 
                               m_frame.scaled(m_frame.width() * m_horizontalFactor, m_frame.height() * m_verticalFactor,
                                              Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
@@ -375,47 +465,34 @@ void VncView::resizeEvent(QResizeEvent *event)
     update();
 }
 
-void VncView::focusOutEvent(QFocusEvent *event)
+bool VncView::event(QEvent *event)
 {
-    if (event->reason() == Qt::TabFocusReason || event->reason() == Qt::BacktabFocusReason) {
-        event->ignore();
-        setFocus(); // get focus back and send tab key event to remote desktop
-        vncThread.keyEvent(XK_Tab, true);
-        vncThread.keyEvent(XK_Tab, false);
+    switch (event->type()) {
+    case QEvent::KeyPress:
+    case QEvent::KeyRelease:
+//         kDebug(5011) << "keyEvent";
+        keyEventHandler(static_cast<QKeyEvent*>(event));
+        return true;
+        break;
+    case QEvent::MouseButtonDblClick:
+    case QEvent::MouseButtonPress:
+    case QEvent::MouseButtonRelease:
+    case QEvent::MouseMove:
+//         kDebug(5011) << "mouseEvent";
+        mouseEventHandler(static_cast<QMouseEvent*>(event));
+        return true;
+        break;
+    case QEvent::Wheel:
+//         kDebug(5011) << "wheelEvent";
+        wheelEventHandler(static_cast<QWheelEvent*>(event));
+        return true;
+        break;
+    default:
+        return RemoteView::event(event);
     }
-
-    RemoteView::focusOutEvent(event);
 }
 
-void VncView::mouseMoveEvent(QMouseEvent *event)
-{
-    mouseEvent(event);
-
-    RemoteView::mouseMoveEvent(event);
-}
-
-void VncView::mousePressEvent(QMouseEvent *event)
-{
-    mouseEvent(event);
-
-    RemoteView::mousePressEvent(event);
-}
-
-void VncView::mouseDoubleClickEvent(QMouseEvent *event)
-{
-    mouseEvent(event);
-
-    RemoteView::mouseDoubleClickEvent(event);
-}
-
-void VncView::mouseReleaseEvent(QMouseEvent *event)
-{
-    mouseEvent(event);
-
-    RemoteView::mouseReleaseEvent(event);
-}
-
-void VncView::mouseEvent(QMouseEvent *e)
+void VncView::mouseEventHandler(QMouseEvent *e)
 {
     if (e->type() != QEvent::MouseMove) {
         if ((e->type() == QEvent::MouseButtonPress) ||
@@ -439,7 +516,7 @@ void VncView::mouseEvent(QMouseEvent *e)
     vncThread.mouseEvent(qRound(e->x() / m_horizontalFactor), qRound(e->y() / m_verticalFactor), m_buttonMask);
 }
 
-void VncView::wheelEvent(QWheelEvent *event)
+void VncView::wheelEventHandler(QWheelEvent *event)
 {
     int eb = 0;
     if (event->delta() < 0)
@@ -447,139 +524,85 @@ void VncView::wheelEvent(QWheelEvent *event)
     else
         eb |= 0x8;
 
-    int x = qRound(event->x() / m_horizontalFactor);
-    int y = qRound(event->y() / m_verticalFactor);
+    const int x = qRound(event->x() / m_horizontalFactor);
+    const int y = qRound(event->y() / m_verticalFactor);
 
     vncThread.mouseEvent(x, y, eb | m_buttonMask);
     vncThread.mouseEvent(x, y, m_buttonMask);
-
-    RemoteView::wheelEvent(event);
 }
 
-void VncView::keyEvent(QKeyEvent *e)
+void VncView::keyEventHandler(QKeyEvent *e)
 {
-    int mask = 0;
-    
-    rfbKeySym k = 0;
-    switch (e->key()) {
-    case Qt::Key_Backspace: k = XK_BackSpace; break;
-    case Qt::Key_Tab: k = XK_Tab; break;
-    case Qt::Key_Clear: k = XK_Clear; break;
-    case Qt::Key_Return: k = XK_Return; break;
-    case Qt::Key_Pause: k = XK_Pause; break;
-    case Qt::Key_Escape: k = XK_Escape; break;
-    case Qt::Key_Space: k = XK_space; break;
-    case Qt::Key_Delete: k = XK_Delete; break;
-    case Qt::Key_Enter: k = XK_KP_Enter; break;
-    case Qt::Key_Equal: k = XK_equal; break;
-    case Qt::Key_Up: k = XK_Up; break;
-    case Qt::Key_Down: k = XK_Down; break;
-    case Qt::Key_Right: k = XK_Right; break;
-    case Qt::Key_Left: k = XK_Left; break;
-    case Qt::Key_Insert: k = XK_Insert; break;
-    case Qt::Key_Home: k = XK_Home; break;
-    case Qt::Key_End: k = XK_End; break;
-    case Qt::Key_PageUp: k = XK_Page_Up; break;
-    case Qt::Key_PageDown: k = XK_Page_Down; break;
-    case Qt::Key_F1: k = XK_F1; break;
-    case Qt::Key_F2: k = XK_F2; break;
-    case Qt::Key_F3: k = XK_F3; break;
-    case Qt::Key_F4: k = XK_F4; break;
-    case Qt::Key_F5: k = XK_F5; break;
-    case Qt::Key_F6: k = XK_F6; break;
-    case Qt::Key_F7: k = XK_F7; break;
-    case Qt::Key_F8: k = XK_F8; break;
-    case Qt::Key_F9: k = XK_F9; break;
-    case Qt::Key_F10: k = XK_F10; break;
-    case Qt::Key_F11: k = XK_F11; break;
-    case Qt::Key_F12: k = XK_F12; break;
-    case Qt::Key_F13: k = XK_F13; break;
-    case Qt::Key_F14: k = XK_F14; break;
-    case Qt::Key_F15: k = XK_F15; break;
-    case Qt::Key_NumLock: k = XK_Num_Lock; break;
-    case Qt::Key_CapsLock: k = XK_Caps_Lock; break;
-    case Qt::Key_ScrollLock: k = XK_Scroll_Lock; break;
-    case Qt::Key_Shift: k = XK_Shift_L; mask |= KMOD_Shift_L; break;
-    case Qt::Key_Control: k = XK_Control_L; mask |= KMOD_Control_L; break;
-    case Qt::Key_AltGr: k = XK_ISO_Level3_Shift; mask |= KMOD_Alt_R; break;
-    case Qt::Key_Alt: k = XK_Alt_L; mask |= KMOD_Alt_L; break;
-    case Qt::Key_Meta: k = XK_Meta_L; mask |= KMOD_Meta_L; break;
-    case Qt::Key_Mode_switch: k = XK_Mode_switch; break;
-    case Qt::Key_Help: k = XK_Help; break;
-    case Qt::Key_Print: k = XK_Print; break;
-    case Qt::Key_SysReq: k = XK_Sys_Req; break;
-    default: break;
-    }
-    
-    // Transform dead keys
-    if (e->key() >= Qt::Key_Dead_Grave && e->key() <= Qt::Key_Dead_Horn) {
-        k = e->key() - Qt::Key_Dead_Grave + XK_dead_grave;
-    }
-    
-    bool pressed = (e->type() == QEvent::KeyPress) ? true : false;
-    m_modifiersMask = pressed ? m_modifiersMask | mask : m_modifiersMask & ~mask;
+    // strip away autorepeating KeyRelease; see bug #206598
+    if (e->isAutoRepeat() && (e->type() == QEvent::KeyRelease))
+        return;
 
-    bool hasShift = m_modifiersMask & KMOD_Shift_L;
-    bool hasOtherMod = m_modifiersMask & (KMOD_Alt_R | KMOD_Alt_L | KMOD_Meta_L | KMOD_Control_L);
-    bool isUpper = e->key() >= 'A' && e->key() <= 'Z';
-    
-    // If shift is pressed, we receive Alt as Meta, but we want to actually send Alt.
-    if (k == XK_Meta_L && hasShift) k = XK_Alt_L;
+// parts of this code are based on http://italc.sourcearchive.com/documentation/1.0.9.1/vncview_8cpp-source.html
+    rfbKeySym k = e->nativeVirtualKey();
 
-    if (k == 0) {
-        if (hasOtherMod && (! isUpper || hasShift)) {
-            k = e->key();
+    // we do not handle Key_Backtab separately as the Shift-modifier
+    // is already enabled
+    if (e->key() == Qt::Key_Backtab) {
+        k = XK_Tab;
+    }
+
+    const bool pressed = (e->type() == QEvent::KeyPress);
+
+    // handle modifiers
+    if (k == XK_Shift_L || k == XK_Control_L || k == XK_Meta_L || k == XK_Alt_L) {
+        if (pressed) {
+            m_mods[k] = true;
+        } else if (m_mods.contains(k)) {
+            m_mods.remove(k);
         } else {
-            if (e->key() < 0x100 && e->text().length() > 0)
-                k = QChar(e->text().at(0)).unicode(); //respect upper- / lowercase
-            else
-                rfbClientLog("Unknown keysym: 0x%x\n", e->key());
+            unpressModifiers();
         }
     }
 
-    if (k < 26) // workaround for modified keys by pressing CTRL
-        k += 96;
-
-    vncThread.keyEvent(k, pressed);
-    RemoteView::keyEvent(e);
+    if (k) {
+        vncThread.keyEvent(k, pressed);
+    }
 }
 
-void VncView::keyPressEvent(QKeyEvent *event)
+void VncView::unpressModifiers()
 {
-    keyEvent(event);
-
-    RemoteView::keyPressEvent(event);
-}
-
-void VncView::keyReleaseEvent(QKeyEvent *event)
-{
-    keyEvent(event);
-
-    RemoteView::keyReleaseEvent(event);
+    const QList<unsigned int> keys = m_mods.keys();
+    QList<unsigned int>::const_iterator it = keys.constBegin();
+    while (it != keys.end()) {
+        vncThread.keyEvent(*it, false);
+        it++;
+    }
+    m_mods.clear();
 }
 
 void VncView::clipboardSelectionChanged()
 {
+    kDebug(5011);
+
     if (m_status != Connected)
         return;
 
     if (m_clipboard->ownsSelection() || m_dontSendClipboard)
         return;
 
-    QString text = m_clipboard->text(QClipboard::Selection);
+    const QString text = m_clipboard->text(QClipboard::Selection);
 
     vncThread.clientCut(text);
 }
 
 void VncView::clipboardDataChanged()
 {
+    kDebug(5011);
+
     if (m_status != Connected)
         return;
 
     if (m_clipboard->ownsClipboard() || m_dontSendClipboard)
         return;
 
-    QString text = m_clipboard->text(QClipboard::Clipboard);
+    const QString text = m_clipboard->text(QClipboard::Clipboard);
 
     vncThread.clientCut(text);
 }
+
+//#include "moc_vncview.cpp"

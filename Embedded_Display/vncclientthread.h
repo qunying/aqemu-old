@@ -1,9 +1,8 @@
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
-** Copyright (C) 2009-2010 Andrey Rijov <ANDron142@yandex.ru>
 **
-** This file is part of KDE, QtEMU, AQEMU.
+** This file is part of KDE.
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -22,10 +21,20 @@
 **
 ****************************************************************************/
 
-#ifndef VNC_CLIENT_THREAD_H
-#define VNC_CLIENT_THREAD_H
+#ifndef VNCCLIENTTHREAD_H
+#define VNCCLIENTTHREAD_H
 
-#include "Remote_View.h"
+#ifdef QTONLY
+    #include <QDebug>
+    #define kDebug(n) qDebug()
+    #define kBacktrace() ""
+    #define i18n tr
+#else
+    #include <KDebug>
+    #include <KLocale>
+#endif
+
+#include "remoteview.h"
 
 #include <QQueue>
 #include <QThread>
@@ -74,13 +83,13 @@ private:
 class ClientCutEvent : public ClientEvent
 {
 public:
-    ClientCutEvent(char *text)
+    ClientCutEvent(const QString &text)
             : text(text) {}
 
     void fire(rfbClient*);
 
 private:
-    char *text;
+    QString text;
 };
 
 class VncClientThread: public QThread

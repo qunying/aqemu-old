@@ -2,9 +2,9 @@
 **
 ** Copyright (C) 2002-2003 Tim Jansen <tim@tjansen.de>
 ** Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
+** Copyright (C) 2010 Andrey Rijov <ANDron142@yandex.ru>
 **
-** This file is part of KDE, QtEMU, AQEMU..
+** This file is part of KDE.
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -23,7 +23,12 @@
 **
 ****************************************************************************/
 
-#include "Remote_View.h"
+#include "remoteview.h"
+
+#ifndef QTONLY
+    #include <KDebug>
+    #include <KStandardDirs>
+#endif
 
 #include <QBitmap>
 
@@ -36,12 +41,18 @@ RemoteView::RemoteView(QWidget *parent)
         m_grabAllKeys(false),
         m_scale(false),
         m_keyboardIsGrabbed(false),
+#ifndef QTONLY
+        m_wallet(0),
+#endif
         m_dotCursorState(CursorOff)
 {
 }
 
 RemoteView::~RemoteView()
 {
+#ifndef QTONLY
+    delete m_wallet;
+#endif
 }
 
 RemoteView::RemoteStatus RemoteView::status()
@@ -68,7 +79,7 @@ void RemoteView::setStatus(RemoteView::RemoteStatus s)
             }
             // smooth state transition
             RemoteStatus origState = m_status;
-            for (int i = origState; i < s; i++) {
+            for (int i = origState; i < s; ++i) {
                 m_status = (RemoteStatus) i;
                 emit statusChanged((RemoteStatus) i);
             }
@@ -175,20 +186,77 @@ void RemoteView::scaleResize(int, int)
 {
 }
 
-QUrl RemoteView::url()
+KUrl RemoteView::url()
 {
     return m_url;
 }
 
+#ifndef QTONLY
+QString RemoteView::readWalletPassword(bool fromUserNameOnly)
+{
+    const QString KRDCFOLDER = "KRDC";
+
+    window()->setDisabled(true); // WORKAROUND: disable inputs so users cannot close the current tab (see #181230)
+    m_wallet = KWallet::Wallet::openWallet(KWallet::Wallet::NetworkWallet(), window()->winId());
+    window()->setDisabled(false);
+
+    if (m_wallet) {
+        bool walletOK = m_wallet->hasFolder(KRDCFOLDER);
+        if (!walletOK) {
+            walletOK = m_wallet->createFolder(KRDCFOLDER);
+            kDebug(5010) << "Wallet folder created";
+        }
+        if (walletOK) {
+            kDebug(5010) << "Wallet OK";
+            m_wallet->setFolder(KRDCFOLDER);
+            QString password;
+            
+            QString key;
+            if (fromUserNameOnly)
+                key = m_url.userName();
+            else
+                key = m_url.prettyUrl(KUrl::RemoveTrailingSlash);
+
+            if (m_wallet->hasEntry(key) &&
+                    !m_wallet->readPassword(key, password)) {
+                kDebug(5010) << "Password read OK";
+
+                return password;
+            }
+        }
+    }
+    return QString();
+}
+
+void RemoteView::saveWalletPassword(const QString &password, bool fromUserNameOnly)
+{
+    QString key;
+    if (fromUserNameOnly)
+        key = m_url.userName();
+    else
+        key = m_url.prettyUrl(KUrl::RemoveTrailingSlash);
+
+    if (m_wallet && m_wallet->isOpen() && !m_wallet->hasEntry(key)) {
+        kDebug(5010) << "Write wallet password";
+        m_wallet->writePassword(key, password);
+    }
+}
+#endif
+
 QCursor RemoteView::localDotCursor() const
 {
-    return QCursor();
-
-	/* FIXME Cursor
-    QBitmap cursorBitmap(KGlobal::dirs()->findResource("appdata","pics/pointcursor.png"));
-    QBitmap cursorMask(KGlobal::dirs()->findResource("appdata","pics/pointcursormask.png"));
+#ifdef QTONLY
+	QBitmap cursorBitmap( ":images/pointcursor.png" );
+	QBitmap cursorMask( ":images/pointcursormask.png" );
+	
+	return QCursor( cursorBitmap, cursorMask );
+#else
+    QBitmap cursorBitmap(KGlobal::dirs()->findResource("appdata",
+                                                       "pics/pointcursor.png"));
+    QBitmap cursorMask(KGlobal::dirs()->findResource("appdata",
+                                                     "pics/pointcursormask.png"));
     return QCursor(cursorBitmap, cursorMask);
-	*/
+#endif
 }
 
 void RemoteView::focusInEvent(QFocusEvent *event)
@@ -210,3 +278,5 @@ void RemoteView::focusOutEvent(QFocusEvent *event)
 
     QWidget::focusOutEvent(event);
 }
+
+//#include "moc_remoteview.cpp"

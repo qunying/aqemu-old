@@ -1,9 +1,8 @@
 /****************************************************************************
 **
 ** Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
 **
-** This file is part of KDE, QtEMU, AQEMU.
+** This file is part of KDE.
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -22,8 +21,7 @@
 **
 ****************************************************************************/
 
-#include "VNC_Client_Thread.h"
-#include "Utils.h"
+#include "vncclientthread.h"
 
 #include <QMutexLocker>
 #include <QTimer>
@@ -35,8 +33,8 @@ rfbBool VncClientThread::newclient(rfbClient *cl)
     VncClientThread *t = (VncClientThread*)rfbClientGetClientData(cl, 0);
     Q_ASSERT(t);
 
-    int width = cl->width, height = cl->height, depth = cl->format.bitsPerPixel;
-    int size = width * height * (depth / 8);
+    const int width = cl->width, height = cl->height, depth = cl->format.bitsPerPixel;
+    const int size = width * height * (depth / 8);
     if (t->frameBuffer)
         delete [] t->frameBuffer; // do not leak if we get a new framebuffer size
     t->frameBuffer = new uint8_t[size];
@@ -79,13 +77,15 @@ rfbBool VncClientThread::newclient(rfbClient *cl)
 
 void VncClientThread::updatefb(rfbClient* cl, int x, int y, int w, int h)
 {
-    int width = cl->width, height = cl->height;
+//     kDebug(5011) << "updated client: x: " << x << ", y: " << y << ", w: " << w << ", h: " << h;
 
-    QImage img(cl->frameBuffer, width, height, QImage::Format_RGB32);
+    const int width = cl->width, height = cl->height;
 
-    if (img.isNull())
-        AQDebug( "void VncClientThread::updatefb(rfbClient* cl, int x, int y, int w, int h)",
-				 "image not loaded" );
+    const QImage img(cl->frameBuffer, width, height, QImage::Format_RGB32);
+
+    if (img.isNull()) {
+        kDebug(5011) << "image not loaded";
+    }
 
     VncClientThread *t = (VncClientThread*)rfbClientGetClientData(cl, 0);
     Q_ASSERT(t);
@@ -97,10 +97,8 @@ void VncClientThread::updatefb(rfbClient* cl, int x, int y, int w, int h)
 
 void VncClientThread::cuttext(rfbClient* cl, const char *text, int textlen)
 {
-    QString cutText = QString::fromUtf8(text, textlen);
-	
-	AQDebug( "void VncClientThread::cuttext(rfbClient* cl, const char *text, int textlen)",
-			 cutText );
+    const QString cutText = QString::fromUtf8(text, textlen);
+    kDebug(5011) << cutText;
 
     if (!cutText.isEmpty()) {
         VncClientThread *t = (VncClientThread*)rfbClientGetClientData(cl, 0);
@@ -112,8 +110,7 @@ void VncClientThread::cuttext(rfbClient* cl, const char *text, int textlen)
 
 char *VncClientThread::passwdHandler(rfbClient *cl)
 {
-	AQDebug( "char *VncClientThread::passwdHandler(rfbClient *cl)",
-			 "password request" );
+    kDebug(5011) << "password request" << kBacktrace();
 
     VncClientThread *t = (VncClientThread*)rfbClientGetClientData(cl, 0);
     Q_ASSERT(t);
@@ -136,22 +133,21 @@ void VncClientThread::outputHandler(const char *format, ...)
 
     message = message.trimmed();
 
-	AQDebug( "void VncClientThread::outputHandler(const char *format, ...)",
-			 message );
+    kDebug(5011) << message;
 
     if ((message.contains("Couldn't convert ")) ||
             (message.contains("Unable to connect to VNC server")))
-        outputErrorMessageString = tr("Server not found.");
+        outputErrorMessageString = i18n("Server not found.");
 
     if ((message.contains("VNC connection failed: Authentication failed, too many tries")) ||
             (message.contains("VNC connection failed: Too many authentication failures")))
-        outputErrorMessageString = tr("VNC authentication failed because of too many authentication tries.");
+        outputErrorMessageString = i18n("VNC authentication failed because of too many authentication tries.");
 
     if (message.contains("VNC connection failed: Authentication failed"))
-        outputErrorMessageString = tr("VNC authentication failed.");
+        outputErrorMessageString = i18n("VNC authentication failed.");
 
     if (message.contains("VNC server closed connection"))
-        outputErrorMessageString = "VNC server closed connection.";
+        outputErrorMessageString = i18n("VNC server closed connection.");
 
     // internal messages, not displayed to user
     if (message.contains("VNC server supports protocol version 3.889")) // see http://bugs.kde.org/162640
@@ -174,7 +170,10 @@ VncClientThread::VncClientThread(QObject *parent)
 VncClientThread::~VncClientThread()
 {
     stop();
-    wait(500);
+
+    const bool quitSuccess = wait(500);
+
+    kDebug(5011) << "Quit VNC thread success:" << quitSuccess;
     
     delete [] frameBuffer;
 }
@@ -182,11 +181,11 @@ VncClientThread::~VncClientThread()
 void VncClientThread::checkOutputErrorMessage()
 {
     if (!outputErrorMessageString.isEmpty()) {
-		AQDebug( "void VncClientThread::checkOutputErrorMessage()", outputErrorMessageString );
+        kDebug(5011) << outputErrorMessageString;
         QString errorMessage = outputErrorMessageString;
         outputErrorMessageString.clear();
         // show authentication failure error only after the 3rd unsuccessful try
-        if ((errorMessage != tr("VNC authentication failed.")) || m_passwordError)
+        if ((errorMessage != i18n("VNC authentication failed.")) || m_passwordError)
             outputErrorMessage(errorMessage);
     }
 }
@@ -271,7 +270,7 @@ void VncClientThread::run()
             m_port += 5900;
         cl->serverPort = m_port;
 
-		AQDebug( "void VncClientThread::run()", "Init..." );
+        kDebug(5011) << "--------------------- trying init ---------------------";
 
         if (rfbInitClient(cl, 0, 0))
             break;
@@ -286,7 +285,7 @@ void VncClientThread::run()
 
     // Main VNC event loop
     while (!m_stopped) {
-        int i = WaitForMessage(cl, 500);
+        const int i = WaitForMessage(cl, 500);
         if (i < 0)
             break;
         if (i)
@@ -326,7 +325,7 @@ void KeyClientEvent::fire(rfbClient* cl)
 
 void ClientCutEvent::fire(rfbClient* cl)
 {
-    SendClientCutText(cl, text, qstrlen(text));
+    SendClientCutText(cl, text.toUtf8().data(), text.size());
 }
 
 void VncClientThread::mouseEvent(int x, int y, int buttonMask)
@@ -353,5 +352,7 @@ void VncClientThread::clientCut(const QString &text)
     if (m_stopped)
         return;
 
-    m_eventQueue.enqueue(new ClientCutEvent(strdup(text.toUtf8())));
+    m_eventQueue.enqueue(new ClientCutEvent(text));
 }
+
+//#include "moc_vncclientthread.cpp"

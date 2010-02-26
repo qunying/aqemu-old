@@ -30,7 +30,7 @@
 #include "Monitor_Window.h"
 
 #ifdef VNC_DISPLAY
-#include "Machine_View.h"
+#include "Embedded_Display/Machine_View.h"
 #endif
 
 class Virtual_Machine;

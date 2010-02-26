@@ -876,10 +876,7 @@ void Emulator_Control_Window::on_actionReinit_VNC_triggered()
 
 void Emulator_Control_Window::Connect_VNC()
 {
-//	static int init_count = 0;
-//	++init_count; AQError( "init_count", QString::number(init_count) );
-	
-//	if( init_count == 2) Machine_View->initView();
+	QTest::qWait(250);
 	Machine_View->initView();
 }
 

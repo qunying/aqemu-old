@@ -49,6 +49,9 @@ void Create_HDD_Image_Window::Set_Image_File_Name( const QString &path )
 
 void Create_HDD_Image_Window::Set_Image_Info( VM::Disk_Info info )
 {
+	// This function word only in format mode. Change button caption
+	ui.Button_Create->setText( tr("F&ormat") );
+	
 	// Format
 	int format_ix = ui.CB_Format->findText( info.Disk_Format );
 	

@@ -141,10 +141,13 @@ OPTION( WITHOUT_EMBEDDED_DISPLAY "Build without support Embedded VNC Display" )
 IF( NOT WITHOUT_EMBEDDED_DISPLAY )
 	FIND_PACKAGE( LibVNCServer REQUIRED )
 	
-	SET( aqemu_headers ${aqemu_headers} Machine_View.h Remote_View.h VNC_Client_Thread.h VNC_View.h )
-	SET( aqemu_sources ${aqemu_sources} Machine_View.cpp Remote_View.cpp VNC_Client_Thread.cpp VNC_View.cpp )
+	SET( aqemu_headers ${aqemu_headers} Embedded_Display/Machine_View.h Embedded_Display/remoteview.h
+										Embedded_Display/vncclientthread.h Embedded_Display/vncview.h )
 	
-	ADD_DEFINITIONS( -Wall -g ${QT_DEFINITIONS} -DVNC_DISPLAY )
+	SET( aqemu_sources ${aqemu_sources} Embedded_Display/Machine_View.cpp Embedded_Display/remoteview.cpp
+										Embedded_Display/vncclientthread.cpp Embedded_Display/vncview.cpp )
+	
+	ADD_DEFINITIONS( -Wall -g ${QT_DEFINITIONS} -DVNC_DISPLAY -DQTONLY )
 	ADD_LIBRARY( libvncclient SHARED ${aqemu_headers} ${aqemu_sources} )
 	
 	INCLUDE_DIRECTORIES( ${VNCCLIENT_INCLUDE_DIRS} )

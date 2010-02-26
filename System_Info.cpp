@@ -1839,7 +1839,7 @@ QStringList System_Info::Find_KVM_Binary_Files( const QString &path )
 }
 
 Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
-{	
+{
 	if( ! QFile::exists(path) )
 	{
 		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",

@@ -2,9 +2,8 @@
 **
 ** Copyright (C) 2002-2003 Tim Jansen <tim@tjansen.de>
 ** Copyright (C) 2007-2008 Urs Wolfer <uwolfer @ kde.org>
-** Copyright (C) 2009 Andrey Rijov <ANDron142@yandex.ru>
 **
-** This file is part of KDE, QtEMU, AQEMU.
+** This file is part of KDE.
 **
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
@@ -23,11 +22,21 @@
 **
 ****************************************************************************/
 
-#ifndef REMOTE_VIEW_H
-#define REMOTE_VIEW_H
+#ifndef REMOTEVIEW_H
+#define REMOTEVIEW_H
 
-#include <QUrl>
+#ifdef QTONLY
+    #include <QUrl>
+    #define KUrl QUrl
+    #define KDE_EXPORT
+#else
+    #include <KUrl>
+    #include <KWallet/Wallet>
+#endif
+
 #include <QWidget>
+
+class HostPreferences;
 
 /**
  * Generic widget that displays a remote framebuffer.
@@ -46,7 +55,7 @@
  *     MotionNotify events will be forwarded.
  *
  */
-class RemoteView : public QWidget
+class KDE_EXPORT RemoteView : public QWidget
 {
     Q_OBJECT
 
@@ -118,8 +127,6 @@ public:
         Authentication
     };
 
-    RemoteView(QWidget *parent = 0);
-
     virtual ~RemoteView();
 
     /**
@@ -183,7 +190,7 @@ public:
      * Returns the resolution of the remote framebuffer.
      * It should return a null @ref QSize when the size
      * is not known.
-     * The backend must also emit a @ref changeSize()
+     * The backend must also emit a @ref framebufferSizeChanged()
      * when the size of the framebuffer becomes available
      * for the first time or the size changed.
      * @return the remote framebuffer size, a null QSize
@@ -236,7 +243,14 @@ public:
      * The default implementation does nothing.
      */
     virtual void updateConfiguration();
-
+    
+#ifndef QTONLY
+    /**
+     * Returns the current host preferences of this view.
+     */
+    virtual HostPreferences* hostPreferences() = 0;
+#endif
+    
     /**
      * Returns the current status of the connection.
      * @return the status of the connection
@@ -247,7 +261,7 @@ public:
     /**
      * @return the current url
      */
-    QUrl url();
+    KUrl url();
 
 public slots:
     /**
@@ -305,7 +319,7 @@ signals:
      * @param x the width of the screen
      * @param y the height of the screen
      */
-    void changeSize(int w, int h);
+    void framebufferSizeChanged(int w, int h);
 
     /**
      * Emitted when the view connected successfully.
@@ -349,6 +363,8 @@ signals:
     void mouseStateChanged(int x, int y, int buttonMask);
 
 protected:
+    RemoteView(QWidget *parent = 0);
+
     void focusInEvent(QFocusEvent *event);
     void focusOutEvent(QFocusEvent *event);
 
@@ -379,7 +395,13 @@ protected:
     bool m_grabAllKeys;
     bool m_scale;
     bool m_keyboardIsGrabbed;
-    QUrl m_url;
+    KUrl m_url;
+
+#ifndef QTONLY
+    QString readWalletPassword(bool fromUserNameOnly = false);
+    void saveWalletPassword(const QString &password, bool fromUserNameOnly = false);
+    KWallet::Wallet *m_wallet;
+#endif
 
     DotCursorState m_dotCursorState;
 };
