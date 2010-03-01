@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>687</width>
-    <height>590</height>
+    <height>594</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -3929,6 +3929,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
     <addaction name="actionPower_Off" />
     <addaction name="actionReset" />
     <addaction name="separator" />
+    <addaction name="actionManage_Snapshots" />
     <addaction name="actionShow_Emulator_Control" />
     <addaction name="actionShow_QEMU_Arguments" />
     <addaction name="actionCreate_Shell_Script" />

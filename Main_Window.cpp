@@ -107,6 +107,7 @@ Main_Window::Main_Window( QWidget *parent )
 	Icon_Menu->addAction( ui.actionReset );
 	Icon_Menu->addSeparator();
 	Icon_Menu->addAction( ui.actionDelete_VM );
+	Icon_Menu->addAction( ui.actionDelete_VM_And_Files );
 	Icon_Menu->addAction( ui.actionSave_As_Template );
 	Icon_Menu->addAction( ui.actionCopy );
 	Icon_Menu->addSeparator();
