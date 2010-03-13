@@ -106,9 +106,10 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->Computer_Type = vm.Get_Computer_Type();
 	this->Machine_Type = vm.Get_Machine_Type();
 	this->CPU_Type = vm.Get_CPU_Type();
-	this->SMP_CPU_Count = vm.Get_SMP_CPU_Count();
+	this->SMP = vm.Get_SMP();
 	this->Keyboard_Layout = vm.Get_Keyboard_Layout();
-	this->Boot_Device = vm.Get_Boot_Device();
+	this->Boot_Order_List = vm.Get_Boot_Order_List();
+	this->Show_Boot_Menu = vm.Get_Show_Boot_Menu();
 	this->Video_Card = vm.Get_Video_Card();
 	this->KQEMU_Mode = vm.Get_KQEMU_Mode();
 	
@@ -252,6 +253,7 @@ Virtual_Machine::~Virtual_Machine()
 	if( QEMU_Process != NULL ) delete QEMU_Process;
 	if( Emu_Ctl != NULL ) delete Emu_Ctl;
 	
+	Boot_Order_List.clear();
 	Snapshots.clear();
 	Storage_Devices.clear();
 	Network_Cards.clear();
@@ -301,9 +303,41 @@ void Virtual_Machine::Shared_Constructor()
 	Computer_Type = "";
 	Machine_Type = "";
 	CPU_Type = "";
-	SMP_CPU_Count = 1;
+	SMP.SMP_Count = 1;
 	Keyboard_Layout = "Default";
-	Boot_Device = VM::Boot_From_FDD;
+	
+	VM::Boot_Order tmpBootOrder;
+	
+	tmpBootOrder.Enabled = true;
+	tmpBootOrder.Type = VM::Boot_From_FDA;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Enabled = false;
+	tmpBootOrder.Type = VM::Boot_From_FDB;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Enabled = true;
+	tmpBootOrder.Type = VM::Boot_From_CDROM;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Type = VM::Boot_From_HDD;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Enabled = false;
+	tmpBootOrder.Type = VM::Boot_From_Network1;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Type = VM::Boot_From_Network2;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Type = VM::Boot_From_Network3;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	tmpBootOrder.Type = VM::Boot_From_Network4;
+	this->Boot_Order_List << tmpBootOrder;
+	
+	Show_Boot_Menu = true;
+	
 	Video_Card = "";
 	KQEMU_Mode = VM::KQEMU_Default;
 	Audio_Card = VM::Sound_Cards();
@@ -373,7 +407,7 @@ void Virtual_Machine::Shared_Constructor()
 	RTC_TD_Hack = false;
 	
 	Start_Date = false;
-	Start_DateTime = QDateTime::fromString( "31.12.2008 23:59:00", "dd.MM.yyyy HH:mm:ss" );
+	Start_DateTime = QDateTime::fromString( "20.10.2000 23:59:00", "dd.MM.yyyy HH:mm:ss" );
 	
 	VNC = false;
 	VNC_Socket_Mode = false;
@@ -407,9 +441,9 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		this->Machine_Name == vm.Get_Machine_Name() &&
 		this->Machine_Type == vm.Get_Machine_Type() &&
 		this->CPU_Type == vm.Get_CPU_Type() &&
-		this->SMP_CPU_Count == vm.Get_SMP_CPU_Count() &&
+		this->SMP == vm.Get_SMP() &&
 		this->Keyboard_Layout == vm.Get_Keyboard_Layout() &&
-		this->Boot_Device == vm.Get_Boot_Device() &&
+		this->Show_Boot_Menu == vm.Get_Show_Boot_Menu() &&
 		this->Video_Card == vm.Get_Video_Card() &&
 		this->KQEMU_Mode == vm.Get_KQEMU_Mode() &&
 		this->Audio_Card == vm.Get_Audio_Cards() &&
@@ -481,6 +515,17 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		this->VNC_x509verify_Folder_Path == vm.Get_VNC_x509verify_Folder_Path() &&
 		this->No_Use_Embedded_Display == vm.Use_No_Use_Embedded_Display() )
 	{
+		// Boot Order
+		if( Boot_Order_List.count() == vm.Get_Boot_Order_List().count() )
+		{
+			for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
+			{
+				if( Boot_Order_List[bx].Enabled != vm.Get_Boot_Order_List()[bx].Enabled ||
+					Boot_Order_List[bx].Type != vm.Get_Boot_Order_List()[bx].Type ) return false;
+			}
+		}
+		else return false;
+		
 		// Storage Devices
 		if( Storage_Devices.count() == vm.Get_Storage_Devices_List().count() )
 		{
@@ -608,9 +653,10 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	this->Computer_Type = vm.Get_Computer_Type();
 	this->Machine_Type = vm.Get_Machine_Type();
 	this->CPU_Type = vm.Get_CPU_Type();
-	this->SMP_CPU_Count = vm.Get_SMP_CPU_Count();
+	this->SMP = vm.Get_SMP();
 	this->Keyboard_Layout = vm.Get_Keyboard_Layout();
-	this->Boot_Device = vm.Get_Boot_Device();
+	this->Boot_Order_List = vm.Get_Boot_Order_List();
+	this->Show_Boot_Menu = vm.Get_Show_Boot_Menu();
 	this->Video_Card = vm.Get_Video_Card();
 	this->KQEMU_Mode = vm.Get_KQEMU_Mode();
 	this->Audio_Card = vm.Get_Audio_Cards();
@@ -888,10 +934,34 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Dom_Text = New_Dom_Document.createTextNode( CPU_Type );
 	Dom_Element.appendChild( Dom_Text );
 	
-	// CPU Count
+	// SMP_CPU_Count
 	Dom_Element = New_Dom_Document.createElement( "SMP_CPU_Count" );
 	VM_Element.appendChild( Dom_Element );
-	Dom_Text = New_Dom_Document.createTextNode( QString::number(SMP_CPU_Count) );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SMP.SMP_Count) );
+	Dom_Element.appendChild( Dom_Text );
+	
+	// SMP_Cores
+	Dom_Element = New_Dom_Document.createElement( "SMP_Cores" );
+	VM_Element.appendChild( Dom_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SMP.SMP_Cores) );
+	Dom_Element.appendChild( Dom_Text );
+	
+	// SMP_Threads
+	Dom_Element = New_Dom_Document.createElement( "SMP_Threads" );
+	VM_Element.appendChild( Dom_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SMP.SMP_Threads) );
+	Dom_Element.appendChild( Dom_Text );
+	
+	// SMP_Sockets
+	Dom_Element = New_Dom_Document.createElement( "SMP_Sockets" );
+	VM_Element.appendChild( Dom_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SMP.SMP_Sockets) );
+	Dom_Element.appendChild( Dom_Text );
+	
+	// SMP_MaxCPUs
+	Dom_Element = New_Dom_Document.createElement( "SMP_MaxCPUs" );
+	VM_Element.appendChild( Dom_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SMP.SMP_MaxCPUs) );
 	Dom_Element.appendChild( Dom_Text );
 	
 	// Keyboard Layout
@@ -900,39 +970,78 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Dom_Text = New_Dom_Document.createTextNode( Keyboard_Layout );
 	Dom_Element.appendChild( Dom_Text );
 	
-	// Boot Device
-	Dom_Element = New_Dom_Document.createElement( "Boot_Device" );
-	VM_Element.appendChild( Dom_Element );
+	// Create new element
+	QDomElement Sec_Element;
 	
-	switch( Boot_Device )
+	// Boot Device
+	Dom_Element = New_Dom_Document.createElement( "Boot_Device_Count" );
+	VM_Element.appendChild( Dom_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(Boot_Order_List.count()) );
+	Dom_Element.appendChild( Dom_Text );
+	
+	for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
 	{
-		case VM::Boot_From_FDD:
-			Dom_Text = New_Dom_Document.createTextNode( "FDD" );
-			break;
-			
-		case VM::Boot_From_CDROM:
-			Dom_Text = New_Dom_Document.createTextNode( "CDROM" );
-			break;
-			
-		case VM::Boot_From_HDD:
-			Dom_Text = New_Dom_Document.createTextNode( "HDD" );
-			break;
-			
-		case VM::Boot_From_Network:
-			Dom_Text = New_Dom_Document.createTextNode( "Network" );
-			break;
-			
-		case VM::Boot_None:
-			Dom_Text = New_Dom_Document.createTextNode( "None" );
-			break;
-			
-		default:
-			AQWarning( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
-					   "Use Default Boot Device: CD-ROM" );
-			Dom_Text = New_Dom_Document.createTextNode( "CDROM" );
-			break;
+		Dom_Element = New_Dom_Document.createElement( "Boot_Device_" + QString::number(bx) );
+		
+		Sec_Element = New_Dom_Document.createElement( "Enabled" );
+		Dom_Element.appendChild( Sec_Element );
+		if( Boot_Order_List[bx].Enabled ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+		else Dom_Text = New_Dom_Document.createTextNode( "false" );
+		Sec_Element.appendChild( Dom_Text );
+		
+		Sec_Element = New_Dom_Document.createElement( "Type" );
+		Dom_Element.appendChild( Sec_Element );
+		
+		switch( Boot_Order_List[bx].Type )
+		{
+			case VM::Boot_From_FDA:
+				Dom_Text = New_Dom_Document.createTextNode( "FDA" );
+				break;
+				
+			case VM::Boot_From_FDB:
+				Dom_Text = New_Dom_Document.createTextNode( "FDB" );
+				break;
+				
+			case VM::Boot_From_CDROM:
+				Dom_Text = New_Dom_Document.createTextNode( "CDROM" );
+				break;
+				
+			case VM::Boot_From_HDD:
+				Dom_Text = New_Dom_Document.createTextNode( "HDD" );
+				break;
+				
+			case VM::Boot_From_Network1:
+				Dom_Text = New_Dom_Document.createTextNode( "Network1" );
+				break;
+				
+			case VM::Boot_From_Network2:
+				Dom_Text = New_Dom_Document.createTextNode( "Network2" );
+				break;
+				
+			case VM::Boot_From_Network3:
+				Dom_Text = New_Dom_Document.createTextNode( "Network3" );
+				break;
+				
+			case VM::Boot_From_Network4:
+				Dom_Text = New_Dom_Document.createTextNode( "Network4" );
+				break;
+				
+			default:
+				AQWarning( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
+						   "Use Default Boot Device: CD-ROM" );
+				Dom_Text = New_Dom_Document.createTextNode( "CDROM" );
+				break;
+		}
+		
+		Sec_Element.appendChild( Dom_Text );
+		VM_Element.appendChild( Dom_Element );
 	}
 	
+	// Show Boot Menu
+	Dom_Element = New_Dom_Document.createElement( "Show_Boot_Menu" );
+	VM_Element.appendChild( Dom_Element );
+	if( Show_Boot_Menu ) Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else Dom_Text = New_Dom_Document.createTextNode( "false" );
 	Dom_Element.appendChild( Dom_Text );
 	
 	// Video_Card
@@ -971,9 +1080,6 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	}
 	
 	Dom_Element.appendChild( Dom_Text );
-	
-	// Create new element
-	QDomElement Sec_Element;
 	
 	// Audio Cards
 	Dom_Element = New_Dom_Document.createElement( "Audio_Cards" );
@@ -3239,6 +3345,7 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			QDomElement Child_Element = Root_Element.firstChildElement( "Virtual_Machine" );
 			bool load_emulator = true;
 			bool old_version_storage_devices = false;
+			bool load_boot_order_setcton = false;
 			QString aqemu_vm_file_version = "";
 			
 			if( Root_Element.hasAttribute("version") )
@@ -3250,6 +3357,7 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			{
 				AQDebug( "bool Virtual_Machine::Load_VM( const QString &file_name )",
 						 "This is AQEMU VM File Version 0.8!" );
+				load_boot_order_setcton = true; // for QEMU/KVM > 0.11
 			}
 			else if( aqemu_vm_file_version == "0.7.2" )
 			{
@@ -3364,47 +3472,142 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			// CPU Type
 			CPU_Type = Child_Element.firstChildElement("CPU_Type").text();
 			
-			// CPU Count
-			SMP_CPU_Count = Child_Element.firstChildElement("SMP_CPU_Count").text().toInt();
+			// SMP
+			SMP.SMP_Count = Child_Element.firstChildElement("SMP_CPU_Count").text().toInt();
+			SMP.SMP_Cores = Child_Element.firstChildElement("SMP_Cores").text().toInt();
+			SMP.SMP_Threads = Child_Element.firstChildElement("SMP_Threads").text().toInt();
+			SMP.SMP_Sockets = Child_Element.firstChildElement("SMP_Sockets").text().toInt();
+			SMP.SMP_MaxCPUs = Child_Element.firstChildElement("SMP_MaxCPUs").text().toInt();
 			
 			// Keyboard Layout
 			Keyboard_Layout = Child_Element.firstChildElement("Keyboard_Layout").text();
 			
-			// Boot Device
-			QString tmp_str = Child_Element.firstChildElement("Boot_Device").text();
+			QDomElement Second_Element;
 			
-			if( tmp_str == "FDD" )
+			// Boot Device
+			Boot_Order_List.clear();
+			
+			if( load_boot_order_setcton && Child_Element.firstChildElement("Boot_Device").text().isEmpty() )
 			{
-				Boot_Device = VM::Boot_From_FDD;
-			}
-			else if( tmp_str == "CDROM" )
-			{
-				Boot_Device = VM::Boot_From_CDROM;
-			}
-			else if( tmp_str == "HDD" )
-			{
-				Boot_Device = VM::Boot_From_HDD;
-			}
-			else if( tmp_str == "Network" )
-			{
-				Boot_Device = VM::Boot_From_Network;
-			}
-			else if( tmp_str == "None" )
-			{
-				Boot_Device = VM::Boot_None;
+				int bootOrderCount = Child_Element.firstChildElement( "Boot_Device_Count" ).text().toInt();
+				
+				if( bootOrderCount == 0 )
+				{
+					VM::Boot_Order tmpBootOrder;
+					
+					tmpBootOrder.Enabled = true;
+					tmpBootOrder.Type = VM::Boot_From_FDA;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Enabled = false;
+					tmpBootOrder.Type = VM::Boot_From_FDB;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Enabled = true;
+					tmpBootOrder.Type = VM::Boot_From_CDROM;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Type = VM::Boot_From_HDD;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Enabled = false;
+					tmpBootOrder.Type = VM::Boot_From_Network1;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Type = VM::Boot_From_Network2;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Type = VM::Boot_From_Network3;
+					this->Boot_Order_List << tmpBootOrder;
+					
+					tmpBootOrder.Type = VM::Boot_From_Network4;
+					this->Boot_Order_List << tmpBootOrder;
+				}
+				
+				for( int bx = 0; bx < bootOrderCount; bx++ )
+				{
+					Second_Element = Child_Element.firstChildElement( "Boot_Device_" + QString::number(bx) );
+					
+					VM::Boot_Order tmpBootDev;
+					tmpBootDev.Enabled = Second_Element.firstChildElement( "Enabled" ).text() == "true";
+					QString bootType = Second_Element.firstChildElement( "Type" ).text();
+					
+					if( bootType == "FDA" ) tmpBootDev.Type = VM::Boot_From_FDA;
+					else if( bootType == "FDB" ) tmpBootDev.Type = VM::Boot_From_FDB;
+					else if( bootType == "CDROM" ) tmpBootDev.Type = VM::Boot_From_CDROM;
+					else if( bootType == "HDD" ) tmpBootDev.Type = VM::Boot_From_HDD;
+					else if( bootType == "Network1" ) tmpBootDev.Type = VM::Boot_From_Network1;
+					else if( bootType == "Network2" ) tmpBootDev.Type = VM::Boot_From_Network2;
+					else if( bootType == "Network3" ) tmpBootDev.Type = VM::Boot_From_Network3;
+					else if( bootType == "Network4" ) tmpBootDev.Type = VM::Boot_From_Network4;
+					else
+					{
+						AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )",
+								 "Incorrect boot device type! Use default: CDROM" );
+						tmpBootDev.Type = VM::Boot_From_HDD;
+					}
+					
+					Boot_Order_List << tmpBootDev;
+				}
 			}
 			else
 			{
-				Boot_Device = VM::Boot_From_CDROM;
-				AQWarning( "bool Virtual_Machine::Load_VM( const QString &file_name )",
-						   "Use Default Boot Device: CD-ROM" );
+				VM::Boot_Order tmpBootOrder;
+				tmpBootOrder.Enabled = false;
+				
+				tmpBootOrder.Type = VM::Boot_From_FDA;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_FDB;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_CDROM;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_HDD;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_Network1;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_Network2;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_Network3;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				tmpBootOrder.Type = VM::Boot_From_Network4;
+				this->Boot_Order_List << tmpBootOrder;
+				
+				QString tmp_str = Child_Element.firstChildElement("Boot_Device").text();
+				VM::Boot_Device bootDev;
+				
+				if( tmp_str == "FDD" ) bootDev = VM::Boot_From_FDA;
+				else if( tmp_str == "CDROM" ) bootDev = VM::Boot_From_CDROM;
+				else if( tmp_str == "HDD" ) bootDev = VM::Boot_From_HDD;
+				else if( tmp_str == "Network" ) bootDev = VM::Boot_From_Network1;
+				else if( tmp_str == "None" ) bootDev = VM::Boot_None;
+				else
+				{
+					bootDev = VM::Boot_From_CDROM;
+					AQWarning( "bool Virtual_Machine::Load_VM( const QString &file_name )",
+							   "Use Default Boot Device: CD-ROM" );
+				}
+				
+				for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
+				{
+					if( Boot_Order_List[bx].Type == bootDev ) Boot_Order_List[ bx ].Enabled = true;
+				}
 			}
+			
+			// Show Boot Menu
+			Show_Boot_Menu = (Child_Element.firstChildElement("Show_Boot_Menu").text() == "true");
 			
 			// Video Card
 			Video_Card = Child_Element.firstChildElement("Video_Card").text();
 			
 			// KQEMU Mode ( Acseleration )
-			tmp_str = Child_Element.firstChildElement("KQEMU_Mode").text();
+			QString tmp_str = Child_Element.firstChildElement("KQEMU_Mode").text();
 			
 			if( tmp_str == "Enabled" )
 			{
@@ -3428,8 +3631,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				AQWarning( "bool Virtual_Machine::Load_VM( const QString &file_name )",
 						   "KQEMU_Mode Invalid! Use Default!" );
 			}
-			
-			QDomElement Second_Element;
 			
 			// Audio Cards
 			Second_Element = Child_Element.firstChildElement( "Audio_Cards" );
@@ -4744,9 +4945,30 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// SMP Mode
-	if( SMP_CPU_Count <= Current_Emulator_Devices->PSO_SMP_Count )
+	if( SMP.SMP_Count <= Current_Emulator_Devices->PSO_SMP_Count )
 	{
-		if( SMP_CPU_Count > 1 ) Args << "-smp" << QString::number( SMP_CPU_Count );
+		if( Current_Emulator_Devices->PSO_SMP_Cores || Current_Emulator_Devices->PSO_SMP_Threads ||
+			Current_Emulator_Devices->PSO_SMP_Sockets || Current_Emulator_Devices->PSO_SMP_MaxCPUs )
+		{
+			if( SMP.SMP_Count > 1 || SMP.SMP_Cores > 0 || SMP.SMP_Threads > 0 || SMP.SMP_Sockets > 0 || SMP.SMP_MaxCPUs > 0 )
+			{
+				QString smp_args = QString::number( SMP.SMP_Count );
+				
+				if( Current_Emulator_Devices->PSO_SMP_Cores && SMP.SMP_Cores > 0 ) smp_args += ",cores=" + QString::number( SMP.SMP_Cores );
+				if( Current_Emulator_Devices->PSO_SMP_Threads && SMP.SMP_Threads > 0 ) smp_args += ",threads=" + QString::number( SMP.SMP_Threads );
+				if( Current_Emulator_Devices->PSO_SMP_Sockets && SMP.SMP_Sockets > 0 ) smp_args += ",sockets=" + QString::number( SMP.SMP_Sockets );
+				if( Current_Emulator_Devices->PSO_SMP_MaxCPUs && SMP.SMP_MaxCPUs > 0 ) smp_args += ",maxcpus=" + QString::number( SMP.SMP_MaxCPUs );
+				
+				Args << "-smp" << smp_args;
+			}
+		}
+		else
+		{
+			if( SMP.SMP_Count > 1 )
+			{
+				Args << "-smp" << QString::number( SMP.SMP_Count );
+			}
+		}
 	}
 	
 	// CPU Model
@@ -5114,26 +5336,97 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// Boot Device
-	switch( Boot_Device )
+	if( Current_Emulator_Devices->PSO_Boot_Order )
 	{
-		case VM::Boot_From_FDD:
-			Args << "-boot" << "a";
-			break;
+		int bootDevCount = 0;
+		int onceBootDeviceIndex = -1;
+		for( int ix = 0; ix < Boot_Order_List.count(); ix++ )
+		{
+			if( Boot_Order_List[ix].Enabled )
+			{
+				bootDevCount++;
+				onceBootDeviceIndex = ix;
+			}
+		}
+		
+		if( bootDevCount > 1 )
+		{
+			QString bootStr = "";
 			
-		case VM::Boot_From_CDROM:
-			Args << "-boot" << "d";
-			break;
+			for( int ix = 0; ix < Boot_Order_List.count(); ix++ )
+			{
+				if( Boot_Order_List[ix].Type == VM::Boot_From_FDA ) bootStr += "a";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_FDB ) bootStr += "b";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_HDD ) bootStr += "c";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_CDROM ) bootStr += "d";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_Network1 ) bootStr += "n-1";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_Network2 ) bootStr += "n-2";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_Network3 ) bootStr += "n-3";
+				else if( Boot_Order_List[ix].Type == VM::Boot_From_Network4 ) bootStr += "n-4";
+			}
 			
-		case VM::Boot_From_HDD:
-			Args << "-boot" << "c";
-			break;
+			bootStr.prepend( (bootStr.isEmpty() ? "" : "order=") );
+			bootStr += QString(bootStr.isEmpty() ? "" : ",") + "menu=" + QString(Show_Boot_Menu ? "on" : "off");
 			
-		case VM::Boot_From_Network:
-			Args << "-boot" << "n";
-			break;
+			Args << "-boot" << bootStr;
+		}
+		else if( onceBootDeviceIndex != -1 )
+		{
+			QString bootStr = "";
 			
-		default:
-			break;
+			if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_FDA ) bootStr = "a";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_FDB ) bootStr = "b";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_HDD ) bootStr = "c";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_CDROM ) bootStr = "d";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_Network1 ) bootStr = "n-1";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_Network2 ) bootStr = "n-2";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_Network3 ) bootStr = "n-3";
+			else if( Boot_Order_List[onceBootDeviceIndex].Type == VM::Boot_From_Network4 ) bootStr = "n-4";
+			
+			bootStr.prepend( (bootStr.isEmpty() ? "" : "once=") );
+			bootStr += QString(bootStr.isEmpty() ? "" : ",") + "menu=" + QString(Show_Boot_Menu ? "on" : "off");
+			
+			Args << "-boot" << bootStr;
+		}
+		else
+		{
+			AQWarning( "QStringList Virtual_Machine::Build_QEMU_Args()",
+					   "No boot devices? Use empty boot settings..." );
+		}
+	}
+	else // old QEMU/KVM versions style
+	{
+		VM::Boot_Device bootDev;
+		for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
+		{
+			if( Boot_Order_List[bx].Enabled == true ) bootDev = Boot_Order_List[ bx ].Type;
+		}
+		
+		switch( bootDev )
+		{
+			case VM::Boot_From_FDA:
+			case VM::Boot_From_FDB:
+				Args << "-boot" << "a";
+				break;
+				
+			case VM::Boot_From_CDROM:
+				Args << "-boot" << "d";
+				break;
+				
+			case VM::Boot_From_HDD:
+				Args << "-boot" << "c";
+				break;
+				
+			case VM::Boot_From_Network1:
+			case VM::Boot_From_Network2:
+			case VM::Boot_From_Network3:
+			case VM::Boot_From_Network4:
+				Args << "-boot" << "n";
+				break;
+				
+			default: // Boot type "None"
+				break;
+		}
 	}
 	
 	// Network Tab. Redirections
@@ -6799,14 +7092,24 @@ void Virtual_Machine::Set_CPU_Type( const QString &type )
 	CPU_Type = type;
 }
 
+VM::SMP_Options Virtual_Machine::Get_SMP() const
+{
+	return SMP;
+}
+
+void Virtual_Machine::Set_SMP( const VM::SMP_Options &smp )
+{
+	SMP = smp;
+}
+
 int Virtual_Machine::Get_SMP_CPU_Count() const
 {
-	return SMP_CPU_Count;
+	return SMP.SMP_Count;
 }
 
 void Virtual_Machine::Set_SMP_CPU_Count( int count )
 {
-	SMP_CPU_Count = count;
+	SMP.SMP_Count = count;
 }
 
 const QString &Virtual_Machine::Get_Keyboard_Layout() const
@@ -6879,14 +7182,24 @@ void Virtual_Machine::Set_Use_User_Emulator_Binary( bool use )
 	Use_User_Emulator_Binary = use;
 }
 
-VM::Boot_Device Virtual_Machine::Get_Boot_Device() const
+const QList<VM::Boot_Order> &Virtual_Machine::Get_Boot_Order_List() const
 {
-	return Boot_Device;
+	return Boot_Order_List;
 }
 
-void Virtual_Machine::Set_Boot_Device( VM::Boot_Device device )
+void Virtual_Machine::Set_Boot_Order_List( QList<VM::Boot_Order> &list )
 {
-	Boot_Device = device;
+	Boot_Order_List = list;
+}
+
+bool Virtual_Machine::Get_Show_Boot_Menu() const
+{
+	return Show_Boot_Menu;
+}
+
+void Virtual_Machine::Set_Show_Boot_Menu( bool use )
+{
+	Show_Boot_Menu = use;
 }
 
 bool Virtual_Machine::Use_Fullscreen_Mode() const

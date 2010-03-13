@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>687</width>
-    <height>594</height>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -352,6 +352,9 @@
                 </item>
                 <item>
                  <widget class="QToolButton" name="TB_Show_Boot_Settings_Window" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
                   <property name="text" >
                    <string/>
                   </property>
@@ -476,6 +479,9 @@
                 </item>
                 <item>
                  <widget class="QToolButton" name="TB_Show_SMP_Settings_Window" >
+                  <property name="enabled" >
+                   <bool>false</bool>
+                  </property>
                   <property name="text" >
                    <string/>
                   </property>
@@ -3106,8 +3112,8 @@ Cluster Size: 0</string>
                <attribute name="title" >
                 <string>Hardware Virtualization</string>
                </attribute>
-               <layout class="QGridLayout" name="gridLayout_8" >
-                <item row="0" column="0" >
+               <layout class="QVBoxLayout" name="verticalLayout_10" >
+                <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_8" >
                   <item>
                    <widget class="QLabel" name="Label_Use_KVM" >
@@ -3131,44 +3137,51 @@ Cluster Size: 0</string>
                   </item>
                  </layout>
                 </item>
-                <item row="1" column="0" >
-                 <layout class="QGridLayout" name="gridLayout_10" >
+                <item>
+                 <layout class="QGridLayout" name="gridLayout_8" >
                   <item row="0" column="0" colspan="4" >
+                   <widget class="QCheckBox" name="CH_No_KVM" >
+                    <property name="text" >
+                     <string>Disable KVM support</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0" colspan="4" >
                    <widget class="QCheckBox" name="CH_No_KVM_IRQChip" >
                     <property name="text" >
                      <string>Disable KVM kernel mode PIC/IOAPIC/LAPIC</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0" colspan="4" >
+                  <item row="2" column="0" colspan="4" >
                    <widget class="QCheckBox" name="CH_No_KVM_Pit" >
                     <property name="text" >
                      <string>Disable KVM kernel mode PIT</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0" colspan="4" >
+                  <item row="3" column="0" colspan="4" >
                    <widget class="QCheckBox" name="CH_KVM_No_Pit_Reinjection" >
                     <property name="text" >
                      <string>Disable KVM kernel mode PIT interrupt reinjection</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0" colspan="4" >
+                  <item row="4" column="0" colspan="4" >
                    <widget class="QCheckBox" name="CH_KVM_Nesting" >
                     <property name="text" >
                      <string>Nesting (Support for Running a VM Inside the VM (AMD Only)</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0" >
+                  <item row="5" column="0" >
                    <widget class="QCheckBox" name="CH_KVM_Shadow_Memory" >
                     <property name="text" >
                      <string>KVM Shadow Memory</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="1" >
+                  <item row="5" column="1" >
                    <widget class="QSpinBox" name="SB_KVM_Shadow_Memory_Size" >
                     <property name="enabled" >
                      <bool>false</bool>
@@ -3181,7 +3194,7 @@ Cluster Size: 0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="2" >
+                  <item row="5" column="2" >
                    <widget class="QLabel" name="Label_KVM_Shadow_Memory_Mb" >
                     <property name="enabled" >
                      <bool>false</bool>
@@ -3197,14 +3210,14 @@ Cluster Size: 0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="3" >
+                  <item row="5" column="3" >
                    <spacer name="horizontalSpacer_5" >
                     <property name="orientation" >
                      <enum>Qt::Horizontal</enum>
                     </property>
                     <property name="sizeHint" stdset="0" >
                      <size>
-                      <width>227</width>
+                      <width>221</width>
                       <height>22</height>
                      </size>
                     </property>
@@ -3212,7 +3225,7 @@ Cluster Size: 0</string>
                   </item>
                  </layout>
                 </item>
-                <item row="2" column="0" >
+                <item>
                  <spacer name="verticalSpacer_4" >
                   <property name="orientation" >
                    <enum>Qt::Vertical</enum>
@@ -3223,12 +3236,12 @@ Cluster Size: 0</string>
                   <property name="sizeHint" stdset="0" >
                    <size>
                     <width>448</width>
-                    <height>13</height>
+                    <height>10</height>
                    </size>
                   </property>
                  </spacer>
                 </item>
-                <item row="3" column="0" >
+                <item>
                  <layout class="QHBoxLayout" name="horizontalLayout_7" >
                   <item>
                    <widget class="QLabel" name="Label_KQEMU" >
@@ -3252,7 +3265,7 @@ Cluster Size: 0</string>
                   </item>
                  </layout>
                 </item>
-                <item row="4" column="0" >
+                <item>
                  <layout class="QVBoxLayout" name="verticalLayout_2" >
                   <item>
                    <widget class="QRadioButton" name="RB_KQEMU_Disabled" >
@@ -3287,7 +3300,7 @@ Cluster Size: 0</string>
                   </item>
                  </layout>
                 </item>
-                <item row="5" column="0" >
+                <item>
                  <spacer name="verticalSpacer_3" >
                   <property name="orientation" >
                    <enum>Qt::Vertical</enum>
@@ -4381,11 +4394,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>766</x>
+     <x>763</x>
      <y>187</y>
     </hint>
    </hints>
@@ -4397,11 +4410,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>766</x>
+     <x>763</x>
      <y>219</y>
     </hint>
    </hints>
@@ -4413,11 +4426,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>766</x>
+     <x>763</x>
      <y>243</y>
     </hint>
    </hints>
@@ -4429,11 +4442,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>766</x>
+     <x>763</x>
      <y>275</y>
     </hint>
    </hints>
@@ -4445,11 +4458,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>766</x>
+     <x>763</x>
      <y>299</y>
     </hint>
    </hints>
@@ -4461,11 +4474,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>766</x>
+     <x>763</x>
      <y>331</y>
     </hint>
    </hints>
@@ -4477,11 +4490,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>798</x>
+     <x>795</x>
      <y>218</y>
     </hint>
    </hints>
@@ -4493,11 +4506,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>766</x>
+     <x>763</x>
      <y>163</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>798</x>
+     <x>795</x>
      <y>274</y>
     </hint>
    </hints>
@@ -4509,7 +4522,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>326</x>
+     <x>323</x>
      <y>201</y>
     </hint>
     <hint type="destinationlabel" >
@@ -4525,7 +4538,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>326</x>
+     <x>323</x>
      <y>233</y>
     </hint>
     <hint type="destinationlabel" >
@@ -4541,11 +4554,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>326</x>
+     <x>323</x>
      <y>233</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>806</x>
+     <x>803</x>
      <y>233</y>
     </hint>
    </hints>
@@ -4593,7 +4606,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>333</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>806</x>
+     <x>803</x>
      <y>372</y>
     </hint>
    </hints>
@@ -4609,7 +4622,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>395</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>806</x>
+     <x>803</x>
      <y>433</y>
     </hint>
    </hints>
@@ -4621,7 +4634,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>326</x>
+     <x>323</x>
      <y>310</y>
     </hint>
     <hint type="destinationlabel" >
@@ -4637,7 +4650,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>808</x>
+     <x>805</x>
      <y>160</y>
     </hint>
     <hint type="destinationlabel" >
@@ -4653,7 +4666,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>269</x>
+     <x>266</x>
      <y>127</y>
     </hint>
     <hint type="destinationlabel" >
@@ -4669,11 +4682,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>475</x>
+     <x>472</x>
      <y>366</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>700</x>
+     <x>663</x>
      <y>367</y>
     </hint>
    </hints>
@@ -4689,7 +4702,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>320</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>212</x>
+     <x>209</x>
      <y>533</y>
     </hint>
    </hints>
@@ -4705,7 +4718,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>320</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>273</x>
+     <x>270</x>
      <y>449</y>
     </hint>
    </hints>
@@ -4721,7 +4734,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>320</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>334</x>
+     <x>331</x>
      <y>533</y>
     </hint>
    </hints>
@@ -4737,7 +4750,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>320</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>395</x>
+     <x>392</x>
      <y>449</y>
     </hint>
    </hints>
@@ -4753,7 +4766,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>320</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>453</x>
+     <x>450</x>
      <y>533</y>
     </hint>
    </hints>
@@ -4781,12 +4794,12 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>311</x>
-     <y>294</y>
+     <x>325</x>
+     <y>333</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>389</x>
-     <y>305</y>
+     <x>386</x>
+     <y>334</y>
     </hint>
    </hints>
   </connection>
@@ -4797,12 +4810,12 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>279</x>
-     <y>293</y>
+     <x>325</x>
+     <y>333</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>412</x>
-     <y>305</y>
+     <x>409</x>
+     <y>334</y>
     </hint>
    </hints>
   </connection>
@@ -4813,11 +4826,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>269</x>
+     <x>266</x>
      <y>127</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>573</x>
+     <x>536</x>
      <y>128</y>
     </hint>
    </hints>
@@ -4833,7 +4846,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>121</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>647</x>
+     <x>610</x>
      <y>128</y>
     </hint>
    </hints>
@@ -4845,11 +4858,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>269</x>
+     <x>266</x>
      <y>127</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>708</x>
+     <x>671</x>
      <y>128</y>
     </hint>
    </hints>
@@ -4881,7 +4894,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>126</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>573</x>
+     <x>536</x>
      <y>128</y>
     </hint>
    </hints>
@@ -4897,7 +4910,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>121</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>647</x>
+     <x>610</x>
      <y>128</y>
     </hint>
    </hints>
@@ -4909,11 +4922,11 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>269</x>
+     <x>266</x>
      <y>127</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>708</x>
+     <x>671</x>
      <y>128</y>
     </hint>
    </hints>
@@ -4925,12 +4938,12 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel" >
-     <x>659</x>
-     <y>518</y>
+     <x>672</x>
+     <y>509</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>659</x>
-     <y>543</y>
+     <x>672</x>
+     <y>538</y>
     </hint>
    </hints>
   </connection>
@@ -4961,7 +4974,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>152</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>804</x>
+     <x>801</x>
      <y>195</y>
     </hint>
    </hints>
@@ -5025,7 +5038,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>277</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>804</x>
+     <x>801</x>
      <y>317</y>
     </hint>
    </hints>
@@ -5041,7 +5054,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>339</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>804</x>
+     <x>801</x>
      <y>378</y>
     </hint>
    </hints>
@@ -5057,7 +5070,7 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>215</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>804</x>
+     <x>801</x>
      <y>256</y>
     </hint>
    </hints>
@@ -5089,8 +5102,8 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>121</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>691</x>
-     <y>140</y>
+     <x>671</x>
+     <y>156</y>
     </hint>
    </hints>
   </connection>
@@ -5153,8 +5166,8 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>237</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>695</x>
-     <y>259</y>
+     <x>671</x>
+     <y>271</y>
     </hint>
    </hints>
   </connection>
@@ -5217,8 +5230,8 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
      <y>351</y>
     </hint>
     <hint type="destinationlabel" >
-     <x>694</x>
-     <y>373</y>
+     <x>671</x>
+     <y>386</y>
     </hint>
    </hints>
   </connection>
@@ -5251,6 +5264,118 @@ For Disable This Function in Current VM Set "No Use Embedded VNC Display"</strin
     <hint type="destinationlabel" >
      <x>620</x>
      <y>411</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CH_No_KVM_IRQChip</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>214</x>
+     <y>177</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>185</x>
+     <y>206</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CH_No_KVM_Pit</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>205</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>200</x>
+     <y>236</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CH_KVM_No_Pit_Reinjection</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>228</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>213</x>
+     <y>267</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CH_KVM_Nesting</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>231</x>
+     <y>178</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>226</x>
+     <y>298</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CH_KVM_Shadow_Memory</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>253</x>
+     <y>174</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>239</x>
+     <y>322</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM_IRQChip</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_KVM_Shadow_Memory_Size</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>310</x>
+     <y>195</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>351</x>
+     <y>318</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Label_KVM_Shadow_Memory_Mb</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>374</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>403</x>
+     <y>322</y>
     </hint>
    </hints>
   </connection>

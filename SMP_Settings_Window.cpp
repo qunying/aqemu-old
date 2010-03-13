@@ -28,6 +28,39 @@ SMP_Settings_Window::SMP_Settings_Window( QWidget *parent )
 	ui.setupUi( this );
 }
 
+VM::SMP_Options SMP_Settings_Window::Get_Values() const
+{
+	VM::SMP_Options smp;
+	smp.SMP_Count = ui.SB_SMP->value();
+	smp.SMP_Cores = ui.SB_Cores->value();
+	smp.SMP_Threads = ui.SB_Threads->value();
+	smp.SMP_Sockets = ui.SB_Sockets->value();
+	smp.SMP_MaxCPUs = ui.SB_MaxCPUs->value();
+}
+
+void SMP_Settings_Window::Set_Values( const VM::SMP_Options &smp, unsigned short PSO_SMP_Count, bool PSO_SMP_Cores,
+									  bool PSO_SMP_Threads, bool PSO_SMP_Sockets, bool PSO_SMP_MaxCPUs )
+{
+	ui.SB_SMP->setValue( smp.SMP_Count );
+	ui.SB_Cores->setValue( smp.SMP_Cores );
+	ui.SB_Threads->setValue( smp.SMP_Threads );
+	ui.SB_Sockets->setValue( smp.SMP_Sockets );
+	ui.SB_MaxCPUs->setValue( smp.SMP_MaxCPUs );
+	
+	ui.SB_SMP->setMaximum( PSO_SMP_Count );
+	
+	ui.SB_Cores->setEnabled( PSO_SMP_Cores );
+	ui.Label_Cores->setEnabled( PSO_SMP_Cores );
+	ui.SB_Threads->setEnabled( PSO_SMP_Threads );
+	ui.Lebel_Threads->setEnabled( PSO_SMP_Threads );
+	ui.SB_Sockets->setEnabled( PSO_SMP_Sockets );
+	ui.Label_Sockets->setEnabled( PSO_SMP_Sockets );
+	ui.SB_MaxCPUs->setEnabled( PSO_SMP_MaxCPUs );
+	ui.Label_MaxCPUs->setEnabled( PSO_SMP_MaxCPUs );
+}
+
 void SMP_Settings_Window::on_Button_OK_clicked()
 {
+	// FIXME Calculate Max CPU Count
+	accept();
 }

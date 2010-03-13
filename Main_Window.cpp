@@ -51,10 +51,13 @@
 QList<Averable_Devices> System_Info::Emulator_QEMU_0_9_0;
 QList<Averable_Devices> System_Info::Emulator_QEMU_0_9_1;
 QList<Averable_Devices> System_Info::Emulator_QEMU_0_10;
+QList<Averable_Devices> System_Info::Emulator_QEMU_0_11;
+QList<Averable_Devices> System_Info::Emulator_QEMU_0_12;
 
 QList<Averable_Devices> System_Info::Emulator_KVM_Old;
 QList<Averable_Devices> System_Info::Emulator_KVM_7X;
 QList<Averable_Devices> System_Info::Emulator_KVM_8X;
+QList<Averable_Devices> System_Info::Emulator_KVM_0_12;
 
 QList<VM_USB> System_Info::All_Host_USB;
 QList<VM_USB> System_Info::Used_Host_USB;
@@ -274,6 +277,9 @@ void Main_Window::Connect_Signals()
 	
 	connect( ui.CB_Boot_Prioritet, SIGNAL(currentIndexChanged(int)),
 			 this, SLOT(VM_Changet()) );
+	
+	connect( ui.CB_Boot_Prioritet, SIGNAL(currentIndexChanged(int)),
+			 this, SLOT(CB_Boot_Prioritet_currentIndexChanged(int)) );
 	
 	connect( ui.CB_Video_Card, SIGNAL(currentIndexChanged(int)),
 			 this, SLOT(VM_Changet()) );
@@ -845,34 +851,8 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 	}
 	
 	// Boot Prioritet
-	switch( ui.CB_Boot_Prioritet->currentIndex() )
-	{
-		case 0:
-			tmp_vm->Set_Boot_Device( VM::Boot_From_FDD );
-			break;
-			
-		case 1:
-			tmp_vm->Set_Boot_Device( VM::Boot_From_HDD );
-			break;
-			
-		case 2:
-			tmp_vm->Set_Boot_Device( VM::Boot_From_CDROM );
-			break;
-			
-		case 3:
-			tmp_vm->Set_Boot_Device( VM::Boot_From_Network );
-			break;
-			
-		case 4:
-			tmp_vm->Set_Boot_Device( VM::Boot_None );
-			break;
-			
-		default:
-			AQWarning( "bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, QListWidgetItem *item )",
-					   "Use Default Boot Device: CD-ROM" );
-			tmp_vm->Set_Boot_Device( VM::Boot_From_CDROM );
-			break;
-	}
+	tmp_vm->Set_Boot_Order_List( Boot_Order_List );
+	tmp_vm->Set_Show_Boot_Menu( Show_Boot_Menu );
 	
 	// Acseleration
 	if( ui.RB_KQEMU_Use_if_Possible->isChecked() )
@@ -1597,35 +1577,9 @@ void Main_Window::Update_VM_Ui()
 	}
 	
 	// Boot
-	switch( tmp_vm->Get_Boot_Device() )
-	{
-		case VM::Boot_From_FDD:
-			ui.CB_Boot_Prioritet->setCurrentIndex( 0 );
-			break;
-			
-			
-		case VM::Boot_From_HDD:
-			ui.CB_Boot_Prioritet->setCurrentIndex( 1 );
-			break;
-			
-		case VM::Boot_From_CDROM:
-			ui.CB_Boot_Prioritet->setCurrentIndex( 2 );
-			break;
-			
-		case VM::Boot_From_Network:
-			ui.CB_Boot_Prioritet->setCurrentIndex( 3 );
-			break;
-			
-		case VM::Boot_None:
-			ui.CB_Boot_Prioritet->setCurrentIndex( 4 );
-			break;
-			
-		default:
-			ui.CB_Boot_Prioritet->setCurrentIndex( 1 );
-			AQError( "void Main_Window::Update_VM_Ui()",
-					 "Boot_Prioritet Default Section!" );
-			break;
-	}
+	Set_Boot_Order( tmp_vm->Get_Boot_Order_List() );
+	Boot_Order_List = tmp_vm->Get_Boot_Order_List();
+	Show_Boot_Menu = tmp_vm->Get_Show_Boot_Menu();
 	
 	// Aceleration
 	switch( tmp_vm->Get_KQEMU_Mode() )
@@ -3740,7 +3694,7 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 	{
 		if( ui.Machines_List->row(current) >= 0 && ui.Machines_List->row(current) < ui.Machines_List->count() )
 		{
-			Virtual_Machine *cur_vm = Get_VM_By_UID( current->data(256).toString() );
+			//Virtual_Machine *cur_vm = Get_VM_By_UID( current->data(256).toString() );
 			
 			if( old_vm == NULL )
 			{
@@ -3871,14 +3825,12 @@ QString Main_Window::Get_Current_Binary_Name()
 
 bool Main_Window::Boot_Is_Correct( Virtual_Machine *tmp_vm )
 {
-	bool update_UI = false;
-	
 	// Floppy A
 	if( tmp_vm->Get_FD0().Get_Enabled() )
 	{
 		if( ! QFile::exists(tmp_vm->Get_FD0().Get_File_Name()) )
 		{
-			if( ! No_Device_Found("Floppy A", tmp_vm->Get_FD0().Get_File_Name(), VM::Boot_From_FDD) )
+			if( ! No_Device_Found("Floppy A", tmp_vm->Get_FD0().Get_File_Name(), VM::Boot_From_FDA) )
 			{
 				return false;
 			}
@@ -3898,7 +3850,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine *tmp_vm )
 	{
 		if( ! QFile::exists(tmp_vm->Get_FD1().Get_File_Name()) )
 		{
-			if( ! No_Device_Found("Floppy B", tmp_vm->Get_FD1().Get_File_Name(), VM::Boot_From_FDD) )
+			if( ! No_Device_Found("Floppy B", tmp_vm->Get_FD1().Get_File_Name(), VM::Boot_From_FDA) )
 			{
 				return false;
 			}
@@ -4166,70 +4118,52 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine *tmp_vm )
 	}
 	
 	// Boot is correct?
-	switch( tmp_vm->Get_Boot_Device() )
+	QList<VM::Boot_Order> bootOrderList = tmp_vm->Get_Boot_Order_List();
+	bool foundEnabledDevice = false;
+	
+	for( int bx = 0; bx < bootOrderList.count(); bx++ )
 	{
-		case VM::Boot_From_FDD:
-			if( tmp_vm->Get_FD0().Get_Enabled() )
-			{
-				return true;
-			}
-			else
-			{
-				AQGraphic_Warning( tr("Error!"),
-								   tr("To boot from the Floppy you must activate the device \"Floppy 1\".") );
-				return false;
-			}
-			break;
+		if( bootOrderList[bx].Enabled )
+		{
+			foundEnabledDevice = true;
 			
-		case VM::Boot_From_CDROM:
-			if( tmp_vm->Get_CD_ROM().Get_Enabled() )
+			switch( bootOrderList[bx].Type )
 			{
-				return true;
+				case VM::Boot_From_FDA:
+					if( tmp_vm->Get_FD0().Get_Enabled() ) return true;
+					break;
+					
+				case VM::Boot_From_FDB:
+					if( tmp_vm->Get_FD1().Get_Enabled() ) return true;
+					break;
+					
+				case VM::Boot_From_CDROM:
+					if( tmp_vm->Get_CD_ROM().Get_Enabled() ) return true;
+					break;
+					
+				case VM::Boot_From_HDD:
+					if( tmp_vm->Get_HDA().Get_Enabled() ) return true;
+					break;
+					
+				case VM::Boot_From_Network1:
+				case VM::Boot_From_Network2:
+				case VM::Boot_From_Network3:
+				case VM::Boot_From_Network4:
+					if( tmp_vm->Get_Use_Network() ) return true;
+					break;
+					
+				default:
+					break;
 			}
-			else
-			{
-				AQGraphic_Warning( tr("Error!"),
-								   tr("To boot from a CD-ROM, you must activate the device \"CD/DVD-ROM\".") );
-				return false;
-			}
-			break;
-			
-		case VM::Boot_From_HDD:
-			if( tmp_vm->Get_HDA().Get_Enabled() )
-			{
-				return true;
-			}
-			else
-			{
-				AQGraphic_Warning( tr("Error!"),
-								   tr("To boot from the hard drive, you must activate the device \"HDA\".") );
-				return false;
-			}
-			break;
-			
-		case VM::Boot_From_Network:
-			if( tmp_vm->Get_Use_Network() )
-			{
-				return true;
-			}
-			else
-			{
-				AQGraphic_Warning( tr("Error!"),
-								   tr("To boot from the network, you must activate the network support!") );
-				return false;
-			}
-			break;
-			
-		case VM::Boot_None:
-			return true;
-			break;
-			
-		default:
-			AQError( "bool Main_Window::Boot_Is_Correct( Virtual_Machine &tmp_vm )",
-					 "Default Section!" );
-			return false;
-			break;
+		}
 	}
+	
+	if( foundEnabledDevice )
+	{
+		AQGraphic_Warning( tr("Error!"), tr("No boot device found!") );
+		return false;
+	}
+	else return true; // boot device type: None
 }
 
 bool Main_Window::No_Device_Found( const QString &name, const QString &path, VM::Boot_Device type )
@@ -5859,13 +5793,154 @@ void Main_Window::Apply_Emulator( int mode )
 	running = false;
 }
 
+void Main_Window::CB_Boot_Prioritet_currentIndexChanged( int index )
+{
+	// Clear old string
+	if( ui.CB_Boot_Prioritet->count() >= 5 ) ui.CB_Boot_Prioritet->removeItem( 5 );
+	
+	VM::Boot_Device bootDev;
+	
+	switch( ui.CB_Boot_Prioritet->currentIndex() )
+	{
+		case 0:
+			bootDev = VM::Boot_From_FDA;
+			break;
+			
+		case 1:
+			bootDev = VM::Boot_From_HDD;
+			break;
+			
+		case 2:
+			bootDev = VM::Boot_From_CDROM;
+			break;
+			
+		case 3:
+			bootDev = VM::Boot_From_Network1;
+			break;
+			
+		case 4:
+			bootDev = VM::Boot_None;
+			break;
+			
+		default:
+			AQWarning( "void Main_Window::on_CB_Boot_Prioritet_currentIndexChanged( int index )",
+					   "Use Default Boot Device: CD-ROM" );
+			bootDev = VM::Boot_From_CDROM;
+			break;
+	}
+	
+	for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
+	{
+		if( Boot_Order_List[bx].Type == bootDev ) Boot_Order_List[ bx ].Enabled = true;
+		else Boot_Order_List[ bx ].Enabled = false;
+	}
+}
+
+void Main_Window::Set_Boot_Order( const QList<VM::Boot_Order> &list )
+{
+	disconnect( ui.CB_Boot_Prioritet, SIGNAL(currentIndexChanged(int)),
+				this, SLOT(CB_Boot_Prioritet_currentIndexChanged(int)) );
+	
+	QStringList bootStr;
+	
+	for( int ix = 0; ix < list.count(); ix++ )
+	{
+		if( list[ix].Enabled )
+		{
+			switch( list[ix].Type )
+			{
+				case VM::Boot_From_FDA:
+					bootStr << "FDA";
+					break;
+					
+				case VM::Boot_From_FDB:
+					bootStr << "FDB";
+					break;
+					
+				case VM::Boot_From_CDROM:
+					bootStr << "CDROM";
+					break;
+					
+				case VM::Boot_From_HDD:
+					bootStr << "HDD";
+					break;
+					
+				case VM::Boot_From_Network1:
+					bootStr << "Net1";
+					break;
+					
+				case VM::Boot_From_Network2:
+					bootStr << "Net2";
+					break;
+					
+				case VM::Boot_From_Network3:
+					bootStr << "Net3";
+					break;
+					
+				case VM::Boot_From_Network4:
+					bootStr << "Net4";
+					break;
+					
+				default:
+					AQWarning( "void Main_Window::Set_Boot_Order( QList<VM::Boot_Order> &list )",
+							   "Incorrect boot device type!" );
+					break;
+			}
+		}
+	}
+	
+	// Clear old string
+	if( ui.CB_Boot_Prioritet->count() >= 5 ) ui.CB_Boot_Prioritet->removeItem( 5 );
+	
+	// Select boot device
+	if( bootStr.count() < 1 ) // None
+	{
+		ui.CB_Boot_Prioritet->setCurrentIndex( 4 );
+	}
+	else if( bootStr.count() == 1 ) // One
+	{
+		if( bootStr[0] == "FDA" || bootStr[0] == "FDB" ) ui.CB_Boot_Prioritet->setCurrentIndex( 0 );
+		else if( bootStr[0] == "CDROM" ) ui.CB_Boot_Prioritet->setCurrentIndex( 2 );
+		else if( bootStr[0] == "HDD" ) ui.CB_Boot_Prioritet->setCurrentIndex( 1 );
+		else if( bootStr[0] == "Net1" || bootStr[0] == "Net2" ||
+				 bootStr[0] == "Net3" || bootStr[0] == "Net4" ) ui.CB_Boot_Prioritet->setCurrentIndex( 3 );
+		else
+		{
+			AQError( "void Main_Window::Set_Boot_Order( QList<VM::Boot_Order> &list )",
+					 "Incorrent boot device type \"" + bootStr[0] +"\"!" );
+		}
+	}
+	else // More (Boot order list)
+	{
+		QString itemText = "";
+		
+		for( int ix = 0; ix < bootStr.count(); ix++ )
+		{
+			itemText += bootStr[ ix ];
+			if( (ix + 1) < bootStr.count() ) itemText += "/";
+		}
+		
+		ui.CB_Boot_Prioritet->addItem( itemText );
+		ui.CB_Boot_Prioritet->setCurrentIndex( ui.CB_Boot_Prioritet->count() - 1 );
+	}
+	
+	connect( ui.CB_Boot_Prioritet, SIGNAL(currentIndexChanged(int)),
+			 this, SLOT(CB_Boot_Prioritet_currentIndexChanged(int)) );
+}
+
 void Main_Window::on_TB_Show_Boot_Settings_Window_clicked()
 {
 	Boot_Device_Window *boot_win = new Boot_Device_Window();
+	boot_win->setData( Boot_Order_List );
+	boot_win->setUseBootMenu( Show_Boot_Menu );
 	
 	if( boot_win->exec() == QDialog::Accepted )
 	{
-		// FIXME
+		Boot_Order_List = boot_win->data();
+		Show_Boot_Menu = boot_win->useBootMenu();
+		
+		// Apply data to UI
+		Set_Boot_Order( Boot_Order_List );
 	}
 	
 	delete boot_win;

@@ -57,10 +57,13 @@ class System_Info
 		static QList<Averable_Devices> Emulator_QEMU_0_9_0;
 		static QList<Averable_Devices> Emulator_QEMU_0_9_1;
 		static QList<Averable_Devices> Emulator_QEMU_0_10;
+		static QList<Averable_Devices> Emulator_QEMU_0_11;
+		static QList<Averable_Devices> Emulator_QEMU_0_12;
 		
 		static QList<Averable_Devices> Emulator_KVM_Old;
 		static QList<Averable_Devices> Emulator_KVM_7X;
 		static QList<Averable_Devices> Emulator_KVM_8X;
+		static QList<Averable_Devices> Emulator_KVM_0_12;
 		
 	private:
 		static bool Scan_USB_Sys( QList<VM_USB> &list );

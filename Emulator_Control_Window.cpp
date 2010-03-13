@@ -876,7 +876,7 @@ void Emulator_Control_Window::on_actionReinit_VNC_triggered()
 
 void Emulator_Control_Window::Connect_VNC()
 {
-	QTest::qWait(250);
+	QTest::qWait( 500 ); // This for init QEMU VNC server
 	Machine_View->initView();
 }
 

@@ -30,7 +30,111 @@
 #include "Utils.h"
 #include "HDD_Image_Info.h"
 
-// VM_Nativ_Storage_Device --------------------------------------------------------
+// Averable_Devices ---------------------------------------------------------
+
+Averable_Devices::Averable_Devices()
+{
+	CPU_List << Device_Map( QObject::tr("Default"), "" );
+	Machine_List << Device_Map( QObject::tr("Default"), "" );
+	Network_Card_List << Device_Map( QObject::tr("Default"), "" );
+	Video_Card_List << Device_Map( QObject::tr("Default"), "" );
+	
+	PSO_SMP_Count = 1;
+	PSO_SMP_Cores = false;
+	PSO_SMP_Threads = false;
+	PSO_SMP_Sockets = false;
+	PSO_SMP_MaxCPUs = false;
+	
+	PSO_Drive = false;
+	PSO_Drive_File = false;
+	PSO_Drive_If = false;
+	PSO_Drive_Bus_Unit = false;
+	PSO_Drive_Index = false;
+	PSO_Drive_Media = false;
+	PSO_Drive_Cyls_Heads_Secs_Trans = false;
+	PSO_Drive_Snapshot = false;
+	PSO_Drive_Cache = false;
+	PSO_Drive_AIO = false;
+	PSO_Drive_Format = false;
+	PSO_Drive_Serial = false;
+	PSO_Drive_ADDR = false;
+	
+	PSO_Boot_Order = false;
+	PSO_Initial_Graphic_Mode = false;
+	PSO_No_FB_Boot_Check = false;
+	PSO_Win2K_Hack = false;
+	PSO_Kernel_KQEMU = false;
+	PSO_No_ACPI = false;
+	PSO_PROM_ENV = false;
+	PSO_KVM = false;
+	PSO_RTC_TD_Hack = false;
+	
+	PSO_MTDBlock = false;
+	PSO_SD = false;
+	PSO_PFlash = false;
+	PSO_Name = false;
+	PSO_Curses = false;
+	PSO_No_Frame = false;
+	PSO_Alt_Grab = false;
+	PSO_No_Quit = false;
+	PSO_SDL = false;
+	PSO_Portrait = false;
+	PSO_No_Shutdown = false;
+	PSO_Startdate = false;
+	PSO_Show_Cursor = false;
+	PSO_Bootp = false;
+	
+	PSO_Net_type_vde = false;
+	PSO_Net_type_dump = false;
+	
+	PSO_Net_name = false;
+	PSO_Net_addr = false;
+	PSO_Net_vectors = false;
+	
+	PSO_Net_net = false;
+	PSO_Net_host = false;
+	PSO_Net_restrict = false;
+	PSO_Net_dhcpstart = false;
+	PSO_Net_dns = false;
+	PSO_Net_tftp = false;
+	PSO_Net_bootfile = false;
+	PSO_Net_smb = false;
+	PSO_Net_hostfwd = false;
+	PSO_Net_guestfwd = false;
+	
+	PSO_Net_ifname = false;
+	PSO_Net_script = false;
+	PSO_Net_downscript = false;
+	
+	PSO_Net_listen = false;
+	PSO_Net_connect = false;
+	
+	PSO_Net_mcast = false;
+	
+	PSO_Net_sock = false;
+	PSO_Net_port = false;
+	PSO_Net_group = false;
+	PSO_Net_mode = false;
+	
+	PSO_Net_file = false;
+	PSO_Net_len = false;
+	
+	PSO_Enable_KVM = false;
+	PSO_No_KVM = false;
+	PSO_No_KVM_IRQChip = false;
+	PSO_No_KVM_Pit = false;
+	PSO_No_KVM_Pit_Reinjection = false;
+	PSO_Enable_Nesting = false;
+	PSO_KVM_Shadow_Memory = false;
+	
+	PSO_TFTP = false;
+	PSO_SMB = false;
+	PSO_Std_VGA = false;
+}
+
+//===========================================================================
+
+// VM_Nativ_Storage_Device --------------------------------------------------
 
 Emulator::Emulator()
 {
@@ -234,7 +338,7 @@ void Emulator::Set_Devices( const QList<Averable_Devices> *devices )
 
 //---------------------------------------------------------------------------
 
-// VM_Nativ_Storage_Device --------------------------------------------------------
+// VM_Nativ_Storage_Device --------------------------------------------------
 
 VM_Nativ_Storage_Device::VM_Nativ_Storage_Device()
 {

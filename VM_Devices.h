@@ -83,9 +83,51 @@ class VM
 		// KQEMU module mode
 		enum Acseleration_Mode { KQEMU_Disabled, KQEMU_Enabled, KQEMU_Full, KQEMU_Default };
 		
+		// SMP Settings
+		class SMP_Options
+		{
+			public:
+				unsigned short SMP_Count;
+				unsigned short SMP_Cores;
+				unsigned short SMP_Threads;
+				unsigned short SMP_Sockets;
+				unsigned short SMP_MaxCPUs;
+				
+				SMP_Options()
+				{
+					SMP_Count = 1;
+					SMP_Cores = 0;
+					SMP_Threads = 0;
+					SMP_Sockets = 0;
+					SMP_MaxCPUs = 0;
+				}
+				
+				bool operator==( const SMP_Options &v ) const
+				{
+					if( SMP_Count == v.SMP_Count &&
+						SMP_Cores == v.SMP_Cores &&
+						SMP_Threads == v.SMP_Threads &&
+						SMP_Sockets == v.SMP_Sockets &&
+						SMP_MaxCPUs == v.SMP_MaxCPUs )
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+				
+				bool operator!=( const SMP_Options &v ) const
+				{
+					return ! operator==(v);
+				}
+		};
+		
 		// Boot Prioritet
-		enum Boot_Device { Boot_From_FDD, Boot_From_CDROM, Boot_From_HDD,
-						   Boot_From_Network, Boot_None };
+		enum Boot_Device { Boot_From_FDA, Boot_From_FDB, Boot_From_CDROM, Boot_From_HDD,
+						   Boot_From_Network1, Boot_From_Network2,
+						   Boot_From_Network3, Boot_From_Network4, Boot_None };
 		
 		// Boot Order
 		struct Boot_Order
@@ -132,13 +174,13 @@ class VM
 		// New Network Modes
 		enum Network_Mode_Nativ { Net_Mode_Nativ_NIC, Net_Mode_Nativ_User, Net_Mode_Nativ_Chanel,
 								  Net_Mode_Nativ_TAP, Net_Mode_Nativ_Socket, Net_Mode_Nativ_MulticastSocket,
-		  						  Net_Mode_Nativ_VDE, Net_Mode_Nativ_Dump };
+								  Net_Mode_Nativ_VDE, Net_Mode_Nativ_Dump };
 };
 
 class Device_Map
 {
 	public:
-		Device_Map() {};
+		Device_Map() { Caption = ""; QEMU_Name = ""; };
 		Device_Map( QString cp, QString nm ) : Caption(cp), QEMU_Name(nm) {};
 		
 		QString Caption;
@@ -148,6 +190,9 @@ class Device_Map
 class Averable_Devices
 {
 	public:
+		// Constructor for init values
+		Averable_Devices();
+		
 		// QEMU System
 		Device_Map System;
 		
@@ -187,6 +232,7 @@ class Averable_Devices
 		bool PSO_Drive_Serial;
 		bool PSO_Drive_ADDR;
 		
+		bool PSO_Boot_Order;
 		bool PSO_Initial_Graphic_Mode;
 		bool PSO_No_FB_Boot_Check;
 		bool PSO_Win2K_Hack;

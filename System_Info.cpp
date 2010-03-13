@@ -66,14 +66,12 @@ bool System_Info::Update_VM_Computers_List()
 	VM::Sound_Cards Audio_Card_x86;
 	VM::Sound_Cards Audio_Card_PPC;
 	
-	CPU_x86 << Device_Map( QObject::tr("Default"), "" );
 	CPU_x86 << Device_Map( "QEMU 32Bit", "qemu32" );
 	CPU_x86 << Device_Map( "Intel 486", "486" );
 	CPU_x86 << Device_Map( "Pentium", "pentium" );
 	CPU_x86 << Device_Map( "Pentium 2", "pentium2" );
 	CPU_x86 << Device_Map( "Pentium 3", "pentium3" );
 	
-	CPU_ARM << Device_Map( QObject::tr("Default"), "" );
 	CPU_ARM << Device_Map( "ARM 926", "arm926" );
 	CPU_ARM << Device_Map( "ARM 946", "arm946" );
 	CPU_ARM << Device_Map( "ARM 1026", "arm1026" );
@@ -96,7 +94,6 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_ARM << Device_Map( "PXA 270-c5", "pxa270-c5" );
 	CPU_ARM << Device_Map( "Any", "any" );
 	
-	CPU_MIPS << Device_Map( QObject::tr("Default"), "" );
 	CPU_MIPS << Device_Map( "4Kc", "4Kc" );
 	CPU_MIPS << Device_Map( "4Km", "4Km" );
 	CPU_MIPS << Device_Map( "4KEcR1", "4KEcR1" );
@@ -107,7 +104,6 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_MIPS << Device_Map( "24Kf", "24Kf" );
 	CPU_MIPS << Device_Map( "34Kf", "34Kf" );
 	
-	CPU_PPC << Device_Map( QObject::tr("Default"), "default" );
 	CPU_PPC << Device_Map( "401", "401" );
 	CPU_PPC << Device_Map( "401A1", "401A1" );
 	CPU_PPC << Device_Map( "401B2", "401B2" );
@@ -496,49 +492,23 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_PPC << Device_Map( "ppc32", "ppc32" );
 	CPU_PPC << Device_Map( "ppc", "ppc" );
 	
-	CPU_Sparc << Device_Map( QObject::tr("Default"), "" );
-	CPU_Sparc << Device_Map( "Fujitsu MB86900", "\"Fujitsu MB86900\"" );
-	CPU_Sparc << Device_Map( "Fujitsu MB86904", "\"Fujitsu MB86904\"" );
-	CPU_Sparc << Device_Map( "Fujitsu MB86907", "\"Fujitsu MB86907\"" );
-	CPU_Sparc << Device_Map( "LSI L64811", "\"LSI L64811\"" );
-	CPU_Sparc << Device_Map( "Cypress CY7C601", "\"Cypress CY7C601\"" );
-	CPU_Sparc << Device_Map( "Cypress CY7C611", "\"Cypress CY7C611\"" );
-	CPU_Sparc << Device_Map( "TI SuperSparc II", "\"TI SuperSparc II\"" );
-	CPU_Sparc << Device_Map( "TI MicroSparc I", "\"TI MicroSparc I\"" );
-	CPU_Sparc << Device_Map( "TI MicroSparc II", "\"TI MicroSparc II\"" );
-	CPU_Sparc << Device_Map( "TI MicroSparc IIep", "\"TI MicroSparc IIep\"" );
-	CPU_Sparc << Device_Map( "TI SuperSparc 51", "\"TI SuperSparc 51\"" );
-	CPU_Sparc << Device_Map( "TI SuperSparc 61", "\"TI SuperSparc 61\"" );
-	CPU_Sparc << Device_Map( "Ross RT625", "\"Ross RT625\"" );
-	CPU_Sparc << Device_Map( "Ross RT620", "\"Ross RT620\"" );
-	CPU_Sparc << Device_Map( "BIT", "\"BIT\"" );
-	CPU_Sparc << Device_Map( "Matsushita MN10501", "\"Matsushita MN10501\"" );
-	CPU_Sparc << Device_Map( "Weitek W8601", "\"Weitek W8601\"" );
-	CPU_Sparc << Device_Map( "LEON2", "\"LEON2\"" );
-	CPU_Sparc << Device_Map( "LEON3", "\"LEON3\"" );
-	
 	// Machines
-	Machine_x86 << Device_Map( QObject::tr("Standard PC (Default)"), "" );
 	Machine_x86 << Device_Map( QObject::tr("Standard PC"), "pc" );
 	Machine_x86 << Device_Map( QObject::tr("ISA-only PC"), "isapc" );
 	
-	Machine_ARM << Device_Map( QObject::tr("Default"), "" );
 	Machine_ARM << Device_Map( QObject::tr("Integrator/CP (ARM926EJ-S)"), "integratorcp926" );
 	Machine_ARM << Device_Map( QObject::tr("Integrator/CP (ARM1026EJ-S)"), "integratorcp1026" );
 	Machine_ARM << Device_Map( QObject::tr("Versatile/PB (ARM926EJ-S)"), "versatilepb" );
 	Machine_ARM << Device_Map( QObject::tr("Versatile/AB (ARM926EJ-S)"), "versatileab" );
 	Machine_ARM << Device_Map( QObject::tr("RealView (ARM926EJ-S)"), "realview" );
 	
-	Machine_MIPS << Device_Map( QObject::tr("Default"), "" );
 	Machine_MIPS << Device_Map( QObject::tr("R4k platform"), "mips" );
 	Machine_MIPS << Device_Map( QObject::tr("Malta Core LV"), "malta" );
 	
-	Machine_PPC << Device_Map( QObject::tr("Default"), "" );
 	Machine_PPC << Device_Map( QObject::tr("Heathrow PowerMAC"), "g3bw" );
 	Machine_PPC << Device_Map( QObject::tr("Mac99 PowerMAC"), "mac99" );
 	Machine_PPC << Device_Map( QObject::tr("PowerPC PREP"), "prep" );
 	
-	Machine_Sparc << Device_Map( QObject::tr("Default"), "" );
 	Machine_Sparc << Device_Map( QObject::tr("SPARCstation 2 (Sun4c)"), "SS-2" );
 	Machine_Sparc << Device_Map( QObject::tr("SPARCstation 5 (Sun4m)"), "SS-5" );
 	Machine_Sparc << Device_Map( QObject::tr("SPARCstation 10 (Sun4m)"), "SS-10" );
@@ -548,7 +518,6 @@ bool System_Info::Update_VM_Computers_List()
 	Machine_Sparc << Device_Map( QObject::tr("SPARCcenter 2000 (Sun4d)"), "SS-2000" );
 	
 	// Net Cards
-	Network_Card_x86 << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_x86 << Device_Map( QObject::tr("NE2000 PCI"), "ne2k_pci" );
 	Network_Card_x86 << Device_Map( QObject::tr("NE2000 ISA"), "ne2k_isa" );
 	Network_Card_x86 << Device_Map( QObject::tr("i82551"), "i82551" );
@@ -557,21 +526,16 @@ bool System_Info::Update_VM_Computers_List()
 	Network_Card_x86 << Device_Map( QObject::tr("PCnet32 PCI"), "pcnet" );
 	Network_Card_x86 << Device_Map( QObject::tr("RTL8139"), "rtl8139" );
 	
-	Network_Card_x86_v090 << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_x86_v090 << Device_Map( QObject::tr("NE2000 PCI"), "ne2k_pci" );
 	Network_Card_x86_v090 << Device_Map( QObject::tr("NE2000 ISA"), "ne2k_isa" );
 	Network_Card_x86_v090 << Device_Map( QObject::tr("RTL8139"), "rtl8139" );
 	
-	Network_Card_ARM << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_ARM << Device_Map( QObject::tr("SMC91C111"), "smc91c111" );
 	
-	Network_Card_M68K << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_M68K << Device_Map( QObject::tr("MCF FEC"), "mcf_fec" );
 	
-	Network_Card_MIPS << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_MIPS << Device_Map( QObject::tr("NE2000 ISA"), "ne2k_isa" );
 	
-	Network_Card_PPC << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_PPC << Device_Map( QObject::tr("i82551"), "i82551" );
 	Network_Card_PPC << Device_Map( QObject::tr("i82557B"), "i82557b" );
 	Network_Card_PPC << Device_Map( QObject::tr("i82559ER"), "i82559er" );
@@ -579,18 +543,15 @@ bool System_Info::Update_VM_Computers_List()
 	Network_Card_PPC << Device_Map( QObject::tr("PCnet32 PCI"), "pcnet" );
 	Network_Card_PPC << Device_Map( QObject::tr("RTL8139"), "rtl8139" );
 	
-	Machine_SH4 << Device_Map( QObject::tr("Default"), "" );
 	Machine_SH4 << Device_Map( QObject::tr("shix card"), "shix" );
 	Machine_SH4 << Device_Map( QObject::tr("r2d-plus board"), "r2d" );
 	
-	Network_Card_Sparc << Device_Map( QObject::tr("Default"), "" );
 	Network_Card_Sparc << Device_Map( QObject::tr("Lance"), "lance" );
 	
 	// Video
-	Video_Card_Standart << Device_Map( QObject::tr("Default"), "" );
 	Video_Card_Standart << Device_Map( QObject::tr("No Video Card"), "-nographic" );
 	
-	Video_Card_x86 << Device_Map( QObject::tr("Cirrus CLGD 5446 (Default)"), "" );
+	Video_Card_x86 << Device_Map( QObject::tr("Cirrus CLGD 5446"), "" );
 	Video_Card_x86 << Device_Map( QObject::tr("No Video Card"), "-nographic" );
 	Video_Card_x86 << Device_Map( QObject::tr("Standard VGA"), "-std-vga" );
 	
@@ -607,147 +568,79 @@ bool System_Info::Update_VM_Computers_List()
 	// QEMU 0.9.0
 	Averable_Devices ad;
 	ad.System = Device_Map( "IBM PC 32Bit", "qemu-system-x86" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_x86_v090;
-	ad.Video_Card_List = Video_Card_x86;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_x86_v090;
+	ad.Video_Card_List += Video_Card_x86;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
-	ad.PSO_RTC_TD_Hack = false;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "IBM PC 64Bit", "qemu-system-x86_64" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_x86_v090;
-	ad.Video_Card_List = Video_Card_x86;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_x86_v090;
+	ad.Video_Card_List += Video_Card_x86;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ARM", "qemu-system-arm" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_ARM;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_ARM;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS 32Bit", "qemu-system-mips" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_MIPS;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_MIPS;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS 32Bit EL", "qemu-system-mipsel" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_MIPS;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_MIPS;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_PPC;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_PPC;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 32Bit", "qemu-system-sparc" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Machine_List << Device_Map( QObject::tr("Sun4m"), "sun4m" );
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Video_Card_List = Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_0 << ad;
 	
 	// QEMU 0.9.1
 	ad = Averable_Devices();
 	ad.System = Device_Map( "IBM PC 32Bit", "qemu-system-x86" );
-	ad.CPU_List = CPU_x86;
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_x86;
-	ad.Video_Card_List = Video_Card_x86;
+	ad.CPU_List += CPU_x86;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_x86;
+	ad.Video_Card_List += Video_Card_x86;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
-	ad.PSO_RTC_TD_Hack = false;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
@@ -758,23 +651,19 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_x86_64 << Device_Map( QObject::tr("Athlon"), "athlon" );
 	ad.CPU_List = CPU_x86_64;
 	
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_x86;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_x86;
 	ad.Network_Card_List << Device_Map( "E1000", "e1000" );
 	ad.Network_Card_List << Device_Map( "Virtio", "virtio" );
-	ad.Video_Card_List = Video_Card_x86;
+	ad.Video_Card_List += Video_Card_x86;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.Audio_Card_List.Audio_GUS = true;
 	ad.Audio_Card_List.Audio_AC97 = true;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
-	ad.PSO_RTC_TD_Hack = false;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
@@ -796,56 +685,26 @@ bool System_Info::Update_VM_Computers_List()
 	Machine_ARM_0_9_1 << Device_Map( QObject::tr("Gumstix Connex (PXA255)"), "connex" );
 	Machine_ARM_0_9_1 << Device_Map( QObject::tr("Gumstix Verdex (PXA270)"), "verdex" );
 	Machine_ARM_0_9_1 << Device_Map( QObject::tr("Mainstone II (PXA27x)"), "mainstone" );
-	ad.Machine_List = Machine_ARM_0_9_1;
+	ad.Machine_List += Machine_ARM_0_9_1;
 	
-	ad.Network_Card_List = Network_Card_ARM;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Network_Card_List += Network_Card_ARM;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Cris", "qemu-system-cris" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Machine_List << Device_Map( QObject::tr("Bare ETRAX FS board"), "bareetraxfs" );
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ColdFire (M68K)", "qemu-system-m68k" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_M68K;
-	ad.Network_Card_List = Network_Card_M68K;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_M68K;
+	ad.Network_Card_List += Network_Card_M68K;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
@@ -855,38 +714,20 @@ bool System_Info::Update_VM_Computers_List()
 	QList<Device_Map> Machine_MIPS_0_9_1 = Machine_MIPS;
 	Machine_MIPS_0_9_1 << Device_Map( QObject::tr("Acer Pica 61"), "pica61" );
 	Machine_MIPS_0_9_1 << Device_Map( QObject::tr("MIPS MIPSsim platform"), "mipssim" );
-	ad.Machine_List = Machine_MIPS_0_9_1;
+	ad.Machine_List += Machine_MIPS_0_9_1;
 	
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS EL", "qemu-system-mipsel" );
-	ad.CPU_List = CPU_MIPS;
-	ad.Machine_List = Machine_MIPS_0_9_1;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.CPU_List += CPU_MIPS;
+	ad.Machine_List += Machine_MIPS_0_9_1;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
@@ -899,62 +740,36 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_MIPS64_0_9_1 << Device_Map( QObject::tr("5Kf"), "5Kf" );
 	CPU_MIPS64_0_9_1 << Device_Map( QObject::tr("20Kc"), "20Kc" );
 	CPU_MIPS64_0_9_1 << Device_Map( QObject::tr("MIPS64R2-generic"), "MIPS64R2-generic" );
-	ad.CPU_List = CPU_MIPS64_0_9_1;
+	ad.CPU_List += CPU_MIPS64_0_9_1;
 	
-	ad.Machine_List = Machine_MIPS_0_9_1;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_MIPS_0_9_1;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS64 EL", "qemu-system-mips64el" );
-	ad.CPU_List = CPU_MIPS64_0_9_1;
-	ad.Machine_List = Machine_MIPS_0_9_1;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.CPU_List += CPU_MIPS64_0_9_1;
+	ad.Machine_List += Machine_MIPS_0_9_1;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
-	ad.CPU_List = CPU_PPC;
+	ad.CPU_List += CPU_PPC;
 	
 	QList<Device_Map> Machine_PPC_0_9_1 = Machine_PPC;
 	Machine_PPC_0_9_1 << Device_Map( QObject::tr("Ref405ep"), "ref405ep" );
 	Machine_PPC_0_9_1 << Device_Map( QObject::tr("Taihu"), "taihu" );
-	ad.Machine_List = Machine_PPC_0_9_1;
+	ad.Machine_List += Machine_PPC_0_9_1;
 	
-	ad.Network_Card_List = Network_Card_PPC;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Network_Card_List += Network_Card_PPC;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
@@ -975,98 +790,53 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_PPC_64 << Device_Map( "970mp_v1.0", "\"970mp_v1.0\"" );
 	CPU_PPC_64 << Device_Map( "970mp_v1.1", "\"970mp_v1.1\"" );
 	CPU_PPC_64 << Device_Map( "PPC64", "ppc64" );
-	ad.CPU_List = CPU_PPC_64;
+	ad.CPU_List += CPU_PPC_64;
 	
-	ad.Machine_List = Machine_PPC_0_9_1;
-	ad.Network_Card_List = Network_Card_PPC;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_PPC_0_9_1;
+	ad.Network_Card_List += Network_Card_PPC;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC EMB 32Bit", "qemu-system-ppcemb" );
-	ad.CPU_List = CPU_PPC;
-	ad.Machine_List = Machine_PPC_0_9_1;
-	ad.Network_Card_List = Network_Card_PPC;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.CPU_List += CPU_PPC;
+	ad.Machine_List += Machine_PPC_0_9_1;
+	ad.Network_Card_List += Network_Card_PPC;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4", "qemu-system-sh4" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );;
-	ad.Machine_List = Machine_SH4;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_SH4;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4 EB", "qemu-system-sh4eb" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );;
-	ad.Machine_List = Machine_SH4;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );;
-	ad.Video_Card_List = Video_Card_Standart;
+	ad.Machine_List += Machine_SH4;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 32Bit", "qemu-system-sparc" );
-	ad.CPU_List = CPU_Sparc;
-	ad.Machine_List = Machine_Sparc;
-	ad.Network_Card_List = Network_Card_Sparc;
-	ad.Video_Card_List = Video_Card_Standart;
+	//ad.CPU_List = CPU_Sparc; // FIXME sparc CPU's...
+	ad.Machine_List += Machine_Sparc;
+	ad.Network_Card_List += Network_Card_Sparc;
+	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
+	ad.PSO_SMP_Count = 4;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
 	ad.PSO_PROM_ENV = true;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_9_1 << ad;
 	
 	// QEMU 0.10.0
 	QList<Device_Map> QEMU_Video_Cards_v0_10_0;
-	QEMU_Video_Cards_v0_10_0 << Device_Map( QObject::tr("Default"), "" );
 	QEMU_Video_Cards_v0_10_0 << Device_Map( QObject::tr("StdVGA (VESA 2.0)"), "std" );
 	QEMU_Video_Cards_v0_10_0 << Device_Map( QObject::tr("Cirrus CLGD 5446"), "cirrus" );
 	QEMU_Video_Cards_v0_10_0 << Device_Map( QObject::tr("VMWare Video Card"), "vmware" );
@@ -1083,20 +853,17 @@ bool System_Info::Update_VM_Computers_List()
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "IBM PC 32Bit", "qemu-system-x86" );
-	ad.CPU_List = CPU_x86_v0_10_0;
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_v0_10_0;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_x86_v0_10_0;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_v0_10_0;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_RTC_TD_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	QList<Device_Map> CPU_x86_64_v0_10_0 = CPU_x86_v0_10_0;
@@ -1106,29 +873,26 @@ bool System_Info::Update_VM_Computers_List()
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "IBM PC 64Bit", "qemu-system-x86_64" );
-	ad.CPU_List = CPU_x86_64_v0_10_0;
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_v0_10_0;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_x86_64_v0_10_0;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_v0_10_0;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.Audio_Card_List.Audio_GUS = true;
 	ad.Audio_Card_List.Audio_AC97 = true;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_RTC_TD_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ARM", "qemu-system-arm" );
 	
 	CPU_ARM.insert( 1, Device_Map(QObject::tr("ARM 1136 R2"), "arm1136-r2") );
-	ad.CPU_List = CPU_ARM;
+	ad.CPU_List += CPU_ARM;
 	
 	QList<Device_Map> Machine_ARM_0_10_0;
 	Machine_ARM_0_10_0 << Device_Map( QObject::tr("Integrator/CP (ARM926EJ-S)"), "integratorcp" );
@@ -1157,65 +921,33 @@ bool System_Info::Update_VM_Computers_List()
 	Machine_ARM_0_10_0 << Device_Map( QObject::tr("Marvell 88w8618 / MusicPal"), "musicpal" );
 	Machine_ARM_0_10_0 << Device_Map( QObject::tr("Tosa PDA (PXA255)"), "tosa" );
 	
-	ad.Machine_List = Machine_ARM_0_10_0;
+	ad.Machine_List += Machine_ARM_0_10_0;
 	
-	ad.Network_Card_List = Network_Card_ARM;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.Network_Card_List += Network_Card_ARM;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Cris", "qemu-system-cris" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Machine_List << Device_Map( QObject::tr("Bare ETRAX FS board"), "bareetraxfs" );
 	ad.Machine_List << Device_Map( QObject::tr("AXIS devboard 88"), "axis-dev88" );
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
 	ad.Network_Card_List << Device_Map( QObject::tr("fseth"), "fseth" );
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ColdFire (M68K)", "qemu-system-m68k" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List << Device_Map( QObject::tr("Default (MCF5206EVB)"), "" );
 	ad.Machine_List << Device_Map( QObject::tr("MCF5206EVB"), "mcf5208evb" );
 	ad.Machine_List << Device_Map( QObject::tr("Arnewsh 5206"), "an5206 " );
 	ad.Machine_List << Device_Map( QObject::tr("Dummy board"), "dummy" );
-	ad.Network_Card_List = Network_Card_M68K;
+	ad.Network_Card_List += Network_Card_M68K;
 	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	QList<Device_Map> Machine_MIPS_v0_10_0;
-	Machine_MIPS << Device_Map( QObject::tr("Default (MIPS Malta Core LV)"), "" );
 	Machine_MIPS << Device_Map( QObject::tr("MIPS Malta Core LV"), "malta" );
 	Machine_MIPS << Device_Map( QObject::tr("MIPS Magnum"), "magnum" );
 	Machine_MIPS << Device_Map( QObject::tr("Acer Pica 61"), "pica61" );
@@ -1224,38 +956,20 @@ bool System_Info::Update_VM_Computers_List()
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS", "qemu-system-mips" );
-	ad.CPU_List = CPU_MIPS;
-	ad.Machine_List = Machine_MIPS_v0_10_0;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_MIPS;
+	ad.Machine_List += Machine_MIPS_v0_10_0;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS EL", "qemu-system-mipsel" );
-	ad.CPU_List = CPU_MIPS;
-	ad.Machine_List = Machine_MIPS_v0_10_0;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_MIPS;
+	ad.Machine_List += Machine_MIPS_v0_10_0;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	QList<Device_Map> MIPS_CPU_64Bit = CPU_MIPS;
@@ -1268,48 +982,29 @@ bool System_Info::Update_VM_Computers_List()
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS64", "qemu-system-mips64" );
-	ad.CPU_List = MIPS_CPU_64Bit;
-	ad.Machine_List = Machine_MIPS_v0_10_0;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += MIPS_CPU_64Bit;
+	ad.Machine_List += Machine_MIPS_v0_10_0;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS64 EL", "qemu-system-mips64el" );
-	ad.CPU_List = MIPS_CPU_64Bit;
-	ad.Machine_List = Machine_MIPS_v0_10_0;
-	ad.Network_Card_List = Network_Card_MIPS;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += MIPS_CPU_64Bit;
+	ad.Machine_List += Machine_MIPS_v0_10_0;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
 	
 	CPU_PPC.insert( 121, Device_Map(QObject::tr("e500v1"), "e500v1") );
-	ad.CPU_List = CPU_PPC;
+	ad.CPU_List += CPU_PPC;
 	
 	QList<Device_Map> Machine_PPC_0_10_0;
-	Machine_PPC_0_10_0 << Device_Map( QObject::tr("Heathrow PowerMAC (Default)"), "" );
 	Machine_PPC_0_10_0 << Device_Map( QObject::tr("Heathrow PowerMAC"), "g3beige" );
 	Machine_PPC_0_10_0 << Device_Map( QObject::tr("Mac99 based PowerMAC"), "mac99" );
 	Machine_PPC_0_10_0 << Device_Map( QObject::tr("PowerPC PREP platform"), "prep" );
@@ -1317,38 +1012,22 @@ bool System_Info::Update_VM_Computers_List()
 	Machine_PPC_0_10_0 << Device_Map( QObject::tr("taihu"), "taihu" );
 	Machine_PPC_0_10_0 << Device_Map( QObject::tr("bamboo "), "bamboo " );
 	Machine_PPC_0_10_0 << Device_Map( QObject::tr("mpc8544ds"), "mpc8544ds" );
-	ad.Machine_List = Machine_PPC_0_10_0;
+	ad.Machine_List += Machine_PPC_0_10_0;
 	
-	ad.Network_Card_List = Network_Card_v0_10_0;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.Network_Card_List += Network_Card_v0_10_0;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC EMB 32Bit", "qemu-system-ppcemb" );
-	ad.CPU_List = CPU_PPC;
-	ad.Machine_List = Machine_PPC_0_10_0;
-	ad.Network_Card_List = Network_Card_PPC;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_PPC;
+	ad.Machine_List += Machine_PPC_0_10_0;
+	ad.Network_Card_List += Network_Card_PPC;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
@@ -1369,152 +1048,219 @@ bool System_Info::Update_VM_Computers_List()
 	CPU_PPC_64 << Device_Map( "970mp_v1.0", "\"970mp_v1.0\"" );
 	CPU_PPC_64 << Device_Map( "970mp_v1.1", "\"970mp_v1.1\"" );
 	CPU_PPC_64 << Device_Map( "PPC64", "ppc64" );
-	ad.CPU_List = CPU_PPC_64_v0_10_0;
+	ad.CPU_List += CPU_PPC_64_v0_10_0;
 	
-	ad.Machine_List = Machine_PPC_0_10_0;
-	ad.Network_Card_List = Network_Card_PPC;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.Machine_List += Machine_PPC_0_10_0;
+	ad.Network_Card_List += Network_Card_PPC;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_PPC;
-	ad.PSO_SMP_Count = 1;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	QList<Device_Map> CPU_SH4;
-	CPU_SH4 << Device_Map( QObject::tr("Default"), "" );
 	CPU_SH4 << Device_Map( QObject::tr("SH7750R"), "SH7750R" );
 	CPU_SH4 << Device_Map( QObject::tr("SH7751R"), "SH7751R" );
 	CPU_SH4 << Device_Map( QObject::tr("SH7785"), "SH7785" );
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4", "qemu-system-sh4" );
-	ad.CPU_List = CPU_SH4;
-	ad.Machine_List = Machine_SH4;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_SH4;
+	ad.Machine_List += Machine_SH4;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4 EB", "qemu-system-sh4eb" );
-	ad.CPU_List = CPU_SH4;
-	ad.Machine_List = Machine_SH4;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_SH4;
+	ad.Machine_List += Machine_SH4;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	ad.PSO_SMP_Count = 1;
-	ad.PSO_Initial_Graphic_Mode = false;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
-	ad.PSO_PROM_ENV = false;
-	ad.PSO_KVM = false;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 32Bit", "qemu-system-sparc" );
-	ad.CPU_List = CPU_Sparc;
+	//ad.CPU_List = CPU_Sparc; // FIXME sparc CPU's...
 	
-	ad.Machine_List = Machine_Sparc;
+	ad.Machine_List += Machine_Sparc;
 	ad.Machine_List << Device_Map( QObject::tr("SPARCstation Voyager (Sun4m)"), "Voyager" );
 	ad.Machine_List << Device_Map( QObject::tr("SPARCstation LX (Sun4m)"), "LX" );
 	ad.Machine_List << Device_Map( QObject::tr("SPARCstation 4 (Sun4m)"), "SS-4" );
 	ad.Machine_List << Device_Map( QObject::tr("SPARCClassic (Sun4m)"), "SPARCClassic" );
 	ad.Machine_List << Device_Map( QObject::tr("SPARCbook (Sun4m)"), "SPARCbook" );
 	
-	ad.Network_Card_List = Network_Card_Sparc;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.Network_Card_List += Network_Card_Sparc;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
 	ad.PSO_SMP_Count = 4;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_No_FB_Boot_Check = false;
-	ad.PSO_Win2K_Hack = false;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
-	ad.PSO_No_ACPI = false;
 	ad.PSO_PROM_ENV = true;
-	ad.PSO_KVM = false;
+	System_Info::Emulator_QEMU_0_10 << ad;
+	
+	ad = Averable_Devices();
+	ad.System = Device_Map( "Sparc 64Bit", "qemu-system-sparc64" );
+	//ad.CPU_List = CPU_Sparc; // FIXME sparc CPU's...
+	ad.Machine_List << Device_Map( QObject::tr("Sun4u"), "sun4u" );
+	ad.Machine_List << Device_Map( QObject::tr("Sun4v"), "sun4v" );
+	ad.Machine_List << Device_Map( QObject::tr("Sun4v (Niagara)"), "Niagara" );
+	
+	ad.Network_Card_List += Network_Card_Sparc;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
+	ad.Audio_Card_List = VM::Sound_Cards();
+	ad.PSO_Initial_Graphic_Mode = true;
+	ad.PSO_PROM_ENV = true;
 	System_Info::Emulator_QEMU_0_10 << ad;
 	
 	// KVM Old
 	ad = Averable_Devices();
 	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
-	ad.CPU_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
-	ad.Video_Card_List = Video_Card_x86;
+	ad.Machine_List += Machine_x86;
+	ad.Video_Card_List += Video_Card_x86;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
 	ad.PSO_KVM = true;
 	System_Info::Emulator_KVM_Old << ad;
 	
 	// KVM 7X
 	ad = Averable_Devices();
 	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
-	ad.CPU_List = CPU_x86_64_v0_10_0;
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_x86;
+	ad.CPU_List += CPU_x86_64_v0_10_0;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_x86;
 	ad.Network_Card_List << Device_Map( "E1000", "e1000" );
 	ad.Network_Card_List << Device_Map( "Virtio", "virtio" );
-	ad.Video_Card_List = Video_Card_x86;
+	ad.Video_Card_List += Video_Card_x86;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.Audio_Card_List.Audio_GUS = true;
 	ad.Audio_Card_List.Audio_AC97 = true;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
-	ad.PSO_RTC_TD_Hack = false;
-	ad.PSO_Kernel_KQEMU = false;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
 	ad.PSO_KVM = true;
 	System_Info::Emulator_KVM_7X << ad;
 	
 	// KVM 8X
 	ad = Averable_Devices();
 	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
-	ad.CPU_List = CPU_x86_64_v0_10_0;
-	ad.Machine_List = Machine_x86;
-	ad.Network_Card_List = Network_Card_v0_10_0;
-	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
+	ad.CPU_List += CPU_x86_64_v0_10_0;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_v0_10_0;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_x86;
 	ad.Audio_Card_List.Audio_GUS = true;
 	ad.Audio_Card_List.Audio_AC97 = true;
 	ad.PSO_SMP_Count = 255;
-	ad.PSO_Initial_Graphic_Mode = false;
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_RTC_TD_Hack = true;
-	ad.PSO_Kernel_KQEMU = false;
 	ad.PSO_No_ACPI = true;
-	ad.PSO_PROM_ENV = false;
 	ad.PSO_KVM = true;
 	System_Info::Emulator_KVM_8X << ad;
+	
+	// KVM 0.12
+	ad = Averable_Devices();
+	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
+	ad.CPU_List += CPU_x86_64_v0_10_0;
+	ad.Machine_List += Machine_x86;
+	ad.Network_Card_List += Network_Card_v0_10_0;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
+	ad.Audio_Card_List = Audio_Card_x86;
+	ad.Audio_Card_List.Audio_GUS = true;
+	ad.Audio_Card_List.Audio_AC97 = true;
+	ad.PSO_SMP_Count = 255;
+	
+	ad.PSO_SMP_Cores = true;
+	ad.PSO_SMP_Threads = true;
+	ad.PSO_SMP_Sockets = true;
+	ad.PSO_SMP_MaxCPUs = true;
+	
+	ad.PSO_Drive = true;
+	ad.PSO_Drive_File = true;
+	ad.PSO_Drive_If = true;
+	ad.PSO_Drive_Bus_Unit = true;
+	ad.PSO_Drive_Index = true;
+	ad.PSO_Drive_Media = true;
+	ad.PSO_Drive_Cyls_Heads_Secs_Trans = true;
+	ad.PSO_Drive_Snapshot = true;
+	ad.PSO_Drive_Cache = true;
+	ad.PSO_Drive_AIO = true;
+	ad.PSO_Drive_Format = true;
+	ad.PSO_Drive_Serial = true;
+	ad.PSO_Drive_ADDR = true;
+	
+	ad.PSO_Boot_Order = true;
+	//PSO_Initial_Graphic_Mode = true;
+	ad.PSO_No_FB_Boot_Check = true;
+	ad.PSO_Win2K_Hack = true;
+	//PSO_Kernel_KQEMU = true;
+	ad.PSO_No_ACPI = true;
+	//PSO_PROM_ENV = true;
+	ad.PSO_KVM = true;
+	ad.PSO_RTC_TD_Hack = true;
+	
+	ad.PSO_MTDBlock = true;
+	ad.PSO_SD = true;
+	ad.PSO_PFlash = true;
+	ad.PSO_Name = true;
+	ad.PSO_Curses = true;
+	ad.PSO_No_Frame = true;
+	ad.PSO_Alt_Grab = true;
+	ad.PSO_No_Quit = true;
+	ad.PSO_SDL = true;
+	ad.PSO_Portrait = true;
+	ad.PSO_No_Shutdown = true;
+	ad.PSO_Startdate = true;
+	ad.PSO_Show_Cursor = true;
+	ad.PSO_Bootp = true;
+	
+	ad.PSO_Net_type_vde = true;
+	ad.PSO_Net_type_dump = true;
+	
+	ad.PSO_Net_name = true;
+	ad.PSO_Net_addr = true;
+	ad.PSO_Net_vectors = true;
+	
+	ad.PSO_Net_net = true;
+	ad.PSO_Net_host = true;
+	ad.PSO_Net_restrict = true;
+	ad.PSO_Net_dhcpstart = true;
+	ad.PSO_Net_dns = true;
+	ad.PSO_Net_tftp = true;
+	ad.PSO_Net_bootfile = true;
+	ad.PSO_Net_smb = true;
+	ad.PSO_Net_hostfwd = true;
+	ad.PSO_Net_guestfwd = true;
+	
+	ad.PSO_Net_ifname = true;
+	ad.PSO_Net_script = true;
+	ad.PSO_Net_downscript = true;
+	
+	ad.PSO_Net_listen = true;
+	ad.PSO_Net_connect = true;
+	
+	ad.PSO_Net_mcast = true;
+	
+	ad.PSO_Net_sock = true;
+	ad.PSO_Net_port = true;
+	ad.PSO_Net_group = true;
+	ad.PSO_Net_mode = true;
+	
+	ad.PSO_Net_file = true;
+	ad.PSO_Net_len = true;
+	
+	ad.PSO_Enable_KVM = true;
+	ad.PSO_No_KVM = true;
+	ad.PSO_No_KVM_IRQChip = true;
+	ad.PSO_No_KVM_Pit = true;
+	ad.PSO_No_KVM_Pit_Reinjection = true;
+	ad.PSO_Enable_Nesting = true;
+	ad.PSO_KVM_Shadow_Memory = true;
+	
+	System_Info::Emulator_KVM_0_12 << ad;
 	
 	return true;
 }

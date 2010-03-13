@@ -133,14 +133,20 @@ class Virtual_Machine: public QObject
 		const QString &Get_CPU_Type() const;
 		void Set_CPU_Type( const QString &type );
 		
+		VM::SMP_Options Get_SMP() const;
+		void Set_SMP( const VM::SMP_Options &smp );
+		
 		int Get_SMP_CPU_Count() const;
 		void Set_SMP_CPU_Count( int count );
 		
 		const QString &Get_Keyboard_Layout() const;
 		void Set_Keyboard_Layout( const QString &kl );
 		
-		VM::Boot_Device Get_Boot_Device() const;
-		void Set_Boot_Device( VM::Boot_Device device );
+		const QList<VM::Boot_Order> &Get_Boot_Order_List() const;
+		void Set_Boot_Order_List( QList<VM::Boot_Order> &list );
+		
+		bool Get_Show_Boot_Menu() const;
+		void Set_Show_Boot_Menu( bool use );
 		
 		const QString &Get_Video_Card() const;
 		void Set_Video_Card( const QString &card );
@@ -463,10 +469,11 @@ class Virtual_Machine: public QObject
 		QString Machine_Name; // this machine name
 		QString Machine_Type; // All QEMU Mach Types
 		QString CPU_Type; // x86, ppc, sparc...
-		int SMP_CPU_Count; // smp mode cpu's number
+		VM::SMP_Options SMP; // All SMP Settings
 		QString Keyboard_Layout; // language en, ru, jp...
-		VM::Boot_Device Boot_Device; // boot device
+		//VM::Boot_Device Boot_Device; // boot device
 		QList<VM::Boot_Order> Boot_Order_List; // New boot order
+		bool Show_Boot_Menu; // Enable interactive boot menu
 		QString Video_Card; // std vga, cirus logic
 		VM::Acseleration_Mode KQEMU_Mode; // acceleration mode
 		VM::Sound_Cards Audio_Card; // sb16, es1370

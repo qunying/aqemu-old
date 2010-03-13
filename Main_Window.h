@@ -92,7 +92,9 @@ class Main_Window: public QMainWindow
 		void on_CB_Computer_Type_currentIndexChanged( int index );
 		void on_CB_Emulator_Type_currentIndexChanged( int index );
 		void on_CB_Emulator_Version_currentIndexChanged( int index );
+		void CB_Boot_Prioritet_currentIndexChanged( int index );
 		void on_TB_Show_Boot_Settings_Window_clicked();
+		void Set_Boot_Order( const QList<VM::Boot_Order> &list );
 		void on_TB_Show_SMP_Settings_Window_clicked();
 		void Apply_Emulator( int mode );
 		
@@ -224,6 +226,8 @@ class Main_Window: public QMainWindow
 		
 		QList<Virtual_Machine*> VM_List;
 		QList<Emulator> All_Emulators_List;
+		QList<VM::Boot_Order> Boot_Order_List;
+		bool Show_Boot_Menu;
 		
 		HDD_Image_Info* HDA_Info;
 		HDD_Image_Info* HDB_Info;
