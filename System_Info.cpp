@@ -1498,7 +1498,6 @@ QStringList System_Info::Find_QEMU_Binary_Files( const QString &path )
 {
 	QStringList find_names, return_list;
 	find_names << "qemu";
-	find_names << "qemu-kvm";
 	find_names << "qemu-img";
 	find_names << "qemu-system-arm";
 	find_names << "qemu-system-cris";

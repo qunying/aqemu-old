@@ -1,4 +1,9 @@
 # AQEMU CMake Project
+
+# Authors:
+# Andrey Rijov (AQEMU developer)
+# Timothy Redaelli (Fix for build in a different folder)
+
 PROJECT( AQEMU )
 CMAKE_MINIMUM_REQUIRED( VERSION 2.4.0 )
 
@@ -123,7 +128,7 @@ SET( aqemu_resouces shared_images.qrc )
 
 SET( translations Russian.ts )
 
-SET( files_to_translate ${files_to_translate} ${aqemu_headers} ${aqemu_sources} ${aqemu_ui} PARENT_SCOPE )
+SET( files_to_translate ${files_to_translate} ${aqemu_headers} ${aqemu_sources} ${aqemu_ui} )
 
 
 # Check Qt
@@ -178,8 +183,10 @@ ADD_CUSTOM_TARGET( translations_target DEPENDS ${qm_files} )
 INCLUDE_DIRECTORIES(
 	${QT_INCLUDES}
 	${CMAKE_CURRENT_BINARY_DIR}
+	${CMAKE_CURRENT_SOURCE_DIR}
 	${QT_INCLUDE_DIR}
 	${CMAKE_BINARY_DIR}
+	${CMAKE_SOURCE_DIR}
 	${QT_QTNETWORK_INCLUDE_DIR}
 	${QT_QTTEST_INCLUDE_DIR}
 )
