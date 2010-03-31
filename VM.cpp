@@ -5561,20 +5561,32 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 				if( Network_Cards_Nativ[nc].Use_Interface_Name() && u_ifname )
 					nic_str += ",ifname=" + Network_Cards_Nativ[ nc ].Get_Interface_Name();
 				
-				if( Network_Cards_Nativ[nc].Use_TUN_TAP_Script() && u_script )
+				if( u_script )
 				{
-					if( Build_QEMU_Args_for_Script_Mode )
-						nic_str += ",script=\"" + Network_Cards_Nativ[ nc ].Get_TUN_TAP_Script() + "\"";
+					QString s_script;
+
+					if( Network_Cards_Nativ[nc].Use_TUN_TAP_Script() )
+						s_script = Network_Cards_Nativ[ nc ].Get_TUN_TAP_Script();
 					else
-						nic_str += ",script=" + Network_Cards_Nativ[ nc ].Get_TUN_TAP_Script();
+						s_script = "no";
+					if( Build_QEMU_Args_for_Script_Mode )
+						nic_str += ",script=\"" + s_script + "\"";
+					else
+						nic_str += ",script=" + s_script;
 				}
 				
-				if( Network_Cards_Nativ[nc].Use_TUN_TAP_Down_Script() && u_downscript )
+				if( u_downscript )
 				{
-					if( Build_QEMU_Args_for_Script_Mode )
-						nic_str += ",downscript=\"" + Network_Cards_Nativ[ nc ].Get_TUN_TAP_Down_Script() + "\"";
+					QString s_downscript;
+					if( Network_Cards_Nativ[nc].Use_TUN_TAP_Down_Script() )
+						s_downscript = Network_Cards_Nativ[ nc ].Get_TUN_TAP_Down_Script();
 					else
-						nic_str += ",downscript=" + Network_Cards_Nativ[ nc ].Get_TUN_TAP_Down_Script();
+						s_downscript = "no";
+
+					if( Build_QEMU_Args_for_Script_Mode )
+						nic_str += ",downscript=\"" + s_downscript + "\"";
+					else
+						nic_str += ",downscript=" + s_downscript;
 				}
 				
 				if( Network_Cards_Nativ[nc].Use_Listen() && u_listen )
