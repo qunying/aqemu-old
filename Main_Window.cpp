@@ -5107,7 +5107,7 @@ void Main_Window::on_actionShow_QEMU_Error_Log_Window_triggered()
 
 void Main_Window::on_Memory_Size_valueChanged( int value )
 {
-	if( value >= 1 && value <= 2048 ) ui.CB_RAM_Size->setEditText( QString::number(value) );
+	if( value >= 1 && value <= 32768 ) ui.CB_RAM_Size->setEditText( QString::number(value) );
 }
 
 void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
@@ -5122,7 +5122,7 @@ void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 		return;
 	}
 	
-	if( value >= 1 && value <= 2048 )
+	if( value >= 1 && value <= 32768 )
 	{
 		ui.Memory_Size->setValue( value );
 	}
