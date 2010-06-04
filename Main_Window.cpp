@@ -620,6 +620,14 @@ const QMap<QString, Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )
 		}
 	}
 	
+	if( curEmul.Get_Name().isEmpty() )
+	{
+		AQError( "QList<Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
+				 "Emulator empty!" );
+		*ok = false;
+		return retList;
+	}
+	
 	*ok = true;
 	return curEmul.Get_Devices();
 }
@@ -1775,9 +1783,9 @@ void Main_Window::Update_Info_Text( int info_mode )
 	{
 		// This for Tab Info Backgroud Color
 		QPalette qpal;
-		ui.VM_Information_Text->setHtml( "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body bgcolor=\"" +
-										 qpal.color(QPalette::Window).name() +
-										 "\" style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>" );
+		ui.VM_Information_Text->setHtml( "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head>"
+										 "<body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;\">"
+										 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>" );
 		
 		QTextCursor cursor = ui.VM_Information_Text->textCursor();
 		QTextCharFormat format = QTextCharFormat();
@@ -1807,9 +1815,9 @@ void Main_Window::Update_Info_Text( int info_mode )
 	
 	// This for Tab Info Backgroud Color
 	QPalette qpal;
-	ui.VM_Information_Text->setHtml( "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head><body bgcolor=\"" +
-									 qpal.color(QPalette::Window).name() +
-									 "\" style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;\"><p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>" );
+	ui.VM_Information_Text->setHtml( "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">p, li { white-space: pre-wrap; }</style></head>"
+									 "<body style=\" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal; text-decoration:none;\">"
+									 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>" );
 	
 	QTextCursor cursor = ui.VM_Information_Text->textCursor();
 	QTextCharFormat format = QTextCharFormat();
@@ -1839,7 +1847,6 @@ void Main_Window::Update_Info_Text( int info_mode )
 	
 	QTextCharFormat bold_format = format;
 	bold_format.setFontWeight( QFont::Bold );
-	//bold_format.setForeground( QColor("#3C4FA1") );
 	bold_format.setForeground( qpal.color(QPalette::Link) );
 	
 	QTextTableFormat table_format;

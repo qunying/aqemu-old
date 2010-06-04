@@ -6847,7 +6847,8 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 	}
 	else
 	{
-		static const Averable_Devices tmp = Current_Emulator.Get_Devices()[ Computer_Type ];
+		static Averable_Devices tmp = Current_Emulator.Get_Devices()[ Computer_Type ];
+		tmp = Current_Emulator.Get_Devices()[ Computer_Type ]; // it not bug :)
 		Current_Emulator_Devices = &tmp;
 	}
 	

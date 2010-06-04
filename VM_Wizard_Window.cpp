@@ -278,8 +278,6 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
 		}
 		
-		
-		
 		// Use Selected Template
 		if( ui.RB_VM_Template->isChecked() )
 		{
@@ -589,13 +587,9 @@ bool VM_Wizard_Window::Create_New_VM()
 		
 		// Hard Disk
 		if( ! ui.Edit_HDA_File_Name->text().isEmpty() )
-		{
 			New_VM->Set_HDA( VM_HDD(true, ui.Edit_HDA_File_Name->text()) );
-		}
 		else
-		{
 			New_VM->Set_HDA( VM_HDD(false, "") );
-		}
 	}
 	
 	// Network

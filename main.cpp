@@ -183,17 +183,20 @@ int main( int argc, char *argv[] )
 		
 		QDir data_dir;
 		
-		if( data_dir.exists("/usr/share/aqemu/") )
+		if( data_dir.exists("/usr/share/aqemu/os_icons") && 
+			data_dir.exists("/usr/share/aqemu/os_templates") )
 		{
 			settings.setValue( "AQEMU_Data_Folder", "/usr/share/aqemu/" );
 			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: /usr/share/aqemu/" );
 		}
-		else if( data_dir.exists("/usr/share/apps/aqemu/") )
+		else if( data_dir.exists("/usr/share/apps/aqemu/os_icons") &&
+			     data_dir.exists("/usr/share/apps/aqemu/os_templates") )
 		{
 			settings.setValue( "AQEMU_Data_Folder", "/usr/share/apps/aqemu/" );
 			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: /usr/share/apps/aqemu/" );
 		}
-		else if( data_dir.exists("/usr/local/share/aqemu/") )
+		else if( data_dir.exists("/usr/local/share/aqemu/os_icons") && 
+				 data_dir.exists("/usr/local/share/aqemu/os_templates") )
 		{
 			settings.setValue( "AQEMU_Data_Folder", "/usr/local/share/aqemu/" );
 			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: /usr/local/share/aqemu/" );

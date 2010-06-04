@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>736</width>
-    <height>598</height>
+    <width>730</width>
+    <height>592</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -116,6 +116,43 @@
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="0" column="0">
              <widget class="QTextEdit" name="VM_Information_Text">
+              <property name="palette">
+               <palette>
+                <active>
+                 <colorrole role="Base">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="0">
+                    <red>247</red>
+                    <green>247</green>
+                    <blue>247</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </active>
+                <inactive>
+                 <colorrole role="Base">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="0">
+                    <red>247</red>
+                    <green>247</green>
+                    <blue>247</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </inactive>
+                <disabled>
+                 <colorrole role="Base">
+                  <brush brushstyle="SolidPattern">
+                   <color alpha="255">
+                    <red>218</red>
+                    <green>225</green>
+                    <blue>237</blue>
+                   </color>
+                  </brush>
+                 </colorrole>
+                </disabled>
+               </palette>
+              </property>
               <property name="frameShape">
                <enum>QFrame::NoFrame</enum>
               </property>
@@ -4072,7 +4109,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>736</width>
+     <width>730</width>
      <height>24</height>
     </rect>
    </property>
