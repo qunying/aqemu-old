@@ -102,13 +102,14 @@ class Virtual_Machine: public QObject
 		// Screenshot
 		bool Take_Screenshot( const QString &file_name, int width=-1, int height=-1 );
 		
-		const QString &Get_Emulator_Type() const;
-		void Set_Emulator_Type( const QString &type );
+		VM::Emulator_Type Get_Emulator_Type() const;
+		void Set_Emulator_Type( VM::Emulator_Type type );
 		
 		const Emulator &Get_Emulator() const;
 		void Set_Emulator( const Emulator &emul );
 		
 		void Update_Current_Emulator_Devices();
+		const Averable_Devices *Get_Current_Emulator_Devices() const;
 		
 		QString Get_Current_Emulator_Binary_Path( const QString &names ) const;
 		
@@ -160,8 +161,8 @@ class Virtual_Machine: public QObject
 		int Get_Memory_Size() const;
 		void Set_Memory_Size( int megs );
 		
-		bool Get_Check_Free_RAM() const;
-		void Set_Check_Free_RAM( bool ch );
+		bool Get_Remove_RAM_Size_Limitation() const;
+		void Set_Remove_RAM_Size_Limitation( bool on );
 		
 		bool Use_Fullscreen_Mode() const;
 		void Use_Fullscreen_Mode( bool use );
@@ -404,8 +405,6 @@ class Virtual_Machine: public QObject
 		bool Use_No_Use_Embedded_Display() const;
 		void Use_No_Use_Embedded_Display( bool use );
 		
-		bool Version_Good( VM::Emulator_Version qver, VM::Emulator_Version kver ) const; // FIXME
-		
 		// Window for control qemu/kvm
 		Emulator_Control_Window *Emu_Ctl;
 		
@@ -454,9 +453,9 @@ class Virtual_Machine: public QObject
 		
 		QString UID;
 		
-		QString Emulator_Type;
+		VM::Emulator_Type Emulator_Type;
 		Emulator Current_Emulator;
-		Averable_Devices *Current_Emulator_Devices;
+		const Averable_Devices *Current_Emulator_Devices;
 		
 		QString Snapshot_Name_String;
 		QString Last_Output;
@@ -471,13 +470,12 @@ class Virtual_Machine: public QObject
 		QString CPU_Type; // x86, ppc, sparc...
 		VM::SMP_Options SMP; // All SMP Settings
 		QString Keyboard_Layout; // language en, ru, jp...
-		//VM::Boot_Device Boot_Device; // boot device
 		QList<VM::Boot_Order> Boot_Order_List; // New boot order
 		bool Show_Boot_Menu; // Enable interactive boot menu
 		QString Video_Card; // std vga, cirus logic
 		VM::Acseleration_Mode KQEMU_Mode; // acceleration mode
 		VM::Sound_Cards Audio_Card; // sb16, es1370
-		bool Check_Free_RAM; // free ram checkbox
+		bool Remove_RAM_Size_Limitation; // true - limitation off
 		int Memory_Size; // RAM Size
 		
 		// General Tab Options

@@ -159,6 +159,14 @@ void Network_Widget::Set_Network_Card_Models( const QList<Device_Map> &models )
 	}
 }
 
+void Network_Widget::Set_Enabled( bool on )
+{
+	ui.Label_Items_List->setEnabled( on );
+	ui.Button_Add->setEnabled( on );
+	ui.Button_Delete->setEnabled( on );
+	ui.General_Widget->setEnabled( on );
+}
+
 void Network_Widget::Connect_Slots()
 {
 	connect( ui.CB_Network_Type, SIGNAL(currentIndexChanged(int)),

@@ -25,6 +25,7 @@
 #include <QMessageBox>
 #include <QTranslator>
 #include <QFileDialog>
+#include <QProgressDialog>
 
 #include "First_Start_Wizard.h"
 #include "Utils.h"
@@ -122,17 +123,15 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 	Emulators_Find_Done = true;
 	ui.Button_Next->setEnabled( true );
 	
+	// Clear old emulators list and remove emulators files
 	ui.Edit_Enulators_List->clear();
 	
-	for( int rx = 0; rx < Settings.value( "Emulators_Count", "0" ).toString().toInt(); rx++ )
-	{
-		Settings.remove( "Emulator_" + QString::number(rx) );
-	}
+	// Remove old files
+	Remove_All_Emulators_Files();
 	
-	Settings.setValue( "Emulators_Count", "0" );
-	
+	// Find emualtors files
+	// Get environment values
 	QStringList sys_env = QProcess::systemEnvironment();
-	
 	if( sys_env.count() <= 0 )
 	{
 		AQError( "void First_Start_Wizard::on_Button_Find_clicked()",
@@ -141,8 +140,8 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 	}
 	else
 	{
+		// Find PATH
 		QStringList paths;
-		
 		for( int ix = 0; ix < sys_env.count(); ix++ )
 		{
 			if( sys_env[ix].startsWith("PATH=") )
@@ -153,13 +152,18 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 			}
 		}
 		
-		// Delete /usr/bin/X11/
+		// Delete /usr/bin/X11/ from PATH's list
 		for( int ix = 0; ix < paths.count(); ix++ )
 		{
-			if( paths[ix].indexOf("/usr/bin/X11") >= 0 )
-			{
-				paths.removeAt( ix );
-			}
+			if( paths[ix].indexOf("/usr/bin/X11") >= 0 ) paths.removeAt( ix );
+		}
+		
+		// Add / to line end
+		for( int ix = 0; ix < paths.count(); ++ix )
+		{
+			paths[ ix ] = QDir::toNativeSeparators( (paths[ix].endsWith("/") || paths[ix].endsWith("\\"))
+													? paths[ix]
+													: paths[ix] + "/" );
 		}
 		
 		if( paths.count() <= 0 )
@@ -170,203 +174,231 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 		}
 		else
 		{
-			int qemu_emulators_count = 0;
+			// Find QEMU-IMG
+			bool qemuIMG_Finded = false;
 			
-			// Find QEMU
-			for( int qx = 0; qx < paths.count(); ++qx )
+			for( int ix = 0; ix < paths.count(); ++ix )
 			{
-				QStringList qemu_list = System_Info::Find_QEMU_Binary_Files( paths[qx] );
 				
-				if( qemu_list.count() < 1 || qemu_list[0].isEmpty() )
+				
+				if( QFile::exists(paths[ix] + "qemu-img") )
 				{
-					AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
-							 "In " + paths[qx] + " QEMU Not Found" );
+					Settings.setValue( "QEMU-IMG_Path", paths[ix] + "qemu-img" );
+					qemuIMG_Finded = true;
+					break;
 				}
-				else
+				else if( QFile::exists(paths[ix] + "kvm-img") )
 				{
-					AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
-							 "QEMU Finded. Path: " + paths[qx] );
-					
-					QString path = "";
-					
-					if( paths[qx].endsWith("/") || paths[qx].endsWith("\\") )
-					{
-						path = paths[qx];
-					}
-					else
-					{
-					#ifdef Q_OS_WIN32
-						path = paths[qx] + "\\";
-					#else
-						path = paths[qx] + "/";
-					#endif
-					}
-					
-					// Check Version
-					QString qemu_version = System_Info::Get_QEMU_Version( path + qemu_list[0] );
-					
-					if( qemu_version.isEmpty() )
-					{
-						AQError( "void First_Start_Wizard::on_Button_Find_clicked()",
-								 "Cannot Get QEMU Version! Using Default: 0.9.0" );
-						
-						qemu_version = "0.9.0";
-					}
-					
-					// Add Text
-					ui.Edit_Enulators_List->appendPlainText( tr("Finded QEMU in %1, version: %2").arg(paths[qx]).arg(qemu_version) );
-					
-					// Create New Emulator
-					Settings.setValue( "Emulators_Count", Settings.value("Emulators_Count", "0").toString().toInt() +1 );
-					int emul_count = Settings.value( "Emulators_Count", "0" ).toString().toInt();
-					
-					// Load Emulator Data
-					QString prefix = "Emulator_" + QString::number( emul_count-1 ) + "/";
-					
-					// Emulator Type
-					Settings.setValue( prefix + "Type", "QEMU" );
-					
-					// Name
-					Settings.setValue( prefix + "Name", "QEMU " + qemu_version );
-					
-					// Default
-					if( qemu_emulators_count == 0 ) Settings.setValue( prefix + "Default", "yes" );
-					else Settings.setValue( prefix + "Default", "no" );
-					
-					// Path
-					Settings.setValue( prefix + "Path", paths[qx] );
-					
-					// Check Version on Start AQEMU
-					Settings.setValue( prefix + "Check_QEMU_Version", "no" );
-					
-					// Force QEMU Version
-					Settings.setValue( prefix + "QEMU_Version", qemu_version );
-					
-					// Check Available Audio Cards
-					Settings.setValue( prefix + "Check_Available_Audio_Cards", "no" );
-					
-					// Bin files
-					QStringList QEMU_Binary_Names;
-					QEMU_Binary_Names << "qemu";
-					QEMU_Binary_Names << "qemu-img";
-					QEMU_Binary_Names << "qemu-system-arm";
-					QEMU_Binary_Names << "qemu-system-cris";
-					QEMU_Binary_Names << "qemu-system-m68k";
-					QEMU_Binary_Names << "qemu-system-mips";
-					QEMU_Binary_Names << "qemu-system-mipsel";
-					QEMU_Binary_Names << "qemu-system-mips64";
-					QEMU_Binary_Names << "qemu-system-mips64el";
-					QEMU_Binary_Names << "qemu-system-ppc";
-					QEMU_Binary_Names << "qemu-system-ppc64";
-					QEMU_Binary_Names << "qemu-system-ppcemb";
-					QEMU_Binary_Names << "qemu-system-sh4";
-					QEMU_Binary_Names << "qemu-system-sh4eb";
-					QEMU_Binary_Names << "qemu-system-sparc";
-					QEMU_Binary_Names << "qemu-system-x86_64";
-					
-					for( int ix = 0; ix < QEMU_Binary_Names.count(); ++ix )
-					{
-						Settings.setValue( prefix + QEMU_Binary_Names[ix], path + qemu_list[ix] );
-					}
-					
-					qemu_emulators_count++;
+					Settings.setValue( "QEMU-IMG_Path", paths[ix] + "kvm-img" );
+					qemuIMG_Finded = true;
+					break;
 				}
 			}
 			
-			int kvm_emulators_count = 0;
+			if( qemuIMG_Finded )
+				AQDebug( "void First_Start_Wizard::on_Button_Find_Emulators_clicked()",
+						 "qemu-img find on: " + Settings.value("QEMU-IMG_Path","").toString() );
+			else
+				AQError( "void First_Start_Wizard::on_Button_Find_Emulators_clicked()",
+						 "Cannot find qemu-img!" );
+			
+			// Find QEMU
+			int qemu_emulators_count = 0;
+			
+			for( int qx = 0; qx < paths.count(); ++qx )
+			{
+				QMap<QString, QString> qemu_list = System_Info::Find_QEMU_Binary_Files( paths[qx] );
+				
+				// Found emulators files in this dir?				
+				bool qemuBinFilesFound = false;
+				for( QMap<QString, QString>::const_iterator it = qemu_list.constBegin(); it != qemu_list.constEnd(); ++it )
+				{
+					if( ! it.value().isEmpty() )
+					{
+						qemuBinFilesFound = true;
+						break;
+					}
+				}
+				
+				if( ! qemuBinFilesFound )
+				{
+					AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
+							 "In " + paths[qx] + " QEMU Not Found" );
+					continue;
+				}
+				
+				// Bin files found. Work...
+				AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
+						 "QEMU Finded. Path: " + paths[qx] );
+				
+				// Check Version
+				VM::Emulator_Version qemu_version = VM::Obsolete;
+				
+				QMap<QString, QString>::const_iterator iter = qemu_list.constBegin();
+				while( iter != qemu_list.constEnd() )
+				{
+					if( QFile::exists(iter.value()) )
+						qemu_version = System_Info::Get_Emulator_Version( iter.value() );
+					
+					if( qemu_version != VM::Obsolete ) break;
+					
+					iter++;
+				}
+				
+				if( qemu_version == VM::Obsolete )
+				{
+					AQError( "void First_Start_Wizard::on_Button_Find_clicked()",
+							 "Cannot Get QEMU Version! Using Default: 0.10.0" );
+					
+					qemu_version = VM::QEMU_0_10;
+				}
+				
+				// Get emulator info
+				int allEmulBinCount = qemu_list.count();
+				QProgressDialog progressWin( "Search emulators...", "Cancel", 0, allEmulBinCount, this );
+				progressWin.setWindowModality( Qt::WindowModal );
+				
+				QMap<QString, Averable_Devices> devList;
+				
+				iter = qemu_list.constBegin();
+				for( int emulBinIndex = 0; iter != qemu_list.constEnd(); ++emulBinIndex )
+				{
+					progressWin.setValue( emulBinIndex );
+					
+					if( ! iter.value().isEmpty() )
+					{
+						bool ok = false;
+						Averable_Devices tmpDev = System_Info::Get_Emulator_Info( iter.value(), &ok, qemu_version, iter.key() );
+						
+						if( ok )
+							devList[ iter.key() ] = tmpDev;
+						else
+							AQGraphic_Warning( "void First_Start_Wizard::on_Button_Find_clicked()", tr("Error!"),
+												tr("Cannot get emulator info! For file: %1").arg(iter.value()) );
+					}
+					++iter;
+					
+					if( progressWin.wasCanceled() ) break;
+				}
+				
+				progressWin.setValue( allEmulBinCount );
+				
+				// Create new emulator
+				Emulator emul;
+				emul.Set_Name( Emulator_Version_To_String(qemu_version) );
+				emul.Set_Type( VM::QEMU );
+				emul.Set_Version( qemu_version );
+				emul.Set_Default( (qemu_emulators_count == 0) ); // It first emulator?
+				emul.Set_Path( paths[qx] );
+				emul.Set_Devices( devList );
+				emul.Set_Binary_Files( qemu_list );
+				emul.Set_Check_Version( false );
+				emul.Set_Check_Available_Options( false );
+				emul.Set_Force_Version( false );
+				emul.Save();
+				
+				// Add Text
+				ui.Edit_Enulators_List->appendPlainText( tr("Finded QEMU in %1, version: %2").
+														 arg(paths[qx]).
+														 arg(Emulator_Version_To_String(qemu_version)) );
+				
+				qemu_emulators_count++;
+			}
 			
 			// Find KVM
+			int kvm_emulators_count = 0;
+			
 			for( int kx = 0; kx < paths.count(); ++kx )
 			{
-				QStringList kvm_list = System_Info::Find_KVM_Binary_Files( paths[kx] );
+				QMap<QString, QString> kvm_list = System_Info::Find_KVM_Binary_Files( paths[kx] );
 				
-				if( kvm_list.count() < 1 || kvm_list[0].isEmpty() )
+				// Found emulators files in this dir?				
+				bool kvmBinFilesFound = false;
+				for( QMap<QString, QString>::const_iterator it = kvm_list.constBegin(); it != kvm_list.constEnd(); ++it )
+				{
+					if( ! it.value().isEmpty() )
+					{
+						kvmBinFilesFound = true;
+						break;
+					}
+				}
+				
+				if( ! kvmBinFilesFound )
 				{
 					AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
 							 "In " + paths[kx] + " KVM Not Found" );
+					continue;
 				}
-				else
+				
+				// Bin files found. Work...
+				AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
+						 "KVM Finded. Path: " + paths[kx] );
+				
+				// Check Version
+				VM::Emulator_Version kvm_version = VM::Obsolete;
+				
+				QMap<QString, QString>::const_iterator iter = kvm_list.constBegin();
+				while( iter != kvm_list.constEnd() )
 				{
-					AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
-							 "KVM Finded. Path: " + paths[kx] );
+					if( QFile::exists(iter.value()) )
+						kvm_version = System_Info::Get_Emulator_Version( iter.value() );
 					
-					QString path = "";
-					
-					if( paths[kx].endsWith("/") || paths[kx].endsWith("\\") )
-					{
-						path = paths[kx];
-					}
-					else
-					{
-					#ifdef Q_OS_WIN32
-						path = paths[kx] + "\\";
-					#else
-						path = paths[kx] + "/";
-					#endif
-					}
-					
-					// Check Version
-					QString kvm_version = System_Info::Get_KVM_Version( path + kvm_list[0] );
-					
-					if( kvm_version.isEmpty() )
-					{
-						AQError( "void First_Start_Wizard::on_Button_Find_clicked()",
-								 "Cannot Get KVM Version! Using Default: 7X" );
-						
-						kvm_version = "7X";
-					}
-					
-					// Add Text
-					ui.Edit_Enulators_List->appendPlainText( tr("Finded KVM in %1, version: %2").arg(paths[kx]).arg(kvm_version) );
-					
-					// Create New Emulator
-					Settings.setValue( "Emulators_Count", Settings.value("Emulators_Count", "0").toString().toInt() +1 );
-					int emul_count = Settings.value( "Emulators_Count", "0" ).toString().toInt();
-					
-					// Load Emulator Data
-					QString prefix = "Emulator_" + QString::number( emul_count-1 ) + "/";
-					
-					// Emulator Type
-					Settings.setValue( prefix + "Type", "KVM" );
-					
-					// Name
-					Settings.setValue( prefix + "Name", "KVM " + kvm_version );
-					
-					// Default
-					if( kvm_emulators_count == 0 ) Settings.setValue( prefix + "Default", "yes" );
-					else Settings.setValue( prefix + "Default", "no" );
-					
-					// Path
-					Settings.setValue( prefix + "Path", paths[kx] );
-					
-					// Check Version on Start AQEMU
-					Settings.setValue( prefix + "Check_KVM_Version", "no" );
-					
-					// Force KVM Version
-					Settings.setValue( prefix + "KVM_Version", kvm_version );
-					
-					// Check Available Audio Cards
-					Settings.setValue( prefix + "Check_Available_Audio_Cards", "no" );
-					
-					// Bin files
-					QStringList KVM_Binary_Names;
-					KVM_Binary_Names << "kvm";
-					KVM_Binary_Names << "kvm-img";
-					
-					for( int ix = 0; ix < KVM_Binary_Names.count(); ++ix )
-					{
-						Settings.setValue( prefix + KVM_Binary_Names[ix], path + kvm_list[ix] );
-					}
-					
-					kvm_emulators_count++;
+					if( kvm_version != VM::Obsolete ) break;
 				}
+				
+				if( kvm_version == VM::Obsolete )
+				{
+					AQError( "void First_Start_Wizard::on_Button_Find_clicked()",
+							 "Cannot Get KVM Version! Using Default: 8X" );
+					
+					kvm_version = VM::KVM_8X;
+				}
+				
+				// Get emulator info
+				QMap<QString, Averable_Devices> devList;
+				
+				iter = kvm_list.constBegin();
+				while( iter != kvm_list.constEnd() )
+				{
+					if( ! iter.value().isEmpty() )
+					{
+						bool ok = false;
+						Averable_Devices tmpDev = System_Info::Get_Emulator_Info( iter.value(), &ok, kvm_version, iter.key() );
+						
+						if( ok )
+							devList[ iter.key() ] = tmpDev;
+						else
+							AQGraphic_Warning( tr("Error!"), tr("Cannot get emulator info! For file: %1").arg(iter.value()) );
+					}
+					
+					++iter;
+				}
+				
+				// Create new emulator
+				Emulator emul;
+				emul.Set_Name( Emulator_Version_To_String(kvm_version) );
+				emul.Set_Type( VM::KVM );
+				emul.Set_Version( kvm_version );
+				emul.Set_Default( (kvm_emulators_count == 0) ); // It first emulator?
+				emul.Set_Path( paths[kx] );
+				emul.Set_Devices( devList );
+				emul.Set_Binary_Files( kvm_list );
+				emul.Set_Check_Version( false );
+				emul.Set_Check_Available_Options( false );
+				emul.Set_Force_Version( false );
+				emul.Save();
+				
+				// Add Text
+				ui.Edit_Enulators_List->appendPlainText( tr("Finded KVM in %1, version: %2").
+														 arg(paths[kx]).
+														 arg(Emulator_Version_To_String(kvm_version)) );
+				
+				kvm_emulators_count++;
 			}
 			
 			// Enable Edit Emulator Version Manualy Button
 			if( qemu_emulators_count > 0 || kvm_emulators_count > 0 )
-			{
 				ui.Button_Edit->setEnabled( true );
-			}
 		}
 	}
 }

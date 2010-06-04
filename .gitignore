@@ -20,6 +20,7 @@ ui_*.h
 aqemu
 
 # IDE Files
+AQEMU.cbp
 AQEMU.kdevelop
 AQEMU.kdevelop.filelist
 AQEMU.kdevelop.pcs

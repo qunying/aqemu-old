@@ -51,6 +51,9 @@ int main( int argc, char *argv[] )
 	
 	Set_Show_Error_Window( true );
 	
+	// Init emulators settings "data base"
+	System_Info::Update_VM_Computers_List();
+	
 	// Log Filter
 	AQUse_Debug_Output( settings.value("Log/Print_In_STDOUT", "yes").toString() == "yes",
 						settings.value("Log/Save_Debug", "yes").toString() == "yes",
@@ -78,7 +81,7 @@ int main( int argc, char *argv[] )
 	// This is Upgrade AQEMU? Find Previous Confing...
 	if( QFile::exists(QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf") )
 	{
-		QString conf_ver = settings.value( "AQEMU_Config_Version", "0.7.2" ).toString();
+		QString conf_ver = settings.value( "AQEMU_Config_Version", "0.8" ).toString();
 		
 		if( conf_ver == "0.5" )
 		{
@@ -86,32 +89,34 @@ int main( int argc, char *argv[] )
 					 "AQEMU Config Version: 0.5\nRun Firt Start Wizard" );
 			
 			settings.setValue( "First_Start", "yes" );
-			settings.setValue( "AQEMU_Config_Version", "0.7.3" );
+			settings.setValue( "AQEMU_Config_Version", "0.8" );
 		}
-		else if( conf_ver == "0.7.2" )
+		else if( conf_ver == "0.7.2" || conf_ver == "0.7.3" )
 		{
 			AQDebug( "int main( int argc, char *argv[] )",
-					 "AQEMU Config Version: 0.7.2\nIn Version 0.7.3 Emulator Version Check Off In Default" );
+					 "AQEMU Config Version: 0.7.X\nStart Emulators Search..." );
+			
+			QMessageBox::information( NULL, QObject::tr("AQEMU emulators search"),
+									  QObject::tr("After the update AQEMU should perform a search of emulators. Please wait."),
+									  QMessageBox::Ok );
 			
 			First_Start_Wizard *first_start_win = new First_Start_Wizard( NULL );
 			
 			if( first_start_win->Find_Emulators() )
-			{
-				AQDebug( "int main( int argc, char *argv[] )", "Find Emulators and Save Settings Complete" );
-			}
+				AQDebug( "int main( int argc, char *argv[] )",
+						 "Find Emulators and Save Settings Complete" );
 			else
-			{
 				AQGraphic_Error( "int main( int argc, char *argv[] )", QObject::tr("Error!"),
 								 QObject::tr("Cannot Find Emulators in This System! You Most Set It In Advanced Settings!"), false );
-			}
 			
 			delete first_start_win;
 			
-			settings.setValue( "AQEMU_Config_Version", "0.7.3" );
+			settings.setValue( "AQEMU_Config_Version", "0.8" );
 		}
-		else if( conf_ver == "0.7.3" )
+		else if( conf_ver == "0.8" )
 		{
-			AQDebug( "int main( int argc, char *argv[] )",  "AQEMU Config Version: 0.7.3" );
+			AQDebug( "int main( int argc, char *argv[] )",
+					 "AQEMU Config Version: 0.8" );
 		}
 		else
 		{
@@ -125,7 +130,7 @@ int main( int argc, char *argv[] )
 				settings.clear();
 				settings.sync();
 				
-				settings.setValue( "AQEMU_Config_Version", "0.7.3" );
+				settings.setValue( "AQEMU_Config_Version", "0.8" );
 			}
 			else AQError( "int main( int argc, char *argv[] )", "Cannot Save Old Version AQEMU Configuration File!" );
 		}
@@ -133,7 +138,7 @@ int main( int argc, char *argv[] )
 	else
 	{
 		// Config File Not Found. This First Install
-		settings.setValue( "AQEMU_Config_Version", "0.7.3" );
+		settings.setValue( "AQEMU_Config_Version", "0.8" );
 	}
 	
 	// Use Log
@@ -222,14 +227,10 @@ int main( int argc, char *argv[] )
 	// Load Images
 	QString iconsThemeFile = "";
 	
-	if( settings.value("Icon_Theme", "crystalsvg").toString() == "crystalsvg" )
-	{
+	if( settings.value("Icon_Theme", "").toString() == "crystalsvg" )
 		iconsThemeFile = settings.value( "AQEMU_Data_Folder", "" ).toString() + "crystalsvg_icons.rcc";
-	}
 	else
-	{
 		iconsThemeFile = settings.value( "AQEMU_Data_Folder", "" ).toString() + "oxygen_icons.rcc";
-	}
 		
 	if( ! QResource::registerResource(iconsThemeFile) )
 	{
@@ -268,14 +269,13 @@ int main( int argc, char *argv[] )
 										 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 		
 		if( ret == QMessageBox::Yes )
-		{
 			vm_dir.mkdir( QDir::homePath() + "/.aqemu" );
-		}
 	}
 	
 	// Check QEMU and KVM Versions
-	Update_Emulators_List();
+	//Update_Emulators_List();  FIXME
 	
+	// Show main window
 	Main_Window Window;
 	Window.show();
 	

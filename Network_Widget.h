@@ -38,6 +38,8 @@ class Network_Widget: public QWidget
 		
 		void Set_Network_Card_Models( const QList<Device_Map> &models );
 		
+		void Set_Enabled( bool on );
+		
 	private slots:
 		void Connect_Slots();
 		void Disconnect_Slots();

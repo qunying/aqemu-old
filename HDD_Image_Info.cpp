@@ -50,7 +50,7 @@ void HDD_Image_Info::Update_Disk_Info( const QString &path )
 		
 		QEMU_IMG_Proc = new QProcess();
 		QSettings settings;
-		QEMU_IMG_Proc->start( Get_Default_QEMU_IMG_Path(), args );
+		QEMU_IMG_Proc->start( settings.value("QEMU-IMG_Path", "qemu-img").toString(), args );
 		
 		connect( QEMU_IMG_Proc, SIGNAL(finished(int, QProcess::ExitStatus)),
 				 this, SLOT(Parse_Info(int, QProcess::ExitStatus)), Qt::DirectConnection );

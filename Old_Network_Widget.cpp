@@ -103,6 +103,14 @@ void Old_Network_Widget::Set_Network_Card_Models( const QList<Device_Map> &model
 	}
 }
 
+void Old_Network_Widget::Set_Enabled( bool on )
+{
+	ui.Label_Cards_List->setEnabled( on );
+	ui.Button_Add_Net_Card->setEnabled( on );
+	ui.Button_Delete_Net_Card->setEnabled( on );
+	ui.Net_Card_Options->setEnabled( on );
+}
+
 void Old_Network_Widget::Connect_Slots()
 {
 	connect( ui.CB_Connection_Mode, SIGNAL(currentIndexChanged(int)),

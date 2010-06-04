@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
-    <height>563</height>
+    <width>736</width>
+    <height>598</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,12 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_5">
+    <property name="spacing">
+     <number>4</number>
+    </property>
+    <property name="margin">
+     <number>6</number>
+    </property>
     <item>
      <widget class="QSplitter" name="splitter">
       <property name="orientation">
@@ -127,7 +133,7 @@
            <attribute name="title">
             <string>General</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_9">
+           <layout class="QGridLayout" name="gridLayout_7">
             <item row="0" column="0">
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="0" column="0">
@@ -427,6 +433,9 @@
                     <horstretch>0</horstretch>
                     <verstretch>0</verstretch>
                    </sizepolicy>
+                  </property>
+                  <property name="editable">
+                   <bool>true</bool>
                   </property>
                   <property name="maxCount">
                    <number>16</number>
@@ -745,250 +754,232 @@
               <property name="title">
                <string>Memory Size</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_7">
-               <property name="margin">
-                <number>6</number>
-               </property>
-               <property name="spacing">
-                <number>3</number>
-               </property>
-               <item row="0" column="0">
-                <widget class="QSlider" name="Memory_Size">
+              <layout class="QGridLayout" name="gridLayout_9">
+               <item row="0" column="0" rowspan="2">
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                 <item>
+                  <widget class="QSlider" name="Memory_Size">
+                   <property name="sizePolicy">
+                    <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+                     <horstretch>0</horstretch>
+                     <verstretch>0</verstretch>
+                    </sizepolicy>
+                   </property>
+                   <property name="minimum">
+                    <number>2</number>
+                   </property>
+                   <property name="maximum">
+                    <number>6144</number>
+                   </property>
+                   <property name="singleStep">
+                    <number>4</number>
+                   </property>
+                   <property name="pageStep">
+                    <number>8</number>
+                   </property>
+                   <property name="value">
+                    <number>128</number>
+                   </property>
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="tickPosition">
+                    <enum>QSlider::TicksAbove</enum>
+                   </property>
+                   <property name="tickInterval">
+                    <number>128</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                   <item>
+                    <widget class="QLabel" name="Label_Min_RAM_Size">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>1 MB</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_11">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>13</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="TB_Update_Available_RAM_Size">
+                     <property name="toolTip">
+                      <string>Update information about free memory</string>
+                     </property>
+                     <property name="text">
+                      <string>Free memory: 768 MB</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/update.png</normaloff>:/update.png</iconset>
+                     </property>
+                     <property name="toolButtonStyle">
+                      <enum>Qt::ToolButtonTextBesideIcon</enum>
+                     </property>
+                     <property name="autoRaise">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_24">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="Label_Available_Free_Memory">
+                     <property name="text">
+                      <string>2048 MB</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </item>
+               <item row="0" column="1" rowspan="2">
+                <spacer name="horizontalSpacer_10">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>5</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="0" column="2">
+                <widget class="QComboBox" name="CB_RAM_Size">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
-                 <property name="minimum">
-                  <number>2</number>
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>0</height>
+                  </size>
                  </property>
-                 <property name="maximum">
-                  <number>8192</number>
+                 <property name="editable">
+                  <bool>true</bool>
                  </property>
-                 <property name="singleStep">
+                 <property name="currentIndex">
                   <number>4</number>
                  </property>
-                 <property name="pageStep">
-                  <number>8</number>
-                 </property>
-                 <property name="value">
-                  <number>128</number>
-                 </property>
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="tickPosition">
-                  <enum>QSlider::TicksAbove</enum>
-                 </property>
-                 <property name="tickInterval">
-                  <number>128</number>
-                 </property>
+                 <item>
+                  <property name="text">
+                   <string>32 MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>64 MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>128 MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>256 MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>512 MB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>1 GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>2 GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>3 GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>4 GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>8 GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>16 GB</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>32 GB</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
-               <item row="0" column="1" rowspan="2">
-                <layout class="QVBoxLayout">
-                 <property name="spacing">
-                  <number>6</number>
+               <item row="1" column="2" rowspan="2">
+                <spacer name="verticalSpacer_15">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
                  </property>
-                 <property name="margin">
-                  <number>0</number>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>54</height>
+                  </size>
                  </property>
-                 <item>
-                  <widget class="QComboBox" name="CB_RAM_Size">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>60</width>
-                     <height>16777215</height>
-                    </size>
-                   </property>
-                   <property name="editable">
-                    <bool>true</bool>
-                   </property>
-                   <property name="currentIndex">
-                    <number>6</number>
-                   </property>
-                   <item>
-                    <property name="text">
-                     <string>2</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>4</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>8</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>16</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>32</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>64</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>128</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>256</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>512</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>1024</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>2048</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>4096</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>6144</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>8192</string>
-                    </property>
-                   </item>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QLabel" name="Label_Max_Mem">
-                   <property name="sizePolicy">
-                    <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                     <horstretch>0</horstretch>
-                     <verstretch>0</verstretch>
-                    </sizepolicy>
-                   </property>
-                   <property name="minimumSize">
-                    <size>
-                     <width>32</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="maximumSize">
-                    <size>
-                     <width>60</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                   <property name="text">
-                    <string>8192 MB</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
+                </spacer>
                </item>
-               <item row="0" column="2" rowspan="2">
-                <layout class="QVBoxLayout">
-                 <property name="spacing">
-                  <number>6</number>
+               <item row="2" column="0">
+                <widget class="QCheckBox" name="CH_Remove_RAM_Size_Limitation">
+                 <property name="text">
+                  <string>Remove limitation on maximum amount of memory</string>
                  </property>
-                 <property name="margin">
-                  <number>0</number>
-                 </property>
-                 <item>
-                  <widget class="QLabel" name="Label_MB">
-                   <property name="text">
-                    <string>MB</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeType">
-                    <enum>QSizePolicy::Fixed</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>20</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
-               </item>
-               <item row="1" column="0">
-                <layout class="QHBoxLayout" name="horizontalLayout_6">
-                 <item>
-                  <widget class="QLabel" name="Label_Min_Mem">
-                   <property name="text">
-                    <string>2 MB</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer>
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>93</width>
-                     <height>17</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                 <item>
-                  <widget class="QCheckBox" name="Check_Host_Mem">
-                   <property name="text">
-                    <string>C&amp;heck Free Memory</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <spacer name="horizontalSpacer_11">
-                   <property name="orientation">
-                    <enum>Qt::Horizontal</enum>
-                   </property>
-                   <property name="sizeHint" stdset="0">
-                    <size>
-                     <width>92</width>
-                     <height>20</height>
-                    </size>
-                   </property>
-                  </spacer>
-                 </item>
-                </layout>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -1227,11 +1218,17 @@
                <bool>true</bool>
               </property>
               <property name="checked">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_18">
+               <property name="leftMargin">
+                <number>8</number>
+               </property>
                <property name="topMargin">
                 <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>8</number>
                </property>
                <property name="bottomMargin">
                 <number>5</number>
@@ -1242,13 +1239,13 @@
                <property name="verticalSpacing">
                 <number>2</number>
                </property>
-               <item row="0" column="0" colspan="7">
+               <item row="0" column="0" colspan="4">
                 <widget class="QLineEdit" name="Edit_HDA_Image_Path"/>
                </item>
-               <item row="0" column="7">
+               <item row="0" column="4">
                 <widget class="QToolButton" name="TB_HDA_SetPath">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1257,64 +1254,25 @@
                   <string>Select Disk Image</string>
                  </property>
                  <property name="text">
-                  <string>...</string>
+                  <string>Open</string>
                  </property>
                  <property name="icon">
                   <iconset resource="images.qrc">
                    <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
                  </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="Label_HDA_Info_L">
-                 <property name="text">
-                  <string>Image Format: none
-Allocated Disk Space: 0</string>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::TextSelectableByMouse</set>
+                 <property name="toolButtonStyle">
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <spacer name="horizontalSpacer_14">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>13</width>
-                   <height>17</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="2">
-                <widget class="QLabel" name="Label_HDA_Info_R">
-                 <property name="text">
-                  <string>Virtual Size: 0
-Cluster Size: 0</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <spacer name="horizontalSpacer_18">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>201</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="4">
+               <item row="0" column="5">
                 <widget class="QToolButton" name="TB_HDA_Create_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Create New HDD</string>
                  </property>
@@ -1326,12 +1284,73 @@ Cluster Size: 0</string>
                    <normaloff>:/add.png</normaloff>:/add.png</iconset>
                  </property>
                  <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="5">
+               <item row="1" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_16">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetMinimumSize</enum>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="Label_HDA_Info_L">
+                   <property name="text">
+                    <string>Image Format: none
+Allocated Disk Space: 0</string>
+                   </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::TextSelectableByMouse</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_14">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>10</width>
+                     <height>15</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="Label_HDA_Info_R">
+                   <property name="text">
+                    <string>Virtual Size: 0
+Cluster Size: 0</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="1">
+                <spacer name="horizontalSpacer_7">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>57</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
                 <widget class="QToolButton" name="TB_HDA_Format_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>Format</string>
                  </property>
@@ -1344,8 +1363,14 @@ Cluster Size: 0</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="6" colspan="2">
+               <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDA_Advanced_Settings">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -1386,11 +1411,17 @@ Cluster Size: 0</string>
                <bool>true</bool>
               </property>
               <property name="checked">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
+               <property name="leftMargin">
+                <number>8</number>
+               </property>
                <property name="topMargin">
                 <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>8</number>
                </property>
                <property name="bottomMargin">
                 <number>5</number>
@@ -1401,13 +1432,13 @@ Cluster Size: 0</string>
                <property name="verticalSpacing">
                 <number>2</number>
                </property>
-               <item row="0" column="0" colspan="7">
+               <item row="0" column="0" colspan="4">
                 <widget class="QLineEdit" name="Edit_HDB_Image_Path"/>
                </item>
-               <item row="0" column="7">
+               <item row="0" column="4">
                 <widget class="QToolButton" name="TB_HDB_SetPath">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1416,64 +1447,25 @@ Cluster Size: 0</string>
                   <string>Select Disk Image</string>
                  </property>
                  <property name="text">
-                  <string>...</string>
+                  <string>Open</string>
                  </property>
                  <property name="icon">
                   <iconset resource="images.qrc">
                    <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
                  </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="Label_HDB_Info_L">
-                 <property name="text">
-                  <string>Image Format: none
-Allocated Disk Space: 0</string>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::TextSelectableByMouse</set>
+                 <property name="toolButtonStyle">
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <spacer name="horizontalSpacer_15">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>13</width>
-                   <height>17</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="2">
-                <widget class="QLabel" name="Label_HDB_Info_R">
-                 <property name="text">
-                  <string>Virtual Size: 0
-Cluster Size: 0</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <spacer name="horizontalSpacer_19">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>201</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="4">
+               <item row="0" column="5">
                 <widget class="QToolButton" name="TB_HDB_Create_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Create New HDD</string>
                  </property>
@@ -1485,12 +1477,73 @@ Cluster Size: 0</string>
                    <normaloff>:/add.png</normaloff>:/add.png</iconset>
                  </property>
                  <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="5">
+               <item row="1" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_17">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetMinimumSize</enum>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="Label_HDB_Info_L">
+                   <property name="text">
+                    <string>Image Format: none
+Allocated Disk Space: 0</string>
+                   </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::TextSelectableByMouse</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_15">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>10</width>
+                     <height>15</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="Label_HDB_Info_R">
+                   <property name="text">
+                    <string>Virtual Size: 0
+Cluster Size: 0</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="1">
+                <spacer name="horizontalSpacer_12">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>57</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
                 <widget class="QToolButton" name="TB_HDB_Format_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>Format</string>
                  </property>
@@ -1503,8 +1556,14 @@ Cluster Size: 0</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="6" colspan="2">
+               <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDB_Advanced_Settings">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -1545,11 +1604,17 @@ Cluster Size: 0</string>
                <bool>true</bool>
               </property>
               <property name="checked">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout_15">
+               <property name="leftMargin">
+                <number>8</number>
+               </property>
                <property name="topMargin">
                 <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>8</number>
                </property>
                <property name="bottomMargin">
                 <number>5</number>
@@ -1560,13 +1625,13 @@ Cluster Size: 0</string>
                <property name="verticalSpacing">
                 <number>2</number>
                </property>
-               <item row="0" column="0" colspan="7">
+               <item row="0" column="0" colspan="4">
                 <widget class="QLineEdit" name="Edit_HDC_Image_Path"/>
                </item>
-               <item row="0" column="7">
+               <item row="0" column="4">
                 <widget class="QToolButton" name="TB_HDC_SetPath">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1575,64 +1640,25 @@ Cluster Size: 0</string>
                   <string>Select Disk Image</string>
                  </property>
                  <property name="text">
-                  <string>...</string>
+                  <string>Open</string>
                  </property>
                  <property name="icon">
                   <iconset resource="images.qrc">
                    <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
                  </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="Label_HDC_Info_L">
-                 <property name="text">
-                  <string>Image Format: none
-Allocated Disk Space: 0</string>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::TextSelectableByMouse</set>
+                 <property name="toolButtonStyle">
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <spacer name="horizontalSpacer_16">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>13</width>
-                   <height>17</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="2">
-                <widget class="QLabel" name="Label_HDC_Info_R">
-                 <property name="text">
-                  <string>Virtual Size: 0
-Cluster Size: 0</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <spacer name="horizontalSpacer_20">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>8</width>
-                   <height>17</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="4">
+               <item row="0" column="5">
                 <widget class="QToolButton" name="TB_HDC_Create_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Create New HDD</string>
                  </property>
@@ -1644,12 +1670,73 @@ Cluster Size: 0</string>
                    <normaloff>:/add.png</normaloff>:/add.png</iconset>
                  </property>
                  <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="5">
+               <item row="1" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_18">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetMinimumSize</enum>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="Label_HDC_Info_L">
+                   <property name="text">
+                    <string>Image Format: none
+Allocated Disk Space: 0</string>
+                   </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::TextSelectableByMouse</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_16">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>13</width>
+                     <height>17</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="Label_HDC_Info_R">
+                   <property name="text">
+                    <string>Virtual Size: 0
+Cluster Size: 0</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="1">
+                <spacer name="horizontalSpacer_13">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>54</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
                 <widget class="QToolButton" name="TB_HDC_Format_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>Format</string>
                  </property>
@@ -1662,8 +1749,14 @@ Cluster Size: 0</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="6" colspan="2">
+               <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDC_Advanced_Settings">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -1704,11 +1797,17 @@ Cluster Size: 0</string>
                <bool>true</bool>
               </property>
               <property name="checked">
-               <bool>false</bool>
+               <bool>true</bool>
               </property>
               <layout class="QGridLayout" name="gridLayout">
+               <property name="leftMargin">
+                <number>8</number>
+               </property>
                <property name="topMargin">
                 <number>5</number>
+               </property>
+               <property name="rightMargin">
+                <number>8</number>
                </property>
                <property name="bottomMargin">
                 <number>5</number>
@@ -1719,13 +1818,13 @@ Cluster Size: 0</string>
                <property name="verticalSpacing">
                 <number>2</number>
                </property>
-               <item row="0" column="0" colspan="7">
+               <item row="0" column="0" colspan="4">
                 <widget class="QLineEdit" name="Edit_HDD_Image_Path"/>
                </item>
-               <item row="0" column="7">
+               <item row="0" column="4">
                 <widget class="QToolButton" name="TB_HDD_SetPath">
                  <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
@@ -1734,64 +1833,25 @@ Cluster Size: 0</string>
                   <string>Select Disk Image</string>
                  </property>
                  <property name="text">
-                  <string>...</string>
+                  <string>Open</string>
                  </property>
                  <property name="icon">
                   <iconset resource="images.qrc">
                    <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
                  </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="Label_HDD_Info_L">
-                 <property name="text">
-                  <string>Image Format: none
-Allocated Disk Space: 0</string>
-                 </property>
-                 <property name="textInteractionFlags">
-                  <set>Qt::TextSelectableByMouse</set>
+                 <property name="toolButtonStyle">
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <spacer name="horizontalSpacer_17">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeType">
-                  <enum>QSizePolicy::Fixed</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>13</width>
-                   <height>17</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="2">
-                <widget class="QLabel" name="Label_HDD_Info_R">
-                 <property name="text">
-                  <string>Virtual Size: 0
-Cluster Size: 0</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="3">
-                <spacer name="horizontalSpacer_21">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>8</width>
-                   <height>17</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="1" column="4">
+               <item row="0" column="5">
                 <widget class="QToolButton" name="TB_HDD_Create_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="toolTip">
                   <string>Create New HDD</string>
                  </property>
@@ -1803,12 +1863,73 @@ Cluster Size: 0</string>
                    <normaloff>:/add.png</normaloff>:/add.png</iconset>
                  </property>
                  <property name="toolButtonStyle">
-                  <enum>Qt::ToolButtonTextBesideIcon</enum>
+                  <enum>Qt::ToolButtonIconOnly</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="5">
+               <item row="1" column="0">
+                <layout class="QHBoxLayout" name="horizontalLayout_19">
+                 <property name="sizeConstraint">
+                  <enum>QLayout::SetMinimumSize</enum>
+                 </property>
+                 <item>
+                  <widget class="QLabel" name="Label_HDD_Info_L">
+                   <property name="text">
+                    <string>Image Format: none
+Allocated Disk Space: 0</string>
+                   </property>
+                   <property name="textInteractionFlags">
+                    <set>Qt::TextSelectableByMouse</set>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="horizontalSpacer_17">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeType">
+                    <enum>QSizePolicy::Fixed</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>13</width>
+                     <height>17</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="Label_HDD_Info_R">
+                   <property name="text">
+                    <string>Virtual Size: 0
+Cluster Size: 0</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="1" column="1">
+                <spacer name="horizontalSpacer_18">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>54</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="1" column="2">
                 <widget class="QToolButton" name="TB_HDD_Format_HDD">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>Format</string>
                  </property>
@@ -1821,8 +1942,14 @@ Cluster Size: 0</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="6" colspan="2">
+               <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDD_Advanced_Settings">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -1898,8 +2025,11 @@ Cluster Size: 0</string>
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="toolTip">
+                 <string>Browse</string>
+                </property>
                 <property name="text">
-                 <string>...</string>
+                 <string>Open</string>
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
@@ -2009,8 +2139,11 @@ Cluster Size: 0</string>
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="toolTip">
+                 <string>Browse</string>
+                </property>
                 <property name="text">
-                 <string>...</string>
+                 <string>Open</string>
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
@@ -2120,8 +2253,11 @@ Cluster Size: 0</string>
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
+                <property name="toolTip">
+                 <string>Browse</string>
+                </property>
                 <property name="text">
-                 <string>...</string>
+                 <string>Open</string>
                 </property>
                 <property name="icon">
                  <iconset resource="images.qrc">
@@ -2194,82 +2330,87 @@ Cluster Size: 0</string>
            <attribute name="title">
             <string>Network</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_16">
+           <layout class="QGridLayout" name="gridLayout_20">
             <item row="0" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_5">
-              <item>
-               <widget class="QCheckBox" name="CH_Use_Network">
-                <property name="text">
-                 <string>Use &amp;Network</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_22">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>92</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="Label_Network_Settings_Type">
-                <property name="text">
-                 <string>Network Settings GUI Type:</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_23">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeType">
-                 <enum>QSizePolicy::Fixed</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>5</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QWidget" name="widget_2" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
-                 <property name="margin">
-                  <number>0</number>
+             <widget class="QWidget" name="Widget_Use_Network" native="true">
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item>
+                <widget class="QCheckBox" name="CH_Use_Network">
+                 <property name="text">
+                  <string>Use &amp;Network</string>
                  </property>
-                 <item>
-                  <widget class="QRadioButton" name="RB_Network_Mode_Old">
-                   <property name="text">
-                    <string>Basic</string>
-                   </property>
-                   <property name="checked">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QRadioButton" name="RB_Network_Mode_New">
-                   <property name="text">
-                    <string>Nativ</string>
-                   </property>
-                   <property name="checked">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
+                </widget>
+               </item>
+               <item>
+                <spacer name="horizontalSpacer_22">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>132</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QWidget" name="Widget_Network_Mode" native="true">
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="margin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QLabel" name="Label_Network_Settings_Type">
+                    <property name="text">
+                     <string>Network Settings GUI Type:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_23">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                     <enum>QSizePolicy::Fixed</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>13</width>
+                      <height>20</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="RB_Network_Mode_Old">
+                    <property name="text">
+                     <string>Basic</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="RB_Network_Mode_New">
+                    <property name="text">
+                     <string>Nativ</string>
+                    </property>
+                    <property name="checked">
+                     <bool>false</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </item>
             <item row="1" column="0">
              <widget class="QTabWidget" name="Network_Cards_Tabs">
@@ -2280,15 +2421,158 @@ Cluster Size: 0</string>
                <attribute name="title">
                 <string>Additional Settings</string>
                </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_7">
-                <item>
-                 <widget class="QCheckBox" name="CH_Redirections">
-                  <property name="text">
-                   <string>&amp;Redirections</string>
-                  </property>
+               <layout class="QGridLayout" name="gridLayout_16">
+                <item row="0" column="0" colspan="2">
+                 <widget class="QWidget" name="Widget_Redirection_CheckBox" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_15">
+                   <property name="margin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QCheckBox" name="CH_Redirections">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>&amp;Redirections</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="Line" name="line_11">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
-                <item>
+                <item row="1" column="0">
+                 <widget class="QTableWidget" name="Redirections_List">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>400</width>
+                    <height>95</height>
+                   </size>
+                  </property>
+                  <property name="verticalScrollBarPolicy">
+                   <enum>Qt::ScrollBarAlwaysOn</enum>
+                  </property>
+                  <property name="horizontalScrollBarPolicy">
+                   <enum>Qt::ScrollBarAlwaysOff</enum>
+                  </property>
+                  <property name="editTriggers">
+                   <set>QAbstractItemView::NoEditTriggers</set>
+                  </property>
+                  <property name="selectionMode">
+                   <enum>QAbstractItemView::SingleSelection</enum>
+                  </property>
+                  <property name="selectionBehavior">
+                   <enum>QAbstractItemView::SelectRows</enum>
+                  </property>
+                  <property name="verticalScrollMode">
+                   <enum>QAbstractItemView::ScrollPerPixel</enum>
+                  </property>
+                  <column>
+                   <property name="text">
+                    <string>Protocol</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Host Port</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Guest IP</string>
+                   </property>
+                  </column>
+                  <column>
+                   <property name="text">
+                    <string>Guest Port</string>
+                   </property>
+                  </column>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QWidget" name="Widget_Redirection_Buttons" native="true">
+                  <layout class="QVBoxLayout" name="verticalLayout_6">
+                   <property name="margin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="Button_Add_Redirections">
+                     <property name="text">
+                      <string>A&amp;dd item</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/add.png</normaloff>:/add.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="Button_Delete_Redirections">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>D&amp;elete item</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="Button_Clear_Redirections">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="text">
+                      <string>&amp;Clear list</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/error.png</normaloff>:/error.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="verticalSpacer_16">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>61</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item row="2" column="0" colspan="2">
                  <widget class="QWidget" name="Redirection_Widget" native="true">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
@@ -2296,176 +2580,11 @@ Cluster Size: 0</string>
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
-                  <layout class="QVBoxLayout" name="verticalLayout_6">
+                  <layout class="QGridLayout" name="gridLayout_10">
                    <property name="margin">
                     <number>0</number>
                    </property>
-                   <item>
-                    <widget class="QTableWidget" name="Redirections_List">
-                     <property name="sizePolicy">
-                      <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                       <horstretch>0</horstretch>
-                       <verstretch>0</verstretch>
-                      </sizepolicy>
-                     </property>
-                     <property name="minimumSize">
-                      <size>
-                       <width>400</width>
-                       <height>95</height>
-                      </size>
-                     </property>
-                     <property name="verticalScrollBarPolicy">
-                      <enum>Qt::ScrollBarAlwaysOn</enum>
-                     </property>
-                     <property name="horizontalScrollBarPolicy">
-                      <enum>Qt::ScrollBarAlwaysOff</enum>
-                     </property>
-                     <property name="selectionMode">
-                      <enum>QAbstractItemView::SingleSelection</enum>
-                     </property>
-                     <property name="selectionBehavior">
-                      <enum>QAbstractItemView::SelectRows</enum>
-                     </property>
-                     <property name="verticalScrollMode">
-                      <enum>QAbstractItemView::ScrollPerPixel</enum>
-                     </property>
-                     <column>
-                      <property name="text">
-                       <string>Protocol</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Host Port</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Guest IP</string>
-                      </property>
-                     </column>
-                     <column>
-                      <property name="text">
-                       <string>Guest Port</string>
-                      </property>
-                     </column>
-                    </widget>
-                   </item>
-                   <item>
-                    <layout class="QHBoxLayout" name="horizontalLayout">
-                     <item>
-                      <widget class="QPushButton" name="Button_Add_Redirections">
-                       <property name="text">
-                        <string>A&amp;dd</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/add.png</normaloff>:/add.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer name="horizontalSpacer_7">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeType">
-                        <enum>QSizePolicy::Fixed</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>10</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="Button_Delete_Redirections">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string>D&amp;elete</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/remove.png</normaloff>:/remove.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer name="horizontalSpacer_12">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeType">
-                        <enum>QSizePolicy::Fixed</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>10</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="Button_Apply_Redirections">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string>Appl&amp;y</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/apply.png</normaloff>:/apply.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <spacer name="horizontalSpacer_13">
-                       <property name="orientation">
-                        <enum>Qt::Horizontal</enum>
-                       </property>
-                       <property name="sizeType">
-                        <enum>QSizePolicy::Fixed</enum>
-                       </property>
-                       <property name="sizeHint" stdset="0">
-                        <size>
-                         <width>10</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </spacer>
-                     </item>
-                     <item>
-                      <widget class="QPushButton" name="Button_Clear_Redirections">
-                       <property name="sizePolicy">
-                        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-                         <horstretch>0</horstretch>
-                         <verstretch>0</verstretch>
-                        </sizepolicy>
-                       </property>
-                       <property name="text">
-                        <string>&amp;Clear</string>
-                       </property>
-                       <property name="icon">
-                        <iconset resource="images.qrc">
-                         <normaloff>:/error.png</normaloff>:/error.png</iconset>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item>
+                   <item row="0" column="0" colspan="2">
                     <layout class="QHBoxLayout">
                      <property name="spacing">
                       <number>6</number>
@@ -2482,7 +2601,7 @@ Cluster Size: 0</string>
                         </sizepolicy>
                        </property>
                        <property name="text">
-                        <string>Redirect Settings</string>
+                        <string>Redirect item settings</string>
                        </property>
                       </widget>
                      </item>
@@ -2495,7 +2614,7 @@ Cluster Size: 0</string>
                      </item>
                     </layout>
                    </item>
-                   <item>
+                   <item row="1" column="0" colspan="2">
                     <layout class="QHBoxLayout">
                      <property name="spacing">
                       <number>6</number>
@@ -2542,7 +2661,7 @@ Cluster Size: 0</string>
                      </item>
                     </layout>
                    </item>
-                   <item>
+                   <item row="2" column="0" colspan="2">
                     <layout class="QHBoxLayout">
                      <property name="spacing">
                       <number>6</number>
@@ -2614,65 +2733,90 @@ Cluster Size: 0</string>
                   </layout>
                  </widget>
                 </item>
-                <item>
-                 <widget class="Line" name="line_5">
-                  <property name="minimumSize">
-                   <size>
-                    <width>0</width>
-                    <height>20</height>
-                   </size>
-                  </property>
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
+                <item row="3" column="0" colspan="2">
+                 <widget class="QWidget" name="Widget_Network_Other" native="true">
+                  <layout class="QGridLayout" name="gridLayout_11">
+                   <property name="leftMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>9</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item row="0" column="0" colspan="3">
+                    <layout class="QHBoxLayout" name="horizontalLayout">
+                     <item>
+                      <widget class="QLabel" name="Label_Other_Network_Options">
+                       <property name="sizePolicy">
+                        <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                         <horstretch>0</horstretch>
+                         <verstretch>0</verstretch>
+                        </sizepolicy>
+                       </property>
+                       <property name="text">
+                        <string>Other network settings</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="Line" name="line_5">
+                       <property name="minimumSize">
+                        <size>
+                         <width>0</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="Label_TFTP">
+                     <property name="text">
+                      <string>T&amp;FTP Server Prefix:</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>Edit_TFTP_Prefix</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLineEdit" name="Edit_TFTP_Prefix"/>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="Label_SMB_Folder">
+                     <property name="text">
+                      <string>Allow &amp;SMB Access to:</string>
+                     </property>
+                     <property name="buddy">
+                      <cstring>Edit_SMB_Folder</cstring>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLineEdit" name="Edit_SMB_Folder"/>
+                   </item>
+                   <item row="2" column="2">
+                    <widget class="QToolButton" name="TB_Browse_SMB">
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="images.qrc">
+                       <normaloff>:/open-folder.png</normaloff>:/open-folder.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
-                </item>
-                <item>
-                 <layout class="QGridLayout">
-                  <property name="margin">
-                   <number>0</number>
-                  </property>
-                  <property name="spacing">
-                   <number>3</number>
-                  </property>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="Label_SMB_Folder">
-                    <property name="text">
-                     <string>Allow &amp;SMB Access to:</string>
-                    </property>
-                    <property name="buddy">
-                     <cstring>Edit_SMB_Folder</cstring>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1" colspan="2">
-                   <widget class="QLineEdit" name="Edit_TFTP_Prefix"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="Label_TFTP">
-                    <property name="text">
-                     <string>T&amp;FTP Server Prefix:</string>
-                    </property>
-                    <property name="buddy">
-                     <cstring>Edit_TFTP_Prefix</cstring>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="Edit_SMB_Folder"/>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QToolButton" name="TB_Browse_SMB">
-                    <property name="text">
-                     <string>...</string>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="images.qrc">
-                      <normaloff>:/open-folder.png</normaloff>:/open-folder.png</iconset>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
                 </item>
                </layout>
               </widget>
@@ -2684,9 +2828,9 @@ Cluster Size: 0</string>
            <attribute name="title">
             <string>Advanced</string>
            </attribute>
-           <layout class="QGridLayout" name="gridLayout_11">
-            <item row="0" column="0" colspan="2">
-             <widget class="QTabWidget" name="tabWidget">
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QTabWidget" name="TabWidget_Advanced">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
                 <horstretch>0</horstretch>
@@ -2700,7 +2844,7 @@ Cluster Size: 0</string>
                <attribute name="title">
                 <string>Additional Options</string>
                </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_8">
+               <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
                  <widget class="QCheckBox" name="CH_Win2K_Hack">
                   <property name="toolTip">
@@ -2838,11 +2982,11 @@ Cluster Size: 0</string>
                 </item>
                </layout>
               </widget>
-              <widget class="QWidget" name="Tab_QEMU_Window_Options">
+              <widget class="QWidget" name="Tab_Emulator_Window_Options">
                <attribute name="title">
                 <string>QEMU/KVM Window Options</string>
                </attribute>
-               <layout class="QVBoxLayout" name="verticalLayout_3">
+               <layout class="QVBoxLayout" name="verticalLayout_12">
                 <item>
                  <widget class="QCheckBox" name="CH_No_Frame">
                   <property name="text">
@@ -3037,7 +3181,7 @@ Cluster Size: 0</string>
               </widget>
              </widget>
             </item>
-            <item row="1" column="0" colspan="2">
+            <item>
              <spacer name="verticalSpacer_5">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -3045,65 +3189,74 @@ Cluster Size: 0</string>
               <property name="sizeHint" stdset="0">
                <size>
                 <width>468</width>
-                <height>21</height>
+                <height>34</height>
                </size>
               </property>
              </spacer>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="Label_Additional_QEMU_Args">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Additional QEMU/KVM &amp;Arguments</string>
-              </property>
-              <property name="buddy">
-               <cstring>Edit_Additional_Args</cstring>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="Line" name="line_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0" colspan="2">
-             <widget class="QPlainTextEdit" name="Edit_Additional_Args">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>16777215</width>
-                <height>60</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QCheckBox" name="CH_Only_User_Args">
-              <property name="text">
-               <string>Send Only User Arguments Without AQEMU Arguments</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0" colspan="2">
-             <widget class="QCheckBox" name="CH_Use_User_Binary">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Use Emulator Binary File in &quot;Additional QEMU/KVM Arguments&quot;</string>
-              </property>
+            <item>
+             <widget class="QWidget" name="Widget_Advanced_Emulator_Arguments" native="true">
+              <layout class="QGridLayout" name="gridLayout_19">
+               <property name="margin">
+                <number>0</number>
+               </property>
+               <item row="3" column="0" colspan="2">
+                <widget class="QCheckBox" name="CH_Use_User_Binary">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Use Emulator Binary File in &quot;Additional QEMU/KVM Arguments&quot;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QPlainTextEdit" name="Edit_Additional_Args">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>16777215</width>
+                   <height>60</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="Label_Additional_QEMU_Args">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Additional QEMU/KVM &amp;Arguments</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>Edit_Additional_Args</cstring>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QCheckBox" name="CH_Only_User_Args">
+                 <property name="text">
+                  <string>Send Only User Arguments Without AQEMU Arguments</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="Line" name="line_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>
@@ -3919,7 +4072,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>759</width>
+     <width>736</width>
      <height>24</height>
     </rect>
    </property>
@@ -4313,7 +4466,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
   <tabstop>CB_Video_Card</tabstop>
   <tabstop>Memory_Size</tabstop>
   <tabstop>CB_RAM_Size</tabstop>
-  <tabstop>Check_Host_Mem</tabstop>
+  <tabstop>CH_Remove_RAM_Size_Limitation</tabstop>
   <tabstop>CH_sb16</tabstop>
   <tabstop>CH_AC97</tabstop>
   <tabstop>CH_es1370</tabstop>
@@ -4325,7 +4478,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
   <tabstop>CH_Snapshot</tabstop>
   <tabstop>Edit_HDA_Image_Path</tabstop>
   <tabstop>TB_HDA_SetPath</tabstop>
-  <tabstop>TB_HDA_Create_HDD</tabstop>
   <tabstop>Edit_HDB_Image_Path</tabstop>
   <tabstop>TB_HDB_SetPath</tabstop>
   <tabstop>TB_HDB_Create_HDD</tabstop>
@@ -4343,10 +4495,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
   <tabstop>CH_Use_Network</tabstop>
   <tabstop>Network_Cards_Tabs</tabstop>
   <tabstop>Redirections_List</tabstop>
-  <tabstop>Button_Add_Redirections</tabstop>
-  <tabstop>Button_Delete_Redirections</tabstop>
-  <tabstop>Button_Apply_Redirections</tabstop>
-  <tabstop>Button_Clear_Redirections</tabstop>
   <tabstop>RB_TCP</tabstop>
   <tabstop>RB_UDP</tabstop>
   <tabstop>SB_Redir_Port</tabstop>
@@ -4404,12 +4552,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>763</x>
-     <y>187</y>
+     <x>229</x>
+     <y>140</y>
     </hint>
    </hints>
   </connection>
@@ -4420,12 +4568,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>763</x>
-     <y>219</y>
+     <x>229</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4436,12 +4584,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>763</x>
-     <y>243</y>
+     <x>229</x>
+     <y>145</y>
     </hint>
    </hints>
   </connection>
@@ -4452,12 +4600,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>763</x>
-     <y>275</y>
+     <x>229</x>
+     <y>148</y>
     </hint>
    </hints>
   </connection>
@@ -4468,12 +4616,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>763</x>
-     <y>299</y>
+     <x>229</x>
+     <y>151</y>
     </hint>
    </hints>
   </connection>
@@ -4484,12 +4632,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>763</x>
-     <y>331</y>
+     <x>229</x>
+     <y>153</y>
     </hint>
    </hints>
   </connection>
@@ -4500,12 +4648,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>795</x>
-     <y>218</y>
+     <x>261</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4516,12 +4664,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>763</x>
-     <y>163</y>
+     <x>229</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>795</x>
-     <y>274</y>
+     <x>261</x>
+     <y>148</y>
     </hint>
    </hints>
   </connection>
@@ -4532,12 +4680,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>201</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>487</x>
-     <y>192</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4548,12 +4696,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>233</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>487</x>
-     <y>223</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4564,12 +4712,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>233</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>803</x>
-     <y>233</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4580,12 +4728,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>340</x>
-     <y>333</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>340</x>
-     <y>363</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4596,12 +4744,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>340</x>
-     <y>395</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>340</x>
-     <y>425</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4612,12 +4760,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>340</x>
-     <y>333</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>803</x>
-     <y>372</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4628,12 +4776,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>340</x>
-     <y>395</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>803</x>
-     <y>433</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4644,12 +4792,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>323</x>
-     <y>310</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
-     <y>332</y>
+     <x>286</x>
+     <y>171</y>
     </hint>
    </hints>
   </connection>
@@ -4660,28 +4808,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>805</x>
-     <y>160</y>
+     <x>268</x>
+     <y>137</y>
     </hint>
     <hint type="destinationlabel">
-     <x>301</x>
-     <y>186</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Network_Cards_Tabs</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>266</x>
-     <y>127</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>542</x>
-     <y>270</y>
+     <x>268</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>
@@ -4692,12 +4824,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>472</x>
-     <y>366</y>
+     <x>513</x>
+     <y>344</y>
     </hint>
     <hint type="destinationlabel">
-     <x>663</x>
-     <y>367</y>
+     <x>703</x>
+     <y>344</y>
     </hint>
    </hints>
   </connection>
@@ -4708,12 +4840,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>552</x>
-     <y>320</y>
+     <x>268</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>209</x>
-     <y>533</y>
+     <x>286</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -4724,12 +4856,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>552</x>
-     <y>320</y>
+     <x>268</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>270</x>
-     <y>449</y>
+     <x>286</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -4740,12 +4872,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>552</x>
-     <y>320</y>
+     <x>268</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>331</x>
-     <y>533</y>
+     <x>286</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -4756,12 +4888,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>552</x>
-     <y>320</y>
+     <x>268</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>392</x>
-     <y>449</y>
+     <x>286</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -4772,12 +4904,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>552</x>
-     <y>320</y>
+     <x>268</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>450</x>
-     <y>533</y>
+     <x>286</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -4788,12 +4920,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>552</x>
-     <y>320</y>
+     <x>268</x>
+     <y>153</y>
     </hint>
     <hint type="destinationlabel">
-     <x>504</x>
-     <y>443</y>
+     <x>286</x>
+     <y>186</y>
     </hint>
    </hints>
   </connection>
@@ -4804,12 +4936,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>325</x>
-     <y>333</y>
+     <x>342</x>
+     <y>312</y>
     </hint>
     <hint type="destinationlabel">
-     <x>386</x>
-     <y>334</y>
+     <x>405</x>
+     <y>312</y>
     </hint>
    </hints>
   </connection>
@@ -4820,60 +4952,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>325</x>
-     <y>333</y>
+     <x>342</x>
+     <y>312</y>
     </hint>
     <hint type="destinationlabel">
-     <x>409</x>
-     <y>334</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>Label_Network_Settings_Type</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>266</x>
-     <y>127</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>536</x>
-     <y>128</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>RB_Network_Mode_Old</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>241</x>
-     <y>121</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>610</x>
-     <y>128</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>clicked(bool)</signal>
-   <receiver>RB_Network_Mode_New</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>266</x>
-     <y>127</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>671</x>
-     <y>128</y>
+     <x>429</x>
+     <y>313</y>
     </hint>
    </hints>
   </connection>
@@ -4884,60 +4968,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>250</x>
-     <y>192</y>
+     <x>287</x>
+     <y>184</y>
     </hint>
     <hint type="destinationlabel">
-     <x>233</x>
-     <y>219</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Label_Network_Settings_Type</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>216</x>
-     <y>126</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>536</x>
-     <y>128</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>RB_Network_Mode_Old</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>198</x>
-     <y>121</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>610</x>
-     <y>128</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Network</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>RB_Network_Mode_New</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>266</x>
-     <y>127</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>671</x>
-     <y>128</y>
+     <x>402</x>
+     <y>419</y>
     </hint>
    </hints>
   </connection>
@@ -4964,12 +5000,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>338</x>
-     <y>152</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
-     <y>183</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -4980,12 +5016,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>338</x>
-     <y>152</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>801</x>
-     <y>195</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -4996,12 +5032,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>277</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
-     <y>307</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -5012,12 +5048,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>215</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
-     <y>245</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -5028,12 +5064,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>339</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>339</x>
-     <y>369</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -5044,12 +5080,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>277</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>801</x>
-     <y>317</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -5060,12 +5096,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>339</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>801</x>
-     <y>378</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -5076,12 +5112,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>339</x>
-     <y>215</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
     <hint type="destinationlabel">
-     <x>801</x>
-     <y>256</y>
+     <x>286</x>
+     <y>167</y>
     </hint>
    </hints>
   </connection>
@@ -5096,8 +5132,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>119</y>
     </hint>
     <hint type="destinationlabel">
-     <x>182</x>
-     <y>150</y>
+     <x>373</x>
+     <y>152</y>
     </hint>
    </hints>
   </connection>
@@ -5112,8 +5148,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>121</y>
     </hint>
     <hint type="destinationlabel">
-     <x>671</x>
-     <y>156</y>
+     <x>714</x>
+     <y>153</y>
     </hint>
    </hints>
   </connection>
@@ -5144,8 +5180,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>119</y>
     </hint>
     <hint type="destinationlabel">
-     <x>614</x>
-     <y>175</y>
+     <x>713</x>
+     <y>183</y>
     </hint>
    </hints>
   </connection>
@@ -5172,12 +5208,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>204</x>
-     <y>237</y>
+     <x>252</x>
+     <y>233</y>
     </hint>
     <hint type="destinationlabel">
-     <x>671</x>
-     <y>271</y>
+     <x>714</x>
+     <y>262</y>
     </hint>
    </hints>
   </connection>
@@ -5188,12 +5224,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>187</x>
-     <y>239</y>
+     <x>252</x>
+     <y>233</y>
     </hint>
     <hint type="destinationlabel">
-     <x>194</x>
-     <y>293</y>
+     <x>304</x>
+     <y>292</y>
     </hint>
    </hints>
   </connection>
@@ -5204,12 +5240,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>178</x>
-     <y>238</y>
+     <x>252</x>
+     <y>233</y>
     </hint>
     <hint type="destinationlabel">
-     <x>615</x>
-     <y>290</y>
+     <x>713</x>
+     <y>292</y>
     </hint>
    </hints>
   </connection>
@@ -5220,12 +5256,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>210</x>
-     <y>343</y>
+     <x>252</x>
+     <y>342</y>
     </hint>
     <hint type="destinationlabel">
-     <x>213</x>
-     <y>377</y>
+     <x>381</x>
+     <y>370</y>
     </hint>
    </hints>
   </connection>
@@ -5236,12 +5272,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>351</y>
+     <x>252</x>
+     <y>342</y>
     </hint>
     <hint type="destinationlabel">
-     <x>671</x>
-     <y>386</y>
+     <x>714</x>
+     <y>371</y>
     </hint>
    </hints>
   </connection>
@@ -5252,12 +5288,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>225</x>
-     <y>350</y>
+     <x>252</x>
+     <y>342</y>
     </hint>
     <hint type="destinationlabel">
-     <x>246</x>
-     <y>408</y>
+     <x>304</x>
+     <y>401</y>
     </hint>
    </hints>
   </connection>
@@ -5268,12 +5304,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>180</x>
-     <y>347</y>
+     <x>252</x>
+     <y>342</y>
     </hint>
     <hint type="destinationlabel">
-     <x>620</x>
-     <y>411</y>
+     <x>713</x>
+     <y>401</y>
     </hint>
    </hints>
   </connection>
@@ -5288,8 +5324,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>177</y>
     </hint>
     <hint type="destinationlabel">
-     <x>185</x>
-     <y>206</y>
+     <x>355</x>
+     <y>207</y>
     </hint>
    </hints>
   </connection>
@@ -5300,12 +5336,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>205</x>
-     <y>176</y>
+     <x>398</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>200</x>
-     <y>236</y>
+     <x>370</x>
+     <y>233</y>
     </hint>
    </hints>
   </connection>
@@ -5320,8 +5356,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>174</y>
     </hint>
     <hint type="destinationlabel">
-     <x>213</x>
-     <y>267</y>
+     <x>383</x>
+     <y>259</y>
     </hint>
    </hints>
   </connection>
@@ -5336,8 +5372,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>298</y>
+     <x>396</x>
+     <y>285</y>
     </hint>
    </hints>
   </connection>
@@ -5352,8 +5388,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>174</y>
     </hint>
     <hint type="destinationlabel">
-     <x>239</x>
-     <y>322</y>
+     <x>342</x>
+     <y>312</y>
     </hint>
    </hints>
   </connection>
@@ -5368,8 +5404,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>195</y>
     </hint>
     <hint type="destinationlabel">
-     <x>351</x>
-     <y>318</y>
+     <x>405</x>
+     <y>312</y>
     </hint>
    </hints>
   </connection>
@@ -5384,8 +5420,56 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>403</x>
-     <y>322</y>
+     <x>429</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Network</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Widget_Network_Mode</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>252</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>509</x>
+     <y>112</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Redirections</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Widget_Redirection_Buttons</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>287</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>654</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Redirections</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Redirections_List</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>214</x>
+     <y>176</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>226</x>
+     <y>261</y>
     </hint>
    </hints>
   </connection>

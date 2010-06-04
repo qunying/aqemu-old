@@ -71,7 +71,7 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	ui.Devices_List->clear();
 	ui.Label_Connected_To->setText( "" );
 	
-	if( vm.Version_Good(VM::QEMU_0_9_1, VM::KVM_7X) ) ui.TB_Add_Device->setEnabled( true );
+	if( vm.Get_Current_Emulator_Devices()->PSO_Drive ) ui.TB_Add_Device->setEnabled( true ); 
 	
 	Floppy1 = VM_Storage_Device( vm.Get_FD0() );
 	
@@ -158,6 +158,32 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	
 	Update_Icons();
 	Update_Enabled_Actions();
+}
+
+void Device_Manager_Widget::Set_Enabled( bool on )
+{
+	ui.Label_Add_Devices->setEnabled( on );
+	ui.TB_Add_Floppy->setEnabled( on );
+	ui.TB_Add_CDROM->setEnabled( on );
+	ui.TB_Add_HDD->setEnabled( on );
+	ui.TB_Add_Device->setEnabled( on );
+	
+	ui.Label_Manage_Devices->setEnabled( on );
+	ui.TB_Edit_Device->setEnabled( on );
+	ui.TB_Delete_Device->setEnabled( on );
+	ui.TB_Format_HDD->setEnabled( on );
+	ui.TB_Quick_Format->setEnabled( on );
+	
+	ui.Label_View_Mode->setEnabled( on );
+	ui.TB_Icon_Mode->setEnabled( on );
+	ui.TB_List_Mode->setEnabled( on );
+	
+	ui.Label_Devices_List->setEnabled( on );
+	ui.Label_Information->setEnabled( on );
+	ui.Label_Connected_To->setEnabled( on );
+	
+	if( on ) ui.Devices_List->setContextMenuPolicy( Qt::CustomContextMenu );
+	else ui.Devices_List->setContextMenuPolicy( Qt::NoContextMenu );
 }
 
 void Device_Manager_Widget::Update_Enabled_Actions()

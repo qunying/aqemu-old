@@ -53,17 +53,18 @@ class VM_Wizard_Window: public QDialog
 		void on_CB_OS_Type_currentIndexChanged( int index );
 		void on_CB_Computer_Type_currentIndexChanged( int index );
 		void on_CB_Relese_Date_currentIndexChanged( int index );
-		void on_CB_Mem_Size_editTextChanged( const QString &text );
+		
+		// Memory
 		void on_Memory_Size_valueChanged( int value );
+		void on_CB_RAM_Size_editTextChanged( const QString &text );
+		void on_CH_Remove_RAM_Size_Limitation_stateChanged ( int state );
+		void on_TB_Update_Available_RAM_Size_clicked();
+		void Update_RAM_Size_ComboBox( int freeRAM );
 		
 		void on_Edit_VM_Name_textEdited( const QString &text );
 		
-		void on_Check_Host_Mem_stateChanged( int state );
-		
 		void on_Button_New_HDD_clicked();
 		void on_Button_Existing_clicked();
-		
-		QList<Averable_Devices>& Get_Devices();
 		
 	private:
 		QSettings Settings;
@@ -73,8 +74,8 @@ class VM_Wizard_Window: public QDialog
 		QList<Virtual_Machine*> *VM_List;
 		
 		Emulator Current_Emulator;
-		Averable_Devices* Current_Devices;
-		QList<Averable_Devices> All_Systems;
+		const Averable_Devices* Current_Devices;
+		QMap<QString, Averable_Devices> All_Systems;
 		
 		bool Use_Emulator_Type_Page;
 };

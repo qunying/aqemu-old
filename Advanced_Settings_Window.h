@@ -42,6 +42,7 @@ class Advanced_Settings_Window: public QDialog
 		void on_TB_Browse_After_clicked();
 		void on_TB_Log_File_clicked();
 		void on_TB_Screenshot_Folder_clicked();
+		void on_TB_QEMU_IMG_Browse_clicked();
 		
 		void on_TB_Add_Emulator_clicked();
 		void on_TB_Delete_Emulator_clicked();
@@ -57,6 +58,8 @@ class Advanced_Settings_Window: public QDialog
 		bool Save_Emulators_Info();
 		void Update_Emulators_Info();
 	
+		QStringList Get_All_Emulators_Names() const;
+		
 	private:
 		Ui::Advanced_Settings_Window ui;
 		QSettings Settings;

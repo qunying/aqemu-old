@@ -38,6 +38,8 @@ class Device_Manager_Widget: public QWidget
 		~Device_Manager_Widget();
 		void Set_VM( const Virtual_Machine &vm );
 		
+		void Set_Enabled( bool on );
+		
 		VM_Storage_Device Floppy1; // FD0
 		VM_Storage_Device Floppy2; // FD1
 		VM_Storage_Device CD_ROM; // cdrom device ide2

@@ -38,7 +38,7 @@ SET( aqemu_headers
 	Old_Network_Widget.h
 	Ports_Tab_Widget.h
 	Properties_Window.h
-	QEMU_Binary_Window.h
+	Emulator_Options_Window.h
 	Select_Icon_Window.h
 	Settings_Window.h
 	SMP_Settings_Window.h
@@ -77,7 +77,7 @@ SET( aqemu_sources
 	Old_Network_Widget.cpp
 	Ports_Tab_Widget.cpp
 	Properties_Window.cpp
-	QEMU_Binary_Window.cpp
+	Emulator_Options_Window.cpp
 	Select_Icon_Window.cpp
 	Settings_Window.cpp
 	SMP_Settings_Window.cpp
@@ -114,7 +114,7 @@ SET( aqemu_ui
 	Old_Network_Widget.ui
 	Ports_Tab_Widget.ui
 	Properties_Window.ui
-	QEMU_Binary_Window.ui
+	Emulator_Options_Window.ui
 	Select_Icon_Window.ui
 	Settings_Window.ui
 	SMP_Settings_Window.ui

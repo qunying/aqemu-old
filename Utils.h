@@ -59,16 +59,14 @@ bool It_Host_Device( const QString &path );
 
 void Check_AQEMU_Permissions();
 
-// FIXME emulator ver
-VM::Emulator_Version String_To_QEMU_Version( const QString &str );
-VM::Emulator_Version String_To_KVM_Version( const QString &str );
+VM::Emulator_Version String_To_Emulator_Version( const QString &str );
+QString Emulator_Version_To_String( VM::Emulator_Version ver );
 
 bool Update_Emulators_List();
 const QList<Emulator> &Get_Emulators_List();
-const Emulator &Get_Default_Emulator( const QString &type );
+bool Remove_All_Emulators_Files();
+const Emulator &Get_Default_Emulator( VM::Emulator_Type type );
 const Emulator &Get_Emulator_By_Name( const QString &name );
-
-QString Get_Default_QEMU_IMG_Path( QString emul_name = "" );
 
 int Get_Random( int min, int max );
 

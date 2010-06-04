@@ -1,7 +1,11 @@
-200X-XX-XX Andrey Rijov (Version 0.8)
+2010-06-XX Andrey Rijov (Version 0.8)
 
+	* Support finding available emulator options and devices.
+	
+	* Change to CMake build system
+	
 	* Improved Ports Tab GUI
-
+	
 	* Improved USB System (Support read data from /sys, /dev, /proc)
 	
 	* Support Connecting QEMU Virtual USB Devices (mouse, tablet, wacom-tablet, keyboard, braille)
@@ -9,6 +13,16 @@
 	* Support Change GUI Icon Theme
 	
 	* Support Change VM Icons Size
+	
+	* Support boot orger list (Not all complete)
+	
+	* Support set SMP settings
+	
+	* Support remove VM with all files (like HDD images)
+	
+	* Improved code determines the amount of available memory
+	
+	* Added support new sound systems: PulseAudio, ESD, SDL
 
 2009-09-28 Andrey Rijov (Version 0.7.3)
 

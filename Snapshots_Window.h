@@ -23,6 +23,7 @@
 #ifndef SNAPSHOT_WINDOW_H
 #define SNAPSHOT_WINDOW_H
 
+#include <QSettings>
 #include "VM.h"
 #include "ui_Snapshots_Window.h"
 
@@ -48,6 +49,7 @@ class Snapshots_Window: public QDialog
 		
 		Ui::Snapshots_Window ui;
 		Virtual_Machine *Current_VM;
+		QSettings Settings;
 };
 
 #endif

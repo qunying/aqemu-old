@@ -157,14 +157,14 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 	}
 	else if( ui.Wizard_Mode_Page == ui.Wizard_Pages->currentWidget() )
 	{
-		bool q = ! Get_Default_Emulator( "QEMU" ).Get_Name().isEmpty();
-		bool k = ! Get_Default_Emulator( "KVM" ).Get_Name().isEmpty();
+		bool q = ! Get_Default_Emulator( VM::QEMU ).Get_Name().isEmpty(); // FIXME what it?
+		bool k = ! Get_Default_Emulator( VM::KVM ).Get_Name().isEmpty();
 		
 		if( q && k )
 		{
 			Use_Emulator_Type_Page = true;
 			ui.Wizard_Pages->setCurrentWidget( ui.Emulator_Type_Page );
-			ui.RB_Emulator_QEMU->setChecked( true );
+			ui.RB_Emulator_KVM->setChecked( true );
 			ui.Label_Page->setText( tr("Emulator Type") );
 		}
 		else
@@ -172,12 +172,12 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			if( q )
 			{
 				ui.RB_Emulator_QEMU->setChecked( true );
-				Current_Emulator = Get_Default_Emulator( "QEMU" );
+				Current_Emulator = Get_Default_Emulator( VM::QEMU );
 			}
 			else if( k )
 			{
 				ui.RB_Emulator_KVM->setChecked( true );
-				Current_Emulator = Get_Default_Emulator( "KVM" );
+				Current_Emulator = Get_Default_Emulator( VM::KVM );
 			}
 			else
 			{
@@ -186,14 +186,19 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			}
 			
 			// All Find Systems
-			All_Systems = Get_Devices();
+			All_Systems = Current_Emulator.Get_Devices();
+			if( All_Systems.isEmpty() )
+			{
+				AQError( "void VM_Wizard_Window::on_Button_Next_clicked()",
+						 "Cannot get devices!" );
+				return;
+			}
+			
+			// Comp types
 			ui.CB_Computer_Type->clear();
 			ui.CB_Computer_Type->addItem( tr("No Selected") );
-			
-			for( int sx = 0; sx < All_Systems.count(); ++sx )
-			{
-				ui.CB_Computer_Type->addItem( All_Systems[sx].System.Caption );
-			}
+			for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+				ui.CB_Computer_Type->addItem( it.value().System.Caption );
 			
 			Use_Emulator_Type_Page = false;
 			ui.Wizard_Pages->setCurrentWidget( ui.Template_Page );
@@ -204,13 +209,9 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 	else if( ui.Emulator_Type_Page == ui.Wizard_Pages->currentWidget() )
 	{
 		if( ui.RB_Emulator_QEMU->isChecked() )
-		{
-			Current_Emulator = Get_Default_Emulator( "QEMU" );
-		}
+			Current_Emulator = Get_Default_Emulator( VM::QEMU );
 		else if( ui.RB_Emulator_KVM->isChecked() )
-		{
-			Current_Emulator = Get_Default_Emulator( "KVM" );
-		}
+			Current_Emulator = Get_Default_Emulator( VM::KVM );
 		else
 		{
 			AQError( "void VM_Wizard_Window::on_Button_Next_clicked()",
@@ -218,15 +219,20 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			return;
 		}
 		
-		// All Find Systems
-		All_Systems = Get_Devices();
+		// All Find Systems FIXME ^^^
+		All_Systems = Current_Emulator.Get_Devices();
+		if( All_Systems.isEmpty() )
+		{
+			AQError( "void VM_Wizard_Window::on_Button_Next_clicked()",
+					 "Cannot get devices!" );
+			return;
+		}
+		
+		// Comp types
 		ui.CB_Computer_Type->clear();
 		ui.CB_Computer_Type->addItem( tr("No Selected") );
-		
-		for( int sx = 0; sx < All_Systems.count(); ++sx )
-		{
-			ui.CB_Computer_Type->addItem( All_Systems[sx].System.Caption );
-		}
+		for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+			ui.CB_Computer_Type->addItem( it.value().System.Caption );
 		
 		ui.Wizard_Pages->setCurrentWidget( ui.Template_Page );
 		on_RB_VM_Template_toggled( ui.RB_VM_Template->isChecked() );
@@ -263,48 +269,16 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 				New_VM->Set_Audio_Cards( tmp_audio );
 			}
 			
-			Current_Devices = &All_Systems[ 0 ];
+			Current_Devices = &All_Systems[ "qemu-kvm" ];
 			devices_finded = true;
 		}
 		else
 		{
-			for( int ix = 0; ix < All_Systems.count(); ix++ )
-			{
-				if( ui.RB_VM_Template->isChecked() )
-				{
-					if( All_Systems[ix].System.QEMU_Name == New_VM->Get_Computer_Type() )
-					{
-						Current_Devices = &All_Systems[ ix ];
-						devices_finded = true;
-						break;
-					}
-				}
-				else
-				{
-					if( All_Systems[ix].System.QEMU_Name == All_Systems[ui.CB_Computer_Type->currentIndex()-1].System.QEMU_Name )
-					{
-						Current_Devices = &All_Systems[ ix ];
-						devices_finded = true;
-						break;
-					}
-				}
-			}
+			Current_Devices = &All_Systems[ New_VM->Get_Computer_Type() ];
+			if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
 		}
 		
-		if( ! devices_finded )
-		{
-			AQGraphic_Error( "void VM_Wizard_Window::on_Button_Next_clicked()", tr("Error!"),
-							tr("Cannot Find Emulator System ID!") );
-		}
-		else
-		{
-			ui.CB_CPU_Type->clear();
-			
-			for( int cx = 0; cx < Current_Devices->CPU_List.count(); ++cx )
-			{
-				ui.CB_CPU_Type->addItem( Current_Devices->CPU_List[cx].Caption );
-			}
-		}
+		
 		
 		// Use Selected Template
 		if( ui.RB_VM_Template->isChecked() )
@@ -329,6 +303,10 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			
 			// Network
 			ui.RB_User_Mode_Network->setChecked( New_VM->Get_Use_Network() );
+			
+			// Find CPU List For This Template
+			Current_Devices = &All_Systems[ New_VM->Get_Computer_Type() ];
+			if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
 		}
 		else // Create New VM in Date Mode
 		{
@@ -338,48 +316,72 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 				case 0:
 					AQError( "void VM_Wizard_Window::Create_New_VM()",
 							 "Relese Date Not Selected!" );
-					ui.Memory_Size->setValue( 128 );
+					ui.Memory_Size->setValue( 512 );
 					break;
 					
 				case 1: // 1985-1990
-					ui.Memory_Size->setValue( 8 );
+					ui.Memory_Size->setValue( 16 );
 					ui.SB_HDD_Size->setValue( 1.0 );
 					break;
 					
 				case 2: // 1990-1995
-					ui.Memory_Size->setValue( 32 );
+					ui.Memory_Size->setValue( 64 );
 					ui.SB_HDD_Size->setValue( 2.0 );
 					break;
 					
 				case 3: // 1995-2000
-					ui.Memory_Size->setValue( 128 );
+					ui.Memory_Size->setValue( 256 );
 					ui.SB_HDD_Size->setValue( 10.0 );
 					break;
 					
 				case 4: // 2000-2005
-					ui.Memory_Size->setValue( 256 );
+					ui.Memory_Size->setValue( 512 );
 					ui.SB_HDD_Size->setValue( 20.0 );
 					break;
 					
-				case 5: // 2005-2008
-					ui.Memory_Size->setValue( 512 );
+				case 5: // 2005-2010
+					ui.Memory_Size->setValue( 1024 );
 					ui.SB_HDD_Size->setValue( 40.0 );
 					break;
 					
 				default:
 					AQError( "void VM_Wizard_Window::Create_New_VM()",
 							 "Relese Date Default Section!" );
-					ui.Memory_Size->setValue( 128 );
+					ui.Memory_Size->setValue( 512 );
 					break;
+			}
+			
+			// Find CPU List For This Template
+			QString compCaption = ui.CB_Computer_Type->currentText();
+			for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+			{
+				if( it.value().System.Caption == compCaption )
+				{
+					Current_Devices = &it.value();
+					if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
+				}
 			}
 		}
 		
-		ui.Wizard_Pages->setCurrentWidget( ui.General_Settings_Page );
+		if( ! devices_finded )
+		{
+			AQGraphic_Error( "void VM_Wizard_Window::on_Button_Next_clicked()", tr("Error!"),
+							tr("Cannot Find Emulator System ID!") );
+		}
+		else
+		{
+			// Add CPU's
+			ui.CB_CPU_Type->clear();
+			for( int cx = 0; cx < Current_Devices->CPU_List.count(); ++cx )
+				ui.CB_CPU_Type->addItem( Current_Devices->CPU_List[cx].Caption );
+		}
 		
-		if( ui.RB_Typical->isChecked() ) // typical or custom mode
+		// Typical or custom mode
+		if( ui.RB_Typical->isChecked() )
 		{
 			ui.Label_Page->setText( tr("Virtual Machine Name") );
 			on_Edit_VM_Name_textEdited( ui.Edit_VM_Name->text() );
+			
 			ui.Label_Caption_CPU_Type->setVisible( false );
 			ui.Line_CPU_Type->setVisible( false );
 			ui.Label_CPU_Type->setVisible( false );
@@ -389,11 +391,15 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 		{
 			ui.Label_Page->setText( tr("VM Name and CPU Type") );
 			on_Edit_VM_Name_textEdited( ui.Edit_VM_Name->text() );
+			
 			ui.Label_Caption_CPU_Type->setVisible( true );
 			ui.Line_CPU_Type->setVisible( true );
 			ui.Label_CPU_Type->setVisible( true );
 			ui.CB_CPU_Type->setVisible( true );
 		}
+		
+		// Next tab
+		ui.Wizard_Pages->setCurrentWidget( ui.General_Settings_Page );
 	}
 	else if( ui.General_Settings_Page == ui.Wizard_Pages->currentWidget() )
 	{
@@ -419,6 +425,7 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 	}
 	else if( ui.Memory_Page == ui.Wizard_Pages->currentWidget() )
 	{
+		on_CH_Remove_RAM_Size_Limitation_stateChanged( Qt::Unchecked ); // It for update max avairable RAM size
 		ui.Wizard_Pages->setCurrentWidget( ui.Custom_HDD_Page );
 		ui.Label_Page->setText( tr("Virtual Hard Disk") );
 	}
@@ -463,14 +470,9 @@ bool VM_Wizard_Window::Load_OS_Templates()
 		ui.CB_OS_Type->addItem( OS_Templates_List[ix].completeBaseName() );
 	}
 	
-	if( ui.CB_OS_Type->count() < 2 ) // no items found
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	 // no items found
+	if( ui.CB_OS_Type->count() < 2 ) return false;
+	else return true;
 }
 
 bool VM_Wizard_Window::Create_New_VM()
@@ -545,20 +547,13 @@ bool VM_Wizard_Window::Create_New_VM()
 			// Find QEMU System Name in VM
 			if( ui.RB_Emulator_KVM->isChecked() )
 			{
-				Current_Devices = &All_Systems[ 0 ];
-				devices_finded = true;
+				Current_Devices = &All_Systems[ "qemu-kvm" ];
+				if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
 			}
-			else
+			else // QEMU
 			{
-				for( int ix = 0; ix < All_Systems.count(); ix++ )
-				{
-					if( All_Systems[ix].System.QEMU_Name == New_VM->Get_Computer_Type() )
-					{
-						Current_Devices = &All_Systems[ ix ];
-						devices_finded = true;
-						break;
-					}
-				}
+				Current_Devices = &All_Systems[ New_VM->Get_Computer_Type() ];
+				if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
 			}
 		}
 		else
@@ -566,16 +561,16 @@ bool VM_Wizard_Window::Create_New_VM()
 			// Find QEMU System Name in CB_Computer_Type
 			if( ui.RB_Emulator_KVM->isChecked() )
 			{
-				Current_Devices = &All_Systems[ 0 ];
-				devices_finded = true;
+				Current_Devices = &All_Systems[ "qemu-kvm" ];
+				if( ! Current_Devices->System.QEMU_Name.isEmpty() ) devices_finded = true;
 			}
-			else
+			else // QEMU
 			{
-				for( int ix = 0; ix < All_Systems.count(); ix++ )
+				for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
 				{
-					if( All_Systems[ix].System.Caption == ui.CB_Computer_Type->currentText() )
+					if( it.value().System.Caption == ui.CB_Computer_Type->currentText() )
 					{
-						Current_Devices = &All_Systems[ ix ];
+						Current_Devices = &it.value();
 						devices_finded = true;
 						break;
 					}
@@ -759,54 +754,154 @@ void VM_Wizard_Window::on_CB_Relese_Date_currentIndexChanged( int index )
 
 void VM_Wizard_Window::on_Memory_Size_valueChanged( int value )
 {
-	if( value >= 1 && value <= 2048 ) ui.CB_Mem_Size->setEditText( QString::number(value) );
+	if( value % 1024 == 0 ) ui.CB_RAM_Size->setEditText( QString("%1 GB").arg(value / 1024) );
+	else ui.CB_RAM_Size->setEditText( QString("%1 MB").arg(value) );
 }
 
-void VM_Wizard_Window::on_CB_Mem_Size_editTextChanged( const QString &text )
+void VM_Wizard_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 {
-	bool ok = false;
-	int value = text.toInt( &ok, 10 );
+	if( text.isEmpty() ) return;
 	
-	if( ! ok )
+	QRegExp rx( "([\\d]+)\\s*(MB|GB|M|G)" );
+	
+	if( ! rx.exactMatch(text.toUpper()) )
 	{
-		AQWarning( "void VM_Wizard_Window::on_CB_Mem_Size_editTextChanged( const QString &text )",
-				   "Cannot Convert to Int!" );
+		AQGraphic_Warning( tr("Error"),
+						   tr("Cannot convert \"%1\" to memory size!").arg(text) );
 		return;
 	}
 	
-	if( value >= 1 && value <= 2048 )
+	QStringList ramStrings = rx.capturedTexts();
+	if( ramStrings.count() < 2 )
 	{
-		ui.Memory_Size->setValue( value );
+		AQGraphic_Warning( tr("Error"),
+						   tr("Cannot convert \"%1\" to memory size!").arg(text) );
+		return;
 	}
+	
+	bool ok = false;
+	int value = ramStrings[1].toInt( &ok, 10 );
+	if( ! ok )
+	{
+		AQGraphic_Warning( tr("Error"),
+						   tr("Cannot convert \"%1\" to integer!").arg(ramStrings[1]) );
+		return;
+	}
+	
+	if( ramStrings[2] == "MB" || ramStrings[2] == "M" ); // Size in megabytes
+	else if( ramStrings[2] == "GB" || ramStrings[2] == "G" ) value *= 1024;
+	else
+	{
+		AQGraphic_Warning( tr("Error"),
+						   tr("Cannot convert \"%1\" to size suffix! Valid suffixes: MB, GB").arg(ramStrings[2]) );
+		return;
+	}
+	
+	if( value <= 0 )
+	{
+		AQGraphic_Warning( tr("Error"), tr("Memory size < 0! Valid size 1 or more") );
+		return;
+	}
+	
+	on_TB_Update_Available_RAM_Size_clicked();
+	if( (value > ui.Memory_Size->maximum()) &&
+		(ui.CH_Remove_RAM_Size_Limitation->isChecked() == false) )
+	{
+		AQGraphic_Warning( tr("Error"),
+						   tr("Your memory size %1 MB > %2 MB - all free RAM on this system!\n"
+							  "For set it size, check \"Remove limitation on maximum amount of memory\".")
+						   .arg(value).arg(ui.Memory_Size->maximum()) );
+		
+		on_Memory_Size_valueChanged( ui.Memory_Size->value() ); // Set valid size
+		return;
+	}
+	
+	// All OK. Set memory size
+	ui.Memory_Size->setValue( value );
+}
+
+void VM_Wizard_Window::on_CH_Remove_RAM_Size_Limitation_stateChanged( int state )
+{
+	if( state == Qt::Checked )
+	{
+		ui.Memory_Size->setMaximum( 32768 );
+		ui.Label_Available_Free_Memory->setText( tr("32 GB") );
+		Update_RAM_Size_ComboBox( 32768 );
+	}
+	else
+	{
+		int allRAM = 0, freeRAM = 0;
+		System_Info::Get_Free_Memory_Size( allRAM, freeRAM );
+		
+		if( allRAM < ui.Memory_Size->value() )
+			AQGraphic_Warning( tr("Error"), tr("Current memory size more of all host memory!\nUse the maximum available size.") );
+		
+		ui.Memory_Size->setMaximum( allRAM );
+		ui.Label_Available_Free_Memory->setText( tr("%1 MB").arg(allRAM) );
+		Update_RAM_Size_ComboBox( allRAM );
+	}
+}
+
+void VM_Wizard_Window::on_TB_Update_Available_RAM_Size_clicked()
+{
+	int allRAM = 0, freeRAM = 0;
+	System_Info::Get_Free_Memory_Size( allRAM, freeRAM );
+	ui.TB_Update_Available_RAM_Size->setText( tr("Free memory: %1 MB").arg(freeRAM) );
+	
+	if( ! ui.CH_Remove_RAM_Size_Limitation->isChecked() )
+	{
+		ui.Memory_Size->setMaximum( allRAM );
+		Update_RAM_Size_ComboBox( allRAM );
+	}
+}
+
+void VM_Wizard_Window::Update_RAM_Size_ComboBox( int freeRAM )
+{
+	static int oldRamSize = 0;
+	if( freeRAM == oldRamSize ) return;
+	else oldRamSize = freeRAM;
+	
+	QStringList ramSizes;
+	ramSizes << "32 MB" << "64 MB" << "128 MB" << "256 MB" << "512 MB"
+			 << "1 GB" << "2 GB" << "3 GB" << "4 GB" << "8 GB" << "16 GB" << "32 GB";
+	int maxRamIndex = 0;
+	if( freeRAM >= 32768 ) maxRamIndex = 12;
+	else if( freeRAM >= 16384 ) maxRamIndex = 11;
+	else if( freeRAM >= 8192 ) maxRamIndex = 10;
+	else if( freeRAM >= 4096 ) maxRamIndex = 9;
+	else if( freeRAM >= 3072 ) maxRamIndex = 8;
+	else if( freeRAM >= 2048 ) maxRamIndex = 7;
+	else if( freeRAM >= 1024 ) maxRamIndex = 6;
+	else if( freeRAM >= 512 ) maxRamIndex = 5;
+	else if( freeRAM >= 256 ) maxRamIndex = 4;
+	else if( freeRAM >= 128 ) maxRamIndex = 3;
+	else if( freeRAM >= 64 ) maxRamIndex = 2;
+	else if( freeRAM >= 32 ) maxRamIndex = 1;
+	else
+	{
+		AQGraphic_Warning( tr("Error"), tr("Free memory on this system is low 32 MB!") );
+		return;
+	}
+	
+	if( maxRamIndex > ramSizes.count() )
+	{
+		AQError( "void VM_Wizard_Window::Update_RAM_Size_ComboBox( int freeRAM )",
+				 "maxRamIndex > ramSizes.count()" );
+		return;
+	}
+	
+	QString oldText = ui.CB_RAM_Size->currentText();
+	
+	ui.CB_RAM_Size->clear();
+	for( int ix = 0; ix < maxRamIndex; ix++ ) ui.CB_RAM_Size->addItem( ramSizes[ix] );
+	
+	ui.CB_RAM_Size->setEditText( oldText );
 }
 
 void VM_Wizard_Window::on_Edit_VM_Name_textEdited( const QString &text )
 {
 	if( ui.Edit_VM_Name->text().isEmpty() ) ui.Button_Next->setEnabled( false );
 	else ui.Button_Next->setEnabled( true );
-}
-
-void VM_Wizard_Window::on_Check_Host_Mem_stateChanged( int state )
-{
-	int mes_size = System_Info::Get_Free_Memory_Size();
-	
-	switch( state )
-	{
-		case Qt::Checked:
-			ui.Memory_Size->setMaximum( mes_size );
-			ui.label_max_mem->setText( QString::number(mes_size, 10) + tr(" MB") );
-			break;
-			
-		case Qt::Unchecked:
-			ui.Memory_Size->setMaximum( 2048 );
-			ui.label_max_mem->setText( tr("2048 MB") );
-			break;
-			
-		default:
-			ui.Memory_Size->setMaximum( 2048 );
-			ui.label_max_mem->setText( tr("2048 MB") );
-			break;
-	}
 }
 
 void VM_Wizard_Window::on_Button_New_HDD_clicked()
@@ -816,9 +911,7 @@ void VM_Wizard_Window::on_Button_New_HDD_clicked()
 	Create_HDD_Win->Set_Image_Size( ui.SB_HDD_Size->value() ); // Set Initial HDA Size
 	
 	if( Create_HDD_Win->exec() == QDialog::Accepted )
-	{
 		ui.Edit_HDA_File_Name->setText( Create_HDD_Win->Get_Image_File_Name() );
-	}
 	
 	delete Create_HDD_Win;
 }
@@ -831,74 +924,4 @@ void VM_Wizard_Window::on_Button_Existing_clicked()
 	QString hdd_path = QFileDialog::getOpenFileName( this, tr("Select HDD Image"), "/",
 													 tr("All Files (*)"), &selectedFilter, options );
 	ui.Edit_HDA_File_Name->setText( hdd_path );
-}
-
-QList<Averable_Devices>& VM_Wizard_Window::Get_Devices()
-{
-	if( Current_Emulator.Get_Type() == "QEMU" )
-	{
-		switch( String_To_QEMU_Version(Current_Emulator.Get_QEMU_Version()) )
-		{
-			case VM::QEMU_Old:
-				return System_Info::Emulator_QEMU_0_9_0;
-				break;
-				
-			case VM::QEMU_0_9_0:
-				return System_Info::Emulator_QEMU_0_9_0;
-				break;
-				
-			case VM::QEMU_0_9_1:
-				return System_Info::Emulator_QEMU_0_9_1;
-				break;
-				
-			case VM::QEMU_0_10:
-				return System_Info::Emulator_QEMU_0_10;
-				break;
-				
-			case VM::QEMU_New:
-				return System_Info::Emulator_QEMU_0_10;
-				break;
-				
-			default:
-				AQError( "QList<Averable_Devices> &Main_Window::Get_Devices_Info()",
-						 "QEMU Version Incorrect! Use Default: 0.9.0" );
-				
-				return System_Info::Emulator_QEMU_0_9_0;
-				break;
-		}
-	}
-	else if( Current_Emulator.Get_Type() == "KVM" )
-	{
-		switch( String_To_KVM_Version(Current_Emulator.Get_KVM_Version()) )
-		{
-			case VM::KVM_Old:
-				return System_Info::Emulator_KVM_Old;
-				break;
-				
-			case VM::KVM_7X:
-				return System_Info::Emulator_KVM_7X;
-				break;
-				
-			case VM::KVM_8X:
-				return System_Info::Emulator_KVM_8X;
-				break;
-				
-			case VM::KVM_New:
-				return System_Info::Emulator_KVM_8X;
-				break;
-				
-			default:
-				AQError( "QList<Averable_Devices> &Main_Window::Get_Devices_Info()",
-						 "KVM Version Incorrect! Use Default: 7X" );
-				
-				return System_Info::Emulator_KVM_7X;
-				break;
-		}
-	}
-	
-	// Else
-	AQError( "QList<Averable_Devices> &Main_Window::Get_Devices_Info()",
-			 "Emulator Type Incorrect! Use Default: 0.9.0" );
-	
-	return System_Info::Emulator_QEMU_0_9_0;
 }

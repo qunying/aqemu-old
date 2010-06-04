@@ -20,39 +20,44 @@
 **
 ****************************************************************************/
 
-#ifndef QEMU_BINARY_WINDOW_H
-#define QEMU_BINARY_WINDOW_H
+#ifndef EMULATOR_OPTIONS_WINDOW_H
+#define EMULATOR_OPTIONS_WINDOW_H
 
 #include <QSettings>
 #include "VM_Devices.h"
-#include "ui_QEMU_Binary_Window.h"
+#include "ui_Emulator_Options_Window.h"
 
-class QEMU_Binary_Window: public QDialog
+class Emulator_Options_Window: public QDialog
 {
 	Q_OBJECT
-
+	
 	public:
-		QEMU_Binary_Window( QWidget *parent = 0 );
-		
-	public slots:
-		void on_Button_OK_clicked();
+		Emulator_Options_Window( QWidget *parent = 0 );
 		
 		Emulator Get_Emulator() const;
-		void Set_Emulator( Emulator emul );
+		void Set_Emulator( const Emulator &emul );
+		
+		void Set_All_Emulators_Names( const QStringList &allNames );
 		
 	private slots:
+		void on_Button_OK_clicked();
+		void on_Edit_Name_textChanged();
+		void on_Edit_Path_to_Dir_textChanged();
 		void on_Button_Find_clicked();
 		void on_TB_Browse_clicked();
-		void on_Table_QEMU_Systems_itemDoubleClicked( QTableWidgetItem *item );
+		void on_Table_Systems_itemDoubleClicked( QTableWidgetItem *item );
 		void on_RB_QEMU_toggled( bool checked );
 		void on_RB_KVM_toggled( bool checked );
 		
-	private:
-		Ui::QEMU_Binary_Window ui;
-		QSettings Settings;
+		bool Name_Valid( const QString &name );
 		
+	private:
+		Ui::Emulator_Options_Window ui;
+		
+		QStringList All_Emulators_Names;
+		QSettings Settings;
 		Emulator Current_Emulator;
-		//QStringList QEMU_Binary_Names, KVM_Binary_Names;
+		bool Update_Info; // Update emulator information before exit
 };
 
 #endif

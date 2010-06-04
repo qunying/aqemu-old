@@ -58,6 +58,7 @@ About_Window::About_Window( QWidget *parent ): QDialog( parent )
 	"<br>Guillem Rieu - Patch for Network Redirections\n"
 	"<br>Karol Krenski - IP Address RegExp Fix\n"
 	"<br>Alexander Romanov (aka romale) - Testing, New Ideas and Other Help\n"
+	"<br>Timothy Redaelli - Patch for CMake\n"
 	
 	"<br><br><b>Special thanks:</b>\n"
 	"<br>Sergey Sinitsa (aka sin)\n"

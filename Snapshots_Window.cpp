@@ -165,9 +165,7 @@ void Snapshots_Window::on_Button_Start_clicked()
 		{
 			if( Current_VM->Start_Snapshot(ui.Snapshots_Tree->currentItem()->text(0)) )
 			{
-				QSettings settings;
-				
-				if( settings.value( "Show_Emulator_Control_Window", "yes" ).toString() == "yes" )
+				if( Settings.value("Show_Emulator_Control_Window", "yes").toString() == "yes" )
 				{
 					Current_VM->Show_Emu_Ctl_Win();
 				}
@@ -298,11 +296,7 @@ bool Snapshots_Window::Update_Info()
 	QStringList qimg_args;
 	qimg_args << "info" << Current_VM->Get_HDA().Get_File_Name();
 	
-	QString img_path = Current_VM->Get_Current_Emulator_Binary_Path( "qemu-img kvm-img" );
-	
-	if( img_path.isEmpty() ) img_path = "qemu-img";
-	
-	qimg->start( img_path, qimg_args );
+	qimg->start( Settings.value("QEMU-IMG_Path", "qemu-img").toString(), qimg_args );
 	
 	if( ! qimg->waitForFinished(500) )
 	{

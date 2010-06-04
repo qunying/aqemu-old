@@ -24,11 +24,15 @@
 #include <QUuid>
 #include <QSettings>
 #include <QFile>
+#include <QDir>
 #include <QStringList>
+#include <QDomDocument>
+#include <QTextStream>
 
 #include "VM_Devices.h"
 #include "Utils.h"
 #include "HDD_Image_Info.h"
+#include "System_Info.h"
 
 // Averable_Devices ---------------------------------------------------------
 
@@ -65,7 +69,6 @@ Averable_Devices::Averable_Devices()
 	PSO_Win2K_Hack = false;
 	PSO_Kernel_KQEMU = false;
 	PSO_No_ACPI = false;
-	PSO_PROM_ENV = false;
 	PSO_KVM = false;
 	PSO_RTC_TD_Hack = false;
 	
@@ -138,36 +141,43 @@ Averable_Devices::Averable_Devices()
 
 Emulator::Emulator()
 {
-	Type = Name = Default = Path = Check_QEMU_Version = QEMU_Version = Check_KVM_Version = KVM_Version = Check_Available_Audio_Cards = "";
+	Type = VM::QEMU;
+	Name = "";
+	Path = "";
+	Default = false;
+	Check_Version = false;
+	Check_Available_Options = false;
+	Force_Version = false;
+	Version = VM::Obsolete;
 	Binary_Files = QMap<QString, QString>();
+	Devices = QMap<QString, Averable_Devices>();
 }
 
 Emulator::Emulator( const Emulator &emul )
 {
 	Type = emul.Get_Type();
 	Name = emul.Get_Name();
-	Default = emul.Get_Default();
 	Path = emul.Get_Path();
-	Check_QEMU_Version = emul.Get_Check_QEMU_Version();
-	QEMU_Version = emul.Get_QEMU_Version();
-	Check_KVM_Version = emul.Get_Check_KVM_Version();
-	KVM_Version = emul.Get_KVM_Version();
-	Check_Available_Audio_Cards = emul.Get_Check_Available_Audio_Cards();
+	Default = emul.Get_Default();
+	Check_Version = emul.Get_Check_Version();
+	Check_Available_Options = emul.Get_Check_Available_Options();
+	Force_Version = emul.Get_Force_Version();
+	Version = emul.Get_Version();
 	Binary_Files = emul.Get_Binary_Files();
+	Devices = emul.Get_Devices();
 }
 
 bool Emulator::operator==( const Emulator &emul ) const
 {
 	if( Type == emul.Get_Type() &&
 		Name == emul.Get_Name() &&
-		Default == emul.Get_Default() &&
 		Path == emul.Get_Path() &&
-		Check_QEMU_Version == emul.Get_Check_QEMU_Version() &&
-		QEMU_Version == emul.Get_QEMU_Version() &&
-		Check_KVM_Version == emul.Get_Check_KVM_Version() &&
-		KVM_Version == emul.Get_KVM_Version() &&
-		Check_Available_Audio_Cards == emul.Get_Check_Available_Audio_Cards() &&
-		Binary_Files == emul.Get_Binary_Files() )
+		Default == emul.Get_Default() &&
+		Check_Version == emul.Get_Check_Version() &&
+		Check_Available_Options == emul.Get_Check_Available_Options() &&
+		Force_Version == emul.Get_Force_Version() &&
+		Version == emul.Get_Version() &&
+		Binary_Files == emul.Get_Binary_Files() ) // compare devices?
 	{
 		return true;
 	}
@@ -182,18 +192,1127 @@ bool Emulator::operator!=( const Emulator &emul ) const
 	return ! ( operator==(emul) );
 }
 
-const QString& Emulator::Get_Type() const
+bool Emulator::Load( const QString &path )
+{	
+	// Load file
+	QDomDocument doc;
+	QFile inFile( path );
+	if( ! inFile.open(QIODevice::ReadOnly) )
+	{
+		AQError( "bool Emulator::Load( const QString &path )",
+				 QString("Cannot open file \"%1\"!").arg(path) );
+		return false;
+	}
+	
+	QString errorString = "";
+	int errorLine = 0, errorColumn = 0;
+	if( ! doc.setContent(&inFile, true, &errorString, &errorLine, &errorColumn) )
+	{
+		AQError( "bool Emulator::Load( const QString &path )",
+				 QString("Cannot set content form file \"%1\"!\n\nLine: %2\nColumn: %3\nString: %4" )
+				 .arg(path).arg(errorLine).arg(errorColumn).arg(errorString) );
+		inFile.close();
+		return false;
+	}
+	
+	inFile.close();
+	
+	QDomElement rootElement = doc.documentElement();
+	if( rootElement.tagName() != "AQEMU_Emulator" )
+	{
+		AQError( "bool Emulator::Load( const QString &path )",
+				 QString("File \"%1\" is not AQEMU emulator file!").arg(path) );
+		return false;
+	}
+	
+	if( rootElement.attribute("version") == "0.8" )
+	{
+		AQDebug( "bool Emulator::Load( const QString &path )",
+				 "Loading emulator file version 0.8" );
+	}
+	else
+	{
+		AQWarning( "bool Emulator::Load( const QString &path )",
+				   QString("Emulator version %1 not defined!").arg(rootElement.attribute("version")) );
+	}
+	
+	// Create vairables
+	QDomElement childElement = rootElement.firstChildElement( "Emulator" );
+	if( childElement.isNull() )
+	{
+		AQError( "bool Emulator::Load( const QString &path )",
+				 "No \"Emulator\" element!" );
+		return false;
+	}
+	
+	// Load
+	Type = (childElement.firstChildElement( "Type" ).text() == "QEMU" ? VM::QEMU : VM::KVM );
+	Name = childElement.firstChildElement( "Name" ).text();
+	Default = childElement.firstChildElement( "Default" ).text() == "yes";
+	Path = childElement.firstChildElement( "Path" ).text();
+	Check_Version = childElement.firstChildElement( "Check_Version" ).text() == "yes";
+	Check_Available_Options = childElement.firstChildElement( "Check_Available_Options" ).text() == "yes";
+	Force_Version = childElement.firstChildElement( "Force_Version" ).text() == "yes";
+	Version = String_To_Emulator_Version( childElement.firstChildElement("Version").text() );
+	
+	// Load emulators executable path's
+	Binary_Files.clear();
+	
+	childElement = childElement.firstChildElement( "Executable_Paths" );
+	if( childElement.isNull() )
+	{
+		AQError( "bool Emulator::Load( const QString &path )",
+				 "No \"Executable_Paths\" element!" );
+		return false;
+	}
+	
+	for( QDomNode node = childElement.firstChild(); node.isNull() == false; node = node.nextSibling() )
+	{
+		QDomElement elem = node.toElement();
+		if( ! elem.isNull() ) Binary_Files[ elem.tagName() ] = elem.text();
+	}
+	
+	// Load devices
+	QMapIterator<QString, QString> iter( Binary_Files );
+	while( iter.hasNext() )
+	{
+		iter.next();
+		
+		childElement = rootElement.firstChildElement( "Emulator" );
+		
+		childElement = childElement.firstChildElement( iter.key() );
+		if( childElement.isNull() )
+		{
+			AQWarning( "bool Emulator::Load( const QString &path )",
+					   QString("No \"%1\" element!").arg(iter.key()) );
+			continue;
+		}
+		else
+		{
+			Averable_Devices tmpDev;
+			
+			// System
+			tmpDev.System.Caption = childElement.firstChildElement( "System_Caption" ).text();
+			tmpDev.System.QEMU_Name = childElement.firstChildElement( "System_QEMU_Name" ).text();
+			
+			// CPUs
+			tmpDev.CPU_List.clear();
+			
+			QDomElement thirdElement = childElement.firstChildElement( "CPU_List" );
+			
+			if( thirdElement.isNull() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No \"CPU_List\" element!" );
+				return false;
+			}
+			
+			QDomNode node = thirdElement.firstChild();
+			Device_Map tmpDevMap;
+			for( int ix = 1; node.isNull() == false; node = node.nextSibling(), ix++ )
+			{
+				QDomElement elem = node.toElement();
+				if( ! elem.isNull() )
+				{
+					if( ix % 2 != 0 ) tmpDevMap.Caption = elem.text();
+					else
+					{
+						tmpDevMap.QEMU_Name = elem.text();
+						tmpDev.CPU_List << tmpDevMap;
+					}
+				}
+			}
+			
+			if( tmpDev.CPU_List.isEmpty() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No values on \"CPU_List\" element! Add default CPU element." );
+				tmpDev.CPU_List << Device_Map( QObject::tr("Default"), "" );
+			}
+			
+			// Machines
+			tmpDev.Machine_List.clear();
+			
+			thirdElement = childElement.firstChildElement( "Machine_List" );
+			
+			if( thirdElement.isNull() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No \"Machine_List\" element!" );
+				return false;
+			}
+			
+			node = thirdElement.firstChild();
+			for( int ix = 1; node.isNull() == false; node = node.nextSibling(), ix++ )
+			{
+				QDomElement elem = node.toElement();
+				if( ! elem.isNull() )
+				{
+					if( ix % 2 != 0 ) tmpDevMap.Caption = elem.text();
+					else
+					{
+						tmpDevMap.QEMU_Name = elem.text();
+						tmpDev.Machine_List << tmpDevMap;
+					}
+				}
+			}
+			
+			if( tmpDev.Machine_List.isEmpty() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No values on \"Machine_List\" element! Add default Machine element." );
+				tmpDev.Machine_List << Device_Map( QObject::tr("Default"), "" );
+			}
+			
+			// Network Cards
+			tmpDev.Network_Card_List.clear();
+			
+			thirdElement = childElement.firstChildElement( "Network_Card_List" );
+			
+			if( thirdElement.isNull() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No \"Network_Card_List\" element!" );
+				return false;
+			}
+			
+			node = thirdElement.firstChild();
+			for( int ix = 1; node.isNull() == false; node = node.nextSibling(), ix++ )
+			{
+				QDomElement elem = node.toElement();
+				if( ! elem.isNull() )
+				{
+					if( ix % 2 != 0 ) tmpDevMap.Caption = elem.text();
+					else
+					{
+						tmpDevMap.QEMU_Name = elem.text();
+						tmpDev.Network_Card_List << tmpDevMap;
+					}
+				}
+			}
+			
+			if( tmpDev.Network_Card_List.isEmpty() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No values on \"Network_Card_List\" element! Add default Network Card element." );
+				tmpDev.Network_Card_List << Device_Map( QObject::tr("Default"), "" );
+			}
+			
+			// Audio Cards
+			thirdElement = childElement.firstChildElement( "Audio_Card_List" );
+			
+			if( thirdElement.isNull() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No \"Audio_Card_List\" element!" );
+				return false;
+			}
+			
+			tmpDev.Audio_Card_List.Audio_sb16 = (thirdElement.firstChildElement("sb16").text() == "yes");
+			tmpDev.Audio_Card_List.Audio_es1370 = (thirdElement.firstChildElement("es1370").text() == "yes");
+			tmpDev.Audio_Card_List.Audio_Adlib = (thirdElement.firstChildElement("Adlib").text() == "yes");
+			tmpDev.Audio_Card_List.Audio_PC_Speaker = (thirdElement.firstChildElement("PC_Speaker").text() == "yes");
+			tmpDev.Audio_Card_List.Audio_GUS = (thirdElement.firstChildElement("GUS").text() == "yes");
+			tmpDev.Audio_Card_List.Audio_AC97 = (thirdElement.firstChildElement("AC97").text() == "yes");
+			
+			// Video Cards
+			tmpDev.Video_Card_List.clear();
+			
+			thirdElement = childElement.firstChildElement( "Video_Card_List" );
+			
+			if( thirdElement.isNull() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No \"Video_Card_List\" element!" );
+				return false;
+			}
+			
+			node = thirdElement.firstChild();
+			for( int ix = 1; node.isNull() == false; node = node.nextSibling(), ix++ )
+			{
+				QDomElement elem = node.toElement();
+				if( ! elem.isNull() )
+				{
+					if( ix % 2 != 0 ) tmpDevMap.Caption = elem.text();
+					else
+					{
+						tmpDevMap.QEMU_Name = elem.text();
+						tmpDev.Video_Card_List << tmpDevMap;
+					}
+				}
+			}
+			
+			if( tmpDev.Video_Card_List.isEmpty() )
+			{
+				AQError( "bool Emulator::Load( const QString &path )",
+						 "No values on \"Video_Card_List\" element! Add default Video Card element." );
+				tmpDev.Video_Card_List << Device_Map( QObject::tr("Default"), "" );
+			}
+			
+			// Platform Specific Options
+			bool ok = false;
+			tmpDev.PSO_SMP_Count = childElement.firstChildElement( "SMP_Count" ).text().toUInt( &ok );
+			if( ! ok )
+			{
+				AQWarning( "bool Emulator::Load( const QString &path )",
+						   "SMP_Count value not uint type! Use default value: 1" );
+				tmpDev.PSO_SMP_Count = 1;
+			}
+			
+			tmpDev.PSO_SMP_Cores = (childElement.firstChildElement("SMP_Cores").text() == "yes" );
+			tmpDev.PSO_SMP_Threads = (childElement.firstChildElement("SMP_Threads").text() == "yes" );
+			tmpDev.PSO_SMP_Sockets = (childElement.firstChildElement("SMP_Sockets").text() == "yes" );
+			tmpDev.PSO_SMP_MaxCPUs = (childElement.firstChildElement("SMP_MaxCPUs").text() == "yes" );
+			
+			tmpDev.PSO_Drive = (childElement.firstChildElement("Drive").text() == "yes" );
+			tmpDev.PSO_Drive_File = (childElement.firstChildElement("Drive_File").text() == "yes" );
+			tmpDev.PSO_Drive_If = (childElement.firstChildElement("Drive_If").text() == "yes" );
+			tmpDev.PSO_Drive_Bus_Unit = (childElement.firstChildElement("Drive_Bus_Unit").text() == "yes" );
+			tmpDev.PSO_Drive_Index = (childElement.firstChildElement("Drive_Index").text() == "yes" );
+			tmpDev.PSO_Drive_Media = (childElement.firstChildElement("Drive_Media").text() == "yes" );
+			tmpDev.PSO_Drive_Cyls_Heads_Secs_Trans = (childElement.firstChildElement("Drive_Cyls_Heads_Secs_Trans").text() == "yes" );
+			tmpDev.PSO_Drive_Snapshot = (childElement.firstChildElement("Drive_Snapshot").text() == "yes" );
+			tmpDev.PSO_Drive_Cache = (childElement.firstChildElement("Drive_Cache").text() == "yes" );
+			tmpDev.PSO_Drive_AIO = (childElement.firstChildElement("Drive_AIO").text() == "yes" );
+			tmpDev.PSO_Drive_Format = (childElement.firstChildElement("Drive_Format").text() == "yes" );
+			tmpDev.PSO_Drive_Serial = (childElement.firstChildElement("Drive_Serial").text() == "yes" );
+			tmpDev.PSO_Drive_ADDR = (childElement.firstChildElement("Drive_ADDR").text() == "yes" );
+			
+			tmpDev.PSO_Boot_Order = (childElement.firstChildElement("Boot_Order").text() == "yes" );
+			tmpDev.PSO_Initial_Graphic_Mode = (childElement.firstChildElement("Initial_Graphic_Mode").text() == "yes" );
+			tmpDev.PSO_No_FB_Boot_Check = (childElement.firstChildElement("No_FB_Boot_Check").text() == "yes" );
+			tmpDev.PSO_Win2K_Hack = (childElement.firstChildElement("Win2K_Hack").text() == "yes" );
+			tmpDev.PSO_Kernel_KQEMU = (childElement.firstChildElement("Kernel_KQEMU").text() == "yes" );
+			tmpDev.PSO_No_ACPI = (childElement.firstChildElement("No_ACPI").text() == "yes" );
+			tmpDev.PSO_KVM = (childElement.firstChildElement("KVM").text() == "yes" );
+			tmpDev.PSO_RTC_TD_Hack = (childElement.firstChildElement("RTC_TD_Hack").text() == "yes" );
+			
+			tmpDev.PSO_MTDBlock = (childElement.firstChildElement("MTDBlock").text() == "yes" );
+			tmpDev.PSO_SD = (childElement.firstChildElement("SD").text() == "yes" );
+			tmpDev.PSO_PFlash = (childElement.firstChildElement("PFlash").text() == "yes" );
+			tmpDev.PSO_Name = (childElement.firstChildElement("Name").text() == "yes" );
+			tmpDev.PSO_Curses = (childElement.firstChildElement("Curses").text() == "yes" );
+			tmpDev.PSO_No_Frame = (childElement.firstChildElement("No_Frame").text() == "yes" );
+			tmpDev.PSO_Alt_Grab = (childElement.firstChildElement("Alt_Grab").text() == "yes" );
+			tmpDev.PSO_No_Quit = (childElement.firstChildElement("No_Quit").text() == "yes" );
+			tmpDev.PSO_SDL = (childElement.firstChildElement("SDL").text() == "yes" );
+			tmpDev.PSO_Portrait = (childElement.firstChildElement("Portrait").text() == "yes" );
+			tmpDev.PSO_No_Shutdown = (childElement.firstChildElement("No_Shutdown").text() == "yes" );
+			tmpDev.PSO_Startdate = (childElement.firstChildElement("Startdate").text() == "yes" );
+			tmpDev.PSO_Show_Cursor = (childElement.firstChildElement("Show_Cursor").text() == "yes" );
+			tmpDev.PSO_Bootp = (childElement.firstChildElement("Bootp").text() == "yes" );
+			
+			tmpDev.PSO_Net_type_vde = (childElement.firstChildElement("Net_type_vde").text() == "yes" );
+			tmpDev.PSO_Net_type_dump = (childElement.firstChildElement("Net_type_dump").text() == "yes" );
+			
+			tmpDev.PSO_Net_name = (childElement.firstChildElement("Net_name").text() == "yes" );
+			tmpDev.PSO_Net_addr = (childElement.firstChildElement("Net_addr").text() == "yes" );
+			tmpDev.PSO_Net_vectors = (childElement.firstChildElement("Net_vectors").text() == "yes" );
+			
+			tmpDev.PSO_Net_net = (childElement.firstChildElement("Net_net").text() == "yes" );
+			tmpDev.PSO_Net_host = (childElement.firstChildElement("Net_host").text() == "yes" );
+			tmpDev.PSO_Net_restrict = (childElement.firstChildElement("Net_restrict").text() == "yes" );
+			tmpDev.PSO_Net_dhcpstart = (childElement.firstChildElement("Net_dhcpstart").text() == "yes" );
+			tmpDev.PSO_Net_dns = (childElement.firstChildElement("Net_dns").text() == "yes" );
+			tmpDev.PSO_Net_tftp = (childElement.firstChildElement("Net_tftp").text() == "yes" );
+			tmpDev.PSO_Net_bootfile = (childElement.firstChildElement("Net_bootfile").text() == "yes" );
+			tmpDev.PSO_Net_smb = (childElement.firstChildElement("Net_smb").text() == "yes" );
+			tmpDev.PSO_Net_hostfwd = (childElement.firstChildElement("Net_hostfwd").text() == "yes" );
+			tmpDev.PSO_Net_guestfwd = (childElement.firstChildElement("Net_guestfwd").text() == "yes" );
+			
+			tmpDev.PSO_Net_ifname = (childElement.firstChildElement("Net_ifname").text() == "yes" );
+			tmpDev.PSO_Net_script = (childElement.firstChildElement("Net_script").text() == "yes" );
+			tmpDev.PSO_Net_downscript = (childElement.firstChildElement("Net_downscript").text() == "yes" );
+			
+			tmpDev.PSO_Net_listen = (childElement.firstChildElement("Net_listen").text() == "yes" );
+			tmpDev.PSO_Net_connect = (childElement.firstChildElement("Net_connect").text() == "yes" );
+			
+			tmpDev.PSO_Net_mcast = (childElement.firstChildElement("Net_mcast").text() == "yes" );
+			
+			tmpDev.PSO_Net_sock = (childElement.firstChildElement("Net_sock").text() == "yes" );
+			tmpDev.PSO_Net_port = (childElement.firstChildElement("Net_port").text() == "yes" );
+			tmpDev.PSO_Net_group = (childElement.firstChildElement("Net_group").text() == "yes" );
+			tmpDev.PSO_Net_mode = (childElement.firstChildElement("Net_mode").text() == "yes" );
+			
+			tmpDev.PSO_Net_file = (childElement.firstChildElement("Net_file").text() == "yes" );
+			tmpDev.PSO_Net_len = (childElement.firstChildElement("Net_len").text() == "yes" );
+			
+			tmpDev.PSO_Enable_KVM = (childElement.firstChildElement("Enable_KVM").text() == "yes" );
+			tmpDev.PSO_No_KVM = (childElement.firstChildElement("No_KVM").text() == "yes" );
+			tmpDev.PSO_No_KVM_IRQChip = (childElement.firstChildElement("No_KVM_IRQChip").text() == "yes" );
+			tmpDev.PSO_No_KVM_Pit = (childElement.firstChildElement("No_KVM_Pit").text() == "yes" );
+			tmpDev.PSO_No_KVM_Pit_Reinjection = (childElement.firstChildElement("No_KVM_Pit_Reinjection").text() == "yes" );
+			tmpDev.PSO_Enable_Nesting = (childElement.firstChildElement("Enable_Nesting").text() == "yes" );
+			tmpDev.PSO_KVM_Shadow_Memory = (childElement.firstChildElement("KVM_Shadow_Memory").text() == "yes" );
+			
+			tmpDev.PSO_TFTP = (childElement.firstChildElement("TFTP").text() == "yes" );
+			tmpDev.PSO_SMB = (childElement.firstChildElement("SMB").text() == "yes" );
+			tmpDev.PSO_Std_VGA = (childElement.firstChildElement("Std_VGA").text() == "yes" );
+			
+			// Add devices
+			Devices[ iter.key() ] = tmpDev;
+		}
+	}
+	
+	return true;
+}
+
+bool Emulator::Save() const
+{
+	QString path = Get_Emulator_File_Path();
+	if( path.isEmpty() ) return false;
+	
+	// Document type
+	QDomDocument domDocument( "AQEMU" );
+	domDocument.appendChild( domDocument.createProcessingInstruction("xml", "version=\"1.0\" encoding=\"UTF-8\"") );
+	
+	// Document version
+	QDomElement rootElement = domDocument.createElement( "AQEMU_Emulator" );
+	rootElement.setAttribute( "version", "0.8" );
+	domDocument.appendChild( rootElement );
+	
+	// Emulator - general section
+	QDomElement emulatorElement = domDocument.createElement( "Emulator" );
+	rootElement.appendChild( emulatorElement );
+	
+	// Save emulator data
+	QDomElement domElement;
+	QDomText domText;
+	
+	// Type
+	domElement = domDocument.createElement( "Type" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( (Type == VM::QEMU ? "QEMU" : "KVM") );
+	domElement.appendChild( domText );
+	
+	// Name
+	domElement = domDocument.createElement( "Name" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( Name );
+	domElement.appendChild( domText );
+	
+	// Default
+	domElement = domDocument.createElement( "Default" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( (Default ? "yes" : "no") );
+	domElement.appendChild( domText );
+	
+	// Path
+	domElement = domDocument.createElement( "Path" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( Path );
+	domElement.appendChild( domText );
+	
+	// Check_Version
+	domElement = domDocument.createElement( "Check_Version" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( (Check_Version ? "yes" : "no") );
+	domElement.appendChild( domText );
+	
+	// Check_Available_Options
+	domElement = domDocument.createElement( "Check_Available_Options" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( (Check_Available_Options ? "yes" : "no") );
+	domElement.appendChild( domText );
+	
+	// Check_Available_Options
+	domElement = domDocument.createElement( "Check_Available_Options" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( (Check_Available_Options ? "yes" : "no") );
+	domElement.appendChild( domText );
+	
+	// Force_Version
+	domElement = domDocument.createElement( "Force_Version" );
+	emulatorElement.appendChild( domElement );
+	domText = domDocument.createTextNode( (Force_Version ? "yes" : "no") );
+	domElement.appendChild( domText );
+	
+	// Version
+	domElement = domDocument.createElement( "Version" );
+	emulatorElement.appendChild( domElement );
+	
+	QString emulatorVersion = Emulator_Version_To_String( Version );
+	if( emulatorVersion.isEmpty() )
+	{
+		AQError( "bool Emulator::Save() const",
+				 "Emulator version invalid! Use version: Obsolete" );
+		domText = domDocument.createTextNode( "Obsolete" );
+	}
+	else domText = domDocument.createTextNode( emulatorVersion );
+	
+	domElement.appendChild( domText );
+	
+	// Save emulators executable path's
+	domElement = domDocument.createElement( "Executable_Paths" );
+	
+	QMap<QString, QString>::const_iterator binFilesIter = Binary_Files.constBegin();
+	while( binFilesIter != Binary_Files.constEnd() )
+	{
+		QDomElement binElement = domDocument.createElement( binFilesIter.key() );
+		domText = domDocument.createTextNode( binFilesIter.value() );
+		binElement.appendChild( domText );
+		domElement.appendChild( binElement );
+		
+		++binFilesIter;
+	}
+	
+	emulatorElement.appendChild( domElement );
+	
+	// Save devices
+	QMap<QString, Averable_Devices>::const_iterator devicesIter = Devices.constBegin();
+	while( devicesIter != Devices.constEnd() )
+	{
+		const Averable_Devices &tmpDev = devicesIter.value();
+		domElement = domDocument.createElement( devicesIter.key() );
+		
+		QDomElement deviceElement;
+		QDomElement thirdElement;
+		
+		// System
+		deviceElement = domDocument.createElement( "System_Caption" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( tmpDev.System.Caption );
+		deviceElement.appendChild( domText );
+		
+		deviceElement = domDocument.createElement( "System_QEMU_Name" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( tmpDev.System.QEMU_Name );
+		deviceElement.appendChild( domText );
+		
+		// CPUs
+		deviceElement = domDocument.createElement( "CPU_List" );
+		for( int ix = 0; ix < tmpDev.CPU_List.count(); ix++ )
+		{
+			thirdElement = domDocument.createElement( QString("Caption%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.CPU_List[ix].Caption );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+			
+			thirdElement = domDocument.createElement( QString("Name%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.CPU_List[ix].QEMU_Name );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+		}
+		domElement.appendChild( deviceElement );
+		
+		// Machines
+		deviceElement = domDocument.createElement( "Machine_List" );
+		for( int ix = 0; ix < tmpDev.Machine_List.count(); ix++ )
+		{
+			thirdElement = domDocument.createElement( QString("Caption%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.Machine_List[ix].Caption );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+			
+			thirdElement = domDocument.createElement( QString("Name%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.Machine_List[ix].QEMU_Name );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+		}
+		domElement.appendChild( deviceElement );
+		
+		// Network Cards
+		deviceElement = domDocument.createElement( "Network_Card_List" );
+		for( int ix = 0; ix < tmpDev.Network_Card_List.count(); ix++ )
+		{
+			thirdElement = domDocument.createElement( QString("Caption%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.Network_Card_List[ix].Caption );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+			
+			thirdElement = domDocument.createElement( QString("Name%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.Network_Card_List[ix].QEMU_Name );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+		}
+		domElement.appendChild( deviceElement );
+		
+		// Audio Cards
+		deviceElement = domDocument.createElement( "Audio_Card_List" );
+		
+		thirdElement = domDocument.createElement( "sb16" );
+		domText = domDocument.createTextNode( (tmpDev.Audio_Card_List.Audio_sb16 ? "yes" : "no") );
+		thirdElement.appendChild( domText );
+		deviceElement.appendChild( thirdElement );
+		
+		thirdElement = domDocument.createElement( "es1370" );
+		domText = domDocument.createTextNode( (tmpDev.Audio_Card_List.Audio_es1370 ? "yes" : "no") );
+		thirdElement.appendChild( domText );
+		deviceElement.appendChild( thirdElement );
+		
+		thirdElement = domDocument.createElement( "Adlib" );
+		domText = domDocument.createTextNode( (tmpDev.Audio_Card_List.Audio_Adlib ? "yes" : "no") );
+		thirdElement.appendChild( domText );
+		deviceElement.appendChild( thirdElement );
+		
+		thirdElement = domDocument.createElement( "PC_Speaker" );
+		domText = domDocument.createTextNode( (tmpDev.Audio_Card_List.Audio_PC_Speaker ? "yes" : "no") );
+		thirdElement.appendChild( domText );
+		deviceElement.appendChild( thirdElement );
+		
+		thirdElement = domDocument.createElement( "GUS" );
+		domText = domDocument.createTextNode( (tmpDev.Audio_Card_List.Audio_GUS ? "yes" : "no") );
+		thirdElement.appendChild( domText );
+		deviceElement.appendChild( thirdElement );
+		
+		thirdElement = domDocument.createElement( "AC97" );
+		domText = domDocument.createTextNode( (tmpDev.Audio_Card_List.Audio_AC97 ? "yes" : "no") );
+		thirdElement.appendChild( domText );
+		deviceElement.appendChild( thirdElement );
+		
+		domElement.appendChild( deviceElement );
+		
+		// Video Cards
+		deviceElement = domDocument.createElement( "Video_Card_List" );
+		for( int ix = 0; ix < tmpDev.Video_Card_List.count(); ix++ )
+		{
+			thirdElement = domDocument.createElement( QString("Caption%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.Video_Card_List[ix].Caption );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+			
+			thirdElement = domDocument.createElement( QString("Name%1").arg(ix) );
+			domText = domDocument.createTextNode( tmpDev.Video_Card_List[ix].QEMU_Name );
+			thirdElement.appendChild( domText );
+			deviceElement.appendChild( thirdElement );
+		}
+		domElement.appendChild( deviceElement );
+		
+		// Platform Specific Options
+		// PSO_SMP_Count
+		deviceElement = domDocument.createElement( "SMP_Count" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( QString::number(tmpDev.PSO_SMP_Count) );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SMP_Cores
+		deviceElement = domDocument.createElement( "SMP_Cores" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SMP_Cores ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SMP_Threads
+		deviceElement = domDocument.createElement( "SMP_Threads" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SMP_Threads ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SMP_Sockets
+		deviceElement = domDocument.createElement( "SMP_Sockets" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SMP_Sockets ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SMP_MaxCPUs
+		deviceElement = domDocument.createElement( "SMP_MaxCPUs" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SMP_MaxCPUs ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Drive
+		deviceElement = domDocument.createElement( "Drive" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_File
+		deviceElement = domDocument.createElement( "Drive_File" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_File ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Bus_Unit
+		deviceElement = domDocument.createElement( "Drive_Bus_Unit" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Bus_Unit ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Index
+		deviceElement = domDocument.createElement( "Drive_Index" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Index ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Media
+		deviceElement = domDocument.createElement( "Drive_Media" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Media ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Cyls_Heads_Secs_Trans
+		deviceElement = domDocument.createElement( "Drive_Cyls_Heads_Secs_Trans" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Cyls_Heads_Secs_Trans ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Snapshot
+		deviceElement = domDocument.createElement( "Drive_Snapshot" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Snapshot ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Cache
+		deviceElement = domDocument.createElement( "Drive_Cache" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Cache ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_AIO
+		deviceElement = domDocument.createElement( "Drive_AIO" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_AIO ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Format
+		deviceElement = domDocument.createElement( "Drive_Format" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Format ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Serial
+		deviceElement = domDocument.createElement( "Drive_Serial" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Serial ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_ADDR
+		deviceElement = domDocument.createElement( "Drive_ADDR" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_ADDR ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Boot_Order
+		deviceElement = domDocument.createElement( "Boot_Order" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Boot_Order ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Initial_Graphic_Mode
+		deviceElement = domDocument.createElement( "Initial_Graphic_Mode" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Initial_Graphic_Mode ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_FB_Boot_Check
+		deviceElement = domDocument.createElement( "No_FB_Boot_Check" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_FB_Boot_Check ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Win2K_Hack
+		deviceElement = domDocument.createElement( "Win2K_Hack" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Win2K_Hack ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Kernel_KQEMU
+		deviceElement = domDocument.createElement( "Kernel_KQEMU" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Kernel_KQEMU ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_ACPI
+		deviceElement = domDocument.createElement( "No_ACPI" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_ACPI ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_KVM
+		deviceElement = domDocument.createElement( "KVM" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_KVM ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_RTC_TD_Hack
+		deviceElement = domDocument.createElement( "RTC_TD_Hack" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_RTC_TD_Hack ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_MTDBlock
+		deviceElement = domDocument.createElement( "MTDBlock" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_MTDBlock ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SD
+		deviceElement = domDocument.createElement( "SD" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SD ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_PFlash
+		deviceElement = domDocument.createElement( "PFlash" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_PFlash ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Name
+		deviceElement = domDocument.createElement( "Name" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Name ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Curses
+		deviceElement = domDocument.createElement( "Curses" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Curses ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_Frame
+		deviceElement = domDocument.createElement( "No_Frame" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_Frame ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Alt_Grab
+		deviceElement = domDocument.createElement( "Alt_Grab" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Alt_Grab ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_Quit
+		deviceElement = domDocument.createElement( "No_Quit" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_Quit ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SDL
+		deviceElement = domDocument.createElement( "SDL" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SDL ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Portrait
+		deviceElement = domDocument.createElement( "Portrait" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Portrait ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_Shutdown
+		deviceElement = domDocument.createElement( "No_Shutdown" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_Shutdown ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Startdate
+		deviceElement = domDocument.createElement( "Startdate" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Startdate ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Show_Cursor
+		deviceElement = domDocument.createElement( "Show_Cursor" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Show_Cursor ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Bootp
+		deviceElement = domDocument.createElement( "Bootp" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Bootp ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_type_vde
+		deviceElement = domDocument.createElement( "Net_type_vde" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_type_vde ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_type_dump
+		deviceElement = domDocument.createElement( "Net_type_dump" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_type_dump ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_name
+		deviceElement = domDocument.createElement( "Net_name" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_name ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_addr
+		deviceElement = domDocument.createElement( "Net_addr" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_addr ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_vectors
+		deviceElement = domDocument.createElement( "Net_vectors" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_vectors ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_net
+		deviceElement = domDocument.createElement( "Net_net" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_net ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_host
+		deviceElement = domDocument.createElement( "Net_host" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_host ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_restrict
+		deviceElement = domDocument.createElement( "Net_restrict" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_restrict ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_dhcpstart
+		deviceElement = domDocument.createElement( "Net_dhcpstart" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_dhcpstart ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_dns
+		deviceElement = domDocument.createElement( "Net_dns" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_dns ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_tftp
+		deviceElement = domDocument.createElement( "Net_tftp" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_tftp ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_bootfile
+		deviceElement = domDocument.createElement( "Net_bootfile" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_bootfile ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_smb
+		deviceElement = domDocument.createElement( "Net_smb" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_smb ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_hostfwd
+		deviceElement = domDocument.createElement( "Net_hostfwd" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_hostfwd ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_guestfwd
+		deviceElement = domDocument.createElement( "Net_guestfwd" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_guestfwd ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_ifname
+		deviceElement = domDocument.createElement( "Net_ifname" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_ifname ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_script
+		deviceElement = domDocument.createElement( "Net_script" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_script ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_downscript
+		deviceElement = domDocument.createElement( "Net_downscript" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_downscript ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_listen
+		deviceElement = domDocument.createElement( "Net_listen" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_listen ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_connect
+		deviceElement = domDocument.createElement( "Net_connect" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_connect ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_mcast
+		deviceElement = domDocument.createElement( "Net_mcast" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_mcast ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_sock
+		deviceElement = domDocument.createElement( "Net_sock" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_sock ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_port
+		deviceElement = domDocument.createElement( "Net_port" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_port ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_group
+		deviceElement = domDocument.createElement( "Net_group" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_group ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_mode
+		deviceElement = domDocument.createElement( "Net_mode" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_mode ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Net_file
+		deviceElement = domDocument.createElement( "Net_file" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_file ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_len
+		deviceElement = domDocument.createElement( "Net_len" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_len ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_Enable_KVM
+		deviceElement = domDocument.createElement( "Enable_KVM" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Enable_KVM ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_KVM
+		deviceElement = domDocument.createElement( "No_KVM" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_KVM ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_KVM_IRQChip
+		deviceElement = domDocument.createElement( "No_KVM_IRQChip" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_KVM_IRQChip ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_KVM_Pit
+		deviceElement = domDocument.createElement( "No_KVM_Pit" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_KVM_Pit ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_No_KVM_Pit_Reinjection
+		deviceElement = domDocument.createElement( "No_KVM_Pit_Reinjection" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_No_KVM_Pit_Reinjection ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Enable_Nesting
+		deviceElement = domDocument.createElement( "Enable_Nesting" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Enable_Nesting ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_KVM_Shadow_Memory
+		deviceElement = domDocument.createElement( "KVM_Shadow_Memory" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_KVM_Shadow_Memory ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		// PSO_TFTP
+		deviceElement = domDocument.createElement( "TFTP" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_TFTP ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_SMB
+		deviceElement = domDocument.createElement( "SMB" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SMB ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Std_VGA
+		deviceElement = domDocument.createElement( "Std_VGA" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Std_VGA ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		
+		emulatorElement.appendChild( domElement );
+		
+		// Next
+		++devicesIter;
+	}
+	
+	// Save to file
+	QFile outFile( path );
+	
+	if( ! outFile.open(QFile::WriteOnly | QFile::Truncate) )
+	{
+		AQError( "bool Emulator::Save() const",
+				 QString("Cannot create emulator file \"%1\"").arg(path) );
+		return false;
+	}
+	
+	QTextStream outStream( &outFile );
+	domDocument.save( outStream, 4 );
+	
+	return true;
+}
+
+QString Emulator::Get_Emulator_File_Path() const
+{
+	if( Name.isEmpty() )
+	{
+		AQError( "QString Emulator::Get_Emulator_File_Path() const",
+				 "Name is empty" );
+		return "";
+	}
+
+	QSettings settigs;
+	QFileInfo info( settigs.fileName() );
+	QString aqemuSettingsFolder = info.absoluteDir().absolutePath();
+
+	if( ! QFile::exists(aqemuSettingsFolder) )
+	{
+		AQError( "QString Emulator::Get_Emulator_File_Path() const",
+				 QString("Cannot get path for save emulator! Folder \"%1\" not exists!").arg(aqemuSettingsFolder) );
+		return "";
+	}
+
+	// All ok. Return result
+	return QDir::toNativeSeparators( aqemuSettingsFolder +
+									 (aqemuSettingsFolder.endsWith("/") || aqemuSettingsFolder.endsWith("\\") ? "" : "/") +
+									 Name + ".emulator" );
+}
+
+VM::Emulator_Type Emulator::Get_Type() const
 {
 	return Type;
 }
 
-void Emulator::Set_Type( const QString &type )
+void Emulator::Set_Type( VM::Emulator_Type type )
 {
+	Type = type;
+	return; // FIXME
+	
 	if( Type != type )
 	{
+		// bin names
 		QStringList QEMU_Binary_Names;
 		QEMU_Binary_Names << "qemu";
-		QEMU_Binary_Names << "qemu-img";
+		QEMU_Binary_Names << "qemu-system-x86_64";
 		QEMU_Binary_Names << "qemu-system-arm";
 		QEMU_Binary_Names << "qemu-system-cris";
 		QEMU_Binary_Names << "qemu-system-m68k";
@@ -207,18 +1326,16 @@ void Emulator::Set_Type( const QString &type )
 		QEMU_Binary_Names << "qemu-system-sh4";
 		QEMU_Binary_Names << "qemu-system-sh4eb";
 		QEMU_Binary_Names << "qemu-system-sparc";
-		QEMU_Binary_Names << "qemu-system-x86_64";
 		
 		QStringList KVM_Binary_Names;
 		KVM_Binary_Names << "kvm";
-		KVM_Binary_Names << "kvm-img";
 		
-		if( type == "QEMU" )
+		if( type == VM::QEMU )
 		{
 			Binary_Files.clear();
 			for( int ix = 0; ix < QEMU_Binary_Names.count(); ++ix ) Binary_Files[ QEMU_Binary_Names[ix] ] = "";
 		}
-		else if( type == "KVM" )
+		else if( type == VM::KVM )
 		{
 			Binary_Files.clear();
 			for( int ix = 0; ix < KVM_Binary_Names.count(); ++ix ) Binary_Files[ KVM_Binary_Names[ix] ] = "";
@@ -226,7 +1343,7 @@ void Emulator::Set_Type( const QString &type )
 		else
 		{
 			AQError( "void Emulator::Set_Type( const QString &type )",
-					 "Type \"" + type + "\" Incorrect! Use Default: QEMU" );
+					 "Type Incorrect! Use Default: QEMU" );
 			
 			Binary_Files.clear();
 			for( int ix = 0; ix < QEMU_Binary_Names.count(); ++ix ) Binary_Files[ QEMU_Binary_Names[ix] ] = "";
@@ -236,7 +1353,7 @@ void Emulator::Set_Type( const QString &type )
 	}
 }
 
-const QString& Emulator::Get_Name() const
+const QString &Emulator::Get_Name() const
 {
 	return Name;
 }
@@ -246,17 +1363,17 @@ void Emulator::Set_Name( const QString &name )
 	Name = name;
 }
 
-const QString& Emulator::Get_Default() const
+bool Emulator::Get_Default() const
 {
 	return Default;
 }
 
-void Emulator::Set_Default( const QString &use )
+void Emulator::Set_Default( bool on )
 {
-	Default = use;
+	Default = on;
 }
 
-const QString& Emulator::Get_Path() const
+const QString &Emulator::Get_Path() const
 {
 	return Path;
 }
@@ -266,57 +1383,47 @@ void Emulator::Set_Path( const QString &path )
 	Path = path;
 }
 
-const QString& Emulator::Get_Check_QEMU_Version() const
+bool Emulator::Get_Check_Version() const
 {
-	return Check_QEMU_Version;
+	return Check_Version;
 }
 
-void Emulator::Set_Check_QEMU_Version( const QString &check )
+void Emulator::Set_Check_Version( bool check )
 {
-	Check_QEMU_Version = check;
+	Check_Version = check;
 }
 
-const QString& Emulator::Get_QEMU_Version() const
+bool Emulator::Get_Check_Available_Options() const
 {
-	return QEMU_Version;
+	return Check_Available_Options;
 }
 
-void Emulator::Set_QEMU_Version( const QString &ver )
+void Emulator::Set_Check_Available_Options( bool check )
 {
-	QEMU_Version = ver;
+	Check_Available_Options = check;
 }
 
-const QString& Emulator::Get_Check_KVM_Version() const
+bool Emulator::Get_Force_Version() const
 {
-	return Check_KVM_Version;
+	return Force_Version;
 }
 
-void Emulator::Set_Check_KVM_Version( const QString &check )
+void Emulator::Set_Force_Version( bool on )
 {
-	Check_KVM_Version = check;
+	Force_Version = on;
 }
 
-const QString& Emulator::Get_KVM_Version() const
+VM::Emulator_Version Emulator::Get_Version() const
 {
-	return KVM_Version;
+	return Version;
 }
 
-void Emulator::Set_KVM_Version( const QString &ver )
+void Emulator::Set_Version( VM::Emulator_Version ver )
 {
-	KVM_Version = ver;
+	Version = ver;
 }
 
-const QString& Emulator::Get_Check_Available_Audio_Cards() const
-{
-	return Check_Available_Audio_Cards;
-}
-
-void Emulator::Set_Check_Available_Audio_Cards( const QString &check )
-{
-	Check_Available_Audio_Cards = check;
-}
-
-const QMap<QString, QString>& Emulator::Get_Binary_Files() const
+const QMap<QString, QString> &Emulator::Get_Binary_Files() const
 {
 	return Binary_Files;
 }
@@ -326,12 +1433,53 @@ void Emulator::Set_Binary_Files( const QMap<QString, QString> &files )
 	Binary_Files = files;
 }
 
-const QList<Averable_Devices> *Emulator::Get_Devices() const
+const QMap<QString, Averable_Devices> &Emulator::Get_Devices() const
 {
-	return Devices;
+	if( Force_Version || Check_Version )
+	{
+		switch( Version )
+		{
+			case VM::QEMU_0_9_0:
+				return System_Info::Emulator_QEMU_0_9_0;
+				
+			case VM::QEMU_0_9_1:
+				return System_Info::Emulator_QEMU_0_9_1;
+				
+			case VM::QEMU_0_10:
+				return System_Info::Emulator_QEMU_0_10;
+				
+			case VM::QEMU_0_11:
+				return System_Info::Emulator_QEMU_0_11;
+				
+			case VM::QEMU_0_12:
+				return System_Info::Emulator_QEMU_0_12;
+				
+			case VM::KVM_7X:
+				return System_Info::Emulator_KVM_7X;
+				
+			case VM::KVM_8X:
+				return System_Info::Emulator_KVM_8X;
+				
+			case VM::KVM_0_11:
+				return System_Info::Emulator_KVM_0_11;
+				
+			case VM::KVM_0_12:
+				return System_Info::Emulator_KVM_0_12;
+				
+			default:
+				AQError( "const QMap<QString, Averable_Devices> &Emulator::Get_Devices() const",
+						 "Emulator Version Incorrect!" );
+				static QMap<QString, Averable_Devices> emptyMap;
+				return emptyMap;
+		}		
+	}
+	else // Check Options or Save Options
+	{
+		return Devices;
+	}
 }
 
-void Emulator::Set_Devices( const QList<Averable_Devices> *devices )
+void Emulator::Set_Devices( const QMap<QString, Averable_Devices> &devices )
 {
 	Devices = devices;
 }
@@ -544,42 +1692,42 @@ void VM_Nativ_Storage_Device::Use_hdachs( bool use )
 	Uhdachs = use;
 }
 
-qulonglong VM_Nativ_Storage_Device::Get_Cyls() const
+unsigned long VM_Nativ_Storage_Device::Get_Cyls() const
 {
 	return Cyls;
 }
 
-void VM_Nativ_Storage_Device::Set_Cyls( qulonglong cyls )
+void VM_Nativ_Storage_Device::Set_Cyls( unsigned long cyls )
 {
 	Cyls = cyls;
 }
 
-qulonglong VM_Nativ_Storage_Device::Get_Heads() const
+unsigned long VM_Nativ_Storage_Device::Get_Heads() const
 {
 	return Heads;
 }
 
-void VM_Nativ_Storage_Device::Set_Heads( qulonglong heads )
+void VM_Nativ_Storage_Device::Set_Heads( unsigned long heads )
 {
 	Heads = heads;
 }
 
-qulonglong VM_Nativ_Storage_Device::Get_Secs() const
+unsigned long VM_Nativ_Storage_Device::Get_Secs() const
 {
 	return Secs;
 }
 
-void VM_Nativ_Storage_Device::Set_Secs( qulonglong secs )
+void VM_Nativ_Storage_Device::Set_Secs( unsigned long secs )
 {
 	Secs = secs;
 }
 
-qulonglong VM_Nativ_Storage_Device::Get_Trans() const
+unsigned long VM_Nativ_Storage_Device::Get_Trans() const
 {
 	return Trans;
 }
 
-void VM_Nativ_Storage_Device::Set_Trans( qulonglong trans )
+void VM_Nativ_Storage_Device::Set_Trans( unsigned long trans )
 {
 	Trans = trans;
 }
@@ -2064,7 +3212,7 @@ VM_USB::VM_USB()
 	Vendor_ID = "";
 	Product_ID = "";
 	BusAddr = "";
-	Speed = 0;
+	Speed = "0";
 	Serial_Number = "";
 	USB_Keyboard = USB_Tablet = USB_WacomTablet = USB_Braille = false;
 	USB_Mouse = true;
@@ -2202,12 +3350,12 @@ void VM_USB::Set_Serial_Number( const QString &serial )
 	Serial_Number = serial;
 }
 
-int VM_USB::Get_Speed() const
+QString VM_USB::Get_Speed() const
 {
 	return Speed;
 }
 
-void VM_USB::Set_Speed( int speed )
+void VM_USB::Set_Speed( const QString &speed )
 {
 	Speed = speed;
 }

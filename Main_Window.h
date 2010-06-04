@@ -33,6 +33,7 @@
 #include "HDD_Image_Info.h"
 #include "Network_Widget.h"
 #include "Old_Network_Widget.h"
+#include "SMP_Settings_Window.h"
 
 class Ports_Tab_Widget;
 class Device_Manager_Widget;
@@ -51,6 +52,7 @@ class Main_Window: public QMainWindow
 		void on_Machines_List_itemDoubleClicked( QListWidgetItem *item );
 		void VM_State_Changet( Virtual_Machine *vm, VM::VM_State s );
 		void Show_State( Virtual_Machine *vm, VM::VM_State s );
+		void Set_Widgets_State( bool enabled );
 		void VM_Changet();
 		void Update_Emulator_Control();
 		
@@ -96,6 +98,7 @@ class Main_Window: public QMainWindow
 		void on_TB_Show_Boot_Settings_Window_clicked();
 		void Set_Boot_Order( const QList<VM::Boot_Order> &list );
 		void on_TB_Show_SMP_Settings_Window_clicked();
+		bool Validate_CPU_Count( const QString &text );
 		void Apply_Emulator( int mode );
 		
 		void on_CH_Local_Time_toggled( bool on );
@@ -103,7 +106,9 @@ class Main_Window: public QMainWindow
 		// Memory
 		void on_Memory_Size_valueChanged( int value );
 		void on_CB_RAM_Size_editTextChanged( const QString &text );
-		void on_Check_Host_Mem_stateChanged ( int state );
+		void on_CH_Remove_RAM_Size_Limitation_stateChanged( int state );
+		void on_TB_Update_Available_RAM_Size_clicked();
+		void Update_RAM_Size_ComboBox( int freeRAM );
 		
 		// HDD's
 		void on_TB_HDA_SetPath_clicked();
@@ -188,8 +193,9 @@ class Main_Window: public QMainWindow
 		
 		void Connect_Signals();
 		
-		QList<Averable_Devices> &Get_Devices_Info();
-		bool Current_Emulator_Version_Good( VM::Emulator_Version qver, VM::Emulator_Version kver ); // FIXME
+		const QMap<QString, Averable_Devices> &Get_Devices_Info( bool *ok ) const;
+		Averable_Devices Get_Current_Machine_Devices( bool *ok ) const;
+		bool Current_Emulator_Version_Good( VM::Emulator_Version ver );
 		
 		bool Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm );
 		
@@ -225,7 +231,10 @@ class Main_Window: public QMainWindow
 		QString VM_Folder;
 		
 		QList<Virtual_Machine*> VM_List;
-		QList<Emulator> All_Emulators_List;
+		QList<Emulator> All_Emulators_List; // FIXME use call
+		
+		SMP_Settings_Window SMP_Settings;
+		
 		QList<VM::Boot_Order> Boot_Order_List;
 		bool Show_Boot_Menu;
 		

@@ -33,9 +33,13 @@
 class VM
 {
 	public:
+		// Emulator type
+		enum Emulator_Type { QEMU, KVM };
+		
 		// Emulators Version
-		enum Emulator_Version { QEMU_Old, QEMU_0_9_0, QEMU_0_9_1, QEMU_0_10, QEMU_New,
-								KVM_Old, KVM_7X, KVM_8X, KVM_New, QEMU_KVM_11_1 };
+		enum Emulator_Version { Obsolete,
+								QEMU_0_9_0, QEMU_0_9_1, QEMU_0_10, QEMU_0_11, QEMU_0_12,
+								KVM_7X, KVM_8X, KVM_0_11, KVM_0_12 };
 		
 		// Virtual Machine State
 		enum VM_State { VMS_Running, VMS_Power_Off, VMS_Pause, VMS_Saved, VMS_In_Error };
@@ -193,22 +197,22 @@ class Averable_Devices
 		// Constructor for init values
 		Averable_Devices();
 		
-		// QEMU System
+		// QEMU/KVM System
 		Device_Map System;
 		
-		// QEMU CPU
+		// QEMU/KVM CPUs
 		QList<Device_Map> CPU_List;
 		
-		// QEMU Machines
+		// QEMU/KVM Machines
 		QList<Device_Map> Machine_List;
 		
-		// QEMU Network Card
+		// QEMU/KVM Network Cards
 		QList<Device_Map> Network_Card_List;
 		
-		// QEMU Audio Card
+		// QEMU/KVM Audio Cards
 		VM::Sound_Cards Audio_Card_List;
 		
-		// QEMU Video Card
+		// QEMU/KVM Video Cards
 		QList<Device_Map> Video_Card_List;
 		
 		// Platform Specific Options
@@ -238,7 +242,6 @@ class Averable_Devices
 		bool PSO_Win2K_Hack;
 		bool PSO_Kernel_KQEMU;
 		bool PSO_No_ACPI;
-		bool PSO_PROM_ENV;
 		bool PSO_KVM;
 		bool PSO_RTC_TD_Hack;
 		
@@ -314,44 +317,54 @@ class Emulator
 		bool operator==( const Emulator &emul ) const;
 		bool operator!=( const Emulator &emul ) const;
 		
-		const QString& Get_Type() const;
-		void Set_Type( const QString &type );
+		bool Load( const QString &path );
+		bool Save() const;
+		QString Get_Emulator_File_Path() const;
 		
-		const QString& Get_Name() const;
+		VM::Emulator_Type Get_Type() const;
+		void Set_Type( VM::Emulator_Type type );
+		
+		const QString &Get_Name() const;
 		void Set_Name( const QString &name );
 		
-		const QString& Get_Default() const;
-		void Set_Default( const QString &use );
+		bool Get_Default() const;
+		void Set_Default( bool on );
 		
-		const QString& Get_Path() const;
+		const QString &Get_Path() const;
 		void Set_Path( const QString &path );
 		
-		const QString& Get_Check_QEMU_Version() const;
-		void Set_Check_QEMU_Version( const QString &check );
+		bool Get_Check_Version() const;
+		void Set_Check_Version( bool check );
 		
-		const QString& Get_QEMU_Version() const;
-		void Set_QEMU_Version( const QString &ver );
+		bool Get_Check_Available_Options() const;
+		void Set_Check_Available_Options( bool check );
 		
-		const QString& Get_Check_KVM_Version() const;
-		void Set_Check_KVM_Version( const QString &check );
+		bool Get_Force_Version() const;
+		void Set_Force_Version( bool on );
 		
-		const QString& Get_KVM_Version() const;
-		void Set_KVM_Version( const QString &ver );
+		VM::Emulator_Version Get_Version() const;
+		void Set_Version( VM::Emulator_Version ver );
 		
-		const QString& Get_Check_Available_Audio_Cards() const;
-		void Set_Check_Available_Audio_Cards( const QString &check );
-		
-		const QMap<QString, QString>& Get_Binary_Files() const;
+		const QMap<QString, QString> &Get_Binary_Files() const;
 		void Set_Binary_Files( const QMap<QString, QString> &files );
 		
-		const QList<Averable_Devices> *Get_Devices() const;
-		void Set_Devices( const QList<Averable_Devices> *devices );
+		const QMap<QString, Averable_Devices> &Get_Devices() const;
+		void Set_Devices( const QMap<QString, Averable_Devices> &devices );
 		
 	private:
-		QString Type, Name, Default, Path, Check_QEMU_Version, QEMU_Version,
-				Check_KVM_Version, KVM_Version, Check_Available_Audio_Cards;
-		QMap<QString, QString> Binary_Files;
-		const QList<Averable_Devices> *Devices;
+		VM::Emulator_Type Type;
+		QString Name;
+		QString Path;
+		bool Default;
+		
+		bool Check_Version;
+		bool Check_Available_Options;
+		bool Force_Version;
+		VM::Emulator_Version Version;
+		
+		// KEY for next maps is emulator exeutable id (like qemu-system-arm)
+		QMap<QString, QString> Binary_Files; // VALUE is path to executable
+		QMap<QString, Averable_Devices> Devices; // VALUE is Averable_Devices class
 };
 
 // Nativ Storage Device (QEMU >= 0.9.1 Device Style)
@@ -402,17 +415,17 @@ class VM_Nativ_Storage_Device
 		bool Use_hdachs() const;
 		void Use_hdachs( bool use );
 		
-		qulonglong Get_Cyls() const;
-		void Set_Cyls( qulonglong cyls );
+		unsigned long Get_Cyls() const;
+		void Set_Cyls( unsigned long cyls );
 		
-		qulonglong Get_Heads() const;
-		void Set_Heads( qulonglong heads );
+		unsigned long Get_Heads() const;
+		void Set_Heads( unsigned long heads );
 		
-		qulonglong Get_Secs() const;
-		void Set_Secs( qulonglong secs );
+		unsigned long Get_Secs() const;
+		void Set_Secs( unsigned long secs );
 		
-		qulonglong Get_Trans() const;
-		void Set_Trans( qulonglong trans );
+		unsigned long Get_Trans() const;
+		void Set_Trans( unsigned long trans );
 		
 		bool Get_Snapshot() const;
 		void Set_Snapshot( bool snapshot );
@@ -437,7 +450,7 @@ class VM_Nativ_Storage_Device
 		VM::Device_Media Media; // disk or cdrom
 		
 		bool Uhdachs;
-		int Cyls, Heads, Secs, Trans; // For -hdachs
+		unsigned long Cyls, Heads, Secs, Trans; // For -hdachs
 		
 		bool Snapshot;
 		bool Cache;
@@ -827,8 +840,8 @@ class VM_USB
 		QString Get_Serial_Number() const;
 		void Set_Serial_Number( const QString &serial );
 		
-		int Get_Speed() const;
-		void Set_Speed( int speed );
+		QString Get_Speed() const;
+		void Set_Speed( const QString &speed );
 		
 		void Get_USB_QEMU_Devices( bool &keyboard, bool &mouse, bool &tablet, bool &wacomTablet, bool &braille ) const;
 		void Set_USB_QEMU_Devices( bool keyboard, bool mouse, bool tablet, bool wacomTablet, bool braille );
@@ -841,7 +854,7 @@ class VM_USB
 		QString Product_ID;
 		QString BusAddr;
 		QString Serial_Number;
-		int Speed;
+		QString Speed;
 		bool USB_Keyboard, USB_Mouse, USB_Tablet, USB_WacomTablet, USB_Braille;
 };
 

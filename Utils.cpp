@@ -59,9 +59,7 @@ void AQDebug( const QString &sender, const QString &mes )
 	}
 	
 	if( Save_Messages_To_Log && Stdout_Debug )
-	{
 		AQSave_To_Log( "Debug", sender, mes );
-	}
 	
 	Messages_Index++;
 }
@@ -76,9 +74,7 @@ void AQWarning( const QString &sender, const QString &mes )
 	}
 	
 	if( Save_Messages_To_Log && Stdout_Warning )
-	{
 		AQSave_To_Log( "Warning", sender, mes );
-	}
 	
 	Messages_Index++;
 }
@@ -93,9 +89,7 @@ void AQError( const QString &sender, const QString &mes )
 	}
 	
 	if( Save_Messages_To_Log && Stdout_Error )
-	{
 		AQSave_To_Log( "Error", sender, mes );
-	}
 	
 	Messages_Index++;
 }
@@ -122,9 +116,7 @@ void AQGraphic_Warning( const QString &sender, const QString &caption, const QSt
 	}
 	
 	if( Save_Messages_To_Log )
-	{
 		AQSave_To_Log( "Warning", sender, mes );
-	}
 }
 
 void AQGraphic_Error( const QString &sender, const QString &caption, const QString &mes, bool fatal )
@@ -144,9 +136,7 @@ void AQGraphic_Error( const QString &sender, const QString &caption, const QStri
 	}
 	
 	if( Save_Messages_To_Log )
-	{
 		AQSave_To_Log( "Error", sender, mes );
-	}
 }
 
 void AQUse_Log( bool use )
@@ -191,19 +181,19 @@ void AQSave_To_Log( const QString &mes_type, const QString &sender, const QStrin
 bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 						   const QString &file_name, const QString &format, VM::Device_Size size, bool verbose )
 {
+	// Create command line
 	QStringList args;
 	args << "create";
 	
-	if( encrypted ) args << "-e"; // encrypted
+	if( encrypted )
+		args << "-e";
 	
 	if( ! base_image.isEmpty() )
-	{
 		args << "-b" << base_image;
-	}
 	
-	args << "-f" << format; // format
+	args << "-f" << format;
 	
-	args << file_name; // file name
+	args << file_name;
 	 
 	switch( size.Suffix )
 	{
@@ -220,9 +210,10 @@ bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 			break;
 	}
 	
+	// Start qemu-img process
 	QProcess qemu_img;
 	QSettings settings;
-	qemu_img.start( Get_Default_QEMU_IMG_Path(), args );
+	qemu_img.start( settings.value("QEMU-IMG_Path", "qemu-img").toString(), args );
 	
 	if( ! qemu_img.waitForStarted(200) )
 	{
@@ -275,7 +266,6 @@ bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 bool Create_New_HDD_Image( const QString &file_name, VM::Device_Size size )
 {
 	QSettings settings;
-	
 	QString format = settings.value( "Default_HDD_Image_Format", "qcow2" ).toString();
 	
 	return Create_New_HDD_Image( false, "", file_name, format, size, false );
@@ -338,14 +328,10 @@ QList<QString> Get_Templates_List()
 	
 	// OK. In Template Lists Only Unique Values
 	for( int ix = 0; ix < sys_templates_list.count(); ++ix )
-	{
 		all_templates.append( sys_templates_list[ix].absoluteFilePath() );
-	}
 	
 	for( int ix = 0; ix < user_templates_list.count(); ++ix )
-	{
 		all_templates.append( user_templates_list[ix].absoluteFilePath() );
-	}
 	
 	// sort
 	qSort( all_templates );
@@ -381,14 +367,10 @@ QString Get_Complete_VM_File_Path( const QString &vm_name )
 	QString ret_str = settings.value("VM_Directory", "").toString() + tmp_str;
 	
 	if( ! ret_str.endsWith(".aqemu") )
-	{
 		ret_str += ".aqemu";
-	}
 	
 	for( int ix = 0; QFile::exists(ret_str); ++ix )
-	{
 		tmp_str = new_name + QString::number( ix );
-	}
 	
 	return ret_str;
 }
@@ -418,14 +400,8 @@ QString Get_Last_Dir_Path( const QString &path )
 	QFileInfo info( path );
 	QString dir = info.path();
 	
-	if( dir.isEmpty() )
-	{
-		return "/";
-	}
-	else
-	{
-		return dir;
-	}
+	if( dir.isEmpty() ) return "/";
+	else return dir;
 }
 
 bool It_Host_Device( const QString &path )
@@ -501,73 +477,60 @@ void Check_AQEMU_Permissions()
 	}
 }
 
-VM::Emulator_Version String_To_QEMU_Version( const QString &str )
+VM::Emulator_Version String_To_Emulator_Version( const QString &str )
 {
-	if( str.isEmpty() )
-	{
-		AQError( "VM::QEMU_Version String_To_QEMU_Version( const QString &str )",
-				 "Cannot Convert String to QEMU_Version! String is Empty! Use Default QEMU Version: 0.9.0" );
-		return VM::QEMU_0_9_0;
-	}
-	
-	if( str == "Old" )
-	{
-		return VM::QEMU_Old;
-	}
-	else if( str == "0.9.0" )
-	{
-		return VM::QEMU_0_9_0;
-	}
-	else if( str == "0.9.1" )
-	{
-		return VM::QEMU_0_9_1;
-	}
-	else if( str == "0.10" )
-	{
-		return VM::QEMU_0_10;
-	}
-	else if( str == "New" )
-	{
-		return VM::QEMU_New;
-	}
+	if( str == "QEMU 0.9.0" ) return VM::QEMU_0_9_0;
+	else if( str == "QEMU 0.9.1" ) return VM::QEMU_0_9_1;
+	else if( str == "QEMU 0.10.X" ) return VM::QEMU_0_10;
+	else if( str == "QEMU 0.11.X" ) return VM::QEMU_0_11;
+	else if( str == "QEMU 0.12.X" ) return VM::QEMU_0_12;
+	else if( str == "KVM 7X" ) return VM::KVM_7X;
+	else if( str == "KVM 8X" ) return VM::KVM_8X;
+	else if( str == "KVM 0.11.X" ) return VM::KVM_0_11;
+	else if( str == "KVM 0.12.X" ) return VM::KVM_0_12;
 	else
 	{
-		AQError( "VM::QEMU_Version String_To_QEMU_Version( const QString &str )",
-				 "Cannot Convert String to QEMU_Version! Use Default QEMU Version: 0.9.0" );
-		return VM::QEMU_0_9_0;
+		AQError( "VM::Emulator_Version String_To_Emulator_Version( const QString &str )",
+				 QString("Emulator version \"%1\" not valid!").arg(str) );
+		return VM::Obsolete;
 	}
 }
 
-VM::Emulator_Version String_To_KVM_Version( const QString &str )
+QString Emulator_Version_To_String( VM::Emulator_Version ver )
 {
-	if( str.isEmpty() )
+	switch( ver )
 	{
-		AQError( "VM::KVM_Version String_To_KVM_Version( const QString &str )",
-				 "Cannot Convert String to KVM_Version! String is Empty! Use Default KVM Version: 7X" );
-		return VM::KVM_7X;
-	}
-	
-	if( str == "Old" )
-	{
-		return VM::KVM_Old;
-	}
-	else if( str == "7X" )
-	{
-		return VM::KVM_7X;
-	}
-	else if( str == "8X" )
-	{
-		return VM::KVM_8X;
-	}
-	else if( str == "New" )
-	{
-		return VM::KVM_New;
-	}
-	else
-	{
-		AQError( "VM::KVM_Version String_To_KVM_Version( const QString &str )",
-				 "Cannot Convert String to KVM_Version! Use Default KVM Version: 7X" );
-		return VM::KVM_7X;
+		case VM::QEMU_0_9_0:
+			return "QEMU 0.9.0";
+
+		case VM::QEMU_0_9_1:
+			return "QEMU 0.9.1";
+
+		case VM::QEMU_0_10:
+			return "QEMU 0.10.X";
+
+		case VM::QEMU_0_11:
+			return "QEMU 0.11.X";
+
+		case VM::QEMU_0_12:
+			return "QEMU 0.12.X";
+
+		case VM::KVM_7X:
+			return "KVM 7X";
+
+		case VM::KVM_8X:
+			return "KVM 8X";
+
+		case VM::KVM_0_11:
+			return "KVM 0.11.X";
+
+		case VM::KVM_0_12:
+			return "KVM 0.12.X";
+
+		default:
+			AQError( "QString Emulator_Version_To_String( VM::Emulator_Version ver )",
+					 QString("Emulator version \"%1\" not valid!").arg((int)ver) );
+			return "";
 	}
 }
 
@@ -577,192 +540,170 @@ static Emulator Empty_Emul;
 
 bool Update_Emulators_List()
 {
-	QSettings Settings;
+	// Clear old emulator list
+	Emulators_List.clear();
 	
-	int emul_count = Settings.value( "Emulators_Count", "0" ).toString().toInt();
+	// Get dir path
+	QSettings settings;
+	QFileInfo info( settings.fileName() );
+	QString aqemuSettingsFolder = info.absoluteDir().absolutePath();
+	if( ! (aqemuSettingsFolder.endsWith("/") || aqemuSettingsFolder.endsWith("\\")) )
+		aqemuSettingsFolder = QDir::toNativeSeparators( aqemuSettingsFolder + "/" );
 	
-	if( emul_count <= 0 )
+	if( ! QFile::exists(aqemuSettingsFolder) )
 	{
-		AQWarning( "bool Update_Emulators_List()", "Emulators Count == 0" );
+		AQError( "bool Update_Emulators_List()",
+				 QString("Cannot get path for save emulator! Folder \"%1\" not exists!").arg(aqemuSettingsFolder) );
 		return false;
 	}
 	
-	if( Emulators_List.count() > 0 ) Emulators_List.clear();
+	// Get all *.emulators files
+	QDir emulDir( aqemuSettingsFolder );
+	QStringList emulFiles = emulDir.entryList( QStringList("*.emulator"), QDir::Files, QDir::Name );
 	
-	for( int ix = 0; ix < emul_count; ix++ )
+	if( emulFiles.isEmpty() )
 	{
-		QString prefix = "Emulator_" + QString::number( ix ) + "/";
-		Emulator tmp_emul;
-		
-		// Emulator Type
-		tmp_emul.Set_Type( Settings.value(prefix + "Type").toString() );
-		
-		// Name
-		tmp_emul.Set_Name( Settings.value(prefix + "Name").toString() );
-		
-		// Default
-		tmp_emul.Set_Default( Settings.value(prefix + "Default").toString() );
-		
-		// Path
-		tmp_emul.Set_Path( Settings.value(prefix + "Path").toString() );
-		
-		// Check Version on Start AQEMU
-		tmp_emul.Set_Check_QEMU_Version( Settings.value(prefix + "Check_QEMU_Version").toString() );
-		
-		// QEMU Version
-		tmp_emul.Set_QEMU_Version( Settings.value(prefix + "QEMU_Version").toString() );
-		
-		// Check Version KVM on Start AQEMU
-		tmp_emul.Set_Check_KVM_Version( Settings.value(prefix + "Check_KVM_Version").toString() );
-		
-		// KVM Version
-		tmp_emul.Set_KVM_Version( Settings.value(prefix + "KVM_Version").toString() );
-		
-		// Check Available Audio Cards
-		tmp_emul.Set_Check_Available_Audio_Cards( Settings.value(prefix + "Check_Available_Audio_Cards").toString() );
-		
-		// Binary Files
-		QStringList QEMU_Binary_Names;
-		QEMU_Binary_Names << "qemu";
-		QEMU_Binary_Names << "qemu-img";
-		QEMU_Binary_Names << "qemu-system-arm";
-		QEMU_Binary_Names << "qemu-system-cris";
-		QEMU_Binary_Names << "qemu-system-m68k";
-		QEMU_Binary_Names << "qemu-system-mips";
-		QEMU_Binary_Names << "qemu-system-mipsel";
-		QEMU_Binary_Names << "qemu-system-mips64";
-		QEMU_Binary_Names << "qemu-system-mips64el";
-		QEMU_Binary_Names << "qemu-system-ppc";
-		QEMU_Binary_Names << "qemu-system-ppc64";
-		QEMU_Binary_Names << "qemu-system-ppcemb";
-		QEMU_Binary_Names << "qemu-system-sh4";
-		QEMU_Binary_Names << "qemu-system-sh4eb";
-		QEMU_Binary_Names << "qemu-system-sparc";
-		QEMU_Binary_Names << "qemu-system-x86_64";
-		
-		QStringList KVM_Binary_Names;
-		KVM_Binary_Names << "kvm";
-		KVM_Binary_Names << "kvm-img";
-		
-		QMap<QString, QString> bin_list;
-		
-		if( tmp_emul.Get_Type() == "QEMU" )
-		{
-			for( int ix = 0; ix < QEMU_Binary_Names.count(); ix++ )
-				bin_list[ QEMU_Binary_Names[ix] ] = Settings.value( prefix + QEMU_Binary_Names[ix] ).toString();
-		}
-		else
-		{
-			for( int ix = 0; ix < KVM_Binary_Names.count(); ix++ )
-				bin_list[ KVM_Binary_Names[ix] ] = Settings.value( prefix + KVM_Binary_Names[ix] ).toString();
-		}
-		
-		tmp_emul.Set_Binary_Files( bin_list );
-		
-		// Update Versions
-		if( tmp_emul.Get_Type() == "QEMU" && tmp_emul.Get_Check_QEMU_Version() == "yes" )
-		{
-			QString tmp_ver = System_Info::Get_QEMU_Version( bin_list[QEMU_Binary_Names[0]] );
-			
-			if( ! tmp_ver.isEmpty() ) tmp_emul.Set_QEMU_Version( tmp_ver );
-			else AQError( "bool Update_Emulators_List()", "Cannot Update Version! Use Old." );
-		}
-		else if( tmp_emul.Get_Type() == "KVM" && tmp_emul.Get_Check_KVM_Version() == "yes" )
-		{
-			QString tmp_ver = System_Info::Get_KVM_Version( bin_list[KVM_Binary_Names[0]] );
-			
-			if( ! tmp_ver.isEmpty() ) tmp_emul.Set_KVM_Version( tmp_ver );
-			else AQError( "bool Update_Emulators_List()", "Cannot Update Version! Use Old." );
-		}
-		
-		Emulators_List << tmp_emul;
+		AQWarning( "bool Update_Emulators_List()",
+				   QString("No emulators found in \"%1\"").arg(aqemuSettingsFolder) );
+		return false;
 	}
 	
+	// Check default emulators
+	bool qDef = false, kDef = false;
+	
+	// Load emulators
+	for( int ex = 0; ex < emulFiles.count(); ++ex )
+	{
+		Emulator tmp;
+		
+		if( ! tmp.Load(aqemuSettingsFolder + emulFiles[ex]) )
+		{
+			AQError( "bool Update_Emulators_List()",
+					 QString("Cannot load emulator from file: \"%1\"").arg(emulFiles[ex]) );
+			continue;
+		}
+		
+		if( tmp.Get_Default() )
+		{
+			if( tmp.Get_Type() == VM::QEMU )
+			{
+				if( qDef )
+				{
+					AQWarning( "bool Update_Emulators_List()", "Default QEMU emulator already loaded." );
+					tmp.Set_Default( false );
+				}
+				else qDef = true;
+			}
+			else if( tmp.Get_Type() == VM::KVM )
+			{
+				if( kDef )
+				{
+					AQWarning( "bool Update_Emulators_List()", "Default KVM emulator already loaded." );
+					tmp.Set_Default( false );
+				}
+				else kDef = true;
+			}
+		}
+		
+		Emulators_List << tmp;
+	}
+	
+	// Emulator loaded?
+	if( Emulators_List.isEmpty() )
+	{
+		AQWarning( "bool Update_Emulators_List()",
+				   "No emulators loaded!" );
+		return false;
+	}
+	
+	// All OK
 	return true;
 }
 
 const QList<Emulator> &Get_Emulators_List()
 {
-	if( Update_Emulators_List() ) return Emulators_List;
+	if( Update_Emulators_List() ) return Emulators_List; // FIXME Update?
 	else
 	{
-		AQError( "QList<Emulator> Get_Emulators_List()", "Cannot Update Emulators List" );
+		AQError( "QList<Emulator> Get_Emulators_List()",
+				 "Cannot Update Emulators List" );
 		return Empty_Emul_List;
 	}
 }
 
-const Emulator &Get_Default_Emulator( const QString &type )
+bool Remove_All_Emulators_Files()
 {
-	for( int ix = 0; ix < Emulators_List.count(); ix++ )
+	// Get emulators dir path
+	QSettings settings;
+	QFileInfo info( settings.fileName() );
+	QString aqemuSettingsFolder = info.absoluteDir().absolutePath();
+	aqemuSettingsFolder += aqemuSettingsFolder.endsWith( QDir::toNativeSeparators("/") )
+						   ? ""
+						   : QDir::toNativeSeparators( "/" );
+	
+	if( ! QFile::exists(aqemuSettingsFolder) )
 	{
-		if( Emulators_List[ix].Get_Type() == type && Emulators_List[ix].Get_Default() == "yes" )
+		AQError( "bool Remove_All_Emulators_Files()",
+				 QString("Cannot get path for save emulator! Folder \"%1\" not exists!").arg(aqemuSettingsFolder) );
+		return false;
+	}
+	else
+	{
+		// Get all *.emulators files
+		QDir emulDir( aqemuSettingsFolder );
+		QStringList emulFiles = emulDir.entryList( QStringList("*.emulator"), QDir::Files, QDir::Name );
+		
+		bool allFilesRemoved = true;
+		for( int dx = 0; dx < emulFiles.count(); ++dx )
 		{
-			return Emulators_List[ ix ];
+			if( ! QFile::remove(aqemuSettingsFolder + emulFiles[dx]) )
+			{
+				AQError( "bool Remove_All_Emulators_Files()",
+						 QString("Cannot delete file \"%1\"!").arg(emulFiles[dx]) );
+				allFilesRemoved = false;
+			}
+		}
+		
+		return allFilesRemoved;
+	}
+}
+
+const Emulator &Get_Default_Emulator( VM::Emulator_Type type )
+{
+	if( Emulators_List.count() <= 0 )
+		AQError( "const Emulator &Get_Default_Emulator( VM::Emulator_Type type )",
+				 "Emulator Count == 0" );
+	else
+	{
+		for( int ix = 0; ix < Emulators_List.count(); ix++ )
+		{
+			if( Emulators_List[ix].Get_Type() == type && Emulators_List[ix].Get_Default() )
+				return Emulators_List[ ix ];
 		}
 	}
 	
-	AQError( "const Emulator Get_Default_Emulator( const QString &type )", "Cannot Find!" );
+	AQWarning( "const Emulator &Get_Default_Emulator( VM::Emulator_Type type )",
+			   "Cannot Find!" );
 	return Empty_Emul;
 }
 
 const Emulator &Get_Emulator_By_Name( const QString &name )
 {
 	if( Emulators_List.count() <= 0 )
-		AQError( "const Emulator Get_Emulator_By_Name( const QString &name )", "Emulator Count == 0" );
+		AQError( "const Emulator Get_Emulator_By_Name( const QString &name )",
+				 "Emulator Count == 0" );
 	else
 	{
 		for( int ix = 0; ix < Emulators_List.count(); ix++ )
 		{
-			if( Emulators_List[ix].Get_Name() == name ) return Emulators_List[ ix ];
+			if( Emulators_List[ix].Get_Name() == name )
+				return Emulators_List[ ix ];
 		}
 	}
 	
-	AQError( "const Emulator Get_Emulator_By_Name( const QString &name )", "Cannot Find!" );
+	AQWarning( "const Emulator Get_Emulator_By_Name( const QString &name )",
+			   "Cannot Find!" );
 	return Empty_Emul;
-}
-
-QString Get_Default_QEMU_IMG_Path( QString emul_name )
-{
-	Emulator tmp;
-	
-	if( emul_name.isEmpty() )
-	{
-		tmp = Get_Default_Emulator( "QEMU" );
-		
-		if( tmp.Get_Type().isEmpty() && tmp.Get_Name().isEmpty() )
-		{
-			tmp = Get_Default_Emulator( "KVM" );
-			
-			if( tmp.Get_Type().isEmpty() && tmp.Get_Name().isEmpty() )
-			{
-				AQError( "QString Get_Default_QEMU_IMG_Path()", "Cannot Get Emulator!" );
-				return "qemu-img";
-			}
-		}
-	}
-	else
-	{
-		tmp = Get_Emulator_By_Name( emul_name );
-		
-		if( tmp.Get_Type().isEmpty() && tmp.Get_Name().isEmpty() )
-		{
-			AQError( "QString Get_Default_QEMU_IMG_Path()", "Cannot Get Emulator!" );
-			return "qemu-img";
-		}
-	}
-	
-	QMap<QString, QString> bin_list = tmp.Get_Binary_Files();
-	
-	for( QMap<QString, QString>::const_iterator iter = bin_list.constBegin(); iter != bin_list.constEnd(); iter++ )
-	{
-		if( iter.key() == "qemu-img" || iter.key() == "kvm-img" )
-		{
-			return iter.value();
-		}
-	}
-	
-	AQError( "QString Get_Default_QEMU_IMG_Path()", "Cannot Find qemu-img and kmv-img!" );
-	return "qemu-img";
 }
 
 int Get_Random( int min, int max )

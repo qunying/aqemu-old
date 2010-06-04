@@ -29,7 +29,7 @@
 #include "Utils.h"
 #include "Settings_Window.h"
 #include "Create_Template_Window.h"
-#include "QEMU_Binary_Window.h"
+#include "Emulator_Options_Window.h"
 
 Settings_Window::Settings_Window( QWidget *parent )
 	: QDialog( parent )
@@ -101,13 +101,13 @@ Settings_Window::Settings_Window( QWidget *parent )
 	}
 	
 	// Icons Theme
-	if( Settings->value("Icon_Theme", "crystalsvg").toString() != "crystalsvg" )
+	if( Settings->value("Icon_Theme", "").toString() != "crystalsvg" )
 	{
 		ui.CB_Icons_Theme->setCurrentIndex( 1 );
 	}
 	
 	// VM Icons Size
-	switch( Settings->value("VM_Icons_Size", "64").toInt() )
+	switch( Settings->value("VM_Icons_Size", "48").toInt() )
 	{
 		case 16:
 			ui.CB_VM_Icons_Size->setCurrentIndex( 0 );
@@ -130,7 +130,7 @@ Settings_Window::Settings_Window( QWidget *parent )
 			break;
 			
 		default:
-			ui.CB_VM_Icons_Size->setCurrentIndex( 4 );
+			ui.CB_VM_Icons_Size->setCurrentIndex( 3 );
 			break;
 	}
 	
@@ -310,8 +310,20 @@ void Settings_Window::on_Button_OK_clicked()
 	else Settings->setValue( "Language", ui.CB_Language->itemText(ui.CB_Language->currentIndex()) );
 	
 	// Icons Theme
-	if( ui.CB_Icons_Theme->currentIndex() == 0 ) Settings->setValue( "Icon_Theme", "crystalsvg" );
-	else Settings->setValue( "Icon_Theme", "oxygen" );
+	switch( ui.CB_Icons_Theme->currentIndex() )
+	{
+		case 0:
+			Settings->setValue( "Icon_Theme", "crystalsvg" );
+			break;
+			
+		case 1:
+			Settings->setValue( "Icon_Theme", "oxygen" );
+			break;
+			
+		default:
+			Settings->setValue( "Icon_Theme", "oxygen" );
+			break;
+	}
 	
 	// VM Icons Size
 	switch( ui.CB_VM_Icons_Size->currentIndex() )
@@ -337,7 +349,7 @@ void Settings_Window::on_Button_OK_clicked()
 			break;
 			
 		default:
-			Settings->setValue( "VM_Icons_Size", 64 );
+			Settings->setValue( "VM_Icons_Size", 48 );
 			break;
 	}
 	/*

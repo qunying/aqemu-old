@@ -46,33 +46,25 @@ void Convert_HDD_Thread::run()
 	QProcess *proc = new QProcess();
 	
 	QSettings settings;
-	
-	proc->start( Get_Default_QEMU_IMG_Path(), Arguments );
+	proc->start( settings.value("QEMU-IMG_Path", "qemu-img").toString(), Arguments );
 	
 	if( ! proc->waitForStarted(5000) )
-	{
 		AQError( "void Convert_HDD_Thread::run()", "Cannot Start qemu-img!" );
-	}
 	
 	if( ! proc->waitForFinished(-1) )
-	{
 		AQError( "void Convert_HDD_Thread::run()", "Cannot Finish qemu-img!" );
-	}
 	
 	QString err_str = proc->readAllStandardError();
-	
 	delete proc;
 	
 	if( err_str.count() > 0 )
 	{
 		AQError( "void Convert_HDD_Thread::run()", "qemu-img Send Error String!\nDetalis: " + err_str );
-		
 		emit Conversion_Complete( false );
 	}
 	else
 	{
 		AQDebug( "void Convert_HDD_Thread::run()", "Conversion Complete!" );
-		
 		emit Conversion_Complete( true );
 	}
 }
@@ -96,10 +88,8 @@ void Convert_HDD_Image_Window::on_Button_Browse_Base_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_Base_File_Name->setText( fileName );
-	}
 }
 
 void Convert_HDD_Image_Window::on_Button_Browse_Output_clicked()
@@ -111,22 +101,16 @@ void Convert_HDD_Image_Window::on_Button_Browse_Output_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_Output_File_Name->setText( fileName );
-	}
 }
 
 void Convert_HDD_Image_Window::on_CB_Output_Format_currentIndexChanged( const QString &text )
 {
 	if( text == "qcow2" || text == "qcow" )
-	{
 		ui.GB_QCOW_Options->setEnabled( true );
-	}
 	else
-	{
 		ui.GB_QCOW_Options->setEnabled( false );
-	}
 }
 
 void Convert_HDD_Image_Window::on_Button_Convert_clicked()
@@ -181,18 +165,13 @@ void Convert_HDD_Image_Window::on_Button_Identify_clicked()
 	
 	VM_HDD *tmp_hdd = new VM_HDD( true, ui.Edit_Base_File_Name->text() );
 	
-	int format_ix = ui.CB_Input_Format->findText(
-			tmp_hdd->Get_Image_Format() );
+	int format_ix = ui.CB_Input_Format->findText( tmp_hdd->Get_Image_Format() );
 	
 	if( format_ix != -1 )
-	{
 		ui.CB_Input_Format->setCurrentIndex( format_ix );
-	}
 	else
-	{
 		AQError( "void Convert_HDD_Image_Window::on_Button_Identify_clicked()",
 				 "Cannot Find Format" );
-	}
 	
 	delete tmp_hdd;
 }

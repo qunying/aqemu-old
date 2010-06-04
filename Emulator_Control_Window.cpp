@@ -436,14 +436,10 @@ void Emulator_Control_Window::on_actionFD0_Eject_triggered()
 {
 	if( ! FD0_Available() ) return;
 	
-	if( Cur_VM->Version_Good(VM::QEMU_0_9_1, VM::KVM_7X)  )
-	{
-		emit Ready_Read_Command( "eject -f floppy0" );
-	}
-	else
-	{
+	if( Cur_VM->Get_Emulator().Get_Version() == VM::QEMU_0_9_0 )
 		emit Ready_Read_Command( "eject -f fda" );
-	}
+	else
+		emit Ready_Read_Command( "eject -f floppy0" );
 }
 
 void Emulator_Control_Window::Open_Recent_Floppy0_Image()
@@ -507,14 +503,10 @@ void Emulator_Control_Window::on_actionFD1_Eject_triggered()
 {
 	if( ! FD1_Available() ) return;
 	
-	if( Cur_VM->Version_Good(VM::QEMU_0_9_1, VM::KVM_7X)  )
-	{
-		emit Ready_Read_Command( "eject -f floppy1" );
-	}
-	else
-	{
+	if( Cur_VM->Get_Emulator().Get_Version() == VM::QEMU_0_9_0 )
 		emit Ready_Read_Command( "eject -f fdb" );
-	}
+	else
+		emit Ready_Read_Command( "eject -f floppy1" );
 }
 
 void Emulator_Control_Window::Open_Recent_Floppy1_Image()
@@ -578,14 +570,10 @@ void Emulator_Control_Window::on_actionCDROM_Eject_triggered()
 {
 	if( ! CD_ROM_Available() ) return;
 	
-	if( Cur_VM->Version_Good(VM::QEMU_0_9_1, VM::KVM_7X) )
-	{
-		emit Ready_Read_Command( "eject -f ide1-cd0" );
-	}
-	else
-	{
+	if( Cur_VM->Get_Emulator().Get_Version() == VM::QEMU_0_9_0 )
 		emit Ready_Read_Command( "eject -f cdrom" );
-	}
+	else
+		emit Ready_Read_Command( "eject -f ide1-cd0" );
 }
 
 void Emulator_Control_Window::Open_Recent_CD_ROM_Image()
@@ -1062,22 +1050,13 @@ void Emulator_Control_Window::Update_Recent_Floppy_Images_List()
 
 void Emulator_Control_Window::Set_Device( const QString &dev_name, const QString &path )
 {
-	if( Cur_VM->Version_Good(VM::QEMU_0_9_1, VM::KVM_7X) )
+	if( Cur_VM->Get_Emulator().Get_Version() != VM::QEMU_0_9_0 )
 	{
 		QString new_dev_name;
 		
-		if( dev_name == "fda" )
-		{
-			new_dev_name = "floppy0";
-		}
-		else if( dev_name == "fdb" )
-		{
-			new_dev_name = "floppy1";
-		}
-		else if( dev_name == "cdrom" )
-		{
-			new_dev_name = "ide1-cd0";
-		}
+		if( dev_name == "fda" ) new_dev_name = "floppy0";
+		else if( dev_name == "fdb" ) new_dev_name = "floppy1";
+		else if( dev_name == "cdrom" ) new_dev_name = "ide1-cd0";
 		else
 		{
 			AQError( "void Emulator_Control_Window::Set_Device( const QString &dev_name, const QString &path )",
@@ -1092,18 +1071,9 @@ void Emulator_Control_Window::Set_Device( const QString &dev_name, const QString
 		emit Ready_Read_Command( "change " + dev_name + " \"" + path + "\"" );
 	}
 	
-	if( dev_name == "fda" )
-	{
-		Cur_VM->Set_FD0( VM_Storage_Device(true, path) );
-	}
-	else if( dev_name == "fdb" )
-	{
-		Cur_VM->Set_FD1( VM_Storage_Device(true, path) );
-	}
-	else if( dev_name == "cdrom" )
-	{
-		Cur_VM->Set_CD_ROM( VM_Storage_Device(true, path) );
-	}
+	if( dev_name == "fda" ) Cur_VM->Set_FD0( VM_Storage_Device(true, path) );
+	else if( dev_name == "fdb" ) Cur_VM->Set_FD1( VM_Storage_Device(true, path) );
+	else if( dev_name == "cdrom" ) Cur_VM->Set_CD_ROM( VM_Storage_Device(true, path) );
 	else
 	{
 		AQError( "void Emulator_Control_Window::Set_Device( const QString &dev_name, const QString &path )",

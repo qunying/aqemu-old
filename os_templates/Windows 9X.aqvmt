@@ -13,7 +13,7 @@
         <SMP_CPU_Count>1</SMP_CPU_Count>
         <Keyboard_Layout>Default</Keyboard_Layout>
         <Boot_Device>CDROM</Boot_Device>
-        <Video_Card>std</Video_Card>
+        <Video_Card></Video_Card>
         <KQEMU_Mode>Default</KQEMU_Mode>
         <Audio_Cards>
             <Audio_sb16>false</Audio_sb16>

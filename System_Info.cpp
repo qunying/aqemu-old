@@ -567,7 +567,7 @@ bool System_Info::Update_VM_Computers_List()
 	
 	// QEMU 0.9.0
 	Averable_Devices ad;
-	ad.System = Device_Map( "IBM PC 32Bit", "qemu-system-x86" );
+	ad.System = Device_Map( "IBM PC 32Bit", "qemu" ); // FIXME I'm replace "qemu" -> qemu-system-x86
 	ad.Machine_List += Machine_x86;
 	ad.Network_Card_List += Network_Card_x86_v090;
 	ad.Video_Card_List += Video_Card_x86;
@@ -577,7 +577,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "IBM PC 64Bit", "qemu-system-x86_64" );
@@ -589,28 +589,28 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_No_FB_Boot_Check = true;
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_No_ACPI = true;
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu-system-x86_64" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ARM", "qemu-system-arm" );
 	ad.Machine_List += Machine_ARM;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu-system-arm" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS 32Bit", "qemu-system-mips" );
 	ad.Machine_List += Machine_MIPS;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu-system-mips" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS 32Bit EL", "qemu-system-mipsel" );
 	ad.Machine_List += Machine_MIPS;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu-system-mipsel" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
@@ -618,7 +618,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu-system-ppc" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 32Bit", "qemu-system-sparc" );
@@ -626,11 +626,11 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List = Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_9_0 << ad;
+	System_Info::Emulator_QEMU_0_9_0[ "qemu-system-sparc" ] = ad;
 	
 	// QEMU 0.9.1
 	ad = Averable_Devices();
-	ad.System = Device_Map( "IBM PC 32Bit", "qemu-system-x86" );
+	ad.System = Device_Map( "IBM PC 32Bit", "qemu" );
 	ad.CPU_List += CPU_x86;
 	ad.Machine_List += Machine_x86;
 	ad.Network_Card_List += Network_Card_x86;
@@ -641,7 +641,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "IBM PC 64Bit", "qemu-system-x86_64" );
@@ -664,7 +664,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-x86_64" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ARM", "qemu-system-arm" );
@@ -690,14 +690,14 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_ARM;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-arm" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Cris", "qemu-system-cris" );
 	ad.Machine_List << Device_Map( QObject::tr("Bare ETRAX FS board"), "bareetraxfs" );
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-cris" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ColdFire (M68K)", "qemu-system-m68k" );
@@ -705,7 +705,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_M68K;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-m68k" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS", "qemu-system-mips" );
@@ -719,7 +719,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-mips" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS EL", "qemu-system-mipsel" );
@@ -728,7 +728,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-mipsel" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS64", "qemu-system-mips64" );
@@ -746,7 +746,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-mips64" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS64 EL", "qemu-system-mips64el" );
@@ -755,7 +755,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-mips64el" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
@@ -770,7 +770,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-ppc" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 64Bit", "qemu-system-ppc64" );
@@ -797,7 +797,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-ppc64" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC EMB 32Bit", "qemu-system-ppcemb" );
@@ -807,21 +807,21 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-ppcemb" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4", "qemu-system-sh4" );
 	ad.Machine_List += Machine_SH4;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-sh4" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4 EB", "qemu-system-sh4eb" );
 	ad.Machine_List += Machine_SH4;
 	ad.Video_Card_List += Video_Card_Standart;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-sh4eb" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 32Bit", "qemu-system-sparc" );
@@ -832,8 +832,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Audio_Card_List = VM::Sound_Cards();
 	ad.PSO_SMP_Count = 4;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_PROM_ENV = true;
-	System_Info::Emulator_QEMU_0_9_1 << ad;
+	System_Info::Emulator_QEMU_0_9_1[ "qemu-system-sparc" ] = ad;
 	
 	// QEMU 0.10.0
 	QList<Device_Map> QEMU_Video_Cards_v0_10_0;
@@ -852,7 +851,7 @@ bool System_Info::Update_VM_Computers_List()
 	Network_Card_v0_10_0 << Device_Map( QObject::tr("virtio"), "virtio" );
 	
 	ad = Averable_Devices();
-	ad.System = Device_Map( "IBM PC 32Bit", "qemu-system-x86" );
+	ad.System = Device_Map( "IBM PC 32Bit", "qemu" );
 	ad.CPU_List += CPU_x86_v0_10_0;
 	ad.Machine_List += Machine_x86;
 	ad.Network_Card_List += Network_Card_v0_10_0;
@@ -864,7 +863,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_RTC_TD_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu" ] = ad;
 	
 	QList<Device_Map> CPU_x86_64_v0_10_0 = CPU_x86_v0_10_0;
 	CPU_x86_64_v0_10_0 << Device_Map( QObject::tr("Phenom"), "phenom" );
@@ -886,7 +885,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_RTC_TD_Hack = true;
 	ad.PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-x86_64" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ARM", "qemu-system-arm" );
@@ -926,7 +925,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_ARM;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-arm" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Cris", "qemu-system-cris" );
@@ -935,7 +934,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List << Device_Map( QObject::tr("fseth"), "fseth" );
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-cris" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "ColdFire (M68K)", "qemu-system-m68k" );
@@ -945,7 +944,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_M68K;
 	ad.Video_Card_List = QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-m68k" ] = ad;
 	
 	QList<Device_Map> Machine_MIPS_v0_10_0;
 	Machine_MIPS << Device_Map( QObject::tr("MIPS Malta Core LV"), "malta" );
@@ -961,7 +960,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-mips" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS EL", "qemu-system-mipsel" );
@@ -970,7 +969,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-mipsel" ] = ad;
 	
 	QList<Device_Map> MIPS_CPU_64Bit = CPU_MIPS;
 	MIPS_CPU_64Bit << Device_Map( QObject::tr("MIPS R4000"), "R4000" );
@@ -987,7 +986,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-mips64" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "MIPS64 EL", "qemu-system-mips64el" );
@@ -996,7 +995,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Network_Card_List += Network_Card_MIPS;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-mips64el" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
@@ -1018,7 +1017,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-ppc" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC EMB 32Bit", "qemu-system-ppcemb" );
@@ -1028,7 +1027,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-ppcemb" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 64Bit", "qemu-system-ppc64" );
@@ -1055,7 +1054,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = Audio_Card_PPC;
 	ad.PSO_Initial_Graphic_Mode = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-ppc64" ] = ad;
 	
 	QList<Device_Map> CPU_SH4;
 	CPU_SH4 << Device_Map( QObject::tr("SH7750R"), "SH7750R" );
@@ -1068,7 +1067,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Machine_List += Machine_SH4;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-sh4" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "SH4 EB", "qemu-system-sh4eb" );
@@ -1076,7 +1075,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Machine_List += Machine_SH4;
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-sh4eb" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 32Bit", "qemu-system-sparc" );
@@ -1094,8 +1093,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Audio_Card_List = VM::Sound_Cards();
 	ad.PSO_SMP_Count = 4;
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_PROM_ENV = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-sparc" ] = ad;
 	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Sparc 64Bit", "qemu-system-sparc64" );
@@ -1108,21 +1106,19 @@ bool System_Info::Update_VM_Computers_List()
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
 	ad.Audio_Card_List = VM::Sound_Cards();
 	ad.PSO_Initial_Graphic_Mode = true;
-	ad.PSO_PROM_ENV = true;
-	System_Info::Emulator_QEMU_0_10 << ad;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-sparc64" ] = ad;
 	
-	// KVM Old
+	// FIXME QEMU 0.11 or 0.12
+	System_Info::Emulator_QEMU_0_11 = System_Info::Emulator_QEMU_0_10;
+	System_Info::Emulator_QEMU_0_12 = System_Info::Emulator_QEMU_0_10;
 	ad = Averable_Devices();
-	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
-	ad.Machine_List += Machine_x86;
-	ad.Video_Card_List += Video_Card_x86;
-	ad.Audio_Card_List = Audio_Card_x86;
-	ad.PSO_SMP_Count = 255;
-	ad.PSO_No_FB_Boot_Check = true;
-	ad.PSO_Win2K_Hack = true;
-	ad.PSO_No_ACPI = true;
-	ad.PSO_KVM = true;
-	System_Info::Emulator_KVM_Old << ad;
+	ad.System = Device_Map( "Microblaze", "qemu-system-microblaze" );
+	ad.CPU_List += MIPS_CPU_64Bit;
+	ad.Machine_List += Machine_MIPS_v0_10_0;
+	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
+	ad.Audio_Card_List = VM::Sound_Cards();
+	System_Info::Emulator_QEMU_0_12[ "qemu-system-microblaze" ] = ad;
 	
 	// KVM 7X
 	ad = Averable_Devices();
@@ -1141,7 +1137,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = true;
-	System_Info::Emulator_KVM_7X << ad;
+	System_Info::Emulator_KVM_7X[ "qemu-kvm" ] = ad;
 	
 	// KVM 8X
 	ad = Averable_Devices();
@@ -1159,7 +1155,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_RTC_TD_Hack = true;
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = true;
-	System_Info::Emulator_KVM_8X << ad;
+	System_Info::Emulator_KVM_8X[ "qemu-kvm" ] = ad;
 	
 	// KVM 0.12
 	ad = Averable_Devices();
@@ -1198,7 +1194,6 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Win2K_Hack = true;
 	//PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
-	//PSO_PROM_ENV = true;
 	ad.PSO_KVM = true;
 	ad.PSO_RTC_TD_Hack = true;
 	
@@ -1260,352 +1255,313 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Enable_Nesting = true;
 	ad.PSO_KVM_Shadow_Memory = true;
 	
-	System_Info::Emulator_KVM_0_12 << ad;
+	System_Info::Emulator_KVM_0_12[ "qemu-kvm" ] = ad;
 	
 	return true;
 }
 
-QString System_Info::Get_QEMU_Version( const QString &path )
+VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 {
-	QSettings settings;
-	
 	if( path.isEmpty() )
 	{
-		AQWarning( "QString System_Info::Get_QEMU_Version( const QString &path )",
-				   "emulator_path is Empty" );
-		return "0.9.0";
+		AQWarning( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+				   "path is Empty" );
+		return VM::Obsolete;
 	}
 	
-	QProcess *qemu_pr = new QProcess();
+	// Get help text
+	QString emulHelpText = Get_Emulator_Help_Output( path );
+	QTextStream allHelpOutput( &emulHelpText, QIODevice::ReadOnly );
 	
-	qemu_pr->start( path, QStringList("-h") );
-	
-	if( ! qemu_pr->waitForFinished(1000) )
-	{
-		qemu_pr->kill();
-		delete qemu_pr;
-		qemu_pr = new QProcess();
-		
-		qemu_pr->start( path, QStringList("-nographic") );
-		
-		if( ! qemu_pr->waitForFinished(1000) )
-		{
-			AQError( "QString System_Info::Get_QEMU_Version( const QString &path )",
-					 "QEMU Not Finished!" );
-			qemu_pr->terminate();
-			delete qemu_pr;
-			return "0.9.0";
-		}
-	}
-	
-	QRegExp qemu_ver = QRegExp( ".*version\\s+([\\d]+)[.]([\\d]+)[.]([\\d]+).*" );
-	
-	bool find_done = false;
+	QRegExp emulVerLineRegExp = QRegExp( ".*version.*" );
+	QString line = "";
 	
 	for( int ix = 0; ix < 5; ++ix )
 	{
-		QString result = qemu_pr->readLine();
+		QString tmpLine = allHelpOutput.readLine();
 		
-		if( result.isEmpty() )
+		if( tmpLine.isEmpty() )
 		{
-			AQError( "QString System_Info::Get_QEMU_Version( const QString &path )",
+			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
 					 "Result String is Empty!" );
+			break;
 		}
 		
-		if( ! qemu_ver.exactMatch(result) )
-		{
-			AQError( "QString System_Info::Get_QEMU_Version( const QString &path )",
-					 "Cannot Match RegExp!\nData: " + result );
-		}
+		if( ! emulVerLineRegExp.exactMatch(tmpLine) ) continue;
 		else
 		{
-			find_done = true;
+			line = tmpLine;
 			break;
 		}
 	}
 	
-	delete qemu_pr;
-	
-	if( find_done == false )
+	if( line.isEmpty() )
 	{
-		AQError( "QString System_Info::Get_QEMU_Version( const QString &path )",
-				 "Cannot Find QEMU Version!" );
-		return "0.9.0";
+		AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+				 "Cannot get emulator version!" );
+		return VM::Obsolete;
 	}
 	
-	QStringList version_lines = qemu_ver.capturedTexts();
+	// This QEMU or KVM?
+	bool emulatorKVM = false;
+	if( path.indexOf("kvm", 0, Qt::CaseInsensitive) != -1 ) emulatorKVM = true;
 	
-	int major_ver, minor_ver, bugfix_ver;
-	
-	bool ok1, ok2, ok3;
-	
-	major_ver = version_lines[1].toInt( &ok1, 10 );
-	minor_ver = version_lines[2].toInt( &ok2, 10 );
-	bugfix_ver = version_lines[3].toInt( &ok3, 10 );
-	
-	if( ! (ok1 && ok2 && ok3) )
+	if( emulatorKVM )
 	{
-		AQError( "QString System_Info::Get_QEMU_Version( const QString &path )",
-				 "Cannot Convert to Int!" );
-		return "0.9.0";
-	}
-	
-	if( major_ver == 0 && minor_ver < 9 )
-	{
-		return "Old";
-	}
-	else if( major_ver == 0 && minor_ver == 9 && bugfix_ver == 0 )
-	{
-		return "0.9.0";
-	}
-	else if( major_ver == 0 && minor_ver == 9 && bugfix_ver == 1 )
-	{
-		return  "0.9.1";
-	}
-	else if( major_ver == 0 && minor_ver == 10 && bugfix_ver >= 0 && bugfix_ver <= 5 )
-	{
-		return "0.10";
-	}
-	else if(  major_ver >  0 ||
-			 (major_ver == 0 && minor_ver > 10) ||
-			 (major_ver == 0 && minor_ver == 10 && bugfix_ver > 5) )
-	{
-		return "New";
-	}
-	else
-	{
-		AQError( "QString System_Info::Get_QEMU_Version( const QString &path )",
-				 "Version not Checked!" );
-		return "0.9.0";
-	}
-}
-
-QString System_Info::Get_KVM_Version( const QString &path )
-{
-	if( path.isEmpty() )
-	{
-		AQWarning( "QString System_Info::Get_KVM_Version( const QString &path )",
-				   "emulator_path is Empty" );
-		return "7X";
-	}
-	
-	QProcess *kvm_pr = new QProcess();
-	
-	kvm_pr->start( path, QStringList("-h") );
-	//kvm_pr->start( path, QStringList("-nographic") ); // FIXME
-	
-	if( ! kvm_pr->waitForFinished(1000) )
-	{
-		// Alternative
-		kvm_pr->kill();
-		delete kvm_pr;
-		kvm_pr = new QProcess();
+		QRegExp kvmVer = QRegExp( ".*version\\s+([\\d]+)[.]([\\d]+)[.]([\\d]+).*" );
+		QRegExp kvmVerOldStyle = QRegExp( ".*version.*([\\d]{2,3}).*" );
+		QStringList versionLines;
 		
-		kvm_pr->start( path, QStringList("-version") );
-		
-		if( ! kvm_pr->waitForFinished(1000) )
+		// KVM version is: X.XX.X or XX ?
+		if( ! kvmVer.exactMatch(line) )
 		{
-			AQError( "QString System_Info::Get_KVM_Version( const QString &path )",
-					 "KVM Not Finished!" );
-			kvm_pr->terminate();
-			delete kvm_pr;
-			return "7X";
-		}
-	}
-	
-	QRegExp kvm_ver = QRegExp( ".*version.*kvm-([\\d]+).*" );
-	QRegExp kvm_ver_v2 = QRegExp( ".*version.*\\(.*([\\d]+)\\).*" );
-	QStringList version_lines;
-	
-	for( int ix = 0; ix < 5; ++ix )
-	{
-		QString result = kvm_pr->readLine();
-		
-		if( result.isEmpty() )
-		{
-			AQWarning( "QString System_Info::Get_KVM_Version( const QString &path )",
-					   "Result String is Empty!" );
-			continue;
-		}
-		
-		if( ! kvm_ver.exactMatch(result) )
-		{
-			if( ! kvm_ver_v2.exactMatch(result) )
+			if( ! kvmVerOldStyle.exactMatch(line) )
 			{
-				AQError( "QString System_Info::Get_KVM_Version( const QString &path )",
-						 "Cannot Match RegExp!\nData: " + result );
-				
-				AQError( "QString System_Info::Get_KVM_Version( const QString &path )",
+				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+						 "Cannot Match RegExp!\nData: " + line );
+				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
 						 "Cannot Find KVM Version!" );
-				
-				delete kvm_pr;
-				
-				return "7X";
+				return VM::Obsolete;
 			}
+			else // Version like: 85
+			{
+				versionLines = kvmVerOldStyle.capturedTexts();
+				if( versionLines.count() < 2 )
+				{
+					AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+							 "Cannot get KVM version! Line: " + line );
+					return VM::Obsolete;
+				}
+				
+				bool ok = false;
+				int kvmVersion = versionLines[1].toInt( &ok, 10 );
+				
+				if( ! ok )
+				{
+					AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+							 "Cannot convert KVM version to int! String: " + versionLines[1] );
+					return VM::Obsolete;
+				}
+				
+				if( kvmVersion < 70 ) return VM::Obsolete;
+				else if( kvmVersion >= 70 && kvmVersion < 80 ) return VM::KVM_7X;
+				else if( kvmVersion >= 80 ) return VM::KVM_8X;
+				else
+				{
+					AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+							 QString("KVM version \"%1\"not defined!").arg(kvmVersion) );
+					return VM::Obsolete;
+				}
+			}
+		}
+		else // Version like: 0.12.0
+		{
+			versionLines = kvmVer.capturedTexts();
+			if( versionLines.count() < 4 )
+			{
+				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+						 "Cannot get KVM version! Line: " + line );
+				return VM::Obsolete;
+			}
+			
+			int major_ver, minor_ver, bugfix_ver;
+			bool ok1, ok2, ok3;
+			
+			major_ver = versionLines[1].toInt( &ok1, 10 );
+			minor_ver = versionLines[2].toInt( &ok2, 10 );
+			bugfix_ver = versionLines[3].toInt( &ok3, 10 );
+			
+			if( ! (ok1 && ok2 && ok3) )
+			{
+				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+						 "Cannot Convert to Int! Line: " + versionLines[0] );
+				return VM::Obsolete;
+			}
+			
+			if( major_ver == 0 && minor_ver == 11 ) return VM::KVM_0_11;
+			else if( major_ver == 0 && minor_ver == 12 ) return VM::KVM_0_12;
+			else if( major_ver >  0 || (major_ver == 0 && minor_ver > 12) ) return VM::KVM_0_12;
 			else
 			{
-				version_lines = kvm_ver_v2.capturedTexts();
-				break;
-				
+				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+						 QString("Version %1.%2.%3 not defined!").arg(major_ver).arg(minor_ver).arg(bugfix_ver) );
+				return VM::Obsolete;
 			}
 		}
+	}
+	else // QEMU
+	{
+		QRegExp emulVerRegExp = QRegExp( ".*version\\s+([\\d]+)[.]([\\d]+)[.]([\\d]+).*" );
+		if( ! emulVerRegExp.exactMatch(line) )
+		{
+			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+					 "Cannot match emulVerRegExp! Line: " + line );
+			return VM::Obsolete;
+		}
+		
+		QStringList versionLines = emulVerRegExp.capturedTexts();
+		if( versionLines.count() < 4 )
+		{
+			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+					 "Cannot get major_ver, minor_ver, bugfix_ver vairables!" );
+			return VM::Obsolete;
+		}
+		
+		int major_ver, minor_ver, bugfix_ver;
+		bool ok1, ok2, ok3;
+		
+		major_ver = versionLines[1].toInt( &ok1, 10 );
+		minor_ver = versionLines[2].toInt( &ok2, 10 );
+		bugfix_ver = versionLines[3].toInt( &ok3, 10 );
+		
+		if( ! (ok1 && ok2 && ok3) )
+		{
+			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+					 "Cannot Convert to Int! Line: " + versionLines[0] );
+			return VM::Obsolete;
+		}
+		
+		if( major_ver == 0 && minor_ver <  9 ) return VM::Obsolete;
+		else if( major_ver == 0 && minor_ver == 9 && bugfix_ver == 0 ) return VM::QEMU_0_9_0;
+		else if( major_ver == 0 && minor_ver == 9 && bugfix_ver == 1 ) return VM::QEMU_0_9_1;
+		else if( major_ver == 0 && minor_ver == 10 ) return VM::QEMU_0_10;
+		else if( major_ver == 0 && minor_ver == 11 ) return VM::QEMU_0_11;
+		else if( major_ver == 0 && minor_ver == 12 ) return VM::QEMU_0_12;
+		else if( major_ver >  0 || (major_ver == 0 && minor_ver > 12) ) return VM::QEMU_0_12;
 		else
 		{
-			version_lines = kvm_ver.capturedTexts();
-			break;
+			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
+					 QString("Version %1.%2.%3 not defined!").arg(major_ver).arg(minor_ver).arg(bugfix_ver) );
+			return VM::Obsolete;
 		}
-	}
-	
-	delete kvm_pr;
-	
-	int kvm_version;
-	bool ok = false;
-	
-	kvm_version = version_lines[1].toInt( &ok, 10 );
-	
-	if( ! ok )
-	{
-		AQError( "QString System_Info::Get_KVM_Version( const QString &path )",
-				 "Cannot Convert to Int!" );
-		return "7X";
-	}
-	
-	if( kvm_version < 70 )
-	{
-		return "Old";
-	}
-	if( kvm_version >= 70 && kvm_version < 80 )
-	{
-		return "7X";
-	}
-	else if( kvm_version >= 80 && kvm_version <= 88 )
-	{
-		return "8X";
-	}
-	else if( kvm_version > 88 )
-	{
-		return "New";
-	}
-	else
-	{
-		AQError( "QString System_Info::Get_KVM_Version( const QString &path )",
-				 "Version not Checked!" );
-		return "7X";
 	}
 }
 
-QStringList System_Info::Find_QEMU_Binary_Files( const QString &path )
+QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path )
 {
-	QStringList find_names, return_list;
-	find_names << "qemu";
-	find_names << "qemu-img";
-	find_names << "qemu-system-arm";
-	find_names << "qemu-system-cris";
-	find_names << "qemu-system-m68k";
-	find_names << "qemu-system-mips";
-	find_names << "qemu-system-mipsel";
-	find_names << "qemu-system-mips64";
-	find_names << "qemu-system-mips64el";
-	find_names << "qemu-system-ppc";
-	find_names << "qemu-system-ppc64";
-	find_names << "qemu-system-ppcemb";
-	find_names << "qemu-system-sh4";
-	find_names << "qemu-system-sh4eb";
-	find_names << "qemu-system-sparc";
-	find_names << "qemu-system-x86_64";
+	QMap<QString, QString> emulFiles;
+	emulFiles[ "qemu" ] = "";
+	emulFiles[ "qemu-system-arm" ] = "";
+	emulFiles[ "qemu-system-cris" ] = "";
+	emulFiles[ "qemu-system-m68k" ] = "";
+	emulFiles[ "qemu-system-microblaze" ] = "";
+	emulFiles[ "qemu-system-mips" ] = "";
+	emulFiles[ "qemu-system-mips64" ] = "";
+	emulFiles[ "qemu-system-mips64el" ] = "";
+	emulFiles[ "qemu-system-mipsel" ] = "";
+	emulFiles[ "qemu-system-ppc" ] = "";
+	emulFiles[ "qemu-system-ppc64" ] = "";
+	emulFiles[ "qemu-system-ppcemb" ] = "";
+	emulFiles[ "qemu-system-sh4" ] = "";
+	emulFiles[ "qemu-system-sh4eb" ] = "";
+	emulFiles[ "qemu-system-sparc" ] = "";
+	emulFiles[ "qemu-system-sparc64" ] = "";
+	emulFiles[ "qemu-system-x86_64" ] = "";
 	
-	// Init List
-	for( int ix = 0; ix < find_names.count(); ix++ ) return_list << QString();
+	// path empty - this not error. It return empty bin files list
+	if( path.isEmpty() ) return emulFiles;
 	
-	if( path.isEmpty() )
+	// Path valid?
+	if( ! QFile::exists(path) )
 	{
-		AQError( "QStringList System_Info::Find_QEMU_Binary_Files( const QString &path )",
-				 "Path is Empty!" );
-		return QStringList();
+		AQError( "QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path )",
+				 QString("Path \"%1\" not exists!").arg(path) );
+		return emulFiles;
 	}
 	
-	QDir bin_dir = QDir( path );
+	// Find
+	QString dirPath = QDir::toNativeSeparators( (path.endsWith("/") || path.endsWith("\\")) ? path : path + "/" );
 	
-	for( int ix = 0; ix < find_names.count(); ix++ )
+	QMap<QString, QString>::iterator iter = emulFiles.begin();
+	while( iter != emulFiles.end() )
 	{
-		QStringList tmp_list = bin_dir.entryList( QStringList(find_names[ix]) );
+		if( QFile::exists(dirPath + iter.key()) ) iter.value() = dirPath + iter.key();
 		
-		if( tmp_list.count() > 0 )
-		{
-			return_list[ ix ] = tmp_list[ 0 ];
-		}
+		++iter;
 	}
 	
-	return return_list;
+	return emulFiles;
 }
 
-QStringList System_Info::Find_KVM_Binary_Files( const QString &path )
+QMap<QString, QString> System_Info::Find_KVM_Binary_Files( const QString &path )
 {
-	QStringList kvm_names, kvm_img_names, return_list;
-	kvm_names << "kvm";
-	kvm_names << "qemu-kvm";
-	kvm_img_names << "kvm-img";
-	kvm_img_names << "qemu-img";
-	return_list << QString();
-	return_list << QString();
+	QMap<QString, QString> emulFiles;
+	emulFiles[ "qemu-kvm" ] = "";
 	
-	if( path.isEmpty() )
+	// path empty - this not error. It return empty bin files list
+	if( path.isEmpty() ) return emulFiles;
+	
+	// Path valid?
+	if( ! QFile::exists(path) )
 	{
-		AQError( "QStringList System_Info::Find_KVM_Binary_Files( const QString &path )",
-				 "Path is Empty!" );
-		return return_list;
+		AQError( "QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path )",
+				 QString("Path \"%1\" not exists!").arg(path) );
+		return emulFiles;
 	}
 	
-	QDir bin_dir = QDir( path );
+	// Find
+	QString dirPath = QDir::toNativeSeparators( (path.endsWith("/") || path.endsWith("\\")) ? path : path + "/" );
 	
-	for( int ix = 0; ix < kvm_names.count(); ix++ )
-	{
-		QStringList tmp_list = bin_dir.entryList( QStringList(kvm_names[ix]) );
-		
-		if( tmp_list.count() > 0 )
-		{
-			return_list[ 0 ] = tmp_list[ 0 ];
-			break;
-		}
-	}
+	if( QFile::exists(dirPath + "kvm") ) emulFiles[ "qemu-kvm" ] = dirPath + "kvm";
+	else if( QFile::exists(dirPath + "qemu-kvm") ) emulFiles[ "qemu-kvm" ] = dirPath + "qemu-kvm";
+	else AQWarning( "QMap<QString, QString> System_Info::Find_KVM_Binary_Files( const QString &path )",
+					"Cannot find kvm in: " + path );
 	
-	for( int ix = 0; ix < kvm_img_names.count(); ix++ )
-	{
-		QStringList tmp_list = bin_dir.entryList( QStringList(kvm_img_names[ix]) );
-		
-		if( tmp_list.count() > 0 )
-		{
-			return_list[ 1 ] =  tmp_list[ 0 ];
-			break;
-		}
-	}
-	
-	return return_list;
+	return emulFiles;
 }
 
-Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
+QString System_Info::Find_IMG( const QStringList &paths )
+{
+	if( paths.isEmpty() )
+	{
+		AQError( "static QString System_Info::Find_IMG( const QStringList &paths )",
+				 "paths.isEmpty()" );
+		return "";
+	}
+	
+	// Find qemu-img or kvm-img
+	for( int ix = 0; ix < paths.count(); ++ix )
+	{
+		QString dirPath = QDir::toNativeSeparators( (paths[ix].endsWith("/") || paths[ix].endsWith("\\"))
+													? paths[ix]
+													: paths[ix] + "/" );
+		
+		if( QFile::exists(dirPath + "qemu-img") ) return dirPath + "qemu-img";
+		else if( QFile::exists(dirPath + "kvm-img") ) return dirPath + "kvm-img";
+	}
+	
+	// No qemu-img or kvm-img in paths...
+	AQWarning( "static QString System_Info::Find_IMG( const QStringList &paths )",
+			   "Cannot find qemu-img or kvm-img!" );
+	return "";
+}
+
+Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
+												 VM::Emulator_Version version, const QString &internalName )
 {
 	if( ! QFile::exists(path) )
 	{
-		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				 "VM::Emulator_Version version, const QString &internalName )",
 				 "Emulator binary \"" + path + "\" not exists!" );
-		ok = false;
+		*ok = false;
 		return Averable_Devices();
 	}
-	
-	// Device for return
-	Averable_Devices tmp_dev;
 	
 	// Get All Help
 	QString all_help = Get_Emulator_Help_Output( path );
 	
 	if( all_help.isEmpty() )
 	{
-		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				 "VM::Emulator_Version version, const QString &internalName )",
 				 "Cannot read emulator help text" );
-		ok = false;
+		*ok = false;
 		return Averable_Devices();
 	}
+	
+	// Device for return
+	Averable_Devices tmp_dev;
 	
 	// Find Options
 	
@@ -1619,21 +1575,27 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	rx = QRegExp( ".*-cpu\\s.*" );
 	if( rx.exactMatch(all_help) ) scan_CPU_List = true;
 	
-	// -smp
+	// -smp FIXME PSO_SMP_Count use base emulator settings
 	rx = QRegExp( ".*-smp\\s.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		// New Style?
 		rx = QRegExp( ".*-smp\\s+.*\\[(.*)\\].*" );
 		
+		if( internalName == "qemu" ||
+			internalName == "qemu-system-x86_64" ||
+			internalName == "qemu-kvm" ) tmp_dev.PSO_SMP_Count = 255;
+		
+		else if( internalName == "qemu-system-sparc" ) tmp_dev.PSO_SMP_Count = 4;
+		
 		if( rx.exactMatch(all_help) )
 		{
 			if( rx.capturedTexts().count() > 1 )
 			{
-				if( rx.capturedTexts()[1].indexOf("cores") != -1 ) tmp_dev.PSO_SMP_Cores = true;
-				else if( rx.capturedTexts()[1].indexOf("threads") != -1 ) tmp_dev.PSO_SMP_Threads = true;
-				else if( rx.capturedTexts()[1].indexOf("sockets") != -1 ) tmp_dev.PSO_SMP_Sockets = true;
-				else if( rx.capturedTexts()[1].indexOf("maxcpus") != -1 ) tmp_dev.PSO_SMP_MaxCPUs = true;
+				if( rx.capturedTexts()[1].indexOf("cores")   != -1 ) tmp_dev.PSO_SMP_Cores = true;
+				if( rx.capturedTexts()[1].indexOf("threads") != -1 ) tmp_dev.PSO_SMP_Threads = true;
+				if( rx.capturedTexts()[1].indexOf("sockets") != -1 ) tmp_dev.PSO_SMP_Sockets = true;
+				if( rx.capturedTexts()[1].indexOf("maxcpus") != -1 ) tmp_dev.PSO_SMP_MaxCPUs = true;
 			}
 		}
 	}
@@ -1664,6 +1626,34 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			else if( drive_str.indexOf("addr=") != -1 ) tmp_dev.PSO_Drive_ADDR = true;
 		}
 	}
+	
+	// -boot [order=drives][,once=drives][,menu=on|off]
+	rx = QRegExp( ".*-boot\\s+\\[order.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Boot_Order = true;
+	
+	// -g WxH[xDEPTH]
+	rx = QRegExp( ".*-g\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Initial_Graphic_Mode = true;
+	
+	// -no-fd-bootchk
+	rx = QRegExp( ".*-no-fd-bootchk\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_FB_Boot_Check = true;
+	
+	// -win2k-hack
+	rx = QRegExp( ".*-win2k-hack\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Win2K_Hack = true;
+	
+	//  FIXME
+	//rx = QRegExp( ".*\\s.*" );
+	//if( rx.exactMatch(all_help) ) tmp_dev.PSO_Kernel_KQEMU = true;
+	
+	// -no-acpi
+	rx = QRegExp( ".*-no-acpi\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_No_ACPI = true;
+	
+	// -rtc-td-hack
+	rx = QRegExp( ".*-rtc-td-hack\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_RTC_TD_Hack = true;
 	
 	// -mtdblock
 	rx = QRegExp( ".*-mtdblock\\s.*" );
@@ -1704,14 +1694,6 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	// -portrait
 	rx = QRegExp( ".*-portrait\\s.*" );
 	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Portrait = true;
-	
-	// -win2k-hack
-	rx = QRegExp( ".*-win2k-hack\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Win2K_Hack = true;
-	
-	// -rtc-td-hack
-	rx = QRegExp( ".*-rtc-td-hack\\s.*" );
-	if( rx.exactMatch(all_help) ) tmp_dev.PSO_RTC_TD_Hack = true;
 	
 	// -no-shutdown
 	rx = QRegExp( ".*-no-shutdown\\s.*" );
@@ -1785,7 +1767,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	// Check Network Arguments
 	if( net_str.isEmpty() )
 	{
-		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				 "VM::Emulator_Version version, const QString &internalName )",
 				 "net_str is Empty" );
 	}
 	else
@@ -1801,6 +1784,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		// vectors
 		rx = QRegExp( ".*vectors=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_vectors = true;
+		
 		
 		// net
 		rx = QRegExp( ".*net=.*" );
@@ -1842,6 +1826,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		rx = QRegExp( ".*guestfwd=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_guestfwd = true;
 		
+		
 		// ifname
 		rx = QRegExp( ".*ifname=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_ifname = true;
@@ -1854,6 +1839,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		rx = QRegExp( ".*downscript=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_downscript = true;
 		
+		
 		// listen
 		rx = QRegExp( ".*listen=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_listen = true;
@@ -1862,9 +1848,11 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		rx = QRegExp( ".*connect=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_connect = true;
 		
+		
 		// mcast
 		rx = QRegExp( ".*mcast=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_mcast = true;
+		
 		
 		// sock
 		rx = QRegExp( ".*sock=.*" );
@@ -1881,6 +1869,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		// mode
 		rx = QRegExp( ".*mode=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_mode = true;
+		
 		
 		// file
 		rx = QRegExp( ".*file=.*" );
@@ -1931,68 +1920,132 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	rx = QRegExp( ".*-std-vga\\s.*" );
 	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Std_VGA = true;
 	
-	// All system names
-	QStringList systems_names;
-	systems_names << "kvm";
-	systems_names << "qemu";
-	systems_names << "qemu-kvm";
-	systems_names << "qemu-system-arm";
-	systems_names << "qemu-system-cris";
-	systems_names << "qemu-system-m68k";
-	systems_names << "qemu-system-mips";
-	systems_names << "qemu-system-mipsel";
-	systems_names << "qemu-system-mips64";
-	systems_names << "qemu-system-mips64el";
-	systems_names << "qemu-system-ppc";
-	systems_names << "qemu-system-ppc64";
-	systems_names << "qemu-system-ppcemb";
-	systems_names << "qemu-system-sh4";
-	systems_names << "qemu-system-sh4eb";
-	systems_names << "qemu-system-sparc";
-	systems_names << "qemu-system-sparc64";
-	systems_names << "qemu-system-x86_64";
+	// Base emulator
+	/*QList<Averable_Devices> *baseEmulator;
 	
-	// Get system name
-	QFileInfo tmp_info( path );
-	QString file_name = tmp_info.fileName();
-	QString system_name = "";
-	
-	for( int ix = 0; ix < systems_names.count(); ix++ )
+	switch( version )
 	{
-		if( file_name == systems_names[ix] )
-		{
-			system_name = systems_names[ ix ];
+		case VM::QEMU_0_9_0:
+			baseEmulator = &Emulator_QEMU_0_9_0;
 			break;
-		}
-	}
-	
-	if( system_name.isEmpty() )
-	{
-		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
-				 "Cannot get system name!" );
-		ok = false;
-		return Averable_Devices();
+			
+		case VM::QEMU_0_9_1:
+			baseEmulator = &Emulator_QEMU_0_9_1;
+			break;
+			
+		case VM::QEMU_0_10:
+			baseEmulator = &Emulator_QEMU_0_10;
+			break;
+			
+		case VM::QEMU_0_11:
+			baseEmulator = &Emulator_QEMU_0_11;
+			break;
+			
+		case VM::QEMU_0_12:
+			baseEmulator = &Emulator_QEMU_0_12;
+			break;
+			
+		case VM::KVM_7X:
+			baseEmulator = &Emulator_KVM_7X;
+			break;
+				
+		case VM::KVM_8X:
+			baseEmulator = &Emulator_KVM_8X;
+			break;
+				
+		case VM::KVM_0_11:
+			baseEmulator = &Emulator_KVM_0_11;
+			break;
+				
+		case VM::KVM_0_12:
+			baseEmulator = &Emulator_KVM_0_12;
+			break;
+		
+		default:
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+					 "VM::Emulator_Version version, const QString &internalName )",
+					 "Emulator version invalid!" );
+			*ok = false;
+			return Averable_Devices();
 	}
 	
 	// Get Default Devices List
-	// FIXME KVM 0.12 NOT 8X
 	Averable_Devices default_device;
 	
-	for( int ix = 0; ix < Emulator_QEMU_0_10.count(); ix++ )
+	for( int ix = 0; ix < baseEmulator->count(); ix++ )
 	{
-		if( Emulator_QEMU_0_10[ix].System.QEMU_Name == system_name ) // FIXME QEMU, QEMU-KVM, KVM
+		if( (*baseEmulator)[ix].System.QEMU_Name == internalName )
 		{
-			default_device = Emulator_QEMU_0_10[ ix ];
+			default_device = (*baseEmulator)[ ix ];
+			
+			tmp_dev.System.Caption = (*baseEmulator)[ix].System.Caption;
+			tmp_dev.System.QEMU_Name = internalName;
 		}
+	}
+	*/
+	
+	// Get Default Devices List
+	Averable_Devices default_device;
+	
+	switch( version )
+	{
+		case VM::QEMU_0_9_0:
+			default_device = Emulator_QEMU_0_9_0[ internalName ];
+			break;
+			
+		case VM::QEMU_0_9_1:
+			default_device = Emulator_QEMU_0_9_1[ internalName ];
+			break;
+			
+		case VM::QEMU_0_10:
+			default_device = Emulator_QEMU_0_10[ internalName ];
+			break;
+			
+		case VM::QEMU_0_11:
+			default_device = Emulator_QEMU_0_11[ internalName ];
+			break;
+			
+		case VM::QEMU_0_12:
+			default_device = Emulator_QEMU_0_12[ internalName ];
+			break;
+			
+		case VM::KVM_7X:
+			default_device = Emulator_KVM_7X[ internalName ];
+			break;
+			
+		case VM::KVM_8X:
+			default_device = Emulator_KVM_8X[ internalName ];
+			break;
+			
+		case VM::KVM_0_11:
+			default_device = Emulator_KVM_0_11[ internalName ];
+			break;
+			
+		case VM::KVM_0_12:
+			default_device = Emulator_KVM_0_12[ internalName ];
+			break;
+			
+		default:
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+					 "VM::Emulator_Version version, const QString &internalName )",
+					 "Emulator version invalid!" );
+			*ok = false;
+			return Averable_Devices();
 	}
 	
 	if( default_device.System.QEMU_Name.isEmpty() )
 	{
-		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				 "VM::Emulator_Version version, const QString &internalName )",
 				 "Cannot get system default device list!" );
-		ok = false;
+		*ok = false;
 		return Averable_Devices();
 	}
+	
+	tmp_dev.System.Caption = default_device.System.Caption;
+	tmp_dev.System.QEMU_Name = internalName;
+	
+	AQWarning( "Start device search for:", internalName );
 	
 	QStringList args_list;
 	QString tmp = "";
@@ -2015,24 +2068,30 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			if( rx_list.count() > 1 ) qemu_dev_name = rx_list[ 1 ];
 			else
 			{
-				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+						 "VM::Emulator_Version version, const QString &internalName )",
 						 "Cannot get QEMU CPU ID string!" );
 				continue;
 			}
 		}
 		
-		bool cpu_finded = false;
-		for( int ix = 0; ix < default_device.CPU_List.count(); ix++ )
+		// String empty?
+		if( ! (qemu_dev_name.isEmpty() || qemu_dev_name.indexOf(QRegExp("/^\\S+$/"), 0) != -1) )
 		{
-			if( qemu_dev_name == default_device.CPU_List[ix].QEMU_Name )
+			bool cpu_finded = false;
+			for( int ix = 0; ix < default_device.CPU_List.count(); ix++ )
 			{
-				tmp_dev.CPU_List << default_device.CPU_List[ ix ];
-				cpu_finded = true;
+				if( qemu_dev_name == default_device.CPU_List[ix].QEMU_Name )
+				{
+					tmp_dev.CPU_List << default_device.CPU_List[ ix ];
+					cpu_finded = true;
+				}
 			}
+			
+			// No this device name in default list
+			if( cpu_finded == false ) tmp_dev.CPU_List << Device_Map( qemu_dev_name, qemu_dev_name );
 		}
-		
-		// No this device name in default list
-		if( cpu_finded == false ) tmp_dev.CPU_List << Device_Map( qemu_dev_name, qemu_dev_name );
+		else continue;
 	}
 	while( ! tmp.isNull() );
 	
@@ -2040,7 +2099,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	if( tmp_dev.CPU_List.count() < 2 )
 	{
 		tmp_dev.CPU_List = default_device.CPU_List; // FIXME Emul Version
-		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				   "VM::Emulator_Version version, const QString &internalName )",
 				   "Cannot get CPU's info from emulator. Use default list" );
 	}
 	
@@ -2070,24 +2130,29 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			}
 			else
 			{
-				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+						 "VM::Emulator_Version version, const QString &internalName )",
 						 "Cannot get QEMU Machine ID string!" );
 				continue;
 			}
 		}
 		
-		bool machine_finded = false;
-		for( int ix = 0; ix < default_device.Machine_List.count(); ix++ )
+		if( ! (dev_map.QEMU_Name.isEmpty() || dev_map.QEMU_Name.indexOf(QRegExp("/^\\S+$/"), 0) != -1) )
 		{
-			if( dev_map.QEMU_Name == default_device.Machine_List[ix].QEMU_Name )
+			bool machine_finded = false;
+			for( int ix = 0; ix < default_device.Machine_List.count(); ix++ )
 			{
-				tmp_dev.Machine_List << default_device.Machine_List[ ix ];
-				machine_finded = true;
+				if( dev_map.QEMU_Name == default_device.Machine_List[ix].QEMU_Name )
+				{
+					tmp_dev.Machine_List << default_device.Machine_List[ ix ];
+					machine_finded = true;
+				}
 			}
+			
+			// No this device name in default list
+			if( machine_finded == false ) tmp_dev.Machine_List << dev_map;
 		}
-		
-		// No this device name in default list
-		if( machine_finded == false ) tmp_dev.Machine_List << dev_map;
+		else continue;
 	}
 	while( ! tmp.isNull() );
 	
@@ -2095,7 +2160,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	if( tmp_dev.Machine_List.count() < 2 )
 	{
 		tmp_dev.Machine_List = default_device.Machine_List; // FIXME Emul Version
-		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				   "VM::Emulator_Version version, const QString &internalName )",
 				   "Cannot get machines info from emulator. Use default list" );
 	}
 	
@@ -2122,7 +2188,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			
 			if( vga_devices_list.isEmpty() )
 			{
-				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+						 "VM::Emulator_Version version, const QString &internalName )",
 						 "VGA Devices List is Empty. Data is: \"" + rx.capturedTexts()[0] + "\"" );
 			}
 			else
@@ -2147,7 +2214,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		}
 		else
 		{
-			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+					 "VM::Emulator_Version version, const QString &internalName )",
 					 "Cannot parse VGA string regExp. Data is: \"" + rx.capturedTexts()[0] + "\"" );
 		}
 	}
@@ -2164,10 +2232,10 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		QString qemu_dev_name = "";
 		
 		// This description?
-		if( tmp.startsWith("Valid sound card names") ||
+		if( tmp.isEmpty() ||
+			tmp.startsWith("Valid sound card names") ||
 			tmp.startsWith("-soundhw") ||
-			tmp == "\n" ||
-			tmp.isEmpty() ) continue;
+			tmp.indexOf(QRegExp("/^\\S+$/"), 0) != -1 ) continue;
 		
 		// Get QEMU ID String
 		QRegExp tmp_rx = QRegExp( "([\\w-.]+)\\s+.*" );
@@ -2177,7 +2245,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 			if( rx_list.count() > 1 ) qemu_dev_name = rx_list[ 1 ];
 			else
 			{
-				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+						 "VM::Emulator_Version version, const QString &internalName )",
 						 "Cannot get QEMU Audio ID string!" );
 				continue;
 			}
@@ -2191,7 +2260,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		else if( qemu_dev_name == "ac97" ) tmp_dev.Audio_Card_List.Audio_AC97 = true;
 		else
 		{
-			AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+			AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+					   "VM::Emulator_Version version, const QString &internalName )",
 					   "Unregistred Sound Card Name: \"" + qemu_dev_name + "\"" );
 			continue;
 		}
@@ -2218,7 +2288,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 		
 		if( net_cards_models.isEmpty() )
 		{
-			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+					 "VM::Emulator_Version version, const QString &internalName )",
 					 "Cannot get QEMU network card ID string!" );
 			continue;
 		}
@@ -2253,29 +2324,16 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )
 	if( tmp_dev.Network_Card_List.count() < 2 )
 	{
 		tmp_dev.Network_Card_List = default_device.Network_Card_List; // FIXME Emul Version
-		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool &ok )",
+		AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+				   "VM::Emulator_Version version, const QString &internalName )",
 				   "Cannot get net cards info from emulator. Use default list" );
 	}
 	
-	// Print all data (For tests)
-	qDebug( "\nCPU_List" );
-	for( int ix = 0; ix < tmp_dev.CPU_List.count(); ix++ )
-		qDebug( qPrintable(tmp_dev.CPU_List[ix].Caption + "\t\t\t\t" + tmp_dev.CPU_List[ix].QEMU_Name) );
-	
-	qDebug( "\nMachine_List" );
-	for( int ix = 0; ix < tmp_dev.Machine_List.count(); ix++ )
-		qDebug( qPrintable(tmp_dev.Machine_List[ix].Caption + "\t\t\t\t" + tmp_dev.Machine_List[ix].QEMU_Name) );
-	
-	qDebug( "\nNetwork_Card_List" );
-	for( int ix = 0; ix < tmp_dev.Network_Card_List.count(); ix++ )
-		qDebug( qPrintable(tmp_dev.Network_Card_List[ix].Caption + "\t\t\t\t" + tmp_dev.Network_Card_List[ix].QEMU_Name) );
-	
-	qDebug( "\nVideo_Card_List" );
-	for( int ix = 0; ix < tmp_dev.Video_Card_List.count(); ix++ )
-		qDebug( qPrintable(tmp_dev.Video_Card_List[ix].Caption + "\t\t\t\t" + tmp_dev.Video_Card_List[ix].QEMU_Name) );
-	
 	// Return info
-	ok = true;
+	AQDebug( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+			 "VM::Emulator_Version version, const QString &internalName )",
+			 "Done" );
+	*ok = true;
 	return tmp_dev;
 }
 
@@ -2334,7 +2392,11 @@ const QList<VM_USB> &System_Info::Get_Used_USB_List()
 
 bool System_Info::Add_To_Used_USB_List( const VM_USB &device )
 {
-	if( Used_Host_USB.indexOf(device) == -1 ) Used_Host_USB << device;
+	if( Used_Host_USB.indexOf(device) == -1 )
+	{
+		Used_Host_USB << device;
+		return true;
+	}
 	else return false;
 }
 
@@ -2454,13 +2516,12 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		// speed
 		if( Read_SysFS_File(usb_path + "speed", data) )
 		{
-			tmp_usb.Set_Speed( data.toInt() );
+			tmp_usb.Set_Speed( data );
 		}
 		else
 		{
-			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "Cannot read speed from /sys/bus/usb/devices/" );
-			continue;
+			AQWarning( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
+					   "Cannot read speed from /sys/bus/usb/devices/" );
 		}
 		
 		// Serial Number
@@ -2470,9 +2531,8 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		}
 		else
 		{
-			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "Cannot read serial from /sys/bus/usb/devices/" );
-			continue;
+			AQWarning( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
+					   "Cannot read serial from /sys/bus/usb/devices/" );
 		}
 		
 		// BusAddr
@@ -2513,8 +2573,8 @@ bool System_Info::Read_SysFS_File( const QString &path, QString &data )
 	
 	if( ! sysfs_file.open(QIODevice::ReadOnly | QIODevice::Text) )
 	{
-		AQError( "bool System_Info::Read_SysFS_File( const QString &path, QString &data )",
-				 QString("Cannot Open File \"%1\"! USB information not found!").arg(path) );
+		AQWarning( "bool System_Info::Read_SysFS_File( const QString &path, QString &data )",
+				   QString("Cannot Open File \"%1\"!").arg(path) );
 		return false;
 	}
 	
@@ -2716,7 +2776,7 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 				{
 					QString busStr = (busAddr_list[1][0] == '0') ? QString(busAddr_list[1][1]) : busAddr_list[1];
 					tmp_usb.Set_BusAddr( busStr + ":" + busAddr_list[2] );
-					tmp_usb.Set_Speed( busAddr_list[3].toInt() );
+					tmp_usb.Set_Speed( busAddr_list[3] );
 				}
 				
 				if( serialNumber_list.count() > 0 )
@@ -2738,7 +2798,7 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 #include <QDir>
 #include <QFileInfoList>
 
-int System_Info::Get_Free_Memory_Size()
+void System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )
 {
 	// proc fs is exists?
 	if( QFile::exists("/proc/meminfo") )
@@ -2748,24 +2808,39 @@ int System_Info::Get_Free_Memory_Size()
 		if( ! proc_file.open(QIODevice::ReadOnly | QIODevice::Text) )
 		{
 			AQDebug( "int System_Info::Get_Free_Memory_Size()",
-					 "Cannot Open File \"/proc/meminfo\"! Information not found!" );
+					 "void System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )" );
 		}
 		else
 		{
 			QTextStream in( &proc_file );
 			QString line = in.readLine();
 			
-			int free_mem, cached_mem, buf_mem;
-			free_mem = cached_mem = buf_mem = -1;
+			int all_mem, free_mem, cached_mem, buf_mem;
+			all_mem = free_mem = cached_mem = buf_mem = -1;
 			
 			while( ! line.isNull() )
 			{
-				if( (free_mem != -1) && (cached_mem != -1) && (buf_mem != -1) )
+				if( (all_mem != -1 ) && (free_mem != -1) && (cached_mem != -1) && (buf_mem != -1) )
 				{
-					return (free_mem + cached_mem + buf_mem) / 1024;
+					allRAM = (int)(all_mem / 1024.0);
+					freeRAM = (int)((free_mem + cached_mem + buf_mem) / 1024.0);
+					return; // exit this
 				}
 				
-				if( line.startsWith("MemFree") )
+				if( line.startsWith("MemTotal") )
+				{
+					QRegExp rx = QRegExp( "MemTotal:\\s+(\\d+)\\s+.*" );
+					
+					if( rx.exactMatch(line) )
+					{
+						QStringList res = rx.capturedTexts();
+						
+						if( res.count() != 2 ) break;
+						else all_mem = res[1].toInt();
+					}
+					else break;
+				}
+				else if( line.startsWith("MemFree") )
 				{
 					QRegExp rx = QRegExp( "MemFree:\\s+(\\d+)\\s+.*" );
 					
@@ -2774,10 +2849,7 @@ int System_Info::Get_Free_Memory_Size()
 						QStringList res = rx.capturedTexts();
 						
 						if( res.count() != 2 ) break;
-						else
-						{
-							free_mem = res[ 1 ].toInt();
-						}
+						else free_mem = res[1].toInt();
 					}
 					else break;
 				}
@@ -2790,10 +2862,7 @@ int System_Info::Get_Free_Memory_Size()
 						QStringList res = rx.capturedTexts();
 						
 						if( res.count() != 2 ) break;
-						else
-						{
-							cached_mem = res[ 1 ].toInt();
-						}
+						else cached_mem = res[1].toInt();
 					}
 					else break;
 				}
@@ -2806,27 +2875,22 @@ int System_Info::Get_Free_Memory_Size()
 						QStringList res = rx.capturedTexts();
 						
 						if( res.count() != 2 ) break;
-						else
-						{
-							buf_mem = res[ 1 ].toInt();
-						}
+						else buf_mem = res[1].toInt();
 					}
 					else break;
 				}
 				
-				// Read next line
-				line = in.readLine();
+				line = in.readLine(); // Read next line
 			}
 		}
 	}
 	
 	// If proc fs not exists
-	struct sysinfo sys_info;
-	sysinfo( &sys_info );
+	struct sysinfo sysInfo;
+	sysinfo( &sysInfo );
 	
-	long memory = ( sys_info.freeram * sys_info.mem_unit ) / 1024.0 / 1024.0;
-	
-	return (int) memory;
+	allRAM = (int)(unsigned long)(sysInfo.totalram * sysInfo.mem_unit) / 1024.0 / 1024.0;
+	freeRAM  = (int)(unsigned long)((sysInfo.freeram + sysInfo.bufferram) * sysInfo.mem_unit) / 1024.0 / 1024.0;
 }
 
 QStringList System_Info::Get_Host_FDD_List()
@@ -2881,22 +2945,40 @@ QStringList System_Info::Get_Host_CDROM_List()
 #include <QDir>
 #include <QFileInfoList>
 
-int System_Info::Get_Free_Memory_Size()
+void System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )
 {
-	size_t free_ram = 0;
-	size_t len = sizeof( free_ram );
+	size_t all_ram = 0, free_ram = 0, cached_mem = 0;
+	size_t len = sizeof( all_ram );
 	
-	int page_size = getpagesize();
+	if( (sysctlbyname("vm.stats.vm.v_page_count", &all_ram, &len, NULL, 0) == -1) || ! len )
+	{
+		all_ram = 0;
+		AQError( "void  System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )",
+				 "Cannot Get Information on Memory! (vm.stats.vm.v_page_count)" );
+	}
 	
 	if( (sysctlbyname("vm.stats.vm.v_free_count", &free_ram, &len, NULL, 0) == -1) || ! len )
 	{
 		free_ram = 0;
-		AQError( "int System_Info::Get_Free_Memory_Size()", "Cannot Get Information on Memory!" );
+		AQError( "void  System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )",
+				 "Cannot Get Information on Memory! (vm.stats.vm.v_free_count)" );
 	}
 	
-	free_ram *= page_size;
+	if( (sysctlbyname("vm.stats.vm.v_cache_count", &cached_mem, &len, NULL, 0) == -1) || ! len )
+	{
+		cached_mem = 0;
+		AQError( "void  System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )",
+				 "Cannot Get Information on Memory! (vm.stats.vm.v_cache_count)" );
+	}
 	
-	return (int) free_ram / 1024.0 / 1024.0;
+	int page_size = getpagesize();
+	
+	all_ram *= page_size;
+	free_ram *= page_size;
+	cached_mem *= page_size;
+	
+	allRAM = (int)(all_ram / 1024.0 / 1024.0);
+	freeRAM = (int)((free_ram + cached_mem) / 1024.0 / 1024.0);
 }
 
 QStringList System_Info::Get_Host_FDD_List()
@@ -2937,7 +3019,7 @@ QStringList System_Info::Get_Host_CDROM_List()
 #include <windows.h>
 #include <tchar.h>
 
-int System_Info::Get_Free_Memory_Size()
+int System_Info::Get_Free_Memory_Size() // FIXME new style
 {
 	MEMORYSTATUS mem;
 	memset( (void*)&mem, 0, sizeof(mem) );

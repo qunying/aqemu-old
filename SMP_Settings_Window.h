@@ -36,12 +36,16 @@ class SMP_Settings_Window: public QDialog
 		VM::SMP_Options Get_Values() const;
 		void Set_Values( const VM::SMP_Options &smp, unsigned short PSO_SMP_Count, bool PSO_SMP_Cores,
 						 bool PSO_SMP_Threads, bool PSO_SMP_Sockets, bool PSO_SMP_MaxCPUs );
+		
+		void Set_SMP_Count( int count );
 	
 	private slots:
 		void on_Button_OK_clicked();
+		void on_Button_Cancel_clicked();
 	
 	private:
 		Ui::SMP_Settings_Window ui;
+		VM::SMP_Options Backup_SMP;
 };
 
 #endif
