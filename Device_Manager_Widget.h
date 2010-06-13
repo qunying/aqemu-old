@@ -74,10 +74,10 @@ class Device_Manager_Widget: public QWidget
 		void on_actionList_Mode_triggered();
 		
 		void Update_Icons();
-		void Update_HDA();
-		void Update_HDB();
-		void Update_HDC();
-		void Update_HDD();
+		void Update_HDA( bool ok );
+		void Update_HDB( bool ok );
+		void Update_HDC( bool ok );
+		void Update_HDD( bool ok );
 		
 	private:
 		Add_New_Device_Window *Device_Window;

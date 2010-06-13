@@ -42,6 +42,7 @@ class Boot_Device_Window: public QDialog
 	private slots:
 		void on_TB_Up_clicked();
 		void on_TB_Down_clicked();
+		int Get_Current_Index();
 		
 	private:
 		Ui::Boot_Device_Window ui;

@@ -71,7 +71,7 @@ void HDD_Image_Info::Clear_Info()
 	Info.Disk_Size = tmp_hdd.String_to_Device_Size( "0 G" );
 	Info.Cluster_Size = 0;
 	
-	emit Completed();
+	emit Completed( false );
 }
 
 void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
@@ -135,6 +135,6 @@ void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 	if( cluster ) Info.Cluster_Size = info_lines[ 5 ].toInt();
 	else Info.Cluster_Size = 0;
 	
-	emit Completed();
+	emit Completed( true );
 	//delete QEMU_IMG_Proc;
 }

@@ -142,18 +142,37 @@ void Boot_Device_Window::setUseBootMenu( bool use )
 
 void Boot_Device_Window::on_TB_Up_clicked()
 {
-	int index = ui.Boot_Devices_List->currentColumn();
-	if( index < 0 ) return;
+	int index = Get_Current_Index();
+	if( index < 1 ||
+		index > ui.Boot_Devices_List->topLevelItemCount() ) return;
 	
 	QTreeWidgetItem *item = ui.Boot_Devices_List->takeTopLevelItem( index );
 	ui.Boot_Devices_List->insertTopLevelItem( index - 1, item );
+	
+	ui.Boot_Devices_List->setCurrentItem( item );
 }
 
 void Boot_Device_Window::on_TB_Down_clicked()
 {
-	int index = ui.Boot_Devices_List->currentColumn();
-	if( index < 0 ) return;
+	int index = Get_Current_Index();
+	if( index < 0 ||
+		index > ui.Boot_Devices_List->topLevelItemCount()-2 ) return;
 	
 	QTreeWidgetItem *item = ui.Boot_Devices_List->takeTopLevelItem( index );
 	ui.Boot_Devices_List->insertTopLevelItem( index + 1, item );
+	
+	ui.Boot_Devices_List->setCurrentItem( item );
+}
+
+int Boot_Device_Window::Get_Current_Index()
+{
+	QTreeWidgetItem *currentItem = ui.Boot_Devices_List->currentItem();
+	if( ! currentItem ) return -1;
+	
+	for( int ix = 0; ix < ui.Boot_Devices_List->topLevelItemCount(); ++ix )
+	{
+		if( ui.Boot_Devices_List->topLevelItem(ix) == currentItem ) return ix;
+	}
+	
+	return -1; // not finded
 }

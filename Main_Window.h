@@ -134,10 +134,10 @@ class Main_Window: public QMainWindow
 		QStringList Create_Info_HDD_String( const QString &disk_format, const VM::Device_Size &virtual_size,
 											const VM::Device_Size &disk_size, int cluster_size );
 		
-		void Update_HDA_Info();
-		void Update_HDB_Info();
-		void Update_HDC_Info();
-		void Update_HDD_Info();
+		void Update_HDA_Info( bool ok );
+		void Update_HDB_Info( bool ok );
+		void Update_HDC_Info( bool ok );
+		void Update_HDD_Info( bool ok );
 		
 		void on_GB_HDC_toggled( bool on ); // CD-ROM or HDC...
 		

@@ -255,7 +255,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				
 				// Get emulator info
 				int allEmulBinCount = qemu_list.count();
-				QProgressDialog progressWin( "Search emulators...", "Cancel", 0, allEmulBinCount, this );
+				QProgressDialog progressWin( tr("Search..."), tr("Cancel"), 0, allEmulBinCount, this );
 				progressWin.setWindowModality( Qt::WindowModal );
 				
 				QMap<QString, Averable_Devices> devList;

@@ -136,8 +136,8 @@ void Properties_Window::Set_CD_ROM( const VM_Storage_Device &cd, const QString &
 
 void Properties_Window::Set_HDD( const VM_HDD &hd, const QString &name )
 {
-	connect( HDD_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDD()) );
+	connect( HDD_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDD(bool)) );
 	
 	ui.Label_Name->setText( ui.Label_Name->text() + name );
 	
@@ -369,15 +369,22 @@ void Properties_Window::on_Button_HDD_Format_clicked()
 	delete Create_HDD_Win;
 }
 
-void Properties_Window::Update_HDD()
+void Properties_Window::Update_HDD( bool ok )
 {
-	PW_HDD.Set_Disk_Info( HDD_Info->Get_Disk_Info() );
-	
-	QString suf_v = Get_TR_Size_Suffix( PW_HDD.Get_Virtual_Size() );
-	QString suf_d = Get_TR_Size_Suffix( PW_HDD.Get_Disk_Size() );
-	
-	ui.Label_Info->setText( tr("Format: ") + PW_HDD.Get_Image_Format() +
-			tr(" Virtual Size: ") + QString::number(PW_HDD.Get_Virtual_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Virtual_Size()) +
-			tr("\nOn Disk Size: ") + QString::number(PW_HDD.Get_Disk_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Disk_Size()) +
-			tr(" Cluster Size: ") + QString::number(PW_HDD.Get_Cluster_Size()) );
+	if( ok )
+	{
+		PW_HDD.Set_Disk_Info( HDD_Info->Get_Disk_Info() );
+		
+		QString suf_v = Get_TR_Size_Suffix( PW_HDD.Get_Virtual_Size() );
+		QString suf_d = Get_TR_Size_Suffix( PW_HDD.Get_Disk_Size() );
+		
+		ui.Label_Info->setText( tr("Format: ") + PW_HDD.Get_Image_Format() +
+				tr(" Virtual Size: ") + QString::number(PW_HDD.Get_Virtual_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Virtual_Size()) +
+				tr("\nOn Disk Size: ") + QString::number(PW_HDD.Get_Disk_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Disk_Size()) +
+				tr(" Cluster Size: ") + QString::number(PW_HDD.Get_Cluster_Size()) );
+	}
+	else
+	{
+		// FIXME
+	}
 }

@@ -41,8 +41,7 @@ class HDD_Image_Info : public QObject
 		void Clear_Info();
 		
 	signals:
-		void Completed();
-		void Cannot_Read_Info();
+		void Completed( bool ok );
 		
 	private:
 		VM::Disk_Info Info;

@@ -40,17 +40,17 @@ Device_Manager_Widget::Device_Manager_Widget( QWidget *parent )
 	HDC_Info = new HDD_Image_Info();
 	HDD_Info = new HDD_Image_Info();
 	
-	connect( HDA_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDA()) );
+	connect( HDA_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDA(bool)) );
 	
-	connect( HDB_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDB()) );
+	connect( HDB_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDB(bool)) );
 	
-	connect( HDC_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDC()) );
+	connect( HDC_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDC(bool)) );
 	
-	connect( HDD_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDD()) );
+	connect( HDD_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDD(bool)) );
 	
 	pw = new Properties_Window( this );
 	Context_Menu = new QMenu( ui.Devices_List );
@@ -1176,7 +1176,7 @@ void Device_Manager_Widget::Update_Icons()
 	}
 }
 
-void Device_Manager_Widget::Update_HDA()
+void Device_Manager_Widget::Update_HDA( bool ok )
 {
 	HDA.Set_Disk_Info( HDA_Info->Get_Disk_Info() );
 	
@@ -1186,7 +1186,7 @@ void Device_Manager_Widget::Update_HDA()
 			Get_TR_Size_Suffix(HDA.Get_Disk_Size()) );
 }
 
-void Device_Manager_Widget::Update_HDB()
+void Device_Manager_Widget::Update_HDB( bool ok )
 {
 	HDB.Set_Disk_Info( HDB_Info->Get_Disk_Info() );
 	
@@ -1196,7 +1196,7 @@ void Device_Manager_Widget::Update_HDB()
 			Get_TR_Size_Suffix(HDB.Get_Disk_Size()) );
 }
 
-void Device_Manager_Widget::Update_HDC()
+void Device_Manager_Widget::Update_HDC( bool ok )
 {
 	HDC.Set_Disk_Info( HDC_Info->Get_Disk_Info() );
 	
@@ -1206,7 +1206,7 @@ void Device_Manager_Widget::Update_HDC()
 			Get_TR_Size_Suffix(HDC.Get_Disk_Size()));
 }
 
-void Device_Manager_Widget::Update_HDD()
+void Device_Manager_Widget::Update_HDD( bool ok )
 {
 	HDD.Set_Disk_Info( HDD_Info->Get_Disk_Info() );
 	

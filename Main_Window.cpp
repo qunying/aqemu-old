@@ -82,17 +82,17 @@ Main_Window::Main_Window( QWidget *parent )
 	HDC_Info = new HDD_Image_Info();
 	HDD_Info = new HDD_Image_Info();
 	
-	connect( HDA_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDA_Info()) );
+	connect( HDA_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDA_Info(bool)) );
 	
-	connect( HDB_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDB_Info()) );
+	connect( HDB_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDB_Info(bool)) );
 	
-	connect( HDC_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDC_Info()) );
+	connect( HDC_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDC_Info(bool)) );
 	
-	connect( HDD_Info, SIGNAL(Completed()),
-			 this, SLOT(Update_HDD_Info()) );
+	connect( HDD_Info, SIGNAL(Completed(bool)),
+			 this, SLOT(Update_HDD_Info(bool)) );
 	
 	// Network Settigns
 	New_Network_Settings_Widget = new Network_Widget();
@@ -5571,7 +5571,7 @@ QStringList Main_Window::Create_Info_HDD_String( const QString &disk_format, con
 	return ret;
 }
 
-void Main_Window::Update_HDA_Info()
+void Main_Window::Update_HDA_Info( bool ok )
 {
 	VM_HDD tmp_hda = VM_HDD( true, ui.Edit_HDA_Image_Path->text() );
 	tmp_hda.Set_Disk_Info( HDA_Info->Get_Disk_Info() );
@@ -5586,7 +5586,7 @@ void Main_Window::Update_HDA_Info()
 	}
 }
 
-void Main_Window::Update_HDB_Info()
+void Main_Window::Update_HDB_Info( bool ok )
 {
 	VM_HDD tmp_hdb = VM_HDD( true, ui.Edit_HDB_Image_Path->text() );
 	tmp_hdb.Set_Disk_Info( HDB_Info->Get_Disk_Info() );
@@ -5601,7 +5601,7 @@ void Main_Window::Update_HDB_Info()
 	}
 }
 
-void Main_Window::Update_HDC_Info()
+void Main_Window::Update_HDC_Info( bool ok )
 {
 	VM_HDD tmp_hdc = VM_HDD( true, ui.Edit_HDC_Image_Path->text() );
 	tmp_hdc.Set_Disk_Info( HDC_Info->Get_Disk_Info() );
@@ -5616,7 +5616,7 @@ void Main_Window::Update_HDC_Info()
 	}
 }
 
-void Main_Window::Update_HDD_Info()
+void Main_Window::Update_HDD_Info( bool ok )
 {
 	VM_HDD tmp_hdd = VM_HDD( true, ui.Edit_HDD_Image_Path->text() );
 	tmp_hdd.Set_Disk_Info( HDD_Info->Get_Disk_Info() );

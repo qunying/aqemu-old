@@ -54,7 +54,7 @@ class Properties_Window: public QDialog
 		void on_Button_HDD_New_clicked();
 		void on_Button_HDD_Format_clicked();
 		
-		void Update_HDD();
+		void Update_HDD( bool ok );
 		
 	private:
 		Ui::Properties_Window ui;
