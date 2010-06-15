@@ -164,6 +164,9 @@ Main_Window::Main_Window( QWidget *parent )
 	// Get max RAM size
 	on_TB_Update_Available_RAM_Size_clicked();
 	
+	// Singals for watch VM Changes
+	Connect_Signals();
+	
 	// Loading AQEMU Settings
 	if( ! Load_Settings() )
 	{
@@ -197,9 +200,6 @@ Main_Window::Main_Window( QWidget *parent )
 			AQDebug( "Main_Window::Main_Window( QWidget *parent )", "All OK Loading Complete!" );
 		}
 	}
-	
-	// Singals for watch VM Changes
-	Connect_Signals();
 }
 
 void Main_Window::closeEvent( QCloseEvent *event )
@@ -433,6 +433,21 @@ void Main_Window::Connect_Signals()
 	
 	connect( ui.SB_Guest_Port, SIGNAL(valueChanged(int)),
 			 this, SLOT(VM_Changet()) );
+	
+	connect( ui.RB_TCP, SIGNAL(toggled(bool)),
+			 this, SLOT(Update_Current_Redirection_Item()) );
+	
+	connect( ui.RB_UDP, SIGNAL(toggled(bool)),
+			 this, SLOT(Update_Current_Redirection_Item()) );
+	
+	connect( ui.SB_Redir_Port, SIGNAL(valueChanged(int)),
+			 this, SLOT(Update_Current_Redirection_Item()) );
+	
+	connect( ui.Edit_Guest_IP, SIGNAL(textChanged(const QString &)),
+			 this, SLOT(Update_Current_Redirection_Item()) );
+	
+	connect( ui.SB_Guest_Port, SIGNAL(valueChanged(int)),
+			 this, SLOT(Update_Current_Redirection_Item()) );
 	
 	connect( ui.Edit_TFTP_Prefix, SIGNAL(textChanged(const QString &)),
 			 this, SLOT(VM_Changet()) );
@@ -1076,8 +1091,6 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 
 bool Main_Window::Load_Settings()
 {
-	AQDebug( "bool Main_Window::Load_Settings()", "Begin" );
-	
 	// Main Window Size
 	resize( Settings.value("General_Window_Width", "670").toInt(),
 			Settings.value("General_Window_Height", "625").toInt() );
@@ -1103,38 +1116,26 @@ bool Main_Window::Load_Settings()
 		if( Settings.value( "Use_Device_Manager", "yes" ).toString() == "yes" )
 		{
 			if( ui.Tabs->indexOf(ui.Tab_HDD) != -1 ) // delete
-			{
 				ui.Tabs->removeTab( ui.Tabs->indexOf(ui.Tab_HDD) );
-			}
 			
 			if( ui.Tabs->indexOf(ui.Tab_Removable_Disks) != -1 ) // delete
-			{
 				ui.Tabs->removeTab( ui.Tabs->indexOf(ui.Tab_Removable_Disks) );
-			}
 			
 			if( ui.Tabs->indexOf(Dev_Manager) == -1 ) // add
-			{
 				ui.Tabs->insertTab( 2, Dev_Manager, tr("Device Manager") );
-			}
 			
 			if( ui.Machines_List->count() > 0 ) Update_VM_Ui();
 		}
 		else
 		{
 			if( ui.Tabs->indexOf(Dev_Manager) != -1 ) // delete
-			{
 				ui.Tabs->removeTab( ui.Tabs->indexOf(Dev_Manager) );
-			}
 			
 			if( ui.Tabs->indexOf(ui.Tab_HDD) == -1 ) // add
-			{
 				ui.Tabs->insertTab( 2, ui.Tab_HDD, tr("HDD") );
-			}
 			
 			if( ui.Tabs->indexOf(ui.Tab_Removable_Disks) == -1 ) // add
-			{
 				ui.Tabs->insertTab( 3, ui.Tab_Removable_Disks, tr("CD/DVD/Floppy") );
-			}
 			
 			// update devices list for floppy and cdrom
 			QStringList fd_list = System_Info::Get_Host_FDD_List();
@@ -1159,8 +1160,6 @@ bool Main_Window::Load_Settings()
 			Update_Recent_Floppy_Images_List();
 			Update_Recent_CD_ROM_Images_List();
 			
-			Connect_Signals();
-			
 			if( ui.Machines_List->count() > 0 ) Update_VM_Ui();
 		}
 		
@@ -1168,7 +1167,8 @@ bool Main_Window::Load_Settings()
 	}
 	else
 	{
-		AQError( "bool Main_Window::Load_Settings()", "Settings.status() != QSettings::NoError" );
+		AQError( "bool Main_Window::Load_Settings()",
+				 "Settings.status() != QSettings::NoError" );
 		return false;
 	}
 }
@@ -3260,11 +3260,29 @@ void Main_Window::Update_Disabled_Controls()
 	}
 	
 	// Obsolete QEMU options
-	if( curComp.PSO_TFTP ) ui.Edit_TFTP_Prefix->setEnabled( true );
-	else ui.Edit_TFTP_Prefix->setEnabled( false );
+	if( curComp.PSO_TFTP )
+	{
+		ui.Label_TFTP->setEnabled( true );
+		ui.Edit_TFTP_Prefix->setEnabled( true );
+	}
+	else
+	{
+		ui.Label_TFTP->setEnabled( false );
+		ui.Edit_TFTP_Prefix->setEnabled( false );
+	}
 	
-	if( curComp.PSO_SMB ) ui.Edit_SMB_Folder->setEnabled( true );
-	else ui.Edit_SMB_Folder->setEnabled( false );
+	if( curComp.PSO_SMB )
+	{
+		ui.Label_SMB_Folder->setEnabled( true );
+		ui.TB_Browse_SMB->setEnabled( true );
+		ui.Edit_SMB_Folder->setEnabled( true );
+	}
+	else
+	{
+		ui.Label_SMB_Folder->setEnabled( false );
+		ui.TB_Browse_SMB->setEnabled( false );
+		ui.Edit_SMB_Folder->setEnabled( false );
+	}
 	
 	//if( curComp.PSO_Std_VGA )
 	//else 
@@ -6076,98 +6094,67 @@ void Main_Window::on_Redirections_List_cellClicked ( int row, int column )
 
 void Main_Window::on_Button_Add_Redirections_clicked()
 {
-	// Port < 1024
-	if( ui.SB_Redir_Port->value() < 1024 )
-	{
-		int ret = QMessageBox::question( this, tr("Warning!"),
-					tr("For Create Socket With Port Number < 1024, in Unix You Need to Run AQEMU in root Mode!\nAdd This Record?"),
-					QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
-		
-		if( ret == QMessageBox::No ) return;
-	}
-	
-	QTableWidgetItem *newItem;
-	VM_Redirection *tmp_r = new VM_Redirection();
-	
-	if( ui.RB_TCP->isChecked() )
-	{
-		newItem = new QTableWidgetItem( "TCP" );
-		tmp_r->Set_Protocol( "TCP" );
-	}
-	else
-	{
-		newItem = new QTableWidgetItem( "UDP" );
-		tmp_r->Set_Protocol( "UDP" );
-	}
-	
 	ui.Redirections_List->insertRow( ui.Redirections_List->rowCount() );
-	
-	ui.Redirections_List->setItem( ui.Redirections_List->rowCount()-1, 0, newItem ); // protocol
-	
-	newItem = new QTableWidgetItem( QString::number(ui.SB_Redir_Port->value()) );
-	ui.Redirections_List->setItem( ui.Redirections_List->rowCount()-1, 1, newItem ); // port
-	tmp_r->Set_Host_Port( ui.SB_Redir_Port->value() );
-	
-	newItem = new QTableWidgetItem( ui.Edit_Guest_IP->text() );
-	ui.Redirections_List->setItem( ui.Redirections_List->rowCount()-1, 2, newItem ); // ip
-	tmp_r->Set_Guest_IP( ui.Edit_Guest_IP->text() );
-	
-	newItem = new QTableWidgetItem( QString::number(ui.SB_Guest_Port->value()) );
-	ui.Redirections_List->setItem( ui.Redirections_List->rowCount()-1, 3, newItem ); // guest port
-	tmp_r->Set_Guest_Port( ui.SB_Guest_Port->value() );
-	
 	ui.Redirections_List->setCurrentCell( ui.Redirections_List->rowCount()-1 , 0 );
+	Update_Current_Redirection_Item();
 }
 
 void Main_Window::on_Button_Delete_Redirections_clicked()
 {
-	if( ui.Redirections_List->currentRow() > -1 ) ui.Redirections_List->removeRow( ui.Redirections_List->currentRow() );
+	if( ui.Redirections_List->currentRow() > -1 )
+		ui.Redirections_List->removeRow( ui.Redirections_List->currentRow() );
 }
 
-void Main_Window::on_Button_Apply_Redirections_clicked()
+void Main_Window::Update_Current_Redirection_Item()
 {
+	// Port < 1024
+	if( ui.SB_Redir_Port->value() < 1024 &&
+		Settings.value("Ignore_Redirection_Port_Varning", "no").toString() == "no" )
+	{
+		int ret = QMessageBox::question( this, tr("Warning!"),
+										 tr("For Create Socket With Port Number < 1024, in Unix You Need to Run AQEMU in root Mode!\n"
+											"Press button \"Ignore\" for hide this message in future.\nAdd This Record?"),
+										 QMessageBox::Yes | QMessageBox::No | QMessageBox::Ignore, QMessageBox::Yes );
+		
+		if( ret == QMessageBox::No )
+			return;
+		else if( ret == QMessageBox::Ignore )
+			Settings.setValue( "Ignore_Redirection_Port_Varning", "yes" );
+	}
+	
 	QTableWidgetItem *newItem;
-	VM_Redirection *tmp_r = new VM_Redirection();
 	
-	if( ui.RB_TCP->isChecked() )
-	{
-		newItem = new QTableWidgetItem( "TCP" );
-		tmp_r->Set_Protocol( "TCP" );
-	}
-	else
-	{
-		newItem = new QTableWidgetItem( "UDP" );
-		tmp_r->Set_Protocol( "UDP" );
-	}
+	// protocol
+	if( ui.RB_TCP->isChecked() ) newItem = new QTableWidgetItem( "TCP" );
+	else newItem = new QTableWidgetItem( "UDP" );
+	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 0, newItem );
 	
-	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 0, newItem ); // protocol
-	
+	// port
 	newItem = new QTableWidgetItem( QString::number(ui.SB_Redir_Port->value()) );
-	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 1, newItem ); // host port
-	tmp_r->Set_Host_Port( ui.SB_Redir_Port->value() );
+	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 1, newItem );
 	
+	// ip
 	newItem = new QTableWidgetItem( ui.Edit_Guest_IP->text() );
-	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 2, newItem ); // to guets ip
-	tmp_r->Set_Guest_IP( ui.Edit_Guest_IP->text() );
+	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 2, newItem );
 	
+	// guest port
 	newItem = new QTableWidgetItem( QString::number(ui.SB_Guest_Port->value()) );
-	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 3, newItem ); // guest port
-	tmp_r->Set_Guest_Port( ui.SB_Guest_Port->value() );
+	ui.Redirections_List->setItem( ui.Redirections_List->currentRow(), 3, newItem );
 }
 
 void Main_Window::on_Button_Clear_Redirections_clicked()
 {
-	while( ui.Redirections_List->currentRow() > -1 ) ui.Redirections_List->removeRow( ui.Redirections_List->currentRow() );
+	while( ui.Redirections_List->currentRow() > -1 )
+		ui.Redirections_List->removeRow( ui.Redirections_List->currentRow() );
 }
 
 void Main_Window::on_TB_Browse_SMB_clicked()
 {
-	QString SMB_Dir = QFileDialog::getExistingDirectory( this, tr("Select SMB Directory"), "/", QFileDialog::ShowDirsOnly );
+	QString SMB_Dir = QFileDialog::getExistingDirectory( this, tr("Select SMB Directory"),
+														 "/", QFileDialog::ShowDirsOnly );
 	
-	if( ! (SMB_Dir.isNull() || SMB_Dir.isEmpty()) )
-	{
+	if( ! SMB_Dir.isEmpty() )
 		ui.Edit_SMB_Folder->setText( SMB_Dir );
-	}
 }
 
 void Main_Window::on_CH_Start_Date_toggled( bool on )
@@ -6184,21 +6171,26 @@ void Main_Window::on_TB_VNC_Unix_Socket_Browse_clicked()
 														Get_Last_Dir_Path(ui.Edit_Linux_bzImage_Path->text()),
 														tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (socket_path.isNull() || socket_path.isEmpty()) ) ui.Edit_VNC_Unix_Socket->setText( socket_path );
+	if( ! socket_path.isEmpty() )
+		ui.Edit_VNC_Unix_Socket->setText( socket_path );
 }
 
 void Main_Window::on_TB_x509_Browse_clicked()
 {
-	QString x509dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Certificate Folder"), "/", QFileDialog::ShowDirsOnly );
+	QString x509dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Certificate Folder"),
+														 "/", QFileDialog::ShowDirsOnly );
 	
-	if( ! (x509dir.isNull() || x509dir.isEmpty()) ) ui.Edit_x509_Folder->setText( x509dir );
+	if( ! x509dir.isEmpty() )
+		ui.Edit_x509_Folder->setText( x509dir );
 }
 
 void Main_Window::on_TB_x509verify_Browse_clicked()
 {
-	QString x509verify_dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Verify Certificate Folder"), "/", QFileDialog::ShowDirsOnly );
+	QString x509verify_dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Verify Certificate Folder"),
+																"/", QFileDialog::ShowDirsOnly );
 	
-	if( ! (x509verify_dir.isNull() || x509verify_dir.isEmpty()) ) ui.Edit_x509verify_Folder->setText( x509verify_dir );
+	if( ! x509verify_dir.isEmpty() )
+		ui.Edit_x509verify_Folder->setText( x509verify_dir );
 }
 
 void Main_Window::on_TB_Linux_bzImage_SetPath_clicked()
@@ -6210,7 +6202,8 @@ void Main_Window::on_TB_Linux_bzImage_SetPath_clicked()
 												   Get_Last_Dir_Path(ui.Edit_Linux_bzImage_Path->text()),
 												   tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (kernel.isNull() || kernel.isEmpty()) ) ui.Edit_Linux_bzImage_Path->setText( kernel );
+	if( ! kernel.isEmpty() )
+		ui.Edit_Linux_bzImage_Path->setText( kernel );
 }
 
 void Main_Window::on_TB_Linux_Initrd_SetPath_clicked()
@@ -6222,7 +6215,8 @@ void Main_Window::on_TB_Linux_Initrd_SetPath_clicked()
 												   Get_Last_Dir_Path(ui.Edit_Linux_Initrd_Path->text()),
 												   tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (initrd.isNull() || initrd.isEmpty()) ) ui.Edit_Linux_Initrd_Path->setText( initrd );
+	if( ! initrd.isEmpty() )
+		ui.Edit_Linux_Initrd_Path->setText( initrd );
 }
 
 void Main_Window::on_TB_ROM_File_Browse_clicked()
@@ -6234,7 +6228,8 @@ void Main_Window::on_TB_ROM_File_Browse_clicked()
 													 Get_Last_Dir_Path(ui.Edit_ROM_File->text()),
 													 tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (rom_file.isNull() || rom_file.isEmpty()) ) ui.Edit_ROM_File->setText( rom_file );
+	if( ! rom_file.isEmpty() )
+		ui.Edit_ROM_File->setText( rom_file );
 }
 
 void Main_Window::on_TB_MTDBlock_File_Browse_clicked()
@@ -6246,7 +6241,8 @@ void Main_Window::on_TB_MTDBlock_File_Browse_clicked()
 													 Get_Last_Dir_Path(ui.Edit_MTDBlock_File->text()),
 													 tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (mtd_file.isNull() || mtd_file.isEmpty()) ) ui.Edit_MTDBlock_File->setText( mtd_file );
+	if( ! mtd_file.isEmpty() )
+		ui.Edit_MTDBlock_File->setText( mtd_file );
 }
 
 void Main_Window::on_TB_SD_Image_File_Browse_clicked()
@@ -6258,7 +6254,8 @@ void Main_Window::on_TB_SD_Image_File_Browse_clicked()
 													Get_Last_Dir_Path(ui.Edit_SD_Image_File->text()),
 													tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (sd_file.isNull() || sd_file.isEmpty()) ) ui.Edit_SD_Image_File->setText( sd_file );
+	if( ! sd_file.isEmpty() )
+		ui.Edit_SD_Image_File->setText( sd_file );
 }
 
 void Main_Window::on_TB_PFlash_File_Browse_clicked()
@@ -6270,7 +6267,8 @@ void Main_Window::on_TB_PFlash_File_Browse_clicked()
 													   Get_Last_Dir_Path(ui.Edit_PFlash_File->text()),
 													   tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (flash_file.isNull() || flash_file.isEmpty()) ) ui.Edit_PFlash_File->setText( flash_file );
+	if( ! flash_file.isEmpty() )
+		ui.Edit_PFlash_File->setText( flash_file );
 }
 
 QString Main_Window::Copy_VM_Hard_Drive( const QString &vm_name, const QString &hd_name, const VM_HDD &hd )

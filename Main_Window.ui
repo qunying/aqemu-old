@@ -1402,6 +1402,9 @@ Cluster Size: 0</string>
                </item>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDA_Advanced_Settings">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1595,6 +1598,9 @@ Cluster Size: 0</string>
                </item>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDB_Advanced_Settings">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1788,6 +1794,9 @@ Cluster Size: 0</string>
                </item>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDC_Advanced_Settings">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1981,6 +1990,9 @@ Cluster Size: 0</string>
                </item>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDD_Advanced_Settings">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                    <horstretch>0</horstretch>

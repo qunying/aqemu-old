@@ -65,7 +65,7 @@
     <value type="QString">CONFIG_PROTECT=/usr/share/X11/xkb /usr/share/config /usr/kde/3.5/share/config /usr/kde/3.5/env /usr/kde/3.5/shutdown</value>
     <value type="QString">CONFIG_PROTECT_MASK=/etc/gentoo-release /etc/sandbox.d /etc/env.d/java/ /etc/fonts/fonts.conf /etc/gconf /etc/terminfo /etc/ca-certificates.conf /etc/texmf/web2c /etc/texmf/language.dat.d /etc/texmf/language.def.d /etc/texmf/updmap.d /etc/revdep-rebuild /etc/splash</value>
     <value type="QString">CVS_RSH=ssh</value>
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-H6NE6uhJjH,guid=2fb67523692e1ca952185d8000000016</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-YigSUExDx8,guid=8f57b937081b0b2c07ede7ff0000001b</value>
     <value type="QString">DESKTOP_SESSION=kde-3.5</value>
     <value type="QString">DISPLAY=:0.0</value>
     <value type="QString">DM_CONTROL=/var/run/xdmctl</value>
@@ -106,7 +106,7 @@
     <value type="QString">QTDIR=/usr/qt/3</value>
     <value type="QString">ROOTPATH=/usr/kde/3.5/sbin:/usr/kde/3.5/bin:/usr/local/bin:/usr/bin:/bin:/opt/bin:/usr/x86_64-pc-linux-gnu/gcc-bin/4.3.4:/usr/qt/3/bin</value>
     <value type="QString">SANE_CONFIG_DIR=/etc/sane.d</value>
-    <value type="QString">SESSION_MANAGER=local/DroNiX:@/tmp/.ICE-unix/2287,unix/DroNiX:/tmp/.ICE-unix/2287</value>
+    <value type="QString">SESSION_MANAGER=local/DroNiX:@/tmp/.ICE-unix/2298,unix/DroNiX:/tmp/.ICE-unix/2298</value>
     <value type="QString">SHELL=/bin/bash</value>
     <value type="QString">SHLVL=2</value>
     <value type="QString">USER=andron</value>

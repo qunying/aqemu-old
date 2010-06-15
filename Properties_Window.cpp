@@ -80,12 +80,9 @@ void Properties_Window::Set_Floppy( const VM_Storage_Device &fd, const QString &
 	else
 	{
 		for( int d = 0; d < fd_list.count(); ++d )
-		{
 			ui.CB_FD_Devices->addItem( fd_list[d] );
-		}
 		
 		int fd0_ix = ui.CB_FD_Devices->findText( fd.Get_File_Name() );
-		
 		if( fd0_ix != -1 ) ui.CB_FD_Devices->setCurrentIndex( fd0_ix );
 	}
 	
@@ -120,12 +117,9 @@ void Properties_Window::Set_CD_ROM( const VM_Storage_Device &cd, const QString &
 		ui.CB_CDROM_Devices->clear();
 		
 		for( int d = 0; d < cd_list.count(); ++d )
-		{
 			ui.CB_CDROM_Devices->addItem( cd_list[d] );
-		}
 		
 		int cd_ix = ui.CB_CDROM_Devices->findText( cd.Get_File_Name() );
-		
 		if( cd_ix != -1 ) ui.CB_CDROM_Devices->setCurrentIndex( cd_ix );
 	}
 	
@@ -140,6 +134,7 @@ void Properties_Window::Set_HDD( const VM_HDD &hd, const QString &name )
 			 this, SLOT(Update_HDD(bool)) );
 	
 	ui.Label_Name->setText( ui.Label_Name->text() + name );
+	ui.Edit_HDD_Image_Path->setText( hd.Get_File_Name() );
 	
 	ui.GB_Floppy->setVisible( false );
 	ui.GB_CDROM->setVisible( false );

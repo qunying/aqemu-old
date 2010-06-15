@@ -163,7 +163,7 @@ class Main_Window: public QMainWindow
 		void on_Redirections_List_cellClicked( int row, int column );
 		void on_Button_Add_Redirections_clicked();
 		void on_Button_Delete_Redirections_clicked();
-		void on_Button_Apply_Redirections_clicked();
+		void Update_Current_Redirection_Item();
 		void on_Button_Clear_Redirections_clicked();
 		
 		void on_TB_Browse_SMB_clicked();
