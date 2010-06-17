@@ -5689,7 +5689,8 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						
 					case VM::Net_Mode_Tuntapfd:
 						Args << "-net" << QString( "tap,vlan=" + QString::number(Network_Cards[nc].Get_VLAN()) +
-								",fd=" + QString::number(Network_Cards[nc].Get_File_Descriptor()) );
+												   ((Network_Cards[nc].Get_File_Descriptor() > 0) ? ",fd=" + QString::number(Network_Cards[nc].Get_File_Descriptor()) : "") +
+												   ((Network_Cards[nc].Get_Interface_Name().isEmpty() == false) ? ",ifname=" + Network_Cards[nc].Get_Interface_Name() : "") );
 						break;
 						
 					case VM::Net_Mode_Tcplisten:
@@ -5944,37 +5945,37 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 			// Add usb
 			for( int ux = 0; ux < USB_Ports.count(); ux++ )
 			{
-				// Compare VM USB device and Host USB Device
-				// Find device by Vendor and Product ID's
-				bool usb_cmpr = false;
-				VM_USB current_USB_Device;
-				
-				for( int ix = 0; ix < all_usb.count(); ix++ )
-				{
-					if( all_usb[ix].Get_Vendor_ID() == USB_Ports[ux].Get_Vendor_ID() &&
-						all_usb[ix].Get_Product_ID() == USB_Ports[ux].Get_Product_ID() &&
-						all_usb[ix].Get_Serial_Number() == USB_Ports[ux].Get_Serial_Number() )
-					{
-						usb_cmpr = true;
-						current_USB_Device = all_usb[ ix ];
-						all_usb.removeAt( ix );
-						break;
-					}
-				}
-				
-				// Error! Not Found
-				if( Build_QEMU_Args_for_Tab_Info == false && usb_cmpr == false )
-				{
-					AQGraphic_Warning( tr("Warning!"), tr("USB Device %1 %2 (%3 %4) Not Found!").arg(USB_Ports[ux].Get_Manufacturer_Name())
-																								.arg(USB_Ports[ux].Get_Product_Name())
-																								.arg(USB_Ports[ux].Get_Vendor_ID())
-																								.arg(USB_Ports[ux].Get_Product_ID()) );
-					
-					continue;
-				}
-				
 				if( USB_Ports[ux].Get_Use_Host_Device() )
 				{
+					// Compare VM USB device and Host USB Device
+					// Find device by Vendor and Product ID's
+					bool usb_cmpr = false;
+					VM_USB current_USB_Device;
+					
+					for( int ix = 0; ix < all_usb.count(); ix++ )
+					{
+						if( all_usb[ix].Get_Vendor_ID() == USB_Ports[ux].Get_Vendor_ID() &&
+							all_usb[ix].Get_Product_ID() == USB_Ports[ux].Get_Product_ID() &&
+							all_usb[ix].Get_Serial_Number() == USB_Ports[ux].Get_Serial_Number() )
+						{
+							usb_cmpr = true;
+							current_USB_Device = all_usb[ ix ];
+							all_usb.removeAt( ix );
+							break;
+						}
+					}
+					
+					// Error! Not Found
+					if( Build_QEMU_Args_for_Tab_Info == false && usb_cmpr == false )
+					{
+						AQGraphic_Warning( tr("Warning!"), tr("USB Device %1 %2 (%3 %4) Not Found!").arg(USB_Ports[ux].Get_Manufacturer_Name())
+																									.arg(USB_Ports[ux].Get_Product_Name())
+																									.arg(USB_Ports[ux].Get_Vendor_ID())
+																									.arg(USB_Ports[ux].Get_Product_ID()) );
+						
+						continue;
+					}
+					
 					Args << "-usbdevice" << "host:" + current_USB_Device.Get_BusAddr();
 				}
 				else

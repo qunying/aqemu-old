@@ -159,6 +159,63 @@ void Network_Widget::Set_Network_Card_Models( const QList<Device_Map> &models )
 	}
 }
 
+void Network_Widget::Set_Devices( const Averable_Devices &devices )
+{
+	// Set network cards models
+	if( ui.CB_model->count() > 0 ) ui.CB_model->clear();
+	if( Card_Models_QEMU_Name.count() > 0 ) Card_Models_QEMU_Name.clear();
+	
+	for( int ix = 0; ix < devices.Network_Card_List.count(); ix++ )
+	{
+		ui.CB_model->addItem( devices.Network_Card_List[ix].Caption );
+		Card_Models_QEMU_Name << devices.Network_Card_List[ix].QEMU_Name;
+	}
+	
+	// Set types
+	ui.CB_Network_Type->addItem( "nic" );
+	ui.CB_Network_Type->addItem( "user" );
+	ui.CB_Network_Type->addItem( "channel" );
+	ui.CB_Network_Type->addItem( "tap" );
+	ui.CB_Network_Type->addItem( "socket" );
+	ui.CB_Network_Type->addItem( "multicast socket" );
+	
+	if( devices.PSO_Net_type_vde ) ui.CB_Network_Type->addItem( "vde" );
+	if( devices.PSO_Net_type_dump ) ui.CB_Network_Type->addItem( "dump" );
+	
+	// Set PSO
+	PSO_Net_name = devices.PSO_Net_name;
+	PSO_Net_addr = devices.PSO_Net_addr;
+	PSO_Net_vectors = devices.PSO_Net_vectors;
+	
+	PSO_Net_net = devices.PSO_Net_net;
+	PSO_Net_host = devices.PSO_Net_host;
+	PSO_Net_restrict = devices.PSO_Net_restrict;
+	PSO_Net_dhcpstart = devices.PSO_Net_dhcpstart;
+	PSO_Net_dns = devices.PSO_Net_dns;
+	PSO_Net_tftp = devices.PSO_Net_tftp;
+	PSO_Net_bootfile = devices.PSO_Net_bootfile;
+	PSO_Net_smb = devices.PSO_Net_smb;
+	PSO_Net_hostfwd = devices.PSO_Net_hostfwd;
+	PSO_Net_guestfwd = devices.PSO_Net_guestfwd;
+	
+	PSO_Net_ifname = devices.PSO_Net_ifname;
+	PSO_Net_script = devices.PSO_Net_script;
+	PSO_Net_downscript = devices.PSO_Net_downscript;
+	
+	PSO_Net_listen = devices.PSO_Net_listen;
+	PSO_Net_connect = devices.PSO_Net_connect;
+	
+	PSO_Net_mcast = devices.PSO_Net_mcast;
+	
+	PSO_Net_sock = devices.PSO_Net_sock;
+	PSO_Net_port = devices.PSO_Net_port;
+	PSO_Net_group = devices.PSO_Net_group;
+	PSO_Net_mode = devices.PSO_Net_mode;
+	
+	PSO_Net_file = devices.PSO_Net_file;
+	PSO_Net_len = devices.PSO_Net_len;
+}
+
 void Network_Widget::Set_Enabled( bool on )
 {
 	ui.Label_Items_List->setEnabled( on );
@@ -484,42 +541,42 @@ void Network_Widget::on_Items_List_currentItemChanged( QListWidgetItem *current,
 
 void Network_Widget::on_TB_Help_clicked()
 {
-	switch( ui.CB_Network_Type->currentIndex() )
+	// -net nic[,vlan=n][,macaddr=addr][,model=type][,name=name]
+	if( ui.CB_Network_Type->currentText() == "nic" )
+		QMessageBox::information( this, tr("nic"), tr("-net nic[,vlan=n][,macaddr=addr][,model=type][,name=name] \nCreate a new Network Interface Card and connect it to VLAN n (n = 0 is the default). The NIC is an ne2k_pci by default on the PC target. Optionally, the MAC address can be changed to addr and a name can be assigned for use in monitor commands. If no \'-net\' option is specified, a single NIC is created. Qemu can emulate several different models of network card. Valid values for type are i82551, i82557b, i82559er, ne2k_pci, ne2k_isa, pcnet, rtl8139, e1000, smc91c111, lance and mcf_fec. Not all devices are supported on all targets. Use -net nic,model=? for a list of available devices for your target.") );
+	
+	// -net user[,vlan=n][,hostname=name][,name=name]
+	else if( ui.CB_Network_Type->currentText() == "user" )
+		QMessageBox::information( this, tr("user"), tr("-net user[,vlan=n][,hostname=name][,name=name] \nUse the user mode network stack which requires no administrator privilege to run. \'hostname=name\' can be used to specify the client hostname reported by the builtin DHCP server.") );
+	
+	// -net channel,port:dev
+	else if( ui.CB_Network_Type->currentText() == "channel" )
+		QMessageBox::information( this, tr("channel"), tr("-net channel,port:dev \nForward \'user\' TCP connection to port port to character device dev") );
+	
+	// -net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile]
+	else if( ui.CB_Network_Type->currentText() == "tap" )
+		QMessageBox::information( this, tr("tap"), tr("-net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile] \nConnect the host TAP network interface name to VLAN n, use the network script file to configure it and the network script dfile to deconfigure it. If name is not provided, the OS automatically provides one. \'fd\'=h can be used to specify the handle of an already opened host TAP interface. The default network configure script is \'/etc/qemu-ifup\' and the default network deconfigure script is \'/etc/qemu-ifdown\'. Use \'script=no\' or \'downscript=no\' to disable script execution.") );
+	
+	// -net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port]
+	else if( ui.CB_Network_Type->currentText() == "socket" )
+		QMessageBox::information( this, tr("socket"), tr("-net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port] \nConnect the VLAN n to a remote VLAN in another QEMU virtual machine using a TCP socket connection. If \'listen\' is specified, QEMU waits for incoming connections on port (host is optional). \'connect\' is used to connect to another QEMU instance using the \'listen\' option. \'fd\'=h specifies an already opened TCP socket.") );
+	
+	// -net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port]
+	else if( ui.CB_Network_Type->currentText() == "multicast socket" )
+		QMessageBox::information( this, tr("socket"), tr("-net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port] \nCreate a VLAN n shared with another QEMU virtual machines using a UDP multicast socket, effectively making a bus for every QEMU with same multicast address maddr and port. \nNOTES: \n1. Several QEMU can be running on different hosts and share same bus (assuming correct multicast setup for these hosts). \n2. mcast support is compatible with User Mode Linux (argument \'ethN=mcast\'), see http://user-mode-linux.sf.net. \n3. Use \'fd=h\' to specify an already opened UDP multicast socket.") );
+	
+	// -net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
+	else if( ui.CB_Network_Type->currentText() == "vde" )
+		QMessageBox::information( this, tr("vde"), tr("-net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode] \nConnect VLAN n to PORT n of a vde switch running on host and listening for incoming connections on socketpath. Use GROUP groupname and MODE octalmode to change default ownership and permissions for communication port. This option is available only if QEMU has been compiled with vde support enabled.") );
+	
+	// -net dump[,vlan=n][,file=file][,len=len]
+	else if( ui.CB_Network_Type->currentText() == "dump" )
+		QMessageBox::information( this, tr("dump"), tr("-net dump[,vlan=n][,file=f][,len=n] \ndump traffic on vlan \'n\' to file \'f\' (max n bytes per packet)") );
+	
+	else
 	{
-		case 0: // -net nic[,vlan=n][,macaddr=addr][,model=type][,name=name]
-			QMessageBox::information( this, tr("nic"), tr("-net nic[,vlan=n][,macaddr=addr][,model=type][,name=name] \nCreate a new Network Interface Card and connect it to VLAN n (n = 0 is the default). The NIC is an ne2k_pci by default on the PC target. Optionally, the MAC address can be changed to addr and a name can be assigned for use in monitor commands. If no \'-net\' option is specified, a single NIC is created. Qemu can emulate several different models of network card. Valid values for type are i82551, i82557b, i82559er, ne2k_pci, ne2k_isa, pcnet, rtl8139, e1000, smc91c111, lance and mcf_fec. Not all devices are supported on all targets. Use -net nic,model=? for a list of available devices for your target.") );
-			break;
-			
-		case 1: // -net user[,vlan=n][,hostname=name][,name=name]
-			QMessageBox::information( this, tr("user"), tr("-net user[,vlan=n][,hostname=name][,name=name] \nUse the user mode network stack which requires no administrator privilege to run. \'hostname=name\' can be used to specify the client hostname reported by the builtin DHCP server.") );
-			break;
-			
-		case 2: // -net channel,port:dev
-			QMessageBox::information( this, tr("channel"), tr("-net channel,port:dev \nForward \'user\' TCP connection to port port to character device dev") );
-			break;
-			
-		case 3: // -net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile]
-			QMessageBox::information( this, tr("tap"), tr("-net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile] \nConnect the host TAP network interface name to VLAN n, use the network script file to configure it and the network script dfile to deconfigure it. If name is not provided, the OS automatically provides one. \'fd\'=h can be used to specify the handle of an already opened host TAP interface. The default network configure script is \'/etc/qemu-ifup\' and the default network deconfigure script is \'/etc/qemu-ifdown\'. Use \'script=no\' or \'downscript=no\' to disable script execution.") );
-			break;
-			
-		case 4: // -net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port]
-			QMessageBox::information( this, tr("socket"), tr("-net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port] \nConnect the VLAN n to a remote VLAN in another QEMU virtual machine using a TCP socket connection. If \'listen\' is specified, QEMU waits for incoming connections on port (host is optional). \'connect\' is used to connect to another QEMU instance using the \'listen\' option. \'fd\'=h specifies an already opened TCP socket.") );
-			break;
-			
-		case 5: // -net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port]
-			QMessageBox::information( this, tr("socket"), tr("-net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port] \nCreate a VLAN n shared with another QEMU virtual machines using a UDP multicast socket, effectively making a bus for every QEMU with same multicast address maddr and port. \nNOTES: \n1. Several QEMU can be running on different hosts and share same bus (assuming correct multicast setup for these hosts). \n2. mcast support is compatible with User Mode Linux (argument \'ethN=mcast\'), see http://user-mode-linux.sf.net. \n3. Use \'fd=h\' to specify an already opened UDP multicast socket.") );
-			break;
-			
-		case 6: // -net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
-			QMessageBox::information( this, tr("vde"), tr("-net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode] \nConnect VLAN n to PORT n of a vde switch running on host and listening for incoming connections on socketpath. Use GROUP groupname and MODE octalmode to change default ownership and permissions for communication port. This option is available only if QEMU has been compiled with vde support enabled.") );
-			break;
-			
-		case 7: // -net dump[,vlan=n][,file=file][,len=len]
-			QMessageBox::information( this, tr("dump"), tr("-net dump[,vlan=n][,file=f][,len=n] \ndump traffic on vlan \'n\' to file \'f\' (max n bytes per packet)") );
-			break;
-			
-		default:
-			break;
+		AQError( "void Network_Widget::on_TB_Help_clicked()",
+				 "Invalid connection type! Data: " + ui.CB_Network_Type->currentText() );
 	}
 }
 
@@ -608,126 +665,368 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 	ui.CH_len->setVisible( false );
 	ui.CB_len->setVisible( false );
 	
-	switch( index )
+	ui.CH_addr->setVisible( false );
+	ui.Edit_addr->setVisible( false );
+	
+	ui.CH_vectors->setVisible( false );
+	ui.SB_vectors->setVisible( false );
+	
+	ui.CH_net->setVisible( false );
+	ui.Edit_net->setVisible( false );
+	
+	ui.CH_host->setVisible( false );
+	ui.Edit_host->setVisible( false );
+	
+	ui.CH_restrict->setVisible( false );
+	ui.CB_restrict->setVisible( false );
+	
+	ui.CH_dhcpstart->setVisible( false );
+	ui.Edit_dhcpstart->setVisible( false );
+	
+	ui.CH_dns->setVisible( false );
+	ui.Edit_dns->setVisible( false );
+	
+	ui.CH_tftp->setVisible( false );
+	ui.Edit_tftp->setVisible( false );
+	
+	ui.CH_bootfile->setVisible( false );
+	ui.Edit_bootfile->setVisible( false );
+	ui.TB_Browse_bootfile->setVisible( false );
+	
+	ui.CH_smb->setVisible( false );
+	ui.Edit_smb->setVisible( false );
+	ui.CH_smbserver->setVisible( false );
+	ui.Edit_smbserver->setVisible( false );
+	
+	// -net nic[,vlan=n][,macaddr=addr][,model=type][,name=name]
+	if( ui.CB_Network_Type->currentText() == "nic" )
 	{
-		case 0: // -net nic[,vlan=n][,macaddr=addr][,model=type][,name=name]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_macaddr->setVisible( true );
-			ui.Edit_macaddr->setVisible( true );
-			ui.TB_Generate_New_MAC->setVisible( true );
-			
-			ui.Label_model->setVisible( true );
-			ui.CB_model->setVisible( true );
-			
-			ui.CH_name->setVisible( true );
-			ui.Edit_name->setVisible( true );
-			break;
-			
-		case 1: // -net user[,vlan=n][,hostname=name][,name=name]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_hostname->setVisible( true );
-			ui.Edit_hostname->setVisible( true );
-			
-			ui.CH_name->setVisible( true );
-			ui.Edit_name->setVisible( true );
-			break;
-			
-		case 2: // -net channel,port:dev
-			ui.Label_port_dev->setVisible( true );
-			ui.Edit_port_dev->setVisible( true );
-			break;
-			
-		case 3: // -net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_name->setVisible( true );
-			ui.Edit_name->setVisible( true );
-			
-			ui.CH_fd->setVisible( true );
-			ui.SB_fd->setVisible( true );
-			
-			ui.CH_ifname->setVisible( true );
-			ui.Edit_ifname->setVisible( true );
-			
-			ui.CH_script->setVisible( true );
-			ui.Edit_script->setVisible( true );
-			ui.TB_Browse_script->setVisible( true );
-			
-			ui.CH_downscript->setVisible( true );
-			ui.Edit_downscript->setVisible( true );
-			ui.TB_Browse_downscript->setVisible( true );
-			break;
-			
-		case 4: // -net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_name->setVisible( true );
-			ui.Edit_name->setVisible( true );
-			
-			ui.CH_fd->setVisible( true );
-			ui.SB_fd->setVisible( true );
-			
-			ui.CH_listen->setVisible( true );
-			ui.Edit_listen->setVisible( true );
-			
-			ui.CH_connect->setVisible( true );
-			ui.Edit_connect->setVisible( true );
-			break;
-			
-		case 5: // -net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_name->setVisible( true );
-			ui.Edit_name->setVisible( true );
-			
-			ui.CH_fd->setVisible( true );
-			ui.SB_fd->setVisible( true );
-			
-			ui.CH_mcast->setVisible( true );
-			ui.Edit_mcast->setVisible( true );
-			break;
-			
-		case 6: // -net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_name->setVisible( true );
-			ui.Edit_name->setVisible( true );
-			
-			ui.CH_sock->setVisible( true );
-			ui.Edit_sock->setVisible( true );
-			
-			ui.CH_port->setVisible( true );
-			ui.SB_port->setVisible( true );
-			
-			ui.CH_group->setVisible( true );
-			ui.Edit_group->setVisible( true );
-			
-			ui.CH_mode->setVisible( true );
-			ui.Edit_mode->setVisible( true );
-			break;
-			
-		case 7: // -net dump[,vlan=n][,file=file][,len=len]
-			ui.CH_vlan->setVisible( true );
-			ui.SB_vlan->setVisible( true );
-			
-			ui.CH_file->setVisible( true );
-			ui.Edit_file->setVisible( true );
-			
-			ui.CH_len->setVisible( true );
-			ui.CB_len->setVisible( true );
-			break;
-			
-		default:
-			break;
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_macaddr->setVisible( true );
+		ui.Edit_macaddr->setVisible( true );
+		ui.TB_Generate_New_MAC->setVisible( true );
+		
+		ui.Label_model->setVisible( true );
+		ui.CB_model->setVisible( true );
+		
+		ui.CH_name->setVisible( true );
+		ui.Edit_name->setVisible( true );
+		
+		ui.CH_addr->setVisible( true );
+		ui.Edit_addr->setVisible( true );
+		
+		ui.CH_vectors->setVisible( true );
+		ui.SB_vectors->setVisible( true );
 	}
+	// -net user[,vlan=n][,hostname=name][,name=name]
+	else if( ui.CB_Network_Type->currentText() == "user" )
+	{
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_hostname->setVisible( true );
+		ui.Edit_hostname->setVisible( true );
+		
+		ui.CH_name->setVisible( true );
+		ui.Edit_name->setVisible( true );
+		
+		ui.CH_net->setVisible( true );
+		ui.Edit_net->setVisible( true );
+		
+		ui.CH_host->setVisible( true );
+		ui.Edit_host->setVisible( true );
+		
+		ui.CH_restrict->setVisible( true );
+		ui.CB_restrict->setVisible( true );
+		
+		ui.CH_dhcpstart->setVisible( true );
+		ui.Edit_dhcpstart->setVisible( true );
+		
+		ui.CH_dns->setVisible( true );
+		ui.Edit_dns->setVisible( true );
+		
+		ui.CH_tftp->setVisible( true );
+		ui.Edit_tftp->setVisible( true );
+		
+		ui.CH_bootfile->setVisible( true );
+		ui.Edit_bootfile->setVisible( true );
+		ui.TB_Browse_bootfile->setVisible( true );
+		
+		ui.CH_smb->setVisible( true );
+		ui.Edit_smb->setVisible( true );
+		ui.CH_smbserver->setVisible( true );
+		ui.Edit_smbserver->setVisible( true );
+	}
+	// -net channel,port:dev
+	else if( ui.CB_Network_Type->currentText() == "channel" )
+	{
+		ui.Label_port_dev->setVisible( true );
+		ui.Edit_port_dev->setVisible( true );
+	}
+	// -net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile]
+	else if( ui.CB_Network_Type->currentText() == "tap" )
+	{
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_name->setVisible( true );
+		ui.Edit_name->setVisible( true );
+		
+		ui.CH_fd->setVisible( true );
+		ui.SB_fd->setVisible( true );
+		
+		ui.CH_ifname->setVisible( true );
+		ui.Edit_ifname->setVisible( true );
+		
+		ui.CH_script->setVisible( true );
+		ui.Edit_script->setVisible( true );
+		ui.TB_Browse_script->setVisible( true );
+		
+		ui.CH_downscript->setVisible( true );
+		ui.Edit_downscript->setVisible( true );
+		ui.TB_Browse_downscript->setVisible( true );
+	}
+	// -net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port]
+	else if( ui.CB_Network_Type->currentText() == "socket" )
+	{
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_name->setVisible( true );
+		ui.Edit_name->setVisible( true );
+		
+		ui.CH_fd->setVisible( true );
+		ui.SB_fd->setVisible( true );
+		
+		ui.CH_listen->setVisible( true );
+		ui.Edit_listen->setVisible( true );
+		
+		ui.CH_connect->setVisible( true );
+		ui.Edit_connect->setVisible( true );
+	}
+	// -net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port]
+	else if( ui.CB_Network_Type->currentText() == "multicast socket" )
+	{
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_name->setVisible( true );
+		ui.Edit_name->setVisible( true );
+		
+		ui.CH_fd->setVisible( true );
+		ui.SB_fd->setVisible( true );
+		
+		ui.CH_mcast->setVisible( true );
+		ui.Edit_mcast->setVisible( true );
+	}
+	// -net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
+	else if( ui.CB_Network_Type->currentText() == "vde" )
+	{
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_name->setVisible( true );
+		ui.Edit_name->setVisible( true );
+		
+		ui.CH_sock->setVisible( true );
+		ui.Edit_sock->setVisible( true );
+		
+		ui.CH_port->setVisible( true );
+		ui.SB_port->setVisible( true );
+		
+		ui.CH_group->setVisible( true );
+		ui.Edit_group->setVisible( true );
+		
+		ui.CH_mode->setVisible( true );
+		ui.Edit_mode->setVisible( true );
+	}
+	// -net dump[,vlan=n][,file=file][,len=len]
+	else if( ui.CB_Network_Type->currentText() == "dump" )
+	{
+		ui.CH_vlan->setVisible( true );
+		ui.SB_vlan->setVisible( true );
+		
+		ui.CH_file->setVisible( true );
+		ui.Edit_file->setVisible( true );
+		
+		ui.CH_len->setVisible( true );
+		ui.CB_len->setVisible( true );
+	}
+	else
+	{
+		AQError( "void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )",
+				 "Invalid connection type! Data: " + ui.CB_Network_Type->currentText() );
+	}
+	
+	// Set PSO
+	if( ! PSO_Net_name )
+	{
+		ui.CH_name->setVisible( false );
+		ui.Edit_name->setVisible( false );
+	}
+	
+	if( ! PSO_Net_addr )
+	{
+		ui.CH_addr->setVisible( false );
+		ui.Edit_addr->setVisible( false );
+	}
+	
+	if( ! PSO_Net_vectors )
+	{
+		ui.CH_vectors->setVisible( false );
+		ui.SB_vectors->setVisible( false );
+	}
+	
+	if( ! PSO_Net_net )
+	{
+		ui.CH_net->setVisible( false );
+		ui.Edit_net->setVisible( false );
+	}
+	
+	if( ! PSO_Net_host )
+	{
+		ui.CH_host->setVisible( false );
+		ui.Edit_host->setVisible( false );
+	}
+	
+	if( ! PSO_Net_restrict )
+	{
+		ui.CH_restrict->setVisible( false );
+		ui.CB_restrict->setVisible( false );
+	}
+	
+	if( ! PSO_Net_dhcpstart )
+	{
+		ui.CH_dhcpstart->setVisible( false );
+		ui.Edit_dhcpstart->setVisible( false );
+	}
+	
+	if( ! PSO_Net_dns )
+	{
+		ui.CH_dns->setVisible( false );
+		ui.Edit_dns->setVisible( false );
+	}
+	
+	if( ! PSO_Net_tftp )
+	{
+		ui.CH_tftp->setVisible( false );
+		ui.Edit_tftp->setVisible( false );
+	}
+	
+	if( ! PSO_Net_bootfile )
+	{
+		ui.CH_bootfile->setVisible( false );
+		ui.Edit_bootfile->setVisible( false );
+		ui.TB_Browse_bootfile->setVisible( false );
+	}
+	
+	if( ! PSO_Net_smb )
+	{
+		ui.CH_smb->setVisible( false );
+		ui.Edit_smb->setVisible( false );
+		ui.CH_smbserver->setVisible( false );
+		ui.Edit_smbserver->setVisible( false );
+	}
+	
+	if( ! PSO_Net_ifname )
+	{
+		ui.CH_ifname->setVisible( false );
+		ui.Edit_ifname->setVisible( false );
+	}
+	
+	if( ! PSO_Net_script )
+	{
+		ui.CH_script->setVisible( false );
+		ui.Edit_script->setVisible( false );
+		ui.TB_Browse_script->setVisible( false );
+	}
+	
+	if( ! PSO_Net_downscript )
+	{
+		ui.CH_downscript->setVisible( false );
+		ui.Edit_downscript->setVisible( false );
+		ui.TB_Browse_downscript->setVisible( false );
+	}
+	
+	if( ! PSO_Net_listen )
+	{
+		ui.CH_listen->setVisible( false );
+		ui.Edit_listen->setVisible( false );
+	}
+	
+	if( ! PSO_Net_connect )
+	{
+		ui.CH_connect->setVisible( false );
+		ui.Edit_connect->setVisible( false );
+	}
+	
+	if( ! PSO_Net_mcast )
+	{
+		ui.CH_mcast->setVisible( false );
+		ui.Edit_mcast->setVisible( false );
+	}
+	
+	if( ! PSO_Net_sock )
+	{
+		ui.CH_sock->setVisible( false );
+		ui.Edit_sock->setVisible( false );
+	}
+	
+	if( ! PSO_Net_port )
+	{
+		ui.CH_port->setVisible( false );
+		ui.SB_port->setVisible( false );
+	}
+	
+	if( ! PSO_Net_group )
+	{
+		ui.CH_group->setVisible( false );
+		ui.Edit_group->setVisible( false );
+	}
+	
+	if( ! PSO_Net_mode )
+	{
+		ui.CH_mode->setVisible( false );
+		ui.Edit_mode->setVisible( false );
+	}
+	
+	if( ! PSO_Net_file )
+	{
+		ui.CH_file->setVisible( false );
+		ui.Edit_file->setVisible( false );
+	}
+	
+	if( ! PSO_Net_len )
+	{
+		ui.CH_len->setVisible( false );
+		ui.CB_len->setVisible( false );
+	}
+	
+	
+	/* FIXME
+	if( ! PSO_Net_hostfwd )
+	if( ! PSO_Net_guestfwd )
+	
+	ui.CH_vlan->setVisible( false );
+	ui.SB_vlan->setVisible( false );
+	
+	ui.CH_macaddr->setVisible( false );
+	ui.Edit_macaddr->setVisible( false );
+	ui.TB_Generate_New_MAC->setVisible( false );
+	
+	ui.Label_model->setVisible( false );
+	ui.CB_model->setVisible( false );
+	
+	ui.CH_hostname->setVisible( false );
+	ui.Edit_hostname->setVisible( false );
+	
+	ui.Label_port_dev->setVisible( false );
+	ui.Edit_port_dev->setVisible( false );
+	
+	ui.CH_fd->setVisible( false );
+	ui.SB_fd->setVisible( false );*/
 }
 
 void Network_Widget::on_TB_Generate_New_MAC_clicked()

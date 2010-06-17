@@ -37,6 +37,7 @@ class Network_Widget: public QWidget
 		void Set_Network_Cards( const QList<VM_Net_Card_Nativ> &cards );
 		
 		void Set_Network_Card_Models( const QList<Device_Map> &models );
+		void Set_Devices( const Averable_Devices &devices );
 		
 		void Set_Enabled( bool on );
 		
@@ -73,6 +74,38 @@ class Network_Widget: public QWidget
 		QList<VM_Net_Card_Nativ> Network_Cards;
 		QStringList Card_Models_QEMU_Name;
 		int nic, user, chanel, tap, socket, multi, vde, dump;
+		
+		bool PSO_Net_name;
+		bool PSO_Net_addr;
+		bool PSO_Net_vectors;
+		
+		bool PSO_Net_net;
+		bool PSO_Net_host;
+		bool PSO_Net_restrict;
+		bool PSO_Net_dhcpstart;
+		bool PSO_Net_dns;
+		bool PSO_Net_tftp;
+		bool PSO_Net_bootfile;
+		bool PSO_Net_smb;
+		bool PSO_Net_hostfwd;
+		bool PSO_Net_guestfwd;
+		
+		bool PSO_Net_ifname;
+		bool PSO_Net_script;
+		bool PSO_Net_downscript;
+		
+		bool PSO_Net_listen;
+		bool PSO_Net_connect;
+		
+		bool PSO_Net_mcast;
+		
+		bool PSO_Net_sock;
+		bool PSO_Net_port;
+		bool PSO_Net_group;
+		bool PSO_Net_mode;
+		
+		bool PSO_Net_file;
+		bool PSO_Net_len;
 };
 
 #endif

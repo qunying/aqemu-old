@@ -1411,6 +1411,9 @@ Cluster Size: 0</string>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="toolTip">
+                  <string>Incomplete function</string>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -1606,6 +1609,9 @@ Cluster Size: 0</string>
                    <horstretch>0</horstretch>
                    <verstretch>0</verstretch>
                   </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>Incomplete function</string>
                  </property>
                  <property name="text">
                   <string>All settings</string>
@@ -1803,6 +1809,9 @@ Cluster Size: 0</string>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="toolTip">
+                  <string>Incomplete function</string>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -1999,6 +2008,9 @@ Cluster Size: 0</string>
                    <verstretch>0</verstretch>
                   </sizepolicy>
                  </property>
+                 <property name="toolTip">
+                  <string>Incomplete function</string>
+                 </property>
                  <property name="text">
                   <string>All settings</string>
                  </property>
@@ -2116,6 +2128,9 @@ Cluster Size: 0</string>
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Incomplete function</string>
+                  </property>
                   <property name="text">
                    <string>All settings</string>
                   </property>
@@ -2230,6 +2245,9 @@ Cluster Size: 0</string>
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
+                  <property name="toolTip">
+                   <string>Incomplete function</string>
+                  </property>
                   <property name="text">
                    <string>All settings</string>
                   </property>
@@ -2343,6 +2361,9 @@ Cluster Size: 0</string>
                  <widget class="QToolButton" name="TB_FD1_Advanced_Settings">
                   <property name="enabled">
                    <bool>false</bool>
+                  </property>
+                  <property name="toolTip">
+                   <string>Incomplete function</string>
                   </property>
                   <property name="text">
                    <string>All settings</string>
@@ -4601,12 +4622,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>140</y>
+     <x>226</x>
+     <y>138</y>
     </hint>
    </hints>
   </connection>
@@ -4617,12 +4638,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>143</y>
+     <x>226</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>
@@ -4633,12 +4654,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>145</y>
+     <x>226</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4649,12 +4670,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>148</y>
+     <x>226</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -4665,12 +4686,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>151</y>
+     <x>226</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
@@ -4681,12 +4702,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>229</x>
-     <y>153</y>
+     <x>226</x>
+     <y>151</y>
     </hint>
    </hints>
   </connection>
@@ -4697,12 +4718,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>261</x>
-     <y>143</y>
+     <x>258</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>
@@ -4713,12 +4734,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>229</x>
-     <y>137</y>
+     <x>226</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>261</x>
-     <y>148</y>
+     <x>258</x>
+     <y>146</y>
     </hint>
    </hints>
   </connection>
@@ -4729,12 +4750,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4745,12 +4766,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4761,12 +4782,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4777,12 +4798,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4793,12 +4814,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4809,12 +4830,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4825,12 +4846,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4841,12 +4862,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>171</y>
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
@@ -4857,12 +4878,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>137</y>
+     <x>265</x>
+     <y>135</y>
     </hint>
     <hint type="destinationlabel">
-     <x>268</x>
-     <y>141</y>
+     <x>265</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -4873,12 +4894,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>513</x>
-     <y>344</y>
+     <x>284</x>
+     <y>341</y>
     </hint>
     <hint type="destinationlabel">
-     <x>703</x>
-     <y>344</y>
+     <x>635</x>
+     <y>341</y>
     </hint>
    </hints>
   </connection>
@@ -4889,12 +4910,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>153</y>
+     <x>265</x>
+     <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>186</y>
+     <x>281</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -4905,12 +4926,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>153</y>
+     <x>265</x>
+     <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>186</y>
+     <x>281</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -4921,12 +4942,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>153</y>
+     <x>265</x>
+     <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>186</y>
+     <x>281</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -4937,12 +4958,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>153</y>
+     <x>265</x>
+     <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>186</y>
+     <x>281</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -4953,12 +4974,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>153</y>
+     <x>265</x>
+     <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>186</y>
+     <x>281</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -4969,12 +4990,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>268</x>
-     <y>153</y>
+     <x>265</x>
+     <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>186</y>
+     <x>281</x>
+     <y>158</y>
     </hint>
    </hints>
   </connection>
@@ -4985,12 +5006,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>342</x>
-     <y>312</y>
+     <x>284</x>
+     <y>309</y>
     </hint>
     <hint type="destinationlabel">
-     <x>405</x>
-     <y>312</y>
+     <x>402</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
@@ -5001,12 +5022,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>342</x>
-     <y>312</y>
+     <x>284</x>
+     <y>309</y>
     </hint>
     <hint type="destinationlabel">
-     <x>429</x>
-     <y>313</y>
+     <x>426</x>
+     <y>310</y>
     </hint>
    </hints>
   </connection>
@@ -5017,12 +5038,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>287</x>
-     <y>184</y>
+     <x>283</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>402</x>
-     <y>419</y>
+     <x>265</x>
+     <y>359</y>
     </hint>
    </hints>
   </connection>
@@ -5033,12 +5054,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>672</x>
-     <y>509</y>
+     <x>272</x>
+     <y>513</y>
     </hint>
     <hint type="destinationlabel">
-     <x>672</x>
-     <y>538</y>
+     <x>272</x>
+     <y>539</y>
     </hint>
    </hints>
   </connection>
@@ -5049,12 +5070,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5065,12 +5086,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5081,12 +5102,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5097,12 +5118,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5113,12 +5134,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5129,12 +5150,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5145,12 +5166,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5161,12 +5182,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>167</y>
+     <x>281</x>
+     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5181,8 +5202,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>119</y>
     </hint>
     <hint type="destinationlabel">
-     <x>373</x>
-     <y>152</y>
+     <x>538</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>
@@ -5197,8 +5218,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>121</y>
     </hint>
     <hint type="destinationlabel">
-     <x>714</x>
-     <y>153</y>
+     <x>711</x>
+     <y>150</y>
     </hint>
    </hints>
   </connection>
@@ -5219,22 +5240,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    </hints>
   </connection>
   <connection>
-   <sender>CH_CDROM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_CDROM_Advanced_Settings</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>245</x>
-     <y>119</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>713</x>
-     <y>183</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>CH_Floppy0</sender>
    <signal>toggled(bool)</signal>
    <receiver>CB_FD0_Devices</receiver>
@@ -5245,8 +5250,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>227</y>
     </hint>
     <hint type="destinationlabel">
-     <x>236</x>
-     <y>261</y>
+     <x>401</x>
+     <y>258</y>
     </hint>
    </hints>
   </connection>
@@ -5257,12 +5262,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>233</y>
+     <x>249</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>714</x>
-     <y>262</y>
+     <x>711</x>
+     <y>259</y>
     </hint>
    </hints>
   </connection>
@@ -5273,28 +5278,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>233</y>
+     <x>249</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
-     <x>304</x>
-     <y>292</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Floppy0</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_FD0_Advanced_Settings</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>252</x>
-     <y>233</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>713</x>
-     <y>292</y>
+     <x>301</x>
+     <y>289</y>
     </hint>
    </hints>
   </connection>
@@ -5305,12 +5294,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>342</y>
+     <x>249</x>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
-     <x>381</x>
-     <y>370</y>
+     <x>546</x>
+     <y>367</y>
     </hint>
    </hints>
   </connection>
@@ -5321,12 +5310,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>342</y>
+     <x>249</x>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
-     <x>714</x>
-     <y>371</y>
+     <x>711</x>
+     <y>368</y>
     </hint>
    </hints>
   </connection>
@@ -5337,28 +5326,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>252</x>
-     <y>342</y>
+     <x>249</x>
+     <y>339</y>
     </hint>
     <hint type="destinationlabel">
-     <x>304</x>
-     <y>401</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Floppy1</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_FD1_Advanced_Settings</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>252</x>
-     <y>342</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>713</x>
-     <y>401</y>
+     <x>301</x>
+     <y>398</y>
     </hint>
    </hints>
   </connection>
@@ -5369,12 +5342,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>214</x>
-     <y>177</y>
+     <x>284</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>355</x>
-     <y>207</y>
+     <x>284</x>
+     <y>204</y>
     </hint>
    </hints>
   </connection>
@@ -5385,12 +5358,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>398</x>
-     <y>181</y>
+     <x>284</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>370</x>
-     <y>233</y>
+     <x>284</x>
+     <y>230</y>
     </hint>
    </hints>
   </connection>
@@ -5401,12 +5374,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>228</x>
-     <y>174</y>
+     <x>284</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>383</x>
-     <y>259</y>
+     <x>284</x>
+     <y>256</y>
     </hint>
    </hints>
   </connection>
@@ -5417,12 +5390,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>231</x>
+     <x>284</x>
      <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>396</x>
-     <y>285</y>
+     <x>284</x>
+     <y>282</y>
     </hint>
    </hints>
   </connection>
@@ -5433,12 +5406,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>253</x>
-     <y>174</y>
+     <x>284</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>342</x>
-     <y>312</y>
+     <x>284</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
@@ -5449,12 +5422,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>310</x>
-     <y>195</y>
+     <x>284</x>
+     <y>204</y>
     </hint>
     <hint type="destinationlabel">
-     <x>405</x>
-     <y>312</y>
+     <x>402</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
@@ -5465,12 +5438,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>374</x>
-     <y>181</y>
+     <x>284</x>
+     <y>178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>429</x>
-     <y>313</y>
+     <x>426</x>
+     <y>310</y>
     </hint>
    </hints>
   </connection>
@@ -5485,8 +5458,8 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <y>116</y>
     </hint>
     <hint type="destinationlabel">
-     <x>509</x>
-     <y>112</y>
+     <x>499</x>
+     <y>121</y>
     </hint>
    </hints>
   </connection>
@@ -5497,12 +5470,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>287</x>
-     <y>184</y>
+     <x>283</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>654</x>
-     <y>317</y>
+     <x>636</x>
+     <y>188</y>
     </hint>
    </hints>
   </connection>
@@ -5513,12 +5486,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>214</x>
-     <y>176</y>
+     <x>283</x>
+     <y>181</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>261</y>
+     <x>390</x>
+     <y>218</y>
     </hint>
    </hints>
   </connection>

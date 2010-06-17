@@ -222,9 +222,7 @@ void Old_Network_Widget::on_Button_Add_Net_Card_clicked()
 		ui.Button_Delete_Net_Card->setEnabled( true );
 		
 		if( ui.Network_Cards_List->count() == 8 )
-		{
 			ui.Button_Add_Net_Card->setEnabled( false );
-		}
 		
 		emit Changet();
 	}
@@ -359,8 +357,8 @@ void Old_Network_Widget::on_CB_Connection_Mode_currentIndexChanged( int index )
 			ui.CH_TUN_TAP_Script->setEnabled( false );
 			ui.Edit_TUN_TAP_Script->setEnabled( false );
 			ui.TB_Browse_TUN_Script->setEnabled( false );
-			ui.Label_If_Name->setEnabled( false );
-			ui.Edit_Interface_Name->setEnabled( false );
+			ui.Label_If_Name->setEnabled( true );
+			ui.Edit_Interface_Name->setEnabled( true );
 			ui.Label_File_Descriptor->setEnabled( true );
 			ui.SB_File_Descriptor->setEnabled( true );
 			break;
@@ -692,11 +690,12 @@ bool Old_Network_Widget::Net_Card_is_Valid( int index )
 	{
 		if( Network_Cards[index].Get_Use_TUN_TAP_Script() == true &&
 		    Network_Cards[index].Get_TUN_TAP_Script().isEmpty() == false &&
+			Network_Cards[index].Get_TUN_TAP_Script() != "no" &&
 			QFile::exists(Network_Cards[index].Get_TUN_TAP_Script()) == false )
 		{
 			int retVal = QMessageBox::critical( this, tr("Error!"), tr("In Card ") + QString::number(index+1) +
-					tr(" TUN/TAP Script File \"%1\" Not Exists!\nContinue Without It File?").arg(Network_Cards[index].Get_TUN_TAP_Script()),
-					QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
+												tr(" TUN/TAP Script File \"%1\" Not Exists!\nContinue Without It File?").arg(Network_Cards[index].Get_TUN_TAP_Script()),
+												QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 			
 			if( retVal == QMessageBox::No ) return false;
 			else
@@ -704,9 +703,7 @@ bool Old_Network_Widget::Net_Card_is_Valid( int index )
 				Network_Cards[index].Set_Use_TUN_TAP_Script( false );
 				
 				if( index == ui.Network_Cards_List->currentRow() )
-				{
 					ui.CH_TUN_TAP_Script->setChecked( false );
-				}
 			}
 		}
 	}

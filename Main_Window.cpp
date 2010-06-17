@@ -1749,7 +1749,7 @@ void Main_Window::Update_VM_Ui()
 	ui.CH_No_Use_Embedded_Display->setChecked( tmp_vm->Use_No_Use_Embedded_Display() );
 	
 	Update_Info_Text();
-	//Update_Disabled_Controls();
+	//Update_Disabled_Controls(); // FIXME
 	
 	// For VM Changes Signals
 	ui.Button_Apply->setEnabled( false );
@@ -3126,9 +3126,12 @@ void Main_Window::Update_Disabled_Controls()
 	//if( curComp.PSO_Bootp )
 	//else 
 	
+	New_Network_Settings_Widget->Set_Devices( curComp );
 	// Nativ mode network
 	if( ui.RB_Network_Mode_New->isChecked() )
-	{/*
+	{
+		
+		/*
 		if( curComp.PSO_Net_type_vde )
 		else 
 		

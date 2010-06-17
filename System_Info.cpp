@@ -1713,7 +1713,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	
 	// -net nic
 	QString net_str = "";
-	rx = QRegExp( ".*(-net\\s+nic\\s+.*)-net.*" );
+	rx = QRegExp( ".*(-net\\s+nic.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		QStringList rx_list = rx.capturedTexts();
@@ -1721,7 +1721,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	}
 	
 	// -net user
-	rx = QRegExp( ".*(-net\\s+user\\s+.*)-net.*" );
+	rx = QRegExp( ".*(-net\\s+user.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		QStringList rx_list = rx.capturedTexts();
@@ -1729,7 +1729,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	}
 	
 	// -net tap
-	rx = QRegExp( ".*(-net\\s+tap\\s+.*)-net.*" );
+	rx = QRegExp( ".*(-net\\s+tap.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		QStringList rx_list = rx.capturedTexts();
@@ -1737,7 +1737,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	}
 	
 	// -net socket
-	rx = QRegExp( ".*(-net\\s+socket\\s+.*)-net.*" );
+	rx = QRegExp( ".*(-net\\s+socket.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		QStringList rx_list = rx.capturedTexts();
@@ -1745,7 +1745,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	}
 	
 	// -net vde
-	rx = QRegExp( ".*(-net\\s+vde\\s+.*)-net.*" );
+	rx = QRegExp( ".*(-net\\s+vde.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		tmp_dev.PSO_Net_type_vde = true;
@@ -1755,7 +1755,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	}
 	
 	// -net dump
-	rx = QRegExp( ".*(-net\\s+dump\\s+.*)-net.*" );
+	rx = QRegExp( ".*(-net\\s+dump.*)-net.*" );
 	if( rx.exactMatch(all_help) )
 	{
 		tmp_dev.PSO_Net_type_dump = true;
