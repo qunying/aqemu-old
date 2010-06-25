@@ -1403,7 +1403,7 @@ Cluster Size: 0</string>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDA_Advanced_Settings">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -1602,7 +1602,7 @@ Cluster Size: 0</string>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDB_Advanced_Settings">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -1801,7 +1801,7 @@ Cluster Size: 0</string>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDC_Advanced_Settings">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -2000,7 +2000,7 @@ Cluster Size: 0</string>
                <item row="1" column="3" colspan="3">
                 <widget class="QToolButton" name="TB_HDD_Advanced_Settings">
                  <property name="enabled">
-                  <bool>false</bool>
+                  <bool>true</bool>
                  </property>
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -2125,9 +2125,6 @@ Cluster Size: 0</string>
                 </item>
                 <item>
                  <widget class="QToolButton" name="TB_CDROM_Advanced_Settings">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
                   <property name="toolTip">
                    <string>Incomplete function</string>
                   </property>
@@ -2242,9 +2239,6 @@ Cluster Size: 0</string>
                 </item>
                 <item>
                  <widget class="QToolButton" name="TB_FD0_Advanced_Settings">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
                   <property name="toolTip">
                    <string>Incomplete function</string>
                   </property>
@@ -2359,9 +2353,6 @@ Cluster Size: 0</string>
                 </item>
                 <item>
                  <widget class="QToolButton" name="TB_FD1_Advanced_Settings">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
                   <property name="toolTip">
                    <string>Incomplete function</string>
                   </property>

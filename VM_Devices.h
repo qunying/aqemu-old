@@ -159,7 +159,7 @@ class VM
 		};
 		
 		// Storage Device Interfaces
-		enum Device_Interface { DI_IDE, DI_SCSI, DI_SD, DI_MTD, DI_Floppy, DI_PFlash };
+		enum Device_Interface { DI_IDE, DI_SCSI, DI_SD, DI_MTD, DI_Floppy, DI_PFlash, DI_Virtio };
 		
 		// Storage Device Media
 		enum Device_Media { DM_Disk, DM_CD_ROM };
@@ -235,6 +235,7 @@ class Averable_Devices
 		bool PSO_Drive_Format;
 		bool PSO_Drive_Serial;
 		bool PSO_Drive_ADDR;
+		bool PSO_Drive_Boot;
 		
 		bool PSO_Boot_Order;
 		bool PSO_Initial_Graphic_Mode;
@@ -374,6 +375,8 @@ class VM_Nativ_Storage_Device
 		VM_Nativ_Storage_Device();
 		VM_Nativ_Storage_Device( const VM_Nativ_Storage_Device &sd );
 		
+		bool Get_Nativ_Mode() const;
+		
 		QString Get_QEMU_Device_Name() const;
 		
 		bool operator==( const VM_Nativ_Storage_Device &sd ) const;
@@ -427,11 +430,29 @@ class VM_Nativ_Storage_Device
 		unsigned long Get_Trans() const;
 		void Set_Trans( unsigned long trans );
 		
-		bool Get_Snapshot() const;
-		void Set_Snapshot( bool snapshot );
+		bool Use_Snapshot() const;
+		void Use_Snapshot( bool use );
 		
-		bool Get_Cache() const;
-		void Set_Cache( bool cache );
+		bool Get_Snapshot() const;
+		void Set_Snapshot( bool use );
+		
+		bool Use_Cache() const;
+		void Use_Cache( bool use );
+		
+		const QString &Get_Cache() const;
+		void Set_Cache( const QString &cache );
+		
+		bool Use_AIO() const;
+		void Use_AIO( bool use );
+		
+		const QString &Get_AIO() const;
+		void Set_AIO( const QString &aio );
+		
+		bool Use_Boot() const;
+		void Use_Boot( bool use );
+		
+		bool Get_Boot() const;
+		void Set_Boot( bool use );
 		
 	private:
 		bool UFile_Path;
@@ -452,8 +473,17 @@ class VM_Nativ_Storage_Device
 		bool Uhdachs;
 		unsigned long Cyls, Heads, Secs, Trans; // For -hdachs
 		
+		bool USnapshot;
 		bool Snapshot;
-		bool Cache;
+		
+		bool UCache;
+		QString Cache;
+		
+		bool UAIO;
+		QString AIO;
+		
+		bool UBoot;
+		bool Boot;
 };
 
 // Virtual Machine Storage Device (FDD, CD, HDD)
@@ -475,14 +505,12 @@ class VM_Storage_Device
 		void Set_File_Name( const QString &file_name );
 		
 		bool Get_Nativ_Mode() const;
-		void Set_Nativ_Mode( bool enabled );
 		
 		const VM_Nativ_Storage_Device &Get_Nativ_Device() const;
 		void Set_Nativ_Device( const VM_Nativ_Storage_Device &device );
 		
 	protected:
 		bool Enabled;
-		bool Nativ_Mode;
 		QString File_Name;
 		VM_Nativ_Storage_Device Nativ_Device;
 };
@@ -517,6 +545,8 @@ class VM_HDD: public VM_Storage_Device
 		VM::Device_Size String_to_Device_Size( const QString &size ) const;
 	
 	private:
+		void Reset_Info();
+		
 		QString Disk_Format;
 		VM::Device_Size Virtual_Size, Disk_Size;
 		int Cluster_Size;

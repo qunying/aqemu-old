@@ -29,9 +29,6 @@ Add_New_Device_Window::Add_New_Device_Window( QWidget *parent )
 	: QDialog( parent )
 {
 	ui.setupUi( this );
-	
-	// Minimum Size
-	resize( width(), minimumSizeHint().height() );
 }
 
 VM_Nativ_Storage_Device Add_New_Device_Window::Get_Device() const
@@ -44,7 +41,6 @@ void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )
 	Device = dev;
 	
 	// Update View...
-	
 	ui.CH_Interface->setChecked( Device.Use_Interface() );
 	
 	// Interface
@@ -72,6 +68,10 @@ void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )
 			
 		case VM::DI_PFlash:
 			ui.CB_Interface->setCurrentIndex( 5 );
+			break;
+			
+		case VM::DI_Virtio:
+			ui.CB_Interface->setCurrentIndex( 6 );
 			break;
 			
 		default:
@@ -113,10 +113,29 @@ void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )
 	ui.SB_Unit->setValue( Device.Get_Unit() );
 	
 	// Snapshot
-	ui.CH_Snapshot->setChecked( Device.Get_Snapshot() );
+	ui.CH_Snapshot->setChecked( Device.Use_Snapshot() );
+	ui.CB_Snapshot->setCurrentIndex( Device.Get_Snapshot() ? 0 : 1 );
 	
 	// Cache
-	ui.CH_Cache->setChecked( Device.Get_Cache() );
+	ui.CH_Cache->setChecked( Device.Use_Cache() );
+	int index = ui.CB_Cache->findText( Device.Get_Cache() );
+	if( index != -1 )
+		ui.CB_Cache->setCurrentIndex( index );
+	else
+		AQError( "void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )",
+				 "Cache: " + Device.Get_Cache() );
+	
+	// AIO
+	ui.CH_AIO->setChecked( Device.Use_AIO() );
+	index = ui.CB_AIO->findText( Device.Get_AIO() );
+	if( index != -1 ) ui.CB_AIO->setCurrentIndex( index );
+	else
+		AQError( "void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )",
+				 "AIO: " + Device.Get_AIO() );
+	
+	// Boot
+	ui.CH_Boot->setChecked( Device.Use_Boot() );
+	ui.CB_Boot->setCurrentIndex( Device.Get_Boot() ? 0 : 1 );
 	
 	// cyls, heads, secs, trans
 	ui.GB_hdachs_Settings->setChecked( Device.Use_hdachs() );
@@ -124,6 +143,153 @@ void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )
 	ui.Edit_Heads->setText( QString::number(Device.Get_Heads()) );
 	ui.Edit_Secs->setText( QString::number(Device.Get_Secs()) );
 	ui.Edit_Trans->setText( QString::number(Device.Get_Trans()) );
+}
+
+void Add_New_Device_Window::Set_Emulator_Devices( const Averable_Devices &devices )
+{
+	if( devices.PSO_Drive_File )
+	{
+		ui.CH_File->setVisible( true );
+		ui.Edit_File_Path->setVisible( true );
+		ui.TB_File_Path_Browse->setVisible( true );
+	}
+	else
+	{
+		ui.CH_File->setVisible( false );
+		ui.Edit_File_Path->setVisible( false );
+		ui.TB_File_Path_Browse->setVisible( false );
+	}
+	
+	if( devices.PSO_Drive_If )
+	{
+		ui.CH_Interface->setVisible( true );
+		ui.CB_Interface->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Interface->setVisible( false );
+		ui.CB_Interface->setVisible( false );
+	}
+	
+	if( devices.PSO_Drive_Bus_Unit )
+	{
+		ui.CH_Bus_Unit->setVisible( true );
+		ui.SB_Bus->setVisible( true );
+		ui.SB_Unit->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Bus_Unit->setVisible( false );
+		ui.SB_Bus->setVisible( false );
+		ui.SB_Unit->setVisible( false );
+	}
+	
+	if( devices.PSO_Drive_Index )
+	{
+		ui.CH_Index->setVisible( true );
+		ui.SB_Index->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Index->setVisible( false );
+		ui.SB_Index->setVisible( false );
+	}
+		
+	if( devices.PSO_Drive_Media )
+	{
+		ui.CH_Media->setVisible( true );
+		ui.CB_Media->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Media->setVisible( false );
+		ui.CB_Media->setVisible( false );
+	}
+		
+	if( devices.PSO_Drive_Cyls_Heads_Secs_Trans )
+		ui.GB_hdachs_Settings->setVisible( true );
+	else
+		ui.GB_hdachs_Settings->setVisible( false );
+		
+	if( devices.PSO_Drive_Snapshot )
+	{
+		ui.CH_Snapshot->setVisible( true );
+		ui.CB_Snapshot->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Snapshot->setVisible( false );
+		ui.CB_Snapshot->setVisible( false );
+	}
+		
+	if( devices.PSO_Drive_Cache )
+	{
+		ui.CH_Cache->setVisible( true );
+		ui.CB_Cache->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Cache->setVisible( false );
+		ui.CB_Cache->setVisible( false );
+	}
+		
+	if( devices.PSO_Drive_AIO )
+	{
+		ui.CH_AIO->setVisible( true );
+		ui.CB_AIO->setVisible( true );
+	}
+	else
+	{
+		ui.CH_AIO->setVisible( false );
+		ui.CB_AIO->setVisible( false );
+	}
+		
+	/*if( devices.PSO_Drive_Format )
+	{
+		ui.->setVisible( true );
+		ui.->setVisible( true );
+	}
+	else
+	{
+		ui.->setVisible( false );
+		ui.->setVisible( false );
+	}
+	
+	if( devices.PSO_Drive_Serial )
+	{
+		ui.->setVisible( true );
+		ui.->setVisible( true );
+	}
+	else
+	{
+		ui.->setVisible( false );
+		ui.->setVisible( false );
+	}
+	
+	if( devices.PSO_Drive_ADDR )
+	{
+		ui.->setVisible( true );
+		ui.->setVisible( true );
+	}
+	else
+	{
+		ui.->setVisible( false );
+		ui.->setVisible( false );
+	}*/
+	
+	if( devices.PSO_Drive_Boot )
+	{
+		ui.CH_Boot->setVisible( true );
+		ui.CB_Boot->setVisible( true );
+	}
+	else
+	{
+		ui.CH_Boot->setVisible( false );
+		ui.CB_Boot->setVisible( false );
+	}
+	
+	// Minimum Size
+	resize( minimumSizeHint().width(), minimumSizeHint().height() );
 }
 
 void Add_New_Device_Window::on_CB_Interface_currentIndexChanged( const QString &text )
@@ -141,6 +307,15 @@ void Add_New_Device_Window::on_CB_Interface_currentIndexChanged( const QString &
 	{
 		ui.CH_Index->setEnabled( false );
 		ui.SB_Index->setEnabled( false );
+		
+		ui.CH_Bus_Unit->setEnabled( true );
+		ui.SB_Bus->setEnabled( true );
+		ui.SB_Unit->setEnabled( true );
+	}
+	else if( text == "virtio" )
+	{
+		ui.CH_Index->setEnabled( true );
+		ui.SB_Index->setEnabled( true );
 		
 		ui.CH_Bus_Unit->setEnabled( true );
 		ui.SB_Bus->setEnabled( true );
@@ -165,10 +340,8 @@ void Add_New_Device_Window::on_TB_File_Path_Browse_clicked()
 	QString file_name = QFileDialog::getOpenFileName( this, tr("Select You Device"), "/", tr("All Files (*)"),
 													  &selectedFilter, options );
 	
-	if( ! (file_name.isNull() || file_name.isEmpty()) )
-	{
+	if( ! file_name.isEmpty() )
 		ui.Edit_File_Path->setText( file_name );
-	}
 }
 
 void Add_New_Device_Window::on_Button_OK_clicked()
@@ -198,6 +371,10 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 			
 		case 5:
 			Device.Set_Interface( VM::DI_PFlash );
+			break;
+			
+		case 6:
+			Device.Set_Interface( VM::DI_Virtio );
 			break;
 			
 		default:
@@ -234,8 +411,7 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 	{
 		if( ! QFile::exists(ui.Edit_File_Path->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"),
-							   tr("File Not Exists!") );
+			AQGraphic_Warning( tr("Error!"), tr("File Not Exists!") );
 			return;
 		}
 	}
@@ -253,10 +429,20 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 	Device.Set_Unit( ui.SB_Unit->value() );
 	
 	// Snapshot
-	Device.Set_Snapshot( ui.CH_Snapshot->isChecked() );
+	Device.Use_Snapshot( ui.CH_Snapshot->isChecked() );
+	Device.Set_Snapshot( (ui.CB_Snapshot->currentIndex() == 0) ? true : false );
 	
 	// Cache
-	Device.Set_Cache( ui.CH_Cache->isChecked() );
+	Device.Use_Cache( ui.CH_Cache->isChecked() );
+	Device.Set_Cache( ui.CB_Cache->currentText() );
+	
+	// AIO
+	Device.Use_AIO( ui.CH_AIO->isChecked() );
+	Device.Set_AIO( ui.CB_AIO->currentText() );
+	
+	// Boot
+	Device.Use_Boot( ui.CH_Boot->isChecked() );
+	Device.Set_Boot( (ui.CB_Boot->currentIndex() == 0) ? true : false );
 	
 	// hdachs
 	if( ui.GB_hdachs_Settings->isChecked() )
@@ -264,7 +450,6 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 		bool ok;
 		
 		qulonglong cyls = ui.Edit_Cyls->text().toULongLong( &ok, 10 );
-		
 		if( ! ok )
 		{
 			AQGraphic_Warning( tr("Warning!"), tr("\"Cyls\" Value Incorrect!") );
@@ -272,7 +457,6 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 		}
 		
 		qulonglong heads = ui.Edit_Heads->text().toULongLong( &ok, 10 );
-		
 		if( ! ok )
 		{
 			AQGraphic_Warning( tr("Warning!"), tr("\"Heads\" Value Incorrect!") );
@@ -280,7 +464,6 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 		}
 		
 		qulonglong secs = ui.Edit_Secs->text().toULongLong( &ok, 10) ;
-		
 		if( ! ok )
 		{
 			AQGraphic_Warning( tr("Warning!"), tr("\"Secs\" Value Incorrect!") );
@@ -288,7 +471,6 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 		}
 		
 		qulonglong trans = ui.Edit_Trans->text().toULongLong( &ok, 10 );
-		
 		if( ! ok )
 		{
 			AQGraphic_Warning( tr("Warning!"), tr("\"Trans\" Value Incorrect!") );

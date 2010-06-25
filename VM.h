@@ -67,6 +67,8 @@ class Virtual_Machine: public QObject
 		QStringList Build_QEMU_Args_For_Tab_Info();
 		QStringList Build_QEMU_Args_For_Script();
 		
+		QStringList Build_Nativ_Device_Args( VM_Nativ_Storage_Device device, bool Build_QEMU_Args_for_Script_Mode );
+		
 		bool Start();
 		void Pause(); // qemu command stop
 		void Stop();  // shutdown

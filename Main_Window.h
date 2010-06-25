@@ -34,6 +34,7 @@
 #include "Network_Widget.h"
 #include "Old_Network_Widget.h"
 #include "SMP_Settings_Window.h"
+#include "Add_New_Device_Window.h"
 
 class Ports_Tab_Widget;
 class Device_Manager_Widget;
@@ -115,21 +116,25 @@ class Main_Window: public QMainWindow
 		void on_TB_HDA_Create_HDD_clicked();
 		void on_TB_HDA_Format_HDD_clicked();
 		void on_TB_HDA_Advanced_Settings_clicked();
+		void on_Edit_HDA_Image_Path_textChanged();
 		
 		void on_TB_HDB_SetPath_clicked();
 		void on_TB_HDB_Create_HDD_clicked();
 		void on_TB_HDB_Format_HDD_clicked();
 		void on_TB_HDB_Advanced_Settings_clicked();
+		void on_Edit_HDB_Image_Path_textChanged();
 		
 		void on_TB_HDC_SetPath_clicked();
 		void on_TB_HDC_Create_HDD_clicked();
 		void on_TB_HDC_Format_HDD_clicked();
 		void on_TB_HDC_Advanced_Settings_clicked();
+		void on_Edit_HDC_Image_Path_textChanged();
 		
 		void on_TB_HDD_SetPath_clicked();
 		void on_TB_HDD_Create_HDD_clicked();
 		void on_TB_HDD_Format_HDD_clicked();
 		void on_TB_HDD_Advanced_Settings_clicked();
+		void on_Edit_HDD_Image_Path_textChanged();
 		
 		QStringList Create_Info_HDD_String( const QString &disk_format, const VM::Device_Size &virtual_size,
 											const VM::Device_Size &disk_size, int cluster_size );
@@ -242,6 +247,8 @@ class Main_Window: public QMainWindow
 		HDD_Image_Info* HDB_Info;
 		HDD_Image_Info* HDC_Info;
 		HDD_Image_Info* HDD_Info;
+		
+		Add_New_Device_Window *Nativ_Device_Window;
 		
 		VM_Nativ_Storage_Device Nativ_FD0;
 		VM_Nativ_Storage_Device Nativ_FD1;

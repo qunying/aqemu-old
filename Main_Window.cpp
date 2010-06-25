@@ -94,6 +94,8 @@ Main_Window::Main_Window( QWidget *parent )
 	connect( HDD_Info, SIGNAL(Completed(bool)),
 			 this, SLOT(Update_HDD_Info(bool)) );
 	
+	Nativ_Device_Window = new Add_New_Device_Window();
+	
 	// Network Settigns
 	New_Network_Settings_Widget = new Network_Widget();
 	Old_Network_Settings_Widget = new Old_Network_Widget();
@@ -845,14 +847,12 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 		tmp_fd.Set_Enabled( ui.CH_Floppy0->isChecked() );
 		tmp_fd.Set_File_Name( ui.CB_FD0_Devices->currentText() );
 		tmp_fd.Set_Nativ_Device( Nativ_FD0 );
-		
 		tmp_vm->Set_FD0( tmp_fd );
 		
 		// Floppy 2
 		tmp_fd.Set_Enabled( ui.CH_Floppy1->isChecked() );
 		tmp_fd.Set_File_Name( ui.CB_FD1_Devices->currentText() );
 		tmp_fd.Set_Nativ_Device( Nativ_FD1 );
-		
 		tmp_vm->Set_FD1( tmp_fd );
 		
 		// CD-ROM
@@ -861,7 +861,6 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 		tmp_cd.Set_Enabled( ui.CH_CDROM->isChecked() );
 		tmp_cd.Set_File_Name( ui.CB_CDROM_Devices->currentText() );
 		tmp_cd.Set_Nativ_Device( Nativ_CD_ROM );
-		
 		tmp_vm->Set_CD_ROM( tmp_cd );
 		
 		// Hard Disks
@@ -3055,7 +3054,10 @@ void Main_Window::Update_Disabled_Controls()
 	if( curComp.PSO_Drive_Serial )
 	else 
 	if( curComp.PSO_Drive_ADDR )
-	else */
+	else
+	if( curComp.PSO_Drive_Boot )
+	else
+	*/
 	
 	// Options
 	if( curComp.PSO_Boot_Order ) ui.TB_Show_Boot_Settings_Window->setEnabled( true );
@@ -3130,88 +3132,6 @@ void Main_Window::Update_Disabled_Controls()
 	// Nativ mode network
 	if( ui.RB_Network_Mode_New->isChecked() )
 	{
-		
-		/*
-		if( curComp.PSO_Net_type_vde )
-		else 
-		
-		if( curComp.PSO_Net_type_dump )
-		else 
-		
-		if( curComp.PSO_Net_name )
-		else 
-		
-		if( curComp.PSO_Net_addr )
-		else 
-		
-		if( curComp.PSO_Net_vectors )
-		else 
-		
-		if( curComp.PSO_Net_net )
-		else 
-		
-		if( curComp.PSO_Net_host )
-		else 
-		
-		if( curComp.PSO_Net_restrict )
-		else 
-		
-		if( curComp.PSO_Net_dhcpstart )
-		else 
-		
-		if( curComp.PSO_Net_dns )
-		else 
-		
-		if( curComp.PSO_Net_tftp )
-		else 
-		
-		if( curComp.PSO_Net_bootfile )
-		else 
-		
-		if( curComp.PSO_Net_smb )
-		else 
-		
-		if( curComp.PSO_Net_hostfwd )
-		else 
-		
-		if( curComp.PSO_Net_guestfwd )
-		else 
-		
-		if( curComp.PSO_Net_ifname )
-		else 
-		
-		if( curComp.PSO_Net_script )
-		else 
-		
-		if( curComp.PSO_Net_downscript )
-		else 
-		
-		if( curComp.PSO_Net_listen )
-		else 
-		
-		if( curComp.PSO_Net_connect )
-		else 
-		
-		if( curComp.PSO_Net_mcast )
-		else 
-		
-		if( curComp.PSO_Net_sock )
-		else 
-		
-		if( curComp.PSO_Net_port )
-		else 
-		
-		if( curComp.PSO_Net_group )
-		else 
-		
-		if( curComp.PSO_Net_mode )
-		else 
-		
-		if( curComp.PSO_Net_file )
-		else 
-		
-		if( curComp.PSO_Net_len )
-		else */
 	}
 	
 	// KVM
@@ -5162,7 +5082,7 @@ void Main_Window::on_CH_Remove_RAM_Size_Limitation_stateChanged( int state )
 	if( state == Qt::Checked )
 	{
 		ui.Memory_Size->setMaximum( 32768 );
-		ui.Label_Available_Free_Memory->setText( tr("32 GB") );
+		ui.Label_Available_Free_Memory->setText( "32 GB" );
 		Update_RAM_Size_ComboBox( 32768 );
 	}
 	else
@@ -5244,7 +5164,7 @@ void Main_Window::on_TB_FD0_SetPath_clicked()
 													 Get_Last_Dir_Path(ui.CB_FD0_Devices->lineEdit()->text()),
 													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.CB_FD0_Devices->lineEdit()->setText( fileName );
 		
@@ -5255,19 +5175,49 @@ void Main_Window::on_TB_FD0_SetPath_clicked()
 
 void Main_Window::on_TB_FD0_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_FD0 );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_FD0 );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_FD0 = dev_win->Get_Device();
+		// Set new values
+		Nativ_FD0 = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_FD0.Get_File_Path() != ui.CB_FD0_Devices->currentText() )
+			ui.CB_FD0_Devices->setEditText( Nativ_FD0.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_FD0.Get_Nativ_Mode() &&
+			Nativ_FD0.Use_File_Path() == false )
+			ui.CB_FD0_Devices->setEditText( "" );
+		
+		VM_Changet(); // show changes
 	}
-	
-	delete dev_win;
 }
 
 void Main_Window::on_CB_FD0_Devices_editTextChanged( const QString &text )
 {
+	// Update nativ device file path
+	if( text.isEmpty() )
+	{
+		Nativ_FD0.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_FD0.Set_File_Path( text );
+		
+		if( Nativ_FD0.Get_Nativ_Mode() )
+			Nativ_FD0.Use_File_Path( true );
+	}
+	
+	// Update info
 	ui.Label_FD0_Info->setText( Get_Storage_Device_Info_String(text) );
 }
 
@@ -5280,7 +5230,7 @@ void Main_Window::on_TB_FD1_SetPath_clicked()
 													 Get_Last_Dir_Path(ui.CB_FD1_Devices->lineEdit()->text()),
 													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.CB_FD1_Devices->lineEdit()->setText( fileName );
 		
@@ -5291,19 +5241,49 @@ void Main_Window::on_TB_FD1_SetPath_clicked()
 
 void Main_Window::on_TB_FD1_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_FD1 );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_FD1 );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_FD1 = dev_win->Get_Device();
+		// Set new values
+		Nativ_FD1 = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_FD1.Get_File_Path() != ui.CB_FD1_Devices->currentText() )
+			ui.CB_FD1_Devices->setEditText( Nativ_FD1.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_FD1.Get_Nativ_Mode() &&
+			Nativ_FD1.Use_File_Path() == false )
+			ui.CB_FD0_Devices->setEditText( "" );
+		
+		VM_Changet(); // show changes
 	}
-	
-	delete dev_win;
 }
 
 void Main_Window::on_CB_FD1_Devices_editTextChanged( const QString &text )
 {
+	// Update nativ device file path
+	if( text.isEmpty() )
+	{
+		Nativ_FD1.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_FD1.Set_File_Path( text );
+		
+		if( Nativ_FD1.Get_Nativ_Mode() )
+			Nativ_FD1.Use_File_Path( true );
+	}
+	
+	// Update info
 	ui.Label_FD1_Info->setText( Get_Storage_Device_Info_String(text) );
 }
 
@@ -5316,7 +5296,7 @@ void Main_Window::on_TB_CDROM_SetPath_clicked()
 													 Get_Last_Dir_Path(ui.CB_CDROM_Devices->lineEdit()->text()),
 													 tr("All Files (*);;Images Files (*.iso)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.CB_CDROM_Devices->lineEdit()->setText( fileName );
 		
@@ -5327,19 +5307,49 @@ void Main_Window::on_TB_CDROM_SetPath_clicked()
 
 void Main_Window::on_TB_CDROM_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_CD_ROM );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_CD_ROM );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_CD_ROM = dev_win->Get_Device();
+		// Set new values
+		Nativ_CD_ROM = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_CD_ROM.Get_File_Path() != ui.CB_CDROM_Devices->currentText() )
+			ui.CB_CDROM_Devices->setEditText( Nativ_CD_ROM.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_CD_ROM.Get_Nativ_Mode() &&
+			Nativ_CD_ROM.Use_File_Path() == false )
+			ui.CB_CDROM_Devices->setEditText( "" );
+		
+		VM_Changet(); // show changes
 	}
-	
-	delete dev_win;
 }
 
 void Main_Window::on_CB_CDROM_Devices_editTextChanged( const QString &text )
 {
+	// Update nativ device file path
+	if( text.isEmpty() )
+	{
+		Nativ_CD_ROM.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_CD_ROM.Set_File_Path( text );
+		
+		if( Nativ_CD_ROM.Get_Nativ_Mode() )
+			Nativ_CD_ROM.Use_File_Path( true );
+	}
+	
+	// Update info
 	ui.Label_CDROM_Info->setText( Get_Storage_Device_Info_String(text) );
 }
 
@@ -5353,7 +5363,7 @@ void Main_Window::on_TB_HDA_SetPath_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.Edit_HDA_Image_Path->setText( fileName );
 		HDA_Info->Update_Disk_Info( fileName );
@@ -5390,15 +5400,50 @@ void Main_Window::on_TB_HDA_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDA_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_HDA );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_HDA );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_HDA = dev_win->Get_Device();
+		// Set new values
+		Nativ_HDA = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_HDA.Get_File_Path() != ui.Edit_HDA_Image_Path->text() )
+			ui.Edit_HDA_Image_Path->setText( Nativ_HDA.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_HDA.Get_Nativ_Mode() &&
+			Nativ_HDA.Use_File_Path() == false )
+			ui.Edit_HDA_Image_Path->setText( "" );
+		
+		VM_Changet(); // show changes
+	}
+}
+
+void Main_Window::on_Edit_HDA_Image_Path_textChanged()
+{
+	// Update nativ device file path
+	if( ui.Edit_HDA_Image_Path->text().isEmpty() )
+	{
+		Nativ_HDA.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_HDA.Set_File_Path( ui.Edit_HDA_Image_Path->text() );
+		
+		if( Nativ_HDA.Get_Nativ_Mode() )
+			Nativ_HDA.Use_File_Path( true );
 	}
 	
-	delete dev_win;
+	// Update info
+	HDA_Info->Update_Disk_Info( ui.Edit_HDA_Image_Path->text() );
 }
 
 void Main_Window::on_TB_HDB_SetPath_clicked()
@@ -5411,11 +5456,8 @@ void Main_Window::on_TB_HDB_SetPath_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_HDB_Image_Path->setText( fileName );
-		HDB_Info->Update_Disk_Info( fileName );
-	}
 }
 
 void Main_Window::on_TB_HDB_Create_HDD_clicked()
@@ -5449,15 +5491,50 @@ void Main_Window::on_TB_HDB_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDB_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_HDB );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_HDB );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_HDB = dev_win->Get_Device();
+		// Set new values
+		Nativ_HDB = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_HDB.Get_File_Path() != ui.Edit_HDB_Image_Path->text() )
+			ui.Edit_HDB_Image_Path->setText( Nativ_HDB.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_HDB.Get_Nativ_Mode() &&
+			Nativ_HDB.Use_File_Path() == false )
+			ui.Edit_HDB_Image_Path->setText( "" );
+		
+		VM_Changet(); // show changes
+	}
+}
+
+void Main_Window::on_Edit_HDB_Image_Path_textChanged()
+{
+	// Update nativ device file path
+	if( ui.Edit_HDB_Image_Path->text().isEmpty() )
+	{
+		Nativ_HDB.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_HDB.Set_File_Path( ui.Edit_HDB_Image_Path->text() );
+		
+		if( Nativ_HDB.Get_Nativ_Mode() )
+			Nativ_HDB.Use_File_Path( true );
 	}
 	
-	delete dev_win;
+	// Update info
+	HDB_Info->Update_Disk_Info( ui.Edit_HDB_Image_Path->text() );
 }
 
 void Main_Window::on_TB_HDC_SetPath_clicked()
@@ -5470,7 +5547,7 @@ void Main_Window::on_TB_HDC_SetPath_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.Edit_HDC_Image_Path->setText( fileName );
 		HDC_Info->Update_Disk_Info( fileName );
@@ -5508,15 +5585,50 @@ void Main_Window::on_TB_HDC_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDC_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_HDC );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_HDC );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_HDC = dev_win->Get_Device();
+		// Set new values
+		Nativ_HDC = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_HDC.Get_File_Path() != ui.Edit_HDC_Image_Path->text() )
+			ui.Edit_HDC_Image_Path->setText( Nativ_HDC.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_HDC.Get_Nativ_Mode() &&
+			Nativ_HDC.Use_File_Path() == false )
+			ui.Edit_HDC_Image_Path->setText( "" );
+		
+		VM_Changet(); // show changes
+	}
+}
+
+void Main_Window::on_Edit_HDC_Image_Path_textChanged()
+{
+	// Update nativ device file path
+	if( ui.Edit_HDC_Image_Path->text().isEmpty() )
+	{
+		Nativ_HDC.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_HDC.Set_File_Path( ui.Edit_HDC_Image_Path->text() );
+		
+		if( Nativ_HDC.Get_Nativ_Mode() )
+			Nativ_HDC.Use_File_Path( true );
 	}
 	
-	delete dev_win;
+	// Update info
+	HDC_Info->Update_Disk_Info( ui.Edit_HDC_Image_Path->text() );
 }
 
 void Main_Window::on_TB_HDD_SetPath_clicked()
@@ -5525,7 +5637,7 @@ void Main_Window::on_TB_HDD_SetPath_clicked()
 													 Get_Last_Dir_Path(ui.Edit_HDD_Image_Path->text()),
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.Edit_HDD_Image_Path->setText( fileName );
 		HDD_Info->Update_Disk_Info( fileName );
@@ -5563,15 +5675,50 @@ void Main_Window::on_TB_HDD_Format_HDD_clicked()
 
 void Main_Window::on_TB_HDD_Advanced_Settings_clicked()
 {
-	Add_New_Device_Window *dev_win = new Add_New_Device_Window();
-	dev_win->Set_Device( Nativ_HDD );
+	// Set device
+	Nativ_Device_Window->Set_Device( Nativ_HDD );
 	
-	if( dev_win->exec() == QDialog::Accepted )
+	// Set emulator
+	bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	Nativ_Device_Window->Set_Emulator_Devices( dev );
+	
+	// Show dialog
+	if( Nativ_Device_Window->exec() == QDialog::Accepted )
 	{
-		Nativ_HDD = dev_win->Get_Device();
+		// Set new values
+		Nativ_HDD = Nativ_Device_Window->Get_Device();
+		
+		if( Nativ_HDD.Get_File_Path() != ui.Edit_HDD_Image_Path->text() )
+			ui.Edit_HDD_Image_Path->setText( Nativ_HDD.Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( Nativ_HDD.Get_Nativ_Mode() &&
+			Nativ_HDD.Use_File_Path() == false )
+			ui.Edit_HDD_Image_Path->setText( "" );
+		
+		VM_Changet(); // show changes
+	}
+}
+
+void Main_Window::on_Edit_HDD_Image_Path_textChanged()
+{
+	// Update nativ device file path
+	if( ui.Edit_HDD_Image_Path->text().isEmpty() )
+	{
+		Nativ_HDD.Use_File_Path( false );
+	}
+	else
+	{
+		Nativ_HDD.Set_File_Path( ui.Edit_HDD_Image_Path->text() );
+		
+		if( Nativ_HDD.Get_Nativ_Mode() )
+			Nativ_HDD.Use_File_Path( true );
 	}
 	
-	delete dev_win;
+	// Update info
+	HDD_Info->Update_Disk_Info( ui.Edit_HDD_Image_Path->text() );
 }
 
 void Main_Window::on_GB_HDC_toggled( bool on ) // CD-ROM or HDC

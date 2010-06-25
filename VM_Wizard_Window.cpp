@@ -819,7 +819,7 @@ void VM_Wizard_Window::on_CH_Remove_RAM_Size_Limitation_stateChanged( int state 
 	if( state == Qt::Checked )
 	{
 		ui.Memory_Size->setMaximum( 32768 );
-		ui.Label_Available_Free_Memory->setText( tr("32 GB") );
+		ui.Label_Available_Free_Memory->setText( "32 GB" );
 		Update_RAM_Size_ComboBox( 32768 );
 	}
 	else
@@ -831,7 +831,7 @@ void VM_Wizard_Window::on_CH_Remove_RAM_Size_Limitation_stateChanged( int state 
 			AQGraphic_Warning( tr("Error"), tr("Current memory size more of all host memory!\nUse the maximum available size.") );
 		
 		ui.Memory_Size->setMaximum( allRAM );
-		ui.Label_Available_Free_Memory->setText( tr("%1 MB").arg(allRAM) );
+		ui.Label_Available_Free_Memory->setText( QString("%1 MB").arg(allRAM) );
 		Update_RAM_Size_ComboBox( allRAM );
 	}
 }

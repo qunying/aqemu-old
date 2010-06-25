@@ -129,15 +129,15 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->No_Shutdown = vm.Use_No_Shutdown();
 	
 	// FDD/CD/DVD Tab
-	this->FD0 = VM_Storage_Device( vm.Get_FD0() );
-	this->FD1 = VM_Storage_Device( vm.Get_FD1() );
-	this->CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
+	this->FD0 = vm.Get_FD0();
+	this->FD1 = vm.Get_FD1();
+	this->CD_ROM = vm.Get_CD_ROM();
 	
 	// HDD Tab
-	this->HDA = VM_HDD( vm.Get_HDA() );
-	this->HDB = VM_HDD( vm.Get_HDB() );
-	this->HDC = VM_HDD( vm.Get_HDC() );
-	this->HDD = VM_HDD( vm.Get_HDD() );
+	this->HDA = vm.Get_HDA();
+	this->HDB = vm.Get_HDB();
+	this->HDC = vm.Get_HDC();
+	this->HDD = vm.Get_HDD();
 	
 	// Snapshots
 	this->Set_Snapshots( vm.Get_Snapshots() );
@@ -673,15 +673,15 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	this->No_Shutdown = vm.Use_No_Shutdown();
 	
 	// FDD/CD/DVD Tab
-	this->FD0 = VM_Storage_Device( vm.Get_FD0() );
-	this->FD1 = VM_Storage_Device( vm.Get_FD1() );
-	this->CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
+	this->FD0 = vm.Get_FD0();
+	this->FD1 = vm.Get_FD1();
+	this->CD_ROM = vm.Get_CD_ROM();
 	
 	// HDD Tab
-	this->HDA = VM_HDD( vm.Get_HDA() );
-	this->HDB = VM_HDD( vm.Get_HDB() );
-	this->HDC = VM_HDD( vm.Get_HDC() );
-	this->HDD = VM_HDD( vm.Get_HDD() );
+	this->HDA = vm.Get_HDA();
+	this->HDB = vm.Get_HDB();
+	this->HDC = vm.Get_HDC();
+	this->HDD = vm.Get_HDD();
 	
 	// Snapshots
 	this->Set_Snapshots( vm.Get_Snapshots() );
@@ -814,21 +814,14 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	}
 	
 	QDomDocument New_Dom_Document( "AQEMU" );
-	
 	QDomProcessingInstruction Pro_Instr = New_Dom_Document.createProcessingInstruction( "xml", "version=\"1.0\" encoding=\"UTF-8\"" );
-	
 	New_Dom_Document.appendChild( Pro_Instr );
-	
 	QDomElement Root_Element;
 	
 	if( template_mode )
-	{
 		Root_Element = New_Dom_Document.createElement( "AQEMU_Template" );
-	}
 	else
-	{
 		Root_Element = New_Dom_Document.createElement( "AQEMU" );
-	}
 	
 	Root_Element.setAttribute( "version", "0.8" ); // This is AQEMU Version
 	New_Dom_Document.appendChild( Root_Element );
@@ -894,13 +887,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( template_mode )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( Template_Name );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( Machine_Name );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1145,13 +1134,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Remove_RAM_Size_Limitation )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1166,13 +1151,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Fullscreen )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1181,13 +1162,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Win2K_Hack )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1196,13 +1173,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Local_Time )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1211,13 +1184,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Check_FDD_Boot_Sector )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1226,13 +1195,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( ACPI )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1241,13 +1206,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Snapshot_Mode )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1256,13 +1217,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Start_CPU )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1271,13 +1228,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( No_Reboot )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1286,13 +1239,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( No_Shutdown )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -1309,23 +1258,16 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host File Name
-		Sec_Element = New_Dom_Document.createElement( "Host_File_Name" );
-		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "" );
-		Sec_Element.appendChild( Dom_Text );
-		
 		// Image File Name
-		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Sec_Element = New_Dom_Document.createElement( "File_Name" );
 		Dom_Element.appendChild( Sec_Element );
 		Dom_Text = New_Dom_Document.createTextNode( "" );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host Device
-		Sec_Element = New_Dom_Document.createElement( "Host_Device" );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "true" );
-		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1338,23 +1280,16 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host File Name
-		Sec_Element = New_Dom_Document.createElement( "Host_File_Name" );
-		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "" );
-		Sec_Element.appendChild( Dom_Text );
-		
 		// Image File Name
-		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Sec_Element = New_Dom_Document.createElement( "File_Name" );
 		Dom_Element.appendChild( Sec_Element );
 		Dom_Text = New_Dom_Document.createTextNode( "" );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host Device
-		Sec_Element = New_Dom_Document.createElement( "Host_Device" );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "true" );
-		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1367,23 +1302,16 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host File Name
-		Sec_Element = New_Dom_Document.createElement( "Host_File_Name" );
-		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "" );
-		Sec_Element.appendChild( Dom_Text );
-		
 		// Image File Name
-		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Sec_Element = New_Dom_Document.createElement( "File_Name" );
 		Dom_Element.appendChild( Sec_Element );
 		Dom_Text = New_Dom_Document.createTextNode( "" );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Host Device
-		Sec_Element = New_Dom_Document.createElement( "Host_Device" );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
 		Dom_Element.appendChild( Sec_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "true" );
-		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
 	}
@@ -1405,12 +1333,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( FD0.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Nativ Mode
-		Sec_Element = New_Dom_Document.createElement( "Nativ_Mode" );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, FD0.Get_Nativ_Device() );
 		Dom_Element.appendChild( Sec_Element );
-		if( FD0.Get_Nativ_Mode() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-		else Dom_Text = New_Dom_Document.createTextNode( "false" );
-		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1430,12 +1356,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( FD1.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Nativ Mode
-		Sec_Element = New_Dom_Document.createElement( "Nativ_Mode" );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, FD1.Get_Nativ_Device() );
 		Dom_Element.appendChild( Sec_Element );
-		if( FD1.Get_Nativ_Mode() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-		else Dom_Text = New_Dom_Document.createTextNode( "false" );
-		Sec_Element.appendChild( Dom_Text );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1455,240 +1379,104 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( CD_ROM.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
-		// Nativ Mode
-		Sec_Element = New_Dom_Document.createElement( "Nativ_Mode" );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, CD_ROM.Get_Nativ_Device() );
 		Dom_Element.appendChild( Sec_Element );
-		if( CD_ROM.Get_Nativ_Mode() ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-		else Dom_Text = New_Dom_Document.createTextNode( "false" );
+		
+		VM_Element.appendChild( Dom_Element );
+	}
+	
+	if( template_mode &&
+		! (Template_Opts & Create_Template_Window::Template_Save_HDD) )
+	{
+		// HDA
+		Dom_Element = New_Dom_Document.createElement( "HDA" );
+		
+		// Enabled
+		Sec_Element = New_Dom_Document.createElement( "Enabled" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 		Sec_Element.appendChild( Dom_Text );
+		
+		// Image File Name
+		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "" );
+		Sec_Element.appendChild( Dom_Text );
+		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
+		Dom_Element.appendChild( Sec_Element );
 		
 		VM_Element.appendChild( Dom_Element );
 		
-		// FIXME Nativ Mode Element for FD0, 1, cd
-	}
-	
-	if( template_mode )
-	{
-		if( Template_Opts & Create_Template_Window::Template_Save_HDD )
-		{
-			// HDA
-			Dom_Element = New_Dom_Document.createElement( "HDA" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
+		// HDB
+		Dom_Element = New_Dom_Document.createElement( "HDB" );
 		
-			if( HDA.Get_Enabled() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			if( HDA.Get_Enabled() )
-			{
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Size" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDA.Get_Complete_Virtual_Size() );
-				Sec_Element.appendChild( Dom_Text );
-				
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Format" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDA.Get_Image_Format() );
-				Sec_Element.appendChild( Dom_Text );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-			
-			// HDB
-			Dom_Element = New_Dom_Document.createElement( "HDB" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
+		// Enabled
+		Sec_Element = New_Dom_Document.createElement( "Enabled" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+		Sec_Element.appendChild( Dom_Text );
 		
-			if( HDB.Get_Enabled() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			if( HDB.Get_Enabled() )
-			{
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Size" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDB.Get_Complete_Virtual_Size() );
-				Sec_Element.appendChild( Dom_Text );
-			
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Format" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDB.Get_Image_Format() );
-				Sec_Element.appendChild( Dom_Text );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-			
-			// HDC
-			Dom_Element = New_Dom_Document.createElement( "HDC" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
+		// Image File Name
+		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "" );
+		Sec_Element.appendChild( Dom_Text );
 		
-			if( HDC.Get_Enabled() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			if( HDC.Get_Enabled() )
-			{
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Size" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDC.Get_Complete_Virtual_Size() );
-				Sec_Element.appendChild( Dom_Text );
-			
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Format" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDC.Get_Image_Format() );
-				Sec_Element.appendChild( Dom_Text );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-			
-			// HDD
-			Dom_Element = New_Dom_Document.createElement( "HDD" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
+		Dom_Element.appendChild( Sec_Element );
 		
-			if( HDD.Get_Enabled() )
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
-			else
-			{
-				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			if( HDD.Get_Enabled() )
-			{
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Size" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDD.Get_Complete_Virtual_Size() );
-				Sec_Element.appendChild( Dom_Text );
-				
-				// Size
-				Sec_Element = New_Dom_Document.createElement( "Format" );
-				Dom_Element.appendChild( Sec_Element );
-				Dom_Text = New_Dom_Document.createTextNode( HDD.Get_Image_Format() );
-				Sec_Element.appendChild( Dom_Text );
-			}
-			
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-		}
-		else
-		{
-			// HDA
-			Dom_Element = New_Dom_Document.createElement( "HDA" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Image File Name
-			Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-			
-			// HDB
-			Dom_Element = New_Dom_Document.createElement( "HDB" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Image File Name
-			Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-			
-			// HDC
-			Dom_Element = New_Dom_Document.createElement( "HDC" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Image File Name
-			Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-			
-			// HDD
-			Dom_Element = New_Dom_Document.createElement( "HDD" );
-			
-			// Enabled
-			Sec_Element = New_Dom_Document.createElement( "Enabled" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "false" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			// Image File Name
-			Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
-			Dom_Element.appendChild( Sec_Element );
-			Dom_Text = New_Dom_Document.createTextNode( "" );
-			Sec_Element.appendChild( Dom_Text );
-			
-			VM_Element.appendChild( Dom_Element );
-		}
+		VM_Element.appendChild( Dom_Element );
+		
+		// HDC
+		Dom_Element = New_Dom_Document.createElement( "HDC" );
+		
+		// Enabled
+		Sec_Element = New_Dom_Document.createElement( "Enabled" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+		Sec_Element.appendChild( Dom_Text );
+		
+		// Image File Name
+		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "" );
+		Sec_Element.appendChild( Dom_Text );
+		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
+		Dom_Element.appendChild( Sec_Element );
+		
+		VM_Element.appendChild( Dom_Element );
+		
+		// HDD
+		Dom_Element = New_Dom_Document.createElement( "HDD" );
+		
+		// Enabled
+		Sec_Element = New_Dom_Document.createElement( "Enabled" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+		Sec_Element.appendChild( Dom_Text );
+		
+		// Image File Name
+		Sec_Element = New_Dom_Document.createElement( "Image_File_Name" );
+		Dom_Element.appendChild( Sec_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "" );
+		Sec_Element.appendChild( Dom_Text );
+		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, VM_Nativ_Storage_Device() );
+		Dom_Element.appendChild( Sec_Element );
+		
+		VM_Element.appendChild( Dom_Element );
 	}
 	else
 	{
@@ -1700,13 +1488,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		
 		if( HDA.Get_Enabled() )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Sec_Element.appendChild( Dom_Text );
 		
@@ -1715,6 +1499,11 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		Dom_Text = New_Dom_Document.createTextNode( HDA.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
+		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, HDA.Get_Nativ_Device() );
+		Dom_Element.appendChild( Sec_Element );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1726,13 +1515,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		
 		if( HDB.Get_Enabled() )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Sec_Element.appendChild( Dom_Text );
 		
@@ -1741,6 +1526,11 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		Dom_Text = New_Dom_Document.createTextNode( HDB.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
+		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, HDB.Get_Nativ_Device() );
+		Dom_Element.appendChild( Sec_Element );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1752,13 +1542,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		
 		if( HDC.Get_Enabled() )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Sec_Element.appendChild( Dom_Text );
 		
@@ -1767,6 +1553,11 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		Dom_Text = New_Dom_Document.createTextNode( HDC.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
+		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, HDC.Get_Nativ_Device() );
+		Dom_Element.appendChild( Sec_Element );
 		
 		VM_Element.appendChild( Dom_Element );
 		
@@ -1778,13 +1569,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Element.appendChild( Sec_Element );
 		
 		if( HDD.Get_Enabled() )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Sec_Element.appendChild( Dom_Text );
 		
@@ -1794,13 +1581,52 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		Dom_Text = New_Dom_Document.createTextNode( HDD.Get_File_Name() );
 		Sec_Element.appendChild( Dom_Text );
 		
+		// Nativ Device
+		Sec_Element = New_Dom_Document.createElement( "Nativ_Device" );
+		Save_VM_Nativ_Storage_Device( New_Dom_Document, Sec_Element, HDD.Get_Nativ_Device() );
+		Dom_Element.appendChild( Sec_Element );
+		
 		VM_Element.appendChild( Dom_Element );
 	}
 	
-	// Snapshots
-	if( ! template_mode )
+	// Storage Devices
+	if( Get_Current_Emulator_Devices()->PSO_Drive &&
+	    (template_mode == false || (template_mode == true && Template_Opts & Create_Template_Window::Template_Save_HDD)) )
 	{
 		// Storage Device Count
+		Dom_Element = New_Dom_Document.createElement( "Storage_Device_Count" );
+		VM_Element.appendChild( Dom_Element );
+		Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices.count()) );
+		Dom_Element.appendChild( Dom_Text );
+		
+		for( int sx = 0; sx < Storage_Devices.count(); ++sx )
+		{
+			Dom_Element = New_Dom_Document.createElement( "Storage_Device_" + QString::number(sx) );
+			Save_VM_Nativ_Storage_Device( New_Dom_Document, Dom_Element, Storage_Devices[sx] );
+			VM_Element.appendChild( Dom_Element );
+		}
+	}
+	else
+	{
+		// Not Devices
+		Dom_Element = New_Dom_Document.createElement( "Storage_Device_Count" );
+		VM_Element.appendChild( Dom_Element );
+		Dom_Text = New_Dom_Document.createTextNode( QString::number(0) );
+		Dom_Element.appendChild( Dom_Text );
+	}
+	
+	// Snapshots
+	if( template_mode )
+	{
+		// Snapshots Count
+		Dom_Element = New_Dom_Document.createElement( "Snapshots_Count" );
+		VM_Element.appendChild( Dom_Element );
+		Dom_Text = New_Dom_Document.createTextNode( "0" );
+		Dom_Element.appendChild( Dom_Text );
+	}
+	else
+	{
+		// Snapshots Count
 		Dom_Element = New_Dom_Document.createElement( "Snapshots_Count" );
 		VM_Element.appendChild( Dom_Element );
 		Dom_Text = New_Dom_Document.createTextNode( QString::number(Snapshots.count()) );
@@ -1831,40 +1657,6 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 			// END
 			VM_Element.appendChild( Dom_Element );
 		}
-	}
-	else
-	{
-		// Storage Device Count
-		Dom_Element = New_Dom_Document.createElement( "Snapshots_Count" );
-		VM_Element.appendChild( Dom_Element );
-		Dom_Text = New_Dom_Document.createTextNode( "0" );
-		Dom_Element.appendChild( Dom_Text );
-	}
-	
-	// Storage Devices
-	if( Get_Current_Emulator_Devices()->PSO_Drive &&
-	    (template_mode == false || (template_mode == true  && Template_Opts & Create_Template_Window::Template_Save_HDD)) )
-	{
-		// Storage Device Count
-		Dom_Element = New_Dom_Document.createElement( "Storage_Device_Count" );
-		VM_Element.appendChild( Dom_Element );
-		Dom_Text = New_Dom_Document.createTextNode( QString::number(Storage_Devices.count()) );
-		Dom_Element.appendChild( Dom_Text );
-		
-		for( int sx = 0; sx < Storage_Devices.count(); ++sx )
-		{
-			Dom_Element = New_Dom_Document.createElement( "Storage_Device_" + QString::number(sx) );
-			Save_VM_Nativ_Storage_Device( New_Dom_Document, Dom_Element, Storage_Devices[sx] );
-			VM_Element.appendChild( Dom_Element );
-		}
-	}
-	else
-	{
-		// Not Devices
-		Dom_Element = New_Dom_Document.createElement( "Storage_Device_Count" );
-		VM_Element.appendChild( Dom_Element );
-		Dom_Text = New_Dom_Document.createTextNode( QString::number(0) );
-		Dom_Element.appendChild( Dom_Text );
 	}
 	
 	// Network
@@ -3748,7 +3540,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					Second_Element = Child_Element.firstChildElement( "FD0" );
 					FD0.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 					FD0.Set_File_Name( Second_Element.firstChildElement("File_Name").text() );
-					FD0.Set_Nativ_Mode( (Second_Element.firstChildElement("Nativ_Mode").text() == "true") );
 					
 					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
 					FD0.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
@@ -3758,7 +3549,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					Second_Element = Child_Element.firstChildElement( "FD1" );
 					FD1.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 					FD1.Set_File_Name( Second_Element.firstChildElement("File_Name").text() );
-					FD1.Set_Nativ_Mode( (Second_Element.firstChildElement("Nativ_Mode").text() == "true") );
 					
 					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
 					FD1.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
@@ -3768,7 +3558,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					Second_Element = Child_Element.firstChildElement( "CD_ROM" );
 					CD_ROM.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 					CD_ROM.Set_File_Name( Second_Element.firstChildElement("File_Name").text() );
-					CD_ROM.Set_Nativ_Mode( (Second_Element.firstChildElement("Nativ_Mode").text() == "true") );
 					
 					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
 					CD_ROM.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
@@ -3786,11 +3575,17 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					HDA.Set_Virtual_Size( HDA.String_to_Device_Size(Second_Element.firstChildElement("Size").text()) );
 					HDA.Set_Image_Format( Second_Element.firstChildElement("Format").text() );
 					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					HDA.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+					
 					// HDB
 					Second_Element = Child_Element.firstChildElement( "HDB" );
 					HDB.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 					HDB.Set_Virtual_Size( HDB.String_to_Device_Size(Second_Element.firstChildElement("Size").text()) );
 					HDB.Set_Image_Format( Second_Element.firstChildElement("Format").text() );
+					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					HDB.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
 					
 					// HDC
 					Second_Element = Child_Element.firstChildElement( "HDC" );
@@ -3798,11 +3593,17 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 					HDC.Set_Virtual_Size( HDC.String_to_Device_Size(Second_Element.firstChildElement("Size").text()) );
 					HDC.Set_Image_Format( Second_Element.firstChildElement("Format").text() );
 					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					HDC.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+					
 					// HDD
 					Second_Element = Child_Element.firstChildElement( "HDD" );
 					HDD.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 					HDD.Set_Virtual_Size( HDD.String_to_Device_Size(Second_Element.firstChildElement("Size").text()) );
 					HDD.Set_Image_Format( Second_Element.firstChildElement("Format").text() );
+					
+					Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+					HDD.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
 				}
 				else
 				{
@@ -3831,27 +3632,46 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			{
 				// HDA
 				Second_Element = Child_Element.firstChildElement( "HDA" );
-				
 				HDA.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 				HDA.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 				
+				Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+				HDA.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+				
 				// HDB
 				Second_Element = Child_Element.firstChildElement( "HDB" );
-				
 				HDB.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 				HDB.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 				
+				Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+				HDB.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+				
 				// HDC
 				Second_Element = Child_Element.firstChildElement( "HDC" );
-				
 				HDC.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 				HDC.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
 				
+				Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+				HDC.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+				
 				// HDD
 				Second_Element = Child_Element.firstChildElement( "HDD" );
-				
 				HDD.Set_Enabled( (Second_Element.firstChildElement("Enabled").text() == "true") );
 				HDD.Set_File_Name( Second_Element.firstChildElement("Image_File_Name").text() );
+				
+				Second_Element = Second_Element.firstChildElement( "Nativ_Device" );
+				HDD.Set_Nativ_Device( Load_VM_Nativ_Storage_Device(Second_Element) );
+			}
+			
+			// Nativ Storage Devices
+			int Storage_Device_Count = Child_Element.firstChildElement( "Storage_Device_Count" ).text().toInt();
+			
+			for( int sx = 0; sx < Storage_Device_Count; ++sx )
+			{
+				Second_Element = Child_Element.firstChildElement( "Storage_Device_" + QString::number(sx) );
+				
+				// Add Device
+				Storage_Devices << Load_VM_Nativ_Storage_Device( Second_Element );
 			}
 			
 			// Snapshots
@@ -3874,17 +3694,6 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				
 				// add snapshot
 				Snapshots << tmp_snapshot;
-			}
-			
-			// Nativ Storage Devices
-			int Storage_Device_Count = Child_Element.firstChildElement( "Storage_Device_Count" ).text().toInt();
-			
-			for( int sx = 0; sx < Storage_Device_Count; ++sx )
-			{
-				Second_Element = Child_Element.firstChildElement( "Storage_Device_" + QString::number(sx) );
-				
-				// Add Device
-				Storage_Devices << Load_VM_Nativ_Storage_Device( Second_Element );
 			}
 			
 			// Use Network
@@ -4562,29 +4371,19 @@ VM_Nativ_Storage_Device Virtual_Machine::Load_VM_Nativ_Storage_Device( const QDo
 	QString interface_str = Second_Element.firstChildElement( "Interface" ).text();
 	
 	if( interface_str == "IDE" )
-	{
 		tmp_device.Set_Interface( VM::DI_IDE );
-	}
 	else if( interface_str == "SCSI" )
-	{
 		tmp_device.Set_Interface( VM::DI_SCSI );
-	}
 	else if( interface_str == "SD" )
-	{
 		tmp_device.Set_Interface( VM::DI_SD );
-	}
 	else if( interface_str == "MTD" )
-	{
 		tmp_device.Set_Interface( VM::DI_MTD );
-	}
 	else if( interface_str == "Floppy" )
-	{
 		tmp_device.Set_Interface( VM::DI_Floppy );
-	}
 	else if( interface_str == "PFlash" )
-	{
 		tmp_device.Set_Interface( VM::DI_PFlash );
-	}
+	else if( interface_str == "Virtio" )
+		tmp_device.Set_Interface( VM::DI_Virtio );
 	else if( interface_str == "" ) ; // No Value
 	else
 	{
@@ -4614,13 +4413,9 @@ VM_Nativ_Storage_Device Virtual_Machine::Load_VM_Nativ_Storage_Device( const QDo
 	QString media_str = Second_Element.firstChildElement( "Media" ).text();
 	
 	if( media_str == "Disk" )
-	{
 		tmp_device.Set_Index( VM::DM_Disk );
-	}
 	else if( media_str == "CD_ROM" )
-	{
 		tmp_device.Set_Index( VM::DM_CD_ROM );
-	}
 	else if( media_str == "" ) ; // No value
 	else
 	{
@@ -4643,11 +4438,29 @@ VM_Nativ_Storage_Device Virtual_Machine::Load_VM_Nativ_Storage_Device( const QDo
 	// Trans
 	tmp_device.Set_Cyls( Second_Element.firstChildElement("Trans").text().toULongLong() );
 	
+	// Use Snapshot
+	tmp_device.Use_Snapshot( Second_Element.firstChildElement("Use_Snapshot").text() == "true" );
+	
 	// Snapshot
 	tmp_device.Set_Snapshot( Second_Element.firstChildElement("Snapshot").text() == "true" );
 	
+	// Use Cache
+	tmp_device.Use_Cache( Second_Element.firstChildElement("Use_Cache").text() == "true" );
+	
 	// Cache
-	tmp_device.Set_Cache( Second_Element.firstChildElement("Cache").text() == "true" );
+	tmp_device.Set_Cache( Second_Element.firstChildElement("Cache").text() );
+	
+	// Use AIO
+	tmp_device.Use_AIO( Second_Element.firstChildElement("Use_AIO").text() == "true" );
+	
+	// AIO
+	tmp_device.Set_AIO( Second_Element.firstChildElement("AIO").text() );
+	
+	// Use Boot
+	tmp_device.Use_Boot( Second_Element.firstChildElement("Use_Boot").text() == "true" );
+	
+	// Boot
+	tmp_device.Set_Boot( Second_Element.firstChildElement("Boot").text() == "true" );
 	
 	return tmp_device;
 }
@@ -4661,13 +4474,9 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	QDomText Dom_Text;
 	
 	if( device.Use_File_Path() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -4682,13 +4491,9 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( device.Use_Interface() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -4737,6 +4542,13 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 			Sec_Element.appendChild( Dom_Text );
 			break;
 			
+		case VM::DI_Virtio:
+			Sec_Element = New_Dom_Document.createElement( "Interface" );
+			Dom_Element.appendChild( Sec_Element );
+			Dom_Text = New_Dom_Document.createTextNode( "Virtio" );
+			Sec_Element.appendChild( Dom_Text );
+			break;
+			
 		default:
 			AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
 					 "Storage Device Interface Default Section!" );
@@ -4748,13 +4560,9 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( device.Use_Bus_Unit() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -4775,13 +4583,9 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( device.Use_Index() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -4796,13 +4600,9 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( device.Use_Media() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -4834,13 +4634,9 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( device.Use_hdachs() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -4868,33 +4664,81 @@ void Virtual_Machine::Save_VM_Nativ_Storage_Device( QDomDocument &New_Dom_Docume
 	Dom_Text = New_Dom_Document.createTextNode( QString::number(device.Get_Trans()) );
 	Sec_Element.appendChild( Dom_Text );
 	
+	// Use Snapshot
+	Sec_Element = New_Dom_Document.createElement( "Use_Snapshot" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Snapshot() )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	
+	Sec_Element.appendChild( Dom_Text );
+	
 	// Snapshot
 	Sec_Element = New_Dom_Document.createElement( "Snapshot" );
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( device.Get_Snapshot() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use Cache
+	Sec_Element = New_Dom_Document.createElement( "Use_Cache" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Cache() )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
 	// Cache
 	Sec_Element = New_Dom_Document.createElement( "Cache" );
 	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( device.Get_Cache() );
+	Sec_Element.appendChild( Dom_Text );
 	
-	if( device.Get_Cache() )
-	{
+	// Use AIO
+	Sec_Element = New_Dom_Document.createElement( "Use_AIO" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_AIO() )
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// AIO
+	Sec_Element = New_Dom_Document.createElement( "AIO" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( device.Get_AIO() );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use Boot
+	Sec_Element = New_Dom_Document.createElement( "Use_Boot" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Use_Boot() )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Boot
+	Sec_Element = New_Dom_Document.createElement( "Boot" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	if( device.Get_Boot() )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 }
@@ -5083,244 +4927,178 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	// FD0
 	if( FD0.Get_Enabled() )
 	{
-		if( QFile::exists(FD0.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( FD0.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-fda" << "\"" + FD0.Get_File_Name() + "\"";
-			else
-				Args << "-fda" << FD0.Get_File_Name();
+			Args << Build_Nativ_Device_Args( FD0.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						QString("Image \"%1\" Not Exists!").arg(FD0.Get_File_Name()) );
+			if( QFile::exists(FD0.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-fda" << "\"" + FD0.Get_File_Name() + "\"";
+				else
+					Args << "-fda" << FD0.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+							QString("Image \"%1\" Not Exists!").arg(FD0.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// FD1
 	if( FD1.Get_Enabled() )
 	{
-		if( QFile::exists(FD1.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( FD1.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-fdb" << "\"" + FD1.Get_File_Name() + "\"";
-			else
-				Args << "-fdb" << FD1.Get_File_Name();
+			Args << Build_Nativ_Device_Args( FD1.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						QString("Image \"%1\" Not Exists!").arg(FD1.Get_File_Name()) );
+			if( QFile::exists(FD1.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-fdb" << "\"" + FD1.Get_File_Name() + "\"";
+				else
+					Args << "-fdb" << FD1.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+							QString("Image \"%1\" Not Exists!").arg(FD1.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// CD-ROM
 	if( CD_ROM.Get_Enabled() )
 	{
-		if( QFile::exists(CD_ROM.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( CD_ROM.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-cdrom" << "\"" + CD_ROM.Get_File_Name() + "\"";
-			else
-				Args << "-cdrom" << CD_ROM.Get_File_Name();
+			Args << Build_Nativ_Device_Args( CD_ROM.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						QString("Image \"%1\" Not Exists!").arg(CD_ROM.Get_File_Name()) );
+			if( QFile::exists(CD_ROM.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-cdrom" << "\"" + CD_ROM.Get_File_Name() + "\"";
+				else
+					Args << "-cdrom" << CD_ROM.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+							QString("Image \"%1\" Not Exists!").arg(CD_ROM.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// HDA
 	if( HDA.Get_Enabled() )
 	{
-		if( QFile::exists(HDA.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( HDA.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hda" << "\"" + HDA.Get_File_Name() + "\"";
-			else
-				Args << "-hda" << HDA.Get_File_Name();
+			Args << Build_Nativ_Device_Args( HDA.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDA.Get_File_Name()) );
+			if( QFile::exists(HDA.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-hda" << "\"" + HDA.Get_File_Name() + "\"";
+				else
+					Args << "-hda" << HDA.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						 QString("Image \"%1\" Not Exists!").arg(HDA.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// HDB
 	if( HDB.Get_Enabled() )
 	{
-		if( QFile::exists(HDB.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( HDB.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hdb" << "\"" + HDB.Get_File_Name() + "\"";
-			else
-				Args << "-hdb" << HDB.Get_File_Name();
+			Args << Build_Nativ_Device_Args( HDB.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDB.Get_File_Name()) );
+			if( QFile::exists(HDB.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-hdb" << "\"" + HDB.Get_File_Name() + "\"";
+				else
+					Args << "-hdb" << HDB.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						 QString("Image \"%1\" Not Exists!").arg(HDB.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// HDC
 	if( HDC.Get_Enabled() )
 	{
-		if( QFile::exists(HDC.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( HDC.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hdc" << "\"" + HDC.Get_File_Name() + "\"";
-			else
-				Args << "-hdc" << HDC.Get_File_Name();
+			Args << Build_Nativ_Device_Args( HDC.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDC.Get_File_Name()) );
+			if( QFile::exists(HDC.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-hdc" << "\"" + HDC.Get_File_Name() + "\"";
+				else
+					Args << "-hdc" << HDC.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						 QString("Image \"%1\" Not Exists!").arg(HDC.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// HDD
 	if( HDD.Get_Enabled() )
 	{
-		if( QFile::exists(HDD.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+		if( HDD.Get_Nativ_Mode() )
 		{
-			if( Build_QEMU_Args_for_Script_Mode )
-				Args << "-hdd" << "\"" + HDD.Get_File_Name() + "\"";
-			else
-				Args << "-hdd" << HDD.Get_File_Name();
+			Args << Build_Nativ_Device_Args( HDD.Get_Nativ_Device(), Build_QEMU_Args_for_Tab_Info );
 		}
 		else
 		{
-			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 QString("Image \"%1\" Not Exists!").arg(HDD.Get_File_Name()) );
+			if( QFile::exists(HDD.Get_File_Name()) || Build_QEMU_Args_for_Tab_Info )
+			{
+				if( Build_QEMU_Args_for_Script_Mode )
+					Args << "-hdd" << "\"" + HDD.Get_File_Name() + "\"";
+				else
+					Args << "-hdd" << HDD.Get_File_Name();
+			}
+			else
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						 QString("Image \"%1\" Not Exists!").arg(HDD.Get_File_Name()) );
+			}
 		}
 	}
 	
 	// Storage Devices
-	if( Current_Emulator_Devices->PSO_Drive )
+	if( Current_Emulator_Devices->PSO_Drive &&
+		Storage_Devices.count() > 0 )
 	{
-		if( Storage_Devices.count() > 0 )
+		for( int ix = 0; ix < Storage_Devices.count(); ++ix )
 		{
-			for( int ix = 0; ix < Storage_Devices.count(); ++ix )
-			{
-				QStringList opt;
-				
-				// File
-				if( Storage_Devices[ix].Use_File_Path() )
-				{
-					if( Build_QEMU_Args_for_Script_Mode )
-						opt << "file=\"" + Storage_Devices[ix].Get_File_Path() + "\"";
-					else
-						opt << "file=" + Storage_Devices[ix].Get_File_Path();
-				}
-				
-				// Interface
-				if( Storage_Devices[ix].Use_Interface() )
-				{
-					switch( Storage_Devices[ix].Get_Interface() )
-					{
-						case VM::DI_IDE:
-							opt << "if=ide";
-							break;
-						
-						case VM::DI_SCSI:
-							opt << "if=scsi";
-							break;
-							
-						case VM::DI_SD:
-							opt << "if=sd";
-							break;
-							
-						case VM::DI_MTD:
-							opt << "if=mtd";
-							break;
-							
-						case VM::DI_Floppy:
-							opt << "if=floppy";
-							break;
-							
-						case VM::DI_PFlash:
-							opt << "if=pflash";
-							break;
-							
-						default:
-							AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-									 "Storage Device Interface Default Section!" );
-							break;
-					}
-				}
-				
-				// Bus, Unit
-				if( Storage_Devices[ix].Use_Bus_Unit() )
-				{
-					opt << "bus=" + QString::number( Storage_Devices[ix].Get_Bus() );
-					opt << "unit=" + QString::number( Storage_Devices[ix].Get_Unit() );
-				}
-				
-				// Index
-				if( Storage_Devices[ix].Use_Index() )
-				{
-					opt << "index=" + QString::number( Storage_Devices[ix].Get_Index() );
-				}
-				
-				// Media
-				if( Storage_Devices[ix].Use_Media() )
-				{
-					switch( Storage_Devices[ix].Get_Media() )
-					{
-						case VM::DM_Disk:
-							opt << "media=disk";
-							break;
-							
-						case VM::DM_CD_ROM:
-							opt << "media=cdrom";
-							break;
-							
-						default:
-							AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-									 "Storage Device Media Default Section!" );
-							break;
-					}
-				}
-				
-				// hdachs
-				if( Storage_Devices[ix].Use_hdachs() )
-				{
-					opt << "cyls=" + QString::number( Storage_Devices[ix].Get_Cyls() );
-					opt << "heads=" + QString::number( Storage_Devices[ix].Get_Heads() );
-					opt << "secs=" + QString::number( Storage_Devices[ix].Get_Secs() );
-					opt << "trans=" + QString::number( Storage_Devices[ix].Get_Trans() );
-				}
-				
-				// Snapshot
-				if( Storage_Devices[ix].Get_Snapshot() ) opt << "snapshot=on";
-				else opt << "snapshot=off";
-				
-				// Cache
-				if( Storage_Devices[ix].Get_Cache() ) opt << "cache=on";
-				else opt << "cache=off";
-				
-				// Create Complete Drive String
-				QString drive_str = "";
-				
-				for( int ox = 0; ox < opt.count(); ++ox )
-				{
-					drive_str += opt[ox];
-					
-					if( ox < opt.count() -1 ) drive_str += ",";
-				}
-				
-				// Add to Args
-				Args << "-drive" << drive_str;
-			}
-		}
-		else
-		{
-			AQDebug( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 "No Storage Devices." );
+			Args << Build_Nativ_Device_Args( Storage_Devices[ix], Build_QEMU_Args_for_Tab_Info );
 		}
 	}
 	
@@ -6205,6 +5983,132 @@ QStringList Virtual_Machine::Build_QEMU_Args_For_Script()
 {
 	Build_QEMU_Args_for_Script_Mode = true;
 	return Build_QEMU_Args();
+}
+
+QStringList Virtual_Machine::Build_Nativ_Device_Args( VM_Nativ_Storage_Device device, bool Build_QEMU_Args_for_Script_Mode )
+{
+	QStringList opt;
+	
+	// File
+	if( device.Use_File_Path() )
+	{
+		if( Build_QEMU_Args_for_Script_Mode )
+			opt << "file=\"" + device.Get_File_Path() + "\"";
+		else
+			opt << "file=" + device.Get_File_Path();
+	}
+	
+	// Interface
+	if( device.Use_Interface() )
+	{
+		switch( device.Get_Interface() )
+		{
+			case VM::DI_IDE:
+				opt << "if=ide";
+				break;
+			
+			case VM::DI_SCSI:
+				opt << "if=scsi";
+				break;
+				
+			case VM::DI_SD:
+				opt << "if=sd";
+				break;
+				
+			case VM::DI_MTD:
+				opt << "if=mtd";
+				break;
+				
+			case VM::DI_Floppy:
+				opt << "if=floppy";
+				break;
+				
+			case VM::DI_PFlash:
+				opt << "if=pflash";
+				break;
+				
+			default:
+				AQError( "QStringList Virtual_Machine::Build_Nativ_Device_Args( VM_Nativ_Storage_Device device, bool Build_QEMU_Args_for_Script_Mode )",
+						 "Storage Device Interface Default Section!" );
+				break;
+		}
+	}
+	
+	// Bus, Unit
+	if( device.Use_Bus_Unit() )
+	{
+		opt << "bus=" + QString::number( device.Get_Bus() );
+		opt << "unit=" + QString::number( device.Get_Unit() );
+	}
+	
+	// Index
+	if( device.Use_Index() )
+	{
+		opt << "index=" + QString::number( device.Get_Index() );
+	}
+	
+	// Media
+	if( device.Use_Media() )
+	{
+		switch( device.Get_Media() )
+		{
+			case VM::DM_Disk:
+				opt << "media=disk";
+				break;
+				
+			case VM::DM_CD_ROM:
+				opt << "media=cdrom";
+				break;
+				
+			default:
+				AQError( "QStringList Virtual_Machine::Build_Nativ_Device_Args( VM_Nativ_Storage_Device device, bool Build_QEMU_Args_for_Script_Mode )",
+						 "Storage Device Media Default Section!" );
+				break;
+		}
+	}
+	
+	// hdachs
+	if( device.Use_hdachs() )
+	{
+		opt << "cyls=" + QString::number( device.Get_Cyls() );
+		opt << "heads=" + QString::number( device.Get_Heads() );
+		opt << "secs=" + QString::number( device.Get_Secs() );
+		opt << "trans=" + QString::number( device.Get_Trans() );
+	}
+	
+	// Snapshot
+	if( device.Use_Snapshot() )
+	{
+		if( device.Get_Snapshot() ) opt << "snapshot=on";
+		else opt << "snapshot=off";
+	}
+	
+	// Cache
+	if( device.Use_Cache() )
+		opt << "cache=" + device.Get_Cache();
+	
+	// AIO
+	if( device.Use_AIO() )
+		opt << "aio=" + device.Get_AIO();
+	
+	// Boot
+	if( device.Use_Boot() )
+	{
+		if( device.Get_Boot() ) opt << "boot=on";
+		else opt << "boot=off";
+	}
+	
+	// Create complete drive string
+	QString driveStr = "";
+	for( int ox = 0; ox < opt.count(); ++ox )
+	{
+		driveStr += opt[ox] + ((ox < opt.count() -1) ? "," : "");
+	}
+	
+	// return
+	QStringList args;
+	args << "-drive" << driveStr;
+	return args;
 }
 
 bool Virtual_Machine::Start()
@@ -7223,7 +7127,7 @@ const VM_Storage_Device &Virtual_Machine::Get_FD0() const
 
 void Virtual_Machine::Set_FD0( const VM_Storage_Device &floppy )
 {
-	FD0 = VM_Storage_Device( floppy );
+	FD0 = floppy;
 }
 
 const VM_Storage_Device &Virtual_Machine::Get_FD1() const
@@ -7233,7 +7137,7 @@ const VM_Storage_Device &Virtual_Machine::Get_FD1() const
 
 void Virtual_Machine::Set_FD1( const VM_Storage_Device &floppy )
 {
-	FD1 = VM_Storage_Device( floppy );
+	FD1 = floppy;
 }
 
 const VM_Storage_Device &Virtual_Machine::Get_CD_ROM() const
@@ -7243,7 +7147,7 @@ const VM_Storage_Device &Virtual_Machine::Get_CD_ROM() const
 
 void Virtual_Machine::Set_CD_ROM( const VM_Storage_Device &cdrom )
 {
-	CD_ROM = VM_Storage_Device( cdrom );
+	CD_ROM = cdrom;
 }
 
 const VM_HDD &Virtual_Machine::Get_HDA() const
@@ -7253,7 +7157,7 @@ const VM_HDD &Virtual_Machine::Get_HDA() const
 
 void Virtual_Machine::Set_HDA( const VM_HDD &hdd )
 {
-	HDA = VM_HDD( hdd );
+	HDA = hdd;
 }
 
 const VM_HDD &Virtual_Machine::Get_HDB() const
@@ -7263,7 +7167,7 @@ const VM_HDD &Virtual_Machine::Get_HDB() const
 
 void Virtual_Machine::Set_HDB( const VM_HDD &hdd )
 {
-	HDB = VM_HDD( hdd );
+	HDB = hdd;
 }
 
 const VM_HDD &Virtual_Machine::Get_HDC() const
@@ -7273,7 +7177,7 @@ const VM_HDD &Virtual_Machine::Get_HDC() const
 
 void Virtual_Machine::Set_HDC( const VM_HDD &hdd )
 {
-	HDC = VM_HDD( hdd );
+	HDC = hdd;
 }
 
 const VM_HDD &Virtual_Machine::Get_HDD() const
@@ -7283,7 +7187,7 @@ const VM_HDD &Virtual_Machine::Get_HDD() const
 
 void Virtual_Machine::Set_HDD( const VM_HDD &hdd )
 {
-	HDD = VM_HDD( hdd );
+	HDD = hdd;
 }
 
 const QList<VM_Snapshot> &Virtual_Machine::Get_Snapshots() const

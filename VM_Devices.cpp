@@ -62,6 +62,7 @@ Averable_Devices::Averable_Devices()
 	PSO_Drive_Format = false;
 	PSO_Drive_Serial = false;
 	PSO_Drive_ADDR = false;
+	PSO_Drive_Boot = false;
 	
 	PSO_Boot_Order = false;
 	PSO_Initial_Graphic_Mode = false;
@@ -477,6 +478,7 @@ bool Emulator::Load( const QString &path )
 			tmpDev.PSO_Drive_Format = (childElement.firstChildElement("Drive_Format").text() == "yes" );
 			tmpDev.PSO_Drive_Serial = (childElement.firstChildElement("Drive_Serial").text() == "yes" );
 			tmpDev.PSO_Drive_ADDR = (childElement.firstChildElement("Drive_ADDR").text() == "yes" );
+			tmpDev.PSO_Drive_Boot = (childElement.firstChildElement("Drive_Boot").text() == "yes" );
 			
 			tmpDev.PSO_Boot_Order = (childElement.firstChildElement("Boot_Order").text() == "yes" );
 			tmpDev.PSO_Initial_Graphic_Mode = (childElement.firstChildElement("Initial_Graphic_Mode").text() == "yes" );
@@ -822,6 +824,12 @@ bool Emulator::Save() const
 		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_File ? "yes" : "no") );
 		deviceElement.appendChild( domText );
 		
+		// PSO_Drive_If
+		deviceElement = domDocument.createElement( "Drive_If" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_If ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
 		// PSO_Drive_Bus_Unit
 		deviceElement = domDocument.createElement( "Drive_Bus_Unit" );
 		domElement.appendChild( deviceElement );
@@ -880,6 +888,12 @@ bool Emulator::Save() const
 		deviceElement = domDocument.createElement( "Drive_ADDR" );
 		domElement.appendChild( deviceElement );
 		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_ADDR ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Drive_Boot
+		deviceElement = domDocument.createElement( "Drive_Boot" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Drive_Boot ? "yes" : "no") );
 		deviceElement.appendChild( domText );
 		
 		
@@ -1506,8 +1520,14 @@ VM_Nativ_Storage_Device::VM_Nativ_Storage_Device()
 	Heads = 0;
 	Secs = 0;
 	Trans = 0;
+	USnapshot = false;
 	Snapshot = false;
-	Cache = false;
+	UCache = false;
+	Cache = "none";
+	UAIO = false;
+	AIO = "threads";
+	UBoot = false;
+	Boot = false;
 }
 
 VM_Nativ_Storage_Device::VM_Nativ_Storage_Device( const VM_Nativ_Storage_Device &sd )
@@ -1528,8 +1548,31 @@ VM_Nativ_Storage_Device::VM_Nativ_Storage_Device( const VM_Nativ_Storage_Device 
 	Heads = sd.Get_Heads();
 	Secs = sd.Get_Secs();
 	Trans = sd.Get_Trans();
+	USnapshot = sd.Use_Snapshot();
 	Snapshot = sd.Get_Snapshot();
+	UCache = sd.Use_Cache();
 	Cache = sd.Get_Cache();
+	UAIO = sd.Use_AIO();
+	AIO = sd.Get_AIO();
+	UBoot = sd.Use_Boot();
+	Boot = sd.Get_Boot();
+}
+
+bool VM_Nativ_Storage_Device::Get_Nativ_Mode() const
+{
+	if( UAIO ) return true;
+	if( UBoot ) return true;
+	if( UBus_Unit ) return true;
+	if( UCache ) return true;
+	if( UFile_Path ) return true;
+	if( Uhdachs ) return true;
+	if( UIndex ) return true;
+	if( UInterface ) return true;
+	if( UMedia ) return true;
+	if( USnapshot ) return true;
+	
+	// Nativ device options not used
+	return false;
 }
 
 QString VM_Nativ_Storage_Device::Get_QEMU_Device_Name() const
@@ -1556,8 +1599,14 @@ bool VM_Nativ_Storage_Device::operator==( const VM_Nativ_Storage_Device &sd ) co
 		Heads == sd.Get_Heads() &&
 		Secs == sd.Get_Secs() &&
 		Trans == sd.Get_Trans() &&
+		USnapshot == sd.Use_Snapshot() &&
 		Snapshot == sd.Get_Snapshot() &&
-		Cache == sd.Get_Cache() )
+		UCache == sd.Use_Cache() &&
+		Cache == sd.Get_Cache() &&
+		UAIO == sd.Use_AIO() &&
+		AIO == sd.Get_AIO() &&
+		UBoot == sd.Use_Boot() &&
+		Boot == sd.Get_Boot() )
 	{
 		return true;
 	}
@@ -1732,6 +1781,16 @@ void VM_Nativ_Storage_Device::Set_Trans( unsigned long trans )
 	Trans = trans;
 }
 
+bool VM_Nativ_Storage_Device::Use_Snapshot() const
+{
+	return USnapshot;
+}
+
+void VM_Nativ_Storage_Device::Use_Snapshot( bool use )
+{
+	USnapshot = use;
+}
+
 bool VM_Nativ_Storage_Device::Get_Snapshot() const
 {
 	return Snapshot;
@@ -1742,14 +1801,64 @@ void VM_Nativ_Storage_Device::Set_Snapshot( bool snapshot )
 	Snapshot = snapshot;
 }
 
-bool VM_Nativ_Storage_Device::Get_Cache() const
+bool VM_Nativ_Storage_Device::Use_Cache() const
+{
+	return UCache;
+}
+
+void VM_Nativ_Storage_Device::Use_Cache( bool use )
+{
+	UCache = use;
+}
+
+const QString &VM_Nativ_Storage_Device::Get_Cache() const
 {
 	return Cache;
 }
 
-void VM_Nativ_Storage_Device::Set_Cache( bool cache )
+void VM_Nativ_Storage_Device::Set_Cache( const QString &cache )
 {
 	Cache = cache;
+}
+
+bool VM_Nativ_Storage_Device::Use_AIO() const
+{
+	return UAIO;
+}
+
+void VM_Nativ_Storage_Device::Use_AIO( bool use )
+{
+	UAIO = use;
+}
+
+const QString &VM_Nativ_Storage_Device::Get_AIO() const
+{
+	return AIO;
+}
+
+void VM_Nativ_Storage_Device::Set_AIO( const QString &aio )
+{
+	AIO = aio;
+}
+
+bool VM_Nativ_Storage_Device::Use_Boot() const
+{
+	return UBoot;
+}
+
+void VM_Nativ_Storage_Device::Use_Boot( bool use )
+{
+	UBoot = use;
+}
+
+bool VM_Nativ_Storage_Device::Get_Boot() const
+{
+	return Boot;
+}
+
+void VM_Nativ_Storage_Device::Set_Boot( bool boot )
+{
+	Boot = boot;
 }
 
 //===========================================================================
@@ -1760,7 +1869,6 @@ VM_Storage_Device::VM_Storage_Device()
 {
 	Enabled = false;
 	File_Name = "";
-	Nativ_Mode = false;
 	Nativ_Device = VM_Nativ_Storage_Device();
 }
 
@@ -1768,7 +1876,6 @@ VM_Storage_Device::VM_Storage_Device( const VM_Storage_Device &device )
 {
 	Enabled = device.Get_Enabled();
 	File_Name = device.Get_File_Name();
-	Nativ_Mode = device.Get_Nativ_Mode();
 	Nativ_Device = device.Get_Nativ_Device();
 }
 
@@ -1776,7 +1883,6 @@ VM_Storage_Device::VM_Storage_Device( bool enabled, const QString &file_name )
 {
 	Enabled = enabled;
 	File_Name = file_name;
-	Nativ_Mode = false;
 	Nativ_Device = VM_Nativ_Storage_Device();
 }
 
@@ -1784,7 +1890,6 @@ VM_Storage_Device::VM_Storage_Device( bool enabled, const QString &file_name, bo
 {
 	Enabled = enabled;
 	File_Name = file_name;
-	Nativ_Mode = nativ_mode;
 	Nativ_Device = device;
 }
 
@@ -1792,7 +1897,6 @@ bool VM_Storage_Device::operator==( const VM_Storage_Device &device ) const
 {
 	if( Enabled == device.Get_Enabled() &&
 		File_Name == device.Get_File_Name() &&
-		Nativ_Mode == device.Get_Nativ_Mode() &&
 		Nativ_Device == device.Get_Nativ_Device() )
 	{
 		return true;
@@ -1823,16 +1927,12 @@ const QString &VM_Storage_Device::Get_File_Name() const
 void VM_Storage_Device::Set_File_Name( const QString &file_name )
 {
 	File_Name = file_name;
+	Nativ_Device.Set_File_Path( file_name );
 }
 
 bool VM_Storage_Device::Get_Nativ_Mode() const
 {
-	return Nativ_Mode;
-}
-
-void VM_Storage_Device::Set_Nativ_Mode( bool enabled )
-{
-	Nativ_Mode = enabled;
+	return Nativ_Device.Get_Nativ_Mode();
 }
 
 const VM_Nativ_Storage_Device &VM_Storage_Device::Get_Nativ_Device() const
@@ -1849,74 +1949,27 @@ void VM_Storage_Device::Set_Nativ_Device( const VM_Nativ_Storage_Device &device 
 
 // VM_HDD Class -------------------------------------------------------------
 
-VM_HDD::VM_HDD()
+VM_HDD::VM_HDD() : VM_Storage_Device()
 {
-	Enabled = false;
-	File_Name = "";
-	
-	Disk_Format = "";
-	
-	VM::Device_Size zero_size;
-	zero_size.Size = 0.0;
-	zero_size.Suffix = VM::Size_Suf_Gb;
-	
-	Virtual_Size = zero_size;
-	Disk_Size = zero_size;
-	
-	Cluster_Size = 0;
+	Reset_Info();
 }
 
-VM_HDD::VM_HDD( const VM_HDD &hd  )
+VM_HDD::VM_HDD( const VM_HDD &hd ) : VM_Storage_Device( hd )
 {
-	Enabled = hd.Get_Enabled();
-	File_Name = hd.Get_File_Name();
-	
-	if( File_Name.isEmpty() )
-	{
-		Disk_Format = "";
-		
-		VM::Device_Size zero_size;
-		zero_size.Size = 0.0;
-		zero_size.Suffix = VM::Size_Suf_Gb;
-		
-		Virtual_Size = zero_size;
-		Disk_Size = zero_size;
-		
-		Cluster_Size = 0;
-	}
+	if( File_Name.isEmpty() ) Reset_Info();
 }
 
 VM_HDD::VM_HDD( bool enabled, const QString &im_pach )
 {
-	Enabled = enabled;
-	File_Name = im_pach;
+	Set_Enabled( enabled );
+	Set_File_Name( im_pach );
 	
-	if( im_pach.isEmpty() )
-	{
-		Disk_Format = "";
-		
-		VM::Device_Size zero_size;
-		zero_size.Size = 0.0;
-		zero_size.Suffix = VM::Size_Suf_Gb;
-		
-		Virtual_Size = zero_size;
-		Disk_Size = zero_size;
-		
-		Cluster_Size = 0;
-	}
+	if( im_pach.isEmpty() ) Reset_Info();
 }
 
 bool VM_HDD::operator==( const VM_HDD &v ) const
 {
-	if( Enabled == v.Get_Enabled() &&
-		File_Name == v.Get_File_Name() )
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return VM_Storage_Device::operator==( v );
 }
 
 bool VM_HDD::operator!=( const VM_HDD &v ) const
@@ -1926,41 +1979,9 @@ bool VM_HDD::operator!=( const VM_HDD &v ) const
 
 void VM_HDD::Set_File_Name( const QString &file_name )
 {
-	if( file_name.isEmpty() && Enabled )
-	{
-		File_Name = "";
-		Disk_Format = "";
+	if( file_name.isEmpty() ) Reset_Info();
 	
-		VM::Device_Size zero_size;
-		zero_size.Size = 0.0;
-		zero_size.Suffix = VM::Size_Suf_Gb;
-	
-		Virtual_Size = zero_size;
-		Disk_Size = zero_size;
-	
-		Cluster_Size = 0;
-	}
-	else
-	{
-		if( file_name.isEmpty() )
-		{
-			File_Name = "";
-			Disk_Format = "";
-	
-			VM::Device_Size zero_size;
-			zero_size.Size = 0.0;
-			zero_size.Suffix = VM::Size_Suf_Gb;
-	
-			Virtual_Size = zero_size;
-			Disk_Size = zero_size;
-	
-			Cluster_Size = 0;
-		}
-		else
-		{
-			File_Name = file_name;
-		}
-	}
+	VM_Storage_Device::Set_File_Name( file_name );
 }
 
 void VM_HDD::Set_Disk_Info( VM::Disk_Info info )
@@ -2095,17 +2116,11 @@ VM::Device_Size VM_HDD::String_to_Device_Size( const QString &size ) const
 	}
 	
 	if( info_lines[2] == "K" )
-	{
 		hd_size.Suffix = VM::Size_Suf_Kb;
-	}
 	else if( info_lines[2] == "M" )
-	{
 		hd_size.Suffix = VM::Size_Suf_Mb;
-	}
 	else if( info_lines[2] == "G" )
-	{
 		hd_size.Suffix = VM::Size_Suf_Gb;
-	}
 	else
 	{
 		AQError( "VM::Device_Size VM_HDD::String_to_Device_Size( const QString &size ) const",
@@ -2114,6 +2129,21 @@ VM::Device_Size VM_HDD::String_to_Device_Size( const QString &size ) const
 	}
 	
 	return hd_size;
+}
+
+void VM_HDD::Reset_Info()
+{
+	File_Name = "";
+	Disk_Format = "";
+
+	VM::Device_Size zero_size;
+	zero_size.Size = 0.0;
+	zero_size.Suffix = VM::Size_Suf_Gb;
+
+	Virtual_Size = zero_size;
+	Disk_Size = zero_size;
+
+	Cluster_Size = 0;
 }
 
 //===========================================================================

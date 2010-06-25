@@ -1108,16 +1108,102 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Initial_Graphic_Mode = true;
 	System_Info::Emulator_QEMU_0_10[ "qemu-system-sparc64" ] = ad;
 	
-	// FIXME QEMU 0.11 or 0.12
+	// FIXME QEMU 0.11 and 0.12
 	System_Info::Emulator_QEMU_0_11 = System_Info::Emulator_QEMU_0_10;
-	System_Info::Emulator_QEMU_0_12 = System_Info::Emulator_QEMU_0_10;
+	ad.PSO_SMP_Cores = true;
+	ad.PSO_SMP_Threads = true;
+	ad.PSO_SMP_Sockets = true;
+	ad.PSO_SMP_MaxCPUs = true;
+	
+	ad.PSO_Drive = true;
+	ad.PSO_Drive_File = true;
+	ad.PSO_Drive_If = true;
+	ad.PSO_Drive_Bus_Unit = true;
+	ad.PSO_Drive_Index = true;
+	ad.PSO_Drive_Media = true;
+	ad.PSO_Drive_Cyls_Heads_Secs_Trans = true;
+	ad.PSO_Drive_Snapshot = true;
+	ad.PSO_Drive_Cache = true;
+	ad.PSO_Drive_AIO = true;
+	ad.PSO_Drive_Format = true;
+	ad.PSO_Drive_Serial = true;
+	ad.PSO_Drive_ADDR = true;
+	
+	ad.PSO_Boot_Order = true;
+	//PSO_Initial_Graphic_Mode = true;
+	ad.PSO_No_FB_Boot_Check = true;
+	ad.PSO_Win2K_Hack = true;
+	//PSO_Kernel_KQEMU = true;
+	ad.PSO_No_ACPI = true;
+	ad.PSO_KVM = false;
+	ad.PSO_RTC_TD_Hack = true;
+	
+	ad.PSO_MTDBlock = true;
+	ad.PSO_SD = true;
+	ad.PSO_PFlash = true;
+	ad.PSO_Name = true;
+	ad.PSO_Curses = true;
+	ad.PSO_No_Frame = true;
+	ad.PSO_Alt_Grab = true;
+	ad.PSO_No_Quit = true;
+	ad.PSO_SDL = true;
+	ad.PSO_Portrait = true;
+	ad.PSO_No_Shutdown = true;
+	ad.PSO_Startdate = true;
+	ad.PSO_Show_Cursor = true;
+	ad.PSO_Bootp = true;
+	
+	ad.PSO_Net_type_vde = true;
+	ad.PSO_Net_type_dump = true;
+	
+	ad.PSO_Net_name = true;
+	ad.PSO_Net_addr = true;
+	ad.PSO_Net_vectors = true;
+	
+	ad.PSO_Net_net = true;
+	ad.PSO_Net_host = true;
+	ad.PSO_Net_restrict = true;
+	ad.PSO_Net_dhcpstart = true;
+	ad.PSO_Net_dns = true;
+	ad.PSO_Net_tftp = true;
+	ad.PSO_Net_bootfile = true;
+	ad.PSO_Net_smb = true;
+	ad.PSO_Net_hostfwd = true;
+	ad.PSO_Net_guestfwd = true;
+	
+	ad.PSO_Net_ifname = true;
+	ad.PSO_Net_script = true;
+	ad.PSO_Net_downscript = true;
+	
+	ad.PSO_Net_listen = true;
+	ad.PSO_Net_connect = true;
+	
+	ad.PSO_Net_mcast = true;
+	
+	ad.PSO_Net_sock = true;
+	ad.PSO_Net_port = true;
+	ad.PSO_Net_group = true;
+	ad.PSO_Net_mode = true;
+	
+	ad.PSO_Net_file = true;
+	ad.PSO_Net_len = true;
+	
+	ad.PSO_Enable_KVM = false;
+	ad.PSO_No_KVM = false;
+	ad.PSO_No_KVM_IRQChip = false;
+	ad.PSO_No_KVM_Pit = false;
+	ad.PSO_No_KVM_Pit_Reinjection = false;
+	ad.PSO_Enable_Nesting = false;
+	ad.PSO_KVM_Shadow_Memory = false;
+	
+	// QEMU 0.12
+	System_Info::Emulator_QEMU_0_12 = System_Info::Emulator_QEMU_0_11;
+	
 	ad = Averable_Devices();
 	ad.System = Device_Map( "Microblaze", "qemu-system-microblaze" );
-	ad.CPU_List += MIPS_CPU_64Bit;
-	ad.Machine_List += Machine_MIPS_v0_10_0;
-	ad.Network_Card_List += Network_Card_MIPS;
+	ad.Machine_List << Device_Map( QObject::tr("Spartan 3ADSP1800"), "petalogix-s3adsp1800" );
+	ad.Network_Card_List << Device_Map( QObject::tr("xilinx-ethlite"), "xilinx-ethlite" );
 	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
-	ad.Audio_Card_List = VM::Sound_Cards();
 	System_Info::Emulator_QEMU_0_12[ "qemu-system-microblaze" ] = ad;
 	
 	// KVM 7X
@@ -1441,6 +1527,7 @@ QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path 
 {
 	QMap<QString, QString> emulFiles;
 	emulFiles[ "qemu" ] = "";
+	emulFiles[ "qemu-system-x86_64" ] = "";
 	emulFiles[ "qemu-system-arm" ] = "";
 	emulFiles[ "qemu-system-cris" ] = "";
 	emulFiles[ "qemu-system-m68k" ] = "";
@@ -1456,7 +1543,6 @@ QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path 
 	emulFiles[ "qemu-system-sh4eb" ] = "";
 	emulFiles[ "qemu-system-sparc" ] = "";
 	emulFiles[ "qemu-system-sparc64" ] = "";
-	emulFiles[ "qemu-system-x86_64" ] = "";
 	
 	// path empty - this not error. It return empty bin files list
 	if( path.isEmpty() ) return emulFiles;
@@ -1613,17 +1699,18 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 			QString drive_str = rx_list[ 1 ];
 			
 			if( drive_str.indexOf("file=") != -1 ) tmp_dev.PSO_Drive_File = true;
-			else if( drive_str.indexOf("if=") != -1 ) tmp_dev.PSO_Drive_If = true;
-			else if( drive_str.indexOf("bus=") != -1 ) tmp_dev.PSO_Drive_Bus_Unit = true;
-			else if( drive_str.indexOf("index=") != -1 ) tmp_dev.PSO_Drive_Index = true;
-			else if( drive_str.indexOf("media=") != -1 ) tmp_dev.PSO_Drive_Media = true;
-			else if( drive_str.indexOf("cyls=") != -1 ) tmp_dev.PSO_Drive_Cyls_Heads_Secs_Trans = true;
-			else if( drive_str.indexOf("snapshot=") != -1 ) tmp_dev.PSO_Drive_Snapshot = true;
-			else if( drive_str.indexOf("cache=") != -1 ) tmp_dev.PSO_Drive_Cache = true;
-			else if( drive_str.indexOf("aio=") != -1 ) tmp_dev.PSO_Drive_AIO = true;
-			else if( drive_str.indexOf("format=") != -1 ) tmp_dev.PSO_Drive_Format = true;
-			else if( drive_str.indexOf("serial=") != -1 ) tmp_dev.PSO_Drive_Serial = true;
-			else if( drive_str.indexOf("addr=") != -1 ) tmp_dev.PSO_Drive_ADDR = true;
+			if( drive_str.indexOf("if=") != -1 ) tmp_dev.PSO_Drive_If = true;
+			if( drive_str.indexOf("bus=") != -1 ) tmp_dev.PSO_Drive_Bus_Unit = true;
+			if( drive_str.indexOf("index=") != -1 ) tmp_dev.PSO_Drive_Index = true;
+			if( drive_str.indexOf("media=") != -1 ) tmp_dev.PSO_Drive_Media = true;
+			if( drive_str.indexOf("cyls=") != -1 ) tmp_dev.PSO_Drive_Cyls_Heads_Secs_Trans = true;
+			if( drive_str.indexOf("snapshot=") != -1 ) tmp_dev.PSO_Drive_Snapshot = true;
+			if( drive_str.indexOf("cache=") != -1 ) tmp_dev.PSO_Drive_Cache = true;
+			if( drive_str.indexOf("aio=") != -1 ) tmp_dev.PSO_Drive_AIO = true;
+			if( drive_str.indexOf("format=") != -1 ) tmp_dev.PSO_Drive_Format = true;
+			if( drive_str.indexOf("serial=") != -1 ) tmp_dev.PSO_Drive_Serial = true;
+			if( drive_str.indexOf("addr=") != -1 ) tmp_dev.PSO_Drive_ADDR = true;
+			if( drive_str.indexOf("boot=") != -1 ) tmp_dev.PSO_Drive_Boot = true;
 		}
 	}
 	
