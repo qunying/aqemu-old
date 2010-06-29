@@ -435,8 +435,7 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 {
 	AQDebug( "bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const", "Begin" );
 	
-	if( //this->Current_Emulator == vm.Get_Emulator() && // FIXME
-		this->Icon_Path == vm.Get_Icon_Path() &&
+	if( this->Icon_Path == vm.Get_Icon_Path() &&
 		this->Computer_Type == vm.Get_Computer_Type() &&
 		this->Machine_Name == vm.Get_Machine_Name() &&
 		this->Machine_Type == vm.Get_Machine_Type() &&
@@ -5199,39 +5198,6 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		}
 	}
 	
-	// Network Tab. Redirections
-	if( Use_Redirections )
-	{
-		QString redir_str = "";
-		
-		for( int rx = 0; rx < Get_Network_Redirections_Count(); rx++ )
-		{
-			Args << "-redir";
-			redir_str = "";
-			
-			if( Get_Network_Redirection(rx).Get_Protocol() == "TCP" )
-			{
-				redir_str += "tcp:";
-			}
-			else if( Get_Network_Redirection(rx).Get_Protocol() == "UDP" )
-			{
-				redir_str += "udp:";
-			}
-			else
-			{
-				// Error!
-				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-						 "Redirection Protocol Invalid!" );
-			}
-			
-			redir_str += QString::number( Get_Network_Redirection(rx).Get_Host_Port() ) + ":";
-			redir_str += Get_Network_Redirection(rx).Get_Guest_IP() + ":";
-			redir_str += QString::number( Get_Network_Redirection(rx).Get_Guest_Port() );
-			
-			Args << redir_str;
-		}
-	}
-	
 	// Network Cards
 	if( (Use_Nativ_Network() == false && Network_Cards.count() < 1) ||
 		(Use_Nativ_Network() == true  && Network_Cards_Nativ.count() < 1) ||
@@ -5527,6 +5493,32 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						Args << "-net" << "none";
 						break;
 				}
+			}
+		}
+		
+		// Network Tab. Redirections
+		if( Use_Redirections )
+		{
+			QString redir_str = "";
+			
+			for( int rx = 0; rx < Get_Network_Redirections_Count(); rx++ )
+			{
+				Args << "-redir";
+				redir_str = "";
+				
+				if( Get_Network_Redirection(rx).Get_Protocol() == "TCP" )
+					redir_str += "tcp:";
+				else if( Get_Network_Redirection(rx).Get_Protocol() == "UDP" )
+					redir_str += "udp:";
+				else
+					AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+							 "Redirection Protocol Invalid!" );
+				
+				redir_str += QString::number( Get_Network_Redirection(rx).Get_Host_Port() ) + ":";
+				redir_str += Get_Network_Redirection(rx).Get_Guest_IP() + ":";
+				redir_str += QString::number( Get_Network_Redirection(rx).Get_Guest_Port() );
+				
+				Args << redir_str;
 			}
 		}
 	}
@@ -6318,13 +6310,12 @@ bool Virtual_Machine::Start()
 				System_Info::Add_To_Used_USB_List( usb_dev );
 		}
 		
-		//try{
 		QEMU_Process->start( bin_path, this->Build_QEMU_Args() );
-		//}catch(...){} // FIXME ??? I it write?
 	}
 	
 	// Do NOT Start CPU
-	if( ! Start_CPU ) Set_State( VM::VMS_Pause );
+	if( ! Start_CPU )
+		Set_State( VM::VMS_Pause );
 	
 	// VNC Password
 	if( VNC && VNC_Password )
@@ -6383,14 +6374,9 @@ void Virtual_Machine::Pause()
 void Virtual_Machine::Stop()
 {
 	if( State == VM::VMS_Saved )
-	{
 		Set_State( VM::VMS_Power_Off, true );
-	}
 	else
-	{
 		QEMU_Process->write( "quit\n" );
-		Set_State( VM::VMS_Power_Off );
-	}
 }
 
 void Virtual_Machine::Reset()
@@ -6403,9 +6389,7 @@ void Virtual_Machine::Reset()
 	}
 	else
 	{
-		//Set_State( VM::VMS_Power_Off );
 		QEMU_Process->write( "system_reset\n" );
-		//Set_State( VM::VMS_Running );
 	}
 }
 
@@ -6430,9 +6414,7 @@ void Virtual_Machine::Save_VM_State( const QString &tag, bool quit )
 				Get_FS_Compatible_VM_Name( Machine_Name );
 		
 		if( Take_Screenshot(scrn_file, 64, 64) )
-		{
 			Screenshot_Path = scrn_file;
-		}
 	}
 	
 	QEMU_Process->write( qPrintable("savevm " + tag + "\n") );
@@ -6660,13 +6642,9 @@ bool Virtual_Machine::Take_Screenshot( const QString &file_name, int width, int 
 	bool save_ok = false;
 	
 	if( fmt == "JPEG" )
-	{
 		save_ok = im.save( file_name, fmt.toAscii(), Settings.value("Jpeg_Quality", 75).toInt() );
-	}
 	else
-	{
 		save_ok = im.save( file_name, fmt.toAscii() );
-	}
 	
 	if( save_ok )
 	{
@@ -6780,7 +6758,6 @@ const Averable_Devices *Virtual_Machine::Get_Current_Emulator_Devices() const
 QString Virtual_Machine::Get_Current_Emulator_Binary_Path( const QString &names ) const
 {
 	QMap<QString, QString> bin_list = Current_Emulator.Get_Binary_Files();
-	
 	QStringList nl = names.split( " ", QString::SkipEmptyParts );
 	
 	if( bin_list.count() <= 0 || nl.count() <= 0 )
@@ -6794,10 +6771,7 @@ QString Virtual_Machine::Get_Current_Emulator_Binary_Path( const QString &names 
 	{
 		for( int fx = 0; fx < nl.count(); fx++ )
 		{
-			if( iter.key() == nl[fx] )
-			{
-				return iter.value();
-			}
+			if( iter.key() == nl[fx] ) return iter.value();
 		}
 	}
 	
@@ -6829,11 +6803,9 @@ const QString &Virtual_Machine::Get_Machine_Name() const
 
 void Virtual_Machine::Set_Machine_Name( const QString &name )
 {
-	if( name.isNull() || name.isEmpty() )
-	{
+	if( name.isEmpty() )
 		AQError( "void Virtual_Machine::Set_Machine_Name( const QString &name )",
-				 "Machine name \"" + name + "\" is not valid!" );
-	}
+				 "File name is empty!" );
 	else Machine_Name = name;
 }
 
@@ -6844,15 +6816,11 @@ const QString &Virtual_Machine::Get_Icon_Path() const
 
 void Virtual_Machine::Set_Icon_Path( const QString &file_name )
 {
-	if( file_name.isNull() || file_name.isEmpty() )
-	{
+	if( file_name.isEmpty() )
 		AQError( "void Virtual_Machine::Set_Icon_Path( const QString &file_name )",
-				 "File \"" + file_name + "\" does not exist!" );
-	}
+				 "File name is empty!" );
 	else
-	{
 		Icon_Path = file_name;
-	}
 }
 
 const QString &Virtual_Machine::Get_Screenshot_Path() const

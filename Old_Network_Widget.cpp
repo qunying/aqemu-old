@@ -72,6 +72,8 @@ bool Old_Network_Widget::Get_Network_Cards( QList<VM_Net_Card> &cards )
 
 void Old_Network_Widget::Set_Network_Cards( const QList<VM_Net_Card> &cards )
 {
+	Check_Network_Card = false;
+	
 	ui.Network_Cards_List->clear();
 	Network_Cards = cards;
 	
@@ -89,6 +91,8 @@ void Old_Network_Widget::Set_Network_Cards( const QList<VM_Net_Card> &cards )
 	{
 		ui.Net_Card_Options->setEnabled( false );
 	}
+	
+	Check_Network_Card = true;
 }
 
 void Old_Network_Widget::Set_Network_Card_Models( const QList<Device_Map> &models )
@@ -188,12 +192,11 @@ void Old_Network_Widget::on_Network_Cards_List_currentItemChanged( QListWidgetIt
 	if( Network_Cards.count() < 1 || Check_Network_Card == false ) return;
 	
 	int bx = ui.Network_Cards_List->row( current );
-	
 	if( bx < 0 )
 	{
-		AQError( "void Main_Window::on_Network_Cards_List_currentItemChanged("
-				 "QListWidgetItem *current, QListWidgetItem *previous )",
+		AQError( "void Old_Network_Widget::on_Network_Cards_List_currentItemChanged( QListWidgetItem *current, QListWidgetItem *previous )",
 				 "Current Netcard Index Out of Range!" );
+		return;
 	}
 	else
 	{

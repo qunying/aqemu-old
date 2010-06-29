@@ -1,4 +1,4 @@
-2010-06-XX Andrey Rijov (Version 0.8)
+2010-07-XX Andrey Rijov (Version 0.8)
 
 	* Support finding available emulator options and devices.
 	
@@ -14,7 +14,7 @@
 	
 	* Support Change VM Icons Size
 	
-	* Support boot orger list (Not all complete)
+	* Support boot orger list
 	
 	* Support set SMP settings
 	
@@ -23,6 +23,10 @@
 	* Improved code determines the amount of available memory
 	
 	* Added support new sound systems: PulseAudio, ESD, SDL
+	
+	* Added possibility to set advanced storage device settings
+	
+	* Rebuild "Convert HDD Image" window
 
 2009-09-28 Andrey Rijov (Version 0.7.3)
 

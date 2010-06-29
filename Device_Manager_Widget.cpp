@@ -35,6 +35,8 @@ Device_Manager_Widget::Device_Manager_Widget( QWidget *parent )
 {
 	ui.setupUi( this );
 	
+	Enabled = true;
+	
 	HDA_Info = new HDD_Image_Info();
 	HDB_Info = new HDD_Image_Info();
 	HDC_Info = new HDD_Image_Info();
@@ -80,14 +82,10 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 		QStringList fd_list = System_Info::Get_Host_FDD_List();
 		
 		if( fd_list.count() < 1 )
-		{
 			AQDebug( "void Device_Manager_Widget::Set_VM( const Virtual_Machine& vm )",
 					 "Cannot Find Host Floppy Devices!" );
-		}
 		else
-		{
 			Floppy1.Set_File_Name( fd_list[0] );
-		}
 	}
 	
 	Floppy2 = VM_Storage_Device( vm.Get_FD1() );
@@ -97,14 +95,10 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 		QStringList fd_list = System_Info::Get_Host_FDD_List();
 		
 		if( fd_list.count() < 1 )
-		{
 			AQDebug( "void Device_Manager_Widget::Set_VM( const Virtual_Machine& vm )",
 					 "Cannot Find Host Floppy Devices!" );
-		}
 		else
-		{
 			Floppy2.Set_File_Name( fd_list[0] );
-		}
 	}
 	
 	CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
@@ -114,14 +108,10 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 		QStringList cd_list = System_Info::Get_Host_CDROM_List();
 		
 		if( cd_list.count() < 1 )
-		{
 			AQDebug( "void Device_Manager_Widget::Set_VM( const Virtual_Machine& vm )",
 					 "Cannot Find Host CD-ROM Devices!" );
-		}
 		else
-		{
 			CD_ROM.Set_File_Name( cd_list[0] );
-		}
 	}
 	
 	HDA = VM_HDD( vm.Get_HDA() );
@@ -130,24 +120,16 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	HDD = VM_HDD( vm.Get_HDD() );
 	
 	if( QFile::exists(HDA.Get_File_Name()) )
-	{
 		HDA_Info->Update_Disk_Info( HDA.Get_File_Name() );
-	}
 	
 	if( QFile::exists(HDB.Get_File_Name()) )
-	{
 		HDB_Info->Update_Disk_Info( HDB.Get_File_Name() );
-	}
 	
 	if( QFile::exists(HDC.Get_File_Name()) )
-	{
 		HDC_Info->Update_Disk_Info( HDC.Get_File_Name() );
-	}
 	
 	if( QFile::exists(HDD.Get_File_Name()) )
-	{
 		HDD_Info->Update_Disk_Info( HDD.Get_File_Name() );
-	}
 	
 	Storage_Devices.clear();
 	
@@ -162,6 +144,8 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 
 void Device_Manager_Widget::Set_Enabled( bool on )
 {
+	Enabled = on;
+	
 	ui.Label_Add_Devices->setEnabled( on );
 	ui.TB_Add_Floppy->setEnabled( on );
 	ui.TB_Add_CDROM->setEnabled( on );
@@ -181,9 +165,6 @@ void Device_Manager_Widget::Set_Enabled( bool on )
 	ui.Label_Devices_List->setEnabled( on );
 	ui.Label_Information->setEnabled( on );
 	ui.Label_Connected_To->setEnabled( on );
-	
-	if( on ) ui.Devices_List->setContextMenuPolicy( Qt::CustomContextMenu );
-	else ui.Devices_List->setContextMenuPolicy( Qt::NoContextMenu );
 }
 
 void Device_Manager_Widget::Update_Enabled_Actions()
@@ -461,6 +442,28 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 		ui.TB_Delete_Device->setEnabled( false );
 		ui.actionDelete->setEnabled( false );
 			
+		ui.TB_Format_HDD->setEnabled( false );
+		ui.actionFormat_HDD->setEnabled( false );
+		
+		ui.TB_Quick_Format->setEnabled( false );
+		ui.actionQuick_Format->setEnabled( false );
+	}
+	
+	// Disable widgets
+	if( ! Enabled )
+	{
+		ui.actionAdd_Floppy->setEnabled( false );
+		ui.TB_Add_Floppy->setEnabled( false );
+		
+		ui.actionAdd_CD_ROM->setEnabled( false );
+		ui.TB_Add_CDROM->setEnabled( false );
+		
+		ui.actionAdd_HDD->setEnabled( false );
+		ui.TB_Add_HDD->setEnabled( false );
+		
+		ui.TB_Delete_Device->setEnabled( false );
+		ui.actionDelete->setEnabled( false );
+		
 		ui.TB_Format_HDD->setEnabled( false );
 		ui.actionFormat_HDD->setEnabled( false );
 		
@@ -760,6 +763,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	if( ui.Devices_List->currentItem()->data(512).toString() == "fd1" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_Floppy( Floppy1, tr("Floppy 1") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -777,6 +781,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "fd2" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_Floppy( Floppy2, tr("Floppy 2") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -794,6 +799,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "cd" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_CD_ROM( CD_ROM, tr("CD/DVD-ROM") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -811,6 +817,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hda" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDA, tr("HDA (First Master)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -828,6 +835,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdb" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDB, tr("HDB (First Slave)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -845,6 +853,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdc" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDC, tr("HDC (Second Master)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -862,6 +871,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 	else if( ui.Devices_List->currentItem()->data(512).toString() == "hdd" )
 	{
 		pw = new Properties_Window();
+		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDD, tr("HDD (Second Slave)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -887,6 +897,7 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 				finded = true;
 				
 				Device_Window = new Add_New_Device_Window();
+				Device_Window->Set_Enabled( Enabled );
 				Device_Window->Set_Device( Storage_Devices[fx] );
 				
 				if( Device_Window->exec() == QDialog::Accepted )

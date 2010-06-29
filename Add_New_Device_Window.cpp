@@ -244,7 +244,8 @@ void Add_New_Device_Window::Set_Emulator_Devices( const Averable_Devices &device
 		ui.CB_AIO->setVisible( false );
 	}
 		
-	/*if( devices.PSO_Drive_Format )
+	/* FIXME
+	if( devices.PSO_Drive_Format )
 	{
 		ui.->setVisible( true );
 		ui.->setVisible( true );
@@ -290,6 +291,11 @@ void Add_New_Device_Window::Set_Emulator_Devices( const Averable_Devices &device
 	
 	// Minimum Size
 	resize( minimumSizeHint().width(), minimumSizeHint().height() );
+}
+
+void Add_New_Device_Window::Set_Enabled( bool enabled )
+{
+	ui.Button_OK->setEnabled( enabled );
 }
 
 void Add_New_Device_Window::on_CB_Interface_currentIndexChanged( const QString &text )

@@ -62,8 +62,8 @@ void HDD_Image_Info::Update_Disk_Info( const QString &path )
 
 void HDD_Image_Info::Clear_Info()
 {
-	AQWarning( "void HDD_Image_Info::Clear_Info()",
-			   "HDD Info Not Read!" );
+	AQDebug( "void HDD_Image_Info::Clear_Info()",
+			 "HDD Info Not Read!" );
 	
 	VM_HDD tmp_hdd;
 	Info.Disk_Format = "";

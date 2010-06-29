@@ -680,12 +680,6 @@ Averable_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const
 	return Averable_Devices();
 }
 
-bool Main_Window::Current_Emulator_Version_Good( VM::Emulator_Version ver )
-{
-	// FIXME Check options list. this function obsolete
-	return true;
-}
-
 bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm )
 {
 	if( old_vm == NULL )
@@ -3319,7 +3313,6 @@ void Main_Window::VM_State_Changet( Virtual_Machine *vm, VM::VM_State s )
 	}
 	
 	Virtual_Machine *cur_vm = Get_Current_VM();
-	
 	if( cur_vm == NULL )
 	{
 		AQError( "void Main_Window::VM_State_Changet( Virtual_Machine *vm, VM::VM_State s )",
@@ -3337,7 +3330,7 @@ void Main_Window::VM_State_Changet( Virtual_Machine *vm, VM::VM_State s )
 	vm->Save_VM(); // Save New State
 }
 
-void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s ) // FIXME vm
+void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 {
 	if( vm == NULL )
 	{
@@ -3377,7 +3370,6 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s ) // FIXME vm
 			ui.actionReset->setEnabled( false );
 			
 			Set_Widgets_State( true );
-			vm->Hide_Emu_Ctl_Win();
 			break;
 			
 		case VM::VMS_Pause:
@@ -3398,7 +3390,6 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s ) // FIXME vm
 			ui.actionReset->setEnabled( true );
 			
 			Set_Widgets_State( false );
-			vm->Hide_Emu_Ctl_Win();
 			break;
 			
 		case VM::VMS_In_Error:
@@ -3409,7 +3400,6 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s ) // FIXME vm
 			ui.actionReset->setEnabled( false );
 			
 			Set_Widgets_State( false );
-			vm->Hide_Emu_Ctl_Win();
 			
 			Update_Info_Text( 2 );
 			break;
@@ -3418,12 +3408,14 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s ) // FIXME vm
 			break;
 	}
 	
-	Update_Emulator_Control();
+	ui.Button_Apply->setEnabled( false );
+	ui.Button_Cancel->setEnabled( false );
+	
+	Update_Emulator_Control( vm );
 }
 
 void Main_Window::Set_Widgets_State( bool enabled )
 {
-	// FIXME
 	// Tabs
 	ui.Tab_General->setEnabled( enabled );
 	ui.Tab_HDD->setEnabled( enabled );
@@ -3452,10 +3444,6 @@ void Main_Window::Set_Widgets_State( bool enabled )
 	ui.Tab_VNC->setEnabled( enabled );
 	ui.Tab_Optional_Images->setEnabled( enabled );
 	ui.Tab_Boot_Linux->setEnabled( enabled );
-	
-	// Buttons
-	ui.Button_Apply->setEnabled( enabled );
-	ui.Button_Cancel->setEnabled( enabled );
 }
 
 void Main_Window::VM_Changet()
@@ -3464,9 +3452,10 @@ void Main_Window::VM_Changet()
 	ui.Button_Cancel->setEnabled( true );
 }
 
-void Main_Window::Update_Emulator_Control()
+// FIXME This code be rewrited in future. Delete and create new tabs/layouts not optimal way
+void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 {
-	Virtual_Machine *cur_vm = Get_Current_VM();
+	cur_vm->Hide_Emu_Ctl_Win();
 	
 	if( cur_vm == NULL )
 	{
@@ -3483,33 +3472,51 @@ void Main_Window::Update_Emulator_Control()
 	}
 	
 	// Add new Emulator Control
-	VM::VM_State tmp_state = cur_vm->Get_State();
+	bool emulRun = (cur_vm->Get_State() == VM::VMS_Running || cur_vm->Get_State() == VM::VMS_Pause);
 	
-	if( tmp_state == VM::VMS_Running || tmp_state == VM::VMS_Pause )
+	if( Settings.value("Show_Emulator_Control_Window", "no").toString() == "yes" )
 	{
-		if( Settings.value("Show_Emulator_Control_Window", "no").toString() == "yes" )
+		if( Settings.value("Include_Emulator_Control", "no").toString() == "yes" )
 		{
-			if( Settings.value("Include_Emulator_Control", "no").toString() == "yes" )
+			if( Settings.value("Use_VNC_Display", "no").toString() == "yes" )
 			{
-				if( Settings.value("Use_VNC_Display", "no").toString() == "yes" )
+				// Display Tab
+				if( emulRun )
 				{
-					// Display Tab
 					cur_vm->Emu_Ctl->Use_Minimal_Size( false );
 					ui.Tabs->insertTab( 0, cur_vm->Emu_Ctl, tr("Display") );
 					ui.Tabs->setCurrentIndex( 0 );
 				}
-				else
-				{
-					delete ui.Tab_Info->layout();
-					
-					QVBoxLayout *layout = new QVBoxLayout;
-					cur_vm->Emu_Ctl->setMaximumSize( 4096, 30 );
-					layout->addWidget( cur_vm->Emu_Ctl );
-					layout->addWidget( ui.VM_Information_Text );
-					ui.Tab_Info->setLayout( layout );
-				}
 			}
-			else cur_vm->Show_Emu_Ctl_Win();
+			else
+			{
+				// Show/Hide Emulator Control windows
+				for( int vx = 0; vx < VM_List.count(); ++vx )
+				{
+					if( VM_List[vx]->Get_UID() != cur_vm->Get_UID() )
+						VM_List[vx]->Hide_Emu_Ctl_Win();
+					else
+					{
+						if( emulRun )
+							VM_List[vx]->Show_Emu_Ctl_Win();
+					}
+				}
+				
+				// Create new layout for tab Info
+				delete ui.Tab_Info->layout();
+				QVBoxLayout *layout = new QVBoxLayout;
+				cur_vm->Emu_Ctl->setMaximumSize( 4096, 30 );
+				
+				if( emulRun )
+					layout->addWidget( cur_vm->Emu_Ctl );
+
+				layout->addWidget( ui.VM_Information_Text );
+				ui.Tab_Info->setLayout( layout );
+			}
+		}
+		else // ^^^ if( Settings.value("Include_Emulator_Control", "no").toString() == "yes" )
+		{
+			cur_vm->Show_Emu_Ctl_Win();
 		}
 	}
 }
@@ -4661,7 +4668,6 @@ void Main_Window::on_actionPower_Off_triggered()
 	if( VM_List.count() <= 0 ) return;
 	
 	Virtual_Machine *cur_vm = Get_Current_VM();
-	
 	if( cur_vm == NULL )
 	{
 		AQError( "void Main_Window::on_actionPower_Off_triggered()",
@@ -5094,7 +5100,7 @@ void Main_Window::on_CH_Remove_RAM_Size_Limitation_stateChanged( int state )
 			AQGraphic_Warning( tr("Error"), tr("Current memory size more of all host memory!\nUse the maximum available size.") );
 		
 		ui.Memory_Size->setMaximum( allRAM );
-		ui.Label_Available_Free_Memory->setText( tr("%1 MB").arg(allRAM) );
+		ui.Label_Available_Free_Memory->setText( QString("%1 MB").arg(allRAM) );
 		Update_RAM_Size_ComboBox( allRAM );
 	}
 }
@@ -6217,6 +6223,17 @@ void Main_Window::on_Button_Cancel_clicked()
 {
 	// load Settings
 	Update_VM_Ui();
+}
+
+void Main_Window::on_CH_Use_Network_toggled( bool on )
+{
+	Old_Network_Settings_Widget->Set_Enabled( on );
+	New_Network_Settings_Widget->Set_Enabled( on );
+	
+	ui.Redirection_Widget->setEnabled( on );
+	ui.Widget_Network_Other->setEnabled( on );
+	ui.Widget_Redirection_Buttons->setEnabled( on );
+	ui.Widget_Redirection_CheckBox->setEnabled( on );
 }
 
 void Main_Window::on_RB_Network_Mode_New_toggled( bool on )

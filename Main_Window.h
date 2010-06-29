@@ -55,7 +55,7 @@ class Main_Window: public QMainWindow
 		void Show_State( Virtual_Machine *vm, VM::VM_State s );
 		void Set_Widgets_State( bool enabled );
 		void VM_Changet();
-		void Update_Emulator_Control();
+		void Update_Emulator_Control( Virtual_Machine *cur_vm );
 		
 		// Actions
 		void on_actionChange_Icon_triggered();
@@ -163,6 +163,7 @@ class Main_Window: public QMainWindow
 		void on_CB_CDROM_Devices_editTextChanged( const QString &text );
 		
 		// Network Tab
+		void on_CH_Use_Network_toggled( bool on );
 		void on_RB_Network_Mode_New_toggled( bool on );
 		
 		void on_Redirections_List_cellClicked( int row, int column );
@@ -200,7 +201,6 @@ class Main_Window: public QMainWindow
 		
 		const QMap<QString, Averable_Devices> &Get_Devices_Info( bool *ok ) const;
 		Averable_Devices Get_Current_Machine_Devices( bool *ok ) const;
-		bool Current_Emulator_Version_Good( VM::Emulator_Version ver );
 		
 		bool Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm );
 		

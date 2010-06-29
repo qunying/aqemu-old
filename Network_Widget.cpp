@@ -172,6 +172,7 @@ void Network_Widget::Set_Devices( const Averable_Devices &devices )
 	}
 	
 	// Set types
+	ui.CB_Network_Type->clear();
 	ui.CB_Network_Type->addItem( "nic" );
 	ui.CB_Network_Type->addItem( "user" );
 	ui.CB_Network_Type->addItem( "channel" );
@@ -856,8 +857,9 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 	}
 	else
 	{
-		AQError( "void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )",
-				 "Invalid connection type! Data: " + ui.CB_Network_Type->currentText() );
+		if( ui.CB_Network_Type->count() > 0 )
+			AQError( "void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )",
+					 "Invalid connection type! Data: " + ui.CB_Network_Type->currentText() );
 	}
 	
 	// Set PSO

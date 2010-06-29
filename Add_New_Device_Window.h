@@ -39,6 +39,8 @@ class Add_New_Device_Window: public QDialog
 		void Set_Device( const VM_Nativ_Storage_Device &dev );
 		
 		void Set_Emulator_Devices( const Averable_Devices &devices );
+		
+		void Set_Enabled( bool enabled );
 	
 	private slots:
 		void on_CB_Interface_currentIndexChanged( const QString &text );

@@ -149,6 +149,11 @@ void Properties_Window::Set_HDD( const VM_HDD &hd, const QString &name )
 	resize( width(), minimumSizeHint().height() );
 }
 
+void Properties_Window::Set_Enabled( bool enabled )
+{
+	ui.Button_OK->setEnabled( enabled );
+}
+
 void Properties_Window::on_Button_OK_clicked()
 {
 	if( ui.GB_Floppy->isEnabled() )

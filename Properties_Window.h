@@ -42,6 +42,8 @@ class Properties_Window: public QDialog
 		void Set_CD_ROM( const VM_Storage_Device &cd, const QString &name );
 		void Set_HDD( const VM_HDD &hd, const QString &name );
 		
+		void Set_Enabled( bool enabled );
+		
 	private slots:
 		void on_Button_OK_clicked();
 		void on_Button_Cancel_clicked();
