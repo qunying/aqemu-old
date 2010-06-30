@@ -65,6 +65,7 @@ void First_Start_Wizard::on_Button_Back_clicked()
 {
 	Next_Move = false;
 	ui.All_Pages->setCurrentIndex( ui.All_Pages->currentIndex() -1 );
+	ui.Button_Next->setEnabled( true );
 }
 
 void First_Start_Wizard::on_Button_Next_clicked()
@@ -96,6 +97,11 @@ void First_Start_Wizard::on_Button_Next_clicked()
 	{
 		if( ! Emulators_Find_Done ) ui.Button_Next->setEnabled( false );
 	}
+}
+
+void First_Start_Wizard::on_Edit_VM_Dir_textChanged()
+{
+	ui.Button_Next->setEnabled( ! ui.Edit_VM_Dir->text().isEmpty() );
 }
 
 void First_Start_Wizard::on_TB_Browse_VM_Dir_clicked()
@@ -425,13 +431,9 @@ void First_Start_Wizard::on_All_Pages_currentChanged( int index )
 {
 	// Back, Next Buttons State
 	if( index == 0 )
-	{
 		ui.Button_Back->setEnabled( false );
-	}
 	else if( index == ui.All_Pages->count()-1 )
-	{
 		ui.Button_Next->setText( tr("&Finish") );
-	}
 	else
 	{
 		ui.Button_Back->setEnabled( true );
@@ -443,9 +445,7 @@ void First_Start_Wizard::on_All_Pages_currentChanged( int index )
 	
 	// Pages Actions
 	if( ui.All_Pages->currentWidget() == ui.General_Settings_Page && Next_Move )
-	{
 		retranslateUi();
-	}
 }
 
 void First_Start_Wizard::Load_Settings()

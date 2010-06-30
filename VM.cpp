@@ -6402,7 +6402,7 @@ void Virtual_Machine::Save_VM_State( const QString &tag, bool quit )
 {
 	Show_VM_Save_Window();
 	
-	if( quit ) QEMU_Process->write( "stop\n" );
+	//if( quit ) QEMU_Process->write( "stop\n" ); FIXME
 	
 	if( Settings.value("Use_Screenshot_for_OS_Logo", "yes").toString() == "yes" )
 	{

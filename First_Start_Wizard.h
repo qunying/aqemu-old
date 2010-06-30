@@ -38,6 +38,7 @@ class First_Start_Wizard: public QDialog
 		void on_Button_Cancel_clicked();
 		void on_Button_Back_clicked();
 		void on_Button_Next_clicked();
+		void on_Edit_VM_Dir_textChanged();
 		void on_TB_Browse_VM_Dir_clicked();
 		
 		void on_Button_Find_Emulators_clicked();

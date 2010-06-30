@@ -3356,6 +3356,7 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 			ui.actionPower_On->setEnabled( false );
 			ui.actionSave->setEnabled( true );
 			ui.actionPause->setEnabled( true );
+			ui.actionPause->setChecked( false );
 			ui.actionPower_Off->setEnabled( true );
 			ui.actionReset->setEnabled( true );
 			
@@ -3366,6 +3367,7 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 			ui.actionPower_On->setEnabled( true );
 			ui.actionSave->setEnabled( false );
 			ui.actionPause->setEnabled( false );
+			ui.actionPause->setChecked( false );
 			ui.actionPower_Off->setEnabled( false );
 			ui.actionReset->setEnabled( false );
 			
@@ -3376,6 +3378,7 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 			ui.actionPower_On->setEnabled( false );
 			ui.actionSave->setEnabled( true );
 			ui.actionPause->setEnabled( true );
+			ui.actionPause->setChecked( true );
 			ui.actionPower_Off->setEnabled( true );
 			ui.actionReset->setEnabled( true );
 			
@@ -3386,6 +3389,7 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 			ui.actionPower_On->setEnabled( true );
 			ui.actionSave->setEnabled( false );
 			ui.actionPause->setEnabled( false );
+			ui.actionPause->setChecked( false );
 			ui.actionPower_Off->setEnabled( true );
 			ui.actionReset->setEnabled( true );
 			
@@ -3396,6 +3400,7 @@ void Main_Window::Show_State( Virtual_Machine *vm, VM::VM_State s )
 			ui.actionPower_On->setEnabled( false );
 			ui.actionSave->setEnabled( false );
 			ui.actionPause->setEnabled( false );
+			ui.actionPause->setChecked( false );
 			ui.actionPower_Off->setEnabled( false );
 			ui.actionReset->setEnabled( false );
 			
@@ -3455,7 +3460,8 @@ void Main_Window::VM_Changet()
 // FIXME This code be rewrited in future. Delete and create new tabs/layouts not optimal way
 void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 {
-	cur_vm->Hide_Emu_Ctl_Win();
+	for( int vx = 0; vx < VM_List.count(); ++vx )
+		VM_List[vx]->Hide_Emu_Ctl_Win();
 	
 	if( cur_vm == NULL )
 	{
@@ -3490,25 +3496,16 @@ void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 			}
 			else
 			{
-				// Show/Hide Emulator Control windows
-				for( int vx = 0; vx < VM_List.count(); ++vx )
-				{
-					if( VM_List[vx]->Get_UID() != cur_vm->Get_UID() )
-						VM_List[vx]->Hide_Emu_Ctl_Win();
-					else
-					{
-						if( emulRun )
-							VM_List[vx]->Show_Emu_Ctl_Win();
-					}
-				}
-				
 				// Create new layout for tab Info
 				delete ui.Tab_Info->layout();
 				QVBoxLayout *layout = new QVBoxLayout;
 				cur_vm->Emu_Ctl->setMaximumSize( 4096, 30 );
 				
 				if( emulRun )
+				{
 					layout->addWidget( cur_vm->Emu_Ctl );
+					cur_vm->Show_Emu_Ctl_Win();
+				}
 
 				layout->addWidget( ui.VM_Information_Text );
 				ui.Tab_Info->setLayout( layout );
