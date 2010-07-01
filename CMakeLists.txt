@@ -7,8 +7,16 @@
 PROJECT( AQEMU )
 CMAKE_MINIMUM_REQUIRED( VERSION 2.4.0 )
 
-# Verbose compiler output
-SET( CMAKE_VERBOSE_MAKEFILE ON )
+# Debug mode
+OPTION( DEBUG "Build with debug information" )
+ 
+IF( DEBUG )
+	# Verbose compiler output
+	SET( CMAKE_VERBOSE_MAKEFILE ON )
+
+	# GCC
+	ADD_DEFINITIONS( -Wall -g )
+ENDIF( DEBUG )
 
 # For find VNC libs
 SET( CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules )
@@ -152,14 +160,14 @@ IF( NOT WITHOUT_EMBEDDED_DISPLAY )
 	SET( aqemu_sources ${aqemu_sources} Embedded_Display/Machine_View.cpp Embedded_Display/remoteview.cpp
 										Embedded_Display/vncclientthread.cpp Embedded_Display/vncview.cpp )
 	
-	ADD_DEFINITIONS( -Wall -g ${QT_DEFINITIONS} -DVNC_DISPLAY -DQTONLY )
+	ADD_DEFINITIONS( -DVNC_DISPLAY -DQTONLY )
 	ADD_LIBRARY( libvncclient SHARED ${aqemu_headers} ${aqemu_sources} )
 	
 	INCLUDE_DIRECTORIES( ${VNCCLIENT_INCLUDE_DIRS} )
-ELSE( NOT WITHOUT_EMBEDDED_DISPLAY )
-	ADD_DEFINITIONS( -Wall -g ${QT_DEFINITIONS} )
 ENDIF( NOT WITHOUT_EMBEDDED_DISPLAY )
 
+# Add Qt definitions
+ADD_DEFINITIONS( ${QT_DEFINITIONS} )
 
 # MOC and other Qt stuff
 QT4_WRAP_UI( ui_headers ${aqemu_ui} )

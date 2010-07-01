@@ -57,11 +57,8 @@ void Emulator_Control_Window::Apply_Full_Size( int w, int h )
 		setMaximumSize( w, h + menuWidget()->height() );
 		
 		QDesktopWidget desktop;
-		
 		if( desktop.screenGeometry(desktop.primaryScreen()).width() > w )
-		{
 			resize( w, h + menuWidget()->height() );
-		}
 	}
 	else
 	{
@@ -73,10 +70,25 @@ void Emulator_Control_Window::QEMU_Quit()
 {
 	#ifdef VNC_DISPLAY
 	if( Machine_View && Use_VNC() )
-	{
 		Machine_View->disconnectVNC();
-	}
 	#endif
+}
+
+void Emulator_Control_Window::VM_State_Changet( Virtual_Machine *vm, VM::VM_State state )
+{
+	switch( state )
+	{
+		case VM::VMS_Pause:
+			this->setWindowTitle( vm->Get_Machine_Name() + tr(" [Paused]") );
+			break;
+			
+		case VM::VMS_Saved:
+			this->setWindowTitle( vm->Get_Machine_Name() + tr(" [Saved]") );
+			break;
+			
+		default:
+			this->setWindowTitle( vm->Get_Machine_Name() );
+	}	
 }
 
 void Emulator_Control_Window::closeEvent( QCloseEvent *event )
@@ -136,17 +148,23 @@ void Emulator_Control_Window::closeEvent( QCloseEvent *event )
 void Emulator_Control_Window::Set_Current_VM( Virtual_Machine *vm )
 {
 	if( vm == NULL ) return;
-	
 	Cur_VM = vm;
 	
-	connect( Cur_VM, SIGNAL(QEMU_End()), this, SLOT(QEMU_Quit()) );
+	// VM stop
+	connect( Cur_VM, SIGNAL(QEMU_End()),
+			 this, SLOT(QEMU_Quit()) );
+	
+	// VM state changet
+	connect( Cur_VM, SIGNAL(State_Changet(Virtual_Machine*,VM::VM_State)),
+			 this, SLOT(VM_State_Changet(Virtual_Machine*,VM::VM_State)) );
 	
 	#ifdef VNC_DISPLAY
 	if( Use_VNC() )
 	{
 		this->setWindowTitle( Cur_VM->Get_Machine_Name() );
 		
-		connect( Cur_VM, SIGNAL(Loading_Complete()), this, SLOT(Connect_VNC()) );
+		connect( Cur_VM, SIGNAL(Loading_Complete()),
+				 this, SLOT(Connect_VNC()) );
 	}
 	#else
 	this->setWindowTitle( Cur_VM->Get_Machine_Name() + tr(" (Emulator Control)") );
@@ -158,7 +176,8 @@ void Emulator_Control_Window::Set_Current_VM( Virtual_Machine *vm )
 		QAction *new_act = new QAction( Cur_VM->Get_USB_Ports()[ix].Get_Product_Name(), ui.menuDisconnect );
 		new_act->setData( Cur_VM->Get_USB_Ports()[ix].Get_ID_Line() );
 		
-		connect( new_act, SIGNAL(triggered()), this, SLOT(Delete_USB_From_VM()) );
+		connect( new_act, SIGNAL(triggered()),
+				 this, SLOT(Delete_USB_From_VM()) );
 		
 		ui.menuDisconnect->addAction( new_act );
 	}
@@ -232,28 +251,20 @@ void Emulator_Control_Window::Init()
 		
 		// Add VNC Display Widget
 		if( ! Machine_View )
-		{
 			delete Machine_View;
-		}
 		
 		Machine_View = new MachineView( this );
 		
 		QVBoxLayout *vnc_layout = new QVBoxLayout( centralWidget() );
-		vnc_layout->setContentsMargins( 0, 1, 0, 1 );
-		vnc_layout->setSizeConstraint( QLayout::SetMaximumSize );
-		
 		Machine_View->setLayout( vnc_layout );
-		
 		setCentralWidget( Machine_View );
+		Machine_View->show();
 		
 		connect( Machine_View, SIGNAL(Full_Size(int,int)),
 				 this, SLOT(Apply_Full_Size(int,int)) );
 		
 		Machine_View->Set_VNC_URL( "localhost", Cur_VM->Get_Embedded_Display_Port() +
 				(Settings.value("First_VNC_Port", "6000").toString().toInt()) );
-		
-		
-		//Machine_View->initView();
 	}
 	#else
 	ui.actionDisplay_Scaling->setEnabled( false );
@@ -269,14 +280,7 @@ void Emulator_Control_Window::Set_Show_Close_Warning( bool on )
 
 void Emulator_Control_Window::Use_Minimal_Size( bool use )
 {
-	if( use )
-	{
-		this->setMaximumSize( 4096, 10 );
-	}
-	else
-	{
-		this->setMaximumSize( 4096, 4096 );
-	}
+	this->setMaximumSize( 4096, use ? 1 : 4096 );
 }
 
 void Emulator_Control_Window::on_actionSave_Screenshot_triggered()
@@ -765,9 +769,7 @@ void Emulator_Control_Window::on_actionOther_Keys_triggered()
 			QLineEdit::Normal, "", &ok );
 	
 	if( ok && ! keys.isEmpty() )
-	{
 		emit Ready_Read_Command( "sendkey " + keys );
-	}
 }
 
 void Emulator_Control_Window::on_actionCtrl_Alt_Backspace_triggered()
@@ -870,7 +872,7 @@ void Emulator_Control_Window::Connect_VNC()
 
 bool Emulator_Control_Window::Use_VNC()
 {
-	if( Settings.value("Use_VNC_Display", "yes").toString() == "yes" &&
+	if( Settings.value("Use_VNC_Display", "no").toString() == "yes" &&
 		Cur_VM->Use_VNC() == false &&
 		Cur_VM->Get_Video_Card() != "none" )
 	{
@@ -892,20 +894,21 @@ void Emulator_Control_Window::on_actionAbout_Emulator_Control_triggered()
 
 bool Emulator_Control_Window::FD0_Available()
 {
-// 	if( Cur_VM->Get_FD0().Get_Enabled() == false )
-// 	{
-// 		QMessageBox::information( this, tr("Warning!"), tr("In This VM Floppy 1 Not Found!") );
-// 		return false;
-// 	}
-// 	else
-// 	{
-// 		return true;
-// 	}
-	return true;
+	// FIXME
+ 	if( Cur_VM->Get_FD0().Get_Enabled() == false )
+ 	{
+ 		QMessageBox::information( this, tr("Warning!"), tr("In This VM Floppy 1 Not Found!") );
+ 		return false;
+ 	}
+ 	else
+ 	{
+ 		return true;
+ 	}
 }
 
 bool Emulator_Control_Window::FD1_Available()
 {
+	// FIXME
 	if( Cur_VM->Get_FD1().Get_Enabled() == false )
 	{
 		QMessageBox::information( this, tr("Warning!"), tr("In This VM Floppy 2 Not Found!") );
@@ -919,18 +922,17 @@ bool Emulator_Control_Window::FD1_Available()
 
 bool Emulator_Control_Window::CD_ROM_Available()
 {
-	return true;
-	
-// 	if( Cur_VM->Get_HDC().Get_Enabled() == true ||
-// 		Cur_VM->Get_CD_ROM().Get_Enabled() == false )
-// 	{
-// 		QMessageBox::information( this, tr("Warning!"), tr("In This VM CD-ROM Not Found!") );
-// 		return false;
-// 	}
-// 	else
-// 	{
-// 		return true;
-// 	}
+	// FIXME
+ 	if( Cur_VM->Get_HDC().Get_Enabled() == true ||
+ 		Cur_VM->Get_CD_ROM().Get_Enabled() == false )
+ 	{
+ 		QMessageBox::information( this, tr("Warning!"), tr("In This VM CD-ROM Not Found!") );
+ 		return false;
+ 	}
+ 	else
+ 	{
+ 		return true;
+ 	}
 }
 
 void Emulator_Control_Window::Update_Recent_CD_ROM_Images_List()

@@ -41,6 +41,8 @@ INSTALLATION:
 	
     For build without support "Embedded VNC Display" run: `cmake -DWITHOUT_EMBEDDED_DISPLAY=on'
 
+    For build in debug mode run: `cmake -DDEBUG=on'
+
  3. type `make'
 
  4. Enter root mode and `make install'

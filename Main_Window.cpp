@@ -3460,9 +3460,6 @@ void Main_Window::VM_Changet()
 // FIXME This code be rewrited in future. Delete and create new tabs/layouts not optimal way
 void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 {
-	for( int vx = 0; vx < VM_List.count(); ++vx )
-		VM_List[vx]->Hide_Emu_Ctl_Win();
-	
 	if( cur_vm == NULL )
 	{
 		AQError( "void Main_Window::Update_Emulator_Control()",
@@ -3470,14 +3467,7 @@ void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 		return;
 	}
 	
-	// Check and Delete All Emulator Controls
-	if( ui.Tabs->tabText(0) == tr("Display") )
-	{
-		ui.Tabs->removeTab( 0 );
-		ui.Tabs->setCurrentIndex( 0 );
-	}
-	
-	// Add new Emulator Control
+	// VM Running?
 	bool emulRun = (cur_vm->Get_State() == VM::VMS_Running || cur_vm->Get_State() == VM::VMS_Pause);
 	
 	if( Settings.value("Show_Emulator_Control_Window", "no").toString() == "yes" )
@@ -3486,16 +3476,29 @@ void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 		{
 			if( Settings.value("Use_VNC_Display", "no").toString() == "yes" )
 			{
-				// Display Tab
+				// Add Display tab
 				if( emulRun )
 				{
 					cur_vm->Emu_Ctl->Use_Minimal_Size( false );
 					ui.Tabs->insertTab( 0, cur_vm->Emu_Ctl, tr("Display") );
 					ui.Tabs->setCurrentIndex( 0 );
 				}
+				else
+				{
+					// Check and delete Emulator Control tab
+					if( ui.Tabs->tabText(0) == tr("Display") )
+					{
+						ui.Tabs->removeTab( 0 );
+						ui.Tabs->setCurrentIndex( 0 );
+					}
+				}
 			}
-			else
+			else // No VNC
 			{
+				// Hide all
+				for( int vx = 0; vx < VM_List.count(); ++vx )
+					VM_List[vx]->Hide_Emu_Ctl_Win();
+				
 				// Create new layout for tab Info
 				delete ui.Tab_Info->layout();
 				QVBoxLayout *layout = new QVBoxLayout;
@@ -3511,10 +3514,19 @@ void Main_Window::Update_Emulator_Control( Virtual_Machine *cur_vm )
 				ui.Tab_Info->setLayout( layout );
 			}
 		}
-		else // ^^^ if( Settings.value("Include_Emulator_Control", "no").toString() == "yes" )
+		else // Don't include
 		{
-			cur_vm->Show_Emu_Ctl_Win();
+			if( emulRun )
+				cur_vm->Show_Emu_Ctl_Win();
+			else
+				cur_vm->Hide_Emu_Ctl_Win();
 		}
+	}
+	else // No show emulator control
+	{
+		// Hide all
+		for( int vx = 0; vx < VM_List.count(); ++vx )
+			VM_List[vx]->Hide_Emu_Ctl_Win();
 	}
 }
 
