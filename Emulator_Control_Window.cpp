@@ -117,7 +117,7 @@ void Emulator_Control_Window::closeEvent( QCloseEvent *event )
 		
 		if( ret == QMessageBox::Yes )
 		{
-			on_actionPower_Off_triggered();
+			Cur_VM->Stop();
 			
 			Mon_Win->hide();
 			event->accept();
@@ -846,6 +846,16 @@ void Emulator_Control_Window::on_actionDisplay_Scaling_triggered()
 
 void Emulator_Control_Window::on_actionFullscreen_Mode_triggered()
 {
+	if( Settings.value("Show_Fullscreen_Warning", "yes").toString() == "yes" )
+	{
+		int ret = QMessageBox::question( this, tr("Fullscreen mode"),
+										 tr("For switch to window mode press Ctrl-Alt-F\nShow this message again?"),
+										 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
+		
+		if( ret == QMessageBox::No )
+			Settings.setValue( "Show_Fullscreen_Warning", "no" );
+	}
+	
 	static bool act_add = true;
 	
 	if( act_add )

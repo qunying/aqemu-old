@@ -61,7 +61,7 @@ class MachineView : public QScrollArea
 		void newViewSize( int w, int h );
 		void fullscreen( bool enable );
 		void initView();
-		void reinitView();
+		void Check_Connection();
 		void VNC_Connected_OK();
 		void reinitVNC();
 		void disconnectVNC();
@@ -74,6 +74,8 @@ class MachineView : public QScrollArea
 	private:
 		void resizeEvent( QResizeEvent *event );
 		void resizeView( int widgetWidth, int widgetHeight );
+		
+		bool VNC_Connected;
 		
 		VncView *View;
 		int VNC_Port;

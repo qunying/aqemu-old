@@ -22,6 +22,7 @@ ui_*.h
 aqemu
 
 # IDE Files
+AQEMU.pro
 AQEMU.cbp
 AQEMU.kdevelop
 AQEMU.kdevelop.filelist

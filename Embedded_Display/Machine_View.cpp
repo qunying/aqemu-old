@@ -43,6 +43,7 @@ MachineView::MachineView( QWidget *parent ) : QScrollArea( parent )
 	setFrameShape( QFrame::NoFrame );
 	Scaling = false;
 	Reinit_Timer = new QTimer( this );
+	VNC_Connected = false;
 }
 
 void MachineView::Set_VNC_URL( const QString &host, int port )
@@ -116,14 +117,20 @@ void MachineView::initView()
 	
 	connect( View, SIGNAL(framebufferSizeChanged(int, int)),
 			 this, SLOT(newViewSize(int, int)) );
+	
+	// This for auto reinit VNC
+	QTimer::singleShot( 1000, this, SLOT(Check_Connection()) );
 }
 
-void MachineView::reinitView()
+void MachineView::Check_Connection()
 {
-	connect( Reinit_Timer, SIGNAL(timeout()),
-			 this, SLOT(reinitVNC()) );
-	
-	Reinit_Timer->start( 1000 );
+	if( ! VNC_Connected )
+	{
+		connect( Reinit_Timer, SIGNAL(timeout()),
+				 this, SLOT(reinitVNC()) );
+		
+		Reinit_Timer->start( 1000 );
+	}
 }
 
 void MachineView::reinitVNC()
@@ -147,15 +154,35 @@ void MachineView::reinitVNC()
 		
 		disconnect( View, SIGNAL(framebufferSizeChanged(int, int)),
 					this, SLOT(newViewSize(int, int)) );
-		
+		/*
 		View = new VncView( this );
 		splashShown = true;
 		fullscreenEnabled = false;
 		showSplash( true );
 		setFrameShape( QFrame::NoFrame );
-		Scaling = false;
+		Scaling = false;*/
 		
-		initView();
+		// FIXME this code from initView()
+		showSplash( true );
+		delete View;
+		
+		QUrl url;
+		url.setScheme( "vnc" );
+		url.setHost( VNC_Host );
+		url.setPort( VNC_Port );
+		
+		View = new VncView( this, url );
+		View->start();
+		showSplash( false );
+		
+		connect( View, SIGNAL(connected()),
+				 this, SIGNAL(Connected()) );
+		
+		connect( View, SIGNAL(connected()),
+				 this, SLOT(VNC_Connected_OK()) );
+		
+		connect( View, SIGNAL(framebufferSizeChanged(int, int)),
+				 this, SLOT(newViewSize(int, int)) );
 	}
 	else
 	{
@@ -169,6 +196,10 @@ void MachineView::reinitVNC()
 void MachineView::disconnectVNC()
 {
 	stop_reinit = true;
+	
+	disconnect( Reinit_Timer, SIGNAL(timeout()),
+				this, SLOT(reinitVNC()) );
+	
 	Reinit_Timer->stop();
 }
 
@@ -176,6 +207,10 @@ void MachineView::VNC_Connected_OK()
 {
 	disconnect( Reinit_Timer, SIGNAL(timeout()),
 				this, SLOT(reinitVNC()) );
+	
+	Reinit_Timer->stop();
+	
+	VNC_Connected = true;
 }
 
 void MachineView::showSplash( bool show )
