@@ -2010,69 +2010,6 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Std_VGA = true;
 	
 	// Base emulator
-	/*QList<Averable_Devices> *baseEmulator;
-	
-	switch( version )
-	{
-		case VM::QEMU_0_9_0:
-			baseEmulator = &Emulator_QEMU_0_9_0;
-			break;
-			
-		case VM::QEMU_0_9_1:
-			baseEmulator = &Emulator_QEMU_0_9_1;
-			break;
-			
-		case VM::QEMU_0_10:
-			baseEmulator = &Emulator_QEMU_0_10;
-			break;
-			
-		case VM::QEMU_0_11:
-			baseEmulator = &Emulator_QEMU_0_11;
-			break;
-			
-		case VM::QEMU_0_12:
-			baseEmulator = &Emulator_QEMU_0_12;
-			break;
-			
-		case VM::KVM_7X:
-			baseEmulator = &Emulator_KVM_7X;
-			break;
-				
-		case VM::KVM_8X:
-			baseEmulator = &Emulator_KVM_8X;
-			break;
-				
-		case VM::KVM_0_11:
-			baseEmulator = &Emulator_KVM_0_11;
-			break;
-				
-		case VM::KVM_0_12:
-			baseEmulator = &Emulator_KVM_0_12;
-			break;
-		
-		default:
-			AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
-					 "VM::Emulator_Version version, const QString &internalName )",
-					 "Emulator version invalid!" );
-			*ok = false;
-			return Averable_Devices();
-	}
-	
-	// Get Default Devices List
-	Averable_Devices default_device;
-	
-	for( int ix = 0; ix < baseEmulator->count(); ix++ )
-	{
-		if( (*baseEmulator)[ix].System.QEMU_Name == internalName )
-		{
-			default_device = (*baseEmulator)[ ix ];
-			
-			tmp_dev.System.Caption = (*baseEmulator)[ix].System.Caption;
-			tmp_dev.System.QEMU_Name = internalName;
-		}
-	}
-	*/
-	
 	// Get Default Devices List
 	Averable_Devices default_device;
 	
@@ -2150,6 +2087,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 		QString qemu_dev_name = "";
 		
 		if( tmp.indexOf("Available CPUs") != -1 ) continue;
+		if( tmp.indexOf("Sparc") != -1 ) break; // FIXME Sparc -cpu not supported in this release
 		
 		QStringList regExpVariants;
 		regExpVariants << ".*x86\\s+([\\w-]+).*"		// x86 pentium3

@@ -80,9 +80,6 @@
         <property name="enabled">
          <bool>false</bool>
         </property>
-        <property name="toolTip">
-         <string>Incomplete function</string>
-        </property>
         <property name="text">
          <string>Advaced settings</string>
         </property>
@@ -155,9 +152,6 @@
        <widget class="QToolButton" name="TB_CDROM_Advanced_Settings">
         <property name="enabled">
          <bool>false</bool>
-        </property>
-        <property name="toolTip">
-         <string>Incomplete function</string>
         </property>
         <property name="text">
          <string>Advaced settings</string>
@@ -240,9 +234,6 @@
        <widget class="QToolButton" name="TB_HDD_Advanced_Settings">
         <property name="enabled">
          <bool>false</bool>
-        </property>
-        <property name="toolTip">
-         <string>Incomplete function</string>
         </property>
         <property name="text">
          <string>Advaced settings</string>
