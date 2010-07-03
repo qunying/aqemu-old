@@ -998,6 +998,13 @@ bool System_Info::Update_VM_Computers_List()
 	System_Info::Emulator_QEMU_0_10[ "qemu-system-mips64el" ] = ad;
 	
 	ad = Averable_Devices();
+	ad.System = Device_Map( "Microblaze", "qemu-system-microblaze" );
+	ad.Machine_List << Device_Map( QObject::tr("Spartan 3ADSP1800"), "petalogix-s3adsp1800" );
+	ad.Network_Card_List << Device_Map( QObject::tr("xilinx-ethlite"), "xilinx-ethlite" );
+	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
+	System_Info::Emulator_QEMU_0_10[ "qemu-system-microblaze" ] = ad;
+	
+	ad = Averable_Devices();
 	ad.System = Device_Map( "Power PC 32Bit", "qemu-system-ppc" );
 	
 	CPU_PPC.insert( 121, Device_Map(QObject::tr("e500v1"), "e500v1") );
@@ -1199,13 +1206,6 @@ bool System_Info::Update_VM_Computers_List()
 	// QEMU 0.12
 	System_Info::Emulator_QEMU_0_12 = System_Info::Emulator_QEMU_0_11;
 	
-	ad = Averable_Devices();
-	ad.System = Device_Map( "Microblaze", "qemu-system-microblaze" );
-	ad.Machine_List << Device_Map( QObject::tr("Spartan 3ADSP1800"), "petalogix-s3adsp1800" );
-	ad.Network_Card_List << Device_Map( QObject::tr("xilinx-ethlite"), "xilinx-ethlite" );
-	ad.Video_Card_List += QEMU_Video_Cards_v0_10_0;
-	System_Info::Emulator_QEMU_0_12[ "qemu-system-microblaze" ] = ad;
-	
 	// KVM 7X
 	ad = Averable_Devices();
 	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
@@ -1242,6 +1242,9 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = true;
 	System_Info::Emulator_KVM_8X[ "qemu-kvm" ] = ad;
+	
+	// FIXME
+	System_Info::Emulator_KVM_0_11 = System_Info::Emulator_KVM_8X;
 	
 	// KVM 0.12
 	ad = Averable_Devices();
@@ -1464,7 +1467,8 @@ VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 				return VM::Obsolete;
 			}
 			
-			if( major_ver == 0 && minor_ver == 11 ) return VM::KVM_0_11;
+			if( major_ver == 0 && minor_ver == 10 ) return VM::KVM_0_11; // FIXME
+			else if( major_ver == 0 && minor_ver == 11 ) return VM::KVM_0_11;
 			else if( major_ver == 0 && minor_ver == 12 ) return VM::KVM_0_12;
 			else if( major_ver >  0 || (major_ver == 0 && minor_ver > 12) ) return VM::KVM_0_12;
 			else
@@ -1590,8 +1594,6 @@ QMap<QString, QString> System_Info::Find_KVM_Binary_Files( const QString &path )
 	
 	if( QFile::exists(dirPath + "kvm") ) emulFiles[ "qemu-kvm" ] = dirPath + "kvm";
 	else if( QFile::exists(dirPath + "qemu-kvm") ) emulFiles[ "qemu-kvm" ] = dirPath + "qemu-kvm";
-	else AQWarning( "QMap<QString, QString> System_Info::Find_KVM_Binary_Files( const QString &path )",
-					"Cannot find kvm in: " + path );
 	
 	return emulFiles;
 }
@@ -2132,7 +2134,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	tmp_dev.System.Caption = default_device.System.Caption;
 	tmp_dev.System.QEMU_Name = internalName;
 	
-	AQWarning( "Start device search for:", internalName );
+	AQDebug( "Start device search for:", internalName );
 	
 	QStringList args_list;
 	QString tmp = "";
@@ -2147,23 +2149,40 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 		tmp = text_stream->readLine();
 		QString qemu_dev_name = "";
 		
+		if( tmp.indexOf("Available CPUs") != -1 ) continue;
+		
+		QStringList regExpVariants;
+		regExpVariants << ".*x86\\s+([\\w-]+).*"		// x86 pentium3
+					   << ".*PowerPC\\s+(.*)\\s+PVR.*"	// PowerPC 750 PVR 00080301
+					   << ".*MIPS\\s+\\'(.*)\\'.*"		// MIPS '4Kc'
+					   << ".*\\s*([\\w-]+).*";			// cortex-a9
+		
 		// Get QEMU ID String
-		QRegExp tmp_rx = QRegExp( ".*\\s+([\\w-.]+)" );
-		if( tmp_rx.exactMatch(tmp) )
+		for( int lx = 0; lx < regExpVariants.count(); ++lx )
 		{
-			QStringList rx_list = tmp_rx.capturedTexts();
-			if( rx_list.count() > 1 ) qemu_dev_name = rx_list[ 1 ];
-			else
+			QRegExp tmp_rx = QRegExp( regExpVariants[lx] );
+			if( tmp_rx.exactMatch(tmp) )
 			{
-				AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
-						 "VM::Emulator_Version version, const QString &internalName )",
-						 "Cannot get QEMU CPU ID string!" );
-				continue;
+				QStringList rx_list = tmp_rx.capturedTexts();
+				if( rx_list.count() > 1 )
+				{
+					qemu_dev_name = rx_list[ 1 ];
+					break;
+				}
+				else
+				{
+					AQError( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+							 "VM::Emulator_Version version, const QString &internalName )",
+							 "Cannot get QEMU CPU ID string!" );
+					continue;
+				}
 			}
+			else continue;
 		}
 		
 		// String empty?
-		if( ! (qemu_dev_name.isEmpty() || qemu_dev_name.indexOf(QRegExp("/^\\S+$/"), 0) != -1) )
+		if( ! (qemu_dev_name.isEmpty() ||
+			   qemu_dev_name.indexOf(QRegExp("/^\\S+$/"), 0) != -1) )
 		{
 			bool cpu_finded = false;
 			for( int ix = 0; ix < default_device.CPU_List.count(); ix++ )
@@ -2176,7 +2195,8 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 			}
 			
 			// No this device name in default list
-			if( cpu_finded == false ) tmp_dev.CPU_List << Device_Map( qemu_dev_name, qemu_dev_name );
+			if( cpu_finded == false )
+				tmp_dev.CPU_List << Device_Map( qemu_dev_name, qemu_dev_name );
 		}
 		else continue;
 	}
@@ -2347,9 +2367,10 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 		else if( qemu_dev_name == "ac97" ) tmp_dev.Audio_Card_List.Audio_AC97 = true;
 		else
 		{
-			AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
-					   "VM::Emulator_Version version, const QString &internalName )",
-					   "Unregistred Sound Card Name: \"" + qemu_dev_name + "\"" );
+			if( ! qemu_dev_name.isEmpty() )
+				AQWarning( "Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,"
+						   "VM::Emulator_Version version, const QString &internalName )",
+						   "Unregistred Sound Card Name: \"" + qemu_dev_name + "\"" );
 			continue;
 		}
 	}

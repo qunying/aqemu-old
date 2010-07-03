@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<defaultcodec></defaultcodec>
 <context>
     <name>About_Window</name>
     <message>
@@ -768,7 +768,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Add_Port_Window.ui" line="31"/>
         <source>Select redirect virtual port to:</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите пере направление виртуального порта:</translation>
     </message>
     <message>
         <location filename="Add_Port_Window.ui" line="51"/>
@@ -5716,7 +5716,7 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="2325"/>
         <source>Type: none     Size: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип: нет     Объём: 0</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3275"/>
@@ -5726,12 +5726,12 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.cpp" line="3277"/>
         <source>Type: Image     Size: 0</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип: образ     Объём: 0</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3284"/>
         <source>Byte</source>
-        <translation type="unfinished"></translation>
+        <translation>Байт</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3289"/>
@@ -5746,7 +5746,7 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.cpp" line="3303"/>
         <source>Type: Image     Size: </source>
-        <translation type="unfinished"></translation>
+        <translation>Тип: образ     Объём: </translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="4099"/>
@@ -5805,29 +5805,31 @@ Use the maximum available size.</source>
     <message>
         <location filename="Main_Window.cpp" line="6134"/>
         <source>CPU count value not valid digit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество процессоров не является корректной цифрой!</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="6150"/>
         <source>CPU count &gt; max CPU count for this emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество процессоров &gt; максимально для этого эмулятора!</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="6292"/>
         <source>For Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
 Press button &quot;Ignore&quot; for hide this message in future.
 Add This Record?</source>
-        <translation type="unfinished"></translation>
+        <translation>Для создания сокета с номером порта &lt; 1024 в Unix Вам нужно запустить AQEMU с правами root!
+Нажмите &quot;Игнорировать&quot; чтобы скрыть это предупреждение в будущем.
+Добавить эту запись?</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="862"/>
         <source>Update information about free memory</source>
-        <translation type="unfinished"></translation>
+        <translation>Обновить информацию о объёме свободной памяти</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="865"/>
         <source>Free memory: 768 MB</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступно памяти: 768 MB</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="941"/>
@@ -6857,27 +6859,27 @@ Add Support proc FS TO YOUR Kernel.</source>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="230"/>
         <source>COM (Serial Port)</source>
-        <translation type="unfinished"></translation>
+        <translation>COM (Последовательный порт)</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="263"/>
         <source>LPT (Parallel Port)</source>
-        <translation type="unfinished"></translation>
+        <translation>LPT (Параллельный порт)</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="290"/>
         <source>USB Port</source>
-        <translation type="unfinished"></translation>
+        <translation>USB порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="177"/>
         <source>Keyboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Клавиатура</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="178"/>
         <source>Mouse</source>
-        <translation type="unfinished"></translation>
+        <translation>Мышь</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="179"/>
@@ -6917,57 +6919,57 @@ Add Support proc FS TO YOUR Kernel.</source>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="212"/>
         <source>You can add no more than 4 COM ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы не можете добавить больше 4 COM портов</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="245"/>
         <source>You can add no more than 3 LPT ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы не можете добавить больше 3 LPT портов</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="365"/>
         <source>Device not select!</source>
-        <translation type="unfinished"></translation>
+        <translation>Устройство не выбрано!</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="20"/>
         <source>Add COM Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить COM порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="43"/>
         <source>Add LPT Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить LPT порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="66"/>
         <source>Add USB Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить USB порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="89"/>
         <source>Edit Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменить порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="112"/>
         <source>Delete Port</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="156"/>
         <source>Ports List</source>
-        <translation type="unfinished"></translation>
+        <translation>Список портов</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="191"/>
         <source>Port type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип порта</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="196"/>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Описание</translation>
     </message>
 </context>
 <context>

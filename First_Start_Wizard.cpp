@@ -350,6 +350,8 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 						kvm_version = System_Info::Get_Emulator_Version( iter.value() );
 					
 					if( kvm_version != VM::Obsolete ) break;
+					
+					++iter;
 				}
 				
 				if( kvm_version == VM::Obsolete )
