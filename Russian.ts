@@ -7673,9 +7673,9 @@ On Disk Size: </source>
         <location filename="Utils.cpp" line="472"/>
         <location filename="main.cpp" line="109"/>
         <location filename="main.cpp" line="179"/>
-        <location filename="main.cpp" line="206"/>
+        <location filename="main.cpp" line="205"/>
         <location filename="main.cpp" line="215"/>
-        <location filename="main.cpp" line="240"/>
+        <location filename="main.cpp" line="238"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
@@ -7718,7 +7718,7 @@ Additional Information:
     <message>
         <location filename="Utils.cpp" line="257"/>
         <location filename="main.cpp" line="71"/>
-        <location filename="main.cpp" line="270"/>
+        <location filename="main.cpp" line="268"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
@@ -8120,7 +8120,7 @@ In Some Linux Distributions That Can Lead to Inability to Save Configuration!</s
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="207"/>
+        <location filename="main.cpp" line="206"/>
         <source>Cannot Locate AQEMU Data Folder!
 You Should Select This Folder in Next Window!</source>
         <translation></translation>
@@ -8136,7 +8136,7 @@ You Should Select This Folder in Next Window!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="271"/>
+        <location filename="main.cpp" line="269"/>
         <source>AQEMU VM Folder Not Exists! Create It?</source>
         <translation>Папка для ВМ AQEMU не существует! Создать её?</translation>
     </message>
@@ -8448,7 +8448,7 @@ You Should Select This Folder in Next Window!</source>
         <translation>После обновления AQEMU нужно провести поиск эмуляторов. Пожалуйста подождите.</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="241"/>
+        <location filename="main.cpp" line="239"/>
         <source>Cannot Load AQEMU Icon Theme!
 File &quot;%1&quot; Not Found!</source>
         <translation>Не могу загрузить тему значков для AQEMU!

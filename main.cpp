@@ -180,37 +180,37 @@ int main( int argc, char *argv[] )
 							 QObject::tr("Cannot Find AQEMU Data!"), false );
 		}
 		#else
+		QStringList dataDirs;
+		dataDirs << "/usr/share/aqemu/"
+				 << "/usr/share/apps/aqemu/"
+				 << "/usr/local/share/aqemu/";
 		
-		QDir data_dir;
+		// Find data dir
+		for( int dx = 0; dx < dataDirs.count(); ++dx )
+		{
+			QDir dataDir( dataDirs[dx] );
+			
+			if( dataDir.exists(dataDirs[dx] + "os_icons") &&
+				dataDir.exists(dataDirs[dx] + "os_templates") &&
+				dataDir.entryList(QStringList("*.rcc"), QDir::Files).isEmpty() == false )
+			{
+				settings.setValue( "AQEMU_Data_Folder", dataDirs[dx] );
+				break;
+			}
+		}
 		
-		if( data_dir.exists("/usr/share/aqemu/os_icons") && 
-			data_dir.exists("/usr/share/aqemu/os_templates") )
-		{
-			settings.setValue( "AQEMU_Data_Folder", "/usr/share/aqemu/" );
-			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: /usr/share/aqemu/" );
-		}
-		else if( data_dir.exists("/usr/share/apps/aqemu/os_icons") &&
-			     data_dir.exists("/usr/share/apps/aqemu/os_templates") )
-		{
-			settings.setValue( "AQEMU_Data_Folder", "/usr/share/apps/aqemu/" );
-			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: /usr/share/apps/aqemu/" );
-		}
-		else if( data_dir.exists("/usr/local/share/aqemu/os_icons") && 
-				 data_dir.exists("/usr/local/share/aqemu/os_templates") )
-		{
-			settings.setValue( "AQEMU_Data_Folder", "/usr/local/share/aqemu/" );
-			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: /usr/local/share/aqemu/" );
-		}
-		else
+		// Finded?
+		if( settings.value("AQEMU_Data_Folder", "").toString().isEmpty() )
 		{
 			QMessageBox::information( NULL, QObject::tr("Error!"),
-				QObject::tr("Cannot Locate AQEMU Data Folder!\nYou Should Select This Folder in Next Window!"),
-				QMessageBox::Ok );
+									  QObject::tr("Cannot Locate AQEMU Data Folder!\n"
+												  "You Should Select This Folder in Next Window!"),
+									  QMessageBox::Ok );
 			
-			QString aqemu_data_dir = QFileDialog::getExistingDirectory( NULL, QObject::tr("Please Select AQEMU Data Folder:"),
+			QString aqemuDataDir = QFileDialog::getExistingDirectory( NULL, QObject::tr("Please Select AQEMU Data Folder:"),
 																		"/", QFileDialog::ShowDirsOnly );
 			
-			if( aqemu_data_dir.isEmpty() )
+			if( aqemuDataDir.isEmpty() )
 			{
 				QMessageBox::critical( NULL, QObject::tr("Error!"),
 									   QObject::tr("AQEMU Doesn't Work If Data Folder Not Selected!") );
@@ -218,12 +218,10 @@ int main( int argc, char *argv[] )
 			}
 			else
 			{
-				if( ! aqemu_data_dir.endsWith("/") ) aqemu_data_dir += "/";
-				
-				settings.setValue( "AQEMU_Data_Folder", aqemu_data_dir );
+				if( ! aqemuDataDir.endsWith("/") ) aqemuDataDir += "/";
+				settings.setValue( "AQEMU_Data_Folder", aqemuDataDir );
 			}
 		}
-		
 		#endif
 	}
 	
