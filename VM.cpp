@@ -4791,24 +4791,38 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	// SMP Mode
 	if( SMP.SMP_Count <= Current_Emulator_Devices->PSO_SMP_Count )
 	{
-		if( Current_Emulator_Devices->PSO_SMP_Cores || Current_Emulator_Devices->PSO_SMP_Threads ||
-			Current_Emulator_Devices->PSO_SMP_Sockets || Current_Emulator_Devices->PSO_SMP_MaxCPUs )
+		if( Current_Emulator_Devices->PSO_SMP_Cores ||
+			Current_Emulator_Devices->PSO_SMP_Threads ||
+			Current_Emulator_Devices->PSO_SMP_Sockets ||
+			Current_Emulator_Devices->PSO_SMP_MaxCPUs )
 		{
-			if( SMP.SMP_Count > 1 || SMP.SMP_Cores > 0 || SMP.SMP_Threads > 0 || SMP.SMP_Sockets > 0 || SMP.SMP_MaxCPUs > 0 )
+			if( SMP.SMP_Count > 1 ||
+				SMP.SMP_Cores > 0 ||
+				SMP.SMP_Threads > 0 ||
+				SMP.SMP_Sockets > 0 ||
+				SMP.SMP_MaxCPUs > 0 )
 			{
 				QString smp_args = QString::number( SMP.SMP_Count );
 				
-				if( Current_Emulator_Devices->PSO_SMP_Cores && SMP.SMP_Cores > 0 ) smp_args += ",cores=" + QString::number( SMP.SMP_Cores );
-				if( Current_Emulator_Devices->PSO_SMP_Threads && SMP.SMP_Threads > 0 ) smp_args += ",threads=" + QString::number( SMP.SMP_Threads );
-				if( Current_Emulator_Devices->PSO_SMP_Sockets && SMP.SMP_Sockets > 0 ) smp_args += ",sockets=" + QString::number( SMP.SMP_Sockets );
-				if( Current_Emulator_Devices->PSO_SMP_MaxCPUs && SMP.SMP_MaxCPUs > 0 ) smp_args += ",maxcpus=" + QString::number( SMP.SMP_MaxCPUs );
+				if( Current_Emulator_Devices->PSO_SMP_Cores && SMP.SMP_Cores > 0 )
+					smp_args += ",cores=" + QString::number( SMP.SMP_Cores );
+				
+				if( Current_Emulator_Devices->PSO_SMP_Threads && SMP.SMP_Threads > 0 )
+					smp_args += ",threads=" + QString::number( SMP.SMP_Threads );
+				
+				if( Current_Emulator_Devices->PSO_SMP_Sockets && SMP.SMP_Sockets > 0 )
+					smp_args += ",sockets=" + QString::number( SMP.SMP_Sockets );
+				
+				if( Current_Emulator_Devices->PSO_SMP_MaxCPUs && SMP.SMP_MaxCPUs > 0 )
+					smp_args += ",maxcpus=" + QString::number( SMP.SMP_MaxCPUs );
 				
 				Args << "-smp" << smp_args;
 			}
 		}
 		else
 		{
-			if( SMP.SMP_Count > 1 ) Args << "-smp" << QString::number( SMP.SMP_Count );
+			if( SMP.SMP_Count > 1 )
+				Args << "-smp" << QString::number( SMP.SMP_Count );
 		}
 	}
 	
@@ -4838,28 +4852,28 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		for( int ax = 0; ax < audio_list.count(); ++ax )
 		{
 			// Next card end?
-			if( ax != audio_list.count()-1 ) all_cards += audio_list[ ax ] + ",";
-			else all_cards += audio_list[ ax ];
+			if( ax != audio_list.count()-1 )
+				all_cards += audio_list[ ax ] + ",";
+			else
+				all_cards += audio_list[ ax ];
 		}
 		
 		Args << all_cards;
 	}
 	
 	// Machine Type
-	if( ! Machine_Type.isEmpty() ) Args << "-M" << Machine_Type;
+	if( ! Machine_Type.isEmpty() )
+		Args << "-M" << Machine_Type;
 	
 	// Keyboard Layout (language)
-	if( Keyboard_Layout != "Default" ) Args << "-k" << Get_Keyboard_Layout();
+	if( Keyboard_Layout != "Default" )
+		Args << "-k" << Get_Keyboard_Layout();
 	
 	// Video
 	if( Current_Emulator_Devices->PSO_Std_VGA ) // QEMU before 0.10 style
-	{
 		Args << Video_Card;
-	}
 	else if( ! Video_Card.isEmpty() ) // QEMU 0.10 style
-	{
 		Args << "-vga" << Video_Card;
-	}
 	
 	// Acseleration Mode
 	if( Current_Emulator_Devices->PSO_KVM == false &&
@@ -4881,17 +4895,27 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// KVM Options
-	if( Current_Emulator_Devices->PSO_No_KVM_IRQChip && KVM_IRQChip ) Args << "-no-kvm-irqchip";
-	if( Current_Emulator_Devices->PSO_No_KVM_Pit && No_KVM_Pit ) Args << "-no-kvm-pit";
-	if( Current_Emulator_Devices->PSO_KVM_Shadow_Memory && KVM_Shadow_Memory ) Args << "-kvm-shadow-memory" << QString::number( KVM_Shadow_Memory_Size );
-	if( Current_Emulator_Devices->PSO_No_KVM_Pit_Reinjection && KVM_No_Pit_Reinjection ) Args << "-no-kvm-pit-reinjection";
-	if( Current_Emulator_Devices->PSO_Enable_Nesting && KVM_Nesting ) Args << "-enable-nesting";
+	if( Current_Emulator_Devices->PSO_No_KVM_IRQChip && KVM_IRQChip )
+		Args << "-no-kvm-irqchip";
+	
+	if( Current_Emulator_Devices->PSO_No_KVM_Pit && No_KVM_Pit )
+		Args << "-no-kvm-pit";
+	
+	if( Current_Emulator_Devices->PSO_KVM_Shadow_Memory && KVM_Shadow_Memory )
+		Args << "-kvm-shadow-memory" << QString::number( KVM_Shadow_Memory_Size );
+	
+	if( Current_Emulator_Devices->PSO_No_KVM_Pit_Reinjection && KVM_No_Pit_Reinjection )
+		Args << "-no-kvm-pit-reinjection";
+	
+	if( Current_Emulator_Devices->PSO_Enable_Nesting && KVM_Nesting )
+		Args << "-enable-nesting";
 	
 	// Memory
 	Args << "-m" << QString::number( Memory_Size, 10 );
 	
 	// full screen
-	if( Fullscreen ) Args << "-full-screen";
+	if( Fullscreen )
+		Args << "-full-screen";
 	
 	// Win2000 Hack
 	if( Current_Emulator_Devices->PSO_Win2K_Hack &&
@@ -4906,22 +4930,33 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		ACPI == false ) Args << "-no-acpi";
 	
 	// Localtime
-	if( Local_Time ) Args << "-localtime";
+	if( Local_Time )
+		Args << "-localtime";
 	
 	// Snapshot
-	if( Snapshot_Mode ) Args << "-snapshot";
+	if( Snapshot_Mode )
+		Args << "-snapshot";
 	
 	// Do not start CPU at startup
-	if( ! Start_CPU ) Args << "-S";
+	if( ! Start_CPU )
+		Args << "-S";
 	
 	// Exit instead of rebooting
-	if( No_Reboot ) Args << "-no-reboot";
+	if( No_Reboot )
+		Args << "-no-reboot";
 	
 	// QEMU 0.10.0 Options
-	if( Current_Emulator_Devices->PSO_RTC_TD_Hack && RTC_TD_Hack ) Args << "-rtc-td-hack";
-	if( Current_Emulator_Devices->PSO_Show_Cursor && Show_Cursor ) Args << "-show-cursor";
-	if( Current_Emulator_Devices->PSO_Curses && Curses ) Args << "-curses";
-	if( Current_Emulator_Devices->PSO_No_Shutdown && No_Shutdown ) Args << "-no-shutdown";
+	if( Current_Emulator_Devices->PSO_RTC_TD_Hack && RTC_TD_Hack )
+		Args << "-rtc-td-hack";
+	
+	if( Current_Emulator_Devices->PSO_Show_Cursor && Show_Cursor )
+		Args << "-show-cursor";
+	
+	if( Current_Emulator_Devices->PSO_Curses && Curses )
+		Args << "-curses";
+	
+	if( Current_Emulator_Devices->PSO_No_Shutdown && No_Shutdown )
+		Args << "-no-shutdown";
 	
 	// FD0
 	if( FD0.Get_Enabled() )
@@ -5372,14 +5407,10 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 				QString nic_str = "nic,vlan=" + QString::number( Network_Cards[nc].Get_VLAN() );
 				
 				if( ! Network_Cards[nc].Get_MAC_Address().isEmpty() ) // Use MAC?
-				{
 					nic_str += ",macaddr=" + Network_Cards[nc].Get_MAC_Address();
-				}
 				
 				if( ! Network_Cards[nc].Get_Card_Model().isEmpty() )
-				{
 					nic_str += ",model=" + Network_Cards[nc].Get_Card_Model();
-				}
 				
 				Args << nic_str;
 				
@@ -5393,14 +5424,10 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 					
 					case VM::Net_Mode_Usermode:
 						if( Network_Cards[nc].Get_Hostname().isEmpty() )
-						{
 							Args << "-net" << QString( "user,vlan=" + QString::number(Network_Cards[nc].Get_VLAN()) );
-						}
 						else
-						{
 							Args << "-net" << QString( "user,vlan=" + QString::number(Network_Cards[nc].Get_VLAN()) +
 									",hostname=" + Network_Cards[nc].Get_Hostname() );
-						}
 						break;
 					
 					case VM::Net_Mode_Tuntap:
@@ -5409,9 +5436,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						tap_tmp = QString( "tap,vlan=" + QString::number(Network_Cards[nc].Get_VLAN()) );
 						
 						if( ! Network_Cards[nc].Get_Interface_Name().isEmpty() )
-						{
 							tap_tmp += QString( ",ifname=" + Network_Cards[nc].Get_Interface_Name() );
-						}
 						
 						if( ! Network_Cards[nc].Get_Use_TUN_TAP_Script() )
 						{
@@ -5738,10 +5763,11 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 					// Error! Not Found
 					if( Build_QEMU_Args_for_Tab_Info == false && usb_cmpr == false )
 					{
-						AQGraphic_Warning( tr("Warning!"), tr("USB Device %1 %2 (%3 %4) Not Found!").arg(USB_Ports[ux].Get_Manufacturer_Name())
-																									.arg(USB_Ports[ux].Get_Product_Name())
-																									.arg(USB_Ports[ux].Get_Vendor_ID())
-																									.arg(USB_Ports[ux].Get_Product_ID()) );
+						AQGraphic_Warning( tr("Warning!"),
+										   tr("USB Device %1 %2 (%3 %4) Not Found!").arg(USB_Ports[ux].Get_Manufacturer_Name())
+																					.arg(USB_Ports[ux].Get_Product_Name())
+																					.arg(USB_Ports[ux].Get_Vendor_ID())
+																					.arg(USB_Ports[ux].Get_Product_ID()) );
 						
 						continue;
 					}
@@ -5814,9 +5840,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	
 	// Start Date
 	if( Start_Date )
-	{
 		Args << "-startdate" << Start_DateTime.toString( "yyyy-MM-ddTHH:mm:ss" ); // QEMU Format
-	}
 	
 	// QEMU 0.9.1 Options
 	// on-board Flash memory image
@@ -5856,19 +5880,24 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// open SDL window without a frame and window decorations
-	if( Current_Emulator_Devices->PSO_No_Frame && No_Frame ) Args << "-no-frame";
+	if( Current_Emulator_Devices->PSO_No_Frame && No_Frame )
+		Args << "-no-frame";
 	
 	// use Ctrl-Alt-Shift to grab mouse (instead of Ctrl-Alt)
-	if( Current_Emulator_Devices->PSO_Alt_Grab && Alt_Grab ) Args << "-alt-grab";
+	if( Current_Emulator_Devices->PSO_Alt_Grab && Alt_Grab )
+		Args << "-alt-grab";
 	
 	// disable SDL window close capability
-	if( Current_Emulator_Devices->PSO_No_Quit && No_Quit ) Args << "-no-quit";
+	if( Current_Emulator_Devices->PSO_No_Quit && No_Quit )
+		Args << "-no-quit";
 	
 	// rotate graphical output 90 deg left (only PXA LCD)
-	if( Current_Emulator_Devices->PSO_Portrait && Portrait ) Args << "-portrait";
+	if( Current_Emulator_Devices->PSO_Portrait && Portrait )
+		Args << "-portrait";
 	
 	// VM Name
-	if( Current_Emulator_Devices->PSO_Name ) Args << "-name" << "\"" + Machine_Name + "\"";
+	if( Current_Emulator_Devices->PSO_Name )
+		Args << "-name" << "\"" + Machine_Name + "\"";
 	
 	// VNC
 	if( VNC )
@@ -5955,7 +5984,8 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		tmp_str.replace( "\n", " " );
 		QStringList ad_args = tmp_str.split( " ", QString::SkipEmptyParts );
 		
-		for( int ix = 0; ix < ad_args.count(); ix++ ) Args << ad_args[ ix ];
+		for( int ix = 0; ix < ad_args.count(); ix++ )
+			Args << ad_args[ ix ];
 	}
 	
 	// Set All Special Modes Off

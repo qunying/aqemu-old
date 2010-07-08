@@ -153,6 +153,9 @@ void Emulator_Options_Window::on_Button_OK_clicked()
 		
 		for( int ix = 0; ix < ui.Table_Systems->rowCount(); ix++ )
 		{
+			if( ! QFile::exists(ui.Table_Systems->item(ix, 1)->text()) )
+				continue;
+			
 			bool ok = false;
 			Averable_Devices tmpDev = System_Info::Get_Emulator_Info( ui.Table_Systems->item(ix, 1)->text(), &ok,
 																	  Current_Emulator.Get_Version(), ui.Table_Systems->item(ix, 0)->text() );
@@ -174,7 +177,8 @@ void Emulator_Options_Window::on_Button_OK_clicked()
 		{
 			if( QFile::exists(ui.Table_Systems->item(ix, 1)->text()) )
 				emul_version = System_Info::Get_Emulator_Version( ui.Table_Systems->item(ix, 1)->text() );
-			else continue;
+			else
+				continue;
 			
 			if( emul_version != VM::Obsolete ) break;
 		}

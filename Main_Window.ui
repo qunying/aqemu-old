@@ -3379,48 +3379,41 @@ Cluster Size: 0</string>
                 <item>
                  <layout class="QGridLayout" name="gridLayout_8">
                   <item row="0" column="0" colspan="4">
-                   <widget class="QCheckBox" name="CH_No_KVM">
-                    <property name="text">
-                     <string>Disable KVM support</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_No_KVM_IRQChip">
                     <property name="text">
                      <string>Disable KVM kernel mode PIC/IOAPIC/LAPIC</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0" colspan="4">
+                  <item row="1" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_No_KVM_Pit">
                     <property name="text">
                      <string>Disable KVM kernel mode PIT</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0" colspan="4">
+                  <item row="2" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_KVM_No_Pit_Reinjection">
                     <property name="text">
                      <string>Disable KVM kernel mode PIT interrupt reinjection</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0" colspan="4">
+                  <item row="3" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_KVM_Nesting">
                     <property name="text">
                      <string>Nesting (Support for Running a VM Inside the VM (AMD Only)</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="0">
+                  <item row="4" column="0">
                    <widget class="QCheckBox" name="CH_KVM_Shadow_Memory">
                     <property name="text">
                      <string>KVM Shadow Memory</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="1">
+                  <item row="4" column="1">
                    <widget class="QSpinBox" name="SB_KVM_Shadow_Memory_Size">
                     <property name="enabled">
                      <bool>false</bool>
@@ -3433,7 +3426,7 @@ Cluster Size: 0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="2">
+                  <item row="4" column="2">
                    <widget class="QLabel" name="Label_KVM_Shadow_Memory_Mb">
                     <property name="enabled">
                      <bool>false</bool>
@@ -3449,7 +3442,7 @@ Cluster Size: 0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="3">
+                  <item row="4" column="3">
                    <spacer name="horizontalSpacer_5">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -3475,7 +3468,7 @@ Cluster Size: 0</string>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>448</width>
-                    <height>10</height>
+                    <height>20</height>
                    </size>
                   </property>
                  </spacer>
@@ -5342,105 +5335,9 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    </hints>
   </connection>
   <connection>
-   <sender>CH_No_KVM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CH_No_KVM_IRQChip</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_No_KVM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CH_No_KVM_Pit</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_No_KVM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CH_KVM_No_Pit_Reinjection</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_No_KVM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CH_KVM_Nesting</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_No_KVM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>CH_KVM_Shadow_Memory</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>CH_No_KVM_IRQChip</sender>
    <signal>toggled(bool)</signal>
    <receiver>SB_KVM_Shadow_Memory_Size</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_No_KVM</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Label_KVM_Shadow_Memory_Mb</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

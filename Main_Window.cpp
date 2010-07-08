@@ -3132,8 +3132,8 @@ void Main_Window::Update_Disabled_Controls()
 	//if( curComp.PSO_Enable_KVM )
 	//else 
 		
-	if( curComp.PSO_No_KVM ) ui.CH_No_KVM->setEnabled( true );
-	else ui.CH_No_KVM->setEnabled( false );
+	//if( curComp.PSO_No_KVM ) ui.CH_No_KVM->setEnabled( true );
+	//else ui.CH_No_KVM->setEnabled( false );
 	
 	if( curComp.PSO_No_KVM_IRQChip ) ui.CH_No_KVM_IRQChip->setEnabled( true );
 	else ui.CH_No_KVM_IRQChip->setEnabled( false );
