@@ -264,7 +264,7 @@ void Emulator_Control_Window::Init()
 				 this, SLOT(Apply_Full_Size(int,int)) );
 		
 		Machine_View->Set_VNC_URL( "localhost", Cur_VM->Get_Embedded_Display_Port() +
-				(Settings.value("First_VNC_Port", "6000").toString().toInt()) );
+				(Settings.value("First_VNC_Port", "6001").toString().toInt()) );
 	}
 	#else
 	ui.actionDisplay_Scaling->setEnabled( false );

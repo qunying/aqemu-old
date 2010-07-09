@@ -1031,13 +1031,13 @@
            <item row="2" column="1">
             <widget class="QSpinBox" name="SB_First_VNC_Port">
              <property name="minimum">
-              <number>5900</number>
+              <number>1</number>
              </property>
              <property name="maximum">
-              <number>59636</number>
+              <number>65000</number>
              </property>
              <property name="value">
-              <number>6000</number>
+              <number>6001</number>
              </property>
             </widget>
            </item>

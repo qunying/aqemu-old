@@ -152,7 +152,7 @@ Advanced_Settings_Window::Advanced_Settings_Window( QWidget *parent )
 	ui.SB_Recent_FDD_Count->setValue( Settings.value("Floppy_Exits_Images/Max", "5").toString().toInt() );
 	
 	// First VNC Port for Embedded Display
-	ui.SB_First_VNC_Port->setValue( Settings.value("First_VNC_Port", "6000").toString().toInt() );
+	ui.SB_First_VNC_Port->setValue( Settings.value("First_VNC_Port", "6001").toString().toInt() );
 	
 	// QEMU_AUDIO
 	ui.CH_Audio_Default->setChecked( Settings.value("QEMU_AUDIO/Use_Default_Driver", "yes").toString() == "no" );
