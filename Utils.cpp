@@ -680,8 +680,8 @@ bool Update_Emulators_List()
 
 const QList<Emulator> &Get_Emulators_List()
 {
-	/*if( Update_Emulators_List() )*/ return Emulators_List; // FIXME Update?
-	//else
+	if( Update_Emulators_List() ) return Emulators_List; // FIXME Update
+	else
 	{
 		AQError( "QList<Emulator> Get_Emulators_List()",
 				 "Cannot Update Emulators List" );

@@ -49,6 +49,7 @@ First_Start_Wizard::First_Start_Wizard( QWidget *parent )
 bool First_Start_Wizard::Find_Emulators()
 {
 	on_Button_Find_Emulators_clicked();
+	Update_Emulators_List(); // FIXME
 	return Save_Settings();
 }
 
@@ -464,9 +465,7 @@ void First_Start_Wizard::Load_Settings()
 			ui.CB_Language->addItem( lang_files[dd].completeBaseName() );
 			
 			if( lang_files[dd].completeBaseName() == Settings.value( "Language", "en" ).toString() )
-			{
 				ui.CB_Language->setCurrentIndex( dd + 1 ); // First Item 'English'
-			}
 		}
 	}
 	
@@ -488,14 +487,13 @@ bool First_Start_Wizard::Save_Settings()
 	// Virtual Machines Folder
 	QDir dir;
 	
-	if( ! ui.Edit_VM_Dir->text().endsWith("/") ) ui.Edit_VM_Dir->setText( ui.Edit_VM_Dir->text() + "/" );
+	if( ! ui.Edit_VM_Dir->text().endsWith("/") )
+		ui.Edit_VM_Dir->setText( ui.Edit_VM_Dir->text() + "/" );
 	
 	if( dir.exists(ui.Edit_VM_Dir->text()) )
 	{
 		if( ! dir.exists(ui.Edit_VM_Dir->text() + "os_templates/") )
-		{
 			dir.mkdir( ui.Edit_VM_Dir->text() + "os_templates/" );
-		}
 	}
 	else if( ! (dir.mkdir(ui.Edit_VM_Dir->text()) && dir.mkdir(ui.Edit_VM_Dir->text() + "os_templates/")) )
 	{
@@ -506,18 +504,24 @@ bool First_Start_Wizard::Save_Settings()
 	Settings.setValue( "VM_Directory", ui.Edit_VM_Dir->text() );
 	
 	// Use Device Manager
-	if( ui.CH_Device_Manager->isChecked() ) Settings.setValue( "Use_Device_Manager", "yes" );
-	else Settings.setValue( "Use_Device_Manager", "no" );
+	if( ui.CH_Device_Manager->isChecked() )
+		Settings.setValue( "Use_Device_Manager", "yes" );
+	else
+		Settings.setValue( "Use_Device_Manager", "no" );
 	
 	// Use VNC Embedded Display
 	#ifdef VNC_DISPLAY
-	if( ui.CH_Embedded_VNC->isChecked() ) Settings.setValue( "Use_VNC_Display", "yes" );
-	else Settings.setValue( "Use_VNC_Display", "no" );
+	if( ui.CH_Embedded_VNC->isChecked() )
+		Settings.setValue( "Use_VNC_Display", "yes" );
+	else
+		Settings.setValue( "Use_VNC_Display", "no" );
 	#endif
 	
 	// Interface Language
-	if( ui.CB_Language->currentIndex() == 0 ) Settings.setValue( "Language", "en" );
-	else Settings.setValue( "Language", ui.CB_Language->itemText(ui.CB_Language->currentIndex()) );
+	if( ui.CB_Language->currentIndex() == 0 )
+		Settings.setValue( "Language", "en" );
+	else
+		Settings.setValue( "Language", ui.CB_Language->itemText(ui.CB_Language->currentIndex()) );
 	
 	// Off First Start
 	Settings.setValue( "First_Start", "no" );

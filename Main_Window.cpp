@@ -4480,13 +4480,9 @@ void Main_Window::on_actionShow_Advanced_Settings_Window_triggered()
 		
 		// Use Log
 		if( Settings.value( "Log/Save_In_File", "yes" ).toString() == "yes" )
-		{
 			AQUse_Log( true );
-		}
 		else
-		{
 			AQUse_Log( false );
-		}
 		
 		// Log File Name
 		AQLog_Path( Settings.value("Log/Log_Path", "").toString() );
@@ -4546,20 +4542,23 @@ void Main_Window::on_actionShow_First_Run_Wizard_triggered()
 	if( first_start_win->exec() == QDialog::Accepted )
 	{
 		// Update Emulator List
-		All_Emulators_List = Get_Emulators_List();
-		
-		GUI_User_Mode = true;
-		Apply_Emulator( 0 );
-		
-		// Apply Settings
-		Load_Settings();
-		
-		// Clear old vm's
-		VM_List.clear();
-		ui.Machines_List->clear();
-		
-		// Load new vm's
-		Load_Virtual_Machines();
+		if( Update_Emulators_List() )
+		{
+			All_Emulators_List = Get_Emulators_List();
+			
+			GUI_User_Mode = true;
+			Apply_Emulator( 0 );
+			
+			// Apply Settings
+			Load_Settings();
+			
+			// Clear old vm's
+			VM_List.clear();
+			ui.Machines_List->clear();
+			
+			// Load new vm's
+			Load_Virtual_Machines();
+		}
 	}
 	
 	delete first_start_win;
@@ -5836,9 +5835,15 @@ void Main_Window::on_CB_Emulator_Type_currentIndexChanged( int index )
 
 void Main_Window::Apply_Emulator( int mode )
 {
-	static bool running = false;
-	if( GUI_User_Mode == false || running == true ) return;
-	running = true;
+	// FIXME
+	//static bool firstRun = true;
+	//static bool running = false;
+	
+	if( GUI_User_Mode == false ) return;
+	//if( running == true && firstRun == false ) return;
+	
+	//firstRun = false;
+	//running = true;
 	
 	// Vairables for switch
 	int comp_index;
@@ -5957,7 +5962,7 @@ void Main_Window::Apply_Emulator( int mode )
 			break;
 	}
 	
-	running = false;
+	//running = false;
 }
 
 void Main_Window::CB_Boot_Prioritet_currentIndexChanged( int index )
