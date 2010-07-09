@@ -50,6 +50,7 @@ class Emulator_Options_Window: public QDialog
 		void on_RB_KVM_toggled( bool checked );
 		
 		bool Name_Valid( const QString &name );
+		void Update_Emulator();
 		
 	private:
 		Ui::Emulator_Options_Window ui;

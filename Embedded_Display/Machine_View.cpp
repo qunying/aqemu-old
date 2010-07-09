@@ -57,14 +57,10 @@ void MachineView::Set_Scaling( bool s )
 	Scaling = s;
 	
 	if( Scaling )
-	{
 		newViewSize( maximumViewportSize().width(),
 					 maximumViewportSize().height() );
-	}
 	else
-	{
 		newViewSize( -1, -1 );
-	}
 }
 
 void MachineView::Set_Fullscreen( bool on )
@@ -127,7 +123,7 @@ void MachineView::Check_Connection()
 	if( ! VNC_Connected )
 	{
 		connect( Reinit_Timer, SIGNAL(timeout()),
-				 this, SLOT(reinitVNC()) );
+				 this, SLOT(initView()) ); // FIXME reinitVNC()
 		
 		Reinit_Timer->start( 1000 );
 	}

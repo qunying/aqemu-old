@@ -98,10 +98,8 @@ void Create_HDD_Image_Window::on_Button_Browse_Base_Image_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_Base_Image_File_Name->setText( fileName );
-	}
 }
 
 void Create_HDD_Image_Window::on_Button_Browse_New_Image_clicked()
@@ -113,10 +111,8 @@ void Create_HDD_Image_Window::on_Button_Browse_New_Image_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
 													 &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_File_Name->setText( fileName );
-	}
 }
 
 void Create_HDD_Image_Window::on_CB_Format_currentIndexChanged( const QString &text )

@@ -91,6 +91,8 @@ void Emulator_Options_Window::on_Button_Find_clicked()
 	
 	// Update emulator info
 	Update_Info = true;
+	Update_Emulator();
+	Update_Info = false;
 }
 
 void Emulator_Options_Window::on_TB_Browse_clicked()
@@ -144,50 +146,8 @@ void Emulator_Options_Window::on_Button_OK_clicked()
 	// Version
 	Current_Emulator.Set_Version( String_To_Emulator_Version(ui.CB_Version->currentText()) );
 	
-	// Update emulator bin files info?
-	if( Update_Info &&
-		ui.RB_Check_Version->isChecked() == false &&
-		ui.RB_Force_Version->isChecked() == false )
-	{
-		QMap<QString, Averable_Devices> devList;
-		
-		for( int ix = 0; ix < ui.Table_Systems->rowCount(); ix++ )
-		{
-			if( ! QFile::exists(ui.Table_Systems->item(ix, 1)->text()) )
-				continue;
-			
-			bool ok = false;
-			Averable_Devices tmpDev = System_Info::Get_Emulator_Info( ui.Table_Systems->item(ix, 1)->text(), &ok,
-																	  Current_Emulator.Get_Version(), ui.Table_Systems->item(ix, 0)->text() );
-				
-			if( ok ) devList[ ui.Table_Systems->item(ix, 0)->text() ] = tmpDev;
-			else AQGraphic_Warning( tr("Error!"),
-									tr("Cannot get emulator info! For file: %1").arg(ui.Table_Systems->item(ix, 1)->text()) );
-		}
-		
-		Current_Emulator.Set_Devices( devList );
-	}
-	else if( Update_Info &&
-			 ui.RB_Check_Version->isChecked() )
-	{
-		// Update version
-		VM::Emulator_Version emul_version = VM::Obsolete;
-		
-		for( int ix = 0; ix < ui.Table_Systems->rowCount(); ix++ )
-		{
-			if( QFile::exists(ui.Table_Systems->item(ix, 1)->text()) )
-				emul_version = System_Info::Get_Emulator_Version( ui.Table_Systems->item(ix, 1)->text() );
-			else
-				continue;
-			
-			if( emul_version != VM::Obsolete ) break;
-		}
-		
-		if( emul_version == VM::Obsolete )
-			AQGraphic_Warning( tr("Error!"), tr("Cannot get version for emulator!") );
-		else
-			Current_Emulator.Set_Version( emul_version );
-	}
+	// Update emulator?
+	Update_Emulator();
 	
 	accept();
 }
@@ -310,6 +270,8 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 		newItem = new QTableWidgetItem( iter.value() );
 		ui.Table_Systems->setItem( ui.Table_Systems->rowCount()-1, 1, newItem );
 	}
+	
+	Update_Info = false; // Update emulator info
 }
 
 void Emulator_Options_Window::Set_All_Emulators_Names( const QStringList &allNames )
@@ -327,8 +289,12 @@ void Emulator_Options_Window::on_Edit_Name_textChanged()
 
 void Emulator_Options_Window::on_Edit_Path_to_Dir_textChanged()
 {
-	if( QFile::exists(ui.Edit_Path_to_Dir->text()) ) ui.Button_Find->setEnabled( true );
-	else ui.Button_Find->setEnabled( false );
+	if( QFile::exists(ui.Edit_Path_to_Dir->text()) )
+		ui.Button_Find->setEnabled( true );
+	else
+		ui.Button_Find->setEnabled( false );
+	
+	Update_Info = true; // Update emulator info
 }
 
 void Emulator_Options_Window::on_Table_Systems_itemDoubleClicked( QTableWidgetItem *item )
@@ -400,4 +366,51 @@ bool Emulator_Options_Window::Name_Valid( const QString &name )
 	}
 
 	return true;
+}
+
+void Emulator_Options_Window::Update_Emulator()
+{
+	if( Update_Info )
+	{
+		if( ui.RB_Save_Options->isChecked() || // Update emulator bin files info?
+			ui.RB_Check_Options->isChecked() )
+		{
+			QMap<QString, Averable_Devices> devList;
+			
+			for( int ix = 0; ix < ui.Table_Systems->rowCount(); ix++ )
+			{
+				if( ! QFile::exists(ui.Table_Systems->item(ix, 1)->text()) )
+					continue;
+				
+				bool ok = false;
+				Averable_Devices tmpDev = System_Info::Get_Emulator_Info( ui.Table_Systems->item(ix, 1)->text(), &ok,
+																		  Current_Emulator.Get_Version(), ui.Table_Systems->item(ix, 0)->text() );
+					
+				if( ok ) devList[ ui.Table_Systems->item(ix, 0)->text() ] = tmpDev;
+				else AQGraphic_Warning( tr("Error!"),
+										tr("Cannot get emulator info! For file: %1").arg(ui.Table_Systems->item(ix, 1)->text()) );
+			}
+			
+			Current_Emulator.Set_Devices( devList );
+		}
+		else if( ui.RB_Check_Version->isChecked() ) // Update version
+		{
+			VM::Emulator_Version emul_version = VM::Obsolete;
+			
+			for( int ix = 0; ix < ui.Table_Systems->rowCount(); ix++ )
+			{
+				if( QFile::exists(ui.Table_Systems->item(ix, 1)->text()) )
+					emul_version = System_Info::Get_Emulator_Version( ui.Table_Systems->item(ix, 1)->text() );
+				else
+					continue;
+				
+				if( emul_version != VM::Obsolete ) break;
+			}
+			
+			if( emul_version == VM::Obsolete )
+				AQGraphic_Warning( tr("Error!"), tr("Cannot get version for emulator!") );
+			else
+				Current_Emulator.Set_Version( emul_version );
+		}
+	}
 }

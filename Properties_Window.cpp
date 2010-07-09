@@ -304,7 +304,7 @@ void Properties_Window::on_TB_FD_Image_Browse_clicked()
 													 Get_Last_Dir_Path(ui.CB_FD_Devices->lineEdit()->text()),
 													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.CB_FD_Devices->lineEdit()->setText( fileName );
 		on_Button_Update_Info_clicked();
@@ -320,7 +320,7 @@ void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
 													 Get_Last_Dir_Path(ui.CB_CDROM_Devices->lineEdit()->text()),
 													 tr("All Files (*);;Images Files (*.iso)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.CB_CDROM_Devices->lineEdit()->setText( fileName );
 		on_Button_Update_Info_clicked();
@@ -336,7 +336,7 @@ void Properties_Window::on_TB_HDD_Image_Browse_clicked()
 													 Get_Last_Dir_Path(ui.Edit_HDD_Image_Path->text()),
 													 tr("All Files (*);;Images Files (*.img *.qcow *.wmdk)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
+	if( ! fileName.isEmpty() )
 	{
 		ui.Edit_HDD_Image_Path->setText( fileName );
 		on_Button_Update_Info_clicked();

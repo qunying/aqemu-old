@@ -583,13 +583,15 @@ bool Update_Emulators_List()
 			continue;
 		}
 		
+		// Default?
 		if( tmp.Get_Default() )
 		{
 			if( tmp.Get_Type() == VM::QEMU )
 			{
 				if( qDef )
 				{
-					AQWarning( "bool Update_Emulators_List()", "Default QEMU emulator already loaded." );
+					AQWarning( "bool Update_Emulators_List()",
+							   "Default QEMU emulator already loaded." );
 					tmp.Set_Default( false );
 				}
 				else qDef = true;
@@ -598,13 +600,69 @@ bool Update_Emulators_List()
 			{
 				if( kDef )
 				{
-					AQWarning( "bool Update_Emulators_List()", "Default KVM emulator already loaded." );
+					AQWarning( "bool Update_Emulators_List()",
+							   "Default KVM emulator already loaded." );
 					tmp.Set_Default( false );
 				}
 				else kDef = true;
 			}
 		}
 		
+		// Update available options?
+		if( tmp.Get_Check_Available_Options() )
+		{
+			QMap<QString, QString> tmpBinFiles = tmp.Get_Binary_Files();
+			QMap<QString, Averable_Devices> tmpDevMap; // result
+			
+			for( QMap<QString, QString>::const_iterator it = tmpBinFiles.constBegin(); it != tmpBinFiles.constEnd(); ++it )
+			{
+				if( ! it.value().isEmpty() )
+				{
+					bool ok = false;
+					Averable_Devices tmpDev = System_Info::Get_Emulator_Info( it.value(), &ok, tmp.Get_Version(), it.key() );
+					
+					if( ! ok )
+					{
+						AQError( "bool Update_Emulators_List()",
+								 "Cannot set new emulator available options!" );
+						continue;
+					}
+					
+					// Adding device
+					tmpDevMap[ it.key() ] = tmpDev;
+				}
+			}
+			
+			// Set all devices
+			tmp.Set_Devices( tmpDevMap );
+		}
+		
+		// Check version?
+		if( tmp.Get_Check_Version() )
+		{
+			// Get bin file path
+			QString binFilePath = "";
+			QMap<QString, QString> tmpBinFiles = tmp.Get_Binary_Files();
+			for( QMap<QString, QString>::const_iterator it = tmpBinFiles.constBegin(); it != tmpBinFiles.constEnd(); ++it )
+			{
+				if( QFile::exists(it.value()) )
+				{
+					binFilePath = it.value();
+					break;
+				}
+			}
+			
+			if( binFilePath.isEmpty() )
+			{
+				AQError( "bool Update_Emulators_List()",
+						 QString("Cannot find exists emulator binary file for emulator \"%1\"!").arg(tmp.Get_Name()) );
+			}
+			
+			// All OK, check version
+			tmp.Set_Version( System_Info::Get_Emulator_Version(binFilePath) );
+		}
+		
+		// Adding emulator
 		Emulators_List << tmp;
 	}
 	
@@ -622,8 +680,8 @@ bool Update_Emulators_List()
 
 const QList<Emulator> &Get_Emulators_List()
 {
-	if( Update_Emulators_List() ) return Emulators_List; // FIXME Update?
-	else
+	/*if( Update_Emulators_List() )*/ return Emulators_List; // FIXME Update?
+	//else
 	{
 		AQError( "QList<Emulator> Get_Emulators_List()",
 				 "Cannot Update Emulators List" );

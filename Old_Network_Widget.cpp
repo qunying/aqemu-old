@@ -565,7 +565,8 @@ void Old_Network_Widget::on_TB_Browse_TUN_Script_clicked()
 	QString FileName = QFileDialog::getOpenFileName( this, tr("Select script"), Get_Last_Dir_Path(ui.Edit_TUN_TAP_Script->text()),
 													 tr("All Files (*);;Scripts (*.sh)"), &selectedFilter, options );
 	
-	if( ! (FileName.isNull() || FileName.isEmpty()) ) ui.Edit_TUN_TAP_Script->setText( FileName );
+	if( ! FileName.isEmpty() )
+		ui.Edit_TUN_TAP_Script->setText( FileName );
 }
 
 void Old_Network_Widget::Set_Net_Card_To_Ui( const VM_Net_Card &card )

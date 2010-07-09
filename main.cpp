@@ -274,7 +274,7 @@ int main( int argc, char *argv[] )
 	}
 	
 	// Check QEMU and KVM Versions
-	//Update_Emulators_List();  FIXME
+	Update_Emulators_List(); // FIXME
 	
 	// Show main window
 	Main_Window Window;

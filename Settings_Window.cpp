@@ -217,7 +217,7 @@ void Settings_Window::on_TB_VM_Folder_clicked()
 	QString folder = QFileDialog::getExistingDirectory( this, tr("Set Folder for you VM's"),
 														Settings->value("VM_Directory", "~").toString() );
 	
-	if( ! (folder.isNull() || folder.isEmpty()) )
+	if( ! folder.isEmpty() )
 	{
 		if( ! folder.endsWith("/") || folder.endsWith("\\") )
 		{

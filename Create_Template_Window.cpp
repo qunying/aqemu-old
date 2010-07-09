@@ -51,10 +51,8 @@ void Create_Template_Window::on_TB_VM_File_Browse_clicked()
 													 Settings.value("VM_Directory","").toString() + "os_templates/",
 													 tr("AQEMU VM Files (*.aqemu)"), &selectedFilter, options );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_VM_File->setText( fileName );
-	}
 }
 
 void Create_Template_Window::on_TB_Template_Folder_Browse_clicked()
@@ -63,10 +61,8 @@ void Create_Template_Window::on_TB_Template_Folder_Browse_clicked()
 														  Get_Last_Dir_Path(ui.Edit_Template_Folder->text()),
 														  QFileDialog::ShowDirsOnly );
 	
-	if( ! (fileName.isNull() || fileName.isEmpty()) )
-	{
+	if( ! fileName.isEmpty() )
 		ui.Edit_Template_Folder->setText( fileName );
-	}
 }
 
 void Create_Template_Window::on_Button_Create_clicked()

@@ -746,7 +746,7 @@ void Advanced_Settings_Window::on_TB_Screenshot_Folder_clicked()
 	QString folder = QFileDialog::getExistingDirectory( this, tr("Select Folder for Screenshots"),
 														Settings.value("Screenshot_Folder_Path", "~").toString() );
 	
-	if( ! (folder.isNull() || folder.isEmpty()) )
+	if( ! folder.isEmpty() )
 		ui.Edit_Screenshot_Folder->setText( folder );
 }
 

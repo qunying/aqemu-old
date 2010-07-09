@@ -184,10 +184,8 @@ void Add_Port_Window::on_TB_Browse_clicked()
 	
 	QString po = QFileDialog::getOpenFileName( this, tr("Open File"), dir, tr("All Files (*)"), &selectedFilter, options );
 	
-	if( ! (po.isEmpty() || po.isNull()) )
-	{
+	if( ! po.isEmpty() )
 		ui.Edit_Args->setText( po );
-	}
 }
 
 void Add_Port_Window::Show_Arg_Help()
