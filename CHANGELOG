@@ -1,4 +1,4 @@
-2010-07-XX Andrey Rijov (Version 0.8)
+2010-07-1X Andrey Rijov (Version 0.8)
 
 	* Support finding available emulator options and devices.
 	
@@ -27,6 +27,8 @@
 	* Added possibility to set advanced storage device settings
 	
 	* Rebuild "Convert HDD Image" window
+
+	* Other Small Improvements and Bug Fixes
 
 2009-09-28 Andrey Rijov (Version 0.7.3)
 

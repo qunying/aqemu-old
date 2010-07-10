@@ -5378,10 +5378,7 @@ void Main_Window::on_TB_HDA_SetPath_clicked()
 													 &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
-	{
 		ui.Edit_HDA_Image_Path->setText( fileName );
-		HDA_Info->Update_Disk_Info( fileName );
-	}
 }
 
 void Main_Window::on_TB_HDA_Create_HDD_clicked()
@@ -5405,9 +5402,7 @@ void Main_Window::on_TB_HDA_Format_HDD_clicked()
 	hdd_win->Set_Image_Info( HDA_Info->Get_Disk_Info() );
 	
 	if( hdd_win->exec() == QDialog::Accepted )
-	{
 		HDA_Info->Update_Disk_Info( ui.Edit_HDA_Image_Path->text() );
-	}
 	
 	delete hdd_win;
 }
@@ -5496,9 +5491,7 @@ void Main_Window::on_TB_HDB_Format_HDD_clicked()
 	hdd_win->exec();
 	
 	if( hdd_win->exec() == QDialog::Accepted )
-	{
 		HDB_Info->Update_Disk_Info( ui.Edit_HDB_Image_Path->text() );
-	}
 	
 	delete hdd_win;
 }
@@ -5562,10 +5555,7 @@ void Main_Window::on_TB_HDC_SetPath_clicked()
 													 &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
-	{
 		ui.Edit_HDC_Image_Path->setText( fileName );
-		HDC_Info->Update_Disk_Info( fileName );
-	}
 }
 
 void Main_Window::on_TB_HDC_Create_HDD_clicked()
@@ -5590,9 +5580,7 @@ void Main_Window::on_TB_HDC_Format_HDD_clicked()
 	hdd_win->exec();
 	
 	if( hdd_win->exec() == QDialog::Accepted )
-	{
 		HDC_Info->Update_Disk_Info( ui.Edit_HDC_Image_Path->text() );
-	}
 	
 	delete hdd_win;
 }
@@ -5652,10 +5640,7 @@ void Main_Window::on_TB_HDD_SetPath_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-	{
 		ui.Edit_HDD_Image_Path->setText( fileName );
-		HDD_Info->Update_Disk_Info( fileName );
-	}
 }
 
 void Main_Window::on_TB_HDD_Create_HDD_clicked()
@@ -5680,9 +5665,7 @@ void Main_Window::on_TB_HDD_Format_HDD_clicked()
 	hdd_win->exec();
 	
 	if( hdd_win->exec() == QDialog::Accepted )
-	{
 		HDD_Info->Update_Disk_Info( ui.Edit_HDD_Image_Path->text() );
-	}
 	
 	delete hdd_win;
 }

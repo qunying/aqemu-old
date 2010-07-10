@@ -53,6 +53,7 @@ About_Window::About_Window( QWidget *parent ): QDialog( parent )
 	"<br>Max Brazhnikov - FreeBSD Port\n"
 	"<br>Boris Savelev - ALTLinux Package\n"
 	"<br>Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help\n"
+	"<br>Ignace Mouzannar - Debian Package\n"
 	"<br>Michael Brandstetter - German Translation and Improvement Scripts\n"
 	"<br>Robert Warnke - German AQEMU Documentation Translation\n"
 	"<br>Guillem Rieu - Patch for Network Redirections\n"

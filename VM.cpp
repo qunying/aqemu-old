@@ -5952,7 +5952,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		{
 			if( Embedded_Display_Port >= 0 )
 			{
-				int port = (Settings.value( "First_VNC_Port", "6001" ).toString().toInt() - 5900) + Embedded_Display_Port;
+				int port = (Settings.value( "First_VNC_Port", "5910" ).toString().toInt() - 5900) + Embedded_Display_Port;
 				
 				if( port >= 1 && port < 59636 )
 					Args << "-vnc" << ":" + QString::number( port );

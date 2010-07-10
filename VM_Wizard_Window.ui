@@ -18,7 +18,7 @@
    <iconset resource="images.qrc">
     <normaloff>:/add.png</normaloff>:/add.png</iconset>
   </property>
-  <layout class="QGridLayout">
+  <layout class="QGridLayout" name="gridLayout_99">
    <property name="margin">
     <number>9</number>
    </property>
@@ -1149,7 +1149,7 @@ p, li { white-space: pre-wrap; }
       </layout>
      </widget>
      <widget class="QWidget" name="Finish_Page">
-      <layout class="QGridLayout">
+      <layout class="QGridLayout" name="gridLayout_101">
        <property name="margin">
         <number>9</number>
        </property>
