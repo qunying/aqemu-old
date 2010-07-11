@@ -49,7 +49,7 @@ First_Start_Wizard::First_Start_Wizard( QWidget *parent )
 bool First_Start_Wizard::Find_Emulators()
 {
 	on_Button_Find_Emulators_clicked();
-	Update_Emulators_List(); // FIXME
+	//Update_Emulators_List(); // FIXME
 	return Save_Settings();
 }
 

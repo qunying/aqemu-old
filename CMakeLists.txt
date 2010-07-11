@@ -248,6 +248,8 @@ INSTALL( FILES ${pixmaps} DESTINATION share/pixmaps )
 FILE( GLOB app_menu "${CMAKE_CURRENT_SOURCE_DIR}/menu_data/aqemu.desktop" )
 INSTALL( FILES ${app_menu} DESTINATION share/applications )
 
+FILE( GLOB app_menu "${CMAKE_CURRENT_SOURCE_DIR}/aqemu.1.gz" )
+INSTALL( FILES ${app_menu} DESTINATION /share/man/man1 )
 
 # Create docs .bz2 files
 MACRO( create_docs _sources )
