@@ -35,6 +35,15 @@ Properties_Window::Properties_Window( QWidget *parent )
 	ui.setupUi( this );
 	
 	HDD_Info = new HDD_Image_Info();
+	
+	connect( ui.CB_FD_Devices, SIGNAL(editTextChanged(QString)),
+			 this, SLOT(on_Button_Update_Info_clicked()) );
+	
+	connect( ui.CB_CDROM_Devices, SIGNAL(editTextChanged(QString)),
+			 this, SLOT(on_Button_Update_Info_clicked()) );
+	
+	connect( ui.Edit_HDD_Image_Path, SIGNAL(textChanged(QString)),
+			 this, SLOT(on_Button_Update_Info_clicked()) );
 }
 
 const VM_Storage_Device &Properties_Window::Get_Floppy()
@@ -83,7 +92,8 @@ void Properties_Window::Set_Floppy( const VM_Storage_Device &fd, const QString &
 			ui.CB_FD_Devices->addItem( fd_list[d] );
 		
 		int fd0_ix = ui.CB_FD_Devices->findText( fd.Get_File_Name() );
-		if( fd0_ix != -1 ) ui.CB_FD_Devices->setCurrentIndex( fd0_ix );
+		if( fd0_ix != -1 )
+			ui.CB_FD_Devices->setCurrentIndex( fd0_ix );
 	}
 	
 	on_Button_Update_Info_clicked();
@@ -183,21 +193,15 @@ void Properties_Window::on_Button_OK_clicked()
 	else if( ui.GB_HDD->isEnabled() )
 	{
 		if( ! QFile::exists(ui.Edit_HDD_Image_Path->text()) )
-		{
 			AQGraphic_Warning( tr("Warning"), tr("Image File Not Exists!") );
-		}
-		else accept();
+		else
+			accept();
 	}
 	else
 	{
 		AQError( "void Properties_Window::on_Button_OK_clicked()",
 				 "Default Section!" );
 	}
-}
-
-void Properties_Window::on_Button_Cancel_clicked()
-{
-	reject();
 }
 
 void Properties_Window::on_Button_Update_Info_clicked()
@@ -214,8 +218,6 @@ void Properties_Window::on_Button_Update_Info_clicked()
 		
 		if( ! QFile::exists(ui.CB_FD_Devices->lineEdit()->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"),
-								tr("Cannot Locate Image File!") );
 			ui.Label_Info->setText( tr("Image Size: ") + QString::number(0) + tr("Kb") );
 			return;
 		}
@@ -224,14 +226,10 @@ void Properties_Window::on_Button_Update_Info_clicked()
 		qint64 size_in_bytes = fd_img.size();
 		
 		if( size_in_bytes <= 0 )
-		{
 			ui.Label_Info->setText( tr("Image Size: ") + QString::number(0) + tr("Kb") );
-		}
 		else
-		{
 			ui.Label_Info->setText( tr("Image Size: ") +
-					QString::number((int)size_in_bytes / 1024.0) + tr("Kb") );
-		}
+									QString::number((int)size_in_bytes / 1024.0) + tr("Kb") );
 		
 		delete fd;
 	}
@@ -247,8 +245,6 @@ void Properties_Window::on_Button_Update_Info_clicked()
 		
 		if( ! QFile::exists(ui.CB_CDROM_Devices->lineEdit()->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"),
-								tr("Cannot Locate Image File!") );
 			ui.Label_Info->setText( tr("Image Size: ") + QString::number(0) + tr("Mb") );
 			return;
 		}
@@ -257,36 +253,16 @@ void Properties_Window::on_Button_Update_Info_clicked()
 		qint64 size_in_bytes = cd_img.size();
 		
 		if( size_in_bytes <= 0 )
-		{
 			ui.Label_Info->setText( tr("Image Size: ") + QString::number(0) + tr("Mb") );
-		}
 		else
-		{
 			ui.Label_Info->setText( tr("Image Size: ") +
-					QString::number((float)size_in_bytes / 1024.0 / 1024.0, 'f', 2) + tr("Mb") );
-		}
+									QString::number((float)size_in_bytes / 1024.0 / 1024.0, 'f', 2) + tr("Mb") );
 		
 		delete cd;
 	}
 	else if( ui.GB_HDD->isEnabled() )
 	{
-		if( ui.Edit_HDD_Image_Path->text().isEmpty() )
-		{
-			ui.Label_Info->setText( tr("Format: ") +
-									tr(" Virtual Size: ") +
-									tr("\nOn Disk Size: ") +
-									tr(" Cluster Size: ") );
-			return;
-		}
-		
-		if( ! QFile::exists(ui.Edit_HDD_Image_Path->text()) )
-		{
-			AQGraphic_Warning( tr("Error!"), tr("Cannot Locate Image File!") );
-			return;
-		}
-		
 		HDD_Info->Update_Disk_Info( ui.Edit_HDD_Image_Path->text() );
-		
 	}
 	else
 	{
@@ -305,10 +281,7 @@ void Properties_Window::on_TB_FD_Image_Browse_clicked()
 													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
-	{
 		ui.CB_FD_Devices->lineEdit()->setText( fileName );
-		on_Button_Update_Info_clicked();
-	}
 }
 
 void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
@@ -321,10 +294,7 @@ void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
 													 tr("All Files (*);;Images Files (*.iso)"), &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
-	{
 		ui.CB_CDROM_Devices->lineEdit()->setText( fileName );
-		on_Button_Update_Info_clicked();
-	}
 }
 
 void Properties_Window::on_TB_HDD_Image_Browse_clicked()
@@ -337,10 +307,7 @@ void Properties_Window::on_TB_HDD_Image_Browse_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.wmdk)"), &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
-	{
 		ui.Edit_HDD_Image_Path->setText( fileName );
-		on_Button_Update_Info_clicked();
-	}
 }
 
 void Properties_Window::on_Button_HDD_New_clicked()
@@ -362,29 +329,20 @@ void Properties_Window::on_Button_HDD_Format_clicked()
 	Create_HDD_Win->Set_Image_File_Name( ui.Edit_HDD_Image_Path->text() );
 	
 	if( Create_HDD_Win->exec() == QDialog::Accepted )
-	{
 		on_Button_Update_Info_clicked();
-	}
 	
 	delete Create_HDD_Win;
 }
 
 void Properties_Window::Update_HDD( bool ok )
 {
-	if( ok )
-	{
-		PW_HDD.Set_Disk_Info( HDD_Info->Get_Disk_Info() );
-		
-		QString suf_v = Get_TR_Size_Suffix( PW_HDD.Get_Virtual_Size() );
-		QString suf_d = Get_TR_Size_Suffix( PW_HDD.Get_Disk_Size() );
-		
-		ui.Label_Info->setText( tr("Format: ") + PW_HDD.Get_Image_Format() +
-				tr(" Virtual Size: ") + QString::number(PW_HDD.Get_Virtual_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Virtual_Size()) +
-				tr("\nOn Disk Size: ") + QString::number(PW_HDD.Get_Disk_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Disk_Size()) +
-				tr(" Cluster Size: ") + QString::number(PW_HDD.Get_Cluster_Size()) );
-	}
-	else
-	{
-		// FIXME
-	}
+	PW_HDD.Set_Disk_Info( HDD_Info->Get_Disk_Info() );
+	
+	QString suf_v = Get_TR_Size_Suffix( PW_HDD.Get_Virtual_Size() );
+	QString suf_d = Get_TR_Size_Suffix( PW_HDD.Get_Disk_Size() );
+	
+	ui.Label_Info->setText( tr("Format: ") + PW_HDD.Get_Image_Format() +
+							tr(" Virtual Size: ") + QString::number(PW_HDD.Get_Virtual_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Virtual_Size()) +
+							tr("\nOn Disk Size: ") + QString::number(PW_HDD.Get_Disk_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Disk_Size()) +
+							tr(" Cluster Size: ") + QString::number(PW_HDD.Get_Cluster_Size()) );
 }

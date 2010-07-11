@@ -19,6 +19,7 @@ p, li { white-space: pre-wrap; }
 &lt;td style=&quot;border: none;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -28,11 +29,49 @@ p, li { white-space: pre-wrap; }
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="537"/>
+        <location filename="About_Window.ui" line="424"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="512"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;   &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="539"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -47,21 +86,9 @@ p, li { white-space: pre-wrap; }
         <translation>Благодарности</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="201"/>
+        <location filename="About_Window.ui" line="202"/>
         <source>License</source>
         <translation>Лицензия</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="510"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version 0.8 RC2 (Development build from GIT)&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="About_Window.cpp" line="101"/>
@@ -88,36 +115,12 @@ p, li { white-space: pre-wrap; }
         <translation>Загрузка не удалась: %1.</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="411"/>
+        <location filename="About_Window.ui" line="412"/>
         <source>Links</source>
         <translation>Ссылки</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="423"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="476"/>
+        <location filename="About_Window.ui" line="478"/>
         <source>Update Links Form Internet</source>
         <translation>Обновить ссылки через Интернет</translation>
     </message>
@@ -225,7 +228,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;body&gt;
 &lt;b&gt;
 &lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8 of 1X.07.2010&lt;/p&gt;
+&lt;p&gt;Version: 0.8 of 12.07.2010&lt;/p&gt;
 &lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
 &lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
 &lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
@@ -245,7 +248,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;body&gt;
 &lt;b&gt;
 &lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8 of XX.07.2010&lt;/p&gt;
+&lt;p&gt;Version: 0.8 of 1X.07.2010&lt;/p&gt;
 &lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
 &lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
 &lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
@@ -265,7 +268,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;body&gt;
 &lt;b&gt;
 &lt;p&gt;AQEMU это графический интерфейс для QEMU и KVM&lt;/p&gt;
-&lt;p&gt;Версия: 0.8 от 1X.07.2010&lt;/p&gt;
+&lt;p&gt;Версия: 0.8 от 12.07.2010&lt;/p&gt;
 &lt;p&gt;Лицензия: General Public License Версия 2&lt;/p&gt;
 &lt;p&gt;Автор: Андрей Рыжов (a.k.a. RDron)&lt;/p&gt;
 &lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
@@ -276,7 +279,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="216"/>
+        <location filename="About_Window.ui" line="217"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -6942,69 +6945,51 @@ Continue Without It File?</source>
 <context>
     <name>Properties_Window</name>
     <message>
-        <location filename="Properties_Window.cpp" line="211"/>
-        <location filename="Properties_Window.cpp" line="219"/>
-        <location filename="Properties_Window.cpp" line="228"/>
-        <location filename="Properties_Window.cpp" line="232"/>
-        <location filename="Properties_Window.cpp" line="244"/>
-        <location filename="Properties_Window.cpp" line="252"/>
-        <location filename="Properties_Window.cpp" line="261"/>
-        <location filename="Properties_Window.cpp" line="265"/>
+        <location filename="Properties_Window.cpp" line="215"/>
+        <location filename="Properties_Window.cpp" line="221"/>
+        <location filename="Properties_Window.cpp" line="229"/>
+        <location filename="Properties_Window.cpp" line="231"/>
+        <location filename="Properties_Window.cpp" line="242"/>
+        <location filename="Properties_Window.cpp" line="248"/>
+        <location filename="Properties_Window.cpp" line="256"/>
+        <location filename="Properties_Window.cpp" line="258"/>
         <source>Image Size: </source>
         <translation>Размер образа: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="217"/>
-        <location filename="Properties_Window.cpp" line="250"/>
-        <location filename="Properties_Window.cpp" line="284"/>
-        <source>Error!</source>
-        <translation>Ошибка!</translation>
-    </message>
-    <message>
-        <location filename="Properties_Window.cpp" line="218"/>
-        <location filename="Properties_Window.cpp" line="251"/>
-        <location filename="Properties_Window.cpp" line="284"/>
-        <source>Cannot Locate Image File!</source>
-        <translation>Не могу найти файл образа!</translation>
-    </message>
-    <message>
-        <location filename="Properties_Window.cpp" line="275"/>
-        <location filename="Properties_Window.cpp" line="381"/>
+        <location filename="Properties_Window.cpp" line="344"/>
         <source>Format: </source>
         <translation>Формат: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="276"/>
-        <location filename="Properties_Window.cpp" line="382"/>
+        <location filename="Properties_Window.cpp" line="345"/>
         <source> Virtual Size: </source>
         <translation> Виртуальный объём: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="277"/>
-        <location filename="Properties_Window.cpp" line="383"/>
+        <location filename="Properties_Window.cpp" line="346"/>
         <source>
 On Disk Size: </source>
         <translation>
 Размер на диске: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="278"/>
-        <location filename="Properties_Window.cpp" line="384"/>
+        <location filename="Properties_Window.cpp" line="347"/>
         <source> Cluster Size: </source>
         <translation> Размер кластера: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="303"/>
+        <location filename="Properties_Window.cpp" line="279"/>
         <source>Open Floppy Image File</source>
         <translation>Открыть файл образа Floppy</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="319"/>
+        <location filename="Properties_Window.cpp" line="292"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation>Открыть файл образа CD\DVD-ROM</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="335"/>
+        <location filename="Properties_Window.cpp" line="305"/>
         <source>Open HDD Image File</source>
         <translation>Открыть файл образа HDD</translation>
     </message>
@@ -7074,47 +7059,47 @@ On Disk Size: </source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="244"/>
-        <location filename="Properties_Window.cpp" line="252"/>
-        <location filename="Properties_Window.cpp" line="261"/>
-        <location filename="Properties_Window.cpp" line="266"/>
+        <location filename="Properties_Window.cpp" line="242"/>
+        <location filename="Properties_Window.cpp" line="248"/>
+        <location filename="Properties_Window.cpp" line="256"/>
+        <location filename="Properties_Window.cpp" line="259"/>
         <source>Mb</source>
         <translation>Мб</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="305"/>
+        <location filename="Properties_Window.cpp" line="281"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.ima)</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="321"/>
+        <location filename="Properties_Window.cpp" line="294"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation>Все файлы (*);;Файлы образов (*.iso)</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="337"/>
+        <location filename="Properties_Window.cpp" line="307"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.wmdk)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.qcow *.wmdk)</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="163"/>
-        <location filename="Properties_Window.cpp" line="175"/>
-        <location filename="Properties_Window.cpp" line="187"/>
+        <location filename="Properties_Window.cpp" line="173"/>
+        <location filename="Properties_Window.cpp" line="185"/>
+        <location filename="Properties_Window.cpp" line="196"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="163"/>
-        <location filename="Properties_Window.cpp" line="175"/>
-        <location filename="Properties_Window.cpp" line="187"/>
+        <location filename="Properties_Window.cpp" line="173"/>
+        <location filename="Properties_Window.cpp" line="185"/>
+        <location filename="Properties_Window.cpp" line="196"/>
         <source>Image File Not Exists!</source>
         <translation>Файл образа не найден!</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="211"/>
-        <location filename="Properties_Window.cpp" line="219"/>
-        <location filename="Properties_Window.cpp" line="228"/>
-        <location filename="Properties_Window.cpp" line="233"/>
+        <location filename="Properties_Window.cpp" line="215"/>
+        <location filename="Properties_Window.cpp" line="221"/>
+        <location filename="Properties_Window.cpp" line="229"/>
+        <location filename="Properties_Window.cpp" line="232"/>
         <source>Kb</source>
         <translation>Кб</translation>
     </message>
@@ -7953,22 +7938,22 @@ Missing (zero) values will be computed.</source>
 <context>
     <name>Select_Icon_Window</name>
     <message>
-        <location filename="Select_Icon_Window.ui" line="213"/>
+        <location filename="Select_Icon_Window.ui" line="219"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="237"/>
+        <location filename="Select_Icon_Window.ui" line="243"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="189"/>
+        <location filename="Select_Icon_Window.ui" line="195"/>
         <source>&amp;Browse...</source>
         <translation>Обзо&amp;р...</translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="172"/>
+        <location filename="Select_Icon_Window.ui" line="178"/>
         <source>You Icon Path:</source>
         <translation>Путь к твоей иконке:</translation>
     </message>
@@ -7998,7 +7983,7 @@ Missing (zero) values will be computed.</source>
         <translation>Сменить иконку</translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="151"/>
+        <location filename="Select_Icon_Window.ui" line="157"/>
         <source>Other &amp;Icon</source>
         <translation>Другая &amp;иконка</translation>
     </message>

@@ -99,6 +99,9 @@
      <property name="autoScroll">
       <bool>true</bool>
      </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
      <property name="dragDropMode">
       <enum>QAbstractItemView::NoDragDrop</enum>
      </property>
@@ -120,17 +123,20 @@
      <property name="movement">
       <enum>QListView::Static</enum>
      </property>
+     <property name="isWrapping" stdset="0">
+      <bool>true</bool>
+     </property>
      <property name="resizeMode">
       <enum>QListView::Adjust</enum>
      </property>
      <property name="layoutMode">
       <enum>QListView::Batched</enum>
      </property>
-     <property name="spacing">
-      <number>10</number>
-     </property>
      <property name="viewMode">
       <enum>QListView::IconMode</enum>
+     </property>
+     <property name="uniformItemSizes">
+      <bool>false</bool>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

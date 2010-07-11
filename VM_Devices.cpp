@@ -1319,8 +1319,7 @@ VM::Emulator_Type Emulator::Get_Type() const
 void Emulator::Set_Type( VM::Emulator_Type type )
 {
 	Type = type;
-	return; // FIXME
-	
+	/* // FIXME
 	if( Type != type )
 	{
 		// bin names
@@ -1364,7 +1363,7 @@ void Emulator::Set_Type( VM::Emulator_Type type )
 		}
 		
 		Type = type;
-	}
+	}*/
 }
 
 const QString &Emulator::Get_Name() const

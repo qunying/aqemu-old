@@ -46,7 +46,6 @@ class Properties_Window: public QDialog
 		
 	private slots:
 		void on_Button_OK_clicked();
-		void on_Button_Cancel_clicked();
 		
 		void on_Button_Update_Info_clicked();
 		
