@@ -904,6 +904,7 @@ void Emulator_Control_Window::on_actionAbout_Emulator_Control_triggered()
 
 bool Emulator_Control_Window::FD0_Available()
 {
+	return true;
 	// FIXME
  	if( Cur_VM->Get_FD0().Get_Enabled() == false )
  	{
@@ -918,6 +919,7 @@ bool Emulator_Control_Window::FD0_Available()
 
 bool Emulator_Control_Window::FD1_Available()
 {
+	return true;
 	// FIXME
 	if( Cur_VM->Get_FD1().Get_Enabled() == false )
 	{
@@ -932,6 +934,7 @@ bool Emulator_Control_Window::FD1_Available()
 
 bool Emulator_Control_Window::CD_ROM_Available()
 {
+	return true;
 	// FIXME
  	if( Cur_VM->Get_HDC().Get_Enabled() == true ||
  		Cur_VM->Get_CD_ROM().Get_Enabled() == false )
