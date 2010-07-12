@@ -134,7 +134,7 @@ SET( aqemu_ui
 
 SET( aqemu_resouces shared_images.qrc )
 
-SET( translations Russian.ts )
+SET( translations "Russian.ts" )
 
 SET( files_to_translate ${files_to_translate} ${aqemu_headers} ${aqemu_sources} ${aqemu_ui} )
 
@@ -227,11 +227,10 @@ ENDIF( NOT WITHOUT_EMBEDDED_DISPLAY )
 # Install files
 INSTALL( TARGETS aqemu DESTINATION bin )
 
-FILE( GLOB translations "${CMAKE_CURRENT_SOURCE_DIR}/*.qm" )
-INSTALL( FILES ${translations} DESTINATION share/aqemu )
+INSTALL( FILES ${qm_files} DESTINATION share/aqemu )
 
 FILE( GLOB gui_icons "${CMAKE_CURRENT_SOURCE_DIR}/*.rcc" )
-INSTALL( FILES ${gui_icons} DESTINATION share/aqemu/ )
+INSTALL( FILES ${gui_icons} DESTINATION share/aqemu )
 
 FILE( GLOB os_icons "${CMAKE_CURRENT_SOURCE_DIR}/os_icons/*.*" )
 INSTALL( FILES ${os_icons} DESTINATION share/aqemu/os_icons )
@@ -249,7 +248,7 @@ FILE( GLOB app_menu "${CMAKE_CURRENT_SOURCE_DIR}/menu_data/aqemu.desktop" )
 INSTALL( FILES ${app_menu} DESTINATION share/applications )
 
 FILE( GLOB app_menu "${CMAKE_CURRENT_SOURCE_DIR}/aqemu.1.gz" )
-INSTALL( FILES ${app_menu} DESTINATION /share/man/man1 )
+INSTALL( FILES ${app_menu} DESTINATION share/man/man1 )
 
 # Create docs .bz2 files
 MACRO( create_docs _sources )
