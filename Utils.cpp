@@ -570,6 +570,7 @@ bool Update_Emulators_List()
 	
 	// Check default emulators
 	bool qDef = false, kDef = false;
+	bool qInst = false, kInst = false; // Installed?
 	
 	// Load emulators
 	for( int ex = 0; ex < emulFiles.count(); ++ex )
@@ -582,6 +583,10 @@ bool Update_Emulators_List()
 					 QString("Cannot load emulator from file: \"%1\"").arg(emulFiles[ex]) );
 			continue;
 		}
+		
+		// Installed?
+		if( tmp.Get_Type() == VM::QEMU ) qInst = true;
+		else if( tmp.Get_Type() == VM::KVM ) kInst = true;
 		
 		// Default?
 		if( tmp.Get_Default() )
@@ -672,6 +677,31 @@ bool Update_Emulators_List()
 		AQWarning( "bool Update_Emulators_List()",
 				   "No emulators loaded!" );
 		return false;
+	}
+	
+	// Check defaults
+	if( qInst == true && qDef == false )
+	{
+		for( int ex = 0; ex < Emulators_List.count(); ++ex )
+		{
+			if( Emulators_List[ex].Get_Type() == VM::QEMU )
+			{
+				Emulators_List[ex].Set_Default( true );
+				break;
+			}
+		}
+	}
+	
+	if( kInst == true && kDef == false )
+	{
+		for( int ex = 0; ex < Emulators_List.count(); ++ex )
+		{
+			if( Emulators_List[ex].Get_Type() == VM::KVM )
+			{
+				Emulators_List[ex].Set_Default( true );
+				break;
+			}
+		}
 	}
 	
 	// All OK
