@@ -22,6 +22,7 @@
 
 #include <QMessageBox>
 #include <QProcess>
+#include <QFile>
 #include "Utils.h"
 #include "Snapshots_Window.h"
 #include "Snapshot_Properties_Window.h"
@@ -286,15 +287,36 @@ bool Snapshots_Window::Update_Info()
 		return false;
 	}
 	
-	if( ! Current_VM->Get_HDA().Get_Enabled() )
+	// Find HDD image
+	QString imagePath = "";
+	
+	if( QFile::exists(Current_VM->Get_HDA().Get_File_Name()) ) imagePath = Current_VM->Get_HDA().Get_File_Name();
+	else if( QFile::exists(Current_VM->Get_HDB().Get_File_Name()) ) imagePath = Current_VM->Get_HDB().Get_File_Name();
+	else if( QFile::exists(Current_VM->Get_HDC().Get_File_Name()) ) imagePath = Current_VM->Get_HDC().Get_File_Name();
+	else if( QFile::exists(Current_VM->Get_HDD().Get_File_Name()) ) imagePath = Current_VM->Get_HDD().Get_File_Name();
+	else if( Current_VM->Get_Storage_Devices_List().isEmpty() == false )
 	{
-		AQGraphic_Warning( tr("Error!"), tr("For Use Snapshot, You Most Add Hard Drive to This VM!") );
+		for( int ix = 0; ix < Current_VM->Get_Storage_Devices_List().count(); ++ix )
+		{
+			if( Current_VM->Get_Storage_Devices_List()[ix].Use_Media() == false ||
+				Current_VM->Get_Storage_Devices_List()[ix].Get_Media() == VM::DM_Disk )
+			{
+				if( QFile::exists(Current_VM->Get_Storage_Devices_List()[ix].Get_File_Path()) )
+					imagePath = Current_VM->Get_Storage_Devices_List()[ix].Get_File_Path();
+			}
+		}
+	}
+	
+	if( imagePath.isEmpty() )
+	{
+		AQGraphic_Warning( tr("Error!"),
+						   tr("For use snapshots, you most add HDD image in QCOW2 format!") );
 		return false;
 	}
 	
 	QProcess *qimg = new QProcess( this );
 	QStringList qimg_args;
-	qimg_args << "info" << Current_VM->Get_HDA().Get_File_Name();
+	qimg_args << "info" << imagePath;
 	
 	qimg->start( Settings.value("QEMU-IMG_Path", "qemu-img").toString(), qimg_args );
 	

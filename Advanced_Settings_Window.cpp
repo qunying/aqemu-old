@@ -587,10 +587,15 @@ void Advanced_Settings_Window::on_TB_Use_Default_clicked()
 	
 	if( cur_index >= 0 && cur_index < Emulators.count() )
 	{
+		Emulators[ cur_index ].Set_Default( true );
+		
 		for( int ix = 0; ix < Emulators.count(); ix++ )
 		{
-			if( ix == cur_index ) Emulators[ ix ].Set_Default( true );
-			else if( Emulators[cur_index].Get_Type() == Emulators[ix].Get_Type() ) Emulators[ ix ].Set_Default( false );
+			if( ix != cur_index &&
+				Emulators[cur_index].Get_Type() == Emulators[ix].Get_Type() )
+			{
+				Emulators[ ix ].Set_Default( false );
+			}
 		}
 		
 		Update_Emulators_Info();

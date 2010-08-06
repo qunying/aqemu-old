@@ -186,8 +186,6 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 			
 			for( int ix = 0; ix < paths.count(); ++ix )
 			{
-				
-				
 				if( QFile::exists(paths[ix] + "qemu-img") )
 				{
 					Settings.setValue( "QEMU-IMG_Path", paths[ix] + "qemu-img" );
