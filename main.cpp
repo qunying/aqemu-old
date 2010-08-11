@@ -69,8 +69,9 @@ int main( int argc, char *argv[] )
 		if( user_uid == 0 )
 		{
 			int ret = QMessageBox::question( NULL, QObject::tr("Warning!"),
-											 QObject::tr("This is a First Start AQEMU and Program Running in root Mode.\n"
-														 "In Some Linux Distributions That Can Lead to Inability to Save Configuration!"),
+											 QObject::tr("This is a first start AQEMU and program running in root mode.\n"
+														 "In some Linux distributions it can lead to inability to save configuration!\n"
+														 "Close AQEMU?"),
 											 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 			
 			if( ret == QMessageBox::Yes ) return 0;
