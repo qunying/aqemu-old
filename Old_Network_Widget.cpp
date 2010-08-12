@@ -84,6 +84,7 @@ void Old_Network_Widget::Set_Network_Cards( const QList<VM_Net_Card> &cards )
 			new QListWidgetItem( tr("Card ") + QString::number(nx+1), ui.Network_Cards_List );
 		}
 		
+		Check_Network_Card = true;
 		ui.Net_Card_Options->setEnabled( true );
 		ui.Network_Cards_List->setCurrentRow( 0 );
 	}
@@ -91,8 +92,6 @@ void Old_Network_Widget::Set_Network_Cards( const QList<VM_Net_Card> &cards )
 	{
 		ui.Net_Card_Options->setEnabled( false );
 	}
-	
-	Check_Network_Card = true;
 }
 
 void Old_Network_Widget::Set_Network_Card_Models( const QList<Device_Map> &models )
@@ -482,7 +481,7 @@ void Old_Network_Widget::on_CB_Connection_Mode_currentIndexChanged( int index )
 			break;
 			
 		default: // no connection
-			Network_Cards[ ui.Network_Cards_List->currentRow() ].Set_Net_Mode( VM::Net_Mode_Dummy );
+			Network_Cards[ ui.Network_Cards_List->currentRow() ].Set_Net_Mode( VM::Net_Mode_None );
 			
 			ui.Label_IP->setEnabled( false );
 			ui.Edit_IP_Address->setEnabled( false );
@@ -613,10 +612,6 @@ void Old_Network_Widget::Set_Net_Card_To_Ui( const VM_Net_Card &card )
 		
 		case VM::Net_Mode_Multicastfd:
 			ui.CB_Connection_Mode->setCurrentIndex( 7 );
-			break;
-		
-		case VM::Net_Mode_Dummy:
-			ui.CB_Connection_Mode->setCurrentIndex( 8 );
 			break;
 		
 		case VM::Net_Mode_None:
