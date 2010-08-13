@@ -76,43 +76,8 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	if( vm.Get_Current_Emulator_Devices()->PSO_Drive ) ui.TB_Add_Device->setEnabled( true ); 
 	
 	Floppy1 = VM_Storage_Device( vm.Get_FD0() );
-	
-	if( Floppy1.Get_File_Name().isEmpty() )
-	{
-		QStringList fd_list = System_Info::Get_Host_FDD_List();
-		
-		if( fd_list.count() < 1 )
-			AQDebug( "void Device_Manager_Widget::Set_VM( const Virtual_Machine& vm )",
-					 "Cannot Find Host Floppy Devices!" );
-		else
-			Floppy1.Set_File_Name( fd_list[0] );
-	}
-	
 	Floppy2 = VM_Storage_Device( vm.Get_FD1() );
-	
-	if( Floppy2.Get_File_Name().isEmpty() )
-	{
-		QStringList fd_list = System_Info::Get_Host_FDD_List();
-		
-		if( fd_list.count() < 1 )
-			AQDebug( "void Device_Manager_Widget::Set_VM( const Virtual_Machine& vm )",
-					 "Cannot Find Host Floppy Devices!" );
-		else
-			Floppy2.Set_File_Name( fd_list[0] );
-	}
-	
 	CD_ROM = VM_Storage_Device( vm.Get_CD_ROM() );
-	
-	if( CD_ROM.Get_File_Name().isEmpty() )
-	{
-		QStringList cd_list = System_Info::Get_Host_CDROM_List();
-		
-		if( cd_list.count() < 1 )
-			AQDebug( "void Device_Manager_Widget::Set_VM( const Virtual_Machine& vm )",
-					 "Cannot Find Host CD-ROM Devices!" );
-		else
-			CD_ROM.Set_File_Name( cd_list[0] );
-	}
 	
 	HDA = VM_HDD( vm.Get_HDA() );
 	HDB = VM_HDD( vm.Get_HDB() );

@@ -827,10 +827,12 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 		tmp_vm->Set_FD0( Dev_Manager->Floppy1 );
 		tmp_vm->Set_FD1( Dev_Manager->Floppy2 );
 		tmp_vm->Set_CD_ROM( Dev_Manager->CD_ROM );
+		
 		tmp_vm->Set_HDA( Dev_Manager->HDA );
 		tmp_vm->Set_HDB( Dev_Manager->HDB );
 		tmp_vm->Set_HDC( Dev_Manager->HDC );
 		tmp_vm->Set_HDD( Dev_Manager->HDD );
+		
 		tmp_vm->Set_Storage_Devices_List( Dev_Manager->Storage_Devices );
 	}
 	else

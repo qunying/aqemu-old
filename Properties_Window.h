@@ -57,10 +57,18 @@ class Properties_Window: public QDialog
 		
 		void Update_HDD( bool ok );
 		
+		void on_TB_FD_Advanced_Settings_clicked();
+		void on_CB_FD_Devices_currentIndexChanged( const QString &text );
+		
+		void on_TB_CDROM_Advanced_Settings_clicked();
+		void on_CB_CDROM_Devices_currentIndexChanged( const QString &text );
+		
+		void on_TB_HDD_Advanced_Settings_clicked();
+		void on_Edit_HDD_Image_Path_textChanged();
+		
 	private:
 		Ui::Properties_Window ui;
-		VM_Storage_Device PW_Floppy;
-		VM_Storage_Device PW_CDROM;
+		VM_Storage_Device PW_Storage;
 		VM_HDD PW_HDD;
 		HDD_Image_Info* HDD_Info;
 };

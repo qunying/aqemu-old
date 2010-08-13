@@ -28,6 +28,7 @@
 #include "Create_HDD_Image_Window.h"
 #include "Utils.h"
 #include "System_Info.h"
+#include "Add_New_Device_Window.h"
 
 Properties_Window::Properties_Window( QWidget *parent )
 	: QDialog( parent )
@@ -48,38 +49,37 @@ Properties_Window::Properties_Window( QWidget *parent )
 
 const VM_Storage_Device &Properties_Window::Get_Floppy()
 {
-	PW_Floppy = VM_Storage_Device( true, ui.CB_FD_Devices->currentText() );
-	return PW_Floppy;
+	//PW_Floppy = VM_Storage_Device( true, ui.CB_FD_Devices->currentText() );
+	return PW_Storage;
 }
 
 const VM_Storage_Device &Properties_Window::Get_CD_ROM()
 {
-	PW_CDROM = VM_Storage_Device( true, ui.CB_CDROM_Devices->currentText() );
-	return PW_CDROM;
+	//PW_CDROM = VM_Storage_Device( true, ui.CB_CDROM_Devices->currentText() );
+	return PW_Storage;
 }
 
 const VM_HDD &Properties_Window::Get_HDD()
 {
-	PW_HDD = VM_HDD( true, ui.Edit_HDD_Image_Path->text() );
+	//PW_HDD = VM_HDD( true, ui.Edit_HDD_Image_Path->text() );
 	return PW_HDD;
 }
 
 void Properties_Window::Set_Floppy( const VM_Storage_Device &fd, const QString &name )
 {
+	PW_Storage = fd;
+	
 	ui.Label_Name->setText( ui.Label_Name->text() + name );
 	
 	ui.GB_Floppy->setVisible( true );
 	ui.GB_CDROM->setVisible( false );
 	ui.GB_HDD->setVisible( false );
 	
-	ui.GB_Floppy->setEnabled( true );
-	ui.GB_CDROM->setEnabled( false );
-	ui.GB_HDD->setEnabled( false );
-	
 	// Find Floppy's
-	QStringList fd_list = System_Info::Get_Host_FDD_List();
-	
 	ui.CB_FD_Devices->clear();
+	
+	QStringList fd_list = System_Info::Get_Host_FDD_List();
+	fd_list += Get_FDD_Recent_Images_List();
 	
 	if( fd_list.count() < 1 )
 	{
@@ -90,11 +90,9 @@ void Properties_Window::Set_Floppy( const VM_Storage_Device &fd, const QString &
 	{
 		for( int d = 0; d < fd_list.count(); ++d )
 			ui.CB_FD_Devices->addItem( fd_list[d] );
-		
-		int fd0_ix = ui.CB_FD_Devices->findText( fd.Get_File_Name() );
-		if( fd0_ix != -1 )
-			ui.CB_FD_Devices->setCurrentIndex( fd0_ix );
 	}
+	
+	ui.CB_FD_Devices->setEditText( fd.Get_File_Name() );
 	
 	on_Button_Update_Info_clicked();
 	
@@ -103,17 +101,17 @@ void Properties_Window::Set_Floppy( const VM_Storage_Device &fd, const QString &
 
 void Properties_Window::Set_CD_ROM( const VM_Storage_Device &cd, const QString &name )
 {
+	PW_Storage = cd;
+	
 	ui.Label_Name->setText( ui.Label_Name->text() + name );
 	
 	ui.GB_Floppy->setVisible( false );
 	ui.GB_CDROM->setVisible( true );
 	ui.GB_HDD->setVisible( false );
 	
-	ui.GB_Floppy->setEnabled( false );
-	ui.GB_CDROM->setEnabled( true );
-	ui.GB_HDD->setEnabled( false );
-	
 	// Find CD_ROM's
+	ui.CB_CDROM_Devices->clear();
+	
 	QStringList cd_list = System_Info::Get_Host_CDROM_List();
 	cd_list += Get_CD_Recent_Images_List();
 	
@@ -124,14 +122,11 @@ void Properties_Window::Set_CD_ROM( const VM_Storage_Device &cd, const QString &
 	}
 	else
 	{
-		ui.CB_CDROM_Devices->clear();
-		
 		for( int d = 0; d < cd_list.count(); ++d )
 			ui.CB_CDROM_Devices->addItem( cd_list[d] );
-		
-		int cd_ix = ui.CB_CDROM_Devices->findText( cd.Get_File_Name() );
-		if( cd_ix != -1 ) ui.CB_CDROM_Devices->setCurrentIndex( cd_ix );
 	}
+	
+	ui.CB_CDROM_Devices->setEditText( cd.Get_File_Name() );
 	
 	on_Button_Update_Info_clicked();
 	
@@ -140,6 +135,8 @@ void Properties_Window::Set_CD_ROM( const VM_Storage_Device &cd, const QString &
 
 void Properties_Window::Set_HDD( const VM_HDD &hd, const QString &name )
 {
+	PW_HDD = hd;
+	
 	connect( HDD_Info, SIGNAL(Completed(bool)),
 			 this, SLOT(Update_HDD(bool)) );
 	
@@ -149,10 +146,6 @@ void Properties_Window::Set_HDD( const VM_HDD &hd, const QString &name )
 	ui.GB_Floppy->setVisible( false );
 	ui.GB_CDROM->setVisible( false );
 	ui.GB_HDD->setVisible( true );
-	
-	ui.GB_Floppy->setEnabled( false );
-	ui.GB_CDROM->setEnabled( false );
-	ui.GB_HDD->setEnabled( true );
 	
 	on_Button_Update_Info_clicked();
 	
@@ -345,4 +338,164 @@ void Properties_Window::Update_HDD( bool ok )
 							tr(" Virtual Size: ") + QString::number(PW_HDD.Get_Virtual_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Virtual_Size()) +
 							tr("\nOn Disk Size: ") + QString::number(PW_HDD.Get_Disk_Size().Size) + Get_TR_Size_Suffix(PW_HDD.Get_Disk_Size()) +
 							tr(" Cluster Size: ") + QString::number(PW_HDD.Get_Cluster_Size()) );
+}
+
+void Properties_Window::on_TB_FD_Advanced_Settings_clicked()
+{
+	// Set device
+	Add_New_Device_Window *win = new Add_New_Device_Window();
+	win->Set_Device( PW_Storage.Get_Nativ_Device() );
+	
+	// Set emulator
+	/*bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	win->Set_Emulator_Devices( dev );*/
+	
+	// Show dialog
+	if( win->exec() == QDialog::Accepted )
+	{
+		// Set new values
+		PW_Storage.Set_Nativ_Device( win->Get_Device() );
+		
+		if( PW_Storage.Get_Nativ_Device().Get_File_Path() != ui.CB_FD_Devices->currentText() )
+			ui.CB_FD_Devices->setEditText( PW_Storage.Get_Nativ_Device().Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( PW_Storage.Get_Nativ_Device().Get_Nativ_Mode() &&
+			PW_Storage.Get_Nativ_Device().Use_File_Path() == false )
+			ui.CB_FD_Devices->setEditText( "" );
+	}
+	
+	delete win;
+}
+
+void Properties_Window::on_CB_FD_Devices_currentIndexChanged( const QString &text )
+{
+	VM_Nativ_Storage_Device tmpDev = PW_Storage.Get_Nativ_Device();
+	
+	// Update nativ device file path
+	if( text.isEmpty() )
+	{
+		tmpDev.Use_File_Path( false );
+	}
+	else
+	{
+		tmpDev.Set_File_Path( text );
+		
+		if( PW_Storage.Get_Nativ_Device().Get_Nativ_Mode() )
+			tmpDev.Use_File_Path( true );
+	}
+	
+	PW_Storage.Set_Nativ_Device( tmpDev );
+	
+	// Update info
+	on_Button_Update_Info_clicked();
+}
+
+void Properties_Window::on_TB_CDROM_Advanced_Settings_clicked()
+{
+	// Set device
+	Add_New_Device_Window *win = new Add_New_Device_Window();
+	win->Set_Device( PW_Storage.Get_Nativ_Device() );
+	
+	// Set emulator
+	/*bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	win->Set_Emulator_Devices( dev );*/
+	
+	// Show dialog
+	if( win->exec() == QDialog::Accepted )
+	{
+		// Set new values
+		PW_Storage.Set_Nativ_Device( win->Get_Device() );
+		
+		if( PW_Storage.Get_Nativ_Device().Get_File_Path() != ui.CB_CDROM_Devices->currentText() )
+			ui.CB_CDROM_Devices->setEditText( PW_Storage.Get_Nativ_Device().Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( PW_Storage.Get_Nativ_Device().Get_Nativ_Mode() &&
+			PW_Storage.Get_Nativ_Device().Use_File_Path() == false )
+			ui.CB_CDROM_Devices->setEditText( "" );
+	}
+	
+	delete win;
+}
+
+void Properties_Window::on_CB_CDROM_Devices_currentIndexChanged( const QString &text )
+{
+	VM_Nativ_Storage_Device tmpDev = PW_Storage.Get_Nativ_Device();
+	
+	// Update nativ device file path
+	if( text.isEmpty() )
+	{
+		tmpDev.Use_File_Path( false );
+	}
+	else
+	{
+		tmpDev.Set_File_Path( text );
+		
+		if( PW_Storage.Get_Nativ_Device().Get_Nativ_Mode() )
+			tmpDev.Use_File_Path( true );
+	}
+	
+	PW_Storage.Set_Nativ_Device( tmpDev );
+	
+	// Update info
+	on_Button_Update_Info_clicked();
+}
+
+void Properties_Window::on_TB_HDD_Advanced_Settings_clicked()
+{
+	// Set device
+	Add_New_Device_Window *win = new Add_New_Device_Window();
+	win->Set_Device( PW_HDD.Get_Nativ_Device() );
+	
+	// Set emulator
+	/*bool ok = false;
+	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	if( ! ok ) return;
+	win->Set_Emulator_Devices( dev );*/
+	
+	// Show dialog
+	if( win->exec() == QDialog::Accepted )
+	{
+		// Set new values
+		PW_HDD.Set_Nativ_Device( win->Get_Device() );
+		
+		if( PW_HDD.Get_Nativ_Device().Get_File_Path() != ui.Edit_HDD_Image_Path->text() )
+			ui.Edit_HDD_Image_Path->setText( PW_HDD.Get_Nativ_Device().Get_File_Path() );
+		
+		// Nativ Mode - on, File - not used
+		if( PW_HDD.Get_Nativ_Device().Get_Nativ_Mode() &&
+			PW_HDD.Get_Nativ_Device().Use_File_Path() == false )
+			ui.Edit_HDD_Image_Path->setText( "" );
+	}
+	
+	delete win;
+}
+
+void Properties_Window::on_Edit_HDD_Image_Path_textChanged()
+{
+	VM_Nativ_Storage_Device tmpDev = PW_HDD.Get_Nativ_Device();
+	
+	// Update nativ device file path
+	if( ui.Edit_HDD_Image_Path->text().isEmpty() )
+	{
+		tmpDev.Use_File_Path( false );
+	}
+	else
+	{
+		tmpDev.Set_File_Path( ui.Edit_HDD_Image_Path->text() );
+		
+		if( PW_HDD.Get_Nativ_Device().Get_Nativ_Mode() )
+			tmpDev.Use_File_Path( true );
+	}
+	
+	PW_HDD.Set_Nativ_Device( tmpDev );
+	
+	// Update info
+	//on_Button_Update_Info_clicked();
+	HDD_Info->Update_Disk_Info( ui.Edit_HDD_Image_Path->text() );
 }
