@@ -18,7 +18,7 @@
    <iconset resource="images.qrc">
     <normaloff>:/exec.png</normaloff>:/exec.png</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QLabel" name="Label_Name">
      <property name="text">
@@ -28,6 +28,9 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
      <item>
       <widget class="QLineEdit" name="Edit_Name"/>
      </item>
@@ -81,7 +84,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>150</width>
-       <height>5</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>
@@ -113,7 +116,16 @@
    <item>
     <widget class="QWidget" name="Widget_Emulator_Type" native="true">
      <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <property name="margin">
+      <property name="leftMargin">
+       <number>10</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
        <number>0</number>
       </property>
       <item>
@@ -210,6 +222,9 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
      <item>
       <widget class="QLineEdit" name="Edit_Path_to_Dir"/>
      </item>
@@ -257,7 +272,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>150</width>
-       <height>5</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>
@@ -287,57 +302,64 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableWidget" name="Table_Systems">
-     <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="leftMargin">
+      <number>10</number>
      </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::SingleSelection</enum>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <property name="verticalScrollMode">
-      <enum>QAbstractItemView::ScrollPerPixel</enum>
-     </property>
-     <property name="horizontalScrollMode">
-      <enum>QAbstractItemView::ScrollPerPixel</enum>
-     </property>
-     <column>
-      <property name="text">
-       <string>QEMU/KVM System</string>
-      </property>
-     </column>
-     <column>
-      <property name="text">
-       <string>Binary File Name</string>
-      </property>
-     </column>
-    </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>150</width>
-       <height>5</height>
-      </size>
-     </property>
-    </spacer>
+     <item>
+      <widget class="QTableWidget" name="Table_Systems">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="verticalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <property name="horizontalScrollMode">
+        <enum>QAbstractItemView::ScrollPerPixel</enum>
+       </property>
+       <column>
+        <property name="text">
+         <string>QEMU/KVM System</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>Binary File Name</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>150</width>
+         <height>10</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QWidget" name="widget" native="true">
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QGridLayout" name="gridLayout">
       <property name="margin">
        <number>0</number>
       </property>
-      <item>
+      <item row="0" column="0">
        <layout class="QHBoxLayout" name="horizontalLayout_8">
         <item>
          <widget class="QLabel" name="Label_QEMU_Version">
@@ -361,82 +383,89 @@
         </item>
        </layout>
       </item>
-      <item>
-       <widget class="QRadioButton" name="RB_Save_Options">
-        <property name="text">
-         <string>Use saved emulator available options (Recomend refind after update emulator)</string>
+      <item row="1" column="0">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="leftMargin">
+         <number>10</number>
         </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="RB_Check_Options">
-        <property name="text">
-         <string>Check available emulator options always start AQEMU (Slowly)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="RB_Check_Version">
-        <property name="text">
-         <string>Check emulator version always start AQEMU</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_7">
         <item>
-         <widget class="QRadioButton" name="RB_Force_Version">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
+         <widget class="QRadioButton" name="RB_Save_Options">
           <property name="text">
-           <string>Set version and available options manually</string>
+           <string>Use saved emulator available options (Recomend refind after update emulator)</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
+         <widget class="QRadioButton" name="RB_Check_Options">
+          <property name="text">
+           <string>Check available emulator options always start AQEMU (Slowly)</string>
           </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>5</width>
-            <height>17</height>
-           </size>
-          </property>
-         </spacer>
+         </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="CB_Version">
-          <property name="enabled">
+         <widget class="QRadioButton" name="RB_Check_Version">
+          <property name="text">
+           <string>Check emulator version always start AQEMU</string>
+          </property>
+          <property name="checked">
            <bool>false</bool>
           </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="currentIndex">
-           <number>-1</number>
-          </property>
-          <property name="maxCount">
-           <number>256</number>
-          </property>
          </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QRadioButton" name="RB_Force_Version">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Set version and available options manually</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>5</width>
+              <height>17</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QComboBox" name="CB_Version">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="currentIndex">
+             <number>-1</number>
+            </property>
+            <property name="maxCount">
+             <number>256</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </item>

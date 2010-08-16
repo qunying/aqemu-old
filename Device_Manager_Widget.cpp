@@ -105,6 +105,8 @@ void Device_Manager_Widget::Set_VM( const Virtual_Machine &vm )
 	
 	Update_Icons();
 	Update_Enabled_Actions();
+	
+	Current_Machine_Devices = vm.Get_Current_Emulator_Devices();
 }
 
 void Device_Manager_Widget::Set_Enabled( bool on )
@@ -731,6 +733,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw->Set_Enabled( Enabled );
 		pw->Set_Floppy( Floppy1, tr("Floppy 1") );
 		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
+		
 		if( pw->exec() == QDialog::Accepted )
 		{
 			if( Floppy1 != pw->Get_Floppy() )
@@ -748,6 +755,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw = new Properties_Window();
 		pw->Set_Enabled( Enabled );
 		pw->Set_Floppy( Floppy2, tr("Floppy 2") );
+		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		
 		if( pw->exec() == QDialog::Accepted )
 		{
@@ -767,6 +779,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw->Set_Enabled( Enabled );
 		pw->Set_CD_ROM( CD_ROM, tr("CD/DVD-ROM") );
 		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
+		
 		if( pw->exec() == QDialog::Accepted )
 		{
 			if( CD_ROM != pw->Get_CD_ROM() )
@@ -784,6 +801,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw = new Properties_Window();
 		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDA, tr("HDA (First Master)") );
+		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		
 		if( pw->exec() == QDialog::Accepted )
 		{
@@ -803,6 +825,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDB, tr("HDB (First Slave)") );
 		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
+		
 		if( pw->exec() == QDialog::Accepted )
 		{
 			if( HDB != pw->Get_HDD() )
@@ -821,6 +848,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDC, tr("HDC (Second Master)") );
 		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
+		
 		if( pw->exec() == QDialog::Accepted )
 		{
 			if( HDC != pw->Get_HDD() )
@@ -838,6 +870,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 		pw = new Properties_Window();
 		pw->Set_Enabled( Enabled );
 		pw->Set_HDD( HDD, tr("HDD (Second Slave)") );
+		
+		if( ! Current_Machine_Devices )
+			AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+					 "Current_Machine_Devices == NULL" );
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		
 		if( pw->exec() == QDialog::Accepted )
 		{
@@ -864,6 +901,11 @@ void Device_Manager_Widget::on_actionProperties_triggered()
 				Device_Window = new Add_New_Device_Window();
 				Device_Window->Set_Enabled( Enabled );
 				Device_Window->Set_Device( Storage_Devices[fx] );
+				
+				if( ! Current_Machine_Devices )
+					AQError( "void Device_Manager_Widget::on_actionProperties_triggered()",
+							 "Current_Machine_Devices == NULL" );
+				Device_Window->Set_Emulator_Devices( *Current_Machine_Devices );
 				
 				if( Device_Window->exec() == QDialog::Accepted )
 				{

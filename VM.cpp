@@ -6736,6 +6736,10 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 			case VM::QEMU_0_12:
 				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_12[ Computer_Type ];
 				break;
+				
+			case VM::QEMU_0_13:
+				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_13[ Computer_Type ];
+				break;
 	
 			case VM::KVM_7X:
 				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_7X[ Computer_Type ];
@@ -6751,6 +6755,10 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 	
 			case VM::KVM_0_12:
 				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_0_12[ Computer_Type ];
+				break;
+				
+			case VM::KVM_0_13:
+				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_0_13[ Computer_Type ];
 				break;
 	
 			default:

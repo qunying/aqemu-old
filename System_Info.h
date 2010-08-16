@@ -60,11 +60,13 @@ class System_Info
 		static QMap<QString, Averable_Devices> Emulator_QEMU_0_10;
 		static QMap<QString, Averable_Devices> Emulator_QEMU_0_11;
 		static QMap<QString, Averable_Devices> Emulator_QEMU_0_12;
+		static QMap<QString, Averable_Devices> Emulator_QEMU_0_13;
 		
 		static QMap<QString, Averable_Devices> Emulator_KVM_7X;
 		static QMap<QString, Averable_Devices> Emulator_KVM_8X;
 		static QMap<QString, Averable_Devices> Emulator_KVM_0_11;
 		static QMap<QString, Averable_Devices> Emulator_KVM_0_12;
+		static QMap<QString, Averable_Devices> Emulator_KVM_0_13;
 		
 	private:
 		static bool Scan_USB_Sys( QList<VM_USB> &list );

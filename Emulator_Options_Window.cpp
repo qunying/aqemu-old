@@ -169,7 +169,7 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 	{
 		ui.RB_QEMU->setChecked( true );
 		ui.RB_KVM->setChecked( false );
-
+		
 		ui.CB_Version->addItem( tr("QEMU 0.9.0") );
 		ui.CB_Version->addItem( tr("QEMU 0.9.1") );
 		ui.CB_Version->addItem( tr("QEMU 0.10.X") );
@@ -181,7 +181,7 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 	{
 		ui.RB_QEMU->setChecked( false );
 		ui.RB_KVM->setChecked( true );
-
+		
 		ui.CB_Version->addItem( tr("KVM 7X") );
 		ui.CB_Version->addItem( tr("KVM 8X") );
 		ui.CB_Version->addItem( tr("KVM 0.11.X") );
@@ -203,39 +203,47 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 		case VM::QEMU_0_9_0:
 			ui.CB_Version->setCurrentIndex( 0 );
 			break;
-
+			
 		case VM::QEMU_0_9_1:
 			ui.CB_Version->setCurrentIndex( 1 );
 			break;
-
+			
 		case VM::QEMU_0_10:
 			ui.CB_Version->setCurrentIndex( 2 );
 			break;
-
+			
 		case VM::QEMU_0_11:
 			ui.CB_Version->setCurrentIndex( 3 );
 			break;
-
+			
 		case VM::QEMU_0_12:
 			ui.CB_Version->setCurrentIndex( 4 );
 			break;
-
+			
+		case VM::QEMU_0_13:
+			ui.CB_Version->setCurrentIndex( 5 );
+			break;
+			
 		case VM::KVM_7X:
 			ui.CB_Version->setCurrentIndex( 0 );
 			break;
-
+			
 		case VM::KVM_8X:
 			ui.CB_Version->setCurrentIndex( 1 );
 			break;
-
+			
 		case VM::KVM_0_11:
 			ui.CB_Version->setCurrentIndex( 2 );
 			break;
-
+			
 		case VM::KVM_0_12:
 			ui.CB_Version->setCurrentIndex( 3 );
 			break;
-
+			
+		case VM::KVM_0_13:
+			ui.CB_Version->setCurrentIndex( 4 );
+			break;
+			
 		default:
 			AQWarning( "void Emulator_Options_Window::Set_Emulator( Emulator emul )",
 					   "Version NOT Valid! Use Default" );

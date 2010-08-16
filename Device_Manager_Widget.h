@@ -92,6 +92,8 @@ class Device_Manager_Widget: public QWidget
 		HDD_Image_Info* HDB_Info;
 		HDD_Image_Info* HDC_Info;
 		HDD_Image_Info* HDD_Info;
+		
+		const Averable_Devices *Current_Machine_Devices;
 };
 
 #endif

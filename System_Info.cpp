@@ -1206,6 +1206,9 @@ bool System_Info::Update_VM_Computers_List()
 	// QEMU 0.12
 	System_Info::Emulator_QEMU_0_12 = System_Info::Emulator_QEMU_0_11;
 	
+	// QEMU 0.12
+	System_Info::Emulator_QEMU_0_13 = System_Info::Emulator_QEMU_0_12;
+	
 	// KVM 7X
 	ad = Averable_Devices();
 	ad.System = Device_Map( "KVM (Intel VT/AMD SVM)", "qemu-kvm" );
@@ -1346,6 +1349,8 @@ bool System_Info::Update_VM_Computers_List()
 	
 	System_Info::Emulator_KVM_0_12[ "qemu-kvm" ] = ad;
 	
+	System_Info::Emulator_KVM_0_13 = System_Info::Emulator_KVM_0_12;
+	
 	return true;
 }
 
@@ -1470,7 +1475,8 @@ VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 			if( major_ver == 0 && minor_ver == 10 ) return VM::KVM_0_11; // FIXME
 			else if( major_ver == 0 && minor_ver == 11 ) return VM::KVM_0_11;
 			else if( major_ver == 0 && minor_ver == 12 ) return VM::KVM_0_12;
-			else if( major_ver >  0 || (major_ver == 0 && minor_ver > 12) ) return VM::KVM_0_12;
+			else if( major_ver == 0 && minor_ver == 13 ) return VM::KVM_0_13;
+			else if( major_ver >  0 || (major_ver == 0 && minor_ver > 13) ) return VM::KVM_0_13;
 			else
 			{
 				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
@@ -1517,7 +1523,8 @@ VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 		else if( major_ver == 0 && minor_ver == 10 ) return VM::QEMU_0_10;
 		else if( major_ver == 0 && minor_ver == 11 ) return VM::QEMU_0_11;
 		else if( major_ver == 0 && minor_ver == 12 ) return VM::QEMU_0_12;
-		else if( major_ver >  0 || (major_ver == 0 && minor_ver > 12) ) return VM::QEMU_0_12;
+		else if( major_ver == 0 && minor_ver == 13 ) return VM::QEMU_0_13;
+		else if( major_ver >  0 || (major_ver == 0 && minor_ver > 13) ) return VM::QEMU_0_13;
 		else
 		{
 			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
@@ -2035,6 +2042,10 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 			default_device = Emulator_QEMU_0_12[ internalName ];
 			break;
 			
+		case VM::QEMU_0_13:
+			default_device = Emulator_QEMU_0_13[ internalName ];
+			break;
+			
 		case VM::KVM_7X:
 			default_device = Emulator_KVM_7X[ internalName ];
 			break;
@@ -2049,6 +2060,10 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 			
 		case VM::KVM_0_12:
 			default_device = Emulator_KVM_0_12[ internalName ];
+			break;
+			
+		case VM::KVM_0_13:
+			default_device = Emulator_KVM_0_13[ internalName ];
 			break;
 			
 		default:
@@ -2090,7 +2105,7 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 		if( tmp.indexOf("Sparc") != -1 ) break; // FIXME Sparc -cpu not supported in this release
 		
 		QStringList regExpVariants;
-		regExpVariants << ".*x86\\s+([\\w-]+).*"		// x86 pentium3
+		regExpVariants << ".*x86\\s+([\\w-]+).*|.*x86\\s+\\[([\\w-]+)\\].*"	// x86 pentium3 | x86 [core2duo]
 					   << ".*PowerPC\\s+(.*)\\s+PVR.*"	// PowerPC 750 PVR 00080301
 					   << ".*MIPS\\s+\\'(.*)\\'.*"		// MIPS '4Kc'
 					   << ".*\\s*([\\w-]+).*";			// cortex-a9
@@ -2104,7 +2119,10 @@ Averable_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 				QStringList rx_list = tmp_rx.capturedTexts();
 				if( rx_list.count() > 1 )
 				{
-					qemu_dev_name = rx_list[ 1 ];
+					if( ! rx_list[1].isEmpty() )
+						qemu_dev_name = rx_list[ 1 ];
+					else if( rx_list.count() > 2 )
+						qemu_dev_name = rx_list[ 2 ];
 					break;
 				}
 				else

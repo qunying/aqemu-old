@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
+    <width>390</width>
     <height>532</height>
    </rect>
   </property>
@@ -23,6 +23,9 @@
    </item>
    <item>
     <widget class="QWidget" name="Widget_SPICE_Settings" native="true">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <property name="margin">
        <number>0</number>
@@ -56,7 +59,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <property name="leftMargin">
-           <number>15</number>
+           <number>10</number>
           </property>
           <item>
            <widget class="QLabel" name="Label_Number_of_QXL_Devices">
@@ -192,6 +195,9 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
           <item>
            <widget class="QLabel" name="Label_SPICE_Port">
             <property name="text">
@@ -305,7 +311,7 @@
         <item>
          <layout class="QGridLayout" name="gridLayout_2">
           <property name="leftMargin">
-           <number>15</number>
+           <number>10</number>
           </property>
           <item row="0" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_7">
@@ -548,7 +554,7 @@
         <item>
          <layout class="QGridLayout" name="gridLayout_4">
           <property name="leftMargin">
-           <number>15</number>
+           <number>10</number>
           </property>
           <item row="0" column="0">
            <widget class="QRadioButton" name="RB_No_Password">
@@ -625,12 +631,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>165</y>
+     <x>165</x>
+     <y>152</y>
     </hint>
     <hint type="destinationlabel">
-     <x>117</x>
-     <y>171</y>
+     <x>247</x>
+     <y>153</y>
     </hint>
    </hints>
   </connection>
@@ -641,12 +647,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>76</x>
-     <y>202</y>
+     <x>312</x>
+     <y>152</y>
     </hint>
     <hint type="destinationlabel">
-     <x>127</x>
-     <y>198</y>
+     <x>378</x>
+     <y>153</y>
     </hint>
    </hints>
   </connection>
@@ -657,12 +663,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>122</x>
-     <y>278</y>
+     <x>143</x>
+     <y>225</y>
     </hint>
     <hint type="destinationlabel">
-     <x>295</x>
-     <y>276</y>
+     <x>377</x>
+     <y>227</y>
     </hint>
    </hints>
   </connection>
@@ -673,12 +679,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>77</x>
-     <y>307</y>
+     <x>97</x>
+     <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>51</x>
-     <y>348</y>
+     <x>86</x>
+     <y>341</y>
     </hint>
    </hints>
   </connection>
@@ -689,12 +695,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>243</x>
-     <y>300</y>
+     <x>263</x>
+     <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>384</x>
-     <y>333</y>
+     <x>376</x>
+     <y>287</y>
     </hint>
    </hints>
   </connection>
@@ -705,12 +711,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>185</x>
-     <y>304</y>
+     <x>205</x>
+     <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>379</x>
-     <y>392</y>
+     <x>376</x>
+     <y>340</y>
     </hint>
    </hints>
   </connection>
@@ -721,12 +727,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>546</y>
+     <x>104</x>
+     <y>491</y>
     </hint>
     <hint type="destinationlabel">
-     <x>73</x>
-     <y>577</y>
+     <x>108</x>
+     <y>519</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_SPICE</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Widget_SPICE_Settings</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>29</x>
+     <y>94</y>
     </hint>
    </hints>
   </connection>

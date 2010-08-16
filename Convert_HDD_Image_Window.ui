@@ -192,6 +192,9 @@ Cluster Size: 0</string>
       </item>
       <item row="4" column="0" colspan="3">
        <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
         <item>
          <widget class="QCheckBox" name="CH_Compressed">
           <property name="text">

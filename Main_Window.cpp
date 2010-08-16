@@ -55,11 +55,13 @@ QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_9_1;
 QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_10;
 QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_11;
 QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_12;
+QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_13;
 
 QMap<QString, Averable_Devices> System_Info::Emulator_KVM_7X;
 QMap<QString, Averable_Devices> System_Info::Emulator_KVM_8X;
 QMap<QString, Averable_Devices> System_Info::Emulator_KVM_0_11;
 QMap<QString, Averable_Devices> System_Info::Emulator_KVM_0_12;
+QMap<QString, Averable_Devices> System_Info::Emulator_KVM_0_13;
 
 QList<VM_USB> System_Info::All_Host_USB;
 QList<VM_USB> System_Info::Used_Host_USB;

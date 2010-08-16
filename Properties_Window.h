@@ -44,6 +44,8 @@ class Properties_Window: public QDialog
 		
 		void Set_Enabled( bool enabled );
 		
+		void Set_Current_Machine_Devices( const Averable_Devices *dev );
+		
 	private slots:
 		void on_Button_OK_clicked();
 		
@@ -71,6 +73,7 @@ class Properties_Window: public QDialog
 		VM_Storage_Device PW_Storage;
 		VM_HDD PW_HDD;
 		HDD_Image_Info* HDD_Info;
+		const Averable_Devices *Current_Machine_Devices;
 };
 
 #endif

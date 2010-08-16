@@ -157,6 +157,11 @@ void Properties_Window::Set_Enabled( bool enabled )
 	ui.Button_OK->setEnabled( enabled );
 }
 
+void Properties_Window::Set_Current_Machine_Devices( const Averable_Devices *dev )
+{
+	Current_Machine_Devices = dev;
+}
+
 void Properties_Window::on_Button_OK_clicked()
 {
 	if( ui.GB_Floppy->isEnabled() )
@@ -347,10 +352,14 @@ void Properties_Window::on_TB_FD_Advanced_Settings_clicked()
 	win->Set_Device( PW_Storage.Get_Nativ_Device() );
 	
 	// Set emulator
-	/*bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
-	if( ! ok ) return;
-	win->Set_Emulator_Devices( dev );*/
+	if( ! Current_Machine_Devices )
+	{
+		AQError( "void Properties_Window::on_TB_FD_Advanced_Settings_clicked()",
+				 "Current_Machine_Devices == NULL" );
+		return;
+	}
+	
+	win->Set_Emulator_Devices( *Current_Machine_Devices );
 	
 	// Show dialog
 	if( win->exec() == QDialog::Accepted )
@@ -400,10 +409,14 @@ void Properties_Window::on_TB_CDROM_Advanced_Settings_clicked()
 	win->Set_Device( PW_Storage.Get_Nativ_Device() );
 	
 	// Set emulator
-	/*bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
-	if( ! ok ) return;
-	win->Set_Emulator_Devices( dev );*/
+	if( ! Current_Machine_Devices )
+	{
+		AQError( "void Properties_Window::on_TB_CDROM_Advanced_Settings_clicked()",
+				 "Current_Machine_Devices == NULL" );
+		return;
+	}
+	
+	win->Set_Emulator_Devices( *Current_Machine_Devices );
 	
 	// Show dialog
 	if( win->exec() == QDialog::Accepted )
@@ -453,10 +466,14 @@ void Properties_Window::on_TB_HDD_Advanced_Settings_clicked()
 	win->Set_Device( PW_HDD.Get_Nativ_Device() );
 	
 	// Set emulator
-	/*bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
-	if( ! ok ) return;
-	win->Set_Emulator_Devices( dev );*/
+	if( ! Current_Machine_Devices )
+	{
+		AQError( "void Properties_Window::on_TB_HDD_Advanced_Settings_clicked()",
+				 "Current_Machine_Devices == NULL" );
+		return;
+	}
+	
+	win->Set_Emulator_Devices( *Current_Machine_Devices );
 	
 	// Show dialog
 	if( win->exec() == QDialog::Accepted )
