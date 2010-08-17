@@ -9,11 +9,11 @@ CMAKE_MINIMUM_REQUIRED( VERSION 2.4.0 )
 
 # Debug mode
 OPTION( DEBUG "Build with debug information" )
- 
+
 IF( DEBUG )
 	# Verbose compiler output
 	SET( CMAKE_VERBOSE_MAKEFILE ON )
-
+	
 	# GCC
 	ADD_DEFINITIONS( -Wall -g )
 ENDIF( DEBUG )
@@ -52,6 +52,7 @@ SET( aqemu_headers
 	SMP_Settings_Window.h
 	Snapshot_Properties_Window.h
 	Snapshots_Window.h
+	SPICE_Settings_Widget.h
 	System_Info.h
 	Utils.h
 	VM.h
@@ -91,6 +92,7 @@ SET( aqemu_sources
 	SMP_Settings_Window.cpp
 	Snapshot_Properties_Window.cpp
 	Snapshots_Window.cpp
+	SPICE_Settings_Widget.cpp
 	System_Info.cpp
 	Utils.cpp
 	VM.cpp
@@ -128,6 +130,7 @@ SET( aqemu_ui
 	SMP_Settings_Window.ui
 	Snapshot_Properties_Window.ui
 	Snapshots_Window.ui
+	SPICE_Settings_Widget.ui
 	VM_Wizard_Window.ui
 	VNC_Password_Window.ui
 )
@@ -258,12 +261,7 @@ MACRO( create_docs _sources )
 		
 		SET( _out ${CMAKE_CURRENT_SOURCE_DIR}/${_basename}.bz2 )
 		
-		ADD_CUSTOM_COMMAND(
-            OUTPUT ${_out}
-            COMMAND bzip2
-            ARGS -zkf9 ${_in}
-            DEPENDS ${_in}
-        )
+		ADD_CUSTOM_COMMAND( OUTPUT ${_out} COMMAND bzip2 ARGS -zkf9 ${_in} DEPENDS ${_in} )
 		
 		SET( ${_sources} ${${_sources}} ${_out} )
 	ENDFOREACH( curFile )

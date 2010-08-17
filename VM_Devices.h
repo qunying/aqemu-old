@@ -179,6 +179,12 @@ class VM
 		enum Network_Mode_Nativ { Net_Mode_Nativ_NIC, Net_Mode_Nativ_User, Net_Mode_Nativ_Chanel,
 								  Net_Mode_Nativ_TAP, Net_Mode_Nativ_Socket, Net_Mode_Nativ_MulticastSocket,
 								  Net_Mode_Nativ_VDE, Net_Mode_Nativ_Dump };
+		
+		// Image Compression Type (Used in SPICE)
+		enum SPICE_Image_Compression_Type { SPICE_IC_Type_on, SPICE_IC_Type_auto_glz, SPICE_IC_Type_auto_lz,
+											SPICE_IC_Type_quic, SPICE_IC_Type_glz, SPICE_IC_Type_lz, SPICE_IC_Type_off };
+		// Renderer Type (Used in SPICE)
+		enum SPICE_Renderer { SPICE_Renderer_oglpbuf, SPICE_Renderer_oglpixmap, SPICE_Renderer_cairo };
 };
 
 class Device_Map
@@ -915,6 +921,86 @@ class VM_Init_Graphic_Mode
 		int Width;
 		int Height;
 		int Depth;
+};
+
+// SPICE
+class VM_SPICE
+{
+	public:
+		VM_SPICE();
+		VM_SPICE( const VM_SPICE &vm_spice );
+		
+		bool operator==( const VM_SPICE &vm_spice ) const;
+		bool operator!=( const VM_SPICE &vm_spice ) const;
+		
+		// qxl options
+		unsigned int Get_GXL_Devices_Count() const;
+		void Set_GXL_Devices_Count( unsigned int count );
+		
+		int Get_RAM_Size() const;
+		void Set_RAM_Size( int size );
+		
+		// Basic options
+		unsigned int Get_Port() const;
+		void Set_Port( unsigned int port );
+		
+		bool Use_SPort() const;
+		void Use_SPort( bool use );
+		
+		unsigned int Get_SPort() const;
+		void Set_SPort( unsigned int sport );
+		
+		bool Use_Hostname() const;
+		void Use_Hostname( bool use );
+		
+		QString Get_Hostname() const;
+		void Set_Hostname( QString hostname );
+		
+		// Image, video & audio options
+		bool Use_Image_Compression() const;
+		void Use_Image_Compression( bool use );
+		
+		VM::SPICE_Image_Compression_Type Get_Image_Compression() const;
+		void Set_Image_Compression( VM::SPICE_Image_Compression_Type type );
+		
+		bool Use_Video_Stream_Compression() const;
+		void Use_Video_Stream_Compression( bool use );
+		
+		bool Use_Renderer() const;
+		void Use_Renderer( bool use );
+		
+		QList<VM::SPICE_Renderer> Get_Renderer_List() const;
+		void Set_Renderer_List( QList<VM::SPICE_Renderer> list );
+		
+		bool Use_Playback_Compression() const;
+		void Use_Playback_Compression( bool use );
+		
+		// Security options
+		bool Use_Password() const;
+		void Use_Password( bool use );
+		
+		QString Get_Password() const;
+		void Set_Password( QString password );
+	
+	private:
+		unsigned int GXL_Devices_Count;
+		int RAM_Size;
+		
+		unsigned int Port;
+		bool _Use_SPort;
+		unsigned int SPort;
+		bool _Use_Hostname;
+		QString Hostname;
+		
+		bool _Use_Image_Compression;
+		VM::SPICE_Image_Compression_Type Image_Compression;
+		bool _Use_Video_Stream_Compression;
+		bool _Use_Renderer;
+		QList<VM::SPICE_Renderer> Renderer_List;
+		bool _Use_Playback_Compression;
+		
+		bool _Use_Password;
+		QString Password;
 };
 
 #endif

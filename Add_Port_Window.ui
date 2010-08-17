@@ -424,7 +424,7 @@
  <connections>
   <connection>
    <sender>Button_Cancel</sender>
-   <signal>toggled(bool)</signal>
+   <signal>clicked()</signal>
    <receiver>Add_Port_Window</receiver>
    <slot>reject()</slot>
    <hints>

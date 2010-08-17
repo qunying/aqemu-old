@@ -102,6 +102,10 @@ Main_Window::Main_Window( QWidget *parent )
 	New_Network_Settings_Widget = new Network_Widget();
 	Old_Network_Settings_Widget = new Old_Network_Widget();
 	
+	// SPICE
+	SPICE_Widget = new SPICE_Settings_Widget();
+	ui.Tabs_Other->addTab( SPICE_Widget, tr("SPICE") );
+	
 	// Update Emulators Information
 	System_Info::Update_VM_Computers_List();
 	

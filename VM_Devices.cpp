@@ -3494,3 +3494,231 @@ void VM_Init_Graphic_Mode::Set_Depth( int d )
 }
 
 //===========================================================================
+
+// VM_SPICE -----------------------------------------------------------------
+
+VM_SPICE::VM_SPICE()
+{
+	GXL_Devices_Count = 1;
+	RAM_Size = 64;
+	
+	Port = 1;
+	_Use_SPort = false;
+	SPort = 1;
+	_Use_Hostname = false;
+	Hostname = "";
+	
+	_Use_Image_Compression = false;
+	Image_Compression = VM::SPICE_IC_Type_on;
+	_Use_Video_Stream_Compression = false;
+	_Use_Renderer = false;
+	Renderer_List << VM::SPICE_Renderer_cairo
+				  << VM::SPICE_Renderer_oglpbuf
+				  << VM::SPICE_Renderer_oglpixmap;
+	_Use_Playback_Compression = false;
+	
+	_Use_Password = false;
+	Password = "";
+}
+
+VM_SPICE::VM_SPICE( const VM_SPICE &vm_spice )
+{
+	GXL_Devices_Count = vm_spice.Get_GXL_Devices_Count();
+	RAM_Size = vm_spice.Get_RAM_Size();
+	Port = vm_spice.Get_Port();
+	_Use_SPort = vm_spice.Use_SPort();
+	SPort = vm_spice.Get_SPort();
+	_Use_Hostname = vm_spice.Use_Hostname();
+	Hostname = vm_spice.Get_Hostname();
+	_Use_Image_Compression = vm_spice.Use_Image_Compression();
+	Image_Compression = vm_spice.Get_Image_Compression();
+	_Use_Video_Stream_Compression = vm_spice.Use_Video_Stream_Compression();
+	_Use_Renderer = vm_spice.Use_Renderer();
+	Renderer_List = vm_spice.Get_Renderer_List();
+	_Use_Playback_Compression = vm_spice.Use_Playback_Compression();
+	_Use_Password = vm_spice.Use_Password();
+	Password = vm_spice.Get_Password();
+}
+
+bool VM_SPICE::operator==( const VM_SPICE &vm_spice ) const
+{
+	if( GXL_Devices_Count == vm_spice.Get_GXL_Devices_Count() &&
+		RAM_Size == vm_spice.Get_RAM_Size() &&
+		Port == vm_spice.Get_Port() &&
+		_Use_SPort == vm_spice.Use_SPort() &&
+		SPort == vm_spice.Get_SPort() &&
+		_Use_Hostname == vm_spice.Use_Hostname() &&
+		Hostname == vm_spice.Get_Hostname() &&
+		_Use_Image_Compression == vm_spice.Use_Image_Compression() &&
+		Image_Compression == vm_spice.Get_Image_Compression() &&
+		_Use_Video_Stream_Compression == vm_spice.Use_Video_Stream_Compression() &&
+		_Use_Renderer == vm_spice.Use_Renderer() &&
+		Renderer_List == vm_spice.Get_Renderer_List() &&
+		_Use_Playback_Compression == vm_spice.Use_Playback_Compression() &&
+		_Use_Password == vm_spice.Use_Password() &&
+		Password == vm_spice.Get_Password() )
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool VM_SPICE::operator!=( const VM_SPICE &vm_spice ) const
+{
+	return ! ( operator==(vm_spice) );
+}
+
+unsigned int VM_SPICE::Get_GXL_Devices_Count() const
+{
+	return GXL_Devices_Count;
+}
+
+void VM_SPICE::Set_GXL_Devices_Count( unsigned int count )
+{
+	GXL_Devices_Count = count;
+}
+
+int VM_SPICE::Get_RAM_Size() const
+{
+	return RAM_Size;
+}
+
+void VM_SPICE::Set_RAM_Size( int size )
+{
+	RAM_Size = size;
+}
+
+unsigned int VM_SPICE::Get_Port() const
+{
+	return Port;
+}
+
+void VM_SPICE::Set_Port( unsigned int port )
+{
+	Port = port;
+}
+
+bool VM_SPICE::Use_SPort() const
+{
+	return _Use_SPort;
+}
+
+void VM_SPICE::Use_SPort( bool use )
+{
+	_Use_SPort = use;
+}
+
+unsigned int VM_SPICE::Get_SPort() const
+{
+	return SPort;
+}
+
+void VM_SPICE::Set_SPort( unsigned int sport )
+{
+	SPort = sport;
+}
+
+bool VM_SPICE::Use_Hostname() const
+{
+	return _Use_Hostname;
+}
+
+void VM_SPICE::Use_Hostname( bool use )
+{
+	_Use_Hostname = use;
+}
+
+QString VM_SPICE::Get_Hostname() const
+{
+	return Hostname;
+}
+
+void VM_SPICE::Set_Hostname( QString hostname )
+{
+	Hostname = hostname;
+}
+
+bool VM_SPICE::Use_Image_Compression() const
+{
+	return _Use_Image_Compression;
+}
+
+void VM_SPICE::Use_Image_Compression( bool use )
+{
+	_Use_Image_Compression = use;
+}
+
+VM::SPICE_Image_Compression_Type VM_SPICE::Get_Image_Compression() const
+{
+	return Image_Compression;
+}
+
+void VM_SPICE::Set_Image_Compression( VM::SPICE_Image_Compression_Type type )
+{
+	Image_Compression = type;
+}
+
+bool VM_SPICE::Use_Video_Stream_Compression() const
+{
+	return _Use_Video_Stream_Compression;
+}
+
+void VM_SPICE::Use_Video_Stream_Compression( bool use )
+{
+	_Use_Video_Stream_Compression = use;
+}
+
+bool VM_SPICE::Use_Renderer() const
+{
+	return _Use_Renderer;
+}
+
+void VM_SPICE::Use_Renderer( bool use )
+{
+	_Use_Renderer = use;
+}
+
+QList<VM::SPICE_Renderer> VM_SPICE::Get_Renderer_List() const
+{
+	return Renderer_List;
+}
+
+void VM_SPICE::Set_Renderer_List( QList<VM::SPICE_Renderer> list )
+{
+	Renderer_List = list;
+}
+
+bool VM_SPICE::Use_Playback_Compression() const
+{
+	return _Use_Playback_Compression;
+}
+
+void VM_SPICE::Use_Playback_Compression( bool use )
+{
+	_Use_Playback_Compression = use;
+}
+
+bool VM_SPICE::Use_Password() const
+{
+	return _Use_Password;
+}
+
+void VM_SPICE::Use_Password( bool use )
+{
+	_Use_Password = use;
+}
+
+QString VM_SPICE::Get_Password() const
+{
+	return Password;
+}
+
+void VM_SPICE::Set_Password( QString password )
+{
+	Password = password;
+}
+
+//===========================================================================

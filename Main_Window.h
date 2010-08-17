@@ -35,6 +35,7 @@
 #include "Old_Network_Widget.h"
 #include "SMP_Settings_Window.h"
 #include "Add_New_Device_Window.h"
+#include "SPICE_Settings_Widget.h"
 
 class Ports_Tab_Widget;
 class Device_Manager_Widget;
@@ -263,6 +264,8 @@ class Main_Window: public QMainWindow
 		
 		Network_Widget *New_Network_Settings_Widget;
 		Old_Network_Widget *Old_Network_Settings_Widget;
+		
+		SPICE_Settings_Widget* SPICE_Widget;
 };
 
 #endif
