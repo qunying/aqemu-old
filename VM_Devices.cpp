@@ -134,6 +134,8 @@ Averable_Devices::Averable_Devices()
 	PSO_TFTP = false;
 	PSO_SMB = false;
 	PSO_Std_VGA = false;
+	
+	PSO_SPICE = false;
 }
 
 //===========================================================================
@@ -3499,6 +3501,7 @@ void VM_Init_Graphic_Mode::Set_Depth( int d )
 
 VM_SPICE::VM_SPICE()
 {
+	Enable_SPICE = false;
 	GXL_Devices_Count = 1;
 	RAM_Size = 64;
 	
@@ -3523,6 +3526,7 @@ VM_SPICE::VM_SPICE()
 
 VM_SPICE::VM_SPICE( const VM_SPICE &vm_spice )
 {
+	Enable_SPICE = vm_spice.Use_SPICE();
 	GXL_Devices_Count = vm_spice.Get_GXL_Devices_Count();
 	RAM_Size = vm_spice.Get_RAM_Size();
 	Port = vm_spice.Get_Port();
@@ -3542,7 +3546,8 @@ VM_SPICE::VM_SPICE( const VM_SPICE &vm_spice )
 
 bool VM_SPICE::operator==( const VM_SPICE &vm_spice ) const
 {
-	if( GXL_Devices_Count == vm_spice.Get_GXL_Devices_Count() &&
+	if( Enable_SPICE == vm_spice.Use_SPICE() &&
+		GXL_Devices_Count == vm_spice.Get_GXL_Devices_Count() &&
 		RAM_Size == vm_spice.Get_RAM_Size() &&
 		Port == vm_spice.Get_Port() &&
 		_Use_SPort == vm_spice.Use_SPort() &&
@@ -3564,6 +3569,16 @@ bool VM_SPICE::operator==( const VM_SPICE &vm_spice ) const
 	{
 		return false;
 	}
+}
+
+bool VM_SPICE::Use_SPICE() const
+{
+	return Enable_SPICE;
+}
+
+void VM_SPICE::Use_SPICE( bool use )
+{
+	Enable_SPICE = use;
 }
 
 bool VM_SPICE::operator!=( const VM_SPICE &vm_spice ) const
@@ -3681,12 +3696,12 @@ void VM_SPICE::Use_Renderer( bool use )
 	_Use_Renderer = use;
 }
 
-QList<VM::SPICE_Renderer> VM_SPICE::Get_Renderer_List() const
+const QList<VM::SPICE_Renderer> &VM_SPICE::Get_Renderer_List() const
 {
 	return Renderer_List;
 }
 
-void VM_SPICE::Set_Renderer_List( QList<VM::SPICE_Renderer> list )
+void VM_SPICE::Set_Renderer_List( const QList<VM::SPICE_Renderer> &list )
 {
 	Renderer_List = list;
 }

@@ -24,6 +24,7 @@
 #define SPICE_SETTINGS_WIDGET_H
 
 #include "ui_SPICE_Settings_Widget.h"
+#include "VM_Devices.h"
 
 class SPICE_Settings_Widget: public QWidget
 {
@@ -31,11 +32,20 @@ class SPICE_Settings_Widget: public QWidget
 	
 	public:
 		SPICE_Settings_Widget( QWidget *parent = 0 );
-	
+		
+		const VM_SPICE &Get_Settigns() const;
+		void Set_Settings( const VM_SPICE &settings );
+		
 	private slots:
-		void on_Button_Create_clicked();
+		void on_TB_Up_clicked();
+		void on_TB_Down_clicked();
+		
+	signals:
+		void State_Changet();
 	
 	private:
+		void Show_Renderer_List( const QList<VM::SPICE_Renderer> &list );
+		
 		Ui::SPICE_Settings_Widget ui;
 };
 

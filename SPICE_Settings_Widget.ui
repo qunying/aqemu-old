@@ -349,7 +349,7 @@
               <item row="0" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_7">
                 <item>
-                 <widget class="QCheckBox" name="CH_Set_Video_Compression">
+                 <widget class="QCheckBox" name="CH_Use_Image_Compression">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -645,7 +645,7 @@
   <tabstop>Edit_SPICE_SPort</tabstop>
   <tabstop>CH_SPICE_Host</tabstop>
   <tabstop>Edit_SPICE_Host</tabstop>
-  <tabstop>CH_Set_Video_Compression</tabstop>
+  <tabstop>CH_Use_Image_Compression</tabstop>
   <tabstop>CB_Video_Compression</tabstop>
   <tabstop>CH_Set_Renderer</tabstop>
   <tabstop>Renderer_Order_List</tabstop>
@@ -694,7 +694,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>CH_Set_Video_Compression</sender>
+   <sender>CH_Use_Image_Compression</sender>
    <signal>toggled(bool)</signal>
    <receiver>CB_Video_Compression</receiver>
    <slot>setEnabled(bool)</slot>
@@ -736,7 +736,7 @@
      <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
+     <x>418</x>
      <y>287</y>
     </hint>
    </hints>
@@ -752,8 +752,8 @@
      <y>254</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
-     <y>340</y>
+     <x>418</x>
+     <y>386</y>
     </hint>
    </hints>
   </connection>
@@ -764,12 +764,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
-     <y>491</y>
+     <x>122</x>
+     <y>537</y>
     </hint>
     <hint type="destinationlabel">
-     <x>108</x>
-     <y>519</y>
+     <x>141</x>
+     <y>565</y>
     </hint>
    </hints>
   </connection>

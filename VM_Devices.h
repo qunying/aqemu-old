@@ -313,6 +313,8 @@ class Averable_Devices
 		bool PSO_TFTP;
 		bool PSO_SMB;
 		bool PSO_Std_VGA;
+		
+		bool PSO_SPICE;
 };
 
 class Emulator
@@ -933,6 +935,9 @@ class VM_SPICE
 		bool operator==( const VM_SPICE &vm_spice ) const;
 		bool operator!=( const VM_SPICE &vm_spice ) const;
 		
+		bool Use_SPICE() const;
+		void Use_SPICE( bool use );
+		
 		// qxl options
 		unsigned int Get_GXL_Devices_Count() const;
 		void Set_GXL_Devices_Count( unsigned int count );
@@ -969,8 +974,8 @@ class VM_SPICE
 		bool Use_Renderer() const;
 		void Use_Renderer( bool use );
 		
-		QList<VM::SPICE_Renderer> Get_Renderer_List() const;
-		void Set_Renderer_List( QList<VM::SPICE_Renderer> list );
+		const QList<VM::SPICE_Renderer> &Get_Renderer_List() const;
+		void Set_Renderer_List( const QList<VM::SPICE_Renderer> &list );
 		
 		bool Use_Playback_Compression() const;
 		void Use_Playback_Compression( bool use );
@@ -983,6 +988,8 @@ class VM_SPICE
 		void Set_Password( QString password );
 	
 	private:
+		bool Enable_SPICE;
+		
 		unsigned int GXL_Devices_Count;
 		int RAM_Size;
 		
