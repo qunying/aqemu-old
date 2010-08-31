@@ -50,18 +50,18 @@
 #include "SMP_Settings_Window.h"
 
 // This static emulator devices data
-QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_9_0;
-QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_9_1;
-QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_10;
-QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_11;
-QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_12;
-QMap<QString, Averable_Devices> System_Info::Emulator_QEMU_0_13;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_9_0;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_9_1;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_10;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_11;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_12;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_13;
 
-QMap<QString, Averable_Devices> System_Info::Emulator_KVM_7X;
-QMap<QString, Averable_Devices> System_Info::Emulator_KVM_8X;
-QMap<QString, Averable_Devices> System_Info::Emulator_KVM_0_11;
-QMap<QString, Averable_Devices> System_Info::Emulator_KVM_0_12;
-QMap<QString, Averable_Devices> System_Info::Emulator_KVM_0_13;
+QMap<QString, Available_Devices> System_Info::Emulator_KVM_7X;
+QMap<QString, Available_Devices> System_Info::Emulator_KVM_8X;
+QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_11;
+QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_12;
+QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_13;
 
 QList<VM_USB> System_Info::All_Host_USB;
 QList<VM_USB> System_Info::Used_Host_USB;
@@ -547,6 +547,10 @@ void Main_Window::Connect_Signals()
 	connect( ui.RB_KQEMU_Full, SIGNAL(toggled(bool)),
 			 this, SLOT(VM_Changet()) );
 	
+	// SPICE
+	connect( SPICE_Widget, SIGNAL(State_Changet()),
+			 this, SLOT(VM_Changet()) );
+	
 	// VNC Tab
 	connect( ui.CH_Activate_VNC, SIGNAL(clicked()),
 			 this, SLOT(VM_Changet()) );
@@ -620,11 +624,11 @@ void Main_Window::Connect_Signals()
 			 this, SLOT(VM_Changet()) );
 }
 
-const QMap<QString, Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok ) const
+const QMap<QString, Available_Devices> &Main_Window::Get_Devices_Info( bool *ok ) const
 {
 	// Get current emulator
 	Emulator curEmul;
-	static QMap<QString, Averable_Devices> retList;
+	static QMap<QString, Available_Devices> retList;
 	
 	if( ui.CB_Emulator_Version->currentIndex() > 0 )
 	{
@@ -636,7 +640,7 @@ const QMap<QString, Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )
 		else if( ui.CB_Emulator_Type->currentText() == "KVM" ) curEmul = Get_Default_Emulator( VM::KVM );
 		else
 		{
-			AQError( "QList<Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
+			AQError( "QList<Available_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
 					 "Incorrect Emulator Type!" );
 			*ok = false;
 			return retList;
@@ -645,7 +649,7 @@ const QMap<QString, Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )
 	
 	if( curEmul.Get_Name().isEmpty() )
 	{
-		AQError( "QList<Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
+		AQError( "QList<Available_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
 				 "Emulator empty!" );
 		*ok = false;
 		return retList;
@@ -655,22 +659,22 @@ const QMap<QString, Averable_Devices> &Main_Window::Get_Devices_Info( bool *ok )
 	return curEmul.Get_Devices();
 }
 
-Averable_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const
+Available_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const
 {
 	// Get all devices
 	bool devOk = false;
-	QMap<QString, Averable_Devices> allDevList = Get_Devices_Info( &devOk );
+	QMap<QString, Available_Devices> allDevList = Get_Devices_Info( &devOk );
 	
 	if( ! devOk )
 	{
-		AQError( "Averable_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const",
+		AQError( "Available_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const",
 				 "Cannot get devices!" );
 		*ok = false;
-		return Averable_Devices();
+		return Available_Devices();
 	}
 	
 	// Find current device
-	for( QMap<QString, Averable_Devices>::const_iterator ix = allDevList.constBegin(); ix != allDevList.constEnd(); ++ix )
+	for( QMap<QString, Available_Devices>::const_iterator ix = allDevList.constBegin(); ix != allDevList.constEnd(); ++ix )
 	{
 		if( ui.CB_Computer_Type->currentText() == ix.value().System.Caption )
 		{
@@ -680,10 +684,10 @@ Averable_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const
 	}
 	
 	// Not found
-	AQError( "Averable_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const",
+	AQError( "Available_Devices Main_Window::Get_Current_Machine_Devices( bool *ok ) const",
 			 "Cannot get current machine device!" );
 	*ok = false;
-	return Averable_Devices();
+	return Available_Devices();
 }
 
 bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *old_vm )
@@ -732,7 +736,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 	
 	// Get devices
 	bool curMachineOk = false;
-	Averable_Devices curComp = Get_Current_Machine_Devices( &curMachineOk );
+	Available_Devices curComp = Get_Current_Machine_Devices( &curMachineOk );
 	if( ! curMachineOk ) return false;
 	
 	// Computer Type
@@ -1054,6 +1058,11 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 	tmp_vm->Use_Start_Date( ui.CH_Start_Date->isChecked() );
 	tmp_vm->Set_Start_Date( ui.DTE_Start_Date->dateTime() );
 	
+	// SPICE
+	bool spiceSettingsOK = false;
+	tmp_vm->Set_SPICE( SPICE_Widget->Get_Settings( spiceSettingsOK ) );
+	if( ! spiceSettingsOK ) return false;
+	
 	// VNC
 	tmp_vm->Use_VNC( ui.CH_Activate_VNC->isChecked() );
 	
@@ -1353,7 +1362,7 @@ void Main_Window::Update_VM_Ui()
 	}
 	
 	// Get current VM devices
-	Averable_Devices curComp = tmp_vm->Get_Emulator().Get_Devices()[ tmp_vm->Get_Computer_Type() ];
+	Available_Devices curComp = tmp_vm->Get_Emulator().Get_Devices()[ tmp_vm->Get_Computer_Type() ];
 	
 	if( curComp.System.QEMU_Name.isEmpty() )
 	{
@@ -1704,6 +1713,9 @@ void Main_Window::Update_VM_Ui()
 	// KVM Shadow Memory
 	ui.CH_KVM_Shadow_Memory->setChecked( tmp_vm->Use_KVM_Shadow_Memory() );
 	ui.SB_KVM_Shadow_Memory_Size->setValue( tmp_vm->Get_KVM_Shadow_Memory_Size() );
+	
+	// SPICE
+	SPICE_Widget->Set_Settings( tmp_vm->Get_SPICE() );
 	
 	// VNC
 	ui.CH_Activate_VNC->setChecked( tmp_vm->Use_VNC() );
@@ -2985,7 +2997,7 @@ void Main_Window::Update_Disabled_Controls()
 {
 	// Get devices
 	bool curMachineOk = false;
-	Averable_Devices curComp = Get_Current_Machine_Devices( &curMachineOk );
+	Available_Devices curComp = Get_Current_Machine_Devices( &curMachineOk );
 	if( ! curMachineOk ) return;
 	
 	// Apply emulator
@@ -3183,6 +3195,9 @@ void Main_Window::Update_Disabled_Controls()
 		ui.RB_KQEMU_Use_if_Possible->setEnabled( false );
 		ui.RB_KQEMU_Disabled->setEnabled( false );
 	}
+	
+	// SPICE
+	SPICE_Widget->setEnabled( curComp.PSO_SPICE );
 	
 	// Obsolete QEMU options
 	if( curComp.PSO_TFTP )
@@ -5202,7 +5217,7 @@ void Main_Window::on_TB_FD0_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5268,7 +5283,7 @@ void Main_Window::on_TB_FD1_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5334,7 +5349,7 @@ void Main_Window::on_TB_CDROM_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5422,7 +5437,7 @@ void Main_Window::on_TB_HDA_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5511,7 +5526,7 @@ void Main_Window::on_TB_HDB_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5600,7 +5615,7 @@ void Main_Window::on_TB_HDC_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5685,7 +5700,7 @@ void Main_Window::on_TB_HDD_Advanced_Settings_clicked()
 	
 	// Set emulator
 	bool ok = false;
-	Averable_Devices dev = Get_Current_Machine_Devices( &ok );
+	Available_Devices dev = Get_Current_Machine_Devices( &ok );
 	if( ! ok ) return;
 	Nativ_Device_Window->Set_Emulator_Devices( dev );
 	
@@ -5840,8 +5855,8 @@ void Main_Window::Apply_Emulator( int mode )
 	int comp_index;
 	QStringList cl;
 	bool q = false, k = false;
-	QMap<QString, Averable_Devices> current_devices;
-	Averable_Devices curComp;
+	QMap<QString, Available_Devices> current_devices;
+	Available_Devices curComp;
 	bool devOk = false;
 	
 	switch( mode )
@@ -5877,7 +5892,7 @@ void Main_Window::Apply_Emulator( int mode )
 			current_devices = Get_Devices_Info( &devOk );
 			if( ! devOk ) return;
 			
-			for( QMap<QString, Averable_Devices>::const_iterator i = current_devices.constBegin(); i != current_devices.constEnd(); i++ )
+			for( QMap<QString, Available_Devices>::const_iterator i = current_devices.constBegin(); i != current_devices.constEnd(); i++ )
 				ui.CB_Computer_Type->addItem( i->System.Caption );
 			
 		case 3:
@@ -6132,7 +6147,7 @@ bool Main_Window::Validate_CPU_Count( const QString &text )
 	}
 	
 	cpuOk = false;
-	Averable_Devices tmpDev = Get_Current_Machine_Devices( &cpuOk );
+	Available_Devices tmpDev = Get_Current_Machine_Devices( &cpuOk );
 	if( ! cpuOk )
 	{
 		AQError( "bool Main_Window::Validate_CPU_Count( const QString &text )",

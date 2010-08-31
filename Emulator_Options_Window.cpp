@@ -383,7 +383,7 @@ void Emulator_Options_Window::Update_Emulator()
 		if( ui.RB_Save_Options->isChecked() || // Update emulator bin files info?
 			ui.RB_Check_Options->isChecked() )
 		{
-			QMap<QString, Averable_Devices> devList;
+			QMap<QString, Available_Devices> devList;
 			
 			for( int ix = 0; ix < ui.Table_Systems->rowCount(); ix++ )
 			{
@@ -391,7 +391,7 @@ void Emulator_Options_Window::Update_Emulator()
 					continue;
 				
 				bool ok = false;
-				Averable_Devices tmpDev = System_Info::Get_Emulator_Info( ui.Table_Systems->item(ix, 1)->text(), &ok,
+				Available_Devices tmpDev = System_Info::Get_Emulator_Info( ui.Table_Systems->item(ix, 1)->text(), &ok,
 																		  Current_Emulator.Get_Version(), ui.Table_Systems->item(ix, 0)->text() );
 					
 				if( ok ) devList[ ui.Table_Systems->item(ix, 0)->text() ] = tmpDev;

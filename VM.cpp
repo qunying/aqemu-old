@@ -226,6 +226,8 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->Start_Date = vm.Use_Start_Date();
 	this->Start_DateTime = vm.Get_Start_Date();
 	
+	this->SPICE = vm.Get_SPICE();
+	
 	this->VNC = vm.Use_VNC();
 	this->VNC_Socket_Mode = vm.Get_VNC_Socket_Mode();
 	this->VNC_Unix_Socket_Path = vm.Get_VNC_Unix_Socket_Path();
@@ -279,7 +281,7 @@ void Virtual_Machine::Shared_Constructor()
 	// Emulator
 	Emulator_Type = VM::QEMU;
 	Current_Emulator = Emulator();
-	Current_Emulator_Devices = new Averable_Devices();
+	Current_Emulator_Devices = new Available_Devices();
 	
 	QObject::connect( Emu_Ctl, SIGNAL(Ready_Read_Command(QString)),
 					  this, SLOT(Execute_Emu_Ctl_Command(QString)) );
@@ -409,6 +411,8 @@ void Virtual_Machine::Shared_Constructor()
 	Start_Date = false;
 	Start_DateTime = QDateTime::fromString( "20.10.2000 23:59:00", "dd.MM.yyyy HH:mm:ss" );
 	
+	SPICE = VM_SPICE();
+	
 	VNC = false;
 	VNC_Socket_Mode = false;
 	VNC_Unix_Socket_Path = "";
@@ -502,6 +506,7 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		this->RTC_TD_Hack == vm.Use_RTC_TD_Hack() &&
 		this->Start_Date == vm.Use_Start_Date() &&
 		this->Start_DateTime == vm.Get_Start_Date() &&
+		this->SPICE == vm.Get_SPICE() &&
 		this->VNC == vm.Use_VNC() &&
 		this->VNC_Socket_Mode == vm.Get_VNC_Socket_Mode() &&
 		this->VNC_Unix_Socket_Path == vm.Get_VNC_Unix_Socket_Path() &&
@@ -767,6 +772,8 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	
 	this->Start_Date = vm.Use_Start_Date();
 	this->Start_DateTime = vm.Get_Start_Date();
+	
+	this->SPICE = vm.Get_SPICE();
 	
 	this->VNC = vm.Use_VNC();
 	this->VNC_Socket_Mode = vm.Get_VNC_Socket_Mode();
@@ -5789,7 +5796,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 					else
 					{
 						AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-								"Incorrcect Device!" );
+								 "Incorrcect Device!" );
 					}
 				}
 			}
@@ -5898,6 +5905,130 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	// VM Name
 	if( Current_Emulator_Devices->PSO_Name )
 		Args << "-name" << "\"" + Machine_Name + "\"";
+	
+	// SPICE
+	// FIXME. VNC and SPICE together?
+	if( SPICE.Use_SPICE() )
+	{
+		// QLX devices count and RAM size
+		Args << "-qxl" << QString( "%1,ram=%2" ).arg( SPICE.Get_GXL_Devices_Count() ).arg( SPICE.Get_RAM_Size() );
+		
+		// Basic SPICE options
+		QStringList spiceArgs;
+		
+		spiceArgs << QString( "port=%1" ).arg( SPICE.Get_Port() );
+		
+		if( SPICE.Use_SPort() )
+			spiceArgs << QString( "sport=%1" ).arg( SPICE.Get_SPort() );
+		
+		if( SPICE.Use_Hostname() )
+			spiceArgs << QString( "hostname=%1" ).arg( SPICE.Get_Hostname() );
+		
+		// Image, video & audio options
+		if( SPICE.Use_Image_Compression() )
+		{
+			switch( SPICE.Get_Image_Compression() )
+			{
+				case VM::SPICE_IC_Type_on:
+					spiceArgs << "ic=on";
+					break;
+					
+				case VM::SPICE_IC_Type_auto_glz:
+					spiceArgs << "ic=auto_glz";
+					break;
+					
+				case VM::SPICE_IC_Type_auto_lz:
+					spiceArgs << "ic=auto_lz";
+					break;
+					
+				case VM::SPICE_IC_Type_quic:
+					spiceArgs << "ic=quic";
+					break;
+					
+				case VM::SPICE_IC_Type_glz:
+					spiceArgs << "ic=glz";
+					break;
+					
+				case VM::SPICE_IC_Type_lz:
+					spiceArgs << "ic=lz";
+					break;
+					
+				case VM::SPICE_IC_Type_off:
+					spiceArgs << "ic=off";
+					break;
+					
+				default:
+					AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+							 "SPICE image compression type invalid!" );
+					break;
+			}
+		}
+		
+		// Set video streams detection and (lossy) compression (default=on)
+		if( ! SPICE.Use_Video_Stream_Compression() )
+			spiceArgs << "sv=off";
+		
+		// Select renderers. Multiple choice prioritized by order (default=cairo)		
+		if( SPICE.Use_Renderer() )
+		{
+			QString spiceRendersStr = "";
+			for( int ix = 0; ix < SPICE.Get_Renderer_List().count(); ++ix )
+			{
+				switch( SPICE.Get_Renderer_List()[ix] )
+				{
+					case VM::SPICE_Renderer_oglpbuf:
+						spiceRendersStr += "oglpbuf";
+						break;
+						
+					case VM::SPICE_Renderer_oglpixmap:
+						spiceRendersStr += "oglpixmap";
+						break;
+						
+					case VM::SPICE_Renderer_cairo:
+						spiceRendersStr += "cairo";
+						break;
+						
+					default:
+						AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+								 "SPICE render type invalid!" );
+						break;
+				}
+				
+				if( ! spiceRendersStr.isEmpty() &&
+					ix < (SPICE.Get_Renderer_List().count() + 1) )
+				{
+					spiceRendersStr += "+";
+				}
+			}
+			
+			if( spiceRendersStr.isEmpty() )
+			{
+				AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
+						 "SPICE render type order list is empty!" );
+			}
+			else
+			{
+				spiceArgs << "renderer=" + spiceRendersStr;
+			}
+		}
+		
+		// Set playback compression, using the CELT algorithm (default=on)
+		if( ! SPICE.Use_Playback_Compression() )
+			spiceArgs << "playback-compression=off";
+		
+		// Security options
+		if( SPICE.Use_Password() )
+		{
+			spiceArgs << "password=" + SPICE.Get_Password();
+		}
+		else
+		{
+			spiceArgs << "disable-ticketing";
+		}
+		
+		// Add to args
+		Args << "-spice" << spiceArgs.join( "," );
+	}
 	
 	// VNC
 	if( VNC )
@@ -6768,7 +6899,7 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 	}
 	else
 	{
-		static Averable_Devices tmp = Current_Emulator.Get_Devices()[ Computer_Type ];
+		static Available_Devices tmp = Current_Emulator.Get_Devices()[ Computer_Type ];
 		tmp = Current_Emulator.Get_Devices()[ Computer_Type ]; // it not bug :)
 		Current_Emulator_Devices = &tmp;
 	}
@@ -6781,13 +6912,13 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 	}
 }
 
-const Averable_Devices *Virtual_Machine::Get_Current_Emulator_Devices() const
+const Available_Devices *Virtual_Machine::Get_Current_Emulator_Devices() const
 {
 	if( ! Current_Emulator_Devices )
 	{
-		AQError( "const Virtual_Machine::Averable_Devices *Get_Current_Emulator_Devices() const",
+		AQError( "const Virtual_Machine::Available_Devices *Get_Current_Emulator_Devices() const",
 				 "Cannot get valid devices!" );
-		return new Averable_Devices();
+		return new Available_Devices();
 	}
 	
 	return Current_Emulator_Devices;
@@ -7931,6 +8062,16 @@ const QDateTime &Virtual_Machine::Get_Start_Date() const
 void Virtual_Machine::Set_Start_Date( const QDateTime &dt )
 {
 	Start_DateTime = dt;
+}
+
+const VM_SPICE &Virtual_Machine::Get_SPICE() const
+{
+	return SPICE;
+}
+
+void Virtual_Machine::Set_SPICE( const VM_SPICE &spice )
+{
+	SPICE = spice;
 }
 
 bool Virtual_Machine::Use_VNC() const

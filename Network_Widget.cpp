@@ -159,7 +159,7 @@ void Network_Widget::Set_Network_Card_Models( const QList<Device_Map> &models )
 	}
 }
 
-void Network_Widget::Set_Devices( const Averable_Devices &devices )
+void Network_Widget::Set_Devices( const Available_Devices &devices )
 {
 	// Set network cards models
 	if( ui.CB_model->count() > 0 ) ui.CB_model->clear();

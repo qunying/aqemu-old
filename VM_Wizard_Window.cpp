@@ -197,7 +197,7 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			// Comp types
 			ui.CB_Computer_Type->clear();
 			ui.CB_Computer_Type->addItem( tr("No Selected") );
-			for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+			for( QMap<QString, Available_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
 				ui.CB_Computer_Type->addItem( it.value().System.Caption );
 			
 			Use_Emulator_Type_Page = false;
@@ -231,7 +231,7 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 		// Comp types
 		ui.CB_Computer_Type->clear();
 		ui.CB_Computer_Type->addItem( tr("No Selected") );
-		for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+		for( QMap<QString, Available_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
 			ui.CB_Computer_Type->addItem( it.value().System.Caption );
 		
 		ui.Wizard_Pages->setCurrentWidget( ui.Template_Page );
@@ -351,7 +351,7 @@ void VM_Wizard_Window::on_Button_Next_clicked()
 			
 			// Find CPU List For This Template
 			QString compCaption = ui.CB_Computer_Type->currentText();
-			for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+			for( QMap<QString, Available_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
 			{
 				if( it.value().System.Caption == compCaption )
 				{
@@ -564,7 +564,7 @@ bool VM_Wizard_Window::Create_New_VM()
 			}
 			else // QEMU
 			{
-				for( QMap<QString, Averable_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
+				for( QMap<QString, Available_Devices>::const_iterator it = All_Systems.constBegin(); it != All_Systems.constEnd(); it++ )
 				{
 					if( it.value().System.Caption == ui.CB_Computer_Type->currentText() )
 					{

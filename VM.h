@@ -111,7 +111,7 @@ class Virtual_Machine: public QObject
 		void Set_Emulator( const Emulator &emul );
 		
 		void Update_Current_Emulator_Devices();
-		const Averable_Devices *Get_Current_Emulator_Devices() const;
+		const Available_Devices *Get_Current_Emulator_Devices() const;
 		
 		QString Get_Current_Emulator_Binary_Path( const QString &names ) const;
 		
@@ -369,6 +369,9 @@ class Virtual_Machine: public QObject
 		const QDateTime &Get_Start_Date() const;
 		void Set_Start_Date( const QDateTime &dt );
 		
+		const VM_SPICE &Get_SPICE() const;
+		void Set_SPICE( const VM_SPICE &spice );
+		
 		bool Use_VNC() const;
 		void Use_VNC( bool use );
 		
@@ -457,7 +460,7 @@ class Virtual_Machine: public QObject
 		
 		VM::Emulator_Type Emulator_Type;
 		Emulator Current_Emulator;
-		const Averable_Devices *Current_Emulator_Devices;
+		const Available_Devices *Current_Emulator_Devices;
 		
 		QString Snapshot_Name_String;
 		QString Last_Output;
@@ -562,6 +565,9 @@ class Virtual_Machine: public QObject
 		// DateTime
 		bool Start_Date;
 		QDateTime Start_DateTime;
+		
+		// SPICE
+		VM_SPICE SPICE;
 		
 		// VNC
 		bool VNC;

@@ -157,7 +157,7 @@ void Properties_Window::Set_Enabled( bool enabled )
 	ui.Button_OK->setEnabled( enabled );
 }
 
-void Properties_Window::Set_Current_Machine_Devices( const Averable_Devices *dev )
+void Properties_Window::Set_Current_Machine_Devices( const Available_Devices *dev )
 {
 	Current_Machine_Devices = dev;
 }

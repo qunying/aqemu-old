@@ -625,14 +625,14 @@ bool Update_Emulators_List()
 		if( tmp.Get_Check_Available_Options() )
 		{
 			QMap<QString, QString> tmpBinFiles = tmp.Get_Binary_Files();
-			QMap<QString, Averable_Devices> tmpDevMap; // result
+			QMap<QString, Available_Devices> tmpDevMap; // result
 			
 			for( QMap<QString, QString>::const_iterator it = tmpBinFiles.constBegin(); it != tmpBinFiles.constEnd(); ++it )
 			{
 				if( ! it.value().isEmpty() )
 				{
 					bool ok = false;
-					Averable_Devices tmpDev = System_Info::Get_Emulator_Info( it.value(), &ok, tmp.Get_Version(), it.key() );
+					Available_Devices tmpDev = System_Info::Get_Emulator_Info( it.value(), &ok, tmp.Get_Version(), it.key() );
 					
 					if( ! ok )
 					{

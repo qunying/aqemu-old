@@ -145,7 +145,7 @@ void Add_New_Device_Window::Set_Device( const VM_Nativ_Storage_Device &dev )
 	ui.Edit_Trans->setText( QString::number(Device.Get_Trans()) );
 }
 
-void Add_New_Device_Window::Set_Emulator_Devices( const Averable_Devices &devices )
+void Add_New_Device_Window::Set_Emulator_Devices( const Available_Devices &devices )
 {
 	if( devices.PSO_Drive_File )
 	{

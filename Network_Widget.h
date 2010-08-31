@@ -37,7 +37,7 @@ class Network_Widget: public QWidget
 		void Set_Network_Cards( const QList<VM_Net_Card_Nativ> &cards );
 		
 		void Set_Network_Card_Models( const QList<Device_Map> &models );
-		void Set_Devices( const Averable_Devices &devices );
+		void Set_Devices( const Available_Devices &devices );
 		
 		void Set_Enabled( bool on );
 		

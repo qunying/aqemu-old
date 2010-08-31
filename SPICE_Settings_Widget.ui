@@ -362,7 +362,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="CB_Video_Compression">
+                 <widget class="QComboBox" name="CB_Image_Compression">
                   <property name="enabled">
                    <bool>false</bool>
                   </property>
@@ -427,49 +427,7 @@
                  <number>15</number>
                 </property>
                 <item>
-                 <widget class="QTreeWidget" name="Renderer_Order_List">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="verticalScrollBarPolicy">
-                   <enum>Qt::ScrollBarAlwaysOff</enum>
-                  </property>
-                  <property name="horizontalScrollBarPolicy">
-                   <enum>Qt::ScrollBarAlwaysOff</enum>
-                  </property>
-                  <property name="editTriggers">
-                   <set>QAbstractItemView::NoEditTriggers</set>
-                  </property>
-                  <property name="dragEnabled">
-                   <bool>true</bool>
-                  </property>
-                  <property name="dragDropMode">
-                   <enum>QAbstractItemView::DragOnly</enum>
-                  </property>
-                  <property name="alternatingRowColors">
-                   <bool>true</bool>
-                  </property>
-                  <property name="rootIsDecorated">
-                   <bool>false</bool>
-                  </property>
-                  <property name="uniformRowHeights">
-                   <bool>true</bool>
-                  </property>
-                  <property name="headerHidden">
-                   <bool>true</bool>
-                  </property>
-                  <column>
-                   <property name="text">
-                    <string>1</string>
-                   </property>
-                  </column>
-                 </widget>
+                 <widget class="QListWidget" name="Renderer_Order_List"/>
                 </item>
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -646,9 +604,8 @@
   <tabstop>CH_SPICE_Host</tabstop>
   <tabstop>Edit_SPICE_Host</tabstop>
   <tabstop>CH_Use_Image_Compression</tabstop>
-  <tabstop>CB_Video_Compression</tabstop>
+  <tabstop>CB_Image_Compression</tabstop>
   <tabstop>CH_Set_Renderer</tabstop>
-  <tabstop>Renderer_Order_List</tabstop>
   <tabstop>TB_Up</tabstop>
   <tabstop>TB_Down</tabstop>
   <tabstop>CH_Use_Video_Compression</tabstop>
@@ -696,7 +653,7 @@
   <connection>
    <sender>CH_Use_Image_Compression</sender>
    <signal>toggled(bool)</signal>
-   <receiver>CB_Video_Compression</receiver>
+   <receiver>CB_Image_Compression</receiver>
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -706,22 +663,6 @@
     <hint type="destinationlabel">
      <x>377</x>
      <y>227</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Set_Renderer</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Renderer_Order_List</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>97</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>86</x>
-     <y>341</y>
     </hint>
    </hints>
   </connection>

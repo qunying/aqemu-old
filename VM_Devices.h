@@ -197,11 +197,11 @@ class Device_Map
 		QString QEMU_Name;
 };
 
-class Averable_Devices
+class Available_Devices
 {
 	public:
 		// Constructor for init values
-		Averable_Devices();
+		Available_Devices();
 		
 		// QEMU/KVM System
 		Device_Map System;
@@ -357,8 +357,8 @@ class Emulator
 		const QMap<QString, QString> &Get_Binary_Files() const;
 		void Set_Binary_Files( const QMap<QString, QString> &files );
 		
-		const QMap<QString, Averable_Devices> &Get_Devices() const;
-		void Set_Devices( const QMap<QString, Averable_Devices> &devices );
+		const QMap<QString, Available_Devices> &Get_Devices() const;
+		void Set_Devices( const QMap<QString, Available_Devices> &devices );
 		
 	private:
 		VM::Emulator_Type Type;
@@ -373,7 +373,7 @@ class Emulator
 		
 		// KEY for next maps is emulator exeutable id (like qemu-system-arm)
 		QMap<QString, QString> Binary_Files; // VALUE is path to executable
-		QMap<QString, Averable_Devices> Devices; // VALUE is Averable_Devices class
+		QMap<QString, Available_Devices> Devices; // VALUE is Available_Devices class
 };
 
 // Nativ Storage Device (QEMU >= 0.9.1 Device Style)

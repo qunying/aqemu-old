@@ -39,7 +39,7 @@ class System_Info
 		static QMap<QString, QString> Find_KVM_Binary_Files( const QString &path );
 		static QString Find_IMG( const QStringList &paths );
 		
-		static Averable_Devices Get_Emulator_Info( const QString &path, bool *ok,
+		static Available_Devices Get_Emulator_Info( const QString &path, bool *ok,
 												   VM::Emulator_Version version, const QString &internalName );
 		static QString Get_Emulator_Help_Output( const QString &path );
 		static QString Get_Emulator_Output( const QString &path, const QStringList &args );
@@ -55,18 +55,18 @@ class System_Info
 		static QStringList Get_Host_FDD_List();
 		static QStringList Get_Host_CDROM_List();
 		
-		static QMap<QString, Averable_Devices> Emulator_QEMU_0_9_0;
-		static QMap<QString, Averable_Devices> Emulator_QEMU_0_9_1;
-		static QMap<QString, Averable_Devices> Emulator_QEMU_0_10;
-		static QMap<QString, Averable_Devices> Emulator_QEMU_0_11;
-		static QMap<QString, Averable_Devices> Emulator_QEMU_0_12;
-		static QMap<QString, Averable_Devices> Emulator_QEMU_0_13;
+		static QMap<QString, Available_Devices> Emulator_QEMU_0_9_0;
+		static QMap<QString, Available_Devices> Emulator_QEMU_0_9_1;
+		static QMap<QString, Available_Devices> Emulator_QEMU_0_10;
+		static QMap<QString, Available_Devices> Emulator_QEMU_0_11;
+		static QMap<QString, Available_Devices> Emulator_QEMU_0_12;
+		static QMap<QString, Available_Devices> Emulator_QEMU_0_13;
 		
-		static QMap<QString, Averable_Devices> Emulator_KVM_7X;
-		static QMap<QString, Averable_Devices> Emulator_KVM_8X;
-		static QMap<QString, Averable_Devices> Emulator_KVM_0_11;
-		static QMap<QString, Averable_Devices> Emulator_KVM_0_12;
-		static QMap<QString, Averable_Devices> Emulator_KVM_0_13;
+		static QMap<QString, Available_Devices> Emulator_KVM_7X;
+		static QMap<QString, Available_Devices> Emulator_KVM_8X;
+		static QMap<QString, Available_Devices> Emulator_KVM_0_11;
+		static QMap<QString, Available_Devices> Emulator_KVM_0_12;
+		static QMap<QString, Available_Devices> Emulator_KVM_0_13;
 		
 	private:
 		static bool Scan_USB_Sys( QList<VM_USB> &list );

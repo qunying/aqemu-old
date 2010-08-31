@@ -33,7 +33,7 @@ class SPICE_Settings_Widget: public QWidget
 	public:
 		SPICE_Settings_Widget( QWidget *parent = 0 );
 		
-		const VM_SPICE &Get_Settigns() const;
+		const VM_SPICE &Get_Settings( bool &settingsValidated ) const;
 		void Set_Settings( const VM_SPICE &settings );
 		
 	private slots:

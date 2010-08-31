@@ -263,7 +263,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				QProgressDialog progressWin( tr("Search..."), tr("Cancel"), 0, allEmulBinCount, this );
 				progressWin.setWindowModality( Qt::WindowModal );
 				
-				QMap<QString, Averable_Devices> devList;
+				QMap<QString, Available_Devices> devList;
 				
 				iter = qemu_list.constBegin();
 				for( int emulBinIndex = 0; iter != qemu_list.constEnd(); ++emulBinIndex )
@@ -273,7 +273,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 					if( ! iter.value().isEmpty() )
 					{
 						bool ok = false;
-						Averable_Devices tmpDev = System_Info::Get_Emulator_Info( iter.value(), &ok, qemu_version, iter.key() );
+						Available_Devices tmpDev = System_Info::Get_Emulator_Info( iter.value(), &ok, qemu_version, iter.key() );
 						
 						if( ok )
 							devList[ iter.key() ] = tmpDev;
@@ -362,7 +362,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				}
 				
 				// Get emulator info
-				QMap<QString, Averable_Devices> devList;
+				QMap<QString, Available_Devices> devList;
 				
 				iter = kvm_list.constBegin();
 				while( iter != kvm_list.constEnd() )
@@ -370,7 +370,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 					if( ! iter.value().isEmpty() )
 					{
 						bool ok = false;
-						Averable_Devices tmpDev = System_Info::Get_Emulator_Info( iter.value(), &ok, kvm_version, iter.key() );
+						Available_Devices tmpDev = System_Info::Get_Emulator_Info( iter.value(), &ok, kvm_version, iter.key() );
 						
 						if( ok )
 							devList[ iter.key() ] = tmpDev;

@@ -34,9 +34,9 @@
 #include "HDD_Image_Info.h"
 #include "System_Info.h"
 
-// Averable_Devices ---------------------------------------------------------
+// Available_Devices ---------------------------------------------------------
 
-Averable_Devices::Averable_Devices()
+Available_Devices::Available_Devices()
 {
 	CPU_List << Device_Map( QObject::tr("Default"), "" );
 	Machine_List << Device_Map( QObject::tr("Default"), "" );
@@ -153,7 +153,7 @@ Emulator::Emulator()
 	Force_Version = false;
 	Version = VM::Obsolete;
 	Binary_Files = QMap<QString, QString>();
-	Devices = QMap<QString, Averable_Devices>();
+	Devices = QMap<QString, Available_Devices>();
 }
 
 Emulator::Emulator( const Emulator &emul )
@@ -196,7 +196,7 @@ bool Emulator::operator!=( const Emulator &emul ) const
 }
 
 bool Emulator::Load( const QString &path )
-{	
+{
 	// Load file
 	QDomDocument doc;
 	QFile inFile( path );
@@ -292,7 +292,7 @@ bool Emulator::Load( const QString &path )
 		}
 		else
 		{
-			Averable_Devices tmpDev;
+			Available_Devices tmpDev;
 			
 			// System
 			tmpDev.System.Caption = childElement.firstChildElement( "System_Caption" ).text();
@@ -549,6 +549,8 @@ bool Emulator::Load( const QString &path )
 			tmpDev.PSO_Enable_Nesting = (childElement.firstChildElement("Enable_Nesting").text() == "yes" );
 			tmpDev.PSO_KVM_Shadow_Memory = (childElement.firstChildElement("KVM_Shadow_Memory").text() == "yes" );
 			
+			tmpDev.PSO_SPICE = (childElement.firstChildElement("SPICE").text() == "yes" );
+			
 			tmpDev.PSO_TFTP = (childElement.firstChildElement("TFTP").text() == "yes" );
 			tmpDev.PSO_SMB = (childElement.firstChildElement("SMB").text() == "yes" );
 			tmpDev.PSO_Std_VGA = (childElement.firstChildElement("Std_VGA").text() == "yes" );
@@ -663,10 +665,10 @@ bool Emulator::Save() const
 	emulatorElement.appendChild( domElement );
 	
 	// Save devices
-	QMap<QString, Averable_Devices>::const_iterator devicesIter = Devices.constBegin();
+	QMap<QString, Available_Devices>::const_iterator devicesIter = Devices.constBegin();
 	while( devicesIter != Devices.constEnd() )
 	{
-		const Averable_Devices &tmpDev = devicesIter.value();
+		const Available_Devices &tmpDev = devicesIter.value();
 		domElement = domDocument.createElement( devicesIter.key() );
 		
 		QDomElement deviceElement;
@@ -1245,6 +1247,11 @@ bool Emulator::Save() const
 		domText = domDocument.createTextNode( (tmpDev.PSO_KVM_Shadow_Memory ? "yes" : "no") );
 		deviceElement.appendChild( domText );
 		
+		// PSO_SPICE
+		deviceElement = domDocument.createElement( "SPICE" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_SPICE ? "yes" : "no") );
+		deviceElement.appendChild( domText );
 		
 		// PSO_TFTP
 		deviceElement = domDocument.createElement( "TFTP" );
@@ -1448,7 +1455,7 @@ void Emulator::Set_Binary_Files( const QMap<QString, QString> &files )
 	Binary_Files = files;
 }
 
-const QMap<QString, Averable_Devices> &Emulator::Get_Devices() const
+const QMap<QString, Available_Devices> &Emulator::Get_Devices() const
 {
 	if( Force_Version || Check_Version )
 	{
@@ -1488,9 +1495,9 @@ const QMap<QString, Averable_Devices> &Emulator::Get_Devices() const
 				return System_Info::Emulator_KVM_0_13;
 				
 			default:
-				AQError( "const QMap<QString, Averable_Devices> &Emulator::Get_Devices() const",
+				AQError( "const QMap<QString, Available_Devices> &Emulator::Get_Devices() const",
 						 "Emulator Version Incorrect!" );
-				static QMap<QString, Averable_Devices> emptyMap;
+				static QMap<QString, Available_Devices> emptyMap;
 				return emptyMap;
 		}		
 	}
@@ -1500,7 +1507,7 @@ const QMap<QString, Averable_Devices> &Emulator::Get_Devices() const
 	}
 }
 
-void Emulator::Set_Devices( const QMap<QString, Averable_Devices> &devices )
+void Emulator::Set_Devices( const QMap<QString, Available_Devices> &devices )
 {
 	Devices = devices;
 }

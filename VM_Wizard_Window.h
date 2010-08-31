@@ -74,8 +74,8 @@ class VM_Wizard_Window: public QDialog
 		QList<Virtual_Machine*> *VM_List;
 		
 		Emulator Current_Emulator;
-		const Averable_Devices* Current_Devices;
-		QMap<QString, Averable_Devices> All_Systems;
+		const Available_Devices* Current_Devices;
+		QMap<QString, Available_Devices> All_Systems;
 		
 		bool Use_Emulator_Type_Page;
 };
