@@ -1083,8 +1083,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Sec_Element = New_Dom_Document.createElement( "Audio_sb16" );
 	Dom_Element.appendChild( Sec_Element );
 	
-	if( Audio_Card.Audio_sb16 ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-	else Dom_Text = New_Dom_Document.createTextNode( "false" );
+	if( Audio_Card.Audio_sb16 )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -1092,8 +1094,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Sec_Element = New_Dom_Document.createElement( "Audio_es1370" );
 	Dom_Element.appendChild( Sec_Element );
 	
-	if( Audio_Card.Audio_es1370 ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-	else Dom_Text = New_Dom_Document.createTextNode( "false" );
+	if( Audio_Card.Audio_es1370 )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -1101,8 +1105,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Sec_Element = New_Dom_Document.createElement( "Audio_Adlib" );
 	Dom_Element.appendChild( Sec_Element );
 	
-	if( Audio_Card.Audio_Adlib ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-	else Dom_Text = New_Dom_Document.createTextNode( "false" );
+	if( Audio_Card.Audio_Adlib )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -1110,8 +1116,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Sec_Element = New_Dom_Document.createElement( "Audio_PC_Speaker" );
 	Dom_Element.appendChild( Sec_Element );
 	
-	if( Audio_Card.Audio_PC_Speaker ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-	else Dom_Text = New_Dom_Document.createTextNode( "false" );
+	if( Audio_Card.Audio_PC_Speaker )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -1119,8 +1127,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Sec_Element = New_Dom_Document.createElement( "Audio_GUS" );
 	Dom_Element.appendChild( Sec_Element );
 	
-	if( Audio_Card.Audio_GUS ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-	else Dom_Text = New_Dom_Document.createTextNode( "false" );
+	if( Audio_Card.Audio_GUS )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -1128,8 +1138,10 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Sec_Element = New_Dom_Document.createElement( "Audio_AC97" );
 	Dom_Element.appendChild( Sec_Element );
 	
-	if( Audio_Card.Audio_AC97 ) Dom_Text = New_Dom_Document.createTextNode( "true" );
-	else Dom_Text = New_Dom_Document.createTextNode( "false" );
+	if( Audio_Card.Audio_AC97 )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -1724,13 +1736,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		VM_Element.appendChild( Dom_Element );
 		
 		if( Use_Network )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Dom_Element.appendChild( Dom_Text );
 		
@@ -1739,13 +1747,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		VM_Element.appendChild( Dom_Element );
 		
 		if( Use_Redirections )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Dom_Element.appendChild( Dom_Text );
 		
@@ -1849,13 +1853,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 			Dom_Element.appendChild( Sec_Element );
 			
 			if( Network_Cards[nx].Get_Use_TUN_TAP_Script() )
-			{
 				Dom_Text = New_Dom_Document.createTextNode( "true" );
-			}
 			else
-			{
 				Dom_Text = New_Dom_Document.createTextNode( "false" );
-			}
 			
 			Sec_Element.appendChild( Dom_Text );
 			
@@ -1885,13 +1885,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 		VM_Element.appendChild( Dom_Element );
 		
 		if( Nativ_Network )
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "true" );
-		}
 		else
-		{
 			Dom_Text = New_Dom_Document.createTextNode( "false" );
-		}
 		
 		Dom_Element.appendChild( Dom_Text );
 		
@@ -2546,13 +2542,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Linux_Boot )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2579,13 +2571,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Use_ROM_File )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2600,13 +2588,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( MTDBlock )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2621,13 +2605,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( SecureDigital )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2642,13 +2622,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( PFlash )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2669,13 +2645,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Only_User_Args )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2684,13 +2656,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Use_User_Emulator_Binary )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2699,13 +2667,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( KVM_IRQChip )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2714,13 +2678,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( No_KVM_Pit )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2729,13 +2689,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( KVM_Nesting )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2744,13 +2700,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( KVM_No_Pit_Reinjection )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2759,13 +2711,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( KVM_Shadow_Memory )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2783,13 +2731,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Dom_Element.appendChild( Sec_Element );
 	
 	if( Init_Graphic_Mode.Get_Enabled() )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Sec_Element.appendChild( Dom_Text );
 	
@@ -2818,13 +2762,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( No_Frame )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2833,13 +2773,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Alt_Grab )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2848,13 +2784,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( No_Quit )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2863,13 +2795,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Portrait )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2878,13 +2806,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Show_Cursor )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2893,13 +2817,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Curses )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2908,13 +2828,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( RTC_TD_Hack )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2923,13 +2839,9 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	VM_Element.appendChild( Dom_Element );
 	
 	if( Start_Date )
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "true" );
-	}
 	else
-	{
 		Dom_Text = New_Dom_Document.createTextNode( "false" );
-	}
 	
 	Dom_Element.appendChild( Dom_Text );
 	
@@ -2939,6 +2851,169 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	Dom_Text = New_Dom_Document.createTextNode( Start_DateTime.toString("dd.MM.yyyy HH:mm:ss") );
 	Dom_Element.appendChild( Dom_Text );
 	
+	// SPICE
+	Dom_Element = New_Dom_Document.createElement( "SPICE" );
+		
+	// Use SPICE
+	Sec_Element = New_Dom_Document.createElement( "Use_SPICE" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_SPICE() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// GXL_Devices_Count
+	Sec_Element = New_Dom_Document.createElement( "GXL_Devices_Count" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SPICE.Get_GXL_Devices_Count()) );
+	Sec_Element.appendChild( Dom_Text );
+		
+	// RAM_Size
+	Sec_Element = New_Dom_Document.createElement( "RAM_Size" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SPICE.Get_RAM_Size()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Port
+	Sec_Element = New_Dom_Document.createElement( "Port" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SPICE.Get_Port()) );
+	Sec_Element.appendChild( Dom_Text );
+		
+	// Use_SPort
+	Sec_Element = New_Dom_Document.createElement( "Use_SPort" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_SPort() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// SPort
+	Sec_Element = New_Dom_Document.createElement( "SPort" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( QString::number(SPICE.Get_SPort()) );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use_Hostname
+	Sec_Element = New_Dom_Document.createElement( "Use_Hostname" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_Hostname() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Hostname
+	Sec_Element = New_Dom_Document.createElement( "Hostname" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Get_Hostname() );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use_Image_Compression
+	Sec_Element = New_Dom_Document.createElement( "Use_Image_Compression" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_Image_Compression() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Image_Compression_Type
+	Sec_Element = New_Dom_Document.createElement( "Image_Compression_Type" );
+	Dom_Element.appendChild( Sec_Element );
+	
+	switch( SPICE.Get_Image_Compression() )
+	{
+		case VM::SPICE_IC_Type_on:
+			Dom_Text = New_Dom_Document.createTextNode( "on" );
+			break;
+			
+		case VM::SPICE_IC_Type_auto_glz:
+			Dom_Text = New_Dom_Document.createTextNode( "auto_glz" );
+			break;
+			
+		case VM::SPICE_IC_Type_auto_lz:
+			Dom_Text = New_Dom_Document.createTextNode( "auto_lz" );
+			break;
+			
+		case VM::SPICE_IC_Type_quic:
+			Dom_Text = New_Dom_Document.createTextNode( "quic" );
+			break;
+			
+		case VM::SPICE_IC_Type_glz:
+			Dom_Text = New_Dom_Document.createTextNode( "glz" );
+			break;
+			
+		case VM::SPICE_IC_Type_lz:
+			Dom_Text = New_Dom_Document.createTextNode( "lz" );
+			break;
+			
+		case VM::SPICE_IC_Type_off:
+			Dom_Text = New_Dom_Document.createTextNode( "off" );
+			break;
+			
+		default:
+			AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
+					 "SPICE image compression type invalid!" );
+			Dom_Text = New_Dom_Document.createTextNode( "on" );
+			break;
+	}
+	
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use_Video_Stream_Compression
+	Sec_Element = New_Dom_Document.createElement( "Use_Video_Stream_Compression" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_Video_Stream_Compression() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use_Renderer
+	Sec_Element = New_Dom_Document.createElement( "Use_Renderer" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_Renderer() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Renderers_List
+	QDomElement rendererListElement = New_Dom_Document.createElement( "Renderers_List" );
+	
+	for( int ix = 0; ix < SPICE.Get_Renderer_List().count(); ++ix )
+	{
+		switch( SPICE.Get_Renderer_List()[ix] )
+		{
+			case VM::SPICE_Renderer_oglpbuf:
+				Sec_Element = New_Dom_Document.createElement( "oglpbuf" );
+				break;
+				
+			case VM::SPICE_Renderer_oglpixmap:
+				Sec_Element = New_Dom_Document.createElement( "oglpixmap" );
+				break;
+				
+			case VM::SPICE_Renderer_cairo:
+				Sec_Element = New_Dom_Document.createElement( "cairo" );
+				break;
+				
+			default:
+				AQError( "bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mode )",
+						 "SPICE renderer type invalid!" );
+				Sec_Element = New_Dom_Document.createElement( "cairo" );
+				break;
+		}
+		
+		rendererListElement.appendChild( Sec_Element );
+	}
+	
+	Dom_Element.appendChild( rendererListElement );
+	
+	// Use_Playback_Compression
+	Sec_Element = New_Dom_Document.createElement( "Use_Playback_Compression" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_Playback_Compression() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Use_Password
+	Sec_Element = New_Dom_Document.createElement( "Use_Password" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Use_Password() ? "true" : "false" );
+	Sec_Element.appendChild( Dom_Text );
+	
+	// Password
+	Sec_Element = New_Dom_Document.createElement( "Password" );
+	Dom_Element.appendChild( Sec_Element );
+	Dom_Text = New_Dom_Document.createTextNode( SPICE.Get_Password() );
+	Sec_Element.appendChild( Dom_Text );
+	
+	VM_Element.appendChild( Dom_Element );
+
 	// Use VNC
 	Dom_Element = New_Dom_Document.createElement( "Use_VNC" );
 	VM_Element.appendChild( Dom_Element );
@@ -4004,73 +4079,39 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				tmp_str = Second_Element.firstChildElement( "Port_Redirection" ).text();
 				
 				if( tmp_str == "vc" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_vc );
-				}
 				else if( tmp_str == "pty" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_pty );
-				}
 				else if( tmp_str == "none" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_none );
-				}
 				else if( tmp_str == "null" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_null );
-				}
 				else if( tmp_str == "dev" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_dev );
-				}
 				else if( tmp_str == "file" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_file );
-				}
 				else if( tmp_str == "stdio" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_stdio );
-				}
 				else if( tmp_str == "pipe" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_pipe );
-				}
 				else if( tmp_str == "udp" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_udp );
-				}
 				else if( tmp_str == "tcp" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_tcp );
-				}
 				else if( tmp_str == "telnet" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_telnet );
-				}
 				else if( tmp_str == "unix" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_unix );
-				}
 				else if( tmp_str == "com" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_com );
-				}
 				else if( tmp_str == "msmouse" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_msmouse );
-				}
 				else if( tmp_str == "mon" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_mon );
-				}
 				else if( tmp_str == "braille" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_braille );
-				}
 				else
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_Default );
-				}
 				
 				// Parametrs Line
 				tmp_port.Set_Parametrs_Line( Second_Element.firstChildElement("Parametrs").text() );
@@ -4091,73 +4132,39 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 				tmp_str = Second_Element.firstChildElement( "Port_Redirection" ).text();
 				
 				if( tmp_str == "vc" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_vc );
-				}
 				else if( tmp_str == "pty" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_pty );
-				}
 				else if( tmp_str == "none" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_none );
-				}
 				else if( tmp_str == "null" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_null );
-				}
 				else if( tmp_str == "dev" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_dev );
-				}
 				else if( tmp_str == "file" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_file );
-				}
 				else if( tmp_str == "stdio" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_stdio );
-				}
 				else if( tmp_str == "pipe" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_pipe );
-				}
 				else if( tmp_str == "udp" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_udp );
-				}
 				else if( tmp_str == "tcp" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_tcp );
-				}
 				else if( tmp_str == "telnet" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_telnet );
-				}
 				else if( tmp_str == "unix" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_unix );
-				}
 				else if( tmp_str == "com" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_com );
-				}
 				else if( tmp_str == "msmouse" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_msmouse );
-				}
 				else if( tmp_str == "mon" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_mon );
-				}
 				else if( tmp_str == "braille" )
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_braille );
-				}
 				else
-				{
 					tmp_port.Set_Port_Redirection( VM::PR_Default );
-				}
 				
 				// Parametrs Line
 				tmp_port.Set_Parametrs_Line( Second_Element.firstChildElement("Parametrs").text() );
@@ -4312,6 +4319,92 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			
 			// Start DateTime
 			Start_DateTime = QDateTime::fromString( Child_Element.firstChildElement("Start_Date").text(), "dd.MM.yyyy HH:mm:ss" );
+			
+			// SPICE
+			Second_Element = Child_Element.firstChildElement( "SPICE" );
+			
+			if( ! Second_Element.isNull() )
+			{
+				bool ok = false;
+				
+				SPICE.Use_SPICE( Second_Element.firstChildElement("Use_SPICE").text() == "true" );
+				
+				SPICE.Set_GXL_Devices_Count( Second_Element.firstChildElement("GXL_Devices_Count").text().toUInt(&ok) );
+				if( ! ok ) AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE GXL_Devices_Count invalid!" );
+				
+				SPICE.Set_RAM_Size( Second_Element.firstChildElement("RAM_Size").text().toInt(&ok) );
+				if( ! ok ) AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE RAM_Size invalid!" );
+				
+				SPICE.Set_Port( Second_Element.firstChildElement("Port").text().toUInt(&ok) );
+				if( ! ok ) AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE Port invalid" );
+				
+				SPICE.Use_SPort( Second_Element.firstChildElement( "Use_SPort" ).text() == "true" );
+				
+				SPICE.Set_SPort( Second_Element.firstChildElement("SPort").text().toUInt(&ok) );
+				if( ! ok ) AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE SPort invalid!" );
+				
+				SPICE.Use_Hostname( Second_Element.firstChildElement( "Use_Hostname" ).text() == "true" );
+				
+				SPICE.Set_Hostname( Second_Element.firstChildElement( "Hostname" ).text() );
+				
+				SPICE.Use_Image_Compression( Second_Element.firstChildElement( "Use_Image_Compression" ).text() == "true" );
+				
+				QString spiceIC = Second_Element.firstChildElement( "Image_Compression_Type" ).text();
+				if( spiceIC == "on" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_on );
+				else if( spiceIC == "auto_glz" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_auto_glz );
+				else if( spiceIC == "auto_lz" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_auto_lz );
+				else if( spiceIC == "quic" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_quic );
+				else if( spiceIC == "glz" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_glz );
+				else if( spiceIC == "lz" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_lz );
+				else if( spiceIC == "off" )
+					SPICE.Set_Image_Compression( VM::SPICE_IC_Type_off );
+				else
+					AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE image compression type invalid!" );
+				
+				SPICE.Use_Video_Stream_Compression( Second_Element.firstChildElement( "Use_Video_Stream_Compression" ).text() == "true" );
+				
+				SPICE.Use_Renderer( Second_Element.firstChildElement( "Use_Renderer" ).text() == "true" );
+				
+				QDomElement rendererListElement = Second_Element.firstChildElement( "Renderers_List" );
+				if( rendererListElement.isNull() )
+					AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE renderer list is empty!" );
+				else
+				{
+					QList<VM::SPICE_Renderer> rendererList;
+					QDomNodeList renderNodes = rendererListElement.childNodes();
+					
+					for( int ix = 0; ix < renderNodes.count(); ++ix )
+					{
+						QString rendererTypeStr = renderNodes.at(ix).toElement().tagName();
+						
+						if( rendererTypeStr == "oglpbuf" )
+							rendererList << VM::SPICE_Renderer_oglpbuf;
+						else if( rendererTypeStr == "oglpixmap" )
+							rendererList << VM::SPICE_Renderer_oglpixmap;
+						else if( rendererTypeStr == "cairo" )
+							rendererList << VM::SPICE_Renderer_cairo;
+						else
+							AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE renderer type invalid!" );
+					}
+					
+					if( rendererList.isEmpty() )
+						AQError( "bool Virtual_Machine::Load_VM( const QString &file_name )", "SPICE renderers list is empty!" );
+					else
+						SPICE.Set_Renderer_List( rendererList );
+				}
+				
+				SPICE.Use_Playback_Compression( Second_Element.firstChildElement( "Use_Playback_Compression" ).text() == "true" );
+				
+				SPICE.Use_Password( Second_Element.firstChildElement( "Use_Password" ).text() == "true" );
+				
+				SPICE.Set_Password( Second_Element.firstChildElement( "Password" ).text() );
+			}
 			
 			// Use VNC
 			VNC = (Child_Element.firstChildElement("Use_VNC").text() == "true");
@@ -5995,7 +6088,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 				}
 				
 				if( ! spiceRendersStr.isEmpty() &&
-					ix < (SPICE.Get_Renderer_List().count() + 1) )
+					ix != SPICE.Get_Renderer_List().count() -1 )
 				{
 					spiceRendersStr += "+";
 				}
