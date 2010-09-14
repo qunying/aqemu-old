@@ -1323,12 +1323,18 @@ void Main_Window::Update_VM_Ui()
 	ui.Edit_Machine_Name->setText( tmp_vm->Get_Machine_Name() );
 	
 	Show_State( tmp_vm, tmp_vm->Get_State() );
-	if( tmp_vm->Get_State() == VM::VMS_In_Error ) return;
+	if( tmp_vm->Get_State() == VM::VMS_In_Error )
+	{
+		AQError( "void Main_Window::Update_VM_Ui()",
+				 "VM in VM::VMS_In_Error state!" );
+		return;
+	}
 	
 	// Emulator Type
 	if( ui.CB_Emulator_Type->count() <= 0 )
 	{
-		AQError( "void Main_Window::Update_VM_Ui()", "ui.CB_Emulator_Type->count() <= 0" );
+		AQError( "void Main_Window::Update_VM_Ui()",
+				 "ui.CB_Emulator_Type->count() <= 0" );
 		return;
 	}
 	
@@ -1346,7 +1352,8 @@ void Main_Window::Update_VM_Ui()
 	// Emulator Version
 	if( ui.CB_Emulator_Type->count() <= 0 )
 	{
-		AQError( "void Main_Window::Update_VM_Ui()", "ui.CB_Emulator_Type->count() <= 0" );
+		AQError( "void Main_Window::Update_VM_Ui()",
+				 "ui.CB_Emulator_Type->count() <= 0" );
 		return;
 	}
 	
@@ -1366,7 +1373,8 @@ void Main_Window::Update_VM_Ui()
 	
 	if( curComp.System.QEMU_Name.isEmpty() )
 	{
-		AQError( "void Main_Window::Update_VM_Ui()", "cur_comp not valid!" );
+		AQError( "void Main_Window::Update_VM_Ui()",
+				 "cur_comp not valid!" );
 		return;
 	}
 	
@@ -1377,7 +1385,8 @@ void Main_Window::Update_VM_Ui()
 		ui.CB_Computer_Type->setCurrentIndex( compTypeIndex );
 	else
 	{
-		AQError( "void Main_Window::Update_VM_Ui()", "Cannot find computer type index!" );
+		AQError( "void Main_Window::Update_VM_Ui()",
+				 "Cannot find computer type index!" );
 		return;
 	}
 	

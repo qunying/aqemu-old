@@ -802,122 +802,122 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="13"/>
+        <location filename="Add_Port_Window.ui" line="14"/>
         <source>Adding Port</source>
         <translation>Добавление порта</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="31"/>
+        <location filename="Add_Port_Window.ui" line="32"/>
         <source>Select redirect virtual port to:</source>
         <translation>Выберите перенаправление виртуального порта:</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="51"/>
+        <location filename="Add_Port_Window.ui" line="55"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="61"/>
+        <location filename="Add_Port_Window.ui" line="65"/>
         <source>vc (Virtual console)</source>
         <translation>vc (Виртуальная консоль)</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="71"/>
+        <location filename="Add_Port_Window.ui" line="75"/>
         <source>pty (Pseudo TTY)</source>
         <translation>pty (Псевдо TTY)</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="78"/>
+        <location filename="Add_Port_Window.ui" line="82"/>
         <source>none</source>
         <translation>нет</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="85"/>
+        <location filename="Add_Port_Window.ui" line="89"/>
         <source>null (/dev/null)</source>
         <translation>null (/dev/null)</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="95"/>
+        <location filename="Add_Port_Window.ui" line="99"/>
         <source>/dev/</source>
         <translation>/dev/</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="119"/>
+        <location filename="Add_Port_Window.ui" line="123"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="129"/>
+        <location filename="Add_Port_Window.ui" line="133"/>
         <source>stdio</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="136"/>
+        <location filename="Add_Port_Window.ui" line="140"/>
         <source>Pipe</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="146"/>
+        <location filename="Add_Port_Window.ui" line="150"/>
         <source>COM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="153"/>
+        <location filename="Add_Port_Window.ui" line="157"/>
         <source>UDP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="160"/>
+        <location filename="Add_Port_Window.ui" line="164"/>
         <source>msmouse</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="184"/>
+        <location filename="Add_Port_Window.ui" line="188"/>
         <source>TCP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="191"/>
+        <location filename="Add_Port_Window.ui" line="195"/>
         <source>Telnet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="198"/>
+        <location filename="Add_Port_Window.ui" line="202"/>
         <source>Unix</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="205"/>
+        <location filename="Add_Port_Window.ui" line="209"/>
         <source>mon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="212"/>
+        <location filename="Add_Port_Window.ui" line="216"/>
         <source>braille</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="260"/>
+        <location filename="Add_Port_Window.ui" line="264"/>
         <source>Additional Arguments:</source>
         <translation>Дополнительные аргументы:</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="277"/>
+        <location filename="Add_Port_Window.ui" line="288"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="314"/>
+        <location filename="Add_Port_Window.ui" line="325"/>
         <source>Arguments Help:</source>
         <translation>Справка по аргументам:</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="370"/>
+        <location filename="Add_Port_Window.ui" line="375"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Add_Port_Window.ui" line="381"/>
+        <location filename="Add_Port_Window.ui" line="386"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -961,110 +961,144 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>ID продукта:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="13"/>
+        <location filename="Add_USB_Port_Window.ui" line="14"/>
         <source>Adding USB </source>
         <translation>Добавление USB </translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="31"/>
         <source>Connecting Virtual QEMU/KVM USB Device</source>
-        <translation>Подключить виртуальное QEMU/KVM USB устройство</translation>
+        <translation type="obsolete">Подключить виртуальное QEMU/KVM USB устройство</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="64"/>
+        <location filename="Add_USB_Port_Window.ui" line="32"/>
+        <source>Connecting virtual QEMU/KVM USB device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="71"/>
         <source>Mouse</source>
         <translation>Мышь</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="74"/>
+        <location filename="Add_USB_Port_Window.ui" line="81"/>
         <source>Keyboard</source>
         <translation>Клавиатура</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="98"/>
+        <location filename="Add_USB_Port_Window.ui" line="105"/>
         <source>Tablet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Add_USB_Port_Window.ui" line="105"/>
-        <source>Wacom Tablet</source>
+        <source>Tablet</source>
+        <oldsource>Wacom Tablet</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="129"/>
+        <location filename="Add_USB_Port_Window.ui" line="112"/>
+        <source>Wacom tablet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="136"/>
         <source>Braille</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="162"/>
-        <source>Connecting Host USB Device</source>
-        <translation>Подключить USB устройство хоста</translation>
+        <location filename="Add_USB_Port_Window.ui" line="169"/>
+        <source>Connecting host USB device</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="209"/>
-        <location filename="Add_USB_Port_Window.ui" line="294"/>
+        <location filename="Add_USB_Port_Window.ui" line="248"/>
+        <source>Show devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="269"/>
+        <source>All host devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="292"/>
+        <source>Only not used in running VM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="325"/>
+        <source>Selected device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="446"/>
+        <source>Update USB host list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Connecting Host USB Device</source>
+        <translation type="obsolete">Подключить USB устройство хоста</translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="222"/>
+        <location filename="Add_USB_Port_Window.ui" line="348"/>
         <source>Manufacturer:</source>
         <translation>Производитель:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="214"/>
-        <location filename="Add_USB_Port_Window.ui" line="301"/>
+        <location filename="Add_USB_Port_Window.ui" line="227"/>
+        <location filename="Add_USB_Port_Window.ui" line="355"/>
         <source>Product:</source>
         <translation>Продукт:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="219"/>
-        <location filename="Add_USB_Port_Window.ui" line="332"/>
+        <location filename="Add_USB_Port_Window.ui" line="232"/>
+        <location filename="Add_USB_Port_Window.ui" line="386"/>
         <source>bus.addr:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="229"/>
         <source>Show Devices:</source>
-        <translation>Показать устройства:</translation>
+        <translation type="obsolete">Показать устройства:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="236"/>
         <source>All Host Devices</source>
-        <translation>Все устройства хоста</translation>
+        <translation type="obsolete">Все устройства хоста</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="259"/>
         <source>Only Not Used in Running VM</source>
-        <translation>Только не занятые в работающих ВМ</translation>
+        <translation type="obsolete">Только не занятые в работающих ВМ</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="276"/>
         <source>Selected Device</source>
-        <translation>Выбранное устройство</translation>
+        <translation type="obsolete">Выбранное устройство</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="325"/>
+        <location filename="Add_USB_Port_Window.ui" line="379"/>
         <source>Speed:</source>
         <translation>Скорость:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="356"/>
+        <location filename="Add_USB_Port_Window.ui" line="410"/>
         <source>Vendor ID:</source>
         <translation>ID производителя:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="363"/>
+        <location filename="Add_USB_Port_Window.ui" line="417"/>
         <source>Product ID:</source>
         <translation>ID продукта:</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="390"/>
         <source>Update USB Host List</source>
-        <translation>Обновить USB Host List</translation>
+        <translation type="obsolete">Обновить USB Host List</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="414"/>
+        <location filename="Add_USB_Port_Window.ui" line="470"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Add_USB_Port_Window.ui" line="425"/>
+        <location filename="Add_USB_Port_Window.ui" line="481"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -1095,356 +1129,351 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Дополнительные параметры</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1121"/>
+        <location filename="Advanced_Settings_Window.ui" line="1241"/>
         <source>Information in Info Tab</source>
         <translation>Информация на закладке Инфо</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1212"/>
+        <location filename="Advanced_Settings_Window.ui" line="1335"/>
         <source>Machine Details</source>
         <translation>Описание машины</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1219"/>
+        <location filename="Advanced_Settings_Window.ui" line="1342"/>
         <source>Machine Name</source>
         <translation>Имя машины</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1506"/>
+        <location filename="Advanced_Settings_Window.ui" line="1629"/>
         <source>Network Cards</source>
         <translation>Сетевые карты</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1513"/>
+        <location filename="Advanced_Settings_Window.ui" line="1636"/>
         <source>Redirections</source>
         <translation>Перенаправления</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1520"/>
+        <location filename="Advanced_Settings_Window.ui" line="1643"/>
         <source>TFTP Server Prefix</source>
         <translation>Префикс TFTP сервера</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1527"/>
+        <location filename="Advanced_Settings_Window.ui" line="1650"/>
         <source>SMB Directory</source>
         <translation>SMB директория</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1415"/>
+        <location filename="Advanced_Settings_Window.ui" line="1538"/>
         <source>Serial Port</source>
         <translation>Последовательный порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1422"/>
+        <location filename="Advanced_Settings_Window.ui" line="1545"/>
         <source>Parallel Port</source>
         <translation>Параллельный порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1429"/>
+        <location filename="Advanced_Settings_Window.ui" line="1552"/>
         <source>USB Ports</source>
         <translation>USB порты</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1317"/>
+        <location filename="Advanced_Settings_Window.ui" line="1440"/>
         <source>ROM File</source>
         <translation>ROM файл</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1457"/>
+        <location filename="Advanced_Settings_Window.ui" line="1580"/>
         <source>GDB Port</source>
         <translation>GDB порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1247"/>
+        <location filename="Advanced_Settings_Window.ui" line="1370"/>
         <source>Computer Type</source>
         <translation>Тип компьютера</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1254"/>
+        <location filename="Advanced_Settings_Window.ui" line="1377"/>
         <source>Machine Type</source>
         <translation>Тип машины</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1261"/>
+        <location filename="Advanced_Settings_Window.ui" line="1384"/>
         <source>CPU Type</source>
         <translation>Тип процессора</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1268"/>
+        <location filename="Advanced_Settings_Window.ui" line="1391"/>
         <source>Number of CPU</source>
         <translation>Количество процессоров</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1275"/>
+        <location filename="Advanced_Settings_Window.ui" line="1398"/>
         <source>Acceleration</source>
         <translation>Акселерация</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1282"/>
+        <location filename="Advanced_Settings_Window.ui" line="1405"/>
         <source>Boot Priority</source>
         <translation>Порядок загрузки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1289"/>
+        <location filename="Advanced_Settings_Window.ui" line="1412"/>
         <source>Video Card</source>
         <translation>Видео карта</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1296"/>
+        <location filename="Advanced_Settings_Window.ui" line="1419"/>
         <source>Keyboard Layout</source>
         <translation>Раскладка клавиатуры</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1366"/>
+        <location filename="Advanced_Settings_Window.ui" line="1489"/>
         <source>Fullscreen Mode</source>
         <translation>Полноэкранный режим</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1576"/>
+        <location filename="Advanced_Settings_Window.ui" line="1699"/>
         <source>Windows 2K Hack</source>
         <translation>Windows 2000 хак</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1373"/>
+        <location filename="Advanced_Settings_Window.ui" line="1496"/>
         <source>Enable ACPI</source>
         <translation>Активировать ACPI</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1380"/>
+        <location filename="Advanced_Settings_Window.ui" line="1503"/>
         <source>Use Local Time</source>
         <translation>Локальное время</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1590"/>
+        <location filename="Advanced_Settings_Window.ui" line="1713"/>
         <source>Check Boot Sector on FDD</source>
         <translation>Бут сектор на FDD</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1387"/>
+        <location filename="Advanced_Settings_Window.ui" line="1510"/>
         <source>Start CPU at Startup</source>
         <translation>Запускать CPU при старте</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1394"/>
+        <location filename="Advanced_Settings_Window.ui" line="1517"/>
         <source>Snapshot Mode</source>
         <translation>Snapshot режим</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1583"/>
+        <location filename="Advanced_Settings_Window.ui" line="1706"/>
         <source>Use QEMU Log</source>
         <translation>Включить лог QEMU</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1401"/>
+        <location filename="Advanced_Settings_Window.ui" line="1524"/>
         <source>No Reboot</source>
         <translation>Без перезагрузки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1310"/>
+        <location filename="Advanced_Settings_Window.ui" line="1433"/>
         <source>Use Linux Boot</source>
         <translation>Загрузка ядра Linux</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1478"/>
+        <location filename="Advanced_Settings_Window.ui" line="1601"/>
         <source>Show Floppy</source>
         <translation>Отображать Floppy</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1485"/>
+        <location filename="Advanced_Settings_Window.ui" line="1608"/>
         <source>Show CD-ROM</source>
         <translation>Отображать CD-ROM</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1492"/>
+        <location filename="Advanced_Settings_Window.ui" line="1615"/>
         <source>Show HDD</source>
         <translation>Отображать HDD</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1345"/>
+        <location filename="Advanced_Settings_Window.ui" line="1468"/>
         <source>Memory Size</source>
         <translation>Объём памяти</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1352"/>
+        <location filename="Advanced_Settings_Window.ui" line="1475"/>
         <source>Use Sound</source>
         <translation>Использовать звук</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="215"/>
-        <location filename="Advanced_Settings_Window.ui" line="624"/>
-        <location filename="Advanced_Settings_Window.ui" line="683"/>
-        <location filename="Advanced_Settings_Window.ui" line="915"/>
-        <location filename="Advanced_Settings_Window.ui" line="935"/>
         <source>...</source>
-        <translation>...</translation>
+        <translation type="obsolete">...</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1621"/>
+        <location filename="Advanced_Settings_Window.ui" line="40"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1632"/>
+        <location filename="Advanced_Settings_Window.ui" line="51"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1541"/>
+        <location filename="Advanced_Settings_Window.ui" line="1664"/>
         <source>No Frame</source>
         <translation>Без фрейма</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1548"/>
+        <location filename="Advanced_Settings_Window.ui" line="1671"/>
         <source>Alt Grab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1555"/>
+        <location filename="Advanced_Settings_Window.ui" line="1678"/>
         <source>No Quit</source>
         <translation>Отключить выход</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1562"/>
+        <location filename="Advanced_Settings_Window.ui" line="1685"/>
         <source>Portrait</source>
         <translation>Портрет</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1443"/>
+        <location filename="Advanced_Settings_Window.ui" line="1566"/>
         <source>Flash Image</source>
         <translation>Flash образ</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1450"/>
+        <location filename="Advanced_Settings_Window.ui" line="1573"/>
         <source>SD Image</source>
         <translation>Образ SD</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1324"/>
+        <location filename="Advanced_Settings_Window.ui" line="1447"/>
         <source>Parallel Flash Image</source>
         <translation>Образ Parallel Flash</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="29"/>
+        <location filename="Advanced_Settings_Window.ui" line="68"/>
         <source>General</source>
         <translation>Основные</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="868"/>
+        <location filename="Advanced_Settings_Window.ui" line="959"/>
         <source>Other</source>
         <translation>Другое</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="441"/>
+        <location filename="Advanced_Settings_Window.ui" line="495"/>
         <source>AQEMU Logging</source>
         <translation>Журнал AQEMU</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="476"/>
+        <location filename="Advanced_Settings_Window.ui" line="545"/>
         <source>Save in File</source>
         <translation>Сохранять в файл</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="499"/>
+        <location filename="Advanced_Settings_Window.ui" line="568"/>
         <source>Print in STDOUT</source>
         <translation>Писать в STDOUT</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="547"/>
+        <location filename="Advanced_Settings_Window.ui" line="619"/>
         <source>Debug Messages</source>
         <translation>Отладка</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="570"/>
+        <location filename="Advanced_Settings_Window.ui" line="642"/>
         <source>Warning Messages</source>
         <translation>Предупреждения</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="593"/>
+        <location filename="Advanced_Settings_Window.ui" line="665"/>
         <source>Error Messages</source>
         <translation>Ошибки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="610"/>
+        <location filename="Advanced_Settings_Window.ui" line="685"/>
         <source>Log Path:</source>
         <translation>Путь к журналу:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="458"/>
+        <location filename="Advanced_Settings_Window.ui" line="524"/>
         <source>Write Log In</source>
         <translation>Писать журнал в</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="529"/>
+        <location filename="Advanced_Settings_Window.ui" line="598"/>
         <source>Log Messages</source>
         <translation>Сообщения журнала</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="717"/>
+        <location filename="Advanced_Settings_Window.ui" line="800"/>
         <source>VM Network Card MAC Address</source>
         <translation>MAC адрес сетевой карты ВМ</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="733"/>
+        <location filename="Advanced_Settings_Window.ui" line="821"/>
         <source>Random MAC Address</source>
         <translation>Случайный MAC адрес</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="747"/>
+        <location filename="Advanced_Settings_Window.ui" line="835"/>
         <source>Valid MAC Address (Individualized For Each Model of Network Card)</source>
         <translation>Правильный MAC адрес (Свой для каждой модели сетевой карты)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="783"/>
+        <location filename="Advanced_Settings_Window.ui" line="898"/>
         <source>Host Sound System:</source>
         <translation>Звуковая система хоста:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="803"/>
+        <location filename="Advanced_Settings_Window.ui" line="918"/>
         <source>alsa</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="808"/>
+        <location filename="Advanced_Settings_Window.ui" line="923"/>
         <source>oss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="823"/>
+        <location filename="Advanced_Settings_Window.ui" line="938"/>
         <source>sdl</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="828"/>
+        <location filename="Advanced_Settings_Window.ui" line="943"/>
         <source>wav</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="833"/>
+        <location filename="Advanced_Settings_Window.ui" line="948"/>
         <source>none</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="740"/>
+        <location filename="Advanced_Settings_Window.ui" line="828"/>
         <source>QEMU Segment MAC Address (52:54:00:XX:XX:XX)</source>
         <translation>MAC адрес из QEMU сегмента (52:54:00:XX:XX:XX)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="987"/>
+        <location filename="Advanced_Settings_Window.ui" line="1092"/>
         <source>Recent CD-ROM Images Count</source>
         <translation>Сколько последних CD-ROM образов запоминать</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1141"/>
+        <location filename="Advanced_Settings_Window.ui" line="1256"/>
         <source>Show Tab Info</source>
         <translation>Отображать таб Инфо</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="849"/>
+        <location filename="Advanced_Settings_Window.ui" line="868"/>
         <source>Use Not Default Audio Driver</source>
         <translation>Не использовать аудио драйвер по умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1027"/>
+        <location filename="Advanced_Settings_Window.ui" line="1132"/>
         <source>First VNC Port for Embedded Display</source>
         <translation>Начальный VNC порт для встроенного дисплея</translation>
     </message>
@@ -1455,75 +1484,75 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Все файлы (*);;Скрипты (*.sh)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="256"/>
+        <location filename="Advanced_Settings_Window.ui" line="302"/>
         <source>Installed Emulators</source>
         <translation>Установленные эмуляторы</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="292"/>
-        <location filename="Advanced_Settings_Window.ui" line="1095"/>
+        <location filename="Advanced_Settings_Window.ui" line="338"/>
+        <location filename="Advanced_Settings_Window.ui" line="1203"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="312"/>
-        <location filename="Advanced_Settings_Window.ui" line="1109"/>
+        <location filename="Advanced_Settings_Window.ui" line="358"/>
+        <location filename="Advanced_Settings_Window.ui" line="1225"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="332"/>
-        <location filename="Advanced_Settings_Window.ui" line="1102"/>
+        <location filename="Advanced_Settings_Window.ui" line="378"/>
+        <location filename="Advanced_Settings_Window.ui" line="1214"/>
         <source>Edit</source>
         <translation>Изменить</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="352"/>
+        <location filename="Advanced_Settings_Window.ui" line="398"/>
         <source>Use Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="409"/>
+        <location filename="Advanced_Settings_Window.ui" line="455"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="419"/>
+        <location filename="Advanced_Settings_Window.ui" line="465"/>
         <source>Path</source>
         <translation>Путь</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="69"/>
+        <location filename="Advanced_Settings_Window.ui" line="111"/>
         <source>Save Format:</source>
         <translation>Формат для сохранения:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="79"/>
+        <location filename="Advanced_Settings_Window.ui" line="121"/>
         <source>Original (PPM)</source>
         <translation>Оригинальный (PPM)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="86"/>
+        <location filename="Advanced_Settings_Window.ui" line="128"/>
         <source>Jpeg</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="93"/>
+        <location filename="Advanced_Settings_Window.ui" line="135"/>
         <source>PNG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="114"/>
+        <location filename="Advanced_Settings_Window.ui" line="156"/>
         <source>Jpeg Quality:</source>
         <translation>Качество Jpeg:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="185"/>
+        <location filename="Advanced_Settings_Window.ui" line="227"/>
         <source>Shared Folder to Save All Screenshots</source>
         <translation>Общий каталог для сохранения всех скриншотов</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="195"/>
+        <location filename="Advanced_Settings_Window.ui" line="237"/>
         <source>Folder Path:</source>
         <translation>Путь к папке:</translation>
     </message>
@@ -1538,143 +1567,143 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Общий каталог для скриншотов не найден!</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="691"/>
-        <location filename="Advanced_Settings_Window.cpp" line="697"/>
-        <location filename="Advanced_Settings_Window.cpp" line="713"/>
+        <location filename="Advanced_Settings_Window.cpp" line="696"/>
+        <location filename="Advanced_Settings_Window.cpp" line="702"/>
+        <location filename="Advanced_Settings_Window.cpp" line="718"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="691"/>
+        <location filename="Advanced_Settings_Window.cpp" line="696"/>
         <source>Not Select Default QEMU Emulator!</source>
         <translation>Не выбран QEMU эмуляторов по умолчанию!</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="697"/>
+        <location filename="Advanced_Settings_Window.cpp" line="702"/>
         <source>Not Select Default KVM Emulator!</source>
         <translation>Не выбран KVM эмуляторов по умолчанию!</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="746"/>
+        <location filename="Advanced_Settings_Window.cpp" line="751"/>
         <source>Select Folder for Screenshots</source>
         <translation>Выберите папку для скриншотов</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="45"/>
+        <location filename="Advanced_Settings_Window.ui" line="82"/>
         <source>Screenshot Settings</source>
         <translation>Настройки скриншотов</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="435"/>
+        <location filename="Advanced_Settings_Window.ui" line="481"/>
         <source>Advanced</source>
         <translation>Дополнительно</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="969"/>
+        <location filename="Advanced_Settings_Window.ui" line="1071"/>
         <source>Other Settings</source>
         <translation>Другие настройки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1160"/>
+        <location filename="Advanced_Settings_Window.ui" line="1280"/>
         <source>Show Inside Tab Info Screenshot in Save Mode</source>
         <translation>В сохранённом режиме показывать внутри таба Инфо скриншот</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1176"/>
+        <location filename="Advanced_Settings_Window.ui" line="1296"/>
         <source>Show QEMU/KVM Arguments</source>
         <translation>Показать аргументы QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1233"/>
+        <location filename="Advanced_Settings_Window.ui" line="1356"/>
         <source>Emulator Type</source>
         <translation>Тип эмулятора</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1240"/>
+        <location filename="Advanced_Settings_Window.ui" line="1363"/>
         <source>Emulator Version</source>
         <translation>Версия эмулятора</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="272"/>
+        <location filename="Advanced_Settings_Window.ui" line="318"/>
         <source>Find All Emulators</source>
         <translation>Найти все эмуляторы</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="632"/>
-        <location filename="Advanced_Settings_Window.cpp" line="643"/>
+        <location filename="Advanced_Settings_Window.cpp" line="637"/>
+        <location filename="Advanced_Settings_Window.cpp" line="648"/>
         <source>Add CD/DVD Device</source>
         <translation>Добавить CD/DVD утсройство</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="632"/>
-        <location filename="Advanced_Settings_Window.cpp" line="643"/>
+        <location filename="Advanced_Settings_Window.cpp" line="637"/>
+        <location filename="Advanced_Settings_Window.cpp" line="648"/>
         <source>Enter Device Name. Sample: /dev/cdrom</source>
         <translation>Введите имя устройства. Например: /dev/cdrom</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1074"/>
+        <location filename="Advanced_Settings_Window.ui" line="1179"/>
         <source>Additional CD/DVD Devices</source>
         <translation>Дополнительные CD/DVD устройства</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="543"/>
         <location filename="Advanced_Settings_Window.cpp" line="556"/>
-        <location filename="Advanced_Settings_Window.cpp" line="739"/>
+        <location filename="Advanced_Settings_Window.cpp" line="744"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="714"/>
+        <location filename="Advanced_Settings_Window.cpp" line="719"/>
         <source>Cannot save emulator &quot;%1&quot;!</source>
         <translation>Невозможно сохранить эмулятор &quot;%1&quot;!</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="739"/>
+        <location filename="Advanced_Settings_Window.cpp" line="744"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="414"/>
+        <location filename="Advanced_Settings_Window.ui" line="460"/>
         <source>Type and version</source>
         <translation>Тип и версия</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="424"/>
+        <location filename="Advanced_Settings_Window.ui" line="470"/>
         <source>Use default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="659"/>
+        <location filename="Advanced_Settings_Window.ui" line="737"/>
         <source>qemu-img path</source>
         <translation>Путь к qemu-img</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="813"/>
+        <location filename="Advanced_Settings_Window.ui" line="928"/>
         <source>pa</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="818"/>
+        <location filename="Advanced_Settings_Window.ui" line="933"/>
         <source>esd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="884"/>
+        <location filename="Advanced_Settings_Window.ui" line="975"/>
         <source>Start and Stop QEMU/KVM</source>
         <translation>Загрузка и остановка QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="902"/>
+        <location filename="Advanced_Settings_Window.ui" line="996"/>
         <source>Execute Before Start QEMU/KVM:</source>
         <translation>Выполнять до старта QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="922"/>
+        <location filename="Advanced_Settings_Window.ui" line="1020"/>
         <source>Execute After Stop QEMU/KVM:</source>
         <translation>Выполнять после остановки QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1007"/>
+        <location filename="Advanced_Settings_Window.ui" line="1112"/>
         <source>Recent Floppy Images Count</source>
         <translation>Сколько последних Floppy образов запоминать</translation>
     </message>
@@ -1772,12 +1801,12 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="Convert_HDD_Image_Window.ui" line="243"/>
+        <location filename="Convert_HDD_Image_Window.ui" line="246"/>
         <source>Con&amp;vert</source>
         <translation>Кон&amp;вертировать</translation>
     </message>
     <message>
-        <location filename="Convert_HDD_Image_Window.ui" line="254"/>
+        <location filename="Convert_HDD_Image_Window.ui" line="257"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -1891,12 +1920,12 @@ Cluster Size: 0</source>
         <translation>Опции формата QCOW</translation>
     </message>
     <message>
-        <location filename="Convert_HDD_Image_Window.ui" line="198"/>
+        <location filename="Convert_HDD_Image_Window.ui" line="201"/>
         <source>Com&amp;press image</source>
         <translation>С&amp;жимать образ</translation>
     </message>
     <message>
-        <location filename="Convert_HDD_Image_Window.ui" line="218"/>
+        <location filename="Convert_HDD_Image_Window.ui" line="221"/>
         <source>&amp;Encrypt image</source>
         <translation>&amp;Шифровать образ</translation>
     </message>
@@ -2126,37 +2155,41 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
 <context>
     <name>Create_Template_Window</name>
     <message>
-        <location filename="Create_Template_Window.ui" line="14"/>
+        <location filename="Create_Template_Window.ui" line="21"/>
         <source>Create Template</source>
         <translation>Создать шаблон</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="162"/>
         <source>New VM Template Name:</source>
-        <translation>Имя нового шаблона ВМ:</translation>
+        <translation type="obsolete">Имя нового шаблона ВМ:</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="42"/>
+        <location filename="Create_Template_Window.ui" line="113"/>
+        <source>Virtual machine file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Create_Template_Window.ui" line="236"/>
         <source>Save Floppy and CD-ROM Settings</source>
         <translation>Сохранять параметры Floppy и CD-ROM</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="52"/>
+        <location filename="Create_Template_Window.ui" line="246"/>
         <source>Save Hard Disks Size or Format Settings</source>
         <translation>Сохранять объём и формат жёстких дисков</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="62"/>
+        <location filename="Create_Template_Window.ui" line="256"/>
         <source>Save Network Settings</source>
         <translation>Сохранять настройки сети</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="193"/>
+        <location filename="Create_Template_Window.ui" line="299"/>
         <source>C&amp;reate</source>
         <translation>Со&amp;здать</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="204"/>
+        <location filename="Create_Template_Window.ui" line="310"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -2226,32 +2259,36 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Ваше имя для шаблона не уникально! Переписать предыдущий шаблон?</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="97"/>
+        <location filename="Create_Template_Window.ui" line="141"/>
         <source>Use default folder for new template</source>
         <translation>Использовать стандартную папку для шаблонов</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="110"/>
+        <location filename="Create_Template_Window.ui" line="159"/>
         <source>Other folder for new template:</source>
         <translation>Другой каталог для шаблонов:</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="138"/>
         <source>Virtual machine file:</source>
-        <translation>Файл виртуальной машины:</translation>
+        <translation type="obsolete">Файл виртуальной машины:</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="72"/>
+        <location filename="Create_Template_Window.ui" line="266"/>
         <source>Save Ports (USB/Serial/Parallel)</source>
         <translation>Сохранять порты (USB/Serial/Parallel)</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="30"/>
+        <location filename="Create_Template_Window.ui" line="215"/>
         <source>Creating Options</source>
         <translation>Опции генерации</translation>
     </message>
     <message>
-        <location filename="Create_Template_Window.ui" line="85"/>
+        <location filename="Create_Template_Window.ui" line="39"/>
+        <source>New VM template name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Create_Template_Window.ui" line="92"/>
         <source>Files</source>
         <translation>Файлы</translation>
     </message>
@@ -2428,55 +2465,55 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Список устройств:</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="587"/>
-        <location filename="Device_Manager_Widget.cpp" line="596"/>
-        <location filename="Device_Manager_Widget.cpp" line="767"/>
-        <location filename="Device_Manager_Widget.cpp" line="775"/>
-        <location filename="Device_Manager_Widget.cpp" line="1116"/>
+        <location filename="Device_Manager_Widget.cpp" line="554"/>
+        <location filename="Device_Manager_Widget.cpp" line="563"/>
+        <location filename="Device_Manager_Widget.cpp" line="734"/>
+        <location filename="Device_Manager_Widget.cpp" line="747"/>
+        <location filename="Device_Manager_Widget.cpp" line="1123"/>
         <source>Floppy 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="607"/>
-        <location filename="Device_Manager_Widget.cpp" line="616"/>
-        <location filename="Device_Manager_Widget.cpp" line="785"/>
-        <location filename="Device_Manager_Widget.cpp" line="793"/>
-        <location filename="Device_Manager_Widget.cpp" line="1125"/>
+        <location filename="Device_Manager_Widget.cpp" line="574"/>
+        <location filename="Device_Manager_Widget.cpp" line="583"/>
+        <location filename="Device_Manager_Widget.cpp" line="757"/>
+        <location filename="Device_Manager_Widget.cpp" line="770"/>
+        <location filename="Device_Manager_Widget.cpp" line="1132"/>
         <source>Floppy 2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="645"/>
-        <location filename="Device_Manager_Widget.cpp" line="811"/>
-        <location filename="Device_Manager_Widget.cpp" line="1134"/>
+        <location filename="Device_Manager_Widget.cpp" line="612"/>
+        <location filename="Device_Manager_Widget.cpp" line="793"/>
+        <location filename="Device_Manager_Widget.cpp" line="1141"/>
         <source>CD-ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="672"/>
-        <location filename="Device_Manager_Widget.cpp" line="829"/>
-        <location filename="Device_Manager_Widget.cpp" line="1143"/>
+        <location filename="Device_Manager_Widget.cpp" line="639"/>
+        <location filename="Device_Manager_Widget.cpp" line="816"/>
+        <location filename="Device_Manager_Widget.cpp" line="1150"/>
         <source>HDA</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="690"/>
-        <location filename="Device_Manager_Widget.cpp" line="847"/>
-        <location filename="Device_Manager_Widget.cpp" line="1152"/>
+        <location filename="Device_Manager_Widget.cpp" line="657"/>
+        <location filename="Device_Manager_Widget.cpp" line="839"/>
+        <location filename="Device_Manager_Widget.cpp" line="1159"/>
         <source>HDB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="708"/>
-        <location filename="Device_Manager_Widget.cpp" line="865"/>
-        <location filename="Device_Manager_Widget.cpp" line="1161"/>
+        <location filename="Device_Manager_Widget.cpp" line="675"/>
+        <location filename="Device_Manager_Widget.cpp" line="862"/>
+        <location filename="Device_Manager_Widget.cpp" line="1168"/>
         <source>HDC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="726"/>
-        <location filename="Device_Manager_Widget.cpp" line="883"/>
-        <location filename="Device_Manager_Widget.cpp" line="1170"/>
+        <location filename="Device_Manager_Widget.cpp" line="693"/>
+        <location filename="Device_Manager_Widget.cpp" line="885"/>
+        <location filename="Device_Manager_Widget.cpp" line="1177"/>
         <source>HDD</source>
         <translation></translation>
     </message>
@@ -2528,12 +2565,12 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>В виде значков</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="928"/>
+        <location filename="Device_Manager_Widget.cpp" line="935"/>
         <source>Delete?</source>
         <translation>Удалить?</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="929"/>
+        <location filename="Device_Manager_Widget.cpp" line="936"/>
         <source>Delete Device?</source>
         <translation>Удалить устройство?</translation>
     </message>
@@ -2546,12 +2583,12 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Свойства</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1033"/>
+        <location filename="Device_Manager_Widget.cpp" line="1040"/>
         <source>Format?</source>
         <translation>Форматировать?</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1034"/>
+        <location filename="Device_Manager_Widget.cpp" line="1041"/>
         <source>Format Virtual Hard Disk?</source>
         <translation>Форматировать виртуальный жёсткий диск?</translation>
     </message>
@@ -2563,48 +2600,48 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Быстрое форматирование</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="636"/>
-        <location filename="Device_Manager_Widget.cpp" line="803"/>
+        <location filename="Device_Manager_Widget.cpp" line="603"/>
+        <location filename="Device_Manager_Widget.cpp" line="780"/>
         <source>CD/DVD-ROM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="665"/>
-        <location filename="Device_Manager_Widget.cpp" line="821"/>
+        <location filename="Device_Manager_Widget.cpp" line="632"/>
+        <location filename="Device_Manager_Widget.cpp" line="803"/>
         <source>HDA (First Master)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="683"/>
-        <location filename="Device_Manager_Widget.cpp" line="839"/>
+        <location filename="Device_Manager_Widget.cpp" line="650"/>
+        <location filename="Device_Manager_Widget.cpp" line="826"/>
         <source>HDB (First Slave)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="701"/>
-        <location filename="Device_Manager_Widget.cpp" line="857"/>
+        <location filename="Device_Manager_Widget.cpp" line="668"/>
+        <location filename="Device_Manager_Widget.cpp" line="849"/>
         <source>HDC (Second Master)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="719"/>
-        <location filename="Device_Manager_Widget.cpp" line="875"/>
+        <location filename="Device_Manager_Widget.cpp" line="686"/>
+        <location filename="Device_Manager_Widget.cpp" line="872"/>
         <source>HDD (Second Slave)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1020"/>
-        <location filename="Device_Manager_Widget.cpp" line="1047"/>
-        <location filename="Device_Manager_Widget.cpp" line="1058"/>
-        <location filename="Device_Manager_Widget.cpp" line="1069"/>
-        <location filename="Device_Manager_Widget.cpp" line="1080"/>
-        <location filename="Device_Manager_Widget.cpp" line="1086"/>
+        <location filename="Device_Manager_Widget.cpp" line="1027"/>
+        <location filename="Device_Manager_Widget.cpp" line="1054"/>
+        <location filename="Device_Manager_Widget.cpp" line="1065"/>
+        <location filename="Device_Manager_Widget.cpp" line="1076"/>
+        <location filename="Device_Manager_Widget.cpp" line="1087"/>
+        <location filename="Device_Manager_Widget.cpp" line="1093"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1020"/>
-        <location filename="Device_Manager_Widget.cpp" line="1086"/>
+        <location filename="Device_Manager_Widget.cpp" line="1027"/>
+        <location filename="Device_Manager_Widget.cpp" line="1093"/>
         <source>Incorrect Device!</source>
         <translation>Неправильное устройство!</translation>
     </message>
@@ -2629,118 +2666,118 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Способ отображения</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1043"/>
-        <location filename="Device_Manager_Widget.cpp" line="1054"/>
-        <location filename="Device_Manager_Widget.cpp" line="1065"/>
-        <location filename="Device_Manager_Widget.cpp" line="1076"/>
+        <location filename="Device_Manager_Widget.cpp" line="1050"/>
+        <location filename="Device_Manager_Widget.cpp" line="1061"/>
+        <location filename="Device_Manager_Widget.cpp" line="1072"/>
+        <location filename="Device_Manager_Widget.cpp" line="1083"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="236"/>
-        <location filename="Device_Manager_Widget.cpp" line="268"/>
-        <location filename="Device_Manager_Widget.cpp" line="313"/>
+        <location filename="Device_Manager_Widget.cpp" line="203"/>
+        <location filename="Device_Manager_Widget.cpp" line="235"/>
+        <location filename="Device_Manager_Widget.cpp" line="280"/>
         <source>Type: Host Device</source>
         <translation>Тип: реальное устройство</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="248"/>
-        <location filename="Device_Manager_Widget.cpp" line="253"/>
-        <location filename="Device_Manager_Widget.cpp" line="259"/>
-        <location filename="Device_Manager_Widget.cpp" line="280"/>
-        <location filename="Device_Manager_Widget.cpp" line="285"/>
-        <location filename="Device_Manager_Widget.cpp" line="291"/>
-        <location filename="Device_Manager_Widget.cpp" line="325"/>
-        <location filename="Device_Manager_Widget.cpp" line="330"/>
-        <location filename="Device_Manager_Widget.cpp" line="336"/>
+        <location filename="Device_Manager_Widget.cpp" line="215"/>
+        <location filename="Device_Manager_Widget.cpp" line="220"/>
+        <location filename="Device_Manager_Widget.cpp" line="226"/>
+        <location filename="Device_Manager_Widget.cpp" line="247"/>
+        <location filename="Device_Manager_Widget.cpp" line="252"/>
+        <location filename="Device_Manager_Widget.cpp" line="258"/>
+        <location filename="Device_Manager_Widget.cpp" line="292"/>
+        <location filename="Device_Manager_Widget.cpp" line="297"/>
+        <location filename="Device_Manager_Widget.cpp" line="303"/>
         <source>Type: Image</source>
         <translation>Тип: образ</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="249"/>
-        <location filename="Device_Manager_Widget.cpp" line="254"/>
-        <location filename="Device_Manager_Widget.cpp" line="260"/>
-        <location filename="Device_Manager_Widget.cpp" line="281"/>
-        <location filename="Device_Manager_Widget.cpp" line="286"/>
-        <location filename="Device_Manager_Widget.cpp" line="292"/>
-        <location filename="Device_Manager_Widget.cpp" line="326"/>
-        <location filename="Device_Manager_Widget.cpp" line="331"/>
-        <location filename="Device_Manager_Widget.cpp" line="337"/>
+        <location filename="Device_Manager_Widget.cpp" line="216"/>
+        <location filename="Device_Manager_Widget.cpp" line="221"/>
+        <location filename="Device_Manager_Widget.cpp" line="227"/>
+        <location filename="Device_Manager_Widget.cpp" line="248"/>
+        <location filename="Device_Manager_Widget.cpp" line="253"/>
+        <location filename="Device_Manager_Widget.cpp" line="259"/>
+        <location filename="Device_Manager_Widget.cpp" line="293"/>
+        <location filename="Device_Manager_Widget.cpp" line="298"/>
+        <location filename="Device_Manager_Widget.cpp" line="304"/>
         <source>On Disk Size: </source>
         <translation>Объём на диске: </translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="292"/>
-        <location filename="Device_Manager_Widget.cpp" line="326"/>
-        <location filename="Device_Manager_Widget.cpp" line="331"/>
-        <location filename="Device_Manager_Widget.cpp" line="337"/>
+        <location filename="Device_Manager_Widget.cpp" line="259"/>
+        <location filename="Device_Manager_Widget.cpp" line="293"/>
+        <location filename="Device_Manager_Widget.cpp" line="298"/>
+        <location filename="Device_Manager_Widget.cpp" line="304"/>
         <source>Mb</source>
         <translation>Мб</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="362"/>
-        <location filename="Device_Manager_Widget.cpp" line="371"/>
-        <location filename="Device_Manager_Widget.cpp" line="380"/>
-        <location filename="Device_Manager_Widget.cpp" line="389"/>
-        <location filename="Device_Manager_Widget.cpp" line="1194"/>
-        <location filename="Device_Manager_Widget.cpp" line="1204"/>
-        <location filename="Device_Manager_Widget.cpp" line="1214"/>
-        <location filename="Device_Manager_Widget.cpp" line="1224"/>
+        <location filename="Device_Manager_Widget.cpp" line="329"/>
+        <location filename="Device_Manager_Widget.cpp" line="338"/>
+        <location filename="Device_Manager_Widget.cpp" line="347"/>
+        <location filename="Device_Manager_Widget.cpp" line="356"/>
+        <location filename="Device_Manager_Widget.cpp" line="1201"/>
+        <location filename="Device_Manager_Widget.cpp" line="1211"/>
+        <location filename="Device_Manager_Widget.cpp" line="1221"/>
+        <location filename="Device_Manager_Widget.cpp" line="1231"/>
         <source>Image Virtual Size: </source>
         <translation>Виртуальный объём образа: </translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="364"/>
-        <location filename="Device_Manager_Widget.cpp" line="373"/>
-        <location filename="Device_Manager_Widget.cpp" line="382"/>
-        <location filename="Device_Manager_Widget.cpp" line="391"/>
-        <location filename="Device_Manager_Widget.cpp" line="1196"/>
-        <location filename="Device_Manager_Widget.cpp" line="1206"/>
-        <location filename="Device_Manager_Widget.cpp" line="1216"/>
-        <location filename="Device_Manager_Widget.cpp" line="1226"/>
+        <location filename="Device_Manager_Widget.cpp" line="331"/>
+        <location filename="Device_Manager_Widget.cpp" line="340"/>
+        <location filename="Device_Manager_Widget.cpp" line="349"/>
+        <location filename="Device_Manager_Widget.cpp" line="358"/>
+        <location filename="Device_Manager_Widget.cpp" line="1203"/>
+        <location filename="Device_Manager_Widget.cpp" line="1213"/>
+        <location filename="Device_Manager_Widget.cpp" line="1223"/>
+        <location filename="Device_Manager_Widget.cpp" line="1233"/>
         <source>Image On Disk Size: </source>
         <translation>Объём образа на диске: </translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="626"/>
-        <location filename="Device_Manager_Widget.cpp" line="655"/>
-        <location filename="Device_Manager_Widget.cpp" line="736"/>
+        <location filename="Device_Manager_Widget.cpp" line="593"/>
+        <location filename="Device_Manager_Widget.cpp" line="622"/>
+        <location filename="Device_Manager_Widget.cpp" line="703"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="627"/>
+        <location filename="Device_Manager_Widget.cpp" line="594"/>
         <source>Maximum Floppy&apos;s Disk Count is 2</source>
         <translation>Максимальное количество Floppy дисков 2</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="656"/>
+        <location filename="Device_Manager_Widget.cpp" line="623"/>
         <source>Maximum CD-ROM Disk Count is 1</source>
         <translation>Максимальное количество CD-ROM дисков 1</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="737"/>
+        <location filename="Device_Manager_Widget.cpp" line="704"/>
         <source>Maximum Hard Disk Count is 4 Without CD-ROM</source>
         <translation>Максимальное количество жёстких дисков 4 (без CD-ROM)</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1043"/>
-        <location filename="Device_Manager_Widget.cpp" line="1054"/>
-        <location filename="Device_Manager_Widget.cpp" line="1065"/>
-        <location filename="Device_Manager_Widget.cpp" line="1076"/>
+        <location filename="Device_Manager_Widget.cpp" line="1050"/>
+        <location filename="Device_Manager_Widget.cpp" line="1061"/>
+        <location filename="Device_Manager_Widget.cpp" line="1072"/>
+        <location filename="Device_Manager_Widget.cpp" line="1083"/>
         <source>Complete!</source>
         <translation>Готово!</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="1047"/>
-        <location filename="Device_Manager_Widget.cpp" line="1058"/>
-        <location filename="Device_Manager_Widget.cpp" line="1069"/>
-        <location filename="Device_Manager_Widget.cpp" line="1080"/>
+        <location filename="Device_Manager_Widget.cpp" line="1054"/>
+        <location filename="Device_Manager_Widget.cpp" line="1065"/>
+        <location filename="Device_Manager_Widget.cpp" line="1076"/>
+        <location filename="Device_Manager_Widget.cpp" line="1087"/>
         <source>Cannot Format!</source>
         <translation>Не могу форматировать!</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="405"/>
+        <location filename="Device_Manager_Widget.cpp" line="372"/>
         <source>Type: Storage Device</source>
         <translation>Тип: Запоминающее устройство</translation>
     </message>
@@ -2757,11 +2794,11 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Добавить устройство</translation>
     </message>
     <message>
-        <location filename="Device_Manager_Widget.cpp" line="249"/>
-        <location filename="Device_Manager_Widget.cpp" line="254"/>
-        <location filename="Device_Manager_Widget.cpp" line="260"/>
-        <location filename="Device_Manager_Widget.cpp" line="281"/>
-        <location filename="Device_Manager_Widget.cpp" line="286"/>
+        <location filename="Device_Manager_Widget.cpp" line="216"/>
+        <location filename="Device_Manager_Widget.cpp" line="221"/>
+        <location filename="Device_Manager_Widget.cpp" line="227"/>
+        <location filename="Device_Manager_Widget.cpp" line="248"/>
+        <location filename="Device_Manager_Widget.cpp" line="253"/>
         <source>Kb</source>
         <translation>Кб</translation>
     </message>
@@ -3177,9 +3214,9 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Все файлы (*);;Файлы образов (*.iso)</translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="910"/>
-        <location filename="Emulator_Control_Window.cpp" line="924"/>
-        <location filename="Emulator_Control_Window.cpp" line="939"/>
+        <location filename="Emulator_Control_Window.cpp" line="911"/>
+        <location filename="Emulator_Control_Window.cpp" line="926"/>
+        <location filename="Emulator_Control_Window.cpp" line="942"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
@@ -3189,7 +3226,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation>Управление снапшотами</translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="924"/>
+        <location filename="Emulator_Control_Window.cpp" line="926"/>
         <source>In This VM Floppy 2 Not Found!</source>
         <translation>В этой ВМ нет Floppy 2!</translation>
     </message>
@@ -3289,12 +3326,12 @@ Show this message again?</source>
 Показывать это сообщение снова?</translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="910"/>
+        <location filename="Emulator_Control_Window.cpp" line="911"/>
         <source>In This VM Floppy 1 Not Found!</source>
         <translation>В этой ВМ нет Floppy 1!</translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="939"/>
+        <location filename="Emulator_Control_Window.cpp" line="942"/>
         <source>In This VM CD-ROM Not Found!</source>
         <translation>В этой ВМ нет CD-ROM!</translation>
     </message>
@@ -3310,8 +3347,8 @@ Show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="54"/>
         <location filename="Emulator_Options_Window.cpp" line="112"/>
-        <location filename="Emulator_Options_Window.cpp" line="390"/>
-        <location filename="Emulator_Options_Window.cpp" line="411"/>
+        <location filename="Emulator_Options_Window.cpp" line="398"/>
+        <location filename="Emulator_Options_Window.cpp" line="419"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
@@ -3341,12 +3378,12 @@ Show this message again?</source>
         <translation>Это имя эмулятора уже используется!</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="391"/>
+        <location filename="Emulator_Options_Window.cpp" line="399"/>
         <source>Cannot get emulator info! For file: %1</source>
         <translation>Не могу получить информацию о эмуляторе! Файл: %1</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="411"/>
+        <location filename="Emulator_Options_Window.cpp" line="419"/>
         <source>Cannot get version for emulator!</source>
         <translation>Не могу получить версию эмулятора!</translation>
     </message>
@@ -3396,12 +3433,12 @@ Show this message again?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="305"/>
+        <location filename="Emulator_Options_Window.cpp" line="313"/>
         <source>Select QEMU Binary File</source>
         <translation>Выберите бинарник QEMU</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="306"/>
+        <location filename="Emulator_Options_Window.cpp" line="314"/>
         <source>All Files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
@@ -3416,93 +3453,93 @@ Show this message again?</source>
         <translation>Имя (Оно будет идентификатором для этого эмулятора):</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="100"/>
+        <location filename="Emulator_Options_Window.ui" line="103"/>
         <source>Find emulator</source>
         <translation>Искать эмулятор</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="122"/>
+        <location filename="Emulator_Options_Window.ui" line="134"/>
         <source>Emulator type:</source>
         <translation>Тип эмулятора:</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="145"/>
+        <location filename="Emulator_Options_Window.ui" line="157"/>
         <source>QEMU</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="168"/>
+        <location filename="Emulator_Options_Window.ui" line="180"/>
         <source>KVM</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="188"/>
+        <location filename="Emulator_Options_Window.ui" line="200"/>
         <source>(For adding QEMU-KVM, add them one by one)</source>
         <translation>(Чтобы добавить QEMU-KVM, добавляйте эмуляторы по одному)</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="207"/>
+        <location filename="Emulator_Options_Window.ui" line="219"/>
         <source>Path to Emutators Binary Directory:</source>
         <translation>Путь к папке с бинарниками эмулятора:</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="219"/>
+        <location filename="Emulator_Options_Window.ui" line="234"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="239"/>
+        <location filename="Emulator_Options_Window.ui" line="254"/>
         <source>&amp;Find Emulators</source>
         <translation>&amp;Искать эмуляторы</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="276"/>
+        <location filename="Emulator_Options_Window.ui" line="291"/>
         <source>Emulators Executables Files</source>
         <translation>Исполняемые файлы эмулятора</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="308"/>
+        <location filename="Emulator_Options_Window.ui" line="328"/>
         <source>QEMU/KVM System</source>
         <translation>QEMU/KVM система</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="313"/>
+        <location filename="Emulator_Options_Window.ui" line="333"/>
         <source>Binary File Name</source>
         <translation>Имя бинарника</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="351"/>
+        <location filename="Emulator_Options_Window.ui" line="373"/>
         <source>Emulator Version</source>
         <translation>Версия эмулятора</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="367"/>
+        <location filename="Emulator_Options_Window.ui" line="394"/>
         <source>Use saved emulator available options (Recomend refind after update emulator)</source>
         <translation>Использовать сохранённое описание возможностей эмулятора
 (Рекомендуется после обновления эмулятора выполнить заново поиск)</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="377"/>
+        <location filename="Emulator_Options_Window.ui" line="404"/>
         <source>Check available emulator options always start AQEMU (Slowly)</source>
         <translation>Проверять доступные возможности эмулятора при каждом запуске AQEMU (Медленно)</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="384"/>
+        <location filename="Emulator_Options_Window.ui" line="411"/>
         <source>Check emulator version always start AQEMU</source>
         <translation>Проверять версию эмулятора при каждом запуске AQEMU</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="402"/>
+        <location filename="Emulator_Options_Window.ui" line="429"/>
         <source>Set version and available options manually</source>
         <translation>Указать версию эмулятора вручную</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="471"/>
+        <location filename="Emulator_Options_Window.ui" line="500"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.ui" line="482"/>
+        <location filename="Emulator_Options_Window.ui" line="511"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -3515,43 +3552,43 @@ Show this message again?</source>
         <translation>Ошибка #</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="14"/>
+        <location filename="Error_Log_Window.ui" line="15"/>
         <source>QEMU Error Log</source>
         <translation>Лог ошибок QEMU</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="39"/>
+        <location filename="Error_Log_Window.ui" line="40"/>
         <source>Error Window Show Mode</source>
         <translation>Режим отображения окна ошибок</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="61"/>
+        <location filename="Error_Log_Window.ui" line="67"/>
         <source>Normal Mode</source>
         <translation>Нормальный режим</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="71"/>
+        <location filename="Error_Log_Window.ui" line="77"/>
         <source>Do Not Show Until Next VM Started</source>
         <translation>Не показывать по следующего запуска ВМ</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="81"/>
+        <location filename="Error_Log_Window.ui" line="87"/>
         <source>Do Not Show Until Next AQEMU Started</source>
         <translation>Не показывать по следующего запуска AQEMU</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="88"/>
+        <location filename="Error_Log_Window.ui" line="94"/>
         <source>Do Not Show Forever
 (For View Error Log Select VM-&gt;Show QEMU/KVM Error Log Window)</source>
         <translation>Вообще не показывать (Для просмотра выберите ВМ -&gt;Показать окно ошибок QEMU/KVM)</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="122"/>
+        <location filename="Error_Log_Window.ui" line="130"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Error_Log_Window.ui" line="98"/>
+        <location filename="Error_Log_Window.ui" line="106"/>
         <source>&amp;Clear Errors List</source>
         <translation>&amp;Очистить список ошибок</translation>
     </message>
@@ -3564,70 +3601,70 @@ Show this message again?</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="308"/>
+        <location filename="First_Start_Wizard.cpp" line="306"/>
         <source>Finded QEMU in %1, version: %2</source>
         <translation>Найден QEMU в %1, версия: %2</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="401"/>
+        <location filename="First_Start_Wizard.cpp" line="399"/>
         <source>Finded KVM in %1, version: %2</source>
         <translation>Найден KVM в %1, версия: %2</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="439"/>
+        <location filename="First_Start_Wizard.cpp" line="437"/>
         <source>&amp;Finish</source>
         <translation>&amp;Конец</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="443"/>
-        <location filename="First_Start_Wizard.cpp" line="559"/>
+        <location filename="First_Start_Wizard.cpp" line="441"/>
+        <location filename="First_Start_Wizard.cpp" line="557"/>
         <source>&amp;Next</source>
         <translation>&amp;Далее</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="283"/>
-        <location filename="First_Start_Wizard.cpp" line="380"/>
-        <location filename="First_Start_Wizard.cpp" line="500"/>
+        <location filename="First_Start_Wizard.cpp" line="281"/>
+        <location filename="First_Start_Wizard.cpp" line="378"/>
+        <location filename="First_Start_Wizard.cpp" line="498"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="500"/>
+        <location filename="First_Start_Wizard.cpp" line="498"/>
         <source>Cannot Create New Folder!</source>
         <translation>Не могу создать новую папку!</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="551"/>
+        <location filename="First_Start_Wizard.cpp" line="549"/>
         <source>Welcome</source>
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="552"/>
+        <location filename="First_Start_Wizard.cpp" line="550"/>
         <source>General Settings</source>
         <translation>Настройки AQEMU</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="553"/>
+        <location filename="First_Start_Wizard.cpp" line="551"/>
         <source>Find Emulators</source>
         <translation>Поиск эмуляторов</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="554"/>
+        <location filename="First_Start_Wizard.cpp" line="552"/>
         <source>Finish</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="558"/>
+        <location filename="First_Start_Wizard.cpp" line="556"/>
         <source>&amp;Back</source>
         <translation>На&amp;зад</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="560"/>
+        <location filename="First_Start_Wizard.cpp" line="558"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="562"/>
+        <location filename="First_Start_Wizard.cpp" line="560"/>
         <source>Welcome to AQEMU settings wizard!
 This wizard will help you to choose options that need to AQEMU work correctly.
 Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button to go back to previous page.</source>
@@ -3636,52 +3673,52 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
 Нажмите кнопку Далее, чтобы перейти к следующей странице мастера, или кнопку Назад для возврата на предыдущую страницу.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="563"/>
+        <location filename="First_Start_Wizard.cpp" line="561"/>
         <source>Here you can choose interface language</source>
         <translation>Вы можете выбрать язык интерфейса AQEMU</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="564"/>
+        <location filename="First_Start_Wizard.cpp" line="562"/>
         <source>Please select folder for AQEMU virtual machines</source>
         <translation>Укажите папку где будут храниться настройки виртуальных машин</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="565"/>
+        <location filename="First_Start_Wizard.cpp" line="563"/>
         <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will displayed in virtual machine as icons, like in file manager window.</source>
         <translation>Если включён режим &quot;менеджер устройств&quot;, то устройства хранения данных (Floppy, CD/DVD, HDD) будут отображаться в виртуальной машине в виде значков, как в окне файлового менеджера.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="566"/>
+        <location filename="First_Start_Wizard.cpp" line="564"/>
         <source>Use Device manager</source>
         <translation>Использовать Менеджер устройств</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="567"/>
+        <location filename="First_Start_Wizard.cpp" line="565"/>
         <source>New experimental work mode is accessible in AQEMU. In this mode QEMU/KVM display will displayed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this function you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
         <translation>В AQEMU доступен новый экспериментальный режим работы, при котором экран QEMU/KVM отображаться в окне AQEMU. Пока это не совсем стабильная и завершённая функция, поэтому при её работе возможны проблемы. Для её включения отметьте &quot;Встроить VNC дисплей в главное окно&quot;.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="568"/>
+        <location filename="First_Start_Wizard.cpp" line="566"/>
         <source>Include Emdedded VNC Display in Main Window</source>
         <translation>Встроить VNC дисплей в главное окно</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="569"/>
+        <location filename="First_Start_Wizard.cpp" line="567"/>
         <source>To work correctly, AQEMU must know your emulators&apos; arrangement and its&apos; versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you must configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
         <translation>Для правильной работы AQEMU должна знать расположение установленных в вашей системе эмуляторов и их версии. Для поиска нажмите &quot;Поиск&quot;. Если автоматический поиск не сможет определить какие эмуляторы установлены, то вам придётся настроить AQEMU в ручную позже. Для этого необходимо открыть &quot;Файл-&gt;Дополнительные настройки&quot;.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="573"/>
+        <location filename="First_Start_Wizard.cpp" line="571"/>
         <source>Congratulations! The Wizard has got all necessary settings for configuring AQEMU. Push &quot;Finish&quot; button to save your settings.</source>
         <translation>Поздравляю! Мастер получил всё необходимые сведения для настройки AQEMU. Нажмите &quot;Готово&quot; для сохранения настроек.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.ui" line="13"/>
+        <location filename="First_Start_Wizard.ui" line="14"/>
         <source>First Start Wizard</source>
         <translation>Мастер первого запуска</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.ui" line="81"/>
+        <location filename="First_Start_Wizard.ui" line="82"/>
         <source>English</source>
         <translation></translation>
     </message>
@@ -3691,12 +3728,12 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Вы уверены? Позже Вы сможете настроить это в окне настроек.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="570"/>
+        <location filename="First_Start_Wizard.cpp" line="568"/>
         <source>&amp;Search</source>
         <translation>&amp;Поиск</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="571"/>
+        <location filename="First_Start_Wizard.cpp" line="569"/>
         <source>S&amp;kip Search</source>
         <translation>П&amp;ропустить поиск</translation>
     </message>
@@ -3706,28 +3743,28 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Выберите папку для ваших ВМ</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="427"/>
+        <location filename="First_Start_Wizard.cpp" line="425"/>
         <source>Emulator Version Modified By User</source>
         <translation>Версия эмулятора изменена пользователем</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="572"/>
+        <location filename="First_Start_Wizard.cpp" line="570"/>
         <source>Set &amp;Versions Manualy</source>
         <translation>Установить версию &amp;вручную</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="265"/>
+        <location filename="First_Start_Wizard.cpp" line="263"/>
         <source>Search...</source>
         <translation>Поиск...</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="265"/>
+        <location filename="First_Start_Wizard.cpp" line="263"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="284"/>
-        <location filename="First_Start_Wizard.cpp" line="380"/>
+        <location filename="First_Start_Wizard.cpp" line="282"/>
+        <location filename="First_Start_Wizard.cpp" line="378"/>
         <source>Cannot get emulator info! For file: %1</source>
         <translation>Не могу получить информацию о эмуляторе! Файл: %1</translation>
     </message>
@@ -3748,20 +3785,20 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
 <context>
     <name>Main_Window</name>
     <message>
-        <location filename="Main_Window.cpp" line="1118"/>
+        <location filename="Main_Window.cpp" line="1135"/>
         <source>Device Manager</source>
         <translation>Менеджер устройств</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="392"/>
         <location filename="Main_Window.ui" line="1273"/>
-        <location filename="Main_Window.cpp" line="1128"/>
+        <location filename="Main_Window.cpp" line="1145"/>
         <source>HDD</source>
         <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="2061"/>
-        <location filename="Main_Window.cpp" line="1131"/>
+        <location filename="Main_Window.cpp" line="1148"/>
         <source>CD/DVD/Floppy</source>
         <translation></translation>
     </message>
@@ -3771,32 +3808,32 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>2048 МБ</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6336"/>
-        <location filename="Main_Window.cpp" line="6367"/>
-        <location filename="Main_Window.cpp" line="6380"/>
-        <location filename="Main_Window.cpp" line="6393"/>
-        <location filename="Main_Window.cpp" line="6406"/>
-        <location filename="Main_Window.cpp" line="6419"/>
-        <location filename="Main_Window.cpp" line="6432"/>
+        <location filename="Main_Window.cpp" line="6359"/>
+        <location filename="Main_Window.cpp" line="6390"/>
+        <location filename="Main_Window.cpp" line="6403"/>
+        <location filename="Main_Window.cpp" line="6416"/>
+        <location filename="Main_Window.cpp" line="6429"/>
+        <location filename="Main_Window.cpp" line="6442"/>
+        <location filename="Main_Window.cpp" line="6455"/>
         <source>All Files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5177"/>
-        <location filename="Main_Window.cpp" line="5243"/>
+        <location filename="Main_Window.cpp" line="5200"/>
+        <location filename="Main_Window.cpp" line="5266"/>
         <source>Open Floppy Image File</source>
         <translation>Открыть файл образа Floppy</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5309"/>
+        <location filename="Main_Window.cpp" line="5332"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation>Открыть файл образа CD\DVD-ROM</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5375"/>
-        <location filename="Main_Window.cpp" line="5463"/>
-        <location filename="Main_Window.cpp" line="5552"/>
-        <location filename="Main_Window.cpp" line="5638"/>
+        <location filename="Main_Window.cpp" line="5398"/>
+        <location filename="Main_Window.cpp" line="5486"/>
+        <location filename="Main_Window.cpp" line="5575"/>
+        <location filename="Main_Window.cpp" line="5661"/>
         <source>Open HDD Image File</source>
         <translation>Открыть файл образа HDD</translation>
     </message>
@@ -3812,7 +3849,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     </message>
     <message>
         <location filename="Main_Window.ui" line="171"/>
-        <location filename="Main_Window.cpp" line="1908"/>
+        <location filename="Main_Window.cpp" line="1928"/>
         <source>General</source>
         <translation>Основные</translation>
     </message>
@@ -3838,19 +3875,19 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     </message>
     <message>
         <location filename="Main_Window.ui" line="518"/>
-        <location filename="Main_Window.ui" line="3221"/>
+        <location filename="Main_Window.ui" line="3256"/>
         <source>8</source>
         <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="523"/>
-        <location filename="Main_Window.ui" line="3226"/>
+        <location filename="Main_Window.ui" line="3261"/>
         <source>16</source>
         <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="528"/>
-        <location filename="Main_Window.ui" line="3236"/>
+        <location filename="Main_Window.ui" line="3271"/>
         <source>32</source>
         <translation></translation>
     </message>
@@ -3880,11 +3917,11 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Тип про&amp;цессора:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2537"/>
-        <location filename="Main_Window.cpp" line="2593"/>
-        <location filename="Main_Window.cpp" line="2615"/>
-        <location filename="Main_Window.cpp" line="2671"/>
-        <location filename="Main_Window.cpp" line="5857"/>
+        <location filename="Main_Window.cpp" line="2557"/>
+        <location filename="Main_Window.cpp" line="2613"/>
+        <location filename="Main_Window.cpp" line="2635"/>
+        <location filename="Main_Window.cpp" line="2691"/>
+        <location filename="Main_Window.cpp" line="5880"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
@@ -4066,22 +4103,22 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     <message>
         <location filename="Main_Window.ui" line="402"/>
         <location filename="Main_Window.ui" line="2407"/>
-        <location filename="Main_Window.cpp" line="2312"/>
+        <location filename="Main_Window.cpp" line="2332"/>
         <source>Network</source>
         <translation>Сеть</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2015"/>
+        <location filename="Main_Window.cpp" line="2035"/>
         <source>Disabled</source>
         <translation>Отключена</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2019"/>
+        <location filename="Main_Window.cpp" line="2039"/>
         <source>Enabled</source>
         <translation>Включена</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2023"/>
+        <location filename="Main_Window.cpp" line="2043"/>
         <source>Full</source>
         <translation>Полная</translation>
     </message>
@@ -4121,7 +4158,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Использовать &amp;локальное время</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2984"/>
+        <location filename="Main_Window.ui" line="3016"/>
         <source>Enable ACP&amp;I</source>
         <translation>Активировать ACP&amp;I</translation>
     </message>
@@ -4131,7 +4168,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>&amp;Snapshot режим</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1980"/>
+        <location filename="Main_Window.cpp" line="2000"/>
         <source>Memory Size:</source>
         <translation>Количество памяти:</translation>
     </message>
@@ -4144,123 +4181,123 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Выбрать образ диска</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2886"/>
-        <location filename="Main_Window.ui" line="3653"/>
-        <location filename="Main_Window.ui" line="3720"/>
-        <location filename="Main_Window.ui" line="3748"/>
-        <location filename="Main_Window.ui" line="3829"/>
-        <location filename="Main_Window.ui" line="3850"/>
-        <location filename="Main_Window.ui" line="3878"/>
-        <location filename="Main_Window.ui" line="3920"/>
-        <location filename="Main_Window.ui" line="3982"/>
-        <location filename="Main_Window.ui" line="3996"/>
+        <location filename="Main_Window.ui" line="2900"/>
+        <location filename="Main_Window.ui" line="3710"/>
+        <location filename="Main_Window.ui" line="3809"/>
+        <location filename="Main_Window.ui" line="3847"/>
+        <location filename="Main_Window.ui" line="3928"/>
+        <location filename="Main_Window.ui" line="3966"/>
+        <location filename="Main_Window.ui" line="4004"/>
+        <location filename="Main_Window.ui" line="4042"/>
+        <location filename="Main_Window.ui" line="4113"/>
+        <location filename="Main_Window.ui" line="4157"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2196"/>
+        <location filename="Main_Window.cpp" line="2216"/>
         <source>Floppy 1:</source>
         <translation>Floppy 1:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2211"/>
+        <location filename="Main_Window.cpp" line="2231"/>
         <source>Floppy 2:</source>
         <translation>Floppy 2:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2228"/>
+        <location filename="Main_Window.cpp" line="2248"/>
         <source>CD/DVD-ROM:</source>
         <translation>CD/DVD-ROM:</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3342"/>
-        <location filename="Main_Window.cpp" line="2705"/>
+        <location filename="Main_Window.ui" line="3400"/>
+        <location filename="Main_Window.cpp" line="2725"/>
         <source>Other</source>
         <translation>Другое</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4186"/>
+        <location filename="Main_Window.ui" line="4313"/>
         <source>&amp;Help</source>
         <translation>&amp;Помощь</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4251"/>
-        <location filename="Main_Window.ui" line="4254"/>
+        <location filename="Main_Window.ui" line="4378"/>
+        <location filename="Main_Window.ui" line="4381"/>
         <source>About AQEMU</source>
         <translation>О программе AQEMU</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4257"/>
+        <location filename="Main_Window.ui" line="4384"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4266"/>
+        <location filename="Main_Window.ui" line="4393"/>
         <source>About &amp;Qt</source>
         <translation>О &amp;Qt</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4284"/>
+        <location filename="Main_Window.ui" line="4411"/>
         <source>&amp;Exit</source>
         <translation>Вы&amp;ход</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4287"/>
+        <location filename="Main_Window.ui" line="4414"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4296"/>
+        <location filename="Main_Window.ui" line="4423"/>
         <source>&amp;Wizard...</source>
         <translation>&amp;Мастер...</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4299"/>
+        <location filename="Main_Window.ui" line="4426"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4308"/>
+        <location filename="Main_Window.ui" line="4435"/>
         <source>&amp;Add New VM</source>
         <translation>&amp;Добавить ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4311"/>
+        <location filename="Main_Window.ui" line="4438"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4320"/>
+        <location filename="Main_Window.ui" line="4447"/>
         <source>&amp;Create HDD Image</source>
         <translation>&amp;Создать образ HDD</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4329"/>
+        <location filename="Main_Window.ui" line="4456"/>
         <source>Con&amp;vert HDD Image</source>
         <translation>&amp;Конвертировать образ HDD</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4362"/>
+        <location filename="Main_Window.ui" line="4489"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4374"/>
+        <location filename="Main_Window.ui" line="4501"/>
         <source>Ctrl+D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4389"/>
+        <location filename="Main_Window.ui" line="4516"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4401"/>
+        <location filename="Main_Window.ui" line="4528"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4193"/>
+        <location filename="Main_Window.ui" line="4320"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
@@ -4270,64 +4307,64 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4150"/>
+        <location filename="Main_Window.ui" line="4277"/>
         <source>&amp;VM</source>
         <translation>&amp;ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4154"/>
+        <location filename="Main_Window.ui" line="4281"/>
         <source>&amp;New VM</source>
         <translation>&amp;Новая ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4248"/>
+        <location filename="Main_Window.ui" line="4375"/>
         <source>&amp;About AQEMU</source>
         <translation>&amp;О программе AQEMU</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4347"/>
-        <location filename="Main_Window.ui" line="4350"/>
+        <location filename="Main_Window.ui" line="4474"/>
+        <location filename="Main_Window.ui" line="4477"/>
         <source>AQEMU &amp;Settings</source>
         <translation>&amp;Настройки AQEMU</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4359"/>
+        <location filename="Main_Window.ui" line="4486"/>
         <source>&amp;Start</source>
         <translation>&amp;Старт</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4371"/>
+        <location filename="Main_Window.ui" line="4498"/>
         <source>Sto&amp;p</source>
         <translation>Сто&amp;п</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4386"/>
+        <location filename="Main_Window.ui" line="4513"/>
         <source>&amp;Pause</source>
         <translation>Па&amp;уза</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4398"/>
+        <location filename="Main_Window.ui" line="4525"/>
         <source>&amp;Reset</source>
         <translation>&amp;Перезагрузить</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4410"/>
+        <location filename="Main_Window.ui" line="4537"/>
         <source>&amp;Load VM From File</source>
         <translation>&amp;Загрузить из файла ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4419"/>
+        <location filename="Main_Window.ui" line="4546"/>
         <source>Save As &amp;Template</source>
         <translation>Сохранить как &amp;шаблон</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4332"/>
-        <location filename="Main_Window.ui" line="4335"/>
+        <location filename="Main_Window.ui" line="4459"/>
+        <location filename="Main_Window.ui" line="4462"/>
         <source>Convert HDD Image</source>
         <translation>Конвертировать образ HDD</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6317"/>
+        <location filename="Main_Window.cpp" line="6340"/>
         <source>Select SMB Directory</source>
         <translation>Выберите SMB папку</translation>
     </message>
@@ -4352,32 +4389,32 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Гостевой порт</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2711"/>
+        <location filename="Main_Window.ui" line="2720"/>
         <source>&amp;TCP</source>
         <translation>&amp;TCP</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2721"/>
+        <location filename="Main_Window.ui" line="2730"/>
         <source>&amp;UDP</source>
         <translation>&amp;UDP</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2774"/>
+        <location filename="Main_Window.ui" line="2792"/>
         <source>to &amp;guest IP</source>
         <translation>в &amp;гостевой IP</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2860"/>
+        <location filename="Main_Window.ui" line="2874"/>
         <source>T&amp;FTP Server Prefix:</source>
         <translation>Префикс T&amp;FTP сервера:</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2873"/>
+        <location filename="Main_Window.ui" line="2887"/>
         <source>Allow &amp;SMB Access to:</source>
         <translation>&amp;SMB директория:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6244"/>
+        <location filename="Main_Window.cpp" line="6267"/>
         <source>Network Cards</source>
         <translation>Сетевые карты</translation>
     </message>
@@ -4387,297 +4424,297 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Испо&amp;льзовать сеть</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4060"/>
+        <location filename="Main_Window.ui" line="4129"/>
         <source>&amp;Initrd File:</source>
         <translation>Файл &amp;initrd:</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4112"/>
+        <location filename="Main_Window.ui" line="4239"/>
         <source>&amp;Apply</source>
         <translation>&amp;Применить</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="144"/>
-        <location filename="Main_Window.cpp" line="2515"/>
+        <location filename="Main_Window.cpp" line="150"/>
+        <location filename="Main_Window.cpp" line="2535"/>
         <source>Ports</source>
         <translation>Порты</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4437"/>
+        <location filename="Main_Window.ui" line="4564"/>
         <source>Sa&amp;ve</source>
         <translation>Сохра&amp;нить</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="701"/>
-        <location filename="Main_Window.cpp" line="893"/>
-        <location filename="Main_Window.cpp" line="1206"/>
-        <location filename="Main_Window.cpp" line="1470"/>
-        <location filename="Main_Window.cpp" line="1476"/>
-        <location filename="Main_Window.cpp" line="1897"/>
-        <location filename="Main_Window.cpp" line="4099"/>
-        <location filename="Main_Window.cpp" line="4107"/>
-        <location filename="Main_Window.cpp" line="4218"/>
-        <location filename="Main_Window.cpp" line="4347"/>
-        <location filename="Main_Window.cpp" line="4998"/>
-        <location filename="Main_Window.cpp" line="6122"/>
-        <location filename="Main_Window.cpp" line="6197"/>
+        <location filename="Main_Window.cpp" line="711"/>
+        <location filename="Main_Window.cpp" line="905"/>
+        <location filename="Main_Window.cpp" line="1223"/>
+        <location filename="Main_Window.cpp" line="1487"/>
+        <location filename="Main_Window.cpp" line="1493"/>
+        <location filename="Main_Window.cpp" line="1917"/>
+        <location filename="Main_Window.cpp" line="4122"/>
+        <location filename="Main_Window.cpp" line="4130"/>
+        <location filename="Main_Window.cpp" line="4241"/>
+        <location filename="Main_Window.cpp" line="4370"/>
+        <location filename="Main_Window.cpp" line="5021"/>
+        <location filename="Main_Window.cpp" line="6145"/>
+        <location filename="Main_Window.cpp" line="6220"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6197"/>
+        <location filename="Main_Window.cpp" line="6220"/>
         <source>Cannot Save This VM to File!</source>
         <translation>Невозможно сохранить эту ВМ в файл!</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2961"/>
+        <location filename="Main_Window.ui" line="2993"/>
         <source>Start CP&amp;U at Startup</source>
         <translation>Запускать CP&amp;U при старте</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3560"/>
-        <location filename="Main_Window.cpp" line="3601"/>
-        <location filename="Main_Window.cpp" line="4589"/>
-        <location filename="Main_Window.cpp" line="4650"/>
-        <location filename="Main_Window.cpp" line="6278"/>
+        <location filename="Main_Window.cpp" line="3583"/>
+        <location filename="Main_Window.cpp" line="3624"/>
+        <location filename="Main_Window.cpp" line="4612"/>
+        <location filename="Main_Window.cpp" line="4673"/>
+        <location filename="Main_Window.cpp" line="6301"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3560"/>
+        <location filename="Main_Window.cpp" line="3583"/>
         <source>VM be Changed. Discard Changes?</source>
         <translation>ВМ была изменена. Сбросить изменения?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3601"/>
-        <location filename="Main_Window.cpp" line="4589"/>
+        <location filename="Main_Window.cpp" line="3624"/>
+        <location filename="Main_Window.cpp" line="4612"/>
         <source>VM be Changed. Save Changes?</source>
         <translation>ВМ была изменена. Сохранить изменения?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4218"/>
+        <location filename="Main_Window.cpp" line="4241"/>
         <source>Cannot Delete VM XML File!</source>
         <translation>Невозможно удалить ВМ XML файл!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4326"/>
+        <location filename="Main_Window.cpp" line="4349"/>
         <source>VM Name</source>
         <translation>Имя ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4326"/>
+        <location filename="Main_Window.cpp" line="4349"/>
         <source>New Virtual Machine Name:</source>
         <translation>Имя новой виртуальной машины:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4348"/>
+        <location filename="Main_Window.cpp" line="4371"/>
         <source>You New VM Name is Empty! VM Not Created!</source>
         <translation>Твоё имя для новой ВМ пустое! ВМ не создана!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4740"/>
+        <location filename="Main_Window.cpp" line="4763"/>
         <source>Open AQEMU VM File</source>
         <translation>Открыть AQEMU ВМ файл</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="212"/>
+        <location filename="Main_Window.cpp" line="218"/>
         <source>Cannot Save Settings!</source>
         <translation>Невозможно сохранить настройки!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="222"/>
+        <location filename="Main_Window.cpp" line="228"/>
         <source>Close AQEMU?</source>
         <translation>Закрыть AQEMU?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="223"/>
+        <location filename="Main_Window.cpp" line="229"/>
         <source>One or More VM is Running!
 Terminate All Running VM and Close AQEMU?</source>
         <translation>Одна или больше ВМ работает!
 Выключить все работающие ВМ и закрыть AQEMU?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4199"/>
+        <location filename="Main_Window.cpp" line="4222"/>
         <source>Delete?</source>
         <translation>Удалить?</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4446"/>
+        <location filename="Main_Window.ui" line="4573"/>
         <source>Change Icon</source>
         <translation>Сменить иконку</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="701"/>
+        <location filename="Main_Window.cpp" line="711"/>
         <source>VM Name is Empty!</source>
         <translation>Имя ВМ пустое!</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="266"/>
-        <location filename="Main_Window.cpp" line="1944"/>
+        <location filename="Main_Window.cpp" line="1964"/>
         <source>Computer Type:</source>
         <translation>Тип компьютера:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1874"/>
+        <location filename="Main_Window.cpp" line="1894"/>
         <source>Machine State:</source>
         <translation>Состояние машины:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1881"/>
+        <location filename="Main_Window.cpp" line="1901"/>
         <source>Running</source>
         <translation>Работает</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1885"/>
+        <location filename="Main_Window.cpp" line="1905"/>
         <source>Power Off</source>
         <translation>Выключена</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1889"/>
+        <location filename="Main_Window.cpp" line="1909"/>
         <source>Pause</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1893"/>
+        <location filename="Main_Window.cpp" line="1913"/>
         <source>Saved</source>
         <translation>Сохранена</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1956"/>
+        <location filename="Main_Window.cpp" line="1976"/>
         <source>Machine Type:</source>
         <translation>Тип машины:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1968"/>
+        <location filename="Main_Window.cpp" line="1988"/>
         <source>CPU Type:</source>
         <translation>Тип процессора:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2039"/>
+        <location filename="Main_Window.cpp" line="2059"/>
         <source>Boot Priority:</source>
         <translation>Порядок загрузки:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2075"/>
+        <location filename="Main_Window.cpp" line="2095"/>
         <source>Use Sound:</source>
         <translation>Использовать звук:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2083"/>
-        <location filename="Main_Window.cpp" line="2101"/>
-        <location filename="Main_Window.cpp" line="2113"/>
-        <location filename="Main_Window.cpp" line="2125"/>
-        <location filename="Main_Window.cpp" line="2137"/>
-        <location filename="Main_Window.cpp" line="2149"/>
-        <location filename="Main_Window.cpp" line="2161"/>
-        <location filename="Main_Window.cpp" line="2722"/>
-        <location filename="Main_Window.cpp" line="2879"/>
-        <location filename="Main_Window.cpp" line="2891"/>
-        <location filename="Main_Window.cpp" line="2903"/>
-        <location filename="Main_Window.cpp" line="2915"/>
-        <location filename="Main_Window.cpp" line="2927"/>
-        <location filename="Main_Window.cpp" line="2939"/>
+        <location filename="Main_Window.cpp" line="2103"/>
+        <location filename="Main_Window.cpp" line="2121"/>
+        <location filename="Main_Window.cpp" line="2133"/>
+        <location filename="Main_Window.cpp" line="2145"/>
+        <location filename="Main_Window.cpp" line="2157"/>
+        <location filename="Main_Window.cpp" line="2169"/>
+        <location filename="Main_Window.cpp" line="2181"/>
+        <location filename="Main_Window.cpp" line="2742"/>
+        <location filename="Main_Window.cpp" line="2899"/>
+        <location filename="Main_Window.cpp" line="2911"/>
+        <location filename="Main_Window.cpp" line="2923"/>
+        <location filename="Main_Window.cpp" line="2935"/>
+        <location filename="Main_Window.cpp" line="2947"/>
+        <location filename="Main_Window.cpp" line="2959"/>
         <source>Yes</source>
         <translation>Да</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2087"/>
-        <location filename="Main_Window.cpp" line="2101"/>
-        <location filename="Main_Window.cpp" line="2113"/>
-        <location filename="Main_Window.cpp" line="2125"/>
-        <location filename="Main_Window.cpp" line="2137"/>
-        <location filename="Main_Window.cpp" line="2149"/>
-        <location filename="Main_Window.cpp" line="2161"/>
-        <location filename="Main_Window.cpp" line="2328"/>
-        <location filename="Main_Window.cpp" line="2478"/>
-        <location filename="Main_Window.cpp" line="2722"/>
-        <location filename="Main_Window.cpp" line="2777"/>
-        <location filename="Main_Window.cpp" line="2800"/>
-        <location filename="Main_Window.cpp" line="2823"/>
-        <location filename="Main_Window.cpp" line="2846"/>
-        <location filename="Main_Window.cpp" line="2879"/>
-        <location filename="Main_Window.cpp" line="2891"/>
-        <location filename="Main_Window.cpp" line="2903"/>
-        <location filename="Main_Window.cpp" line="2915"/>
-        <location filename="Main_Window.cpp" line="2927"/>
-        <location filename="Main_Window.cpp" line="2939"/>
+        <location filename="Main_Window.cpp" line="2107"/>
+        <location filename="Main_Window.cpp" line="2121"/>
+        <location filename="Main_Window.cpp" line="2133"/>
+        <location filename="Main_Window.cpp" line="2145"/>
+        <location filename="Main_Window.cpp" line="2157"/>
+        <location filename="Main_Window.cpp" line="2169"/>
+        <location filename="Main_Window.cpp" line="2181"/>
+        <location filename="Main_Window.cpp" line="2348"/>
+        <location filename="Main_Window.cpp" line="2498"/>
+        <location filename="Main_Window.cpp" line="2742"/>
+        <location filename="Main_Window.cpp" line="2797"/>
+        <location filename="Main_Window.cpp" line="2820"/>
+        <location filename="Main_Window.cpp" line="2843"/>
+        <location filename="Main_Window.cpp" line="2866"/>
+        <location filename="Main_Window.cpp" line="2899"/>
+        <location filename="Main_Window.cpp" line="2911"/>
+        <location filename="Main_Window.cpp" line="2923"/>
+        <location filename="Main_Window.cpp" line="2935"/>
+        <location filename="Main_Window.cpp" line="2947"/>
+        <location filename="Main_Window.cpp" line="2959"/>
         <source>No</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2145"/>
+        <location filename="Main_Window.cpp" line="2165"/>
         <source>Use Snapshot Mode:</source>
         <translation>Snapshot режим:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2324"/>
+        <location filename="Main_Window.cpp" line="2344"/>
         <source>Use Network:</source>
         <translation>Использовать сеть:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2339"/>
+        <location filename="Main_Window.cpp" line="2359"/>
         <source>Card: </source>
         <translation>Карта: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2350"/>
-        <location filename="Main_Window.cpp" line="2354"/>
+        <location filename="Main_Window.cpp" line="2370"/>
+        <location filename="Main_Window.cpp" line="2374"/>
         <source>TUN/TAP Interface</source>
         <translation>TUN/TAP интерфейс</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2358"/>
-        <location filename="Main_Window.cpp" line="2362"/>
+        <location filename="Main_Window.cpp" line="2378"/>
+        <location filename="Main_Window.cpp" line="2382"/>
         <source>TCP Socket</source>
         <translation>TCP сокет</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2366"/>
+        <location filename="Main_Window.cpp" line="2386"/>
         <source>VLAN</source>
         <translation>VLAN</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2378"/>
+        <location filename="Main_Window.cpp" line="2398"/>
         <source>No Connection</source>
         <translation>Не подключена</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4882"/>
+        <location filename="Main_Window.cpp" line="4905"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4882"/>
+        <location filename="Main_Window.cpp" line="4905"/>
         <source>New Template Created!</source>
         <translation>Новый шаблон создан!</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3861"/>
+        <location filename="Main_Window.ui" line="3903"/>
         <source>ROM File (For EtherBoot)</source>
         <translation>ROM файл (для EtherBoot)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6365"/>
+        <location filename="Main_Window.cpp" line="6388"/>
         <source>Select Kernel Image File</source>
         <translation>Выберите файл образа ядра</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6378"/>
+        <location filename="Main_Window.cpp" line="6401"/>
         <source>Select InitRD File</source>
         <translation>Выберите файл InitRD</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6391"/>
+        <location filename="Main_Window.cpp" line="6414"/>
         <source>Select ROM File</source>
         <translation>Выберите ROM файл</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4123"/>
+        <location filename="Main_Window.ui" line="4250"/>
         <source>&amp;Discard Changes</source>
         <translation>&amp;Отменить изменения</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4650"/>
+        <location filename="Main_Window.cpp" line="4673"/>
         <source>QEMU running in snapshot mode. VM can not be saved in this mode.</source>
         <translation>QEMU работает в snapshot режиме. ВМ не может быть сохранена в этом режиме.</translation>
     </message>
@@ -4687,7 +4724,7 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation>Переводит часы ВМ на локальное время. По умолчанию=utc</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4946"/>
+        <location filename="Main_Window.cpp" line="4969"/>
         <source>No VM Found!</source>
         <translation>Нет виртуальных машин!</translation>
     </message>
@@ -4705,78 +4742,78 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation>Создать новый HDD</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3441"/>
-        <location filename="Main_Window.cpp" line="3294"/>
+        <location filename="Main_Window.ui" line="3502"/>
+        <location filename="Main_Window.cpp" line="3317"/>
         <source>Mb</source>
         <translation>Мб</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1858"/>
+        <location filename="Main_Window.cpp" line="1878"/>
         <source>Machine Details</source>
         <translation>Описание машины</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1992"/>
+        <location filename="Main_Window.cpp" line="2012"/>
         <source>Number of CPU:</source>
         <translation>Количество процессоров:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2004"/>
+        <location filename="Main_Window.cpp" line="2024"/>
         <source>Acceleration:</source>
         <translation>Акселерация:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2051"/>
+        <location filename="Main_Window.cpp" line="2071"/>
         <source>Video Card:</source>
         <translation>Видео карта:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2063"/>
+        <location filename="Main_Window.cpp" line="2083"/>
         <source>Keyboard Layout:</source>
         <translation>Раскладка клавиатуры:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2097"/>
+        <location filename="Main_Window.cpp" line="2117"/>
         <source>Fullscreen Mode:</source>
         <translation>Полноэкранный режим:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2935"/>
+        <location filename="Main_Window.cpp" line="2955"/>
         <source>Windows 2000 Hack:</source>
         <translation>Windows 2000 хак:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2109"/>
+        <location filename="Main_Window.cpp" line="2129"/>
         <source>Enable ACPI:</source>
         <translation>Активировать ACPI:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2121"/>
+        <location filename="Main_Window.cpp" line="2141"/>
         <source>Use Local Time:</source>
         <translation>Использовать локальное время:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2923"/>
+        <location filename="Main_Window.cpp" line="2943"/>
         <source>Check Boot Sector on FDD:</source>
         <translation>Проверять загрузочный сектор на FDD:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2133"/>
+        <location filename="Main_Window.cpp" line="2153"/>
         <source>Start CPU at Startup:</source>
         <translation>Запускать CPU при старте:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2172"/>
+        <location filename="Main_Window.cpp" line="2192"/>
         <source>Storage Devices</source>
         <translation>Устройства хранения</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2951"/>
+        <location filename="Main_Window.ui" line="2983"/>
         <source>Exit instead of rebooting</source>
         <translation>При выходе не перезагружать ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2954"/>
+        <location filename="Main_Window.ui" line="2986"/>
         <source>No Reboot</source>
         <translation>Не перезагружать</translation>
     </message>
@@ -4801,73 +4838,73 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation>Объём памяти</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2157"/>
+        <location filename="Main_Window.cpp" line="2177"/>
         <source>No Reboot:</source>
         <translation>Без перезагрузки:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2299"/>
+        <location filename="Main_Window.cpp" line="2319"/>
         <source>No Devices Found</source>
         <translation>Устройства не найдены</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2346"/>
+        <location filename="Main_Window.cpp" line="2366"/>
         <source>User mode network stack</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2370"/>
-        <location filename="Main_Window.cpp" line="2374"/>
+        <location filename="Main_Window.cpp" line="2390"/>
+        <location filename="Main_Window.cpp" line="2394"/>
         <source>UDP multicast socket</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2458"/>
+        <location filename="Main_Window.cpp" line="2478"/>
         <source>Redirection </source>
         <translation>Перенаправление </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2474"/>
+        <location filename="Main_Window.cpp" line="2494"/>
         <source>Use Redirections:</source>
         <translation>Использовать перенаправления:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2488"/>
+        <location filename="Main_Window.cpp" line="2508"/>
         <source>TFTP Server Prefix:</source>
         <translation>Префикс TFTP сервера:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2501"/>
+        <location filename="Main_Window.cpp" line="2521"/>
         <source>SMB Folder:</source>
         <translation>Директория SMB:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2765"/>
+        <location filename="Main_Window.cpp" line="2785"/>
         <source>ROM File:</source>
         <translation>ROM файл:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2718"/>
+        <location filename="Main_Window.cpp" line="2738"/>
         <source>Use Linux Boot:</source>
         <translation>Загрузка ядра Linux:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2729"/>
+        <location filename="Main_Window.cpp" line="2749"/>
         <source>Kernel bzImage:</source>
         <translation>bzImage файл ядра:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2739"/>
+        <location filename="Main_Window.cpp" line="2759"/>
         <source>Initrd File:</source>
         <translation>Файл initrd:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2749"/>
+        <location filename="Main_Window.cpp" line="2769"/>
         <source>Kernel ComLine:</source>
         <translation>Команды для ядра:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="893"/>
+        <location filename="Main_Window.cpp" line="905"/>
         <source>Redirection List is Empty! Please Disable Redirections!</source>
         <translation>Список перенаправлений пуст! Пожалуйста выключите перенаправления!</translation>
     </message>
@@ -4902,93 +4939,93 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation>Sound &amp;Blaster 16</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3799"/>
+        <location filename="Main_Window.ui" line="3897"/>
         <source>Optional Images</source>
         <translation>Опциональные образы</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3910"/>
+        <location filename="Main_Window.ui" line="3979"/>
         <source>SecureDigital Card Image</source>
         <translation>Образ SecureDigital карты</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3840"/>
+        <location filename="Main_Window.ui" line="4017"/>
         <source>Parallel Flash Image</source>
         <translation>Parallel Flash образ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3868"/>
+        <location filename="Main_Window.ui" line="3941"/>
         <source>On-Board Flash Image</source>
         <translation>On-Board Flash образ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2905"/>
-        <location filename="Main_Window.cpp" line="2863"/>
+        <location filename="Main_Window.ui" line="2937"/>
+        <location filename="Main_Window.cpp" line="2883"/>
         <source>Advanced</source>
         <translation>Дополнительно</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3412"/>
+        <location filename="Main_Window.ui" line="3473"/>
         <source>KVM Shadow Memory</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3391"/>
+        <location filename="Main_Window.ui" line="3452"/>
         <source>Disable KVM kernel mode PIT</source>
         <translation>Отключить KVM режима ядра PIT</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3384"/>
+        <location filename="Main_Window.ui" line="3445"/>
         <source>Disable KVM kernel mode PIC/IOAPIC/LAPIC</source>
         <translation>Отключить KVM режима ядра PIC/IOAPIC/LAPIC</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3090"/>
+        <location filename="Main_Window.ui" line="3122"/>
         <source>Rotate Graphical Output 90 Deg Left (Only PXA LCD)</source>
         <translation>Повернуть графический вывод на 90 градусов влево (Только для PXA LCD)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3076"/>
+        <location filename="Main_Window.ui" line="3108"/>
         <source>Use Ctrl-Alt-Shift to Grab Mouse (Default Ctrl-Alt)</source>
         <translation>Использовать Ctrl-Alt-Shift для граба мыши (По умолчанию Ctrl-Alt)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3111"/>
+        <location filename="Main_Window.ui" line="3143"/>
         <source>Initial Graphical Mode</source>
         <translation>Начальный графический режим</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3123"/>
+        <location filename="Main_Window.ui" line="3158"/>
         <source>Width</source>
         <translation>Ширина</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3165"/>
+        <location filename="Main_Window.ui" line="3200"/>
         <source>Height</source>
         <translation>Высота</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3207"/>
+        <location filename="Main_Window.ui" line="3242"/>
         <source>Depth</source>
         <translation>Глубина цвета</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3231"/>
+        <location filename="Main_Window.ui" line="3266"/>
         <source>24</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6404"/>
+        <location filename="Main_Window.cpp" line="6427"/>
         <source>Select On-Board Flash Image</source>
         <translation>Выберите образ On-Board Flash</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6417"/>
+        <location filename="Main_Window.cpp" line="6440"/>
         <source>Select SecureDigital Card Image</source>
         <translation>Выберите образ SecureDigital карты</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6430"/>
+        <location filename="Main_Window.cpp" line="6453"/>
         <source>Select Parallel Flash Image</source>
         <translation>Выберите образ Parallel Flash</translation>
     </message>
@@ -5013,120 +5050,125 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2921"/>
+        <location filename="Main_Window.ui" line="2953"/>
         <source>Additional Options</source>
         <translation>Дополнительные опции</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2788"/>
+        <location filename="Main_Window.cpp" line="2808"/>
         <source>On-Board Flash Image:</source>
         <translation>On-Board Flash образ:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2811"/>
+        <location filename="Main_Window.cpp" line="2831"/>
         <source>SD Card Image:</source>
         <translation>Образ SD карты:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2834"/>
+        <location filename="Main_Window.cpp" line="2854"/>
         <source>Parallel Flash Image:</source>
         <translation>Образ Parallel Flash:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2875"/>
+        <location filename="Main_Window.cpp" line="2895"/>
         <source>No Frame:</source>
         <translation>Без фрейма:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2887"/>
+        <location filename="Main_Window.cpp" line="2907"/>
         <source>Alt Grab:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2899"/>
+        <location filename="Main_Window.cpp" line="2919"/>
         <source>No Quit:</source>
         <translation>Отключить выход:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2911"/>
+        <location filename="Main_Window.cpp" line="2931"/>
         <source>Portrait Mode:</source>
         <translation>Портретный режим:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2541"/>
-        <location filename="Main_Window.cpp" line="2619"/>
+        <location filename="Main_Window.cpp" line="2561"/>
+        <location filename="Main_Window.cpp" line="2639"/>
         <source>vc</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2545"/>
-        <location filename="Main_Window.cpp" line="2623"/>
-        <source>pty</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2549"/>
-        <location filename="Main_Window.cpp" line="2627"/>
-        <source>none</source>
-        <translation>нет</translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2553"/>
-        <location filename="Main_Window.cpp" line="2631"/>
-        <source>null</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2557"/>
-        <location filename="Main_Window.cpp" line="2635"/>
-        <source>dev</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2561"/>
-        <location filename="Main_Window.cpp" line="2639"/>
-        <source>host_port</source>
-        <translation></translation>
+        <location filename="Main_Window.cpp" line="107"/>
+        <source>SPICE</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2565"/>
         <location filename="Main_Window.cpp" line="2643"/>
-        <source>file</source>
-        <translation>файл</translation>
+        <source>pty</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2569"/>
         <location filename="Main_Window.cpp" line="2647"/>
-        <source>stdio</source>
-        <translation></translation>
+        <source>none</source>
+        <translation>нет</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2573"/>
         <location filename="Main_Window.cpp" line="2651"/>
-        <source>pipe</source>
+        <source>null</source>
         <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2577"/>
         <location filename="Main_Window.cpp" line="2655"/>
-        <source>udp</source>
+        <source>dev</source>
         <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2581"/>
         <location filename="Main_Window.cpp" line="2659"/>
-        <source>tcp</source>
+        <source>host_port</source>
         <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2585"/>
         <location filename="Main_Window.cpp" line="2663"/>
-        <source>telnet</source>
-        <translation></translation>
+        <source>file</source>
+        <translation>файл</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2589"/>
         <location filename="Main_Window.cpp" line="2667"/>
+        <source>stdio</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2593"/>
+        <location filename="Main_Window.cpp" line="2671"/>
+        <source>pipe</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2597"/>
+        <location filename="Main_Window.cpp" line="2675"/>
+        <source>udp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2601"/>
+        <location filename="Main_Window.cpp" line="2679"/>
+        <source>tcp</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2605"/>
+        <location filename="Main_Window.cpp" line="2683"/>
+        <source>telnet</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2609"/>
+        <location filename="Main_Window.cpp" line="2687"/>
         <source>unix</source>
         <translation></translation>
     </message>
@@ -5136,159 +5178,159 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation>Дополнительные параметры</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2704"/>
+        <location filename="Main_Window.ui" line="2713"/>
         <source>Protocol:</source>
         <translation>Протокол:</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2751"/>
+        <location filename="Main_Window.ui" line="2769"/>
         <source>&amp;Host Port</source>
         <translation>Порт &amp;хоста</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2787"/>
+        <location filename="Main_Window.ui" line="2805"/>
         <source>Guest Por&amp;t</source>
         <translation>Порт &amp;гостя</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1207"/>
+        <location filename="Main_Window.cpp" line="1224"/>
         <source>VM File &quot;</source>
         <translation>Файл ВМ &quot;</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1207"/>
+        <location filename="Main_Window.cpp" line="1224"/>
         <source>&quot; is Read Only!
 Check Permissions!</source>
         <translation>&quot; доступен только для чтения
 Проверьте права доступа!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5179"/>
-        <location filename="Main_Window.cpp" line="5245"/>
+        <location filename="Main_Window.cpp" line="5202"/>
+        <location filename="Main_Window.cpp" line="5268"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.ima)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5311"/>
+        <location filename="Main_Window.cpp" line="5334"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation>Все файлы (*);;Файлы образов (*.iso)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3676"/>
-        <location filename="Main_Window.cpp" line="4752"/>
-        <location filename="Main_Window.cpp" line="4906"/>
-        <location filename="Main_Window.cpp" line="4915"/>
-        <location filename="Main_Window.cpp" line="6138"/>
+        <location filename="Main_Window.cpp" line="3699"/>
+        <location filename="Main_Window.cpp" line="4775"/>
+        <location filename="Main_Window.cpp" line="4929"/>
+        <location filename="Main_Window.cpp" line="4938"/>
+        <location filename="Main_Window.cpp" line="6161"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4752"/>
+        <location filename="Main_Window.cpp" line="4775"/>
         <source>VM With This Name Already Exists!</source>
         <translation>ВМ с этим именем уже существует!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6334"/>
+        <location filename="Main_Window.cpp" line="6357"/>
         <source>UNIX Domain Socket Path</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6344"/>
+        <location filename="Main_Window.cpp" line="6367"/>
         <source>Select x509 Certificate Folder</source>
         <translation>Выберите каталог сертификатов x509</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6353"/>
+        <location filename="Main_Window.cpp" line="6376"/>
         <source>Select x509 Verify Certificate Folder</source>
         <translation>Выберите каталог сертификатов x509 для верификации</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3552"/>
+        <location filename="Main_Window.ui" line="3616"/>
         <source>VNC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3671"/>
+        <location filename="Main_Window.ui" line="3759"/>
         <source>Use TLS</source>
         <translation>Использовать TLS</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3678"/>
+        <location filename="Main_Window.ui" line="3667"/>
         <source>VNC Display Number</source>
         <translation>Номер экрана VNC</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3766"/>
+        <location filename="Main_Window.ui" line="3822"/>
         <source>x509verify Folder Path</source>
         <translation>Путь к каталогу x509verify</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3759"/>
+        <location filename="Main_Window.ui" line="3784"/>
         <source>x509 Folder Path</source>
         <translation>Путь к каталогу x509</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3571"/>
+        <location filename="Main_Window.ui" line="3622"/>
         <source>Activate VNC</source>
         <translation>Использовать VNC</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3947"/>
+        <location filename="Main_Window.ui" line="4069"/>
         <source>Boot Linux Kernel</source>
         <translation>Загрузка ядра Linux</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3972"/>
+        <location filename="Main_Window.ui" line="4075"/>
         <source>Use &amp;Linux Boot</source>
         <translation>Включить загрузку ядра &amp;Linux</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4047"/>
+        <location filename="Main_Window.ui" line="4173"/>
         <source>Append Command Line:</source>
         <translation>Параметры для ядра:</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4073"/>
+        <location filename="Main_Window.ui" line="4085"/>
         <source>Kernel bzImage File:</source>
         <translation>bzImage файл ядра:</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4455"/>
+        <location filename="Main_Window.ui" line="4582"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4464"/>
+        <location filename="Main_Window.ui" line="4591"/>
         <source>Manage Snapshots</source>
         <translation>Управление снапшотами</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4915"/>
+        <location filename="Main_Window.cpp" line="4938"/>
         <source>This Function Work Only On Running VM!</source>
         <translation>Эта функция работает только на включённой ВМ!</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3613"/>
+        <location filename="Main_Window.ui" line="3677"/>
         <source>For Connection Use Port 5900 + VNC Display Number</source>
         <translation>Для подключения используйте порт 5900 + номер экрана VNC</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3636"/>
+        <location filename="Main_Window.ui" line="3693"/>
         <source>UNIX Domain Socket</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3643"/>
+        <location filename="Main_Window.ui" line="3752"/>
         <source>Use Password (You must set a password when you start the VM)</source>
         <translation>Установить пароль (Вы должны будете ввести пароль при запуске ВМ)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4473"/>
+        <location filename="Main_Window.ui" line="4600"/>
         <source>Show Emulator Control</source>
         <translation>Показать Emulator Control</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3676"/>
+        <location filename="Main_Window.cpp" line="3699"/>
         <source>Cannot Change Icon When VM in Save State.</source>
         <translation>Невозможно сменить иконку когда ВМ в сохранённом состоянии.</translation>
     </message>
@@ -5298,112 +5340,112 @@ Check Permissions!</source>
         <translation>en-us (по умолчанию)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3053"/>
+        <location filename="Main_Window.ui" line="3085"/>
         <source>dd.MM.yyyy HH:mm:ss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2999"/>
+        <location filename="Main_Window.ui" line="3031"/>
         <source>Start Date (Day.Month.Year Hour:Minute:Second)</source>
         <translation>Дата запуска (День.Месяц.Год Час.Минута.Секунда)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4200"/>
+        <location filename="Main_Window.cpp" line="4223"/>
         <source>Delete &quot;</source>
         <translation>Удалить &quot;</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4200"/>
+        <location filename="Main_Window.cpp" line="4223"/>
         <source>&quot; VM?</source>
         <translation>&quot; ВМ?</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3366"/>
+        <location filename="Main_Window.ui" line="3424"/>
         <source>KVM Options</source>
         <translation>Опции KVM</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2011"/>
-        <location filename="Main_Window.cpp" line="2029"/>
+        <location filename="Main_Window.cpp" line="2031"/>
+        <location filename="Main_Window.cpp" line="2049"/>
         <source>Use If Possible</source>
         <translation>Использовать если возможно</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2944"/>
+        <location filename="Main_Window.ui" line="2976"/>
         <source>No Shutdown</source>
         <translation>Не выключать</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2968"/>
+        <location filename="Main_Window.ui" line="3000"/>
         <source>Check Boot Signature For Floppy Disks in VM BIOS</source>
         <translation>BIOS ВМ будет проверять загрузочную сигнатуру на Floppy дисках</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2971"/>
+        <location filename="Main_Window.ui" line="3003"/>
         <source>Check Boot Secto&amp;r on FDD</source>
         <translation>Проверять бут секто&amp;р на FDD</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2927"/>
+        <location filename="Main_Window.ui" line="2959"/>
         <source>Fix Installation Windows 2000 Bug</source>
         <translation>Windows 2000 хак (Обходит ошибку инсталляции Windows 2000)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3097"/>
+        <location filename="Main_Window.ui" line="3129"/>
         <source>Curses (Use a curses/ncurses Interface Instead of SDL)</source>
         <translation>Curses (Использовать curses/ncurses интерфейс вместо SDL)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2937"/>
+        <location filename="Main_Window.ui" line="2969"/>
         <source>RTC TD Hack (Fix Time Drift in Windows ACPI HAL)</source>
         <translation>RTC TD Hack (Обходит проблемы с Windows ACPI HAL)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3352"/>
+        <location filename="Main_Window.ui" line="3410"/>
         <source>Hardware Virtualization</source>
         <translation>Аппаратная виртуализация</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3398"/>
+        <location filename="Main_Window.ui" line="3459"/>
         <source>Disable KVM kernel mode PIT interrupt reinjection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3405"/>
+        <location filename="Main_Window.ui" line="3466"/>
         <source>Nesting (Support for Running a VM Inside the VM (AMD Only)</source>
         <translation>Nesting (Поддержка запуска ВМ внутри ВМ (Только для AMD)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3505"/>
+        <location filename="Main_Window.ui" line="3569"/>
         <source>Disabled (Disable the usage of the QEMU Accelerator module KQEMU)</source>
         <translation>Отключена
 (Выключает использование модуля KQEMU в QEMU)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3512"/>
+        <location filename="Main_Window.ui" line="3576"/>
         <source>Use If Possible (AQEMU don&apos;t check loaded KQEMU module)</source>
         <translation>Использовать если возможно
 (AQEMU не будет проверять загружен ли KQEMU модуль)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3522"/>
+        <location filename="Main_Window.ui" line="3586"/>
         <source>Enabled (AQEMU check loaded KQEMU module, if no loaded QEMU not started)</source>
         <translation>Включена
 (AQEMU проверяет загружен ли модуль KQEMU, если не загружен QEMU не запустится)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3529"/>
+        <location filename="Main_Window.ui" line="3593"/>
         <source>Full (Enable full virtualization mode for best performances)</source>
         <translation>Полная
 (Включает режим полной виртуализации для максимального быстродействия)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3487"/>
+        <location filename="Main_Window.ui" line="3548"/>
         <source>KQEMU Acceleration Module</source>
         <translation>KQEMU модуль акселерации</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3783"/>
+        <location filename="Main_Window.ui" line="3881"/>
         <source>Warning: Globaly Activated Embedded Display in Emulator Control Window.
 For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&quot;</source>
         <translation>Внимание:
@@ -5412,92 +5454,92 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
 &quot;Не использовать встроенный VNC дисплей&quot;</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3791"/>
+        <location filename="Main_Window.ui" line="3889"/>
         <source>No Use Embedded VNC Display</source>
         <translation>Не использовать встроенный VNC дисплей</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2930"/>
+        <location filename="Main_Window.ui" line="2962"/>
         <source>&amp;Windows 2K Hack</source>
         <translation>&amp;Windows 2000 хак</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4344"/>
+        <location filename="Main_Window.ui" line="4471"/>
         <source>General &amp;Settings</source>
         <translation>Основные &amp;настройки</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4491"/>
+        <location filename="Main_Window.ui" line="4618"/>
         <source>&amp;Advanced Settings</source>
         <translation>&amp;Дополнительные настройки</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4500"/>
+        <location filename="Main_Window.ui" line="4627"/>
         <source>Run &amp;First Run Wizard</source>
         <translation>Запустить &amp;мастер первого запуска</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1800"/>
+        <location filename="Main_Window.cpp" line="1820"/>
         <source>You must create a new virtual machine</source>
         <translation>Вы должны создать новую виртуальную машину</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="214"/>
-        <location filename="Main_Window.cpp" line="1920"/>
+        <location filename="Main_Window.cpp" line="1940"/>
         <source>Emulator Type:</source>
         <translation>Тип эмулятора:</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="240"/>
-        <location filename="Main_Window.cpp" line="1932"/>
+        <location filename="Main_Window.cpp" line="1952"/>
         <source>Emulator Version:</source>
         <translation>Версия эмулятора:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2245"/>
+        <location filename="Main_Window.cpp" line="2265"/>
         <source>Primary Master (HDA):</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2258"/>
+        <location filename="Main_Window.cpp" line="2278"/>
         <source>Primary Slave (HDB):</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2271"/>
+        <location filename="Main_Window.cpp" line="2291"/>
         <source>Secondary Master (HDC):</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2284"/>
+        <location filename="Main_Window.cpp" line="2304"/>
         <source>Secondary Slave (HDD):</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3483"/>
-        <location filename="Main_Window.cpp" line="3489"/>
-        <location filename="Main_Window.cpp" line="4904"/>
+        <location filename="Main_Window.cpp" line="3506"/>
+        <location filename="Main_Window.cpp" line="3512"/>
+        <location filename="Main_Window.cpp" line="4927"/>
         <source>Display</source>
         <translation>Дисплей</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4906"/>
+        <location filename="Main_Window.cpp" line="4929"/>
         <source>Emulator Control Already Show</source>
         <translation>Emulator Control уже отображается</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4945"/>
-        <location filename="Main_Window.cpp" line="4946"/>
+        <location filename="Main_Window.cpp" line="4968"/>
+        <location filename="Main_Window.cpp" line="4969"/>
         <source>QEMU/KVM Arguments:</source>
         <translation>Аргументы QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5851"/>
+        <location filename="Main_Window.cpp" line="5874"/>
         <source>QEMU</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5852"/>
+        <location filename="Main_Window.cpp" line="5875"/>
         <source>KVM</source>
         <translation></translation>
     </message>
@@ -5507,95 +5549,95 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
         <translation>Расклад&amp;ка клавиатуры</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3063"/>
+        <location filename="Main_Window.ui" line="3095"/>
         <source>QEMU/KVM Window Options</source>
         <translation>Опции окна QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3069"/>
+        <location filename="Main_Window.ui" line="3101"/>
         <source>Show QEMU/KVM Window Without a Frame and Window Decorations</source>
         <translation>Отобразить QEMU/KVM без фрейма окна</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3083"/>
+        <location filename="Main_Window.ui" line="3115"/>
         <source>Disable QEMU/KVM Window Close Capability</source>
         <translation>Отключить возможность закрытия QEMU/KVM окна</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3104"/>
+        <location filename="Main_Window.ui" line="3136"/>
         <source>Show Cursor (This Work Only in QEMU/KVM SDL Window)</source>
         <translation>Показывать курсор (Это работает только в окне QEMU/KVM с использованием SDL)</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3314"/>
+        <location filename="Main_Window.ui" line="3323"/>
         <source>Additional QEMU/KVM &amp;Arguments</source>
         <translation>Дополнительные &amp;аргументы QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3324"/>
+        <location filename="Main_Window.ui" line="3356"/>
         <source>Send Only User Arguments Without AQEMU Arguments</source>
         <translation>Обрабатывать только аргументы пользователя игнорируя аргументы AQEMU</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="3285"/>
+        <location filename="Main_Window.ui" line="3371"/>
         <source>Use Emulator Binary File in &quot;Additional QEMU/KVM Arguments&quot;</source>
         <translation>Использовать бинарный файл указанный в дополнительных аргументах</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4428"/>
+        <location filename="Main_Window.ui" line="4555"/>
         <source>Show QEMU/KVM &amp;Arguments</source>
         <translation>Показать &amp;аргументы QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4482"/>
+        <location filename="Main_Window.ui" line="4609"/>
         <source>Show QEMU/KVM Error Log Window</source>
         <translation>Показать окно ошибок QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2948"/>
+        <location filename="Main_Window.cpp" line="2968"/>
         <source>QEMU/KVM Arguments</source>
         <translation>Аргументы QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1801"/>
+        <location filename="Main_Window.cpp" line="1821"/>
         <source>This VM uses an emulator &quot;%1&quot; which is not installed in the system.
 The work of the VM is not possible!</source>
         <translation>Эта ВМ использует эмулятор &quot;%1&quot; который не установлен в системе.
 Работа этой ВМ не возможна!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4686"/>
-        <location filename="Main_Window.cpp" line="4725"/>
+        <location filename="Main_Window.cpp" line="4709"/>
+        <location filename="Main_Window.cpp" line="4748"/>
         <source>You Sure?</source>
         <translation>Вы уверены?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4687"/>
+        <location filename="Main_Window.cpp" line="4710"/>
         <source>Shutdown VM &quot;%1&quot;?</source>
         <translation>Выключить ВМ &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4726"/>
+        <location filename="Main_Window.cpp" line="4749"/>
         <source>Reboot VM &quot;%1&quot;?</source>
         <translation>Перезагрузить ВМ &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5733"/>
+        <location filename="Main_Window.cpp" line="5756"/>
         <source>Image Format: </source>
         <translation>Формат образа: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5733"/>
+        <location filename="Main_Window.cpp" line="5756"/>
         <source>Allocated Disk Space: </source>
         <translation>Размер на диске: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5734"/>
+        <location filename="Main_Window.cpp" line="5757"/>
         <source>Virtual Size: </source>
         <translation>Виртуальный объём: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5734"/>
+        <location filename="Main_Window.cpp" line="5757"/>
         <source>Cluster Size: </source>
         <translation>Размер кластера: </translation>
     </message>
@@ -5620,65 +5662,65 @@ Cluster Size: 0</source>
 Размер кластера: 0</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2396"/>
+        <location filename="Main_Window.cpp" line="2416"/>
         <source>Item %1</source>
         <translation>Элемент %1</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2403"/>
+        <location filename="Main_Window.cpp" line="2423"/>
         <source>NIC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2407"/>
+        <location filename="Main_Window.cpp" line="2427"/>
         <source>User</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2411"/>
+        <location filename="Main_Window.cpp" line="2431"/>
         <source>Channel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2415"/>
+        <location filename="Main_Window.cpp" line="2435"/>
         <source>TAP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2419"/>
+        <location filename="Main_Window.cpp" line="2439"/>
         <source>Socket</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2423"/>
+        <location filename="Main_Window.cpp" line="2443"/>
         <source>Multicast Socket</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2427"/>
+        <location filename="Main_Window.cpp" line="2447"/>
         <source>VDE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2431"/>
+        <location filename="Main_Window.cpp" line="2451"/>
         <source>Dump</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2435"/>
+        <location filename="Main_Window.cpp" line="2455"/>
         <source>Unknown Type Item</source>
         <translation>Неизвестный тип элемента</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5377"/>
-        <location filename="Main_Window.cpp" line="5465"/>
-        <location filename="Main_Window.cpp" line="5554"/>
-        <location filename="Main_Window.cpp" line="5640"/>
+        <location filename="Main_Window.cpp" line="5400"/>
+        <location filename="Main_Window.cpp" line="5488"/>
+        <location filename="Main_Window.cpp" line="5577"/>
+        <location filename="Main_Window.cpp" line="5663"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.qcow *.qcow2 *.wmdk)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6242"/>
+        <location filename="Main_Window.cpp" line="6265"/>
         <source>Network Settings</source>
         <translation>Настройки сети</translation>
     </message>
@@ -5709,7 +5751,7 @@ Cluster Size: 0</source>
         <translation>Базовый</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4741"/>
+        <location filename="Main_Window.cpp" line="4764"/>
         <source>AQEMU VM (*.aqemu)</source>
         <translation>AQEMU ВМ (*.aqemu)</translation>
     </message>
@@ -5719,92 +5761,92 @@ Cluster Size: 0</source>
         <translation>Нативный</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3927"/>
+        <location filename="Main_Window.cpp" line="3950"/>
         <source>bzImage</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3940"/>
+        <location filename="Main_Window.cpp" line="3963"/>
         <source>Initrd</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3957"/>
+        <location filename="Main_Window.cpp" line="3980"/>
         <source>ROM File</source>
         <translation>ROM файл</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3974"/>
+        <location filename="Main_Window.cpp" line="3997"/>
         <source>On-Board Flash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3991"/>
+        <location filename="Main_Window.cpp" line="4014"/>
         <source>SecureDigital Card</source>
         <translation>SecureDigital карта</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4008"/>
+        <location filename="Main_Window.cpp" line="4031"/>
         <source>Parallel Flash</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4108"/>
+        <location filename="Main_Window.cpp" line="4131"/>
         <source>%1 Image &quot;%2&quot; Not Exist! Continue Without It Image?</source>
         <translation>%1 образ &quot;%2&quot; не найден! Продолжить без него?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4998"/>
+        <location filename="Main_Window.cpp" line="5021"/>
         <source>Cannot Open File!</source>
         <translation>Не могу открыть файл!</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4509"/>
+        <location filename="Main_Window.ui" line="4636"/>
         <source>Create Shell Script</source>
         <translation>Создать Shell скрипт</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4027"/>
+        <location filename="Main_Window.cpp" line="4050"/>
         <source>VNC x509 Folder</source>
         <translation>Каталог VNC x509</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4043"/>
+        <location filename="Main_Window.cpp" line="4066"/>
         <source>VNC x509verify Folder</source>
         <translation>Каталог VNC x509verify</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4980"/>
+        <location filename="Main_Window.cpp" line="5003"/>
         <source>Save VM to Script</source>
         <translation>Сохранить ВМ в скрипт</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4982"/>
+        <location filename="Main_Window.cpp" line="5005"/>
         <source>Shell Script Files (*.sh);;All Files (*)</source>
         <translation>Скрипты (*.sh);;Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1471"/>
+        <location filename="Main_Window.cpp" line="1488"/>
         <source>Memory size &lt; 1! Use default value: 256 MB</source>
         <translation>Объём памяти &lt; 1! Используется значение по умолчанию: 256Мб</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1477"/>
+        <location filename="Main_Window.cpp" line="1494"/>
         <source>Memory size &gt; all free memory on this system!</source>
         <translation>Объём памяти &gt; всей свободной памяти в системе!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2529"/>
+        <location filename="Main_Window.cpp" line="2549"/>
         <source>Serial Port %1:</source>
         <translation>Последовательный порт %1:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2607"/>
+        <location filename="Main_Window.cpp" line="2627"/>
         <source>Parallel Port %1:</source>
         <translation>Параллельный порт %1:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2685"/>
+        <location filename="Main_Window.cpp" line="2705"/>
         <source>USB Port %1:</source>
         <translation>USB порт %1:</translation>
     </message>
@@ -5812,116 +5854,116 @@ Cluster Size: 0</source>
         <location filename="Main_Window.ui" line="2124"/>
         <location filename="Main_Window.ui" line="2238"/>
         <location filename="Main_Window.ui" line="2352"/>
-        <location filename="Main_Window.cpp" line="3263"/>
-        <location filename="Main_Window.cpp" line="3269"/>
-        <location filename="Main_Window.cpp" line="3276"/>
+        <location filename="Main_Window.cpp" line="3286"/>
+        <location filename="Main_Window.cpp" line="3292"/>
+        <location filename="Main_Window.cpp" line="3299"/>
         <source>Type: none     Size: 0</source>
         <translation>Тип: нет     Объём: 0</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3275"/>
+        <location filename="Main_Window.cpp" line="3298"/>
         <source>Type: Host Device</source>
         <translation>Тип: реальное устройство</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3277"/>
+        <location filename="Main_Window.cpp" line="3300"/>
         <source>Type: Image     Size: 0</source>
         <translation>Тип: образ     Объём: 0</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3284"/>
+        <location filename="Main_Window.cpp" line="3307"/>
         <source>Byte</source>
         <translation>Байт</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3289"/>
+        <location filename="Main_Window.cpp" line="3312"/>
         <source>Kb</source>
         <translation>Кб</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3299"/>
+        <location filename="Main_Window.cpp" line="3322"/>
         <source>Gb</source>
         <translation>Гб</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3303"/>
+        <location filename="Main_Window.cpp" line="3326"/>
         <source>Type: Image     Size: </source>
         <translation>Тип: образ     Объём: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4099"/>
+        <location filename="Main_Window.cpp" line="4122"/>
         <source>No boot device found!</source>
         <translation>Нет загрузочного устройства!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5040"/>
-        <location filename="Main_Window.cpp" line="5048"/>
-        <location filename="Main_Window.cpp" line="5057"/>
-        <location filename="Main_Window.cpp" line="5066"/>
-        <location filename="Main_Window.cpp" line="5073"/>
-        <location filename="Main_Window.cpp" line="5081"/>
-        <location filename="Main_Window.cpp" line="5108"/>
-        <location filename="Main_Window.cpp" line="5153"/>
+        <location filename="Main_Window.cpp" line="5063"/>
+        <location filename="Main_Window.cpp" line="5071"/>
+        <location filename="Main_Window.cpp" line="5080"/>
+        <location filename="Main_Window.cpp" line="5089"/>
+        <location filename="Main_Window.cpp" line="5096"/>
+        <location filename="Main_Window.cpp" line="5104"/>
+        <location filename="Main_Window.cpp" line="5131"/>
+        <location filename="Main_Window.cpp" line="5176"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5041"/>
-        <location filename="Main_Window.cpp" line="5049"/>
+        <location filename="Main_Window.cpp" line="5064"/>
+        <location filename="Main_Window.cpp" line="5072"/>
         <source>Cannot convert &quot;%1&quot; to memory size!</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в объём памяти!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5058"/>
+        <location filename="Main_Window.cpp" line="5081"/>
         <source>Cannot convert &quot;%1&quot; to integer!</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в число!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5067"/>
+        <location filename="Main_Window.cpp" line="5090"/>
         <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes: MB, GB</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в суффикс объёма! Доступные варианты: MB, GB</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5073"/>
+        <location filename="Main_Window.cpp" line="5096"/>
         <source>Memory size &lt; 0! Valid size 1 or more</source>
         <translation>Объём памяти &lt; 0! Допустимы значение от 1 и выше</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5082"/>
+        <location filename="Main_Window.cpp" line="5105"/>
         <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 For set it size, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
         <translation>Ваш объём памяти %1 MB &gt; %2 MB — всей свободной памяти в системе!
 Для установки этого объёма активируйте: &quot;Убрать ограничение на максимальный объём памяти&quot;.</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5108"/>
+        <location filename="Main_Window.cpp" line="5131"/>
         <source>Current memory size more of all host memory!
 Use the maximum available size.</source>
         <translation>Текущий объём памяти больше чем вся свободная память в системе!
 Используйте максимально доступное значение.</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5120"/>
+        <location filename="Main_Window.cpp" line="5143"/>
         <source>Free memory: %1 MB</source>
         <translation>Доступно памяти: %1 MB</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5153"/>
+        <location filename="Main_Window.cpp" line="5176"/>
         <source>Free memory on this system is low 32 MB!</source>
         <translation>Объём свободной памяти в системе меньше 32 Мб!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6122"/>
+        <location filename="Main_Window.cpp" line="6145"/>
         <source>CPU count value not valid digit!</source>
         <translation>Количество процессоров не является корректной цифрой!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6138"/>
+        <location filename="Main_Window.cpp" line="6161"/>
         <source>CPU count &gt; max CPU count for this emulator!</source>
         <translation>Количество процессоров &gt; максимально для этого эмулятора!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6279"/>
+        <location filename="Main_Window.cpp" line="6302"/>
         <source>For Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
 Press button &quot;Ignore&quot; for hide this message in future.
 Add This Record?</source>
@@ -6064,17 +6106,27 @@ Add This Record?</source>
         <translation>Параметры перенаправления</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="2838"/>
+        <location filename="Main_Window.ui" line="2847"/>
         <source>Other network settings</source>
         <translation>Другие сетевые настройки</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4275"/>
+        <location filename="Main_Window.ui" line="3646"/>
+        <source>General settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.ui" line="3731"/>
+        <source>Security settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.ui" line="4402"/>
         <source>&amp;Delete VM</source>
         <translation>&amp;Удалить ВМ</translation>
     </message>
     <message>
-        <location filename="Main_Window.ui" line="4518"/>
+        <location filename="Main_Window.ui" line="4645"/>
         <source>Delete VM And Files</source>
         <translation>Удалить ВМ и файлы</translation>
     </message>
@@ -6604,68 +6656,68 @@ dump traffic on vlan &apos;n&apos; to file &apos;f&apos; (max n bytes per packet
     </message>
     <message>
         <location filename="Old_Network_Widget.cpp" line="84"/>
-        <location filename="Old_Network_Widget.cpp" line="219"/>
-        <location filename="Old_Network_Widget.cpp" line="250"/>
+        <location filename="Old_Network_Widget.cpp" line="218"/>
+        <location filename="Old_Network_Widget.cpp" line="249"/>
         <source>Card </source>
         <translation>Карта </translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="212"/>
-        <location filename="Old_Network_Widget.cpp" line="238"/>
-        <location filename="Old_Network_Widget.cpp" line="270"/>
+        <location filename="Old_Network_Widget.cpp" line="211"/>
+        <location filename="Old_Network_Widget.cpp" line="237"/>
+        <location filename="Old_Network_Widget.cpp" line="269"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="212"/>
+        <location filename="Old_Network_Widget.cpp" line="211"/>
         <source>Maximum Network Cards Count is 8.</source>
         <translation>Максимальное количество сетевых карт 8.</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="238"/>
+        <location filename="Old_Network_Widget.cpp" line="237"/>
         <source>Network Cards List is Empty!</source>
         <translation>Список сетевых карт пуст!</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="270"/>
+        <location filename="Old_Network_Widget.cpp" line="269"/>
         <source>Cannot Delete Network Card!</source>
         <translation>Невозможно удалить сетевую карту!</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="565"/>
+        <location filename="Old_Network_Widget.cpp" line="564"/>
         <source>Select script</source>
         <translation>Выберите скрипт</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="566"/>
+        <location filename="Old_Network_Widget.cpp" line="565"/>
         <source>All Files (*);;Scripts (*.sh)</source>
         <translation>Все файлы (*);;Скрипты (*.sh)</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="664"/>
-        <location filename="Old_Network_Widget.cpp" line="686"/>
-        <location filename="Old_Network_Widget.cpp" line="700"/>
+        <location filename="Old_Network_Widget.cpp" line="659"/>
+        <location filename="Old_Network_Widget.cpp" line="681"/>
+        <location filename="Old_Network_Widget.cpp" line="695"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="665"/>
+        <location filename="Old_Network_Widget.cpp" line="660"/>
         <source>IP Address in Card </source>
         <translation>IP адрес в карте </translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="665"/>
-        <location filename="Old_Network_Widget.cpp" line="687"/>
+        <location filename="Old_Network_Widget.cpp" line="660"/>
+        <location filename="Old_Network_Widget.cpp" line="682"/>
         <source> Invalid!</source>
         <translation> некорректен!</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="687"/>
+        <location filename="Old_Network_Widget.cpp" line="682"/>
         <source>MAC Address in Card </source>
         <translation>MAC адрес в карте </translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="700"/>
+        <location filename="Old_Network_Widget.cpp" line="695"/>
         <source>In Card </source>
         <translation>В карте </translation>
     </message>
@@ -6795,7 +6847,7 @@ dump traffic on vlan &apos;n&apos; to file &apos;f&apos; (max n bytes per packet
         <translation>&amp;Имя интерфейса:</translation>
     </message>
     <message>
-        <location filename="Old_Network_Widget.cpp" line="701"/>
+        <location filename="Old_Network_Widget.cpp" line="696"/>
         <source> TUN/TAP Script File &quot;%1&quot; Not Exists!
 Continue Without It File?</source>
         <translation>TUN/TAP скрипт &quot;%1&quot; не найден!
@@ -6945,51 +6997,51 @@ Continue Without It File?</source>
 <context>
     <name>Properties_Window</name>
     <message>
-        <location filename="Properties_Window.cpp" line="215"/>
-        <location filename="Properties_Window.cpp" line="221"/>
+        <location filename="Properties_Window.cpp" line="213"/>
+        <location filename="Properties_Window.cpp" line="219"/>
+        <location filename="Properties_Window.cpp" line="227"/>
         <location filename="Properties_Window.cpp" line="229"/>
-        <location filename="Properties_Window.cpp" line="231"/>
-        <location filename="Properties_Window.cpp" line="242"/>
-        <location filename="Properties_Window.cpp" line="248"/>
+        <location filename="Properties_Window.cpp" line="240"/>
+        <location filename="Properties_Window.cpp" line="246"/>
+        <location filename="Properties_Window.cpp" line="254"/>
         <location filename="Properties_Window.cpp" line="256"/>
-        <location filename="Properties_Window.cpp" line="258"/>
         <source>Image Size: </source>
         <translation>Размер образа: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="344"/>
+        <location filename="Properties_Window.cpp" line="342"/>
         <source>Format: </source>
         <translation>Формат: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="345"/>
+        <location filename="Properties_Window.cpp" line="343"/>
         <source> Virtual Size: </source>
         <translation> Виртуальный объём: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="346"/>
+        <location filename="Properties_Window.cpp" line="344"/>
         <source>
 On Disk Size: </source>
         <translation>
 Размер на диске: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="347"/>
+        <location filename="Properties_Window.cpp" line="345"/>
         <source> Cluster Size: </source>
         <translation> Размер кластера: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="279"/>
+        <location filename="Properties_Window.cpp" line="277"/>
         <source>Open Floppy Image File</source>
         <translation>Открыть файл образа Floppy</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="292"/>
+        <location filename="Properties_Window.cpp" line="290"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation>Открыть файл образа CD\DVD-ROM</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="305"/>
+        <location filename="Properties_Window.cpp" line="303"/>
         <source>Open HDD Image File</source>
         <translation>Открыть файл образа HDD</translation>
     </message>
@@ -7004,116 +7056,116 @@ On Disk Size: </source>
         <translation>Floppy</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="201"/>
+        <location filename="Properties_Window.ui" line="195"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="107"/>
+        <location filename="Properties_Window.ui" line="104"/>
         <source>CD/DVD-ROM</source>
         <translation>CD/DVD-ROM</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="180"/>
+        <location filename="Properties_Window.ui" line="174"/>
         <source>Hard Disk</source>
         <translation>Жёсткий диск</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="225"/>
+        <location filename="Properties_Window.ui" line="219"/>
         <source>&amp;Format Exist</source>
         <translation>&amp;Форматировать текущий</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="214"/>
+        <location filename="Properties_Window.ui" line="208"/>
         <source>Create &amp;New</source>
         <translation>Создать &amp;новый</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="186"/>
+        <location filename="Properties_Window.ui" line="180"/>
         <source>Path to Image:</source>
         <translation>Путь к образу:</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="262"/>
+        <location filename="Properties_Window.ui" line="253"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="274"/>
+        <location filename="Properties_Window.ui" line="265"/>
         <source>Device Name: </source>
         <translation>Имя устройства: </translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="287"/>
+        <location filename="Properties_Window.ui" line="278"/>
         <source>Up&amp;date Info</source>
         <translation>Об&amp;новить Инфо</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="326"/>
+        <location filename="Properties_Window.ui" line="317"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="337"/>
+        <location filename="Properties_Window.ui" line="328"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="242"/>
-        <location filename="Properties_Window.cpp" line="248"/>
-        <location filename="Properties_Window.cpp" line="256"/>
-        <location filename="Properties_Window.cpp" line="259"/>
+        <location filename="Properties_Window.cpp" line="240"/>
+        <location filename="Properties_Window.cpp" line="246"/>
+        <location filename="Properties_Window.cpp" line="254"/>
+        <location filename="Properties_Window.cpp" line="257"/>
         <source>Mb</source>
         <translation>Мб</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="281"/>
+        <location filename="Properties_Window.cpp" line="279"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.ima)</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="294"/>
+        <location filename="Properties_Window.cpp" line="292"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation>Все файлы (*);;Файлы образов (*.iso)</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="307"/>
+        <location filename="Properties_Window.cpp" line="305"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.wmdk)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.qcow *.wmdk)</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="173"/>
-        <location filename="Properties_Window.cpp" line="185"/>
-        <location filename="Properties_Window.cpp" line="196"/>
+        <location filename="Properties_Window.cpp" line="171"/>
+        <location filename="Properties_Window.cpp" line="183"/>
+        <location filename="Properties_Window.cpp" line="194"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="173"/>
-        <location filename="Properties_Window.cpp" line="185"/>
-        <location filename="Properties_Window.cpp" line="196"/>
+        <location filename="Properties_Window.cpp" line="171"/>
+        <location filename="Properties_Window.cpp" line="183"/>
+        <location filename="Properties_Window.cpp" line="194"/>
         <source>Image File Not Exists!</source>
         <translation>Файл образа не найден!</translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="215"/>
-        <location filename="Properties_Window.cpp" line="221"/>
-        <location filename="Properties_Window.cpp" line="229"/>
-        <location filename="Properties_Window.cpp" line="232"/>
+        <location filename="Properties_Window.cpp" line="213"/>
+        <location filename="Properties_Window.cpp" line="219"/>
+        <location filename="Properties_Window.cpp" line="227"/>
+        <location filename="Properties_Window.cpp" line="230"/>
         <source>Kb</source>
         <translation>Кб</translation>
     </message>
     <message>
         <location filename="Properties_Window.ui" line="49"/>
-        <location filename="Properties_Window.ui" line="122"/>
-        <location filename="Properties_Window.ui" line="198"/>
+        <location filename="Properties_Window.ui" line="119"/>
+        <location filename="Properties_Window.ui" line="192"/>
         <source>Browse</source>
         <translation>Обзор</translation>
     </message>
     <message>
-        <location filename="Properties_Window.ui" line="84"/>
-        <location filename="Properties_Window.ui" line="157"/>
-        <location filename="Properties_Window.ui" line="239"/>
+        <location filename="Properties_Window.ui" line="81"/>
+        <location filename="Properties_Window.ui" line="151"/>
+        <location filename="Properties_Window.ui" line="230"/>
         <source>Advaced settings</source>
         <translation>Дополнительные параметры</translation>
     </message>
@@ -7121,7 +7173,7 @@ On Disk Size: </source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="617"/>
+        <location filename="Advanced_Settings_Window.cpp" line="622"/>
         <location filename="Utils.cpp" line="222"/>
         <location filename="Utils.cpp" line="230"/>
         <location filename="Utils.cpp" line="242"/>
@@ -7129,16 +7181,16 @@ On Disk Size: </source>
         <location filename="Utils.cpp" line="444"/>
         <location filename="Utils.cpp" line="457"/>
         <location filename="Utils.cpp" line="472"/>
-        <location filename="main.cpp" line="109"/>
-        <location filename="main.cpp" line="179"/>
-        <location filename="main.cpp" line="205"/>
-        <location filename="main.cpp" line="215"/>
-        <location filename="main.cpp" line="238"/>
+        <location filename="main.cpp" line="110"/>
+        <location filename="main.cpp" line="180"/>
+        <location filename="main.cpp" line="206"/>
+        <location filename="main.cpp" line="216"/>
+        <location filename="main.cpp" line="239"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="210"/>
+        <location filename="main.cpp" line="211"/>
         <source>Please Select AQEMU Data Folder:</source>
         <translation>Пожалуйста выберите папку данных AQEMU:</translation>
     </message>
@@ -7176,7 +7228,7 @@ Additional Information:
     <message>
         <location filename="Utils.cpp" line="257"/>
         <location filename="main.cpp" line="71"/>
-        <location filename="main.cpp" line="268"/>
+        <location filename="main.cpp" line="269"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
@@ -7194,10 +7246,10 @@ Additional Information:
         <location filename="VM_Devices.cpp" line="42"/>
         <location filename="VM_Devices.cpp" line="43"/>
         <location filename="VM_Devices.cpp" line="44"/>
-        <location filename="VM_Devices.cpp" line="331"/>
-        <location filename="VM_Devices.cpp" line="365"/>
-        <location filename="VM_Devices.cpp" line="399"/>
-        <location filename="VM_Devices.cpp" line="450"/>
+        <location filename="VM_Devices.cpp" line="333"/>
+        <location filename="VM_Devices.cpp" line="367"/>
+        <location filename="VM_Devices.cpp" line="401"/>
+        <location filename="VM_Devices.cpp" line="452"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
@@ -7561,28 +7613,31 @@ Check Permissions For File: </source>
     </message>
     <message>
         <location filename="main.cpp" line="72"/>
-        <source>This is a First Start AQEMU and Program Running in root Mode.
-In Some Linux Distributions That Can Lead to Inability to Save Configuration!</source>
-        <translation></translation>
+        <source>This is a first start AQEMU and program running in root mode.
+In some Linux distributions it can lead to inability to save configuration!
+Close AQEMU?</source>
+        <oldsource>This is a First Start AQEMU and Program Running in root Mode.
+In Some Linux Distributions That Can Lead to Inability to Save Configuration!</oldsource>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="206"/>
+        <location filename="main.cpp" line="207"/>
         <source>Cannot Locate AQEMU Data Folder!
 You Should Select This Folder in Next Window!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="216"/>
+        <location filename="main.cpp" line="217"/>
         <source>AQEMU Doesn&apos;t Work If Data Folder Not Selected!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="180"/>
+        <location filename="main.cpp" line="181"/>
         <source>Cannot Find AQEMU Data!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="269"/>
+        <location filename="main.cpp" line="270"/>
         <source>AQEMU VM Folder Not Exists! Create It?</source>
         <translation>Папка для ВМ AQEMU не существует! Создать её?</translation>
     </message>
@@ -7833,12 +7888,12 @@ You Should Select This Folder in Next Window!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="110"/>
+        <location filename="main.cpp" line="111"/>
         <source>Cannot Find Emulators in This System! You Most Set It In Advanced Settings!</source>
         <translation>Не могу найти эмуляторы в этой системе! Вы должны указать их в окне &quot;Дополнительные настройки&quot;!</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="618"/>
+        <location filename="Advanced_Settings_Window.cpp" line="623"/>
         <source>Cannot Find Emulators in This System! Please Add Emulators Manual!</source>
         <translation>Не могу найти эмуляторы в этой системе! Вы должны добавить их самостоятельно!</translation>
     </message>
@@ -7868,17 +7923,17 @@ You Should Select This Folder in Next Window!</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="99"/>
+        <location filename="main.cpp" line="100"/>
         <source>AQEMU emulators search</source>
         <translation>AQEMU поиск эмуляторов</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="100"/>
+        <location filename="main.cpp" line="101"/>
         <source>After the update AQEMU should perform a search of emulators. Please wait.</source>
         <translation>После обновления AQEMU нужно провести поиск эмуляторов. Пожалуйста подождите.</translation>
     </message>
     <message>
-        <location filename="main.cpp" line="239"/>
+        <location filename="main.cpp" line="240"/>
         <source>Cannot Load AQEMU Icon Theme!
 File &quot;%1&quot; Not Found!</source>
         <translation>Не могу загрузить тему значков для AQEMU!
@@ -8036,22 +8091,22 @@ Show this message in future?</source>
 Показывать это сообщение в дальнейшем?</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="14"/>
+        <location filename="Settings_Window.ui" line="15"/>
         <source>General Settings</source>
         <translation>Основные настройки</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="64"/>
+        <location filename="Settings_Window.ui" line="70"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="169"/>
+        <location filename="Settings_Window.ui" line="182"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="81"/>
+        <location filename="Settings_Window.ui" line="87"/>
         <source>Default VM Template:</source>
         <translation>Шаблон ВМ по умолчанию:</translation>
     </message>
@@ -8091,67 +8146,67 @@ Show this message in future?</source>
         <translation>Новый шаблон создан!</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="54"/>
+        <location filename="Settings_Window.ui" line="60"/>
         <source>AQEMU VM Folder:</source>
         <translation>Каталог ВМ AQEMU:</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="247"/>
+        <location filename="Settings_Window.ui" line="260"/>
         <source>Use Device Manager by Default</source>
         <translation>Использовать режим менеджера устройств</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="237"/>
+        <location filename="Settings_Window.ui" line="250"/>
         <source>Use Screenshot for OS Icon in Save Mode</source>
         <translation>Использовать скриншот как иконку ОС в сохранённом режиме</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="101"/>
+        <location filename="Settings_Window.ui" line="107"/>
         <source>Create Template</source>
         <translation>Создать шаблон</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="161"/>
+        <location filename="Settings_Window.ui" line="174"/>
         <source>Interface Language:</source>
         <translation>Язык интерфейса:</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="278"/>
+        <location filename="Settings_Window.ui" line="293"/>
         <source>Emulator Control Show Mode</source>
         <translation>Режим отображения Emulator Control</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="294"/>
+        <location filename="Settings_Window.ui" line="314"/>
         <source>Show In Separate Window</source>
         <translation>Показывать в отдельном окне</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="304"/>
+        <location filename="Settings_Window.ui" line="324"/>
         <source>Show Window With Embedded Display</source>
         <translation>Показывать в окне со встроенным дисплеем</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="311"/>
+        <location filename="Settings_Window.ui" line="331"/>
         <source>Show In AQEMU Main Window</source>
         <translation>Показывать в главном окне AQEMU</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="318"/>
+        <location filename="Settings_Window.ui" line="338"/>
         <source>Show In AQEMU Main Window With Embedded Display</source>
         <translation>Показывать в главном окне AQEMU со встроенным дисплеем</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="325"/>
+        <location filename="Settings_Window.ui" line="345"/>
         <source>No Show</source>
         <translation>Не показывать</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="357"/>
+        <location filename="Settings_Window.ui" line="379"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="368"/>
+        <location filename="Settings_Window.ui" line="390"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
@@ -8170,57 +8225,57 @@ Show this message in future?</source>
 Показывать это сообщение снова?</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="32"/>
+        <location filename="Settings_Window.ui" line="33"/>
         <source>Basic Settings</source>
         <translation>Основные настройки</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="139"/>
+        <location filename="Settings_Window.ui" line="147"/>
         <source>View</source>
         <translation>Внешний вид</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="177"/>
+        <location filename="Settings_Window.ui" line="190"/>
         <source>GUI Icons Theme:</source>
         <translation>Тема значков:</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="185"/>
+        <location filename="Settings_Window.ui" line="198"/>
         <source>Crystal SVG (KDE 3)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="190"/>
+        <location filename="Settings_Window.ui" line="203"/>
         <source>Oxygen (KDE 4)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="198"/>
+        <location filename="Settings_Window.ui" line="211"/>
         <source>VM Icons Size:</source>
         <translation>Размер значков ВМ:</translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="209"/>
+        <location filename="Settings_Window.ui" line="222"/>
         <source>16x16</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="214"/>
+        <location filename="Settings_Window.ui" line="227"/>
         <source>24x24</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="219"/>
+        <location filename="Settings_Window.ui" line="232"/>
         <source>32x32</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="224"/>
+        <location filename="Settings_Window.ui" line="237"/>
         <source>48x48</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Settings_Window.ui" line="229"/>
+        <location filename="Settings_Window.ui" line="242"/>
         <source>64x64</source>
         <translation></translation>
     </message>
@@ -8267,64 +8322,69 @@ Show this message in future?</source>
     <name>Snapshots_Window</name>
     <message>
         <location filename="Snapshots_Window.ui" line="90"/>
-        <location filename="Snapshots_Window.cpp" line="71"/>
+        <location filename="Snapshots_Window.cpp" line="72"/>
         <source>ID:</source>
         <translation>ID:</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.ui" line="64"/>
-        <location filename="Snapshots_Window.cpp" line="72"/>
+        <location filename="Snapshots_Window.cpp" line="73"/>
         <source>Size:</source>
         <translation>Размер:</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.ui" line="103"/>
-        <location filename="Snapshots_Window.cpp" line="73"/>
+        <location filename="Snapshots_Window.cpp" line="74"/>
         <source>Date:</source>
         <translation>Дата:</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.ui" line="77"/>
-        <location filename="Snapshots_Window.cpp" line="74"/>
+        <location filename="Snapshots_Window.cpp" line="75"/>
         <source>VM Clock:</source>
         <translation>Часы ВМ:</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="138"/>
-        <location filename="Snapshots_Window.cpp" line="161"/>
+        <location filename="Snapshots_Window.cpp" line="139"/>
+        <location filename="Snapshots_Window.cpp" line="162"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="138"/>
+        <location filename="Snapshots_Window.cpp" line="139"/>
         <source>Before Select Snapshot For Delete!</source>
         <translation>Сначало выберите снапшот для удаления!</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="142"/>
-        <location filename="Snapshots_Window.cpp" line="184"/>
+        <location filename="Snapshots_Window.cpp" line="143"/>
+        <location filename="Snapshots_Window.cpp" line="185"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="142"/>
+        <location filename="Snapshots_Window.cpp" line="143"/>
         <source>Delete Current Snapshot?</source>
         <translation>Удалить текущий снапшот?</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="161"/>
+        <location filename="Snapshots_Window.cpp" line="162"/>
         <source>Before Select Snapshot For Start!</source>
         <translation>Сначало выберите снапшот для запуска!</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="184"/>
+        <location filename="Snapshots_Window.cpp" line="185"/>
         <source>This VM Running! Stop VM and Load Snapshot?</source>
         <translation>Эта ВМ работает! Остановить ВМ и загрузить снапшот?</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="291"/>
+        <location filename="Snapshots_Window.cpp" line="312"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
+    </message>
+    <message>
+        <location filename="Snapshots_Window.cpp" line="313"/>
+        <source>For use snapshots, you most add HDD image in QCOW2 format!</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Snapshots_Window.ui" line="14"/>
@@ -8367,13 +8427,12 @@ Show this message in future?</source>
         <translation>Список снапшотов:</translation>
     </message>
     <message>
-        <location filename="Snapshots_Window.cpp" line="291"/>
         <source>For Use Snapshot, You Most Add Hard Drive to This VM!</source>
-        <translation>Чтобы использовать снапшоты, Вам нужно добавить жёсткий диск в эту ВМ!</translation>
+        <translation type="obsolete">Чтобы использовать снапшоты, Вам нужно добавить жёсткий диск в эту ВМ!</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.ui" line="51"/>
-        <location filename="Snapshots_Window.cpp" line="75"/>
+        <location filename="Snapshots_Window.cpp" line="76"/>
         <source>Description:</source>
         <translation>Описание:</translation>
     </message>
@@ -8905,73 +8964,73 @@ Use the maximum available size.</source>
 <context>
     <name>Virtual_Machine</name>
     <message>
-        <location filename="VM.cpp" line="3187"/>
+        <location filename="VM.cpp" line="3269"/>
         <source>Version Invalid!</source>
         <translation>Версия неверна!</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6585"/>
+        <location filename="VM.cpp" line="6809"/>
         <source>Saving...</source>
         <translation>Сохранение...</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6586"/>
+        <location filename="VM.cpp" line="6810"/>
         <source>Saving Virtual Machine. Please wait...</source>
         <translation>Сохранение виртуальной машины. Пожалуйста подождите...</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6516"/>
+        <location filename="VM.cpp" line="6740"/>
         <source>QEMU Error Log</source>
         <translation>Лог ошибок QEMU</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5830"/>
-        <location filename="VM.cpp" line="5978"/>
-        <location filename="VM.cpp" line="6220"/>
-        <location filename="VM.cpp" line="6270"/>
-        <location filename="VM.cpp" line="6331"/>
+        <location filename="VM.cpp" line="5930"/>
+        <location filename="VM.cpp" line="6202"/>
+        <location filename="VM.cpp" line="6444"/>
+        <location filename="VM.cpp" line="6494"/>
+        <location filename="VM.cpp" line="6555"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5830"/>
+        <location filename="VM.cpp" line="5930"/>
         <source>ROM File Not Exists! QEMU Cannot Run!</source>
         <translation>ROM файл не найден! QEMU не может работать!</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="3188"/>
+        <location filename="VM.cpp" line="3270"/>
         <source>This Version on AQEMU VM File no 0.5
 Load This File?</source>
         <translation>Эта версия файла AQEMU ВМ не 0.5
 Загрузить этот файл?</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6552"/>
+        <location filename="VM.cpp" line="6776"/>
         <source>Loading...</source>
         <translation>Загрузка...</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6553"/>
+        <location filename="VM.cpp" line="6777"/>
         <source>Loading Virtual Machine. Please wait...</source>
         <translation>Загрузка виртуальной машины. Пожалуйста подождите...</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5978"/>
+        <location filename="VM.cpp" line="6202"/>
         <source>Additional Arguments is Empty! Cannot Use User Arguments!</source>
         <translation>Дополнительные аргументы отсутствуют! Поэтому их невозможно использовать!</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5766"/>
+        <location filename="VM.cpp" line="5866"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5767"/>
+        <location filename="VM.cpp" line="5867"/>
         <source>USB Device %1 %2 (%3 %4) Not Found!</source>
         <translation>USB устройство %1 %2 (%3 %4) не найдено!</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6221"/>
+        <location filename="VM.cpp" line="6445"/>
         <source>KVM Kernel Module Not Loaded!
 For Loading KVM Module, Enter in Terminal by User &quot;root&quot;: &quot;modprobe kvm-intel&quot;. Or If Use AMD Processor: &quot;modprobe kvm-amd&quot;.
 Ignore This Error?</source>
@@ -8980,7 +9039,7 @@ Ignore This Error?</source>
 Игнорировать эту ошибку?</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6271"/>
+        <location filename="VM.cpp" line="6495"/>
         <source>KQEMU Kernel Module Not Loaded!
 This Module Provide Acceleration for QEMU.
 For Loading KQEMU Module Type In Root Mode:
@@ -8993,7 +9052,7 @@ Or Disable Acceleration in Tab &quot;Other-&gt;Hardware Virtualization&quot;.</s
 Или отключите акселерацию на вкладке &quot;Другое-&gt;Аппаратная виртуализация&quot;.</translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6332"/>
+        <location filename="VM.cpp" line="6556"/>
         <source>Cannot start emulator! Binary path is empty!</source>
         <translation>Невозможно запустить эмулятор! Путь к бинарнику пуст!</translation>
     </message>

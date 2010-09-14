@@ -69,7 +69,7 @@ const VM_SPICE &SPICE_Settings_Widget::Get_Settings( bool &settingsValidated ) c
 	else
 	{
 		AQGraphic_Warning( tr("Error"),
-						   tr("") );
+						   tr("SPICE RAM size incorrect!") );
 		settingsValidated = false;
 		return spiceSettings;
 	}
@@ -79,7 +79,7 @@ const VM_SPICE &SPICE_Settings_Widget::Get_Settings( bool &settingsValidated ) c
 	else
 	{
 		AQGraphic_Warning( tr("Error"),
-						   tr("") );
+						   tr("SPICE port number incorrect!") );
 		settingsValidated = false;
 		return spiceSettings;
 	}
@@ -91,7 +91,7 @@ const VM_SPICE &SPICE_Settings_Widget::Get_Settings( bool &settingsValidated ) c
 	else
 	{
 		AQGraphic_Warning( tr("Error"),
-						   tr("") );
+						   tr("SPICE SPort number incorrect!") );
 		settingsValidated = false;
 		return spiceSettings;
 	}

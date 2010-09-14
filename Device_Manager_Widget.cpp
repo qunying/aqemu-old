@@ -600,6 +600,7 @@ void Device_Manager_Widget::on_actionAdd_CD_ROM_triggered()
 	if( ! CD_ROM.Get_Enabled() )
 	{
 		pw = new Properties_Window();
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		pw->Set_CD_ROM( CD_ROM, tr("CD/DVD-ROM") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -629,6 +630,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 	if( ! HDA.Get_Enabled() )
 	{
 		pw = new Properties_Window();
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		pw->Set_HDD( HDA, tr("HDA (First Master)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -647,6 +649,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 	else if( ! HDB.Get_Enabled() )
 	{
 		pw = new Properties_Window();
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		pw->Set_HDD( HDB, tr("HDB (First Slave)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -665,6 +668,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 	else if( HDC.Get_Enabled() == false && CD_ROM.Get_Enabled() == false )
 	{
 		pw = new Properties_Window();
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		pw->Set_HDD( HDC, tr("HDC (Second Master)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -683,6 +687,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 	else if( ! HDD.Get_Enabled() )
 	{
 		pw = new Properties_Window();
+		pw->Set_Current_Machine_Devices( Current_Machine_Devices );
 		pw->Set_HDD( HDD, tr("HDD (Second Slave)") );
 		
 		if( pw->exec() == QDialog::Accepted )
@@ -709,6 +714,7 @@ void Device_Manager_Widget::on_actionAdd_Device_triggered()
 {
 	Device_Window = new Add_New_Device_Window();
 	VM_Nativ_Storage_Device tmp_dev;
+	Device_Window->Set_Emulator_Devices( *Current_Machine_Devices );
 	Device_Window->Set_Device( tmp_dev );
 	
 	if( Device_Window->exec() == QDialog::Accepted )

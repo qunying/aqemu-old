@@ -490,6 +490,7 @@ VM::Emulator_Version String_To_Emulator_Version( const QString &str )
 	else if( str == "KVM 0.11.X" ) return VM::KVM_0_11;
 	else if( str == "KVM 0.12.X" ) return VM::KVM_0_12;
 	else if( str == "KVM 0.13.X" ) return VM::KVM_0_13;
+	else if( str == "Obsolete" ) return VM::Obsolete;
 	else
 	{
 		AQError( "VM::Emulator_Version String_To_Emulator_Version( const QString &str )",
@@ -504,37 +505,40 @@ QString Emulator_Version_To_String( VM::Emulator_Version ver )
 	{
 		case VM::QEMU_0_9_0:
 			return "QEMU 0.9.0";
-
+			
 		case VM::QEMU_0_9_1:
 			return "QEMU 0.9.1";
-
+			
 		case VM::QEMU_0_10:
 			return "QEMU 0.10.X";
-
+			
 		case VM::QEMU_0_11:
 			return "QEMU 0.11.X";
-
+			
 		case VM::QEMU_0_12:
 			return "QEMU 0.12.X";
 			
 		case VM::QEMU_0_13:
 			return "QEMU 0.13.X";
-
+			
 		case VM::KVM_7X:
 			return "KVM 7X";
-
+			
 		case VM::KVM_8X:
 			return "KVM 8X";
-
+			
 		case VM::KVM_0_11:
 			return "KVM 0.11.X";
-
+			
 		case VM::KVM_0_12:
 			return "KVM 0.12.X";
 			
 		case VM::KVM_0_13:
 			return "KVM 0.13.X";
-
+			
+		case VM::Obsolete:
+			return "Obsolete";
+			
 		default:
 			AQError( "QString Emulator_Version_To_String( VM::Emulator_Version ver )",
 					 QString("Emulator version \"%1\" not valid!").arg((int)ver) );
