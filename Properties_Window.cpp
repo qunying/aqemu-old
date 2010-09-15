@@ -72,8 +72,11 @@ void Properties_Window::Set_Floppy( const VM_Storage_Device &fd, const QString &
 	ui.Label_Name->setText( ui.Label_Name->text() + name );
 	
 	ui.GB_Floppy->setVisible( true );
+	ui.GB_Floppy->setEnabled( true );
 	ui.GB_CDROM->setVisible( false );
+	ui.GB_CDROM->setEnabled( false );
 	ui.GB_HDD->setVisible( false );
+	ui.GB_HDD->setEnabled( false );
 	
 	// Find Floppy's
 	ui.CB_FD_Devices->clear();
@@ -106,8 +109,11 @@ void Properties_Window::Set_CD_ROM( const VM_Storage_Device &cd, const QString &
 	ui.Label_Name->setText( ui.Label_Name->text() + name );
 	
 	ui.GB_Floppy->setVisible( false );
+	ui.GB_Floppy->setEnabled( false );
 	ui.GB_CDROM->setVisible( true );
+	ui.GB_CDROM->setEnabled( true );
 	ui.GB_HDD->setVisible( false );
+	ui.GB_HDD->setEnabled( false );
 	
 	// Find CD_ROM's
 	ui.CB_CDROM_Devices->clear();
@@ -144,8 +150,11 @@ void Properties_Window::Set_HDD( const VM_HDD &hd, const QString &name )
 	ui.Edit_HDD_Image_Path->setText( hd.Get_File_Name() );
 	
 	ui.GB_Floppy->setVisible( false );
+	ui.GB_Floppy->setEnabled( false );
 	ui.GB_CDROM->setVisible( false );
+	ui.GB_CDROM->setEnabled( false );
 	ui.GB_HDD->setVisible( true );
+	ui.GB_HDD->setEnabled( true );
 	
 	on_Button_Update_Info_clicked();
 	
@@ -381,6 +390,8 @@ void Properties_Window::on_TB_FD_Advanced_Settings_clicked()
 
 void Properties_Window::on_CB_FD_Devices_currentIndexChanged( const QString &text )
 {
+	PW_Storage.Set_File_Name( text );
+	
 	VM_Nativ_Storage_Device tmpDev = PW_Storage.Get_Nativ_Device();
 	
 	// Update nativ device file path
@@ -438,6 +449,8 @@ void Properties_Window::on_TB_CDROM_Advanced_Settings_clicked()
 
 void Properties_Window::on_CB_CDROM_Devices_currentIndexChanged( const QString &text )
 {
+	PW_Storage.Set_File_Name( text );
+	
 	VM_Nativ_Storage_Device tmpDev = PW_Storage.Get_Nativ_Device();
 	
 	// Update nativ device file path
@@ -495,6 +508,8 @@ void Properties_Window::on_TB_HDD_Advanced_Settings_clicked()
 
 void Properties_Window::on_Edit_HDD_Image_Path_textChanged()
 {
+	PW_HDD.Set_File_Name( ui.Edit_HDD_Image_Path->text() );
+	
 	VM_Nativ_Storage_Device tmpDev = PW_HDD.Get_Nativ_Device();
 	
 	// Update nativ device file path
