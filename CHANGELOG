@@ -1,3 +1,21 @@
+2010-09-XX Andrey Rijov (Version 0.8.1)
+
+	* Added SPICE support
+	
+	* Added QEMU/KVM 0.13 support
+	
+	* Improved English localization
+	
+	* Added German localization
+	
+	* Added Ukrainian localization
+	
+	* Improved Device Manager
+	
+	* GUI restyling (Changes affect almost all windows)
+	
+	* Major Bug Fix
+
 2010-07-12 Andrey Rijov (Version 0.8)
 
 	* Support finding available emulator options and devices.

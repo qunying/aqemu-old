@@ -2060,7 +2060,7 @@ Cluster Size: 0</string>
            <attribute name="title">
             <string>CD/DVD/Floppy</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QVBoxLayout" name="verticalLayout_22">
             <item>
              <layout class="QGridLayout" name="gridLayout_14">
               <property name="spacing">
@@ -2079,7 +2079,7 @@ Cluster Size: 0</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" colspan="2">
+              <item row="0" column="1">
                <widget class="Line" name="line_8">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -2087,73 +2087,90 @@ Cluster Size: 0</string>
                </widget>
               </item>
               <item row="1" column="0" colspan="2">
-               <widget class="QComboBox" name="CB_CDROM_Devices">
-                <property name="enabled">
-                 <bool>false</bool>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <property name="spacing">
+                 <number>4</number>
                 </property>
-                <property name="editable">
-                 <bool>true</bool>
+                <property name="leftMargin">
+                 <number>10</number>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QToolButton" name="TB_CDROM_SetPath">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>Browse</string>
-                </property>
-                <property name="text">
-                 <string>Open</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="images.qrc">
-                  <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="3">
-               <layout class="QHBoxLayout" name="horizontalLayout_12">
                 <item>
-                 <widget class="QLabel" name="Label_CDROM_Info">
-                  <property name="enabled">
-                   <bool>false</bool>
+                 <layout class="QHBoxLayout" name="horizontalLayout_31">
+                  <property name="spacing">
+                   <number>4</number>
                   </property>
-                  <property name="text">
-                   <string>Type: none     Size: 0</string>
-                  </property>
-                 </widget>
+                  <item>
+                   <widget class="QComboBox" name="CB_CDROM_Devices">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="editable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="TB_CDROM_SetPath">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>Browse</string>
+                    </property>
+                    <property name="text">
+                     <string>Open</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer_9">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>68</width>
-                    <height>17</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QToolButton" name="TB_CDROM_Advanced_Settings">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="text">
-                   <string>All settings</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="images.qrc">
-                    <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
-                  </property>
-                  <property name="toolButtonStyle">
-                   <enum>Qt::ToolButtonTextBesideIcon</enum>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_12">
+                  <item>
+                   <widget class="QLabel" name="Label_CDROM_Info">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Type: none     Size: 0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_9">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>68</width>
+                      <height>17</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="TB_CDROM_Advanced_Settings">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>All settings</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
+                    </property>
+                    <property name="toolButtonStyle">
+                     <enum>Qt::ToolButtonTextBesideIcon</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -2193,7 +2210,7 @@ Cluster Size: 0</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" colspan="2">
+              <item row="0" column="1">
                <widget class="Line" name="line_9">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -2201,73 +2218,90 @@ Cluster Size: 0</string>
                </widget>
               </item>
               <item row="1" column="0" colspan="2">
-               <widget class="QComboBox" name="CB_FD0_Devices">
-                <property name="enabled">
-                 <bool>false</bool>
+               <layout class="QVBoxLayout" name="verticalLayout_20">
+                <property name="spacing">
+                 <number>4</number>
                 </property>
-                <property name="editable">
-                 <bool>true</bool>
+                <property name="leftMargin">
+                 <number>10</number>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QToolButton" name="TB_FD0_SetPath">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>Browse</string>
-                </property>
-                <property name="text">
-                 <string>Open</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="images.qrc">
-                  <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="3">
-               <layout class="QHBoxLayout" name="horizontalLayout_13">
                 <item>
-                 <widget class="QLabel" name="Label_FD0_Info">
-                  <property name="enabled">
-                   <bool>false</bool>
+                 <layout class="QHBoxLayout" name="horizontalLayout_32">
+                  <property name="spacing">
+                   <number>4</number>
                   </property>
-                  <property name="text">
-                   <string>Type: none     Size: 0</string>
-                  </property>
-                 </widget>
+                  <item>
+                   <widget class="QComboBox" name="CB_FD0_Devices">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="editable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="TB_FD0_SetPath">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>Browse</string>
+                    </property>
+                    <property name="text">
+                     <string>Open</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer_8">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>68</width>
-                    <height>17</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QToolButton" name="TB_FD0_Advanced_Settings">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="text">
-                   <string>All settings</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="images.qrc">
-                    <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
-                  </property>
-                  <property name="toolButtonStyle">
-                   <enum>Qt::ToolButtonTextBesideIcon</enum>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_13">
+                  <item>
+                   <widget class="QLabel" name="Label_FD0_Info">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Type: none     Size: 0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_8">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>68</width>
+                      <height>17</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="TB_FD0_Advanced_Settings">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>All settings</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
+                    </property>
+                    <property name="toolButtonStyle">
+                     <enum>Qt::ToolButtonTextBesideIcon</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -2307,7 +2341,7 @@ Cluster Size: 0</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1" colspan="2">
+              <item row="0" column="1">
                <widget class="Line" name="line_10">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -2315,73 +2349,90 @@ Cluster Size: 0</string>
                </widget>
               </item>
               <item row="1" column="0" colspan="2">
-               <widget class="QComboBox" name="CB_FD1_Devices">
-                <property name="enabled">
-                 <bool>false</bool>
+               <layout class="QVBoxLayout" name="verticalLayout_21">
+                <property name="spacing">
+                 <number>4</number>
                 </property>
-                <property name="editable">
-                 <bool>true</bool>
+                <property name="leftMargin">
+                 <number>10</number>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QToolButton" name="TB_FD1_SetPath">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-                <property name="toolTip">
-                 <string>Browse</string>
-                </property>
-                <property name="text">
-                 <string>Open</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="images.qrc">
-                  <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0" colspan="3">
-               <layout class="QHBoxLayout" name="horizontalLayout_14">
                 <item>
-                 <widget class="QLabel" name="Label_FD1_Info">
-                  <property name="enabled">
-                   <bool>false</bool>
+                 <layout class="QHBoxLayout" name="horizontalLayout_33">
+                  <property name="spacing">
+                   <number>4</number>
                   </property>
-                  <property name="text">
-                   <string>Type: none     Size: 0</string>
-                  </property>
-                 </widget>
+                  <item>
+                   <widget class="QComboBox" name="CB_FD1_Devices">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="editable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="TB_FD1_SetPath">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="toolTip">
+                     <string>Browse</string>
+                    </property>
+                    <property name="text">
+                     <string>Open</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                 <item>
-                 <spacer name="horizontalSpacer_6">
-                  <property name="orientation">
-                   <enum>Qt::Horizontal</enum>
-                  </property>
-                  <property name="sizeHint" stdset="0">
-                   <size>
-                    <width>68</width>
-                    <height>17</height>
-                   </size>
-                  </property>
-                 </spacer>
-                </item>
-                <item>
-                 <widget class="QToolButton" name="TB_FD1_Advanced_Settings">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                  <property name="text">
-                   <string>All settings</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="images.qrc">
-                    <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
-                  </property>
-                  <property name="toolButtonStyle">
-                   <enum>Qt::ToolButtonTextBesideIcon</enum>
-                  </property>
-                 </widget>
+                 <layout class="QHBoxLayout" name="horizontalLayout_14">
+                  <item>
+                   <widget class="QLabel" name="Label_FD1_Info">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>Type: none     Size: 0</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <spacer name="horizontalSpacer_6">
+                    <property name="orientation">
+                     <enum>Qt::Horizontal</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                     <size>
+                      <width>68</width>
+                      <height>17</height>
+                     </size>
+                    </property>
+                   </spacer>
+                  </item>
+                  <item>
+                   <widget class="QToolButton" name="TB_FD1_Advanced_Settings">
+                    <property name="enabled">
+                     <bool>false</bool>
+                    </property>
+                    <property name="text">
+                     <string>All settings</string>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="images.qrc">
+                      <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
+                    </property>
+                    <property name="toolButtonStyle">
+                     <enum>Qt::ToolButtonTextBesideIcon</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </item>
                </layout>
               </item>
@@ -3311,29 +3362,6 @@ Cluster Size: 0</string>
                <property name="margin">
                 <number>0</number>
                </property>
-               <item row="0" column="0">
-                <widget class="QLabel" name="Label_Additional_QEMU_Args">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Additional QEMU/KVM &amp;Arguments</string>
-                 </property>
-                 <property name="buddy">
-                  <cstring>Edit_Additional_Args</cstring>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="Line" name="line_4">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="0" colspan="2">
                 <widget class="QPlainTextEdit" name="Edit_Additional_Args">
                  <property name="sizePolicy">
@@ -3390,10 +3418,37 @@ Cluster Size: 0</string>
                  </item>
                 </layout>
                </item>
+               <item row="0" column="1">
+                <widget class="Line" name="line_4">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="Label_Additional_QEMU_Args">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Additional QEMU/KVM &amp;Arguments</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>Edit_Additional_Args</cstring>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
            </layout>
+           <zorder>TabWidget_Advanced</zorder>
+           <zorder>Widget_Advanced_Emulator_Arguments</zorder>
+           <zorder>Label_Additional_QEMU_Args</zorder>
+           <zorder>line_4</zorder>
           </widget>
           <widget class="QWidget" name="Tab_Other">
            <attribute name="title">
