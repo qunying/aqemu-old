@@ -638,10 +638,17 @@ const QMap<QString, Available_Devices> &Main_Window::Get_Devices_Info( bool *ok 
 	{
 		if( ui.CB_Emulator_Type->currentText() == "QEMU" ) curEmul = Get_Default_Emulator( VM::QEMU );
 		else if( ui.CB_Emulator_Type->currentText() == "KVM" ) curEmul = Get_Default_Emulator( VM::KVM );
+		else if( ui.CB_Emulator_Type->currentText().isEmpty() )
+		{
+			AQWarning( "QList<Available_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
+					   "Empty Emulator Type!" );
+			*ok = false;
+			return retList;
+		}
 		else
 		{
 			AQError( "QList<Available_Devices> &Main_Window::Get_Devices_Info( bool *ok )",
-					 "Incorrect Emulator Type!" );
+					 "Incorrect Emulator Type: " + ui.CB_Emulator_Type->currentText() );
 			*ok = false;
 			return retList;
 		}
@@ -4525,43 +4532,48 @@ void Main_Window::on_actionShow_Advanced_Settings_Window_triggered()
 							Settings.value("Log/Save_Warning","yes").toString() == "yes",
 							Settings.value("Log/Save_Error","yes").toString() == "yes" );
 		
-		// Update Emulators Information
-		All_Emulators_List = Get_Emulators_List();
-		
-		GUI_User_Mode = true;
-		Apply_Emulator( 0 );
-		
-		bool q = false, k = false;
-		
-		for( int ix = 0; ix < ui.CB_Emulator_Type->count(); ix++ )
+		// Emulators Information Changet?
+		QList<Emulator> tmpEmulatorsList = Get_Emulators_List();
+		if( tmpEmulatorsList != All_Emulators_List )
 		{
-			if( ui.CB_Emulator_Type->itemText(ix) == "QEMU" ) q = true;
-			else if( ui.CB_Emulator_Type->itemText(ix) == "KVM" ) k = true;
-		}
-		
-		for( int ix = 0; ix < VM_List.count(); ix++ )
-		{
-			QString type = (VM_List[ ix ]->Get_Emulator_Type() == VM::QEMU ? "QEMU" : "KVM");
+			// Update Emulators Information
+			All_Emulators_List = Get_Emulators_List();
 			
-			if( type == "QEMU" && q == false ) VM_List[ix]->Set_State( VM::VMS_In_Error );
-			else if( type == "KVM" && k == false ) VM_List[ix]->Set_State( VM::VMS_In_Error );
-			else
+			GUI_User_Mode = true;
+			Apply_Emulator( 0 );
+			
+			bool q = false, k = false;
+			
+			for( int ix = 0; ix < ui.CB_Emulator_Type->count(); ix++ )
 			{
-				if( VM_List[ix]->Get_State() == VM::VMS_In_Error )
+				if( ui.CB_Emulator_Type->itemText(ix) == "QEMU" ) q = true;
+				else if( ui.CB_Emulator_Type->itemText(ix) == "KVM" ) k = true;
+			}
+			
+			for( int ix = 0; ix < VM_List.count(); ix++ )
+			{
+				QString type = (VM_List[ ix ]->Get_Emulator_Type() == VM::QEMU ? "QEMU" : "KVM");
+				
+				if( type == "QEMU" && q == false ) VM_List[ix]->Set_State( VM::VMS_In_Error );
+				else if( type == "KVM" && k == false ) VM_List[ix]->Set_State( VM::VMS_In_Error );
+				else
 				{
-					if( (type == "QEMU" && q == true) || (type == "KVM" && k == true) )
+					if( VM_List[ix]->Get_State() == VM::VMS_In_Error )
 					{
-						VM_List[ ix ]->Update_Current_Emulator_Devices();
-						VM_List[ ix ]->Set_State( VM::VMS_Power_Off );
-						VM_List[ ix ]->Save_VM();
-						VM_List[ ix ]->Load_VM( VM_List[ix]->Get_VM_XML_File_Path() );
+						if( (type == "QEMU" && q == true) || (type == "KVM" && k == true) )
+						{
+							VM_List[ ix ]->Update_Current_Emulator_Devices();
+							VM_List[ ix ]->Set_State( VM::VMS_Power_Off );
+							VM_List[ ix ]->Save_VM();
+							VM_List[ ix ]->Load_VM( VM_List[ix]->Get_VM_XML_File_Path() );
+						}
 					}
 				}
 			}
+			
+			Load_Settings();
+			Update_VM_Ui();
 		}
-		
-		Load_Settings();
-		Update_VM_Ui();
 	}
 	
 	delete ad_set;
@@ -5852,13 +5864,14 @@ void Main_Window::Apply_Emulator( int mode )
 {
 	// FIXME
 	//static bool firstRun = true;
-	//static bool running = false;
+	static bool running = false;
 	
 	if( GUI_User_Mode == false ) return;
 	//if( running == true && firstRun == false ) return;
 	
 	//firstRun = false;
-	//running = true;
+	if( running == true ) return;
+	running = true;
 	
 	// Vairables for switch
 	int comp_index;
@@ -5977,7 +5990,7 @@ void Main_Window::Apply_Emulator( int mode )
 			break;
 	}
 	
-	//running = false;
+	running = false;
 }
 
 void Main_Window::CB_Boot_Prioritet_currentIndexChanged( int index )
