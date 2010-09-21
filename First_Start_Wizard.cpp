@@ -208,7 +208,6 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 						 "Cannot find qemu-img!" );
 			
 			// Find QEMU
-			int qemu_emulators_count = 0;
 			QList<Emulator> qemuEmulatorsList;
 			
 			for( int qx = 0; qx < paths.count(); ++qx )
@@ -294,14 +293,12 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				emul.Set_Name( Emulator_Version_To_String(qemu_version) );
 				emul.Set_Type( VM::QEMU );
 				emul.Set_Version( qemu_version );
-				//emul.Set_Default( (qemu_emulators_count == 0) ); // It first emulator?
 				emul.Set_Path( paths[qx] );
 				emul.Set_Devices( devList );
 				emul.Set_Binary_Files( qemu_list );
 				emul.Set_Check_Version( false );
 				emul.Set_Check_Available_Options( false );
 				emul.Set_Force_Version( false );
-				//emul.Save();
 				
 				qemuEmulatorsList << emul;
 				
@@ -309,12 +306,9 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				ui.Edit_Enulators_List->appendPlainText( tr("Finded QEMU in %1, version: %2").
 														 arg(paths[qx]).
 														 arg(Emulator_Version_To_String(qemu_version)) );
-				
-				qemu_emulators_count++;
 			}
 			
 			// Find KVM
-			int kvm_emulators_count = 0;
 			QList<Emulator> kvmEmulatorsList;
 			
 			for( int kx = 0; kx < paths.count(); ++kx )
@@ -390,14 +384,12 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				emul.Set_Name( Emulator_Version_To_String(kvm_version) );
 				emul.Set_Type( VM::KVM );
 				emul.Set_Version( kvm_version );
-				//emul.Set_Default( (kvm_emulators_count == 0) ); // It first emulator?
 				emul.Set_Path( paths[kx] );
 				emul.Set_Devices( devList );
 				emul.Set_Binary_Files( kvm_list );
 				emul.Set_Check_Version( false );
 				emul.Set_Check_Available_Options( false );
 				emul.Set_Force_Version( false );
-				//emul.Save();
 				
 				kvmEmulatorsList << emul;
 				
@@ -405,18 +397,16 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				ui.Edit_Enulators_List->appendPlainText( tr("Finded KVM in %1, version: %2").
 														 arg(paths[kx]).
 														 arg(Emulator_Version_To_String(kvm_version)) );
-				
-				kvm_emulators_count++;
 			}
 			
 			// Set default emulators
-			if( qemu_emulators_count > 0 || kvm_emulators_count > 0 )
+			if( qemuEmulatorsList.count() > 0 || kvmEmulatorsList.count() > 0 )
 			{
 				// Enable Edit Emulator Version Manualy Button
 				ui.Button_Edit->setEnabled( true );
 				
 				// Find and set QEMU default emulator
-				if( qemu_emulators_count > 1 )
+				if( qemuEmulatorsList.count() > 1 )
 				{
 					VM::Emulator_Version maxVer = VM::Obsolete;
 					int maxVerIndex = 0;
@@ -432,14 +422,14 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 					for( int ix = 0; ix < qemuEmulatorsList.count(); ++ix )
 						qemuEmulatorsList[ ix ].Save();
 				}
-				else
+				else if( qemuEmulatorsList.count() > 0 )
 				{
 					qemuEmulatorsList[ 0 ].Set_Default( true );
 					qemuEmulatorsList[ 0 ].Save();
 				}
 				
 				// Find and set KVM default emulator
-				if( kvm_emulators_count > 1 )
+				if( kvmEmulatorsList.count() > 1 )
 				{
 					VM::Emulator_Version maxVer = VM::Obsolete;
 					int maxVerIndex = 0;
@@ -455,7 +445,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 					for( int ix = 0; ix < kvmEmulatorsList.count(); ++ix )
 						kvmEmulatorsList[ ix ].Save();
 				}
-				else
+				else if( kvmEmulatorsList.count() > 0 )
 				{
 					kvmEmulatorsList[ 0 ].Set_Default( true );
 					kvmEmulatorsList[ 0 ].Save();

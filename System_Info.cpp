@@ -2430,10 +2430,10 @@ QString System_Info::Get_Emulator_Output( const QString &path, const QStringList
 	
 	qemu_pr->start( path, args );
 	
-	if( ! qemu_pr->waitForFinished(1000) )
+	if( ! qemu_pr->waitForFinished(2000) )
 	{
 		AQError( "QStringList System_Info::Get_Emulator_Output( const QString &path, const QStringList &args )",
-				 "Time left" );
+				 QString("Time left. File: \"%1\" Args: \"%1\"").arg(path).arg(args.join(" ")) );
 		
 		qemu_pr->kill();
 		return QString();
