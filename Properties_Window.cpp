@@ -288,7 +288,19 @@ void Properties_Window::on_TB_FD_Image_Browse_clicked()
 													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
+	{
 		ui.CB_FD_Devices->lineEdit()->setText( fileName );
+		Add_To_Recent_FDD_Files( fileName );
+		
+		// Add this path to ComboBox items?
+		for( int ix = 0; ix < ui.CB_FD_Devices->count(); ++ix )
+		{
+			if( ui.CB_FD_Devices->itemText(ix) == fileName )
+				return;
+		}
+		
+		ui.CB_FD_Devices->addItem( fileName );
+	}
 }
 
 void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
@@ -301,7 +313,19 @@ void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
 													 tr("All Files (*);;Images Files (*.iso)"), &selectedFilter, options );
 	
 	if( ! fileName.isEmpty() )
+	{
 		ui.CB_CDROM_Devices->lineEdit()->setText( fileName );
+		Add_To_Recent_CD_Files( fileName );
+		
+		// Add this path to ComboBox items?
+		for( int ix = 0; ix < ui.CB_CDROM_Devices->count(); ++ix )
+		{
+			if( ui.CB_CDROM_Devices->itemText(ix) == fileName )
+				return;
+		}
+		
+		ui.CB_CDROM_Devices->addItem( fileName );
+	}
 }
 
 void Properties_Window::on_TB_HDD_Image_Browse_clicked()
@@ -388,7 +412,7 @@ void Properties_Window::on_TB_FD_Advanced_Settings_clicked()
 	delete win;
 }
 
-void Properties_Window::on_CB_FD_Devices_currentIndexChanged( const QString &text )
+void Properties_Window::on_CB_FD_Devices_editTextChanged( const QString &text )
 {
 	PW_Storage.Set_File_Name( text );
 	
@@ -447,7 +471,7 @@ void Properties_Window::on_TB_CDROM_Advanced_Settings_clicked()
 	delete win;
 }
 
-void Properties_Window::on_CB_CDROM_Devices_currentIndexChanged( const QString &text )
+void Properties_Window::on_CB_CDROM_Devices_editTextChanged( const QString &text )
 {
 	PW_Storage.Set_File_Name( text );
 	
