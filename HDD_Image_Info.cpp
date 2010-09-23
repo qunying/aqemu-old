@@ -26,6 +26,12 @@
 #include "Utils.h"
 #include "HDD_Image_Info.h"
 
+HDD_Image_Info::HDD_Image_Info( QObject *parent )
+		: QObject( parent )
+{
+	QEMU_IMG_Proc = new QProcess( this );
+}
+
 VM::Disk_Info HDD_Image_Info::Get_Disk_Info() const
 {
 	return Info;
@@ -35,11 +41,16 @@ void HDD_Image_Info::Update_Disk_Info( const QString &path )
 {
 	Info.Image_File_Name = path;
 	
-	if( Info.Image_File_Name.isEmpty() ||
-		QFile::exists(Info.Image_File_Name) == false )
+	if( Info.Image_File_Name.isEmpty() )
 	{
-		//AQError( "void QEMU_IMG_Thread::run()",
-		//		 "Image \"" + Info.Image_File_Name + "\" Not Exists!" );
+		Clear_Info();
+		return;
+	}
+	
+	if( QFile::exists(Info.Image_File_Name) == false )
+	{
+		AQWarning( "void QEMU_IMG_Thread::run()",
+				   "Image \"" + Info.Image_File_Name + "\" not exists!" );
 		Clear_Info();
 		return;
 	}
@@ -48,7 +59,7 @@ void HDD_Image_Info::Update_Disk_Info( const QString &path )
 		QStringList args;
 		args << "info" << Info.Image_File_Name;
 		
-		QEMU_IMG_Proc = new QProcess();
+		QEMU_IMG_Proc = new QProcess( this );
 		QSettings settings;
 		QEMU_IMG_Proc->start( settings.value("QEMU-IMG_Path", "qemu-img").toString(), args );
 		
@@ -77,8 +88,13 @@ void HDD_Image_Info::Clear_Info()
 void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 {
 	QByteArray info_str_ba = QEMU_IMG_Proc->readAll();
-	
 	QString info_str = QString( info_str_ba ); // Create QString
+	if( info_str.isEmpty() )
+	{
+		AQDebug( "void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )",
+				 "Data is empty." );
+		return;
+	}
 	
 	// image:[\s]+(.+).file format:[\s]+([\w\d]+).virtual size:[\s]+([\d]+[.]*[\d]*[KMG]+).*disk size:[\s]+([\d]+[.]*[\d]*[KMG]+).cluster_size:[\s]+([\d]+).*
 	QRegExp RegInfo = QRegExp( "image:[\\s]+(.+).file format:[\\s]+([\\w\\d]+).virtual size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*disk size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).cluster_size:[\\s]+([\\d]+).*" );
@@ -95,7 +111,7 @@ void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 		if( ! RegInfo.exactMatch(info_str) )
 		{
 			AQError( "void QEMU_IMG_Thread::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )",
-					 "QRegExp Without Cluster Size Not Matched!" );
+					 "QRegExp Without Cluster Size Not Matched! Image: " + Info.Image_File_Name + "\nData: " + info_str );
 			Clear_Info();
 			return;
 		}
@@ -136,5 +152,4 @@ void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 	else Info.Cluster_Size = 0;
 	
 	emit Completed( true );
-	//delete QEMU_IMG_Proc;
 }

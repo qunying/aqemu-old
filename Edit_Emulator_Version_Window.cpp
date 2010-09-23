@@ -41,12 +41,12 @@ void Edit_Emulator_Version_Window::Load_Emulators()
 	{
 		if( Emulators[ix].Get_Type() == VM::QEMU )
 		{
-			new QListWidgetItem( QString("QEMU Version: %1 (Located in %2)").arg(Emulator_Version_To_String(Emulators[ix].Get_Version())).arg(Emulators[ix].Get_Path()),
+			new QListWidgetItem( tr("%1 (Located in %2)").arg(Emulator_Version_To_String(Emulators[ix].Get_Version())).arg(Emulators[ix].Get_Path()),
 								 ui.List_Emulators );
 		}
 		else if( Emulators[ix].Get_Type() == VM::KVM )
 		{
-			new QListWidgetItem( QString("KVM Version: %1 (Located in %2)").arg(Emulator_Version_To_String(Emulators[ix].Get_Version())).arg(Emulators[ix].Get_Path()),
+			new QListWidgetItem( tr("%1 (Located in %2)").arg(Emulator_Version_To_String(Emulators[ix].Get_Version())).arg(Emulators[ix].Get_Path()),
 								 ui.List_Emulators );
 		}
 	}
@@ -61,9 +61,7 @@ void Edit_Emulator_Version_Window::on_Button_OK_clicked()
 	
 	// Save New Emulators
 	for( int ix = 0; ix < Emulators.count(); ++ix )
-	{
 		Emulators[ ix ].Save();
-	}
 	
 	accept();
 }
@@ -88,6 +86,7 @@ void Edit_Emulator_Version_Window::on_List_Emulators_currentRowChanged( int curr
 			ui.CB_Versions->addItem( tr("QEMU 0.10.X") );
 			ui.CB_Versions->addItem( tr("QEMU 0.11.X") );
 			ui.CB_Versions->addItem( tr("QEMU 0.12.X") );
+			ui.CB_Versions->addItem( tr("QEMU 0.13.X") );
 		}
 		else if( Emulators[currentRow].Get_Type() == VM::KVM )
 		{
@@ -97,20 +96,17 @@ void Edit_Emulator_Version_Window::on_List_Emulators_currentRowChanged( int curr
 			ui.CB_Versions->addItem( tr("KVM 8X") );
 			ui.CB_Versions->addItem( tr("KVM 0.11.X") );
 			ui.CB_Versions->addItem( tr("KVM 0.12.X") );
+			ui.CB_Versions->addItem( tr("KVM 0.13.X") );
 		}
 		
 		item_index = ui.CB_Versions->findText( Emulator_Version_To_String(Emulators[currentRow].Get_Version()) );
 
 		// Select Version
 		if( item_index < 0 )
-		{
 			AQError( "void Edit_Emulator_Version_Window::on_List_Emulators_currentRowChanged( int currentRow )",
-					 "Cannot Find Version!" );
-		}
+					 "Cannot Find Version: " + Emulator_Version_To_String(Emulators[currentRow].Get_Version()) );
 		else
-		{
 			ui.CB_Versions->setCurrentIndex( item_index );
-		}
 	}
 	
 	connect( ui.CB_Versions, SIGNAL(currentIndexChanged(const QString &)),
@@ -121,7 +117,7 @@ void Edit_Emulator_Version_Window::CB_Versions_currentIndexChanged( const QStrin
 {
 	if( ui.List_Emulators->currentRow() < 0 ) return;
 	
-	Emulators[ui.List_Emulators->currentRow()].Set_Name( text );
+	Emulators[ ui.List_Emulators->currentRow() ].Set_Name( text );
 	Emulators[ ui.List_Emulators->currentRow() ].Set_Version( String_To_Emulator_Version(text) );
 	
 	Load_Emulators();

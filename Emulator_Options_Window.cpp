@@ -175,7 +175,7 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 		ui.CB_Version->addItem( tr("QEMU 0.10.X") );
 		ui.CB_Version->addItem( tr("QEMU 0.11.X") );
 		ui.CB_Version->addItem( tr("QEMU 0.12.X") );
-
+		ui.CB_Version->addItem( tr("QEMU 0.13.X") );
 	}
 	else if( Current_Emulator.Get_Type() == VM::KVM )
 	{
@@ -186,6 +186,7 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 		ui.CB_Version->addItem( tr("KVM 8X") );
 		ui.CB_Version->addItem( tr("KVM 0.11.X") );
 		ui.CB_Version->addItem( tr("KVM 0.12.X") );
+		ui.CB_Version->addItem( tr("KVM 0.13.X") );
 	}
 	
 	// Path

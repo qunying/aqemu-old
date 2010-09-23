@@ -319,6 +319,7 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Ignace Mouzannar - Debian Package
 &lt;br&gt;Michael Brandstetter - Improvement Scripts
 &lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
+&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation
 &lt;br&gt;Guillem Rieu - Patch for Network Redirections
 &lt;br&gt;Karol Krenski - IP Address RegExp Fix
 &lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
@@ -340,29 +341,59 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
 &lt;br&gt;Oxygen - Icon Theme From Oxygen Team
 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.cpp" line="101"/>
-        <location filename="About_Window.cpp" line="135"/>
-        <location filename="About_Window.cpp" line="184"/>
-        <location filename="About_Window.cpp" line="207"/>
-        <source>Error!</source>
+        <oldsource>&lt;b&gt;Developers:&lt;/b&gt;
+&lt;br&gt;Andrey Rijov (aka RDron) - Author
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Contributors:&lt;/b&gt;
+&lt;br&gt;Max Brazhnikov - FreeBSD Port
+&lt;br&gt;Boris Savelev - ALTLinux Package
+&lt;br&gt;Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help
+&lt;br&gt;Ignace Mouzannar - Debian Package
+&lt;br&gt;Michael Brandstetter - Improvement Scripts
+&lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
+&lt;br&gt;Guillem Rieu - Patch for Network Redirections
+&lt;br&gt;Karol Krenski - IP Address RegExp Fix
+&lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
+&lt;br&gt;Timothy Redaelli - Patch for CMake
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
+&lt;br&gt;Sergey Sinitsa (aka sin)
+&lt;br&gt;Grigory Pulyaev (aka Rodegast)
+&lt;br&gt;Alexander Saifulin (aka Ne01eX)
+&lt;br&gt;Mihail Parshin (aka Skeeper)
+&lt;br&gt;Garret Acott (aka gacott)
+&lt;br&gt;Damir Vafin (aka Denver-22)
+&lt;br&gt;Pavel Serebryakov (aka Kronoph)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
+&lt;br&gt;Tim Jansen (tim@tjansen.de)
+&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
+&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Icons:&lt;/b&gt;
+&lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
+&lt;br&gt;Oxygen - Icon Theme From Oxygen Team
+</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="About_Window.cpp" line="102"/>
+        <location filename="About_Window.cpp" line="136"/>
+        <location filename="About_Window.cpp" line="185"/>
+        <location filename="About_Window.cpp" line="208"/>
+        <source>Error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.cpp" line="103"/>
         <source>Unable to save the file %1: %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.cpp" line="136"/>
+        <location filename="About_Window.cpp" line="137"/>
         <source>Cannot Find AQEMU Links File!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.cpp" line="185"/>
-        <location filename="About_Window.cpp" line="208"/>
+        <location filename="About_Window.cpp" line="186"/>
+        <location filename="About_Window.cpp" line="209"/>
         <source>Download failed: %1.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2670,48 +2701,64 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="86"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="44"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="49"/>
+        <source>%1 (Located in %2)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="84"/>
         <source>QEMU 0.9.0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="87"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="85"/>
         <source>QEMU 0.9.1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="88"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="86"/>
         <source>QEMU 0.10.X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="89"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="87"/>
         <source>QEMU 0.11.X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="90"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="88"/>
         <source>QEMU 0.12.X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="96"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="89"/>
+        <source>QEMU 0.13.X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="95"/>
         <source>KVM 7X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="97"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="96"/>
         <source>KVM 8X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="98"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="97"/>
         <source>KVM 0.11.X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Edit_Emulator_Version_Window.cpp" line="99"/>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="98"/>
         <source>KVM 0.12.X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Edit_Emulator_Version_Window.cpp" line="99"/>
+        <source>KVM 0.13.X</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3290,8 +3337,8 @@ Show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="54"/>
         <location filename="Emulator_Options_Window.cpp" line="112"/>
-        <location filename="Emulator_Options_Window.cpp" line="398"/>
-        <location filename="Emulator_Options_Window.cpp" line="419"/>
+        <location filename="Emulator_Options_Window.cpp" line="399"/>
+        <location filename="Emulator_Options_Window.cpp" line="420"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3346,6 +3393,11 @@ Show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Emulator_Options_Window.cpp" line="178"/>
+        <source>QEMU 0.13.X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Emulator_Options_Window.cpp" line="185"/>
         <source>KVM 7X</source>
         <translation type="unfinished"></translation>
@@ -3366,22 +3418,27 @@ Show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="313"/>
-        <source>Select QEMU Binary File</source>
+        <location filename="Emulator_Options_Window.cpp" line="189"/>
+        <source>KVM 0.13.X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="314"/>
+        <source>Select QEMU Binary File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Emulator_Options_Window.cpp" line="315"/>
         <source>All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="399"/>
+        <location filename="Emulator_Options_Window.cpp" line="400"/>
         <source>Cannot get emulator info! For file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="419"/>
+        <location filename="Emulator_Options_Window.cpp" line="420"/>
         <source>Cannot get version for emulator!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3474,14 +3531,14 @@ Show this message again?</source>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="281"/>
-        <location filename="First_Start_Wizard.cpp" line="378"/>
-        <location filename="First_Start_Wizard.cpp" line="498"/>
+        <location filename="First_Start_Wizard.cpp" line="376"/>
+        <location filename="First_Start_Wizard.cpp" line="543"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="282"/>
-        <location filename="First_Start_Wizard.cpp" line="378"/>
+        <location filename="First_Start_Wizard.cpp" line="376"/>
         <source>Cannot get emulator info! For file: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3491,120 +3548,120 @@ Show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="399"/>
+        <location filename="First_Start_Wizard.cpp" line="397"/>
         <source>Finded KVM in %1, version: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="425"/>
+        <location filename="First_Start_Wizard.cpp" line="470"/>
         <source>Emulator Version Modified By User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="437"/>
+        <location filename="First_Start_Wizard.cpp" line="482"/>
         <source>&amp;Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="441"/>
-        <location filename="First_Start_Wizard.cpp" line="557"/>
+        <location filename="First_Start_Wizard.cpp" line="486"/>
+        <location filename="First_Start_Wizard.cpp" line="602"/>
         <source>&amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="498"/>
+        <location filename="First_Start_Wizard.cpp" line="543"/>
         <source>Cannot Create New Folder!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="549"/>
+        <location filename="First_Start_Wizard.cpp" line="594"/>
         <source>Welcome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="550"/>
+        <location filename="First_Start_Wizard.cpp" line="595"/>
         <source>General Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="551"/>
+        <location filename="First_Start_Wizard.cpp" line="596"/>
         <source>Find Emulators</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="552"/>
+        <location filename="First_Start_Wizard.cpp" line="597"/>
         <source>Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="556"/>
+        <location filename="First_Start_Wizard.cpp" line="601"/>
         <source>&amp;Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="558"/>
+        <location filename="First_Start_Wizard.cpp" line="603"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="560"/>
+        <location filename="First_Start_Wizard.cpp" line="605"/>
         <source>Welcome to AQEMU settings wizard!
 This wizard will help you to choose options that need to AQEMU work correctly.
 Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button to go back to previous page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="561"/>
+        <location filename="First_Start_Wizard.cpp" line="606"/>
         <source>Here you can choose interface language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="562"/>
+        <location filename="First_Start_Wizard.cpp" line="607"/>
         <source>Please select folder for AQEMU virtual machines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="563"/>
+        <location filename="First_Start_Wizard.cpp" line="608"/>
         <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will displayed in virtual machine as icons, like in file manager window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="564"/>
+        <location filename="First_Start_Wizard.cpp" line="609"/>
         <source>Use Device manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="565"/>
+        <location filename="First_Start_Wizard.cpp" line="610"/>
         <source>New experimental work mode is accessible in AQEMU. In this mode QEMU/KVM display will displayed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this function you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="566"/>
+        <location filename="First_Start_Wizard.cpp" line="611"/>
         <source>Include Emdedded VNC Display in Main Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="567"/>
+        <location filename="First_Start_Wizard.cpp" line="612"/>
         <source>To work correctly, AQEMU must know your emulators&apos; arrangement and its&apos; versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you must configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="568"/>
+        <location filename="First_Start_Wizard.cpp" line="613"/>
         <source>&amp;Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="569"/>
+        <location filename="First_Start_Wizard.cpp" line="614"/>
         <source>S&amp;kip Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="570"/>
+        <location filename="First_Start_Wizard.cpp" line="615"/>
         <source>Set &amp;Versions Manualy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="571"/>
+        <location filename="First_Start_Wizard.cpp" line="616"/>
         <source>Congratulations! The Wizard has got all necessary settings for configuring AQEMU. Push &quot;Finish&quot; button to save your settings.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3636,7 +3693,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     </message>
     <message>
         <location filename="Main_Window.ui" line="171"/>
-        <location filename="Main_Window.cpp" line="1937"/>
+        <location filename="Main_Window.cpp" line="1944"/>
         <source>General</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3647,19 +3704,19 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     </message>
     <message>
         <location filename="Main_Window.ui" line="214"/>
-        <location filename="Main_Window.cpp" line="1949"/>
+        <location filename="Main_Window.cpp" line="1956"/>
         <source>Emulator Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="240"/>
-        <location filename="Main_Window.cpp" line="1961"/>
+        <location filename="Main_Window.cpp" line="1968"/>
         <source>Emulator Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="266"/>
-        <location filename="Main_Window.cpp" line="1973"/>
+        <location filename="Main_Window.cpp" line="1980"/>
         <source>Computer Type:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3681,7 +3738,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     <message>
         <location filename="Main_Window.ui" line="392"/>
         <location filename="Main_Window.ui" line="1273"/>
-        <location filename="Main_Window.cpp" line="1145"/>
+        <location filename="Main_Window.cpp" line="1152"/>
         <source>HDD</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3693,7 +3750,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     <message>
         <location filename="Main_Window.ui" line="402"/>
         <location filename="Main_Window.ui" line="2458"/>
-        <location filename="Main_Window.cpp" line="2341"/>
+        <location filename="Main_Window.cpp" line="2348"/>
         <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4189,7 +4246,7 @@ Cluster Size: 0</source>
     </message>
     <message>
         <location filename="Main_Window.ui" line="2061"/>
-        <location filename="Main_Window.cpp" line="1148"/>
+        <location filename="Main_Window.cpp" line="1155"/>
         <source>CD/DVD/Floppy</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4209,9 +4266,9 @@ Cluster Size: 0</source>
         <location filename="Main_Window.ui" line="2139"/>
         <location filename="Main_Window.ui" line="2270"/>
         <location filename="Main_Window.ui" line="2401"/>
-        <location filename="Main_Window.cpp" line="3295"/>
-        <location filename="Main_Window.cpp" line="3301"/>
+        <location filename="Main_Window.cpp" line="3302"/>
         <location filename="Main_Window.cpp" line="3308"/>
+        <location filename="Main_Window.cpp" line="3315"/>
         <source>Type: none     Size: 0</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4356,7 +4413,7 @@ Cluster Size: 0</source>
     </message>
     <message>
         <location filename="Main_Window.ui" line="2988"/>
-        <location filename="Main_Window.cpp" line="2892"/>
+        <location filename="Main_Window.cpp" line="2899"/>
         <source>Advanced</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4502,7 +4559,7 @@ Cluster Size: 0</source>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3455"/>
-        <location filename="Main_Window.cpp" line="2734"/>
+        <location filename="Main_Window.cpp" line="2741"/>
         <source>Other</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4543,7 +4600,7 @@ Cluster Size: 0</source>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3557"/>
-        <location filename="Main_Window.cpp" line="3326"/>
+        <location filename="Main_Window.cpp" line="3333"/>
         <source>Mb</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4913,7 +4970,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
     </message>
     <message>
         <location filename="Main_Window.cpp" line="150"/>
-        <location filename="Main_Window.cpp" line="2544"/>
+        <location filename="Main_Window.cpp" line="2551"/>
         <source>Ports</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4934,1023 +4991,1023 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="711"/>
-        <location filename="Main_Window.cpp" line="905"/>
-        <location filename="Main_Window.cpp" line="1223"/>
-        <location filename="Main_Window.cpp" line="1496"/>
-        <location filename="Main_Window.cpp" line="1502"/>
-        <location filename="Main_Window.cpp" line="1926"/>
-        <location filename="Main_Window.cpp" line="4131"/>
-        <location filename="Main_Window.cpp" line="4139"/>
-        <location filename="Main_Window.cpp" line="4250"/>
-        <location filename="Main_Window.cpp" line="4379"/>
-        <location filename="Main_Window.cpp" line="5030"/>
-        <location filename="Main_Window.cpp" line="6154"/>
-        <location filename="Main_Window.cpp" line="6229"/>
+        <location filename="Main_Window.cpp" line="718"/>
+        <location filename="Main_Window.cpp" line="912"/>
+        <location filename="Main_Window.cpp" line="1230"/>
+        <location filename="Main_Window.cpp" line="1503"/>
+        <location filename="Main_Window.cpp" line="1509"/>
+        <location filename="Main_Window.cpp" line="1933"/>
+        <location filename="Main_Window.cpp" line="4138"/>
+        <location filename="Main_Window.cpp" line="4146"/>
+        <location filename="Main_Window.cpp" line="4257"/>
+        <location filename="Main_Window.cpp" line="4386"/>
+        <location filename="Main_Window.cpp" line="5042"/>
+        <location filename="Main_Window.cpp" line="6167"/>
+        <location filename="Main_Window.cpp" line="6242"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="711"/>
+        <location filename="Main_Window.cpp" line="718"/>
         <source>VM Name is Empty!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="905"/>
+        <location filename="Main_Window.cpp" line="912"/>
         <source>Redirection List is Empty! Please Disable Redirections!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1135"/>
+        <location filename="Main_Window.cpp" line="1142"/>
         <source>Device Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1224"/>
+        <location filename="Main_Window.cpp" line="1231"/>
         <source>VM File &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1224"/>
+        <location filename="Main_Window.cpp" line="1231"/>
         <source>&quot; is Read Only!
 Check Permissions!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1497"/>
+        <location filename="Main_Window.cpp" line="1504"/>
         <source>Memory size &lt; 1! Use default value: 256 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1503"/>
+        <location filename="Main_Window.cpp" line="1510"/>
         <source>Memory size &gt; all free memory on this system!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1829"/>
+        <location filename="Main_Window.cpp" line="1836"/>
         <source>You must create a new virtual machine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1830"/>
+        <location filename="Main_Window.cpp" line="1837"/>
         <source>This VM uses an emulator &quot;%1&quot; which is not installed in the system.
 The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1887"/>
+        <location filename="Main_Window.cpp" line="1894"/>
         <source>Machine Details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1903"/>
+        <location filename="Main_Window.cpp" line="1910"/>
         <source>Machine State:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1910"/>
+        <location filename="Main_Window.cpp" line="1917"/>
         <source>Running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1914"/>
+        <location filename="Main_Window.cpp" line="1921"/>
         <source>Power Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1918"/>
+        <location filename="Main_Window.cpp" line="1925"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1922"/>
+        <location filename="Main_Window.cpp" line="1929"/>
         <source>Saved</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1985"/>
+        <location filename="Main_Window.cpp" line="1992"/>
         <source>Machine Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="1997"/>
+        <location filename="Main_Window.cpp" line="2004"/>
         <source>CPU Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2009"/>
+        <location filename="Main_Window.cpp" line="2016"/>
         <source>Memory Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2021"/>
+        <location filename="Main_Window.cpp" line="2028"/>
         <source>Number of CPU:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2033"/>
+        <location filename="Main_Window.cpp" line="2040"/>
         <source>Acceleration:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2040"/>
-        <location filename="Main_Window.cpp" line="2058"/>
+        <location filename="Main_Window.cpp" line="2047"/>
+        <location filename="Main_Window.cpp" line="2065"/>
         <source>Use If Possible</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2044"/>
+        <location filename="Main_Window.cpp" line="2051"/>
         <source>Disabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2048"/>
+        <location filename="Main_Window.cpp" line="2055"/>
         <source>Enabled</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2052"/>
+        <location filename="Main_Window.cpp" line="2059"/>
         <source>Full</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2068"/>
+        <location filename="Main_Window.cpp" line="2075"/>
         <source>Boot Priority:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2080"/>
+        <location filename="Main_Window.cpp" line="2087"/>
         <source>Video Card:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2092"/>
+        <location filename="Main_Window.cpp" line="2099"/>
         <source>Keyboard Layout:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2104"/>
+        <location filename="Main_Window.cpp" line="2111"/>
         <source>Use Sound:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2112"/>
-        <location filename="Main_Window.cpp" line="2130"/>
-        <location filename="Main_Window.cpp" line="2142"/>
-        <location filename="Main_Window.cpp" line="2154"/>
-        <location filename="Main_Window.cpp" line="2166"/>
-        <location filename="Main_Window.cpp" line="2178"/>
-        <location filename="Main_Window.cpp" line="2190"/>
-        <location filename="Main_Window.cpp" line="2751"/>
-        <location filename="Main_Window.cpp" line="2908"/>
-        <location filename="Main_Window.cpp" line="2920"/>
-        <location filename="Main_Window.cpp" line="2932"/>
-        <location filename="Main_Window.cpp" line="2944"/>
-        <location filename="Main_Window.cpp" line="2956"/>
-        <location filename="Main_Window.cpp" line="2968"/>
+        <location filename="Main_Window.cpp" line="2119"/>
+        <location filename="Main_Window.cpp" line="2137"/>
+        <location filename="Main_Window.cpp" line="2149"/>
+        <location filename="Main_Window.cpp" line="2161"/>
+        <location filename="Main_Window.cpp" line="2173"/>
+        <location filename="Main_Window.cpp" line="2185"/>
+        <location filename="Main_Window.cpp" line="2197"/>
+        <location filename="Main_Window.cpp" line="2758"/>
+        <location filename="Main_Window.cpp" line="2915"/>
+        <location filename="Main_Window.cpp" line="2927"/>
+        <location filename="Main_Window.cpp" line="2939"/>
+        <location filename="Main_Window.cpp" line="2951"/>
+        <location filename="Main_Window.cpp" line="2963"/>
+        <location filename="Main_Window.cpp" line="2975"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2116"/>
-        <location filename="Main_Window.cpp" line="2130"/>
-        <location filename="Main_Window.cpp" line="2142"/>
-        <location filename="Main_Window.cpp" line="2154"/>
-        <location filename="Main_Window.cpp" line="2166"/>
-        <location filename="Main_Window.cpp" line="2178"/>
-        <location filename="Main_Window.cpp" line="2190"/>
-        <location filename="Main_Window.cpp" line="2357"/>
-        <location filename="Main_Window.cpp" line="2507"/>
-        <location filename="Main_Window.cpp" line="2751"/>
-        <location filename="Main_Window.cpp" line="2806"/>
-        <location filename="Main_Window.cpp" line="2829"/>
-        <location filename="Main_Window.cpp" line="2852"/>
-        <location filename="Main_Window.cpp" line="2875"/>
-        <location filename="Main_Window.cpp" line="2908"/>
-        <location filename="Main_Window.cpp" line="2920"/>
-        <location filename="Main_Window.cpp" line="2932"/>
-        <location filename="Main_Window.cpp" line="2944"/>
-        <location filename="Main_Window.cpp" line="2956"/>
-        <location filename="Main_Window.cpp" line="2968"/>
+        <location filename="Main_Window.cpp" line="2123"/>
+        <location filename="Main_Window.cpp" line="2137"/>
+        <location filename="Main_Window.cpp" line="2149"/>
+        <location filename="Main_Window.cpp" line="2161"/>
+        <location filename="Main_Window.cpp" line="2173"/>
+        <location filename="Main_Window.cpp" line="2185"/>
+        <location filename="Main_Window.cpp" line="2197"/>
+        <location filename="Main_Window.cpp" line="2364"/>
+        <location filename="Main_Window.cpp" line="2514"/>
+        <location filename="Main_Window.cpp" line="2758"/>
+        <location filename="Main_Window.cpp" line="2813"/>
+        <location filename="Main_Window.cpp" line="2836"/>
+        <location filename="Main_Window.cpp" line="2859"/>
+        <location filename="Main_Window.cpp" line="2882"/>
+        <location filename="Main_Window.cpp" line="2915"/>
+        <location filename="Main_Window.cpp" line="2927"/>
+        <location filename="Main_Window.cpp" line="2939"/>
+        <location filename="Main_Window.cpp" line="2951"/>
+        <location filename="Main_Window.cpp" line="2963"/>
+        <location filename="Main_Window.cpp" line="2975"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2126"/>
+        <location filename="Main_Window.cpp" line="2133"/>
         <source>Fullscreen Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2138"/>
+        <location filename="Main_Window.cpp" line="2145"/>
         <source>Enable ACPI:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2150"/>
+        <location filename="Main_Window.cpp" line="2157"/>
         <source>Use Local Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2162"/>
+        <location filename="Main_Window.cpp" line="2169"/>
         <source>Start CPU at Startup:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2174"/>
+        <location filename="Main_Window.cpp" line="2181"/>
         <source>Use Snapshot Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2186"/>
+        <location filename="Main_Window.cpp" line="2193"/>
         <source>No Reboot:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2201"/>
+        <location filename="Main_Window.cpp" line="2208"/>
         <source>Storage Devices</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2225"/>
+        <location filename="Main_Window.cpp" line="2232"/>
         <source>Floppy 1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2240"/>
+        <location filename="Main_Window.cpp" line="2247"/>
         <source>Floppy 2:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2257"/>
+        <location filename="Main_Window.cpp" line="2264"/>
         <source>CD/DVD-ROM:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2274"/>
+        <location filename="Main_Window.cpp" line="2281"/>
         <source>Primary Master (HDA):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2287"/>
+        <location filename="Main_Window.cpp" line="2294"/>
         <source>Primary Slave (HDB):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2300"/>
+        <location filename="Main_Window.cpp" line="2307"/>
         <source>Secondary Master (HDC):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2313"/>
+        <location filename="Main_Window.cpp" line="2320"/>
         <source>Secondary Slave (HDD):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2328"/>
+        <location filename="Main_Window.cpp" line="2335"/>
         <source>No Devices Found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2353"/>
+        <location filename="Main_Window.cpp" line="2360"/>
         <source>Use Network:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2368"/>
+        <location filename="Main_Window.cpp" line="2375"/>
         <source>Card: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2375"/>
+        <location filename="Main_Window.cpp" line="2382"/>
         <source>User mode network stack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2379"/>
-        <location filename="Main_Window.cpp" line="2383"/>
+        <location filename="Main_Window.cpp" line="2386"/>
+        <location filename="Main_Window.cpp" line="2390"/>
         <source>TUN/TAP Interface</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2387"/>
-        <location filename="Main_Window.cpp" line="2391"/>
+        <location filename="Main_Window.cpp" line="2394"/>
+        <location filename="Main_Window.cpp" line="2398"/>
         <source>TCP Socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2395"/>
+        <location filename="Main_Window.cpp" line="2402"/>
         <source>VLAN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2399"/>
-        <location filename="Main_Window.cpp" line="2403"/>
+        <location filename="Main_Window.cpp" line="2406"/>
+        <location filename="Main_Window.cpp" line="2410"/>
         <source>UDP multicast socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2407"/>
+        <location filename="Main_Window.cpp" line="2414"/>
         <source>No Connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2425"/>
+        <location filename="Main_Window.cpp" line="2432"/>
         <source>Item %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2432"/>
+        <location filename="Main_Window.cpp" line="2439"/>
         <source>NIC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2436"/>
+        <location filename="Main_Window.cpp" line="2443"/>
         <source>User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2440"/>
+        <location filename="Main_Window.cpp" line="2447"/>
         <source>Channel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2444"/>
+        <location filename="Main_Window.cpp" line="2451"/>
         <source>TAP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2448"/>
+        <location filename="Main_Window.cpp" line="2455"/>
         <source>Socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2452"/>
+        <location filename="Main_Window.cpp" line="2459"/>
         <source>Multicast Socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2456"/>
+        <location filename="Main_Window.cpp" line="2463"/>
         <source>VDE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2460"/>
+        <location filename="Main_Window.cpp" line="2467"/>
         <source>Dump</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2464"/>
+        <location filename="Main_Window.cpp" line="2471"/>
         <source>Unknown Type Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2487"/>
+        <location filename="Main_Window.cpp" line="2494"/>
         <source>Redirection </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2503"/>
+        <location filename="Main_Window.cpp" line="2510"/>
         <source>Use Redirections:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2517"/>
+        <location filename="Main_Window.cpp" line="2524"/>
         <source>TFTP Server Prefix:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2530"/>
+        <location filename="Main_Window.cpp" line="2537"/>
         <source>SMB Folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2558"/>
+        <location filename="Main_Window.cpp" line="2565"/>
         <source>Serial Port %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2566"/>
-        <location filename="Main_Window.cpp" line="2622"/>
-        <location filename="Main_Window.cpp" line="2644"/>
-        <location filename="Main_Window.cpp" line="2700"/>
-        <location filename="Main_Window.cpp" line="5889"/>
+        <location filename="Main_Window.cpp" line="2573"/>
+        <location filename="Main_Window.cpp" line="2629"/>
+        <location filename="Main_Window.cpp" line="2651"/>
+        <location filename="Main_Window.cpp" line="2707"/>
+        <location filename="Main_Window.cpp" line="5902"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2570"/>
-        <location filename="Main_Window.cpp" line="2648"/>
+        <location filename="Main_Window.cpp" line="2577"/>
+        <location filename="Main_Window.cpp" line="2655"/>
         <source>vc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2574"/>
-        <location filename="Main_Window.cpp" line="2652"/>
+        <location filename="Main_Window.cpp" line="2581"/>
+        <location filename="Main_Window.cpp" line="2659"/>
         <source>pty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2578"/>
-        <location filename="Main_Window.cpp" line="2656"/>
+        <location filename="Main_Window.cpp" line="2585"/>
+        <location filename="Main_Window.cpp" line="2663"/>
         <source>none</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2582"/>
-        <location filename="Main_Window.cpp" line="2660"/>
+        <location filename="Main_Window.cpp" line="2589"/>
+        <location filename="Main_Window.cpp" line="2667"/>
         <source>null</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2586"/>
-        <location filename="Main_Window.cpp" line="2664"/>
+        <location filename="Main_Window.cpp" line="2593"/>
+        <location filename="Main_Window.cpp" line="2671"/>
         <source>dev</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2590"/>
-        <location filename="Main_Window.cpp" line="2668"/>
+        <location filename="Main_Window.cpp" line="2597"/>
+        <location filename="Main_Window.cpp" line="2675"/>
         <source>host_port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2594"/>
-        <location filename="Main_Window.cpp" line="2672"/>
+        <location filename="Main_Window.cpp" line="2601"/>
+        <location filename="Main_Window.cpp" line="2679"/>
         <source>file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2598"/>
-        <location filename="Main_Window.cpp" line="2676"/>
+        <location filename="Main_Window.cpp" line="2605"/>
+        <location filename="Main_Window.cpp" line="2683"/>
         <source>stdio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2602"/>
-        <location filename="Main_Window.cpp" line="2680"/>
+        <location filename="Main_Window.cpp" line="2609"/>
+        <location filename="Main_Window.cpp" line="2687"/>
         <source>pipe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2606"/>
-        <location filename="Main_Window.cpp" line="2684"/>
+        <location filename="Main_Window.cpp" line="2613"/>
+        <location filename="Main_Window.cpp" line="2691"/>
         <source>udp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2610"/>
-        <location filename="Main_Window.cpp" line="2688"/>
+        <location filename="Main_Window.cpp" line="2617"/>
+        <location filename="Main_Window.cpp" line="2695"/>
         <source>tcp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2614"/>
-        <location filename="Main_Window.cpp" line="2692"/>
+        <location filename="Main_Window.cpp" line="2621"/>
+        <location filename="Main_Window.cpp" line="2699"/>
         <source>telnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2618"/>
-        <location filename="Main_Window.cpp" line="2696"/>
+        <location filename="Main_Window.cpp" line="2625"/>
+        <location filename="Main_Window.cpp" line="2703"/>
         <source>unix</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2636"/>
+        <location filename="Main_Window.cpp" line="2643"/>
         <source>Parallel Port %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2714"/>
+        <location filename="Main_Window.cpp" line="2721"/>
         <source>USB Port %1:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2747"/>
+        <location filename="Main_Window.cpp" line="2754"/>
         <source>Use Linux Boot:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2758"/>
+        <location filename="Main_Window.cpp" line="2765"/>
         <source>Kernel bzImage:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2768"/>
+        <location filename="Main_Window.cpp" line="2775"/>
         <source>Initrd File:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2778"/>
+        <location filename="Main_Window.cpp" line="2785"/>
         <source>Kernel ComLine:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2794"/>
+        <location filename="Main_Window.cpp" line="2801"/>
         <source>ROM File:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2817"/>
+        <location filename="Main_Window.cpp" line="2824"/>
         <source>On-Board Flash Image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2840"/>
+        <location filename="Main_Window.cpp" line="2847"/>
         <source>SD Card Image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2863"/>
+        <location filename="Main_Window.cpp" line="2870"/>
         <source>Parallel Flash Image:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2904"/>
+        <location filename="Main_Window.cpp" line="2911"/>
         <source>No Frame:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2916"/>
+        <location filename="Main_Window.cpp" line="2923"/>
         <source>Alt Grab:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2928"/>
+        <location filename="Main_Window.cpp" line="2935"/>
         <source>No Quit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2940"/>
+        <location filename="Main_Window.cpp" line="2947"/>
         <source>Portrait Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2952"/>
+        <location filename="Main_Window.cpp" line="2959"/>
         <source>Check Boot Sector on FDD:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2964"/>
+        <location filename="Main_Window.cpp" line="2971"/>
         <source>Windows 2000 Hack:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2977"/>
+        <location filename="Main_Window.cpp" line="2984"/>
         <source>QEMU/KVM Arguments</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3307"/>
+        <location filename="Main_Window.cpp" line="3314"/>
         <source>Type: Host Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3309"/>
+        <location filename="Main_Window.cpp" line="3316"/>
         <source>Type: Image     Size: 0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3316"/>
+        <location filename="Main_Window.cpp" line="3323"/>
         <source>Byte</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3321"/>
+        <location filename="Main_Window.cpp" line="3328"/>
         <source>Kb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3331"/>
+        <location filename="Main_Window.cpp" line="3338"/>
         <source>Gb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3335"/>
+        <location filename="Main_Window.cpp" line="3342"/>
         <source>Type: Image     Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3515"/>
-        <location filename="Main_Window.cpp" line="3521"/>
-        <location filename="Main_Window.cpp" line="4936"/>
+        <location filename="Main_Window.cpp" line="3522"/>
+        <location filename="Main_Window.cpp" line="3528"/>
+        <location filename="Main_Window.cpp" line="4948"/>
         <source>Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3592"/>
-        <location filename="Main_Window.cpp" line="3633"/>
-        <location filename="Main_Window.cpp" line="4621"/>
-        <location filename="Main_Window.cpp" line="4682"/>
-        <location filename="Main_Window.cpp" line="6310"/>
+        <location filename="Main_Window.cpp" line="3599"/>
+        <location filename="Main_Window.cpp" line="3640"/>
+        <location filename="Main_Window.cpp" line="4633"/>
+        <location filename="Main_Window.cpp" line="4694"/>
+        <location filename="Main_Window.cpp" line="6323"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3592"/>
+        <location filename="Main_Window.cpp" line="3599"/>
         <source>VM be Changed. Discard Changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3633"/>
-        <location filename="Main_Window.cpp" line="4621"/>
+        <location filename="Main_Window.cpp" line="3640"/>
+        <location filename="Main_Window.cpp" line="4633"/>
         <source>VM be Changed. Save Changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3708"/>
-        <location filename="Main_Window.cpp" line="4784"/>
-        <location filename="Main_Window.cpp" line="4938"/>
-        <location filename="Main_Window.cpp" line="4947"/>
-        <location filename="Main_Window.cpp" line="6170"/>
+        <location filename="Main_Window.cpp" line="3715"/>
+        <location filename="Main_Window.cpp" line="4796"/>
+        <location filename="Main_Window.cpp" line="4950"/>
+        <location filename="Main_Window.cpp" line="4959"/>
+        <location filename="Main_Window.cpp" line="6183"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3708"/>
+        <location filename="Main_Window.cpp" line="3715"/>
         <source>Cannot Change Icon When VM in Save State.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3959"/>
+        <location filename="Main_Window.cpp" line="3966"/>
         <source>bzImage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3972"/>
+        <location filename="Main_Window.cpp" line="3979"/>
         <source>Initrd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="3989"/>
+        <location filename="Main_Window.cpp" line="3996"/>
         <source>ROM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4006"/>
+        <location filename="Main_Window.cpp" line="4013"/>
         <source>On-Board Flash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4023"/>
+        <location filename="Main_Window.cpp" line="4030"/>
         <source>SecureDigital Card</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4040"/>
+        <location filename="Main_Window.cpp" line="4047"/>
         <source>Parallel Flash</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4059"/>
+        <location filename="Main_Window.cpp" line="4066"/>
         <source>VNC x509 Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4075"/>
+        <location filename="Main_Window.cpp" line="4082"/>
         <source>VNC x509verify Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4131"/>
+        <location filename="Main_Window.cpp" line="4138"/>
         <source>No boot device found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4140"/>
+        <location filename="Main_Window.cpp" line="4147"/>
         <source>%1 Image &quot;%2&quot; Not Exist! Continue Without It Image?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4231"/>
+        <location filename="Main_Window.cpp" line="4238"/>
         <source>Delete?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4232"/>
+        <location filename="Main_Window.cpp" line="4239"/>
         <source>Delete &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4232"/>
+        <location filename="Main_Window.cpp" line="4239"/>
         <source>&quot; VM?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4250"/>
+        <location filename="Main_Window.cpp" line="4257"/>
         <source>Cannot Delete VM XML File!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4358"/>
+        <location filename="Main_Window.cpp" line="4365"/>
         <source>VM Name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4358"/>
+        <location filename="Main_Window.cpp" line="4365"/>
         <source>New Virtual Machine Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4380"/>
+        <location filename="Main_Window.cpp" line="4387"/>
         <source>You New VM Name is Empty! VM Not Created!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4682"/>
+        <location filename="Main_Window.cpp" line="4694"/>
         <source>QEMU running in snapshot mode. VM can not be saved in this mode.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4718"/>
-        <location filename="Main_Window.cpp" line="4757"/>
+        <location filename="Main_Window.cpp" line="4730"/>
+        <location filename="Main_Window.cpp" line="4769"/>
         <source>You Sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4719"/>
+        <location filename="Main_Window.cpp" line="4731"/>
         <source>Shutdown VM &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4758"/>
+        <location filename="Main_Window.cpp" line="4770"/>
         <source>Reboot VM &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4772"/>
+        <location filename="Main_Window.cpp" line="4784"/>
         <source>Open AQEMU VM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4773"/>
+        <location filename="Main_Window.cpp" line="4785"/>
         <source>AQEMU VM (*.aqemu)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4784"/>
+        <location filename="Main_Window.cpp" line="4796"/>
         <source>VM With This Name Already Exists!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4914"/>
+        <location filename="Main_Window.cpp" line="4926"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4914"/>
+        <location filename="Main_Window.cpp" line="4926"/>
         <source>New Template Created!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4938"/>
+        <location filename="Main_Window.cpp" line="4950"/>
         <source>Emulator Control Already Show</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4947"/>
+        <location filename="Main_Window.cpp" line="4959"/>
         <source>This Function Work Only On Running VM!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4977"/>
-        <location filename="Main_Window.cpp" line="4978"/>
+        <location filename="Main_Window.cpp" line="4989"/>
+        <location filename="Main_Window.cpp" line="4990"/>
         <source>QEMU/KVM Arguments:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4978"/>
+        <location filename="Main_Window.cpp" line="4990"/>
         <source>No VM Found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5012"/>
+        <location filename="Main_Window.cpp" line="5024"/>
         <source>Save VM to Script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5014"/>
+        <location filename="Main_Window.cpp" line="5026"/>
         <source>Shell Script Files (*.sh);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5030"/>
+        <location filename="Main_Window.cpp" line="5042"/>
         <source>Cannot Open File!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5072"/>
-        <location filename="Main_Window.cpp" line="5080"/>
-        <location filename="Main_Window.cpp" line="5089"/>
-        <location filename="Main_Window.cpp" line="5098"/>
-        <location filename="Main_Window.cpp" line="5105"/>
-        <location filename="Main_Window.cpp" line="5113"/>
-        <location filename="Main_Window.cpp" line="5140"/>
-        <location filename="Main_Window.cpp" line="5185"/>
+        <location filename="Main_Window.cpp" line="5084"/>
+        <location filename="Main_Window.cpp" line="5092"/>
+        <location filename="Main_Window.cpp" line="5101"/>
+        <location filename="Main_Window.cpp" line="5110"/>
+        <location filename="Main_Window.cpp" line="5117"/>
+        <location filename="Main_Window.cpp" line="5125"/>
+        <location filename="Main_Window.cpp" line="5152"/>
+        <location filename="Main_Window.cpp" line="5197"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5073"/>
-        <location filename="Main_Window.cpp" line="5081"/>
+        <location filename="Main_Window.cpp" line="5085"/>
+        <location filename="Main_Window.cpp" line="5093"/>
         <source>Cannot convert &quot;%1&quot; to memory size!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5090"/>
+        <location filename="Main_Window.cpp" line="5102"/>
         <source>Cannot convert &quot;%1&quot; to integer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5099"/>
+        <location filename="Main_Window.cpp" line="5111"/>
         <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes: MB, GB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5105"/>
+        <location filename="Main_Window.cpp" line="5117"/>
         <source>Memory size &lt; 0! Valid size 1 or more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5114"/>
+        <location filename="Main_Window.cpp" line="5126"/>
         <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 For set it size, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5140"/>
+        <location filename="Main_Window.cpp" line="5152"/>
         <source>Current memory size more of all host memory!
 Use the maximum available size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5152"/>
+        <location filename="Main_Window.cpp" line="5164"/>
         <source>Free memory: %1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5185"/>
+        <location filename="Main_Window.cpp" line="5197"/>
         <source>Free memory on this system is low 32 MB!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5209"/>
-        <location filename="Main_Window.cpp" line="5275"/>
+        <location filename="Main_Window.cpp" line="5221"/>
+        <location filename="Main_Window.cpp" line="5287"/>
         <source>Open Floppy Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5211"/>
-        <location filename="Main_Window.cpp" line="5277"/>
+        <location filename="Main_Window.cpp" line="5223"/>
+        <location filename="Main_Window.cpp" line="5289"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5341"/>
+        <location filename="Main_Window.cpp" line="5353"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5343"/>
+        <location filename="Main_Window.cpp" line="5355"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5407"/>
-        <location filename="Main_Window.cpp" line="5495"/>
-        <location filename="Main_Window.cpp" line="5584"/>
-        <location filename="Main_Window.cpp" line="5670"/>
+        <location filename="Main_Window.cpp" line="5419"/>
+        <location filename="Main_Window.cpp" line="5507"/>
+        <location filename="Main_Window.cpp" line="5596"/>
+        <location filename="Main_Window.cpp" line="5682"/>
         <source>Open HDD Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5409"/>
-        <location filename="Main_Window.cpp" line="5497"/>
-        <location filename="Main_Window.cpp" line="5586"/>
-        <location filename="Main_Window.cpp" line="5672"/>
+        <location filename="Main_Window.cpp" line="5421"/>
+        <location filename="Main_Window.cpp" line="5509"/>
+        <location filename="Main_Window.cpp" line="5598"/>
+        <location filename="Main_Window.cpp" line="5684"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5765"/>
+        <location filename="Main_Window.cpp" line="5777"/>
         <source>Image Format: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5765"/>
+        <location filename="Main_Window.cpp" line="5777"/>
         <source>Allocated Disk Space: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5766"/>
+        <location filename="Main_Window.cpp" line="5778"/>
         <source>Virtual Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5766"/>
+        <location filename="Main_Window.cpp" line="5778"/>
         <source>Cluster Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5883"/>
+        <location filename="Main_Window.cpp" line="5896"/>
         <source>QEMU</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5884"/>
+        <location filename="Main_Window.cpp" line="5897"/>
         <source>KVM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6154"/>
+        <location filename="Main_Window.cpp" line="6167"/>
         <source>CPU count value not valid digit!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6170"/>
+        <location filename="Main_Window.cpp" line="6183"/>
         <source>CPU count &gt; max CPU count for this emulator!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6229"/>
+        <location filename="Main_Window.cpp" line="6242"/>
         <source>Cannot Save This VM to File!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6274"/>
+        <location filename="Main_Window.cpp" line="6287"/>
         <source>Network Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6276"/>
+        <location filename="Main_Window.cpp" line="6289"/>
         <source>Network Cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6311"/>
+        <location filename="Main_Window.cpp" line="6324"/>
         <source>For Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
 Press button &quot;Ignore&quot; for hide this message in future.
 Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6349"/>
+        <location filename="Main_Window.cpp" line="6362"/>
         <source>Select SMB Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6366"/>
+        <location filename="Main_Window.cpp" line="6379"/>
         <source>UNIX Domain Socket Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6368"/>
-        <location filename="Main_Window.cpp" line="6399"/>
+        <location filename="Main_Window.cpp" line="6381"/>
         <location filename="Main_Window.cpp" line="6412"/>
         <location filename="Main_Window.cpp" line="6425"/>
         <location filename="Main_Window.cpp" line="6438"/>
         <location filename="Main_Window.cpp" line="6451"/>
         <location filename="Main_Window.cpp" line="6464"/>
+        <location filename="Main_Window.cpp" line="6477"/>
         <source>All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6376"/>
+        <location filename="Main_Window.cpp" line="6389"/>
         <source>Select x509 Certificate Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6385"/>
+        <location filename="Main_Window.cpp" line="6398"/>
         <source>Select x509 Verify Certificate Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6397"/>
+        <location filename="Main_Window.cpp" line="6410"/>
         <source>Select Kernel Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6410"/>
+        <location filename="Main_Window.cpp" line="6423"/>
         <source>Select InitRD File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6423"/>
+        <location filename="Main_Window.cpp" line="6436"/>
         <source>Select ROM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6436"/>
+        <location filename="Main_Window.cpp" line="6449"/>
         <source>Select On-Board Flash Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6449"/>
+        <location filename="Main_Window.cpp" line="6462"/>
         <source>Select SecureDigital Card Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6462"/>
+        <location filename="Main_Window.cpp" line="6475"/>
         <source>Select Parallel Flash Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6951,43 +7008,43 @@ Continue Without It File?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="299"/>
+        <location filename="Properties_Window.cpp" line="311"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="301"/>
+        <location filename="Properties_Window.cpp" line="313"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="312"/>
+        <location filename="Properties_Window.cpp" line="336"/>
         <source>Open HDD Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="314"/>
+        <location filename="Properties_Window.cpp" line="338"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.wmdk)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="351"/>
+        <location filename="Properties_Window.cpp" line="375"/>
         <source>Format: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="352"/>
+        <location filename="Properties_Window.cpp" line="376"/>
         <source> Virtual Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="353"/>
+        <location filename="Properties_Window.cpp" line="377"/>
         <source>
 On Disk Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Properties_Window.cpp" line="354"/>
+        <location filename="Properties_Window.cpp" line="378"/>
         <source> Cluster Size: </source>
         <translation type="unfinished"></translation>
     </message>
@@ -7832,27 +7889,27 @@ Missing (zero) values will be computed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="236"/>
+        <location filename="Select_Icon_Window.ui" line="242"/>
         <source>Other &amp;Icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="260"/>
+        <location filename="Select_Icon_Window.ui" line="266"/>
         <source>You Icon Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="277"/>
+        <location filename="Select_Icon_Window.ui" line="283"/>
         <source>&amp;Browse...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="301"/>
+        <location filename="Select_Icon_Window.ui" line="307"/>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Select_Icon_Window.ui" line="325"/>
+        <location filename="Select_Icon_Window.ui" line="331"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>

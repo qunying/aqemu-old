@@ -56,6 +56,7 @@ About_Window::About_Window( QWidget *parent ): QDialog( parent )
 	"<br>Ignace Mouzannar - Debian Package\n"
 	"<br>Michael Brandstetter - Improvement Scripts\n"
 	"<br>Robert Warnke - German AQEMU Documentation Translation\n"
+	"<br>Michael Schmöller (aka schmoemi) - German Translation\n"
 	"<br>Guillem Rieu - Patch for Network Redirections\n"
 	"<br>Karol Krenski - IP Address RegExp Fix\n"
 	"<br>Alexander Romanov (aka romale) - Testing, New Ideas and Other Help\n"
