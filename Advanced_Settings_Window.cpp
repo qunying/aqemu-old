@@ -81,47 +81,64 @@ Advanced_Settings_Window::Advanced_Settings_Window( QWidget *parent )
 	ui.CH_Show_Tab_Info->setChecked( Settings.value("Info/Show_Tab_Info", "yes").toString() == "yes" );
 	ui.CH_Show_QEMU_Args->setChecked( Settings.value("Info/Show_QEMU_Args", "no").toString() == "yes" );
 	ui.CH_Show_Screenshot_in_Save_Mode->setChecked( Settings.value("Info/Show_Screenshot_in_Save_Mode", "no").toString() == "yes" );
+	
 	ui.CH_Machine_Details->setChecked( Settings.value("Info/Machine_Details", "yes").toString() == "yes" );
-	ui.CH_Machine_Name->setChecked( Settings.value("Info/Machine_Name", "yes").toString() == "yes" );
+	
+	ui.CH_Machine_Name->setChecked( Settings.value("Info/Machine_Name", "no").toString() == "yes" );
+	ui.CH_Emulator_Type->setChecked( Settings.value("Info/Emulator_Type", "yes").toString() == "yes" );
+	ui.CH_Emulator_Version->setChecked( Settings.value("Info/Emulator_Version", "no").toString() == "yes" );
 	ui.CH_Computer_Type->setChecked( Settings.value("Info/Computer_Type", "yes").toString() == "yes" );
-	ui.CH_Machine_Type->setChecked( Settings.value("Info/Machine_Type", "yes").toString() == "yes" );
-	ui.CH_CPU_Type->setChecked( Settings.value("Info/CPU_Type", "yes").toString() == "yes" );
-	ui.CH_Number_of_CPU->setChecked( Settings.value("Info/Number_of_CPU", "no").toString() == "yes" );
-	ui.CH_Acceleration->setChecked( Settings.value("Info/Acceleration", "no").toString() == "yes" );
+	ui.CH_Machine_Type->setChecked( Settings.value("Info/Machine_Type", "no").toString() == "yes" );
 	ui.CH_Boot_Priority->setChecked( Settings.value("Info/Boot_Priority", "yes").toString() == "yes" );
-	ui.CH_Video_Card->setChecked( Settings.value("Info/Video_Card", "no").toString() == "yes" );
+	ui.CH_CPU_Type->setChecked( Settings.value("Info/CPU_Type", "no").toString() == "yes" );
+	ui.CH_Number_of_CPU->setChecked( Settings.value("Info/Number_of_CPU", "yes").toString() == "yes" );
+	ui.CH_Video_Card->setChecked( Settings.value("Info/Video_Card", "yes").toString() == "yes" );
 	ui.CH_Keyboard_Layout->setChecked( Settings.value("Info/Keyboard_Layout", "no").toString() == "yes" );
+	
 	ui.CH_Memory_Size->setChecked( Settings.value("Info/Memory_Size", "yes").toString() == "yes" );
 	ui.CH_Use_Sound->setChecked( Settings.value("Info/Use_Sound", "yes").toString() == "yes" );
+	
 	ui.CH_Fullscreen->setChecked( Settings.value("Info/Fullscreen", "yes").toString() == "yes" );
-	ui.CH_Win2K_Hack->setChecked( Settings.value("Info/Win2K_Hack", "no").toString() == "yes" );
-	ui.CH_ACPI->setChecked( Settings.value("Info/ACPI", "yes").toString() == "yes" );
-	ui.CH_Localtime->setChecked( Settings.value("Info/Localtime", "yes").toString() == "yes" );
-	ui.CH_Check_Boot_on_FDD->setChecked( Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" );
-	ui.CH_Start_CPU->setChecked( Settings.value("Info/Start_CPU", "no").toString() == "yes" );
 	ui.CH_Snapshot->setChecked( Settings.value("Info/Snapshot", "yes").toString() == "yes" );
-	ui.CH_QEMU_Log->setChecked( Settings.value("Info/QEMU_Log", "no").toString() == "yes" );
-	ui.CH_No_Reboot->setChecked( Settings.value("Info/No_Reboot", "no").toString() == "yes" );
+	ui.CH_Localtime->setChecked( Settings.value("Info/Localtime", "yes").toString() == "yes" );
+	
+	ui.CH_Show_FDD->setChecked( Settings.value("Info/Show_FDD", "yes").toString() == "yes" );
+	ui.CH_Show_CD->setChecked( Settings.value("Info/Show_CD", "yes").toString() == "yes" );
+	ui.CH_Show_HDD->setChecked( Settings.value("Info/Show_HDD", "yes").toString() == "yes" );
+	
 	ui.CH_Network_Cards->setChecked( Settings.value("Info/Network_Cards", "yes").toString() == "yes" );
 	ui.CH_Redirections->setChecked( Settings.value("Info/Redirections", "no").toString() == "yes" );
-	ui.CH_TFTP_Server_Prefix->setChecked( Settings.value("Info/TFTP_Server_Prefix", "no").toString() == "yes" );
-	ui.CH_SMB_Dir->setChecked( Settings.value("Info/SMB_Dir", "no").toString() == "yes" );
-	ui.CH_Serial_Port->setChecked( Settings.value("Info/Serial_Port", "no").toString() == "yes" );
-	ui.CH_Parallel_Port->setChecked( Settings.value("Info/Parallel_Port", "no").toString() == "yes" );
-	ui.CH_USB_Port->setChecked( Settings.value("Info/USB_Port", "no").toString() == "yes" );
-	ui.CH_ROM_File->setChecked( Settings.value("Info/ROM_File", "no").toString() == "yes" );
-	ui.CH_MTDBlock->setChecked( Settings.value("Info/MTDBlock", "no").toString() == "yes" );
-	ui.CH_SD_Image->setChecked( Settings.value("Info/SD_Image", "no").toString() == "yes" );
-	ui.CH_PFlash->setChecked( Settings.value("Info/PFlash", "no").toString() == "yes" );
+	
+	ui.CH_Serial_Port->setChecked( Settings.value("Info/Serial_Port", "yes").toString() == "yes" );
+	ui.CH_Parallel_Port->setChecked( Settings.value("Info/Parallel_Port", "yes").toString() == "yes" );
+	ui.CH_USB_Port->setChecked( Settings.value("Info/USB_Port", "yes").toString() == "yes" );
+	
+	ui.CH_Win2K_Hack->setChecked( Settings.value("Info/Win2K_Hack", "no").toString() == "yes" );
+	ui.CH_RTC_TD_Hack->setChecked( Settings.value("Info/RTC_TD_Hack", "no").toString() == "yes" );
+	ui.CH_No_Shutdown->setChecked( Settings.value("Info/No_Shutdown", "no").toString() == "yes" );
+	ui.CH_No_Reboot->setChecked( Settings.value("Info/No_Reboot", "no").toString() == "yes" );
+	ui.CH_Start_CPU->setChecked( Settings.value("Info/Start_CPU", "no").toString() == "yes" );
+	ui.CH_Check_Boot_on_FDD->setChecked( Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" );
+	ui.CH_ACPI->setChecked( Settings.value("Info/ACPI", "yes").toString() == "yes" );
+	ui.CH_Start_Date->setChecked( Settings.value("Info/Start_Date", "no").toString() == "yes" );
+	
 	ui.CH_No_Frame->setChecked( Settings.value("Info/No_Frame", "no").toString() == "yes" );
 	ui.CH_Alt_Grab->setChecked( Settings.value("Info/Alt_Grab", "no").toString() == "yes" );
 	ui.CH_No_Quit->setChecked( Settings.value("Info/No_Quit", "no").toString() == "yes" );
 	ui.CH_Portrait->setChecked( Settings.value("Info/Portrait", "no").toString() == "yes" );
-	ui.CH_GDB_Port->setChecked( Settings.value("Info/GDB_Port", "no").toString() == "yes" );
+	ui.CH_Curses->setChecked( Settings.value("Info/Curses", "no").toString() == "yes" );
+	ui.CH_Show_Cursor->setChecked( Settings.value("Info/Show_Cursor", "no").toString() == "yes" );
+	ui.CH_Init_Graphical_Mode->setChecked( Settings.value("Info/Init_Graphical_Mode", "no").toString() == "yes" );
+	
+	ui.CH_ROM_File->setChecked( Settings.value("Info/ROM_File", "no").toString() == "yes" );
+	ui.CH_MTDBlock->setChecked( Settings.value("Info/MTDBlock", "no").toString() == "yes" );
+	ui.CH_SD_Image->setChecked( Settings.value("Info/SD_Image", "no").toString() == "yes" );
+	ui.CH_PFlash->setChecked( Settings.value("Info/PFlash", "no").toString() == "yes" );
+	
 	ui.CH_Linux_Boot->setChecked( Settings.value("Info/Linux_Boot", "no").toString() == "yes" );
-	ui.CH_Show_FDD->setChecked( Settings.value("Info/Show_FDD", "yes").toString() == "yes" );
-	ui.CH_Show_CD->setChecked( Settings.value("Info/Show_CD", "yes").toString() == "yes" );
-	ui.CH_Show_HDD->setChecked( Settings.value("Info/Show_HDD", "yes").toString() == "yes" );
+	ui.CH_Acceleration->setChecked( Settings.value("Info/Acceleration", "no").toString() == "yes" );
+	ui.CH_VNC->setChecked( Settings.value("Info/VNC", "no").toString() == "yes" );
+	ui.CH_SPICE->setChecked( Settings.value("Info/SPICE", "no").toString() == "yes" );
 	
 	// MAC Address Generation Mode
 	ui.RB_MAC_Random->setChecked( Settings.value("MAC_Generation_Mode", "Model").toString() == "Random" );
@@ -231,144 +248,67 @@ void Advanced_Settings_Window::on_Button_OK_clicked()
 		Settings.setValue( "Additional_CDROM_Devices/Device" + QString::number(ix), ui.CDROM_List->item(ix)->text() );
 	}
 	
-	// Information in Info Tab
-	if( ui.CH_Show_Tab_Info->isChecked() ) Settings.setValue( "Info/Show_Tab_Info", "yes" );
-	else Settings.setValue( "Info/Show_Tab_Info", "no" );
+	Settings.setValue( "Info/Show_Tab_Info", ui.CH_Show_Tab_Info->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Show_QEMU_Args", ui.CH_Show_QEMU_Args->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Show_Screenshot_in_Save_Mode", ui.CH_Show_Screenshot_in_Save_Mode->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Show_QEMU_Args->isChecked() ) Settings.setValue( "Info/Show_QEMU_Args", "yes" );
-	else Settings.setValue( "Info/Show_QEMU_Args", "no" );
+	Settings.setValue( "Info/Machine_Details", ui.CH_Machine_Details->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Show_Screenshot_in_Save_Mode->isChecked() ) Settings.setValue( "Info/Show_Screenshot_in_Save_Mode", "yes" );
-	else Settings.setValue( "Info/Show_Screenshot_in_Save_Mode", "no" );
+	Settings.setValue( "Info/Machine_Name", ui.CH_Machine_Name->isChecked() ? "no" : "no" );
+	Settings.setValue( "Info/Emulator_Type", ui.CH_Emulator_Type->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Emulator_Version", ui.CH_Emulator_Version->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Computer_Type", ui.CH_Computer_Type->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Machine_Type", ui.CH_Machine_Type->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Boot_Priority", ui.CH_Boot_Priority->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/CPU_Type", ui.CH_CPU_Type->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Number_of_CPU", ui.CH_Number_of_CPU->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Video_Card", ui.CH_Video_Card->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Keyboard_Layout", ui.CH_Keyboard_Layout->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Emulator_Type->isChecked() ) Settings.setValue( "Info/Emulator_Type", "yes" );
-	else Settings.setValue( "Info/Emulator_Type", "no" );
+	Settings.setValue( "Info/Memory_Size", ui.CH_Memory_Size->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Use_Sound", ui.CH_Use_Sound->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Emulator_Version->isChecked() ) Settings.setValue( "Info/Emulator_Version", "yes" );
-	else Settings.setValue( "Info/Emulator_Version", "no" );
+	Settings.setValue( "Info/Fullscreen", ui.CH_Fullscreen->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Snapshot", ui.CH_Snapshot->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Localtime", ui.CH_Localtime->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Machine_Details->isChecked() ) Settings.setValue( "Info/Machine_Details", "yes" );
-	else Settings.setValue( "Info/Machine_Details", "no" );
+	Settings.setValue( "Info/Show_FDD", ui.CH_Show_FDD->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Show_CD", ui.CH_Show_CD->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Show_HDD", ui.CH_Show_HDD->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Machine_Name->isChecked() ) Settings.setValue( "Info/Machine_Name", "yes" );
-	else Settings.setValue( "Info/Machine_Name", "no" );
+	Settings.setValue( "Info/Network_Cards", ui.CH_Network_Cards->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Redirections", ui.CH_Redirections->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Computer_Type->isChecked() ) Settings.setValue( "Info/Computer_Type", "yes" );
-	else Settings.setValue( "Info/Computer_Type", "no" );
+	Settings.setValue( "Info/Serial_Port", ui.CH_Serial_Port->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Parallel_Port", ui.CH_Parallel_Port->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/USB_Port", ui.CH_USB_Port->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Machine_Type->isChecked() ) Settings.setValue( "Info/Machine_Type", "yes" );
-	else Settings.setValue( "Info/Machine_Type", "no" );
+	Settings.setValue( "Info/Win2K_Hack", ui.CH_Win2K_Hack->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/RTC_TD_Hack", ui.CH_RTC_TD_Hack->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/No_Shutdown",  ui.CH_No_Shutdown->isChecked()? "yes" : "no" );
+	Settings.setValue( "Info/No_Reboot", ui.CH_No_Reboot->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Start_CPU", ui.CH_Start_CPU->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Check_Boot_on_FDD", ui.CH_Check_Boot_on_FDD->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/ACPI", ui.CH_ACPI->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Start_Date", ui.CH_Start_Date->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_CPU_Type->isChecked() ) Settings.setValue( "Info/CPU_Type", "yes" );
-	else Settings.setValue( "Info/CPU_Type", "no" );
+	Settings.setValue( "Info/No_Frame", ui.CH_No_Frame->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Alt_Grab", ui.CH_Alt_Grab->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/No_Quit", ui.CH_No_Quit->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Portrait", ui.CH_Portrait->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Curses", ui.CH_Curses->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Show_Cursor", ui.CH_Show_Cursor->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Init_Graphical_Mode", ui.CH_Init_Graphical_Mode->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Number_of_CPU->isChecked() ) Settings.setValue( "Info/Number_of_CPU", "yes" );
-	else Settings.setValue( "Info/Number_of_CPU", "no" );
+	Settings.setValue( "Info/ROM_File", ui.CH_ROM_File->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/MTDBlock", ui.CH_MTDBlock->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/SD_Image", ui.CH_SD_Image->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/PFlash", ui.CH_PFlash->isChecked() ? "yes" : "no" );
 	
-	if( ui.CH_Acceleration->isChecked() ) Settings.setValue( "Info/Acceleration", "yes" );
-	else Settings.setValue( "Info/Acceleration", "no" );
-	
-	if( ui.CH_Boot_Priority->isChecked() ) Settings.setValue( "Info/Boot_Priority", "yes" );
-	else Settings.setValue( "Info/Boot_Priority", "no" );
-	
-	if( ui.CH_Video_Card->isChecked() ) Settings.setValue( "Info/Video_Card", "yes" );
-	else Settings.setValue( "Info/Video_Card", "no" );
-	
-	if( ui.CH_Keyboard_Layout->isChecked() ) Settings.setValue( "Info/Keyboard_Layout", "yes" );
-	else Settings.setValue( "Info/Keyboard_Layout", "no" );
-	
-	if( ui.CH_Memory_Size->isChecked() ) Settings.setValue( "Info/Memory_Size", "yes" );
-	else Settings.setValue( "Info/Memory_Size", "no" );
-	
-	if( ui.CH_Use_Sound->isChecked() ) Settings.setValue( "Info/Use_Sound", "yes" );
-	else Settings.setValue( "Info/Use_Sound", "no" );
-	
-	if( ui.CH_Fullscreen->isChecked() ) Settings.setValue( "Info/Fullscreen", "yes" );
-	else Settings.setValue( "Info/Fullscreen", "no" );
-	
-	if( ui.CH_Win2K_Hack->isChecked() ) Settings.setValue( "Info/Win2K_Hack", "yes" );
-	else Settings.setValue( "Info/Win2K_Hack", "no" );
-	
-	if( ui.CH_ACPI->isChecked() ) Settings.setValue( "Info/ACPI", "yes" );
-	else Settings.setValue( "Info/ACPI", "no" );
-	
-	if( ui.CH_Localtime->isChecked() ) Settings.setValue( "Info/Localtime", "yes" );
-	else Settings.setValue( "Info/Localtime", "no" );
-	
-	if( ui.CH_Check_Boot_on_FDD->isChecked() ) Settings.setValue( "Info/Check_Boot_on_FDD", "yes" );
-	else Settings.setValue( "Info/Check_Boot_on_FDD", "no" );
-	
-	if( ui.CH_Start_CPU->isChecked() ) Settings.setValue( "Info/Start_CPU", "yes" );
-	else Settings.setValue( "Info/Start_CPU", "no" );
-	
-	if( ui.CH_Snapshot->isChecked() ) Settings.setValue( "Info/Snapshot", "yes" );
-	else Settings.setValue( "Info/Snapshot", "no" );
-	
-	if( ui.CH_QEMU_Log->isChecked() ) Settings.setValue( "Info/QEMU_Log", "yes" );
-	else Settings.setValue( "Info/QEMU_Log", "no" );
-	
-	if( ui.CH_No_Reboot->isChecked() ) Settings.setValue( "Info/No_Reboot", "yes" );
-	else Settings.setValue( "Info/No_Reboot", "no" );
-	
-	if( ui.CH_Network_Cards->isChecked() ) Settings.setValue( "Info/Network_Cards", "yes" );
-	else Settings.setValue( "Info/Network_Cards", "no" );
-	
-	if( ui.CH_Redirections->isChecked() ) Settings.setValue( "Info/Redirections", "yes" );
-	else Settings.setValue( "Info/Redirections", "no" );
-	
-	if( ui.CH_TFTP_Server_Prefix->isChecked() ) Settings.setValue( "Info/TFTP_Server_Prefix", "yes" );
-	else Settings.setValue( "Info/TFTP_Server_Prefix", "no" );
-	
-	if( ui.CH_SMB_Dir->isChecked() ) Settings.setValue( "Info/SMB_Dir", "yes" );
-	else Settings.setValue( "Info/SMB_Dir", "no" );
-	
-	if( ui.CH_Serial_Port->isChecked() ) Settings.setValue( "Info/Serial_Port", "yes" );
-	else Settings.setValue( "Info/Serial_Port", "no" );
-	
-	if( ui.CH_Parallel_Port->isChecked() ) Settings.setValue( "Info/Parallel_Port", "yes" );
-	else Settings.setValue( "Info/Parallel_Port", "no" );
-	
-	if( ui.CH_USB_Port->isChecked() ) Settings.setValue( "Info/USB_Port", "yes" );
-	else Settings.setValue( "Info/USB_Port", "no" );
-	
-	if( ui.CH_ROM_File->isChecked() ) Settings.setValue( "Info/ROM_File", "yes" );
-	else Settings.setValue( "Info/ROM_File", "no" );
-	
-	if( ui.CH_MTDBlock->isChecked() ) Settings.setValue( "Info/MTDBlock", "yes" );
-	else Settings.setValue( "Info/MTDBlock", "no" );
-	
-	if( ui.CH_SD_Image->isChecked() ) Settings.setValue( "Info/SD_Image", "yes" );
-	else Settings.setValue( "Info/SD_Image", "no" );
-	
-	if( ui.CH_PFlash->isChecked() ) Settings.setValue( "Info/PFlash", "yes" );
-	else Settings.setValue( "Info/PFlash", "no" );
-	
-	if( ui.CH_GDB_Port->isChecked() ) Settings.setValue( "Info/GDB_Port", "yes" );
-	else Settings.setValue( "Info/GDB_Port", "no" );
-	
-	if( ui.CH_No_Frame->isChecked() ) Settings.setValue( "Info/No_Frame", "yes" );
-	else Settings.setValue( "Info/No_Frame", "no" );
-	
-	if( ui.CH_Alt_Grab->isChecked() ) Settings.setValue( "Info/Alt_Grab", "yes" );
-	else Settings.setValue( "Info/Alt_Grab", "no" );
-	
-	if( ui.CH_No_Quit->isChecked() ) Settings.setValue( "Info/No_Quit", "yes" );
-	else Settings.setValue( "Info/No_Quit", "no" );
-	
-	if( ui.CH_Portrait->isChecked() ) Settings.setValue( "Info/Portrait", "yes" );
-	else Settings.setValue( "Info/Portrait", "no" );
-	
-	if( ui.CH_Linux_Boot->isChecked() ) Settings.setValue( "Info/Linux_Boot", "yes" );
-	else Settings.setValue( "Info/Linux_Boot", "no" );
-	
-	if( ui.CH_Show_FDD->isChecked() ) Settings.setValue( "Info/Show_FDD", "yes" );
-	else Settings.setValue( "Info/Show_FDD", "no" );
-	
-	if( ui.CH_Show_CD->isChecked() ) Settings.setValue( "Info/Show_CD", "yes" );
-	else Settings.setValue( "Info/Show_CD", "no" );
-	
-	if( ui.CH_Show_HDD->isChecked() ) Settings.setValue( "Info/Show_HDD", "yes" );
-	else Settings.setValue( "Info/Show_HDD", "no" );
+	Settings.setValue( "Info/Linux_Boot", ui.CH_Linux_Boot->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/Acceleration", ui.CH_Acceleration->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/VNC", ui.CH_VNC->isChecked() ? "yes" : "no" );
+	Settings.setValue( "Info/SPICE", ui.CH_SPICE->isChecked() ? "yes" : "no" );
 	
 	// MAC Address Generation Mode
 	if( ui.RB_MAC_Random->isChecked() ) Settings.setValue( "MAC_Generation_Mode", "Random" );

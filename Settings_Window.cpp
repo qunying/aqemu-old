@@ -134,21 +134,9 @@ Settings_Window::Settings_Window( QWidget *parent )
 			break;
 	}
 	
-	// 64x64 Icons
-	//ui.CH_64_Icons->setChecked( Settings->value("64x64_Icons", "yes").toString() == "yes" );
-	
 	// Screenshot for OS Logo
 	ui.CH_Screenshot_for_OS_Logo->setChecked( Settings->value("Use_Screenshot_for_OS_Logo", "yes").toString() == "yes" );
-	/*
-	// Use USB
-	#ifdef Q_OS_LINUX
-	ui.CH_Use_USB->setEnabled( true );
-	ui.CH_Use_USB->setChecked( Settings->value("Use_USB", "yes").toString() == "yes" );
-	#else
-	ui.CH_Use_USB->setEnabled( false );
-	ui.CH_Use_USB->setChecked( false );
-	#endif
-	*/
+	
 	Load_Templates();
 	
 	connect( ui.RB_Emul_Show_VNC, SIGNAL(toggled(bool)),

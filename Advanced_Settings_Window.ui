@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>497</height>
+    <width>568</width>
+    <height>496</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1261,7 +1261,7 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <layout class="QVBoxLayout" name="verticalLayout_10">
+        <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="leftMargin">
           <number>10</number>
          </property>
@@ -1297,435 +1297,444 @@
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="Line" name="line_15">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
        <item row="2" column="0">
-        <widget class="QWidget" name="QEMU_Args_Widget" native="true">
+        <widget class="QScrollArea" name="QEMU_Args_Widget">
          <property name="enabled">
           <bool>false</bool>
          </property>
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
+         <property name="widgetResizable">
+          <bool>true</bool>
          </property>
-         <layout class="QGridLayout" name="gridLayout_2">
-          <property name="margin">
-           <number>0</number>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>509</width>
+            <height>702</height>
+           </rect>
           </property>
-          <item row="0" column="0">
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <property name="leftMargin">
-             <number>10</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="CH_Machine_Details">
-              <property name="text">
-               <string>Machine Details</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Machine_Name">
-              <property name="text">
-               <string>Machine Name</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_9">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Emulator_Type">
-              <property name="text">
-               <string>Emulator Type</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Emulator_Version">
-              <property name="text">
-               <string>Emulator Version</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Computer_Type">
-              <property name="text">
-               <string>Computer Type</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Machine_Type">
-              <property name="text">
-               <string>Machine Type</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_CPU_Type">
-              <property name="text">
-               <string>CPU Type</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Number_of_CPU">
-              <property name="text">
-               <string>Number of CPU</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Acceleration">
-              <property name="text">
-               <string>Acceleration</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Boot_Priority">
-              <property name="text">
-               <string>Boot Priority</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Video_Card">
-              <property name="text">
-               <string>Video Card</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Keyboard_Layout">
-              <property name="text">
-               <string>Keyboard Layout</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Linux_Boot">
-              <property name="text">
-               <string>Use Linux Boot</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_ROM_File">
-              <property name="text">
-               <string>ROM File</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_PFlash">
-              <property name="text">
-               <string>Parallel Flash Image</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="1">
-           <widget class="Line" name="line_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="2">
-           <layout class="QVBoxLayout" name="verticalLayout_5">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="CH_Memory_Size">
-              <property name="text">
-               <string>Memory Size</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Use_Sound">
-              <property name="text">
-               <string>Use Sound</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Fullscreen">
-              <property name="text">
-               <string>Fullscreen Mode</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_ACPI">
-              <property name="text">
-               <string>Enable ACPI</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Localtime">
-              <property name="text">
-               <string>Use Local Time</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Start_CPU">
-              <property name="text">
-               <string>Start CPU at Startup</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Snapshot">
-              <property name="text">
-               <string>Snapshot Mode</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_No_Reboot">
-              <property name="text">
-               <string>No Reboot</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_8">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Serial_Port">
-              <property name="text">
-               <string>Serial Port</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Parallel_Port">
-              <property name="text">
-               <string>Parallel Port</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_USB_Port">
-              <property name="text">
-               <string>USB Ports</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_7">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_MTDBlock">
-              <property name="text">
-               <string>Flash Image</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_SD_Image">
-              <property name="text">
-               <string>SD Image</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_GDB_Port">
-              <property name="text">
-               <string>GDB Port</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="0" column="3">
-           <widget class="Line" name="line_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="4">
-           <layout class="QVBoxLayout" name="verticalLayout_7">
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item>
-             <widget class="QCheckBox" name="CH_Show_FDD">
-              <property name="text">
-               <string>Show Floppy</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Show_CD">
-              <property name="text">
-               <string>Show CD-ROM</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Show_HDD">
-              <property name="text">
-               <string>Show HDD</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_5">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Network_Cards">
-              <property name="text">
-               <string>Network Cards</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Redirections">
-              <property name="text">
-               <string>Redirections</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_TFTP_Server_Prefix">
-              <property name="text">
-               <string>TFTP Server Prefix</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_SMB_Dir">
-              <property name="text">
-               <string>SMB Directory</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_6">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_No_Frame">
-              <property name="text">
-               <string>No Frame</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Alt_Grab">
-              <property name="text">
-               <string>Alt Grab</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_No_Quit">
-              <property name="text">
-               <string>No Quit</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Portrait">
-              <property name="text">
-               <string>Portrait</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_12">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Win2K_Hack">
-              <property name="text">
-               <string>Windows 2K Hack</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_QEMU_Log">
-              <property name="text">
-               <string>Use QEMU Log</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="CH_Check_Boot_on_FDD">
-              <property name="text">
-               <string>Check Boot Sector on FDD</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="0" column="0">
+            <widget class="QCheckBox" name="CH_Machine_Details">
+             <property name="text">
+              <string>Machine Details</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="Line" name="line_24">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QCheckBox" name="CH_Machine_Name">
+             <property name="text">
+              <string>Machine Name</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" rowspan="5">
+            <widget class="Line" name="line_4">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QCheckBox" name="CH_Boot_Priority">
+             <property name="text">
+              <string>Boot Priority</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="CH_Emulator_Type">
+             <property name="text">
+              <string>Emulator Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="QCheckBox" name="CH_CPU_Type">
+             <property name="text">
+              <string>CPU Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="CH_Emulator_Version">
+             <property name="text">
+              <string>Emulator Version</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="2">
+            <widget class="QCheckBox" name="CH_Number_of_CPU">
+             <property name="text">
+              <string>Number of CPU</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QCheckBox" name="CH_Computer_Type">
+             <property name="text">
+              <string>Computer Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="2">
+            <widget class="QCheckBox" name="CH_Video_Card">
+             <property name="text">
+              <string>Video Card</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QCheckBox" name="CH_Machine_Type">
+             <property name="text">
+              <string>Machine Type</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="2">
+            <widget class="QCheckBox" name="CH_Keyboard_Layout">
+             <property name="text">
+              <string>Keyboard Layout</string>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="0" colspan="3">
+            <widget class="Line" name="line">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0" rowspan="2">
+            <widget class="QCheckBox" name="CH_Memory_Size">
+             <property name="text">
+              <string>Memory Size</string>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1" rowspan="2">
+            <widget class="Line" name="line_5">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="2">
+            <widget class="QCheckBox" name="CH_Network_Cards">
+             <property name="text">
+              <string>Network Cards</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QCheckBox" name="CH_Use_Sound">
+             <property name="text">
+              <string>Use Sound</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="2">
+            <widget class="QCheckBox" name="CH_Redirections">
+             <property name="text">
+              <string>Network Redirections</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0" colspan="3">
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="12" column="0" rowspan="2">
+            <widget class="QCheckBox" name="CH_Show_FDD">
+             <property name="text">
+              <string>Show Floppy</string>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="1" rowspan="3">
+            <widget class="Line" name="line_7">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="13" column="2">
+            <widget class="QCheckBox" name="CH_Fullscreen">
+             <property name="text">
+              <string>Fullscreen Mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="0">
+            <widget class="QCheckBox" name="CH_Show_CD">
+             <property name="text">
+              <string>Show CD-ROM</string>
+             </property>
+            </widget>
+           </item>
+           <item row="14" column="2">
+            <widget class="QCheckBox" name="CH_Snapshot">
+             <property name="text">
+              <string>Snapshot Mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="0">
+            <widget class="QCheckBox" name="CH_Show_HDD">
+             <property name="text">
+              <string>Show HDD</string>
+             </property>
+            </widget>
+           </item>
+           <item row="15" column="2">
+            <widget class="QCheckBox" name="CH_Localtime">
+             <property name="text">
+              <string>Use Local Time</string>
+             </property>
+            </widget>
+           </item>
+           <item row="16" column="0" colspan="3">
+            <widget class="Line" name="line_12">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="17" column="0">
+            <widget class="QCheckBox" name="CH_Serial_Port">
+             <property name="text">
+              <string>Serial Ports</string>
+             </property>
+            </widget>
+           </item>
+           <item row="17" column="1" rowspan="3">
+            <widget class="Line" name="line_8">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="17" column="2">
+            <widget class="QCheckBox" name="CH_VNC">
+             <property name="text">
+              <string>VNC</string>
+             </property>
+            </widget>
+           </item>
+           <item row="18" column="0">
+            <widget class="QCheckBox" name="CH_Parallel_Port">
+             <property name="text">
+              <string>Parallel Ports</string>
+             </property>
+            </widget>
+           </item>
+           <item row="18" column="2">
+            <widget class="QCheckBox" name="CH_SPICE">
+             <property name="text">
+              <string>SPICE</string>
+             </property>
+            </widget>
+           </item>
+           <item row="19" column="0">
+            <widget class="QCheckBox" name="CH_USB_Port">
+             <property name="text">
+              <string>USB Ports</string>
+             </property>
+            </widget>
+           </item>
+           <item row="19" column="2">
+            <widget class="QCheckBox" name="CH_Linux_Boot">
+             <property name="text">
+              <string>Use Linux Boot</string>
+             </property>
+            </widget>
+           </item>
+           <item row="20" column="0" colspan="3">
+            <widget class="Line" name="line_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="21" column="0">
+            <widget class="QCheckBox" name="CH_No_Frame">
+             <property name="text">
+              <string>No Frame</string>
+             </property>
+            </widget>
+           </item>
+           <item row="21" column="1" rowspan="8">
+            <widget class="Line" name="line_3">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="21" column="2">
+            <widget class="QCheckBox" name="CH_Win2K_Hack">
+             <property name="text">
+              <string>Windows 2K Hack</string>
+             </property>
+            </widget>
+           </item>
+           <item row="22" column="0">
+            <widget class="QCheckBox" name="CH_Alt_Grab">
+             <property name="text">
+              <string>Alt Grab</string>
+             </property>
+            </widget>
+           </item>
+           <item row="22" column="2">
+            <widget class="QCheckBox" name="CH_RTC_TD_Hack">
+             <property name="text">
+              <string>RTC TD Hack</string>
+             </property>
+            </widget>
+           </item>
+           <item row="23" column="0">
+            <widget class="QCheckBox" name="CH_No_Quit">
+             <property name="text">
+              <string>No Quit</string>
+             </property>
+            </widget>
+           </item>
+           <item row="23" column="2">
+            <widget class="QCheckBox" name="CH_No_Shutdown">
+             <property name="text">
+              <string>No Shutdown</string>
+             </property>
+            </widget>
+           </item>
+           <item row="24" column="0">
+            <widget class="QCheckBox" name="CH_Portrait">
+             <property name="text">
+              <string>Portrait</string>
+             </property>
+            </widget>
+           </item>
+           <item row="24" column="2">
+            <widget class="QCheckBox" name="CH_No_Reboot">
+             <property name="text">
+              <string>No Reboot</string>
+             </property>
+            </widget>
+           </item>
+           <item row="25" column="0">
+            <widget class="QCheckBox" name="CH_Curses">
+             <property name="text">
+              <string>Curses</string>
+             </property>
+            </widget>
+           </item>
+           <item row="25" column="2">
+            <widget class="QCheckBox" name="CH_Start_CPU">
+             <property name="text">
+              <string>Start CPU at Startup</string>
+             </property>
+            </widget>
+           </item>
+           <item row="26" column="0">
+            <widget class="QCheckBox" name="CH_Show_Cursor">
+             <property name="text">
+              <string>Show cursor</string>
+             </property>
+            </widget>
+           </item>
+           <item row="26" column="2">
+            <widget class="QCheckBox" name="CH_Check_Boot_on_FDD">
+             <property name="text">
+              <string>Check Boot Sector on FDD</string>
+             </property>
+            </widget>
+           </item>
+           <item row="27" column="0">
+            <widget class="QCheckBox" name="CH_Init_Graphical_Mode">
+             <property name="text">
+              <string>Initial graphical mode</string>
+             </property>
+            </widget>
+           </item>
+           <item row="27" column="2">
+            <widget class="QCheckBox" name="CH_ACPI">
+             <property name="text">
+              <string>Enable ACPI</string>
+             </property>
+            </widget>
+           </item>
+           <item row="28" column="0">
+            <widget class="QCheckBox" name="CH_Acceleration">
+             <property name="text">
+              <string>Acceleration</string>
+             </property>
+            </widget>
+           </item>
+           <item row="28" column="2">
+            <widget class="QCheckBox" name="CH_Start_Date">
+             <property name="text">
+              <string>Start Date</string>
+             </property>
+            </widget>
+           </item>
+           <item row="29" column="0" colspan="3">
+            <widget class="Line" name="line_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="30" column="0">
+            <widget class="QCheckBox" name="CH_MTDBlock">
+             <property name="text">
+              <string>Flash Image</string>
+             </property>
+            </widget>
+           </item>
+           <item row="30" column="2">
+            <widget class="QCheckBox" name="CH_PFlash">
+             <property name="text">
+              <string>Parallel Flash Image</string>
+             </property>
+            </widget>
+           </item>
+           <item row="31" column="0">
+            <widget class="QCheckBox" name="CH_ROM_File">
+             <property name="text">
+              <string>ROM File</string>
+             </property>
+            </widget>
+           </item>
+           <item row="31" column="2">
+            <widget class="QCheckBox" name="CH_SD_Image">
+             <property name="text">
+              <string>SD Image</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="Line" name="line_15">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
         </widget>
        </item>
       </layout>
-      <zorder>CH_Show_Tab_Info</zorder>
-      <zorder>CH_Show_Screenshot_in_Save_Mode</zorder>
-      <zorder>CH_Show_QEMU_Args</zorder>
-      <zorder>QEMU_Args_Widget</zorder>
-      <zorder>line_15</zorder>
-      <zorder>line_15</zorder>
      </widget>
     </widget>
    </item>
@@ -1755,7 +1764,6 @@
   <tabstop>CH_No_Quit</tabstop>
   <tabstop>CH_Portrait</tabstop>
   <tabstop>CH_Win2K_Hack</tabstop>
-  <tabstop>CH_QEMU_Log</tabstop>
   <tabstop>CH_Check_Boot_on_FDD</tabstop>
   <tabstop>CH_PFlash</tabstop>
   <tabstop>CH_Memory_Size</tabstop>
@@ -1786,14 +1794,11 @@
   <tabstop>CH_USB_Port</tabstop>
   <tabstop>CH_MTDBlock</tabstop>
   <tabstop>CH_SD_Image</tabstop>
-  <tabstop>CH_GDB_Port</tabstop>
   <tabstop>CH_Show_FDD</tabstop>
   <tabstop>CH_Show_CD</tabstop>
   <tabstop>CH_Show_HDD</tabstop>
   <tabstop>CH_Network_Cards</tabstop>
   <tabstop>CH_Redirections</tabstop>
-  <tabstop>CH_TFTP_Server_Prefix</tabstop>
-  <tabstop>CH_SMB_Dir</tabstop>
   <tabstop>CH_No_Frame</tabstop>
   <tabstop>CH_Alt_Grab</tabstop>
   <tabstop>CH_Emulator_Type</tabstop>
@@ -1810,28 +1815,12 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>557</x>
-     <y>485</y>
+     <x>901</x>
+     <y>795</y>
     </hint>
     <hint type="destinationlabel">
      <x>512</x>
      <y>510</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Show_Tab_Info</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>QEMU_Args_Widget</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>110</x>
-     <y>54</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>101</x>
-     <y>126</y>
     </hint>
    </hints>
   </connection>
@@ -1878,8 +1867,8 @@
      <y>112</y>
     </hint>
     <hint type="destinationlabel">
-     <x>273</x>
-     <y>78</y>
+     <x>539</x>
+     <y>82</y>
     </hint>
    </hints>
   </connection>
@@ -1910,7 +1899,7 @@
      <y>114</y>
     </hint>
     <hint type="destinationlabel">
-     <x>545</x>
+     <x>889</x>
      <y>111</y>
     </hint>
    </hints>
@@ -1958,8 +1947,8 @@
      <y>151</y>
     </hint>
     <hint type="destinationlabel">
-     <x>545</x>
-     <y>181</y>
+     <x>889</x>
+     <y>182</y>
     </hint>
    </hints>
   </connection>
@@ -1970,12 +1959,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>23</x>
-     <y>398</y>
+     <x>35</x>
+     <y>717</y>
     </hint>
     <hint type="destinationlabel">
-     <x>25</x>
-     <y>427</y>
+     <x>46</x>
+     <y>749</y>
     </hint>
    </hints>
   </connection>
@@ -1986,12 +1975,28 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>164</x>
-     <y>398</y>
+     <x>176</x>
+     <y>717</y>
     </hint>
     <hint type="destinationlabel">
-     <x>177</x>
-     <y>427</y>
+     <x>330</x>
+     <y>749</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Show_Tab_Info</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>QEMU_Args_Widget</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>54</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>145</x>
+     <y>207</y>
     </hint>
    </hints>
   </connection>

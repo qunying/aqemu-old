@@ -1861,7 +1861,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 		
 		if( ! QFile::exists(img_path) )
 		{
-			AQDebug( "void Main_Window::Update_Info_Text()",
+			AQDebug( "void Main_Window::Update_Info_Text( int info_mode )",
 					 "Screenshot Path is Empty!" );
 		}
 		else
@@ -1890,320 +1890,294 @@ void Main_Window::Update_Info_Text( int info_mode )
 				<< QTextLength( QTextLength::VariableLength, 250 );
 	table_format.setColumnWidthConstraints(constraints);
 	
-	// Machine State
-	cursor.insertText( tr("Machine Details"), bold_format );
-	cursor.insertBlock();
-	
-	QTextTable *table = cursor.insertTable( 1, 3, table_format );
-	
-	QTextFrame *frame = cursor.currentFrame();
-	
-	QTextFrameFormat frame_format = frame->frameFormat();
-	frame_format.setBorder( 0 );
-	frame->setFrameFormat( frame_format );
-	
+	// Vairables
+	QTextTable *table;
+	QTextFrame *frame;
+	QTextFrameFormat frame_format;
 	QTextTableCell cell;
 	QTextCursor cell_cursor;
 	
-	cell = table->cellAt( table->rows()-1, 1 );
-	cell_cursor = cell.firstCursorPosition();
-	cell_cursor.insertText( tr("Machine State:"), format );
-	
-	QString state_text = "";
-	
-	switch( tmp_vm->Get_State() )
+	// Machine State
+	if( Settings.value("Info/Machine_Details", "yes").toString() == "yes" )
 	{
-		case VM::VMS_Running:
-			state_text = tr("Running");
-			break;
-			
-		case VM::VMS_Power_Off:
-			state_text = tr("Power Off");
-			break;
-			
-		case VM::VMS_Pause:
-			state_text = tr("Pause");
-			break;
-			
-		case VM::VMS_Saved:
-			state_text = tr("Saved");
-			break;
-			
-		default:
-			state_text = tr("Error!");
-			break;
+		cursor.insertText( tr("Machine Details"), bold_format );
+		cursor.insertBlock();
+		
+		table = cursor.insertTable( 1, 3, table_format );
+		frame = cursor.currentFrame();
+		
+		frame_format = frame->frameFormat();
+		frame_format.setBorder( 0 );
+		frame->setFrameFormat( frame_format );
+		
+		cell = table->cellAt( table->rows()-1, 1 );
+		cell_cursor = cell.firstCursorPosition();
+		cell_cursor.insertText( tr("Machine State:"), format );
+		
+		QString state_text = "";
+		switch( tmp_vm->Get_State() )
+		{
+			case VM::VMS_Running:
+				state_text = tr("Running");
+				break;
+				
+			case VM::VMS_Power_Off:
+				state_text = tr("Power Off");
+				break;
+				
+			case VM::VMS_Pause:
+				state_text = tr("Pause");
+				break;
+				
+			case VM::VMS_Saved:
+				state_text = tr("Saved");
+				break;
+				
+			default:
+				state_text = tr("Error!");
+				break;
+		}
+		
+		cell = table->cellAt( table->rows()-1, 2 );
+		cell_cursor = cell.firstCursorPosition();
+		cell_cursor.insertText( state_text, format );
+		table->insertRows( table->rows(), 1 );
 	}
-	
-	cell = table->cellAt( table->rows()-1, 2 );
-	cell_cursor = cell.firstCursorPosition();
-	cell_cursor.insertText( state_text, format );
-	table->insertRows( table->rows(), 1 );
 	
 	// General Tab
-	cursor.setPosition( topFrame->lastPosition() );
-	cursor.insertText( tr("General"), bold_format );
-	cursor.insertBlock();
-	
-	table = cursor.insertTable( 1, 3, table_format );
-	
-	frame = cursor.currentFrame();
-	frame->setFrameFormat( frame_format );
-	
-	if( Settings.value("Info/Emulator_Type", "no").toString() == "yes" )
+	if( Settings.value("Info/Machine_Name", "yes").toString() == "yes" ||
+		Settings.value("Info/Emulator_Type", "yes").toString() == "yes" ||
+		Settings.value("Info/Emulator_Version", "no").toString() == "yes" ||
+		Settings.value("Info/Computer_Type", "yes").toString() == "yes" ||
+		Settings.value("Info/Machine_Type", "no").toString() == "yes" ||
+		Settings.value("Info/Boot_Priority", "yes").toString() == "yes" ||
+		Settings.value("Info/CPU_Type", "no").toString() == "yes" ||
+		Settings.value("Info/Number_of_CPU", "yes").toString() == "yes" ||
+		Settings.value("Info/Video_Card", "yes").toString() == "yes" ||
+		Settings.value("Info/Keyboard_Layout", "no").toString() == "yes" ||
+		Settings.value("Info/Memory_Size", "yes").toString() == "yes" ||
+		Settings.value("Info/Use_Sound", "yes").toString() == "yes" ||
+		Settings.value("Info/Fullscreen", "yes").toString() == "yes" ||
+		Settings.value("Info/Snapshot", "yes").toString() == "yes" ||
+		Settings.value("Info/Localtime", "yes").toString() == "yes" )
 	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Emulator Type:"), format );
+		cursor.setPosition( topFrame->lastPosition() );
+		cursor.insertText( tr("General"), bold_format );
+		cursor.insertBlock();
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Emulator_Type->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Emulator_Version", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Emulator Version:"), format );
+		table = cursor.insertTable( 1, 3, table_format );
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Emulator_Version->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Computer_Type", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Computer Type:"), format );
+		frame = cursor.currentFrame();
+		frame->setFrameFormat( frame_format );
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Computer_Type->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Machine_Type", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Machine Type:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Machine_Type->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/CPU_Type", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("CPU Type:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_CPU_Type->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Memory_Size", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Memory Size:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( QString::number(ui.Memory_Size->value()), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Number_of_CPU", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Number of CPU:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_CPU_Count->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Acceleration", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Acceleration:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		
-		if( ui.RB_KQEMU_Use_if_Possible->isChecked() )
+		if( Settings.value("Info/Machine_Name", "no").toString() == "yes" )
 		{
-			cell_cursor.insertText( tr("Use If Possible"), format );
-		}
-		else if( ui.RB_KQEMU_Disabled->isChecked() )
-		{
-			cell_cursor.insertText( tr("Disabled"), format );
-		}
-		else if( ui.RB_KQEMU_Enabled->isChecked() )
-		{
-			cell_cursor.insertText( tr("Enabled"), format );
-		}
-		else if( ui.RB_KQEMU_Full->isChecked() )
-		{
-			cell_cursor.insertText( tr("Full"), format );
-		}
-		else
-		{
-			AQWarning( "void Main_Window::Update_Info_Text()",
-					   "Use Default KQEMU Mode: Default" );
-			cell_cursor.insertText( tr("Use If Possible"), format );
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Machine Name:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.Edit_Machine_Name->text(), format );
+			table->insertRows( table->rows(), 1 );
 		}
 		
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Boot_Priority", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Boot Priority:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Boot_Prioritet->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Video_Card", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Video Card:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Video_Card->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Keyboard_Layout", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Keyboard Layout:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CB_Keyboard_Layout->currentText(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Use_Sound", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Use Sound:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		
-		if( ui.CH_sb16->isChecked() || ui.CH_es1370->isChecked() || ui.CH_Adlib->isChecked() ||
-			ui.CH_AC97->isChecked() || ui.CH_GUS->isChecked()	 || ui.CH_PCSPK->isChecked() )
+		if( Settings.value("Info/Emulator_Type", "no").toString() == "yes" )
 		{
-			cell_cursor.insertText( tr("Yes"), format );
-		}
-		else
-		{
-			cell_cursor.insertText( tr("No"), format );
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Emulator Type:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Emulator_Type->currentText(), format );
+			table->insertRows( table->rows(), 1 );
 		}
 		
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Fullscreen", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Fullscreen Mode:"), format );
+		if( Settings.value("Info/Emulator_Version", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Emulator Version:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Emulator_Version->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CH_Fullscreen->isChecked() ? tr("Yes") : tr("No"), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/ACPI", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Enable ACPI:"), format );
+		if( Settings.value("Info/Computer_Type", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Computer Type:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Computer_Type->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CH_ACPI->isChecked() ? tr("Yes") : tr("No"), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Localtime", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Use Local Time:"), format );
+		if( Settings.value("Info/Machine_Type", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Machine Type:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Machine_Type->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CH_Local_Time->isChecked() ? tr("Yes") : tr("No"), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Start_CPU", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Start CPU at Startup:"), format );
+		if( Settings.value("Info/Boot_Priority", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Boot Priority:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Boot_Prioritet->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CH_Start_CPU->isChecked() ? tr("Yes") : tr("No"), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/Snapshot", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("Use Snapshot Mode:"), format );
+		if( Settings.value("Info/CPU_Type", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("CPU Type:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_CPU_Type->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CH_Snapshot->isChecked() ? tr("Yes") : tr("No"), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	if( Settings.value("Info/No_Reboot", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("No Reboot:"), format );
+		if( Settings.value("Info/Number_of_CPU", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Number of CPU:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_CPU_Count->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.CH_No_Reboot->isChecked() ? tr("Yes") : tr("No"), format );
-		table->insertRows( table->rows(), 1 );
+		if( Settings.value("Info/Video_Card", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Video Card:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Video_Card->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Keyboard_Layout", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Keyboard Layout:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CB_Keyboard_Layout->currentText(), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Memory_Size", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Memory Size:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( QString::number(ui.Memory_Size->value()), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Use_Sound", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Use Sound:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			
+			if( ui.CH_sb16->isChecked() || ui.CH_es1370->isChecked() || ui.CH_Adlib->isChecked() ||
+				ui.CH_AC97->isChecked() || ui.CH_GUS->isChecked()	 || ui.CH_PCSPK->isChecked() )
+			{
+				cell_cursor.insertText( tr("Yes"), format );
+			}
+			else
+			{
+				cell_cursor.insertText( tr("No"), format );
+			}
+			
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Fullscreen", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Fullscreen Mode:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_Fullscreen->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Snapshot", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Use Snapshot Mode:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_Snapshot->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Localtime", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Use Local Time:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_Local_Time->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
 	}
 	
 	// FDD/CD/HDD
-	if( Settings.value("Info/Show_FDD", "no").toString() == "yes" ||
-		Settings.value("Info/Show_CD", "no").toString() == "yes" ||
-		Settings.value("Info/Show_HDD", "no").toString() == "yes" )
-	{
+	if( (Settings.value("Info/Show_FDD", "yes").toString() == "yes" && 
+			(tmp_vm->Get_FD0().Get_Enabled() ||
+			 tmp_vm->Get_FD1().Get_Enabled() ||
+			 tmp_vm->Get_Storage_Devices_List().count() > 0)) ||
 		
+		(Settings.value("Info/Show_CD", "yes").toString() == "yes" &&
+			(tmp_vm->Get_CD_ROM().Get_Enabled() ||
+			 tmp_vm->Get_Storage_Devices_List().count() > 0)) ||
+		
+		(Settings.value("Info/Show_HDD", "yes").toString() == "yes" &&
+			(tmp_vm->Get_HDA().Get_Enabled() ||
+			 tmp_vm->Get_HDB().Get_Enabled() ||
+			 tmp_vm->Get_HDC().Get_Enabled() ||
+			 tmp_vm->Get_HDD().Get_Enabled() ||
+			 tmp_vm->Get_Storage_Devices_List().count() > 0)) )
+	{
 		cursor.setPosition( topFrame->lastPosition() );
 		cursor.insertText( tr("Storage Devices"), bold_format );
 		cursor.insertBlock();
@@ -2213,13 +2187,11 @@ void Main_Window::Update_Info_Text( int info_mode )
 		frame = cursor.currentFrame();
 		frame->setFrameFormat( frame_format );
 		
-		if( tmp_vm->Get_FD0().Get_Enabled() ||
-			tmp_vm->Get_FD1().Get_Enabled() ||
-			tmp_vm->Get_CD_ROM().Get_Enabled() ||
-			tmp_vm->Get_HDA().Get_Enabled() ||
-			tmp_vm->Get_HDB().Get_Enabled() ||
-			tmp_vm->Get_HDC().Get_Enabled() ||
-			tmp_vm->Get_HDD().Get_Enabled() )
+		if( Settings.value("Use_Device_Manager", "no").toString() == "yes" )
+		{
+			// FIXME
+		}
+		else
 		{
 			QFileInfo fi;
 			
@@ -2327,21 +2299,10 @@ void Main_Window::Update_Info_Text( int info_mode )
 				}
 			}
 		}
-		else
-		{
-			// No Devices
-			cell = table->cellAt( table->rows()-1, 1 );
-			cell_cursor = cell.firstCursorPosition();
-			cell_cursor.insertText( tr("No Devices Found"), format );
-			cell = table->cellAt( table->rows()-1, 2 );
-			cell_cursor = cell.firstCursorPosition();
-			cell_cursor.insertText( "", format );
-			table->insertRows( table->rows(), 1 );
-		}
 	}
 	
 	// Network
-	if( Settings.value("Info/Network_Cards", "no").toString() == "yes" &&
+	if( Settings.value("Info/Network_Cards", "yes").toString() == "yes" &&
 		tmp_vm->Get_Network_Cards_Count() > 0 )
 	{
 		cursor.setPosition( topFrame->lastPosition() );
@@ -2516,36 +2477,10 @@ void Main_Window::Update_Info_Text( int info_mode )
 		}
 	}
 	
-	// TFTP Server Prefix
-	if( Settings.value("Info/TFTP_Server_Prefix", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("TFTP Server Prefix:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.Edit_TFTP_Prefix->text() , format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
-	// SMB Folder
-	if( Settings.value("Info/SMB_Dir", "no").toString() == "yes" )
-	{
-		cell = table->cellAt( table->rows()-1, 1 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( tr("SMB Folder:"), format );
-		
-		cell = table->cellAt( table->rows()-1, 2 );
-		cell_cursor = cell.firstCursorPosition();
-		cell_cursor.insertText( ui.Edit_SMB_Folder->text(), format );
-		table->insertRows( table->rows(), 1 );
-	}
-	
 	// Ports Tab
-	if( Settings.value("Info/Serial_Port", "no").toString() == "yes" ||
-		Settings.value("Info/Parallel_Port", "no").toString() == "yes" ||
-		Settings.value("Info/USB_Port", "no").toString() == "yes" )
+	if( (Settings.value("Info/Serial_Port", "yes").toString() == "yes" && tmp_vm->Get_Serial_Ports().count() > 0) ||
+		(Settings.value("Info/Parallel_Port", "yes").toString() == "yes" && tmp_vm->Get_Parallel_Ports().count() > 0) ||
+		(Settings.value("Info/USB_Port", "yes").toString() == "yes" && tmp_vm->Get_USB_Ports().count() > 0) )
 	{
 		cursor.setPosition( topFrame->lastPosition() );
 		cursor.insertText( tr("Ports"), bold_format );
@@ -2634,9 +2569,9 @@ void Main_Window::Update_Info_Text( int info_mode )
 			}
 		}
 		
-		for( int ix = 0; ix < tmp_vm->Get_Parallel_Ports().count(); ix++ )
+		if( Settings.value("Info/Parallel_Port", "no").toString() == "yes" )
 		{
-			if( Settings.value("Info/Parallel_Port", "no").toString() == "yes" )
+			for( int ix = 0; ix < tmp_vm->Get_Parallel_Ports().count(); ix++ )
 			{
 				cell = table->cellAt( table->rows()-1, 1 );
 				cell_cursor = cell.firstCursorPosition();
@@ -2647,74 +2582,74 @@ void Main_Window::Update_Info_Text( int info_mode )
 				
 				switch( tmp_vm->Get_Parallel_Ports()[ix].Get_Port_Redirection() )
 				{
-					case VM::PR_Default:
-						cell_cursor.insertText( tr("Default"), format );
-						break;
-						
-					case VM::PR_vc:
-						cell_cursor.insertText( tr("vc"), format );
-						break;
-						
-					case VM::PR_pty:
-						cell_cursor.insertText( tr("pty"), format );
-						break;
-						
-					case VM::PR_none:
-						cell_cursor.insertText( tr("none"), format );
-						break;
-						
-					case VM::PR_null:
-						cell_cursor.insertText( tr("null"), format );
-						break;
-						
-					case VM::PR_dev:
-						cell_cursor.insertText( tr("dev"), format );
-						break;
-						
-					case VM::PR_host_port:
-						cell_cursor.insertText( tr("host_port"), format );
-						break;
-						
-					case VM::PR_file:
-						cell_cursor.insertText( tr("file"), format );
-						break;
-						
-					case VM::PR_stdio:
-						cell_cursor.insertText( tr("stdio"), format );
-						break;
-						
-					case VM::PR_pipe:
-						cell_cursor.insertText( tr("pipe"), format );
-						break;
-						
-					case VM::PR_udp:
-						cell_cursor.insertText( tr("udp"), format );
-						break;
-						
-					case VM::PR_tcp:
-						cell_cursor.insertText( tr("tcp"), format );
-						break;
-						
-					case VM::PR_telnet:
-						cell_cursor.insertText( tr("telnet"), format );
-						break;
-						
-					case VM::PR_unix:
-						cell_cursor.insertText( tr("unix"), format );
-						break;
-						
-					default:
-						cell_cursor.insertText( tr("Default"), format );
-						break;
+				case VM::PR_Default:
+					cell_cursor.insertText( tr("Default"), format );
+					break;
+					
+				case VM::PR_vc:
+					cell_cursor.insertText( tr("vc"), format );
+					break;
+					
+				case VM::PR_pty:
+					cell_cursor.insertText( tr("pty"), format );
+					break;
+					
+				case VM::PR_none:
+					cell_cursor.insertText( tr("none"), format );
+					break;
+					
+				case VM::PR_null:
+					cell_cursor.insertText( tr("null"), format );
+					break;
+					
+				case VM::PR_dev:
+					cell_cursor.insertText( tr("dev"), format );
+					break;
+					
+				case VM::PR_host_port:
+					cell_cursor.insertText( tr("host_port"), format );
+					break;
+					
+				case VM::PR_file:
+					cell_cursor.insertText( tr("file"), format );
+					break;
+					
+				case VM::PR_stdio:
+					cell_cursor.insertText( tr("stdio"), format );
+					break;
+					
+				case VM::PR_pipe:
+					cell_cursor.insertText( tr("pipe"), format );
+					break;
+					
+				case VM::PR_udp:
+					cell_cursor.insertText( tr("udp"), format );
+					break;
+					
+				case VM::PR_tcp:
+					cell_cursor.insertText( tr("tcp"), format );
+					break;
+					
+				case VM::PR_telnet:
+					cell_cursor.insertText( tr("telnet"), format );
+					break;
+					
+				case VM::PR_unix:
+					cell_cursor.insertText( tr("unix"), format );
+					break;
+					
+				default:
+					cell_cursor.insertText( tr("Default"), format );
+					break;
 				}
 				
 				table->insertRows( table->rows(), 1 );
 			}
 		}
 		
-		for( int ix = 0; ix < tmp_vm->Get_USB_Ports().count(); ix++ )
+		if( Settings.value("Info/USB_Port", "no").toString() == "yes" )
 		{
-			if( Settings.value("Info/USB_Port", "no").toString() == "yes" )
+			for( int ix = 0; ix < tmp_vm->Get_USB_Ports().count(); ix++ )
 			{
 				cell = table->cellAt( table->rows()-1, 1 );
 				cell_cursor = cell.firstCursorPosition();
@@ -2735,7 +2670,9 @@ void Main_Window::Update_Info_Text( int info_mode )
 		Settings.value("Info/MTDBlock", "no").toString() == "yes" ||
 		Settings.value("Info/SD_Image", "no").toString() == "yes" ||
 		Settings.value("Info/PFlash", "no").toString() == "yes" ||
-		Settings.value("Info/GDB_Port", "no").toString() == "yes" )
+		Settings.value("Info/VNC", "no").toString() == "yes" ||
+		Settings.value("Info/SPICE", "no").toString() == "yes" ||
+		Settings.value("Info/Acceleration", "no").toString() == "yes" )
 	{
 		cursor.setPosition( topFrame->lastPosition() );
 		cursor.insertText( tr("Other"), bold_format );
@@ -2745,6 +2682,68 @@ void Main_Window::Update_Info_Text( int info_mode )
 		
 		frame = cursor.currentFrame();
 		frame->setFrameFormat( frame_format );
+		
+		// KQEMU
+		if( Settings.value("Info/Acceleration", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Acceleration:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			
+			if( ui.RB_KQEMU_Use_if_Possible->isChecked() )
+			{
+				cell_cursor.insertText( tr("Use If Possible"), format );
+			}
+			else if( ui.RB_KQEMU_Disabled->isChecked() )
+			{
+				cell_cursor.insertText( tr("Disabled"), format );
+			}
+			else if( ui.RB_KQEMU_Enabled->isChecked() )
+			{
+				cell_cursor.insertText( tr("Enabled"), format );
+			}
+			else if( ui.RB_KQEMU_Full->isChecked() )
+			{
+				cell_cursor.insertText( tr("Full"), format );
+			}
+			else
+			{
+				AQWarning( "void Main_Window::Update_Info_Text( int info_mode )",
+						   "Use Default KQEMU Mode: Default" );
+				cell_cursor.insertText( tr("Use If Possible"), format );
+			}
+			
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		// VNC
+		if( Settings.value("Info/VNC", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("VNC Port:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.SB_VNC_Display->text() , format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		// SPICE
+		if( Settings.value("Info/SPICE", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("SPICE Port:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( QString::number(tmp_vm->Get_SPICE().Get_Port()) , format );
+			table->insertRows( table->rows(), 1 );
+		}
 		
 		// Linux Boot
 		if( Settings.value("Info/Linux_Boot", "no").toString() == "yes" )
@@ -2887,13 +2886,21 @@ void Main_Window::Update_Info_Text( int info_mode )
 	}
 	
 	// Advanced Tab
-	if( Settings.value("Info/No_Frame", "no").toString() == "yes" ||
+	if( Settings.value("Info/RTC_TD_Hack", "no").toString() == "yes" ||
+		Settings.value("Info/Win2K_Hack", "no").toString() == "yes" ||
+		Settings.value("Info/No_Shutdown", "no").toString() == "yes" ||
+		Settings.value("Info/No_Reboot", "no").toString() == "yes" ||
+		Settings.value("Info/Start_CPU", "no").toString() == "yes" ||
+		Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" ||
+		Settings.value("Info/ACPI", "no").toString() == "yes" ||
+		(Settings.value("Info/Start_Date", "no").toString() == "yes" && ui.CH_Start_Date->isChecked()) ||
+		Settings.value("Info/No_Frame", "no").toString() == "yes" ||
 		Settings.value("Info/Alt_Grab", "no").toString() == "yes" ||
 		Settings.value("Info/No_Quit", "no").toString() == "yes" ||
 		Settings.value("Info/Portrait", "no").toString() == "yes" ||
-		Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" ||
-		Settings.value("Info/Win2K_Hack", "no").toString() == "yes" ||
-		Settings.value("Info/QEMU_Log", "no").toString() == "yes" )
+		Settings.value("Info/Curses", "no").toString() == "yes" ||
+		Settings.value("Info/Show_Cursor", "no").toString() == "yes" ||
+		(Settings.value("Info/Init_Graphical_Mode", "no").toString() == "yes" && ui.CH_Init_Graphic_Mode->isChecked()) )
 	{
 		cursor.setPosition( topFrame->lastPosition() );
 		cursor.insertText( tr("Advanced"), bold_format );
@@ -2904,6 +2911,104 @@ void Main_Window::Update_Info_Text( int info_mode )
 		frame = cursor.currentFrame();
 		frame->setFrameFormat( frame_format );
 		
+		if( Settings.value("Info/RTC_TD_Hack", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("RTC TD Hack:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_RTC_TD_Hack->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Win2K_Hack", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Windows 2000 Hack:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_Win2K_Hack->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/No_Shutdown", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("No Shutdown:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_No_Shutdown->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/No_Reboot", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("No Reboot:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_No_Reboot->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Start_CPU", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Start CPU at Startup:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_Start_CPU->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Check Boot Sector on FDD:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_FDD_Boot->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/ACPI", "no").toString() == "yes" )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Enable ACPI:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.CH_ACPI->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Start_Date", "no").toString() == "yes" &&
+			ui.CH_Start_Date->isChecked() )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Start Date:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( ui.DTE_Start_Date->text(), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		// Advanced -> QEMU/KVM Window Options
 		if( Settings.value("Info/No_Frame", "no").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
@@ -2952,27 +3057,42 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" )
+		if( Settings.value("Info/Curses", "no").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
-			cell_cursor.insertText( tr("Check Boot Sector on FDD:"), format );
+			cell_cursor.insertText( tr("Curses:"), format );
 			
 			cell = table->cellAt( table->rows()-1, 2 );
 			cell_cursor = cell.firstCursorPosition();
-			cell_cursor.insertText( ui.CH_FDD_Boot->isChecked() ? tr("Yes") : tr("No"), format );
+			cell_cursor.insertText( ui.CH_Curses->isChecked() ? tr("Yes") : tr("No"), format );
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Win2K_Hack", "no").toString() == "yes" )
+		if( Settings.value("Info/Show_Cursor", "no").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
-			cell_cursor.insertText( tr("Windows 2000 Hack:"), format );
+			cell_cursor.insertText( tr("Show Cursor:"), format );
 			
 			cell = table->cellAt( table->rows()-1, 2 );
 			cell_cursor = cell.firstCursorPosition();
-			cell_cursor.insertText( ui.CH_Win2K_Hack->isChecked() ? tr("Yes") : tr("No"), format );
+			cell_cursor.insertText( ui.CH_Show_Cursor->isChecked() ? tr("Yes") : tr("No"), format );
+			table->insertRows( table->rows(), 1 );
+		}
+		
+		if( Settings.value("Info/Init_Graphical_Mode", "no").toString() == "yes" &&
+			ui.CH_Init_Graphic_Mode->isChecked() )
+		{
+			cell = table->cellAt( table->rows()-1, 1 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( tr("Initial Graphical Mode:"), format );
+			
+			cell = table->cellAt( table->rows()-1, 2 );
+			cell_cursor = cell.firstCursorPosition();
+			cell_cursor.insertText( QString("%1x%2x%3").arg(ui.SB_InitGM_Width->text())
+													   .arg(ui.SB_InitGM_Height->text())
+													   .arg(ui.CB_InitGM_Depth->currentText()) , format );
 			table->insertRows( table->rows(), 1 );
 		}
 	}
@@ -4573,6 +4693,11 @@ void Main_Window::on_actionShow_Advanced_Settings_Window_triggered()
 			
 			Load_Settings();
 			Update_VM_Ui();
+		}
+		else
+		{
+			// Update text in tab Info
+			Update_Info_Text();
 		}
 	}
 	
