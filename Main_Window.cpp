@@ -1945,7 +1945,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 	}
 	
 	// General Tab
-	if( Settings.value("Info/Machine_Name", "yes").toString() == "yes" ||
+	if( Settings.value("Info/Machine_Name", "no").toString() == "yes" ||
 		Settings.value("Info/Emulator_Type", "yes").toString() == "yes" ||
 		Settings.value("Info/Emulator_Version", "no").toString() == "yes" ||
 		Settings.value("Info/Computer_Type", "yes").toString() == "yes" ||
@@ -1982,7 +1982,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Emulator_Type", "no").toString() == "yes" )
+		if( Settings.value("Info/Emulator_Type", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2006,7 +2006,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Computer_Type", "no").toString() == "yes" )
+		if( Settings.value("Info/Computer_Type", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2030,7 +2030,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Boot_Priority", "no").toString() == "yes" )
+		if( Settings.value("Info/Boot_Priority", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2054,7 +2054,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Number_of_CPU", "no").toString() == "yes" )
+		if( Settings.value("Info/Number_of_CPU", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2066,7 +2066,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Video_Card", "no").toString() == "yes" )
+		if( Settings.value("Info/Video_Card", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2090,7 +2090,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Memory_Size", "no").toString() == "yes" )
+		if( Settings.value("Info/Memory_Size", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2102,7 +2102,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Use_Sound", "no").toString() == "yes" )
+		if( Settings.value("Info/Use_Sound", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2124,7 +2124,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Fullscreen", "no").toString() == "yes" )
+		if( Settings.value("Info/Fullscreen", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2136,7 +2136,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Snapshot", "no").toString() == "yes" )
+		if( Settings.value("Info/Snapshot", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2148,7 +2148,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			table->insertRows( table->rows(), 1 );
 		}
 		
-		if( Settings.value("Info/Localtime", "no").toString() == "yes" )
+		if( Settings.value("Info/Localtime", "yes").toString() == "yes" )
 		{
 			cell = table->cellAt( table->rows()-1, 1 );
 			cell_cursor = cell.firstCursorPosition();
@@ -2195,7 +2195,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 		{
 			QFileInfo fi;
 			
-			if( Settings.value("Info/Show_FDD", "no").toString() == "yes" )
+			if( Settings.value("Info/Show_FDD", "yes").toString() == "yes" )
 			{
 				if( tmp_vm->Get_FD0().Get_Enabled() )
 				{
@@ -2227,7 +2227,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 				}
 			}
 			
-			if( Settings.value("Info/Show_CD", "no").toString() == "yes" )
+			if( Settings.value("Info/Show_CD", "yes").toString() == "yes" )
 			{
 				if( tmp_vm->Get_CD_ROM().Get_Enabled() )
 				{
@@ -2244,7 +2244,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 				}
 			}
 			
-			if( Settings.value("Info/Show_HDD", "no").toString() == "yes" )
+			if( Settings.value("Info/Show_HDD", "yes").toString() == "yes" )
 			{
 				if( tmp_vm->Get_HDA().Get_Enabled() )
 				{
@@ -2303,7 +2303,8 @@ void Main_Window::Update_Info_Text( int info_mode )
 	
 	// Network
 	if( Settings.value("Info/Network_Cards", "yes").toString() == "yes" &&
-		tmp_vm->Get_Network_Cards_Count() > 0 )
+		((tmp_vm->Use_Nativ_Network() == false && tmp_vm->Get_Network_Cards_Count() > 0) ||
+		 (tmp_vm->Use_Nativ_Network() == true  && tmp_vm->Get_Network_Cards_Nativ().count() > 0)) )
 	{
 		cursor.setPosition( topFrame->lastPosition() );
 		cursor.insertText( tr("Network"), bold_format );
@@ -2491,7 +2492,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 		frame = cursor.currentFrame();
 		frame->setFrameFormat( frame_format );
 		
-		if( Settings.value("Info/Serial_Port", "no").toString() == "yes" )
+		if( Settings.value("Info/Serial_Port", "yes").toString() == "yes" )
 		{
 			for( int ix = 0; ix < tmp_vm->Get_Serial_Ports().count(); ix++ )
 			{
@@ -2569,7 +2570,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			}
 		}
 		
-		if( Settings.value("Info/Parallel_Port", "no").toString() == "yes" )
+		if( Settings.value("Info/Parallel_Port", "yes").toString() == "yes" )
 		{
 			for( int ix = 0; ix < tmp_vm->Get_Parallel_Ports().count(); ix++ )
 			{
@@ -2647,7 +2648,7 @@ void Main_Window::Update_Info_Text( int info_mode )
 			}
 		}
 		
-		if( Settings.value("Info/USB_Port", "no").toString() == "yes" )
+		if( Settings.value("Info/USB_Port", "yes").toString() == "yes" )
 		{
 			for( int ix = 0; ix < tmp_vm->Get_USB_Ports().count(); ix++ )
 			{

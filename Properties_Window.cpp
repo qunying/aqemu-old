@@ -49,19 +49,19 @@ Properties_Window::Properties_Window( QWidget *parent )
 
 const VM_Storage_Device &Properties_Window::Get_Floppy()
 {
-	//PW_Floppy = VM_Storage_Device( true, ui.CB_FD_Devices->currentText() );
+	PW_Storage.Set_Enabled( true );
 	return PW_Storage;
 }
 
 const VM_Storage_Device &Properties_Window::Get_CD_ROM()
 {
-	//PW_CDROM = VM_Storage_Device( true, ui.CB_CDROM_Devices->currentText() );
+	PW_Storage.Set_Enabled( true );
 	return PW_Storage;
 }
 
 const VM_HDD &Properties_Window::Get_HDD()
 {
-	//PW_HDD = VM_HDD( true, ui.Edit_HDD_Image_Path->text() );
+	PW_HDD.Set_Enabled( true );
 	return PW_HDD;
 }
 

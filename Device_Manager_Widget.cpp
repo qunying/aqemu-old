@@ -606,6 +606,7 @@ void Device_Manager_Widget::on_actionAdd_CD_ROM_triggered()
 		if( pw->exec() == QDialog::Accepted )
 		{
 			CD_ROM = pw->Get_CD_ROM();
+			CD_ROM.Set_Enabled( true );
 			
 			QString dev_name = CD_ROM.Get_File_Name();
 			

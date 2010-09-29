@@ -3445,10 +3445,6 @@ Cluster Size: 0</string>
              </widget>
             </item>
            </layout>
-           <zorder>TabWidget_Advanced</zorder>
-           <zorder>Widget_Advanced_Emulator_Arguments</zorder>
-           <zorder>Label_Additional_QEMU_Args</zorder>
-           <zorder>line_4</zorder>
           </widget>
           <widget class="QWidget" name="Tab_Other">
            <attribute name="title">

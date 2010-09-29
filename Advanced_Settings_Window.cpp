@@ -119,7 +119,7 @@ Advanced_Settings_Window::Advanced_Settings_Window( QWidget *parent )
 	ui.CH_No_Reboot->setChecked( Settings.value("Info/No_Reboot", "no").toString() == "yes" );
 	ui.CH_Start_CPU->setChecked( Settings.value("Info/Start_CPU", "no").toString() == "yes" );
 	ui.CH_Check_Boot_on_FDD->setChecked( Settings.value("Info/Check_Boot_on_FDD", "no").toString() == "yes" );
-	ui.CH_ACPI->setChecked( Settings.value("Info/ACPI", "yes").toString() == "yes" );
+	ui.CH_ACPI->setChecked( Settings.value("Info/ACPI", "no").toString() == "yes" );
 	ui.CH_Start_Date->setChecked( Settings.value("Info/Start_Date", "no").toString() == "yes" );
 	
 	ui.CH_No_Frame->setChecked( Settings.value("Info/No_Frame", "no").toString() == "yes" );
