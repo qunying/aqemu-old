@@ -4887,7 +4887,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	else if( State == VM::VMS_Saved )
 	{
 		Args << "-loadvm" << "aqemu_save";
-		Load_Mode = false;
+		Load_Mode = true;
 	}
 	else
 	{
@@ -8363,7 +8363,6 @@ void Virtual_Machine::QEMU_Started()
 		AQDebug( "void Virtual_Machine::QEMU_Started()",
 				 "emit Loading_Complete()" );
 		emit Loading_Complete();
-		//Hide_VM_Load_Window(); //FIXME
 	}
 	
 	if( ! Settings.value("Run_Before_QEMU", "").toString().isEmpty() )
@@ -8393,8 +8392,6 @@ void Virtual_Machine::QEMU_Finished( int exitCode, QProcess::ExitStatus exitStat
 		AQDebug( "void Virtual_Machine::QEMU_Finished( int exitCode, QProcess::ExitStatus exitStatus )",
 				 "QEMU Closed" );
 	}
-	
-	//Hide_VM_Save_Window(); FIXME
 	
 	// Add VM USB devices to used USB list
 	if( USB_Ports.count() > 0 )
@@ -8463,7 +8460,7 @@ void Virtual_Machine::Suspend_Finished( const QString &returned_text )
 
 void Virtual_Machine::Started_Booting( const QString &text )
 {
-	if( text.contains("VNC") )
+	if( text.contains("VNC") || text.contains("Server: disabled") )
 	{
 		disconnect( this, SIGNAL(Ready_StdOut(const QString&) ),
 				    this, SLOT(Started_Booting(const QString&)) );
