@@ -206,6 +206,7 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->PFlash = vm.Use_PFlash_File();
 	this->PFlash_File = vm.Get_PFlash_File();
 	
+	this->Enable_KVM = vm.Use_KVM();
 	this->KVM_IRQChip = vm.Use_KVM_IRQChip();
 	this->No_KVM_Pit = vm.Use_No_KVM_Pit();
 	this->KVM_No_Pit_Reinjection = vm.Use_KVM_No_Pit_Reinjection();
@@ -244,6 +245,7 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	this->Save_VM_Window = new QWidget();
 	this->QEMU_Error_Win = new Error_Log_Window();
 	this->Load_Mode = false;
+	this->Quit_Before_Save = false;
 	
 	Update_Current_Emulator_Devices(); // FIXME
 	
@@ -391,6 +393,7 @@ void Virtual_Machine::Shared_Constructor()
 	PFlash = false;
 	PFlash_File = "";
 	
+	Enable_KVM = true;
 	KVM_IRQChip = false;
 	No_KVM_Pit = false;
 	KVM_No_Pit_Reinjection = false;
@@ -433,6 +436,7 @@ void Virtual_Machine::Shared_Constructor()
 	Save_VM_Window = new QWidget();
 	QEMU_Error_Win = new Error_Log_Window();
 	Load_Mode = false;
+	Quit_Before_Save = false;
 }
 
 bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
@@ -490,6 +494,7 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		this->SecureDigital_File == vm.Get_SecureDigital_File() &&
 		this->PFlash == vm.Use_PFlash_File() &&
 		this->PFlash_File == vm.Get_PFlash_File() &&
+		this->Enable_KVM == vm.Use_KVM() &&
 		this->KVM_IRQChip == vm.Use_KVM_IRQChip() &&
 		this->No_KVM_Pit == vm.Use_No_KVM_Pit() &&
 		this->KVM_No_Pit_Reinjection == vm.Use_KVM_No_Pit_Reinjection() &&
@@ -753,6 +758,7 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	this->PFlash = vm.Use_PFlash_File();
 	this->PFlash_File = vm.Get_PFlash_File();
 	
+	this->Enable_KVM = vm.Use_KVM();
 	this->KVM_IRQChip = vm.Use_KVM_IRQChip();
 	this->No_KVM_Pit = vm.Use_No_KVM_Pit();
 	this->KVM_No_Pit_Reinjection = vm.Use_KVM_No_Pit_Reinjection();
@@ -2662,6 +2668,17 @@ bool Virtual_Machine::Create_VM_File( const QString &file_name, bool template_mo
 	
 	Dom_Element.appendChild( Dom_Text );
 	
+	// Enable KVM
+	Dom_Element = New_Dom_Document.createElement( "Enable_KVM" );
+	VM_Element.appendChild( Dom_Element );
+	
+	if( Enable_KVM )
+		Dom_Text = New_Dom_Document.createTextNode( "true" );
+	else
+		Dom_Text = New_Dom_Document.createTextNode( "false" );
+	
+	Dom_Element.appendChild( Dom_Text );
+	
 	// Use KVM IRQChip
 	Dom_Element = New_Dom_Document.createElement( "Use_KVM_IRQChip" );
 	VM_Element.appendChild( Dom_Element );
@@ -4260,6 +4277,9 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 			// PFlash File
 			PFlash_File = Child_Element.firstChildElement( "PFlash_File" ).text();
 			
+			// Enable KVM
+			Enable_KVM = ! (Child_Element.firstChildElement("Enable_KVM").text() == "false" );
+			
 			// Use KVM IRQChip
 			KVM_IRQChip = (Child_Element.firstChildElement("Use_KVM_IRQChip").text() == "true" );
 			
@@ -4995,6 +5015,9 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// KVM Options
+	if( Current_Emulator_Devices->PSO_Enable_KVM && Enable_KVM )
+		Args << "-enable-kvm";
+	
 	if( Current_Emulator_Devices->PSO_No_KVM_IRQChip && KVM_IRQChip )
 		Args << "-no-kvm-irqchip";
 	
@@ -6655,49 +6678,28 @@ void Virtual_Machine::Save_VM_State()
 void Virtual_Machine::Save_VM_State( const QString &tag, bool quit )
 {
 	Show_VM_Save_Window();
-	
-	//if( quit ) QEMU_Process->write( "stop\n" ); FIXME
+	Quit_Before_Save = quit;
 	
 	if( Settings.value("Use_Screenshot_for_OS_Logo", "yes").toString() == "yes" )
 	{
-		/*QString scrn_file = Settings.value( "VM_Directory", "~" ).toString() +
-		Get_FS_Compatible_VM_Name( Machine_Name ) + "." +
-		Settings.value( "Screenshot_Save_Format", "PNG" ).toString().toLower();*/
-		
-		QString scrn_file = Settings.value( "VM_Directory", "~" ).toString() +
-				Get_FS_Compatible_VM_Name( Machine_Name );
-		
-		if( Take_Screenshot(scrn_file, 64, 64) )
-			Screenshot_Path = scrn_file;
+		QString scrn_file = Settings.value( "VM_Directory", "~" ).toString() + Get_FS_Compatible_VM_Name( Machine_Name );
+		if( Take_Screenshot(scrn_file, 64, 64) ) Screenshot_Path = scrn_file;
 	}
 	
 	QEMU_Process->write( qPrintable("savevm " + tag + "\n") );
 	
 	connect( this, SIGNAL(Ready_StdOut(const QString&)),
 			 this, SLOT(Suspend_Finished(const QString&)) );
-	
-	if( quit )
-	{
-		QEMU_Process->write( "quit\n" );
-		Hide_Emu_Ctl_Win();
-		Set_State( VM::VMS_Saved );
-	}
-	
-	if( ! Save_VM() )
-	{
-		AQError( "void Virtual_Machine::Save_VM_State( const QString &tag )",
-				 "Saving Not Complete!" );
-	}
 }
 
 void Virtual_Machine::Load_VM_State( const QString &tag )
 {
 	Show_VM_Load_Window();
 	
-	QEMU_Process->write( qPrintable("loadvm " + tag + "\n") );
-	
 	connect( this, SIGNAL(Ready_StdOut(const QString&)),
 			 this, SLOT(Resume_Finished(const QString&)) );
+	
+	QEMU_Process->write( qPrintable("loadvm " + tag + "\n") );
 }
 
 bool Virtual_Machine::Start_Snapshot( const QString &tag )
@@ -6801,7 +6803,7 @@ void Virtual_Machine::Show_VM_Save_Window()
 	QDesktopWidget *des_widget = new QDesktopWidget();
 	QRect re = des_widget->screenGeometry( des_widget->primaryScreen() );
 	
-	Load_VM_Window = new QWidget();
+	//Load_VM_Window = new QWidget();
 	Save_VM_Window = new QWidget();
 	
 	QLabel *save_label;
@@ -7997,6 +7999,16 @@ void Virtual_Machine::Set_PFlash_File( const QString &file )
 	PFlash_File = file;
 }
 
+bool Virtual_Machine::Use_KVM() const
+{
+	return Enable_KVM;
+}
+
+void Virtual_Machine::Use_KVM( bool use )
+{
+	Enable_KVM = use;
+}
+
 bool Virtual_Machine::Use_KVM_IRQChip() const
 {
 	return KVM_IRQChip;
@@ -8295,26 +8307,12 @@ void Virtual_Machine::Use_No_Use_Embedded_Display( bool use )
 void Virtual_Machine::Parse_StdOut()
 {
 	QString convOutput = QEMU_Process->readAllStandardOutput();
-	
 	QStringList splitOutput = convOutput.split( "[K" );
+	QString cleanOutput = splitOutput.last().remove( QRegExp("\[[KD].") );
 	
-	if( splitOutput.last() == splitOutput.first() )
-	{
-		emit Clean_Console( convOutput.trimmed() );
-		emit Ready_StdOut( convOutput.simplified() );
-		Last_Output.append( convOutput.simplified() );
-	}
-	else
-	{
-		if( ! splitOutput.last().isEmpty() )
-		{
-			QString cleanOutput = splitOutput.last().remove( QRegExp("\[[KD].") );
-			emit Clean_Console( cleanOutput.trimmed() );
-			emit Ready_StdOut( cleanOutput.simplified() );
-			Last_Output.append( convOutput.simplified() );
-		}
-	}
-	
+	emit Clean_Console( cleanOutput );
+	emit Ready_StdOut( cleanOutput );
+	Last_Output.append( convOutput );
 	Output_Parts = Last_Output.split( "(qemu)" );
 }
 
@@ -8327,7 +8325,7 @@ void Virtual_Machine::Parse_StdErr()
 	Last_Output.append( convOutput );
 	Show_QEMU_Error( convOutput );
 	
-	/*
+	/* FIXME
 	QStringList splitOutput = convOutput.split( "[K" );
 	
 	if( splitOutput.last() == splitOutput.first() )
@@ -8365,7 +8363,7 @@ void Virtual_Machine::QEMU_Started()
 		AQDebug( "void Virtual_Machine::QEMU_Started()",
 				 "emit Loading_Complete()" );
 		emit Loading_Complete();
-		Hide_VM_Load_Window();
+		//Hide_VM_Load_Window(); //FIXME
 	}
 	
 	if( ! Settings.value("Run_Before_QEMU", "").toString().isEmpty() )
@@ -8396,7 +8394,7 @@ void Virtual_Machine::QEMU_Finished( int exitCode, QProcess::ExitStatus exitStat
 				 "QEMU Closed" );
 	}
 	
-	Hide_VM_Save_Window();
+	//Hide_VM_Save_Window(); FIXME
 	
 	// Add VM USB devices to used USB list
 	if( USB_Ports.count() > 0 )
@@ -8413,6 +8411,9 @@ void Virtual_Machine::QEMU_Finished( int exitCode, QProcess::ExitStatus exitStat
 
 void Virtual_Machine::Resume_Finished( const QString &returned_text )
 {
+	AQDebug( "void Virtual_Machine::Resume_Finished( const QString &returned_text )",
+			 QString("Data: \"%1\"").arg(returned_text) );
+	
 	if( returned_text.contains("(qemu)") )
 	{
 		disconnect( this, SIGNAL(Ready_StdOut(const QString&)),
@@ -8423,19 +8424,40 @@ void Virtual_Machine::Resume_Finished( const QString &returned_text )
 		Hide_VM_Load_Window();
 	}
 	
-    //might need to reconnect the usb tablet here...
+    // might need to reconnect the usb tablet here...
 }
 
 void Virtual_Machine::Suspend_Finished( const QString &returned_text )
 {
-	if( returned_text == "(qemu)" )
+	AQDebug( "void Virtual_Machine::Suspend_Finished( const QString &returned_text )",
+			 QString("Data: \"%1\"").arg(returned_text) );
+	
+	if( returned_text.simplified() == "(qemu)" )
 	{
-		QEMU_Process->write( "cont\n" );
-		
 		disconnect( this, SIGNAL(Ready_StdOut(const QString&)),
 					this,SLOT(Suspend_Finished(const QString&)) );
 		
 		Hide_VM_Save_Window();
+		
+		if( Quit_Before_Save )
+		{
+			QEMU_Process->write( "quit\n" );
+			Hide_Emu_Ctl_Win();
+			Set_State( VM::VMS_Saved );
+		}
+		
+		if( ! Save_VM() )
+			AQError( "void Virtual_Machine::Save_VM_State( const QString &tag )",
+					 "Saving Not Complete!" );
+	}
+	else if( returned_text.contains("No block device can accept snapshots") )
+	{
+		disconnect( this, SIGNAL(Ready_StdOut(const QString&)),
+					this,SLOT(Suspend_Finished(const QString&)) );
+		
+		Hide_VM_Save_Window();
+		AQGraphic_Warning( tr("Error!"),
+						   tr("To save a virtual machine, you need to add HDD image in QCOW2 format!") );
 	}
 }
 

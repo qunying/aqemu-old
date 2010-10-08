@@ -3490,42 +3490,55 @@ Cluster Size: 0</string>
                   <property name="leftMargin">
                    <number>10</number>
                   </property>
+                  <property name="spacing">
+                   <number>4</number>
+                  </property>
                   <item row="0" column="0" colspan="4">
+                   <widget class="QCheckBox" name="CH_Enable_KVM">
+                    <property name="text">
+                     <string>Enable KVM</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_No_KVM_IRQChip">
                     <property name="text">
                      <string>Disable KVM kernel mode PIC/IOAPIC/LAPIC</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0" colspan="4">
+                  <item row="2" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_No_KVM_Pit">
                     <property name="text">
                      <string>Disable KVM kernel mode PIT</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0" colspan="4">
+                  <item row="3" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_KVM_No_Pit_Reinjection">
                     <property name="text">
                      <string>Disable KVM kernel mode PIT interrupt reinjection</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0" colspan="4">
+                  <item row="4" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_KVM_Nesting">
                     <property name="text">
                      <string>Nesting (Support for Running a VM Inside the VM (AMD Only)</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="0">
+                  <item row="5" column="0">
                    <widget class="QCheckBox" name="CH_KVM_Shadow_Memory">
                     <property name="text">
                      <string>KVM Shadow Memory</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="1">
+                  <item row="5" column="1">
                    <widget class="QSpinBox" name="SB_KVM_Shadow_Memory_Size">
                     <property name="enabled">
                      <bool>false</bool>
@@ -3538,7 +3551,7 @@ Cluster Size: 0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="2">
+                  <item row="5" column="2">
                    <widget class="QLabel" name="Label_KVM_Shadow_Memory_Mb">
                     <property name="enabled">
                      <bool>false</bool>
@@ -3554,7 +3567,7 @@ Cluster Size: 0</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="3">
+                  <item row="5" column="3">
                    <spacer name="horizontalSpacer_5">
                     <property name="orientation">
                      <enum>Qt::Horizontal</enum>
@@ -3580,7 +3593,7 @@ Cluster Size: 0</string>
                   <property name="sizeHint" stdset="0">
                    <size>
                     <width>448</width>
-                    <height>15</height>
+                    <height>10</height>
                    </size>
                   </property>
                  </spacer>
@@ -3611,20 +3624,25 @@ Cluster Size: 0</string>
                 </item>
                 <item>
                  <layout class="QVBoxLayout" name="verticalLayout_2">
+                  <property name="spacing">
+                   <number>4</number>
+                  </property>
                   <property name="leftMargin">
                    <number>10</number>
                   </property>
                   <item>
                    <widget class="QRadioButton" name="RB_KQEMU_Disabled">
                     <property name="text">
-                     <string>Disabled (Disable the usage of the QEMU Accelerator module KQEMU)</string>
+                     <string>Disabled
+(Disable the usage of the QEMU Accelerator module KQEMU)</string>
                     </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QRadioButton" name="RB_KQEMU_Use_if_Possible">
                     <property name="text">
-                     <string>Use If Possible (AQEMU don't check loaded KQEMU module)</string>
+                     <string>Use If Possible
+(AQEMU don't check loaded KQEMU module)</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -3634,14 +3652,16 @@ Cluster Size: 0</string>
                   <item>
                    <widget class="QRadioButton" name="RB_KQEMU_Enabled">
                     <property name="text">
-                     <string>Enabled (AQEMU check loaded KQEMU module, if no loaded QEMU not started)</string>
+                     <string>Enabled
+(AQEMU check loaded KQEMU module, if no loaded QEMU not started)</string>
                     </property>
                    </widget>
                   </item>
                   <item>
                    <widget class="QRadioButton" name="RB_KQEMU_Full">
                     <property name="text">
-                     <string>Full (Enable full virtualization mode for best performances)</string>
+                     <string>Full
+(Enable full virtualization mode for best performances)</string>
                     </property>
                    </widget>
                   </item>
@@ -4793,278 +4813,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
  </resources>
  <connections>
   <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Label_bzImage</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>224</x>
-     <y>112</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_Linux_bzImage_Path</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>224</x>
-     <y>115</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Label_InitRD</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>224</x>
-     <y>117</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_Linux_Initrd_Path</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>224</x>
-     <y>120</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Label_KernelCom</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>224</x>
-     <y>123</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_Linux_Command_Line</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>224</x>
-     <y>125</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_Linux_bzImage_SetPath</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>256</x>
-     <y>115</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_Linux_Boot</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_Linux_Initrd_SetPath</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>224</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>256</x>
-     <y>120</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>RB_VNC_Display_Number</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SB_VNC_Display</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>RB_VNC_Unix_Socket</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_VNC_Unix_Socket</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>RB_VNC_Unix_Socket</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_VNC_Unix_Socket_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_x509_Folder</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_x509_Folder</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_x509verify_Folder</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_x509verify_Folder</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_x509_Folder</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_x509_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_x509verify_Folder</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_x509verify_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Use_VNC_TLS</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>VNC_TLS_Panel</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_Activate_VNC</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>VNC_Panel</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>263</x>
-     <y>109</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>263</x>
-     <y>113</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>CH_Start_Date</sender>
    <signal>toggled(bool)</signal>
    <receiver>DTE_Start_Date</receiver>
@@ -5177,38 +4925,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    </hints>
   </connection>
   <connection>
-   <sender>CH_KVM_Shadow_Memory</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SB_KVM_Shadow_Memory_Size</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_KVM_Shadow_Memory</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Label_KVM_Shadow_Memory_Mb</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>CH_Redirections</sender>
    <signal>toggled(bool)</signal>
    <receiver>Redirection_Widget</receiver>
@@ -5237,134 +4953,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
     <hint type="destinationlabel">
      <x>272</x>
      <y>142</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_ROM_File</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_ROM_File</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_ROM_File</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_ROM_File_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_SD_Image</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_SD_Image_File</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_MTDBlock</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_MTDBlock_File</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_PFlash</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>Edit_PFlash_File</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_SD_Image</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_SD_Image_File_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_PFlash</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_PFlash_File_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>CH_MTDBlock</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>TB_MTDBlock_File_Browse</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>139</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>139</y>
     </hint>
    </hints>
   </connection>
@@ -5513,22 +5101,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
    </hints>
   </connection>
   <connection>
-   <sender>CH_No_KVM_IRQChip</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SB_KVM_Shadow_Memory_Size</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>143</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>CH_Use_Network</sender>
    <signal>toggled(bool)</signal>
    <receiver>Widget_Network_Mode</receiver>
@@ -5621,6 +5193,454 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
     <hint type="destinationlabel">
      <x>640</x>
      <y>389</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Label_bzImage</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>112</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_Linux_bzImage_Path</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_Linux_Initrd_SetPath</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_Linux_bzImage_SetPath</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>256</x>
+     <y>115</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Label_InitRD</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_Linux_Initrd_Path</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>120</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Label_KernelCom</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>123</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_Linux_Boot</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_Linux_Command_Line</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>125</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RB_VNC_Display_Number</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_VNC_Display</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RB_VNC_Unix_Socket</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_VNC_Unix_Socket</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>RB_VNC_Unix_Socket</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_VNC_Unix_Socket_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_x509_Folder</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_x509_Folder</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_x509verify_Folder</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_x509verify_Folder</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_x509_Folder</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_x509_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_x509verify_Folder</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_x509verify_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Use_VNC_TLS</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>VNC_TLS_Panel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_Activate_VNC</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>VNC_Panel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>109</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_KVM_Shadow_Memory</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_KVM_Shadow_Memory_Size</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_KVM_Shadow_Memory</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Label_KVM_Shadow_Memory_Mb</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_ROM_File</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_ROM_File</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_SD_Image</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_SD_Image_File</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_ROM_File</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_ROM_File_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_SD_Image</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_SD_Image_File_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_PFlash</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_PFlash_File</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_MTDBlock</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_MTDBlock_File</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_PFlash</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_PFlash_File_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_MTDBlock</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_MTDBlock_File_Browse</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>139</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_No_KVM_IRQChip</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_KVM_Shadow_Memory_Size</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>281</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>

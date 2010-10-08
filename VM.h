@@ -321,6 +321,9 @@ class Virtual_Machine: public QObject
 		const QString &Get_PFlash_File() const;
 		void Set_PFlash_File( const QString &file );
 		
+		bool Use_KVM() const;
+		void Use_KVM( bool use );
+		
 		bool Use_KVM_IRQChip() const;
 		void Use_KVM_IRQChip( bool use );
 		
@@ -545,6 +548,7 @@ class Virtual_Machine: public QObject
 		bool PFlash;
 		QString PFlash_File;
 		
+		bool Enable_KVM;
 		bool KVM_IRQChip;
 		bool No_KVM_Pit;
 		bool KVM_No_Pit_Reinjection;
@@ -591,6 +595,7 @@ class Virtual_Machine: public QObject
 		QWidget *Load_VM_Window;
 		QWidget *Save_VM_Window;
 		Error_Log_Window* QEMU_Error_Win;
+		bool Quit_Before_Save;
 		
 		// For Create Templates
 		QString Template_Name;

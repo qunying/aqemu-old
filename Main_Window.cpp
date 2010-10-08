@@ -523,6 +523,9 @@ void Main_Window::Connect_Signals()
 			 this, SLOT(VM_Changet()) );
 	
 	// Hardware Virtualization Tab
+	connect( ui.CH_Enable_KVM, SIGNAL(clicked()),
+			 this, SLOT(VM_Changet()) );
+	
 	connect( ui.CH_No_KVM_IRQChip, SIGNAL(clicked()),
 			 this, SLOT(VM_Changet()) );
 	
@@ -989,6 +992,9 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 	
 	// Use_User_Emulator_Binary
 	tmp_vm->Set_Use_User_Emulator_Binary( ui.CH_Use_User_Binary->isChecked() );
+	
+	// Enable KVM
+	tmp_vm->Use_KVM( ui.CH_Enable_KVM->isChecked() );
 	
 	// Disable KVM kernel mode PIC/IOAPIC/LAPIC
 	tmp_vm->Use_KVM_IRQChip( ui.CH_No_KVM_IRQChip->isChecked() );
@@ -1713,6 +1719,9 @@ void Main_Window::Update_VM_Ui()
 	// Parallel Flash Image
 	ui.CH_PFlash->setChecked( tmp_vm->Use_PFlash_File() );
 	ui.Edit_PFlash_File->setText( tmp_vm->Get_PFlash_File() );
+	
+	// Enable KVM
+	ui.CH_Enable_KVM->setChecked( tmp_vm->Use_KVM() );
 	
 	// Disable KVM kernel mode PIC/IOAPIC/LAPIC
 	ui.CH_No_KVM_IRQChip->setChecked( tmp_vm->Use_KVM_IRQChip() );
@@ -3283,11 +3292,11 @@ void Main_Window::Update_Disabled_Controls()
 	// Nativ mode network
 	if( ui.RB_Network_Mode_New->isChecked() )
 	{
+		// FIXME
 	}
 	
-	// KVM
-	//if( curComp.PSO_Enable_KVM )
-	//else 
+	// Enable KVM
+	ui.CH_Enable_KVM->setEnabled( curComp.PSO_Enable_KVM ); 
 		
 	//if( curComp.PSO_No_KVM ) ui.CH_No_KVM->setEnabled( true );
 	//else ui.CH_No_KVM->setEnabled( false );
