@@ -1935,6 +1935,21 @@ Available_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 		rx = QRegExp( ".*downscript=.*" );
 		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_downscript = true;
 		
+		// sndbuf
+		rx = QRegExp( ".*sndbuf=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_sndbuf = true;
+		
+		// vnet_hdr
+		rx = QRegExp( ".*vnet_hdr=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_vnet_hdr = true;
+		
+		// vhost
+		rx = QRegExp( ".*vhost=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_vhost = true;
+		
+		// vhostfd
+		rx = QRegExp( ".*vhostfd=.*" );
+		if( rx.exactMatch(net_str) ) tmp_dev.PSO_Net_vhostfd = true;
 		
 		// listen
 		rx = QRegExp( ".*listen=.*" );

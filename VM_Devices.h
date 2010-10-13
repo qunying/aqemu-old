@@ -288,6 +288,10 @@ class Available_Devices
 		bool PSO_Net_ifname;
 		bool PSO_Net_script;
 		bool PSO_Net_downscript;
+		bool PSO_Net_sndbuf;
+		bool PSO_Net_vnet_hdr;
+		bool PSO_Net_vhost;
+		bool PSO_Net_vhostfd;
 		
 		bool PSO_Net_listen;
 		bool PSO_Net_connect;
@@ -767,6 +771,91 @@ class VM_Net_Card_Nativ
 		int Get_Len() const;
 		void Set_Len( int kb );
 		
+		bool Use_Addr() const;
+		void Use_Addr( bool use );
+		const QString &Get_Addr() const;
+		void Set_Addr( const QString &addr );
+		
+		bool Use_Vectors() const;
+		void Use_Vectors( bool use );
+		int Get_Vectors() const;
+		void Set_Vectors( int vectors );
+		
+		bool Use_Net() const;
+		void Use_Net( bool use );
+		const QString &Get_Net() const;
+		void Set_Net( const QString &net );
+		
+		bool Use_Host() const;
+		void Use_Host( bool use );
+		const QString &Get_Host() const;
+		void Set_Host( const QString &host );
+		
+		bool Use_Restrict() const;
+		void Use_Restrict( bool use );
+		bool Get_Restrict() const;
+		void Set_Restrict( bool use );
+		
+		bool Use_DHCPstart() const;
+		void Use_DHCPstart( bool use );
+		const QString &Get_DHCPstart() const;
+		void Set_DHCPstart( const QString &addr );
+		
+		bool Use_DNS() const;
+		void Use_DNS( bool use );
+		const QString &Get_DNS() const;
+		void Set_DNS( const QString &addr );
+		
+		bool Use_Tftp() const;
+		void Use_Tftp( bool use );
+		const QString &Get_Tftp() const;
+		void Set_Tftp( const QString &dir );
+		
+		bool Use_Bootfile() const;
+		void Use_Bootfile( bool use );
+		const QString &Get_Bootfile() const;
+		void Set_Bootfile( const QString &file );
+		
+		bool Use_HostFwd() const;
+		void Use_HostFwd( bool use );
+		const QString &Get_HostFwd() const;
+		void Set_HostFwd( const QString &rule );
+		
+		bool Use_GuestFwd() const;
+		void Use_GuestFwd( bool use );
+		const QString &Get_GuestFwd() const;
+		void Set_GuestFwd( const QString &rule );
+		
+		bool Use_SMB() const;
+		void Use_SMB( bool use );
+		const QString &Get_SMB() const;
+		void Set_SMB( const QString &dir );
+		
+		bool Use_SMBserver() const;
+		void Use_SMBserver( bool use );
+		const QString &Get_SMBserver() const;
+		void Set_SMBserver( const QString &addr );
+		
+		bool Use_Sndbuf() const;
+		void Use_Sndbuf( bool use );
+		int Get_Sndbuf() const;
+		void Set_Sndbuf( int bytes );
+		
+		bool Use_VNet_hdr() const;
+		void Use_VNet_hdr( bool use );
+		bool Get_VNet_hdr() const;
+		void Set_VNet_hdr( bool use );
+		
+		bool Use_VHost() const;
+		void Use_VHost( bool use );
+		bool Get_VHost() const;
+		void Set_VHost( bool use );
+		
+		bool Use_VHostFd() const;
+		void Use_VHostFd( bool use );
+		int Get_VHostFd() const;
+		void Set_VHostFd( int port );
+		
 	private:
 		VM::Network_Mode_Nativ Network_Mode;
 		QString Card_Model;
@@ -788,11 +877,31 @@ class VM_Net_Card_Nativ
 		QString Mode;
 		QString File;
 		int Len;
+		QString Addr;
+		int Vectors;
+		QString Net;
+		QString Host;
+		bool Restrict;
+		QString DHCPstart;
+		QString DNS;
+		QString Tftp;
+		QString Bootfile;
+		QString HostFwd;
+		QString GuestFwd;
+		QString SMB;
+		QString SMBserver;
+		int Sndbuf;
+		bool VNet_hdr;
+		bool VHost;
+		int VHostFd;
 		
 		bool _Use_MAC, _Use_VLAN, _Use_Name, _Use_Hostname, _Use_File_Descriptor,
 			 _Use_Interface_Name, _Use_TUN_TAP_Script, _Use_TUN_TAP_Down_Script,
 			 _Use_Listen, _Use_Connect, _Use_MCast, _Use_Sock, _Use_Port, _Use_Group,
-			 _Use_Mode, _Use_File, _Use_Len;
+			 _Use_Mode, _Use_File, _Use_Len, _Use_Addr, _Use_Vectors, _Use_Net, 
+			 _Use_Host, _Use_Restrict, _Use_DHCPstart, _Use_DNS, _Use_Tftp, _Use_Bootfile,
+			 _Use_HostFwd, _Use_GuestFwd, _Use_SMB, _Use_SMBserver, _Use_Sndbuf,
+			 _Use_VNet_hdr, _Use_VHost, _Use_VHostFd;
 };
 
 class VM_Redirection

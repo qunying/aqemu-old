@@ -53,6 +53,9 @@ class Network_Widget: public QWidget
 		void on_TB_Browse_downscript_clicked();
 		void on_CB_Network_Type_currentIndexChanged( int index );
 		void on_TB_Generate_New_MAC_clicked();
+		void on_TB_Browse_bootfile_clicked();
+		void on_TB_Browse_smb_clicked();
+		void on_CH_smb_toggled( bool checked );
 		void Update_Card_Item();
 		
 	private:
@@ -93,6 +96,10 @@ class Network_Widget: public QWidget
 		bool PSO_Net_ifname;
 		bool PSO_Net_script;
 		bool PSO_Net_downscript;
+		bool PSO_Net_sndbuf;
+		bool PSO_Net_vnet_hdr;
+		bool PSO_Net_vhost;
+		bool PSO_Net_vhostfd;
 		
 		bool PSO_Net_listen;
 		bool PSO_Net_connect;

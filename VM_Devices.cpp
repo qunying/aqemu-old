@@ -109,6 +109,10 @@ Available_Devices::Available_Devices()
 	PSO_Net_ifname = false;
 	PSO_Net_script = false;
 	PSO_Net_downscript = false;
+	PSO_Net_sndbuf = false;
+	PSO_Net_vnet_hdr = false;
+	PSO_Net_vhost = false;
+	PSO_Net_vhostfd = false;
 	
 	PSO_Net_listen = false;
 	PSO_Net_connect = false;
@@ -527,6 +531,10 @@ bool Emulator::Load( const QString &path )
 			tmpDev.PSO_Net_ifname = (childElement.firstChildElement("Net_ifname").text() == "yes" );
 			tmpDev.PSO_Net_script = (childElement.firstChildElement("Net_script").text() == "yes" );
 			tmpDev.PSO_Net_downscript = (childElement.firstChildElement("Net_downscript").text() == "yes" );
+			tmpDev.PSO_Net_sndbuf = (childElement.firstChildElement("Net_sndbuf").text() == "yes" );
+			tmpDev.PSO_Net_vnet_hdr = (childElement.firstChildElement("Net_vnet_hdr").text() == "yes" );
+			tmpDev.PSO_Net_vhost = (childElement.firstChildElement("Net_vhost").text() == "yes" );
+			tmpDev.PSO_Net_vhostfd = (childElement.firstChildElement("Net_vhostfd").text() == "yes" );
 			
 			tmpDev.PSO_Net_listen = (childElement.firstChildElement("Net_listen").text() == "yes" );
 			tmpDev.PSO_Net_connect = (childElement.firstChildElement("Net_connect").text() == "yes" );
@@ -1146,6 +1154,29 @@ bool Emulator::Save() const
 		domText = domDocument.createTextNode( (tmpDev.PSO_Net_downscript ? "yes" : "no") );
 		deviceElement.appendChild( domText );
 		
+		// PSO_Net_sndbuf
+		deviceElement = domDocument.createElement( "Net_sndbuf" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_sndbuf ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_vnet_hdr
+		deviceElement = domDocument.createElement( "Net_vnet_hdr" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_vnet_hdr ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_vhost
+		deviceElement = domDocument.createElement( "Net_vhost" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_vhost ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_Net_Net_vhostfd
+		deviceElement = domDocument.createElement( "Net_vhostfd" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Net_vhostfd ? "yes" : "no") );
+		deviceElement.appendChild( domText );
 		
 		// PSO_Net_listen
 		deviceElement = domDocument.createElement( "Net_listen" );
@@ -2305,6 +2336,23 @@ VM_Net_Card_Nativ::VM_Net_Card_Nativ()
 	Mode = "";
 	File = "";
 	Len = 0;
+	Addr = "";
+	Vectors = 0;
+	Net = "";
+	Host = "";
+	Restrict = false;
+	DHCPstart = "";
+	DNS = "";
+	Tftp = "";
+	Bootfile = "";
+	HostFwd = "";
+	GuestFwd = "";
+	SMB = "";
+	SMBserver = "";
+	Sndbuf = 0;
+	VNet_hdr = false;
+	VHost = false;
+	VHostFd = false;
 	
 	_Use_MAC = false;
 	_Use_VLAN = false;
@@ -2323,6 +2371,23 @@ VM_Net_Card_Nativ::VM_Net_Card_Nativ()
 	_Use_Mode = false;
 	_Use_File = false;
 	_Use_Len = false;
+	_Use_Addr = false;
+	_Use_Vectors = false;
+	_Use_Net = false; 
+	_Use_Host = false;
+	_Use_Restrict = false;
+	_Use_DHCPstart = false;
+	_Use_DNS = false;
+	_Use_Tftp = false;
+	_Use_Bootfile = false;
+	_Use_HostFwd = false;
+	_Use_GuestFwd = false;
+	_Use_SMB = false;
+	_Use_SMBserver = false;
+	_Use_Sndbuf = false;
+	_Use_VNet_hdr = false;
+	_Use_VHost = false;
+	_Use_VHostFd = false;
 }
 
 VM_Net_Card_Nativ::VM_Net_Card_Nativ( const VM_Net_Card_Nativ &nc )
@@ -2347,6 +2412,23 @@ VM_Net_Card_Nativ::VM_Net_Card_Nativ( const VM_Net_Card_Nativ &nc )
 	Mode = nc.Get_Mode();
 	File = nc.Get_File();
 	Len = nc.Get_Len();
+	Addr = nc.Get_Addr();
+	Vectors = nc.Get_Vectors();
+	Net = nc.Get_Net();
+	Host = nc.Get_Host();
+	Restrict = nc.Get_Restrict();
+	DHCPstart = nc.Get_DHCPstart();
+	DNS = nc.Get_DNS();
+	Tftp = nc.Get_Tftp();
+	Bootfile = nc.Get_Bootfile();
+	HostFwd = nc.Get_HostFwd();
+	GuestFwd = nc.Get_GuestFwd();
+	SMB = nc.Get_SMB();
+	SMBserver = nc.Get_SMBserver();
+	Sndbuf = nc.Get_Sndbuf();
+	VNet_hdr = nc.Get_VNet_hdr();
+	VHost = nc.Get_VHost();
+	VHostFd = nc.Get_VHostFd();
 	
 	_Use_MAC = nc.Use_MAC_Address();
 	_Use_VLAN = nc.Use_VLAN();
@@ -2365,6 +2447,23 @@ VM_Net_Card_Nativ::VM_Net_Card_Nativ( const VM_Net_Card_Nativ &nc )
 	_Use_Mode = nc.Use_Mode();
 	_Use_File = nc.Use_File();
 	_Use_Len = nc.Use_Len();
+	_Use_Addr = nc.Use_Addr();
+	_Use_Vectors = nc.Use_Vectors();
+	_Use_Net = nc.Use_Net(); 
+	_Use_Host = nc.Use_Host();
+	_Use_Restrict = nc.Use_Restrict();
+	_Use_DHCPstart = nc.Use_DHCPstart();
+	_Use_DNS = nc.Use_DNS();
+	_Use_Tftp = nc.Use_Tftp();
+	_Use_Bootfile = nc.Use_Bootfile();
+	_Use_HostFwd = nc.Use_HostFwd();
+	_Use_GuestFwd = nc.Use_GuestFwd();
+	_Use_SMB = nc.Use_SMB();
+	_Use_SMBserver = nc.Use_SMBserver();
+	_Use_Sndbuf = nc.Use_Sndbuf();
+	_Use_VNet_hdr = nc.Use_VNet_hdr();
+	_Use_VHost = nc.Use_VHost();
+	_Use_VHostFd = nc.Use_VHostFd();
 }
 
 bool VM_Net_Card_Nativ::operator==( const VM_Net_Card_Nativ &nc ) const
@@ -2389,6 +2488,23 @@ bool VM_Net_Card_Nativ::operator==( const VM_Net_Card_Nativ &nc ) const
 		Mode == nc.Get_Mode() &&
 		File == nc.Get_File() &&
 		Len == nc.Get_Len() &&
+		Addr == nc.Get_Addr() &&
+		Vectors == nc.Get_Vectors() &&
+		Net == nc.Get_Net() &&
+		Host == nc.Get_Host() &&
+		Restrict == nc.Get_Restrict() &&
+		DHCPstart == nc.Get_DHCPstart() &&
+		DNS == nc.Get_DNS() &&
+		Tftp == nc.Get_Tftp() &&
+		Bootfile == nc.Get_Bootfile() &&
+		HostFwd == nc.Get_HostFwd() &&
+		GuestFwd == nc.Get_GuestFwd() &&
+		SMB == nc.Get_SMB() &&
+		SMBserver == nc.Get_SMBserver() &&
+		Sndbuf == nc.Get_Sndbuf() &&
+		VNet_hdr == nc.Get_VNet_hdr() &&
+		VHost == nc.Get_VHost() &&
+		VHostFd == nc.Get_VHostFd() &&
 		_Use_MAC == nc.Use_MAC_Address() &&
 		_Use_VLAN == nc.Use_VLAN() &&
 		_Use_Name == nc.Use_Name() &&
@@ -2405,7 +2521,24 @@ bool VM_Net_Card_Nativ::operator==( const VM_Net_Card_Nativ &nc ) const
 		_Use_Group == nc.Use_Group() &&
 		_Use_Mode == nc.Use_Mode() &&
 		_Use_File == nc.Use_File() &&
-		_Use_Len == nc.Use_Len() )
+		_Use_Len == nc.Use_Len() &&
+		_Use_Addr == nc.Use_Addr() &&
+		_Use_Vectors == nc.Use_Vectors() &&
+		_Use_Net == nc.Use_Net() && 
+		_Use_Host == nc.Use_Host() &&
+		_Use_Restrict == nc.Use_Restrict() &&
+		_Use_DHCPstart == nc.Use_DHCPstart() &&
+		_Use_DNS == nc.Use_DNS() &&
+		_Use_Tftp == nc.Use_Tftp() &&
+		_Use_Bootfile == nc.Use_Bootfile() &&
+		_Use_HostFwd == nc.Use_HostFwd() &&
+		_Use_GuestFwd == nc.Use_GuestFwd() &&
+		_Use_SMB == nc.Use_SMB() &&
+		_Use_SMBserver == nc.Use_SMBserver() &&
+		_Use_Sndbuf == nc.Use_Sndbuf() &&
+		_Use_VNet_hdr == nc.Use_VNet_hdr() &&
+		_Use_VHost == nc.Use_VHost() &&
+		_Use_VHostFd == nc.Use_VHostFd() )
 	{
 		return true;
 	}
@@ -2796,6 +2929,348 @@ void VM_Net_Card_Nativ::Set_Len( int kb )
 {
 	Len = kb;
 }
+
+bool VM_Net_Card_Nativ::Use_Addr() const
+{
+	return _Use_Addr;
+}
+
+void VM_Net_Card_Nativ::Use_Addr( bool use )
+{
+	_Use_Addr = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_Addr() const
+{
+	return Addr;
+}
+
+void VM_Net_Card_Nativ::Set_Addr( const QString &addr )
+{
+	Addr = addr;
+}
+
+
+bool VM_Net_Card_Nativ::Use_Vectors() const
+{
+	return _Use_Vectors;
+}
+
+void VM_Net_Card_Nativ::Use_Vectors( bool use )
+{
+	_Use_Vectors = use;
+}
+
+int VM_Net_Card_Nativ::Get_Vectors() const
+{
+	return Vectors;
+}
+
+void VM_Net_Card_Nativ::Set_Vectors( int vectors )
+{
+	Vectors = vectors;
+}
+
+bool VM_Net_Card_Nativ::Use_Net() const
+{
+	return _Use_Net;
+}
+
+void VM_Net_Card_Nativ::Use_Net( bool use )
+{
+	_Use_Net = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_Net() const
+{
+	return Net;
+}
+
+void VM_Net_Card_Nativ::Set_Net( const QString &net )
+{
+	Net = net;
+}
+
+bool VM_Net_Card_Nativ::Use_Host() const
+{
+	return _Use_Host;
+}
+
+void VM_Net_Card_Nativ::Use_Host( bool use )
+{
+	_Use_Host = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_Host() const
+{
+	return Host;
+}
+
+void VM_Net_Card_Nativ::Set_Host( const QString &host )
+{
+	Host = host;
+}
+
+bool VM_Net_Card_Nativ::Use_Restrict() const
+{
+	return _Use_Restrict;
+}
+
+void VM_Net_Card_Nativ::Use_Restrict( bool use )
+{
+	_Use_Restrict = use;
+}
+
+bool VM_Net_Card_Nativ::Get_Restrict() const
+{
+	return Restrict;
+}
+
+void VM_Net_Card_Nativ::Set_Restrict( bool use )
+{
+	Restrict = use;
+}
+
+bool VM_Net_Card_Nativ::Use_DHCPstart() const
+{
+	return _Use_DHCPstart;
+}
+
+void VM_Net_Card_Nativ::Use_DHCPstart( bool use )
+{
+	_Use_DHCPstart = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_DHCPstart() const
+{
+	return DHCPstart;
+}
+
+void VM_Net_Card_Nativ::Set_DHCPstart( const QString &addr )
+{
+	DHCPstart = addr;
+}
+
+bool VM_Net_Card_Nativ::Use_DNS() const
+{
+	return _Use_DNS;
+}
+
+void VM_Net_Card_Nativ::Use_DNS( bool use )
+{
+	_Use_DNS = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_DNS() const
+{
+	return DNS;
+}
+
+void VM_Net_Card_Nativ::Set_DNS( const QString &addr )
+{
+	DNS = addr;
+}
+
+bool VM_Net_Card_Nativ::Use_Tftp() const
+{
+	return _Use_Tftp;
+}
+
+void VM_Net_Card_Nativ::Use_Tftp( bool use )
+{
+	_Use_Tftp = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_Tftp() const
+{
+	return Tftp;
+}
+
+void VM_Net_Card_Nativ::Set_Tftp( const QString &dir )
+{
+	Tftp = dir;
+}
+
+bool VM_Net_Card_Nativ::Use_Bootfile() const
+{
+	return _Use_Bootfile;
+}
+
+void VM_Net_Card_Nativ::Use_Bootfile( bool use )
+{
+	_Use_Bootfile = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_Bootfile() const
+{
+	return Bootfile;
+}
+
+void VM_Net_Card_Nativ::Set_Bootfile( const QString &file )
+{
+	Bootfile = file;
+}
+
+bool VM_Net_Card_Nativ::Use_HostFwd() const
+{
+	return _Use_HostFwd;
+}
+
+void VM_Net_Card_Nativ::Use_HostFwd( bool use )
+{
+	_Use_HostFwd = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_HostFwd() const
+{
+	return HostFwd;
+}
+
+void VM_Net_Card_Nativ::Set_HostFwd( const QString &rule )
+{
+	HostFwd = rule;
+}
+
+bool VM_Net_Card_Nativ::Use_GuestFwd() const
+{
+	return _Use_GuestFwd;
+}
+
+void VM_Net_Card_Nativ::Use_GuestFwd( bool use )
+{
+	_Use_GuestFwd = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_GuestFwd() const
+{
+	return GuestFwd;
+}
+
+void VM_Net_Card_Nativ::Set_GuestFwd( const QString &rule )
+{
+	GuestFwd = rule;
+}
+
+bool VM_Net_Card_Nativ::Use_SMB() const
+{
+	return _Use_SMB;
+}
+
+void VM_Net_Card_Nativ::Use_SMB( bool use )
+{
+	_Use_SMB = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_SMB() const
+{
+	return SMB;
+}
+
+void VM_Net_Card_Nativ::Set_SMB( const QString &dir )
+{
+	SMB = dir;
+}
+
+bool VM_Net_Card_Nativ::Use_SMBserver() const
+{
+	return _Use_SMBserver;
+}
+
+void VM_Net_Card_Nativ::Use_SMBserver( bool use )
+{
+	_Use_SMBserver = use;
+}
+
+const QString &VM_Net_Card_Nativ::Get_SMBserver() const
+{
+	return SMBserver;
+}
+
+void VM_Net_Card_Nativ::Set_SMBserver( const QString &addr )
+{
+	SMBserver = addr;
+}
+
+bool VM_Net_Card_Nativ::Use_Sndbuf() const
+{
+	return _Use_Sndbuf;
+}
+
+void VM_Net_Card_Nativ::Use_Sndbuf( bool use )
+{
+	_Use_Sndbuf = use;
+}
+
+int VM_Net_Card_Nativ::Get_Sndbuf() const
+{
+	return Sndbuf;
+}
+
+void VM_Net_Card_Nativ::Set_Sndbuf( int bytes )
+{
+	Sndbuf = bytes;
+}
+
+bool VM_Net_Card_Nativ::Use_VNet_hdr() const
+{
+	return _Use_VNet_hdr;
+}
+
+void VM_Net_Card_Nativ::Use_VNet_hdr( bool use )
+{
+	_Use_VNet_hdr = use;
+}
+
+bool VM_Net_Card_Nativ::Get_VNet_hdr() const
+{
+	return VNet_hdr;
+}
+
+void VM_Net_Card_Nativ::Set_VNet_hdr( bool use )
+{
+	VNet_hdr = use;
+}
+
+bool VM_Net_Card_Nativ::Use_VHost() const
+{
+	return _Use_VHost;
+}
+
+void VM_Net_Card_Nativ::Use_VHost( bool use )
+{
+	_Use_VHost = use;
+}
+
+bool VM_Net_Card_Nativ::Get_VHost() const
+{
+	return VHost;
+}
+
+void VM_Net_Card_Nativ::Set_VHost( bool use )
+{
+	VHost = use;
+}
+
+bool VM_Net_Card_Nativ::Use_VHostFd() const
+{
+	return _Use_VHostFd;
+}
+
+void VM_Net_Card_Nativ::Use_VHostFd( bool use )
+{
+	_Use_VHostFd = use;
+}
+
+int VM_Net_Card_Nativ::Get_VHostFd() const
+{
+	return VHostFd;
+}
+
+void VM_Net_Card_Nativ::Set_VHostFd( int port )
+{
+	VHostFd = port;
+}
+
 
 //===========================================================================
 

@@ -202,6 +202,10 @@ void Network_Widget::Set_Devices( const Available_Devices &devices )
 	PSO_Net_ifname = devices.PSO_Net_ifname;
 	PSO_Net_script = devices.PSO_Net_script;
 	PSO_Net_downscript = devices.PSO_Net_downscript;
+	PSO_Net_sndbuf = devices.PSO_Net_sndbuf;
+	PSO_Net_vnet_hdr = devices.PSO_Net_vnet_hdr;
+	PSO_Net_vhost = devices.PSO_Net_vhost;
+	PSO_Net_vhostfd = devices.PSO_Net_vhostfd;
 	
 	PSO_Net_listen = devices.PSO_Net_listen;
 	PSO_Net_connect = devices.PSO_Net_connect;
@@ -338,6 +342,108 @@ void Network_Widget::Connect_Slots()
 	connect( ui.CB_len, SIGNAL(currentIndexChanged(int)),
 			 this, SIGNAL(Changet()) );
 	
+	connect( ui.CH_addr, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_addr, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_vectors, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.SB_vectors, SIGNAL(valueChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_net, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_net, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_host, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_host, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_restrict, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CB_restrict, SIGNAL(currentIndexChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_dhcpstart, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_dhcpstart, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_dns, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_dns, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_tftp, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_tftp, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_bootfile, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_bootfile, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_smb, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_smb, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_smbserver, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_smbserver, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_sndbuf, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.SB_sndbuf, SIGNAL(valueChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_vnet_hdr, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CB_vnet_hdr, SIGNAL(currentIndexChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_vhost, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CB_vhost, SIGNAL(currentIndexChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_vhostfd, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.SB_vhostfd, SIGNAL(valueChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_hostfwd, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_hostfwd, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.CH_guestfwd, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	connect( ui.Edit_guestfwd, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
 	// Update Name
 	connect( ui.CH_name, SIGNAL(clicked()),
 			 this, SLOT(Update_Card_Item()) );
@@ -461,6 +567,108 @@ void Network_Widget::Disconnect_Slots()
 	
 	disconnect( ui.CB_len, SIGNAL(currentIndexChanged(int)),
 				this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_addr, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_addr, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_vectors, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.SB_vectors, SIGNAL(valueChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_net, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_net, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_host, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_host, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_restrict, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CB_restrict, SIGNAL(currentIndexChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_dhcpstart, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_dhcpstart, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_dns, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_dns, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_tftp, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_tftp, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_bootfile, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_bootfile, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_smb, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_smb, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_smbserver, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_smbserver, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_sndbuf, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.SB_sndbuf, SIGNAL(valueChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_vnet_hdr, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CB_vnet_hdr, SIGNAL(currentIndexChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_vhost, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CB_vhost, SIGNAL(currentIndexChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_vhostfd, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.SB_vhostfd, SIGNAL(valueChanged(int)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_hostfwd, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_hostfwd, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.CH_guestfwd, SIGNAL(clicked()),
+			 this, SIGNAL(Changet()) );
+	
+	disconnect( ui.Edit_guestfwd, SIGNAL(textChanged(const QString &)),
+			 this, SIGNAL(Changet()) );
 	
 	// Update Name
 	disconnect( ui.CH_name, SIGNAL(clicked()),
@@ -696,10 +904,29 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 	
 	ui.CH_smb->setVisible( false );
 	ui.Edit_smb->setVisible( false );
+	ui.TB_Browse_smb->setVisible( false );
 	ui.CH_smbserver->setVisible( false );
 	ui.Edit_smbserver->setVisible( false );
 	
-	// -net nic[,vlan=n][,macaddr=addr][,model=type][,name=name]
+	ui.CH_hostfwd->setVisible( false );
+	ui.Edit_hostfwd->setVisible( false );
+	
+	ui.CH_guestfwd->setVisible( false );
+	ui.Edit_guestfwd->setVisible( false );
+	
+	ui.CH_sndbuf->setVisible( false );
+	ui.SB_sndbuf->setVisible( false );
+	
+	ui.CH_vnet_hdr->setVisible( false );
+	ui.CB_vnet_hdr->setVisible( false );
+	
+	ui.CH_vhost->setVisible( false );
+	ui.CB_vhost->setVisible( false );
+	
+	ui.CH_vhostfd->setVisible( false );
+	ui.SB_vhostfd->setVisible( false );
+	
+	// -net nic[,vlan=n][,macaddr=mac][,model=type][,name=str][,addr=str][,vectors=v]
 	if( ui.CB_Network_Type->currentText() == "nic" )
 	{
 		ui.CH_vlan->setVisible( true );
@@ -721,7 +948,9 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.CH_vectors->setVisible( true );
 		ui.SB_vectors->setVisible( true );
 	}
-	// -net user[,vlan=n][,hostname=name][,name=name]
+	// -net user[,vlan=n][,name=str][,net=addr[/mask]][,host=addr][,restrict=y|n]
+	//			[,hostname=host][,dhcpstart=addr][,dns=addr][,tftp=dir][,bootfile=f]
+	//			[,hostfwd=rule][,guestfwd=rule][,smb=dir[,smbserver=addr]]
 	else if( ui.CB_Network_Type->currentText() == "user" )
 	{
 		ui.CH_vlan->setVisible( true );
@@ -755,8 +984,16 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.Edit_bootfile->setVisible( true );
 		ui.TB_Browse_bootfile->setVisible( true );
 		
+		ui.CH_hostfwd->setVisible( true );
+		ui.Edit_hostfwd->setVisible( true );
+		
+		ui.CH_guestfwd->setVisible( true );
+		ui.Edit_guestfwd->setVisible( true );
+		
 		ui.CH_smb->setVisible( true );
 		ui.Edit_smb->setVisible( true );
+		ui.TB_Browse_smb->setVisible( true );
+		
 		ui.CH_smbserver->setVisible( true );
 		ui.Edit_smbserver->setVisible( true );
 	}
@@ -766,7 +1003,8 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.Label_port_dev->setVisible( true );
 		ui.Edit_port_dev->setVisible( true );
 	}
-	// -net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile]
+	// -net tap[,vlan=n][,name=str][,fd=h][,ifname=name][,script=file][,downscript=dfile]
+	//		   [,sndbuf=nbytes][,vnet_hdr=on|off][,vhost=on|off][,vhostfd=h]
 	else if( ui.CB_Network_Type->currentText() == "tap" )
 	{
 		ui.CH_vlan->setVisible( true );
@@ -788,8 +1026,20 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.CH_downscript->setVisible( true );
 		ui.Edit_downscript->setVisible( true );
 		ui.TB_Browse_downscript->setVisible( true );
+		
+		ui.CH_sndbuf->setVisible( true );
+		ui.SB_sndbuf->setVisible( true );
+		
+		ui.CH_vnet_hdr->setVisible( true );
+		ui.CB_vnet_hdr->setVisible( true );
+		
+		ui.CH_vhost->setVisible( true );
+		ui.CB_vhost->setVisible( true );
+		
+		ui.CH_vhostfd->setVisible( true );
+		ui.SB_vhostfd->setVisible( true );
 	}
-	// -net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port]
+	// -net socket[,vlan=n][,name=str][,fd=h][,listen=[host]:port][,connect=host:port]
 	else if( ui.CB_Network_Type->currentText() == "socket" )
 	{
 		ui.CH_vlan->setVisible( true );
@@ -807,7 +1057,7 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.CH_connect->setVisible( true );
 		ui.Edit_connect->setVisible( true );
 	}
-	// -net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port]
+	// -net socket[,vlan=n][,name=str][,fd=h][,mcast=maddr:port]
 	else if( ui.CB_Network_Type->currentText() == "multicast socket" )
 	{
 		ui.CH_vlan->setVisible( true );
@@ -822,7 +1072,7 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.CH_mcast->setVisible( true );
 		ui.Edit_mcast->setVisible( true );
 	}
-	// -net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
+	// -net vde[,vlan=n][,name=str][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
 	else if( ui.CB_Network_Type->currentText() == "vde" )
 	{
 		ui.CH_vlan->setVisible( true );
@@ -924,10 +1174,23 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.TB_Browse_bootfile->setVisible( false );
 	}
 	
+	if( ! PSO_Net_hostfwd )
+	{
+		ui.CH_hostfwd->setVisible( false );
+		ui.Edit_hostfwd->setVisible( false );
+	}
+	
+	if( ! PSO_Net_guestfwd )
+	{
+		ui.CH_guestfwd->setVisible( false );
+		ui.Edit_guestfwd->setVisible( false );
+	}
+	
 	if( ! PSO_Net_smb )
 	{
 		ui.CH_smb->setVisible( false );
 		ui.Edit_smb->setVisible( false );
+		ui.TB_Browse_smb->setVisible( false );
 		ui.CH_smbserver->setVisible( false );
 		ui.Edit_smbserver->setVisible( false );
 	}
@@ -950,6 +1213,30 @@ void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
 		ui.CH_downscript->setVisible( false );
 		ui.Edit_downscript->setVisible( false );
 		ui.TB_Browse_downscript->setVisible( false );
+	}
+	
+	if( ! PSO_Net_sndbuf )
+	{
+		ui.CH_sndbuf->setVisible( false );
+		ui.SB_sndbuf->setVisible( false );
+	}
+	
+	if( ! PSO_Net_vnet_hdr )
+	{
+		ui.CH_vnet_hdr->setVisible( false );
+		ui.CB_vnet_hdr->setVisible( false );
+	}
+	
+	if( ! PSO_Net_vhost )
+	{
+		ui.CH_vhost->setVisible( false );
+		ui.CB_vhost->setVisible( false );
+	}
+	
+	if( ! PSO_Net_vhostfd )
+	{
+		ui.CH_vhostfd->setVisible( false );
+		ui.SB_vhostfd->setVisible( false );
 	}
 	
 	if( ! PSO_Net_listen )
@@ -1036,6 +1323,34 @@ void Network_Widget::on_TB_Generate_New_MAC_clicked()
 	if( ! ui.Items_List->currentItem() ) return;
 	
 	ui.Edit_macaddr->setText( Network_Cards[ ui.Items_List->currentRow() ].Generate_MAC() );
+}
+
+void Network_Widget::on_TB_Browse_bootfile_clicked()
+{
+	QFileDialog::Options options;
+	QString selectedFilter;
+	
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Boot file"), Get_Last_Dir_Path(ui.Edit_bootfile->text()),
+													 tr("All Files (*)"), &selectedFilter, options );
+	
+	if( ! fileName.isEmpty() ) ui.Edit_bootfile->setText( fileName );
+}
+
+void Network_Widget::on_TB_Browse_smb_clicked()
+{
+	QString dirName = QFileDialog::getExistingDirectory( this, tr("SMB directory"), Get_Last_Dir_Path(ui.Edit_bootfile->text()) );
+	
+	if( ! dirName.isEmpty() ) ui.Edit_smb->setText( dirName );
+}
+
+void Network_Widget::on_CH_smb_toggled( bool checked )
+{
+	ui.CH_smbserver->setEnabled( checked );
+	
+	if( ui.CH_smbserver->isEnabled() && ui.CH_smbserver->isChecked() )
+		ui.Edit_smbserver->setEnabled( true );
+	else
+		ui.Edit_smbserver->setEnabled( false );
 }
 
 VM_Net_Card_Nativ Network_Widget::Get_Net_Card_From_Ui() const
@@ -1186,6 +1501,74 @@ VM_Net_Card_Nativ Network_Widget::Get_Net_Card_From_Ui() const
 			card.Set_Len( 64 );
 			break;
 	}
+	
+	// Addr
+	card.Use_Addr( ui.CH_addr->isChecked() );
+	card.Set_Addr( ui.Edit_addr->text() );
+	
+	// Vectors
+	card.Use_Vectors( ui.CH_vectors->isChecked() );
+	card.Set_Vectors( ui.SB_vectors->value() );
+	
+	// Net
+	card.Use_Net( ui.CH_net->isChecked() );
+	card.Set_Net( ui.Edit_net->text() );
+	
+	// Host
+	card.Use_Host( ui.CH_host->isChecked() );
+	card.Set_Host( ui.Edit_host->text() );
+	
+	// Restrict
+	card.Use_Restrict( ui.CH_restrict->isChecked() );
+	card.Set_Restrict( ui.CB_restrict->currentIndex() == 0 );
+	
+	// DHCPstart
+	card.Use_DHCPstart( ui.CH_dhcpstart->isChecked() );
+	card.Set_DHCPstart( ui.Edit_dhcpstart->text() );
+	
+	// DNS
+	card.Use_DNS( ui.CH_dns->isChecked() );
+	card.Set_DNS( ui.Edit_dns->text() );
+	
+	// Tftp
+	card.Use_Tftp( ui.CH_tftp->isChecked() );
+	card.Set_Tftp( ui.Edit_tftp->text() );
+	
+	// Bootfile
+	card.Use_Bootfile( ui.CH_bootfile->isChecked() );
+	card.Set_Bootfile( ui.Edit_bootfile->text() );
+	
+	// HostFwd
+	card.Use_HostFwd( ui.CH_hostfwd->isChecked() );
+	card.Set_HostFwd( ui.Edit_hostfwd->text() );
+	
+	// GuestFwd
+	card.Use_GuestFwd( ui.CH_guestfwd->isChecked() );
+	card.Set_GuestFwd( ui.Edit_guestfwd->text() );
+	
+	// SMB
+	card.Use_SMB( ui.CH_smb->isChecked() );
+	card.Set_SMB( ui.Edit_smb->text() );
+	
+	// SMBserver
+	card.Use_SMBserver( ui.CH_smbserver->isChecked() );
+	card.Set_SMBserver( ui.Edit_smbserver->text() );
+	
+	// Sndbuf
+	card.Use_Sndbuf( ui.CH_sndbuf->isChecked() );
+	card.Set_Sndbuf( ui.SB_sndbuf->value() );
+	
+	// VNet_hdr
+	card.Use_VNet_hdr( ui.CH_vnet_hdr->isChecked() );
+	card.Set_VNet_hdr( ui.CB_vnet_hdr->currentIndex() == 0 );
+	
+	// VHost
+	card.Use_VHost( ui.CH_vhost->isChecked() );
+	card.Set_VHost( ui.CB_vhost->currentIndex() == 0 );
+	
+	// VHostFd
+	card.Use_VHostFd( ui.CH_vhostfd->isChecked() );
+	card.Set_VHostFd( ui.SB_vhostfd->value() );
 	
 	return card;
 }
@@ -1352,6 +1735,76 @@ void Network_Widget::Set_Net_Card_To_Ui( const VM_Net_Card_Nativ &card )
 			ui.CB_len->setCurrentIndex( 0 );
 			break;
 	}
+	
+	// Addr
+	ui.CH_addr->setChecked( card.Use_Addr() );
+	ui.Edit_addr->setText( card.Get_Addr() );
+	
+	// Vectors
+	ui.CH_vectors->setChecked( card.Use_Vectors() );
+	ui.SB_vectors->setValue( card.Get_Vectors() );
+	
+	// Net
+	ui.CH_net->setChecked( card.Use_Net() );
+	ui.Edit_net->setText( card.Get_Net() );
+	
+	// Host
+	ui.CH_host->setChecked( card.Use_Host() );
+	ui.Edit_host->setText( card.Get_Host() );
+	
+	// Restrict
+	ui.CH_restrict->setChecked( card.Use_Restrict() );
+	ui.CB_restrict->setCurrentIndex( card.Get_Restrict() ? 0 : 1 );
+	
+	// DHCPstart
+	ui.CH_dhcpstart->setChecked( card.Use_DHCPstart() );
+	ui.Edit_dhcpstart->setText( card.Get_DHCPstart() );
+	
+	// DNS
+	ui.CH_dns->setChecked( card.Use_DNS() );
+	ui.Edit_dns->setText( card.Get_DNS() );
+	
+	// Tftp
+	ui.CH_tftp->setChecked( card.Use_Tftp() );
+	ui.Edit_tftp->setText( card.Get_Tftp() );
+	
+	// Bootfile
+	ui.CH_bootfile->setChecked( card.Use_Bootfile() );
+	ui.Edit_bootfile->setText( card.Get_Bootfile() );
+	
+	// HostFwd
+	ui.CH_hostfwd->setChecked( card.Use_HostFwd() );
+	ui.Edit_hostfwd->setText( card.Get_HostFwd() );
+	
+	// GuestFwd
+	ui.CH_guestfwd->setChecked( card.Use_GuestFwd() );
+	ui.Edit_guestfwd->setText( card.Get_GuestFwd() );
+	
+	// SMB
+	ui.CH_smb->setChecked( card.Use_SMB() );
+	ui.Edit_smb->setText( card.Get_SMB() );
+	
+	// SMBserver
+	ui.CH_smbserver->setChecked( card.Use_SMBserver() );
+	ui.Edit_smbserver->setText( card.Get_SMBserver() );
+	
+	on_CH_smb_toggled( card.Use_SMB() );
+	
+	// Sndbuf
+	ui.CH_sndbuf->setChecked( card.Use_Sndbuf() );
+	ui.SB_sndbuf->setValue( card.Get_Sndbuf() );
+	
+	// VNet_hdr
+	ui.CH_vnet_hdr->setChecked( card.Use_VNet_hdr() );
+	ui.CB_vnet_hdr->setCurrentIndex( card.Get_VNet_hdr() ? 0 : 1 );
+	
+	// VHost
+	ui.CH_vhost->setChecked( card.Use_VHost() );
+	ui.CB_vhost->setCurrentIndex( card.Get_VHost() ? 0 : 1 );
+	
+	// VHostFd
+	ui.CH_vhostfd->setChecked( card.Use_VHostFd() );
+	ui.SB_vhostfd->setValue( card.Get_VHostFd() );
 }
 
 bool Network_Widget::Net_Card_is_Valid()

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>358</width>
-    <height>1071</height>
+    <height>1241</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -144,7 +144,7 @@
         <x>0</x>
         <y>0</y>
         <width>340</width>
-        <height>917</height>
+        <height>1087</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -153,9 +153,6 @@
        </property>
        <property name="topMargin">
         <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>9</number>
        </property>
        <property name="bottomMargin">
         <number>0</number>
@@ -888,12 +885,12 @@
             </property>
             <item>
              <property name="text">
-              <string>yes</string>
+              <string>y</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>no</string>
+              <string>n</string>
              </property>
             </item>
            </widget>
@@ -949,6 +946,9 @@
           </item>
           <item row="28" column="1">
            <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <property name="spacing">
+             <number>4</number>
+            </property>
             <item>
              <widget class="QLineEdit" name="Edit_bootfile">
               <property name="enabled">
@@ -980,11 +980,32 @@
            </widget>
           </item>
           <item row="29" column="1">
-           <widget class="QLineEdit" name="Edit_smb">
-            <property name="enabled">
-             <bool>false</bool>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <property name="spacing">
+             <number>4</number>
             </property>
-           </widget>
+            <item>
+             <widget class="QLineEdit" name="Edit_smb">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="TB_Browse_smb">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="images.qrc">
+                <normaloff>:/open-folder.png</normaloff>:/open-folder.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item row="30" column="0">
            <widget class="QCheckBox" name="CH_smbserver">
@@ -995,6 +1016,116 @@
           </item>
           <item row="30" column="1">
            <widget class="QLineEdit" name="Edit_smbserver">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="0">
+           <widget class="QCheckBox" name="CH_sndbuf">
+            <property name="text">
+             <string>sndbuf</string>
+            </property>
+           </widget>
+          </item>
+          <item row="31" column="1">
+           <widget class="QSpinBox" name="SB_sndbuf">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>999999999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="0">
+           <widget class="QCheckBox" name="CH_vnet_hdr">
+            <property name="text">
+             <string>vnet_hdr</string>
+            </property>
+           </widget>
+          </item>
+          <item row="32" column="1">
+           <widget class="QComboBox" name="CB_vnet_hdr">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>on</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>off</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="33" column="0">
+           <widget class="QCheckBox" name="CH_vhost">
+            <property name="text">
+             <string>vhost</string>
+            </property>
+           </widget>
+          </item>
+          <item row="33" column="1">
+           <widget class="QComboBox" name="CB_vhost">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <item>
+             <property name="text">
+              <string>on</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>off</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="34" column="0">
+           <widget class="QCheckBox" name="CH_vhostfd">
+            <property name="text">
+             <string>vhostfd</string>
+            </property>
+           </widget>
+          </item>
+          <item row="34" column="1">
+           <widget class="QSpinBox" name="SB_vhostfd">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="maximum">
+             <number>999999999</number>
+            </property>
+           </widget>
+          </item>
+          <item row="35" column="0">
+           <widget class="QCheckBox" name="CH_hostfwd">
+            <property name="text">
+             <string>hostfwd</string>
+            </property>
+           </widget>
+          </item>
+          <item row="35" column="1">
+           <widget class="QLineEdit" name="Edit_hostfwd">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="36" column="0">
+           <widget class="QCheckBox" name="CH_guestfwd">
+            <property name="text">
+             <string>guestfwd</string>
+            </property>
+           </widget>
+          </item>
+          <item row="36" column="1">
+           <widget class="QLineEdit" name="Edit_guestfwd">
             <property name="enabled">
              <bool>false</bool>
             </property>
@@ -1080,8 +1211,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>60</x>
-     <y>256</y>
+     <x>57</x>
+     <y>260</y>
     </hint>
     <hint type="destinationlabel">
      <x>278</x>
@@ -1112,8 +1243,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>72</x>
-     <y>285</y>
+     <x>67</x>
+     <y>287</y>
     </hint>
     <hint type="destinationlabel">
      <x>234</x>
@@ -1181,7 +1312,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>308</x>
-     <y>435</y>
+     <y>426</y>
     </hint>
    </hints>
   </connection>
@@ -1197,7 +1328,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>338</x>
-     <y>437</y>
+     <y>428</y>
     </hint>
    </hints>
   </connection>
@@ -1213,7 +1344,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>308</x>
-     <y>468</y>
+     <y>459</y>
     </hint>
    </hints>
   </connection>
@@ -1229,7 +1360,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>338</x>
-     <y>470</y>
+     <y>461</y>
     </hint>
    </hints>
   </connection>
@@ -1245,7 +1376,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>498</y>
+     <y>489</y>
     </hint>
    </hints>
   </connection>
@@ -1261,7 +1392,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>525</y>
+     <y>516</y>
     </hint>
    </hints>
   </connection>
@@ -1277,7 +1408,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>552</y>
+     <y>543</y>
     </hint>
    </hints>
   </connection>
@@ -1309,7 +1440,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>606</y>
+     <y>597</y>
     </hint>
    </hints>
   </connection>
@@ -1325,7 +1456,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>633</y>
+     <y>624</y>
     </hint>
    </hints>
   </connection>
@@ -1341,7 +1472,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>660</y>
+     <y>651</y>
     </hint>
    </hints>
   </connection>
@@ -1357,7 +1488,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>687</y>
+     <y>678</y>
     </hint>
    </hints>
   </connection>
@@ -1373,7 +1504,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
-     <y>717</y>
+     <y>708</y>
     </hint>
    </hints>
   </connection>
@@ -1389,7 +1520,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>338</x>
-     <y>242</y>
+     <y>233</y>
     </hint>
    </hints>
   </connection>
@@ -1400,12 +1531,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>50</x>
-     <y>819</y>
+     <x>57</x>
+     <y>815</y>
     </hint>
     <hint type="destinationlabel">
-     <x>168</x>
-     <y>819</y>
+     <x>283</x>
+     <y>816</y>
     </hint>
    </hints>
   </connection>
@@ -1532,8 +1663,8 @@
      <y>979</y>
     </hint>
     <hint type="destinationlabel">
-     <x>273</x>
-     <y>996</y>
+     <x>308</x>
+     <y>990</y>
     </hint>
    </hints>
   </connection>
@@ -1560,8 +1691,8 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>41</x>
-     <y>960</y>
+     <x>48</x>
+     <y>956</y>
     </hint>
     <hint type="destinationlabel">
      <x>332</x>
@@ -1576,12 +1707,124 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>51</x>
-     <y>791</y>
+     <x>58</x>
+     <y>788</y>
     </hint>
     <hint type="destinationlabel">
-     <x>182</x>
-     <y>790</y>
+     <x>297</x>
+     <y>789</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_sndbuf</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_sndbuf</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>1033</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>171</x>
+     <y>1032</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_vnet_hdr</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CB_vnet_hdr</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>49</x>
+     <y>1065</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>185</x>
+     <y>1060</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_vhost</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CB_vhost</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>1090</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>168</x>
+     <y>1086</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_vhostfd</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SB_vhostfd</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>1120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>174</x>
+     <y>1117</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_smb</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>TB_Browse_smb</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>983</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>981</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_hostfwd</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_hostfwd</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>68</x>
+     <y>1150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>151</x>
+     <y>1150</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>CH_guestfwd</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>Edit_guestfwd</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>77</x>
+     <y>1179</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>158</x>
+     <y>1172</y>
     </hint>
    </hints>
   </connection>

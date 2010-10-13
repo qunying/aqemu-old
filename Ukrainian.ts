@@ -6225,208 +6225,250 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="178"/>
+        <location filename="Network_Widget.ui" line="175"/>
         <source>Connection Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="206"/>
+        <location filename="Network_Widget.ui" line="203"/>
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="225"/>
+        <location filename="Network_Widget.ui" line="222"/>
         <source>Model</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="251"/>
+        <location filename="Network_Widget.ui" line="248"/>
         <source>macaddr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="275"/>
+        <location filename="Network_Widget.ui" line="272"/>
         <source>aa:bb:cc:dd:ee</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="285"/>
+        <location filename="Network_Widget.ui" line="282"/>
         <source>Generate New MAC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="307"/>
+        <location filename="Network_Widget.ui" line="304"/>
         <source>vlan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="333"/>
+        <location filename="Network_Widget.ui" line="330"/>
         <source>name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="359"/>
+        <location filename="Network_Widget.ui" line="356"/>
         <source>hostname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="385"/>
+        <location filename="Network_Widget.ui" line="382"/>
         <source>port:dev</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="408"/>
+        <location filename="Network_Widget.ui" line="405"/>
         <source>fd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="434"/>
+        <location filename="Network_Widget.ui" line="431"/>
         <source>ifname</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="460"/>
+        <location filename="Network_Widget.ui" line="457"/>
         <source>script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="491"/>
-        <location filename="Network_Widget.ui" line="541"/>
+        <location filename="Network_Widget.ui" line="488"/>
+        <location filename="Network_Widget.ui" line="538"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="510"/>
+        <location filename="Network_Widget.ui" line="507"/>
         <source>downscript</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="560"/>
+        <location filename="Network_Widget.ui" line="557"/>
         <source>listen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="586"/>
+        <location filename="Network_Widget.ui" line="583"/>
         <source>connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="612"/>
+        <location filename="Network_Widget.ui" line="609"/>
         <source>mcast</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="638"/>
+        <location filename="Network_Widget.ui" line="635"/>
         <source>sock</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="664"/>
+        <location filename="Network_Widget.ui" line="661"/>
         <source>port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="693"/>
+        <location filename="Network_Widget.ui" line="690"/>
         <source>group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="719"/>
+        <location filename="Network_Widget.ui" line="716"/>
         <source>mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="745"/>
+        <location filename="Network_Widget.ui" line="742"/>
         <source>file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="771"/>
+        <location filename="Network_Widget.ui" line="768"/>
         <source>len</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="788"/>
+        <location filename="Network_Widget.ui" line="785"/>
         <source>64Kb (default)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="793"/>
+        <location filename="Network_Widget.ui" line="790"/>
         <source>128Kb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="798"/>
+        <location filename="Network_Widget.ui" line="795"/>
         <source>512Kb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="803"/>
+        <location filename="Network_Widget.ui" line="800"/>
         <source>1Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="808"/>
+        <location filename="Network_Widget.ui" line="805"/>
         <source>5Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="813"/>
+        <location filename="Network_Widget.ui" line="810"/>
         <source>10Mb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="821"/>
+        <location filename="Network_Widget.ui" line="818"/>
         <source>addr</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="835"/>
+        <location filename="Network_Widget.ui" line="832"/>
         <source>vectors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="852"/>
+        <location filename="Network_Widget.ui" line="849"/>
         <source>net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="866"/>
+        <location filename="Network_Widget.ui" line="863"/>
         <source>host</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="880"/>
+        <location filename="Network_Widget.ui" line="877"/>
         <source>restrict</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="891"/>
-        <source>yes</source>
+        <location filename="Network_Widget.ui" line="888"/>
+        <source>y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="896"/>
-        <source>no</source>
+        <location filename="Network_Widget.ui" line="893"/>
+        <source>n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="904"/>
+        <location filename="Network_Widget.ui" line="1027"/>
+        <source>sndbuf</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1044"/>
+        <source>vnet_hdr</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1055"/>
+        <location filename="Network_Widget.ui" line="1079"/>
+        <source>on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1060"/>
+        <location filename="Network_Widget.ui" line="1084"/>
+        <source>off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1068"/>
+        <source>vhost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1092"/>
+        <source>vhostfd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1109"/>
+        <source>hostfwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1123"/>
+        <source>guestfwd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="901"/>
         <source>dhcpstart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="918"/>
+        <location filename="Network_Widget.ui" line="915"/>
         <source>dns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="932"/>
+        <location filename="Network_Widget.ui" line="929"/>
         <source>tftp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="946"/>
+        <location filename="Network_Widget.ui" line="943"/>
         <source>bootfile</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6436,89 +6478,89 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.ui" line="992"/>
+        <location filename="Network_Widget.ui" line="1013"/>
         <source>smbserver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Network_Widget.cpp" line="133"/>
-        <location filename="Network_Widget.cpp" line="1573"/>
+        <location filename="Network_Widget.cpp" line="2026"/>
         <source>Unknown Type Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="479"/>
+        <location filename="Network_Widget.cpp" line="687"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="479"/>
+        <location filename="Network_Widget.cpp" line="687"/>
         <source>Maximum Network Cards Count is 8.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="485"/>
+        <location filename="Network_Widget.cpp" line="693"/>
         <source>New Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="547"/>
+        <location filename="Network_Widget.cpp" line="755"/>
         <source>nic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="547"/>
+        <location filename="Network_Widget.cpp" line="755"/>
         <source>-net nic[,vlan=n][,macaddr=addr][,model=type][,name=name] 
 Create a new Network Interface Card and connect it to VLAN n (n = 0 is the default). The NIC is an ne2k_pci by default on the PC target. Optionally, the MAC address can be changed to addr and a name can be assigned for use in monitor commands. If no &apos;-net&apos; option is specified, a single NIC is created. Qemu can emulate several different models of network card. Valid values for type are i82551, i82557b, i82559er, ne2k_pci, ne2k_isa, pcnet, rtl8139, e1000, smc91c111, lance and mcf_fec. Not all devices are supported on all targets. Use -net nic,model=? for a list of available devices for your target.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="551"/>
+        <location filename="Network_Widget.cpp" line="759"/>
         <source>user</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="551"/>
+        <location filename="Network_Widget.cpp" line="759"/>
         <source>-net user[,vlan=n][,hostname=name][,name=name] 
 Use the user mode network stack which requires no administrator privilege to run. &apos;hostname=name&apos; can be used to specify the client hostname reported by the builtin DHCP server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="555"/>
+        <location filename="Network_Widget.cpp" line="763"/>
         <source>channel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="555"/>
+        <location filename="Network_Widget.cpp" line="763"/>
         <source>-net channel,port:dev 
 Forward &apos;user&apos; TCP connection to port port to character device dev</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="559"/>
+        <location filename="Network_Widget.cpp" line="767"/>
         <source>tap</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="559"/>
+        <location filename="Network_Widget.cpp" line="767"/>
         <source>-net tap[,vlan=n][,name=name][,fd=h][,ifname=name][,script=file][,downscript=dfile] 
 Connect the host TAP network interface name to VLAN n, use the network script file to configure it and the network script dfile to deconfigure it. If name is not provided, the OS automatically provides one. &apos;fd&apos;=h can be used to specify the handle of an already opened host TAP interface. The default network configure script is &apos;/etc/qemu-ifup&apos; and the default network deconfigure script is &apos;/etc/qemu-ifdown&apos;. Use &apos;script=no&apos; or &apos;downscript=no&apos; to disable script execution.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="563"/>
-        <location filename="Network_Widget.cpp" line="567"/>
+        <location filename="Network_Widget.cpp" line="771"/>
+        <location filename="Network_Widget.cpp" line="775"/>
         <source>socket</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="563"/>
+        <location filename="Network_Widget.cpp" line="771"/>
         <source>-net socket[,vlan=n][,name=name][,fd=h][,listen=[host]:port][,connect=host:port] 
 Connect the VLAN n to a remote VLAN in another QEMU virtual machine using a TCP socket connection. If &apos;listen&apos; is specified, QEMU waits for incoming connections on port (host is optional). &apos;connect&apos; is used to connect to another QEMU instance using the &apos;listen&apos; option. &apos;fd&apos;=h specifies an already opened TCP socket.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="567"/>
+        <location filename="Network_Widget.cpp" line="775"/>
         <source>-net socket[,vlan=n][,name=name][,fd=h][,mcast=maddr:port] 
 Create a VLAN n shared with another QEMU virtual machines using a UDP multicast socket, effectively making a bus for every QEMU with same multicast address maddr and port. 
 NOTES: 
@@ -6528,64 +6570,79 @@ NOTES:
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="571"/>
+        <location filename="Network_Widget.cpp" line="779"/>
         <source>vde</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="571"/>
+        <location filename="Network_Widget.cpp" line="779"/>
         <source>-net vde[,vlan=n][,name=name][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode] 
 Connect VLAN n to PORT n of a vde switch running on host and listening for incoming connections on socketpath. Use GROUP groupname and MODE octalmode to change default ownership and permissions for communication port. This option is available only if QEMU has been compiled with vde support enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="575"/>
+        <location filename="Network_Widget.cpp" line="783"/>
         <source>dump</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="575"/>
+        <location filename="Network_Widget.cpp" line="783"/>
         <source>-net dump[,vlan=n][,file=f][,len=n] 
 dump traffic on vlan &apos;n&apos; to file &apos;f&apos; (max n bytes per packet)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="589"/>
-        <location filename="Network_Widget.cpp" line="600"/>
+        <location filename="Network_Widget.cpp" line="797"/>
+        <location filename="Network_Widget.cpp" line="808"/>
         <source>Select script</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="590"/>
-        <location filename="Network_Widget.cpp" line="601"/>
+        <location filename="Network_Widget.cpp" line="798"/>
+        <location filename="Network_Widget.cpp" line="809"/>
         <source>All Files (*);;Scripts (*.sh)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="1417"/>
-        <location filename="Network_Widget.cpp" line="1428"/>
-        <location filename="Network_Widget.cpp" line="1439"/>
-        <location filename="Network_Widget.cpp" line="1510"/>
+        <location filename="Network_Widget.cpp" line="1333"/>
+        <source>Boot file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.cpp" line="1334"/>
+        <source>All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.cpp" line="1341"/>
+        <source>SMB directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.cpp" line="1870"/>
+        <location filename="Network_Widget.cpp" line="1881"/>
+        <location filename="Network_Widget.cpp" line="1892"/>
+        <location filename="Network_Widget.cpp" line="1963"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="1417"/>
+        <location filename="Network_Widget.cpp" line="1870"/>
         <source>MAC Address Incorrect!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="1428"/>
+        <location filename="Network_Widget.cpp" line="1881"/>
         <source>Name Invalid! Valid Characters Are Only: a-z A-Z 0-9 _ -</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="1439"/>
+        <location filename="Network_Widget.cpp" line="1892"/>
         <source>Hostname Invalid! Valid Characters Are Only: a-z A-Z 0-9 _ -</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Network_Widget.cpp" line="1511"/>
+        <location filename="Network_Widget.cpp" line="1964"/>
         <source>%1 File &quot;%2&quot; Not Exist! Continue Without It File?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7812,10 +7869,10 @@ Check Permissions For File: </source>
         <location filename="VM_Devices.cpp" line="42"/>
         <location filename="VM_Devices.cpp" line="43"/>
         <location filename="VM_Devices.cpp" line="44"/>
-        <location filename="VM_Devices.cpp" line="333"/>
-        <location filename="VM_Devices.cpp" line="367"/>
-        <location filename="VM_Devices.cpp" line="401"/>
-        <location filename="VM_Devices.cpp" line="452"/>
+        <location filename="VM_Devices.cpp" line="337"/>
+        <location filename="VM_Devices.cpp" line="371"/>
+        <location filename="VM_Devices.cpp" line="405"/>
+        <location filename="VM_Devices.cpp" line="456"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -8888,55 +8945,55 @@ Use the maximum available size.</source>
 <context>
     <name>Virtual_Machine</name>
     <message>
-        <location filename="VM.cpp" line="3286"/>
+        <location filename="VM.cpp" line="3456"/>
         <source>Version Invalid!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="3287"/>
+        <location filename="VM.cpp" line="3457"/>
         <source>This Version on AQEMU VM File no 0.5
 Load This File?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5889"/>
+        <location filename="VM.cpp" line="6116"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5890"/>
+        <location filename="VM.cpp" line="6117"/>
         <source>USB Device %1 %2 (%3 %4) Not Found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5953"/>
-        <location filename="VM.cpp" line="6225"/>
-        <location filename="VM.cpp" line="6467"/>
-        <location filename="VM.cpp" line="6517"/>
-        <location filename="VM.cpp" line="6578"/>
-        <location filename="VM.cpp" line="8456"/>
+        <location filename="VM.cpp" line="6180"/>
+        <location filename="VM.cpp" line="6452"/>
+        <location filename="VM.cpp" line="6694"/>
+        <location filename="VM.cpp" line="6744"/>
+        <location filename="VM.cpp" line="6805"/>
+        <location filename="VM.cpp" line="8683"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="5953"/>
+        <location filename="VM.cpp" line="6180"/>
         <source>ROM File Not Exists! QEMU Cannot Run!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6225"/>
+        <location filename="VM.cpp" line="6452"/>
         <source>Additional Arguments is Empty! Cannot Use User Arguments!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6468"/>
+        <location filename="VM.cpp" line="6695"/>
         <source>KVM Kernel Module Not Loaded!
 For Loading KVM Module, Enter in Terminal by User &quot;root&quot;: &quot;modprobe kvm-intel&quot;. Or If Use AMD Processor: &quot;modprobe kvm-amd&quot;.
 Ignore This Error?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6518"/>
+        <location filename="VM.cpp" line="6745"/>
         <source>KQEMU Kernel Module Not Loaded!
 This Module Provide Acceleration for QEMU.
 For Loading KQEMU Module Type In Root Mode:
@@ -8945,37 +9002,37 @@ Or Disable Acceleration in Tab &quot;Other-&gt;Hardware Virtualization&quot;.</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6579"/>
+        <location filename="VM.cpp" line="6806"/>
         <source>Cannot start emulator! Binary path is empty!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6742"/>
+        <location filename="VM.cpp" line="6969"/>
         <source>QEMU Error Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6778"/>
+        <location filename="VM.cpp" line="7005"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6779"/>
+        <location filename="VM.cpp" line="7006"/>
         <source>Loading Virtual Machine. Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6811"/>
+        <location filename="VM.cpp" line="7038"/>
         <source>Saving...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6812"/>
+        <location filename="VM.cpp" line="7039"/>
         <source>Saving Virtual Machine. Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="8457"/>
+        <location filename="VM.cpp" line="8684"/>
         <source>To save a virtual machine, you need to add HDD image in QCOW2 format!</source>
         <translation type="unfinished"></translation>
     </message>
