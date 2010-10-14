@@ -215,7 +215,7 @@ bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 	QSettings settings;
 	qemu_img.start( settings.value("QEMU-IMG_Path", "qemu-img").toString(), args );
 	
-	if( ! qemu_img.waitForStarted(200) )
+	if( ! qemu_img.waitForStarted(2000) )
 	{
 		AQGraphic_Error( "bool Create_New_HDD_Image( bool encrypted, const QString &base_image,"
 						 "const QString &file_name, const QString &format, VM::Device_Size size, bool verbose )",

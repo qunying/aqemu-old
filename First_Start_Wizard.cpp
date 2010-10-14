@@ -204,6 +204,12 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 					qemuIMG_Finded = true;
 					break;
 				}
+				else if( QFile::exists(paths[ix] + "qemu-kvm-img") )
+				{
+					Settings.setValue( "QEMU-IMG_Path", paths[ix] + "qemu-kvm-img" );
+					qemuIMG_Finded = true;
+					break;
+				}
 			}
 			
 			if( qemuIMG_Finded )

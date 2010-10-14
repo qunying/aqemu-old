@@ -54,7 +54,7 @@ void Convert_HDD_Thread::run()
 	QSettings settings;
 	proc->start( settings.value("QEMU-IMG_Path", "qemu-img").toString(), Arguments );
 	
-	if( ! proc->waitForStarted(5000) )
+	if( ! proc->waitForStarted(2000) )
 		AQError( "void Convert_HDD_Thread::run()", "Cannot Start qemu-img!" );
 	
 	if( ! proc->waitForFinished(-1) )
