@@ -3344,6 +3344,7 @@ void Main_Window::Update_Disabled_Controls()
 	
 	// SPICE
 	SPICE_Widget->setEnabled( curComp.PSO_SPICE );
+	SPICE_Widget->Set_PSO_GXL( curComp.PSO_QXL );
 	
 	// Obsolete QEMU options
 	if( curComp.PSO_TFTP )

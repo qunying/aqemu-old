@@ -6254,7 +6254,8 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	if( SPICE.Use_SPICE() )
 	{
 		// QLX devices count and RAM size
-		Args << "-qxl" << QString( "%1,ram=%2" ).arg( SPICE.Get_GXL_Devices_Count() ).arg( SPICE.Get_RAM_Size() );
+		if( Current_Emulator_Devices->PSO_QXL )
+			Args << "-qxl" << QString( "%1,ram=%2" ).arg( SPICE.Get_GXL_Devices_Count() ).arg( SPICE.Get_RAM_Size() );
 		
 		// Basic SPICE options
 		QStringList spiceArgs;

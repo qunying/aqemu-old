@@ -140,6 +140,7 @@ Available_Devices::Available_Devices()
 	PSO_Std_VGA = false;
 	
 	PSO_SPICE = false;
+	PSO_QXL = false;
 }
 
 //===========================================================================
@@ -558,6 +559,7 @@ bool Emulator::Load( const QString &path )
 			tmpDev.PSO_KVM_Shadow_Memory = (childElement.firstChildElement("KVM_Shadow_Memory").text() == "yes" );
 			
 			tmpDev.PSO_SPICE = (childElement.firstChildElement("SPICE").text() == "yes" );
+			tmpDev.PSO_QXL = (childElement.firstChildElement("QXL").text() == "yes" );
 			
 			tmpDev.PSO_TFTP = (childElement.firstChildElement("TFTP").text() == "yes" );
 			tmpDev.PSO_SMB = (childElement.firstChildElement("SMB").text() == "yes" );
@@ -1282,6 +1284,12 @@ bool Emulator::Save() const
 		deviceElement = domDocument.createElement( "SPICE" );
 		domElement.appendChild( deviceElement );
 		domText = domDocument.createTextNode( (tmpDev.PSO_SPICE ? "yes" : "no") );
+		deviceElement.appendChild( domText );
+		
+		// PSO_QXL
+		deviceElement = domDocument.createElement( "QXL" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_QXL ? "yes" : "no") );
 		deviceElement.appendChild( domText );
 		
 		// PSO_TFTP

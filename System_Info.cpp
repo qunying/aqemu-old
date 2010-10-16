@@ -2035,6 +2035,10 @@ Available_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 	rx = QRegExp( ".*-spice\\s.*" );
 	if( rx.exactMatch(all_help) ) tmp_dev.PSO_SPICE = true;
 	
+	// -qxl
+	rx = QRegExp( ".*-qxl\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_QXL = true;
+	
 	// Base emulator
 	// Get Default Devices List
 	Available_Devices default_device;

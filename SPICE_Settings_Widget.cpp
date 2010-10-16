@@ -202,6 +202,15 @@ void SPICE_Settings_Widget::Set_Settings( const VM_SPICE &settings )
 	ui.Edit_Password->setText( settings.Get_Password() );
 }
 
+void SPICE_Settings_Widget::Set_PSO_GXL( bool use )
+{
+	ui.Label_QXL->setEnabled( use );
+	ui.Label_Number_of_QXL_Devices->setEnabled( use );
+	ui.SB_QXL_Num->setEnabled( use );
+	ui.Label_RAM_Size->setEnabled( use );
+	ui.CB_RAM_Size->setEnabled( use );
+}
+
 void SPICE_Settings_Widget::on_TB_Up_clicked()
 {
 	if( ! ui.Renderer_Order_List->currentItem() ) return;

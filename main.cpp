@@ -39,6 +39,8 @@
 #include "Settings_Window.h"
 #include "First_Start_Wizard.h"
 
+#define CURRENT_AQEMU_VERSION "0.8.1"
+
 int main( int argc, char *argv[] )
 {
 	// Set QSettings Data
@@ -82,7 +84,7 @@ int main( int argc, char *argv[] )
 	// This is Upgrade AQEMU? Find Previous Confing...
 	if( QFile::exists(QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf") )
 	{
-		QString conf_ver = settings.value( "AQEMU_Config_Version", "0.8" ).toString();
+		QString conf_ver = settings.value( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION ).toString();
 		
 		if( conf_ver == "0.5" )
 		{
@@ -90,9 +92,9 @@ int main( int argc, char *argv[] )
 					 "AQEMU Config Version: 0.5\nRun Firt Start Wizard" );
 			
 			settings.setValue( "First_Start", "yes" );
-			settings.setValue( "AQEMU_Config_Version", "0.8" );
+			settings.setValue( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION );
 		}
-		else if( conf_ver == "0.7.2" || conf_ver == "0.7.3" )
+		else if( conf_ver == "0.7.2" || conf_ver == "0.7.3" || conf_ver == "0.8" )
 		{
 			AQDebug( "int main( int argc, char *argv[] )",
 					 "AQEMU Config Version: 0.7.X\nStart Emulators Search..." );
@@ -112,12 +114,12 @@ int main( int argc, char *argv[] )
 			
 			delete first_start_win;
 			
-			settings.setValue( "AQEMU_Config_Version", "0.8" );
+			settings.setValue( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION );
 		}
-		else if( conf_ver == "0.8" )
+		else if( conf_ver == CURRENT_AQEMU_VERSION )
 		{
 			AQDebug( "int main( int argc, char *argv[] )",
-					 "AQEMU Config Version: 0.8" );
+					 QString("AQEMU Config Version: %1").arg(CURRENT_AQEMU_VERSION) );
 		}
 		else
 		{
@@ -131,7 +133,7 @@ int main( int argc, char *argv[] )
 				settings.clear();
 				settings.sync();
 				
-				settings.setValue( "AQEMU_Config_Version", "0.8" );
+				settings.setValue( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION );
 			}
 			else AQError( "int main( int argc, char *argv[] )", "Cannot Save Old Version AQEMU Configuration File!" );
 		}
@@ -139,7 +141,7 @@ int main( int argc, char *argv[] )
 	else
 	{
 		// Config File Not Found. This First Install
-		settings.setValue( "AQEMU_Config_Version", "0.8" );
+		settings.setValue( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION );
 	}
 	
 	// Use Log

@@ -36,6 +36,8 @@ class SPICE_Settings_Widget: public QWidget
 		const VM_SPICE &Get_Settings( bool &settingsValidated ) const;
 		void Set_Settings( const VM_SPICE &settings );
 		
+		void Set_PSO_GXL( bool use );
+		
 	private slots:
 		void on_TB_Up_clicked();
 		void on_TB_Down_clicked();

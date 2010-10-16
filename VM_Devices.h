@@ -319,6 +319,7 @@ class Available_Devices
 		bool PSO_Std_VGA;
 		
 		bool PSO_SPICE;
+		bool PSO_QXL;
 };
 
 class Emulator
