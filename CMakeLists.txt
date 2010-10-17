@@ -190,6 +190,24 @@ ENDIF( UPDATE_TRANSLATIONS )
 ADD_CUSTOM_TARGET( translations_target DEPENDS ${qm_files} )
 
 
+# Build RCC files (GUI icons)
+ADD_CUSTOM_COMMAND(
+   OUTPUT crystalsvg_icons.rcc
+   COMMAND rcc
+   ARGS ${CMAKE_CURRENT_SOURCE_DIR}/crystalsvg_icons.qrc -binary -o crystalsvg_icons.rcc
+   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/crystalsvg_icons.qrc
+)
+
+ADD_CUSTOM_COMMAND(
+   OUTPUT oxygen_icons.rcc
+   COMMAND rcc
+   ARGS ${CMAKE_CURRENT_SOURCE_DIR}/oxygen_icons.qrc -binary -o oxygen_icons.rcc
+   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/oxygen_icons.qrc
+)
+
+ADD_CUSTOM_TARGET( gui_icons ALL DEPENDS crystalsvg_icons.rcc oxygen_icons.rcc )
+
+
 # Building
 INCLUDE_DIRECTORIES(
 	${QT_INCLUDES}

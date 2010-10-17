@@ -17,6 +17,7 @@ Makefile
 *.qm
 ui_*.h
 *.so
+*.rcc
 
 # AQEMU binary
 aqemu
