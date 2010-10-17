@@ -49,5 +49,6 @@
 	<file alias="next.png">images/oxygen/next.png</file>
 	<file alias="find.png">images/oxygen/find.png</file>
 	<file alias="port.png">images/oxygen/port.png</file>
+	<file alias="font.png">images/oxygen/font.png</file>
   </qresource>
 </RCC>

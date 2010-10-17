@@ -41,6 +41,8 @@ class Monitor_Window: public QDialog
 		
 	private slots:
 		void on_Button_Run_clicked();
+		void on_Button_Font_clicked();
+		QFont Get_Font();
 		
 	protected:
 		void closeEvent( QCloseEvent *event );

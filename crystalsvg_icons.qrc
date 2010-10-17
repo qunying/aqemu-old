@@ -49,5 +49,6 @@
 	<file alias="next.png">images/crystalsvg/next.png</file>
 	<file alias="find.png">images/crystalsvg/find.png</file>
 	<file alias="port.png">images/crystalsvg/port.png</file>
+	<file alias="font.png">images/crystalsvg/font.png</file>
   </qresource>
 </RCC>
