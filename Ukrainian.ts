@@ -76,6 +76,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -88,16 +89,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="204"/>
+        <location filename="About_Window.ui" line="205"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="219"/>
+        <location filename="About_Window.ui" line="220"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -289,12 +291,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="414"/>
+        <location filename="About_Window.ui" line="415"/>
         <source>Links</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="426"/>
+        <location filename="About_Window.ui" line="427"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -302,6 +304,7 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
@@ -321,12 +324,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="482"/>
-        <source>Update Links Form Internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="516"/>
+        <location filename="About_Window.ui" line="518"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -334,11 +332,16 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;   &lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 Beta1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="543"/>
+        <location filename="About_Window.ui" line="484"/>
+        <source>Update Links Form Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="545"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6116,123 +6119,133 @@ Add This Record?</source>
 <context>
     <name>Monitor_Window</name>
     <message>
-        <location filename="Monitor_Window.ui" line="14"/>
+        <location filename="Monitor_Window.ui" line="15"/>
         <source>QEMU/KVM Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="104"/>
+        <location filename="Monitor_Window.ui" line="115"/>
         <source>Com&amp;mand:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="130"/>
+        <location filename="Monitor_Window.ui" line="141"/>
         <source>info version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="135"/>
+        <location filename="Monitor_Window.ui" line="146"/>
         <source>info network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="140"/>
+        <location filename="Monitor_Window.ui" line="151"/>
         <source>info block</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="145"/>
+        <location filename="Monitor_Window.ui" line="156"/>
         <source>info registers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="150"/>
+        <location filename="Monitor_Window.ui" line="161"/>
         <source>info cpus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="155"/>
+        <location filename="Monitor_Window.ui" line="166"/>
         <source>info history</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="160"/>
+        <location filename="Monitor_Window.ui" line="171"/>
         <source>info irq</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="165"/>
+        <location filename="Monitor_Window.ui" line="176"/>
         <source>info pic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="170"/>
+        <location filename="Monitor_Window.ui" line="181"/>
         <source>info pci</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="175"/>
+        <location filename="Monitor_Window.ui" line="186"/>
         <source>info tlb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="180"/>
+        <location filename="Monitor_Window.ui" line="191"/>
         <source>info mem</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="185"/>
+        <location filename="Monitor_Window.ui" line="196"/>
         <source>info jit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="190"/>
+        <location filename="Monitor_Window.ui" line="201"/>
         <source>info kqemu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="195"/>
+        <location filename="Monitor_Window.ui" line="206"/>
         <source>info usb</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="200"/>
+        <location filename="Monitor_Window.ui" line="211"/>
         <source>info usbhost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="205"/>
+        <location filename="Monitor_Window.ui" line="216"/>
         <source>info profile</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="210"/>
+        <location filename="Monitor_Window.ui" line="221"/>
         <source>info capture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="215"/>
+        <location filename="Monitor_Window.ui" line="226"/>
         <source>info snapshots</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="220"/>
+        <location filename="Monitor_Window.ui" line="231"/>
         <source>info mice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="225"/>
+        <location filename="Monitor_Window.ui" line="236"/>
         <source>info vnc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="239"/>
+        <location filename="Monitor_Window.ui" line="250"/>
         <source>&amp;Run</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Monitor_Window.ui" line="256"/>
+        <location filename="Monitor_Window.ui" line="267"/>
         <source>&amp;Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Monitor_Window.ui" line="284"/>
+        <source>Change font</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Monitor_Window.ui" line="287"/>
+        <source>Font</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

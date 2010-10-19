@@ -1,4 +1,4 @@
-2010-09-XX Andrey Rijov (Version 0.8.1)
+2010-10-XX Andrey Rijov (Version 0.8.1)
 
 	* Added SPICE support
 	
@@ -15,6 +15,8 @@
 	* GUI restyling (Changes affect almost all windows)
 	
 	* Added new OS icons
+	
+	* Added ability to change the font in the emulator monitor
 	
 	* Major Bug Fix
 
