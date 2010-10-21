@@ -126,6 +126,7 @@ class Emulator_Control_Window: public QMainWindow
 	private:
 		Ui::Emulator_Control_Window ui;
 		bool Show_Close_Warning;
+		bool Fullscreen_Menu_Added;
 		Virtual_Machine *Cur_VM;
 		QSettings Settings;
 		QList<QAction*> Recent_Files_CD_Items;

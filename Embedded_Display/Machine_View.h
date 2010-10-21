@@ -89,6 +89,10 @@ class MachineView : public QScrollArea
 		bool stop_reinit;
 		
 		QAction *scaleAction;
+		
+		int Init_Count;
+		int VNC_Width;
+		int VNC_Height;
 };
 
 #endif

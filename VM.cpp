@@ -283,7 +283,7 @@ void Virtual_Machine::Shared_Constructor()
 	// Emulator
 	Emulator_Type = VM::QEMU;
 	Current_Emulator = Emulator();
-	Current_Emulator_Devices = new Available_Devices();
+	Current_Emulator_Devices = Available_Devices();
 	
 	QObject::connect( Emu_Ctl, SIGNAL(Ready_Read_Command(QString)),
 					  this, SLOT(Execute_Emu_Ctl_Command(QString)) );
@@ -5045,27 +5045,27 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		Load_Mode = false;
 	}
 	
-	if( ! Current_Emulator_Devices )
+	if( Current_Emulator_Devices.System.QEMU_Name.isEmpty() )
 	{
 		AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-				 "Current_Emulator_Devices == NULL !!!" );
+				 "Current_Emulator_Devices is empty!" );
 		Update_Current_Emulator_Devices();
 		
-		if( ! Current_Emulator_Devices )
+		if( Current_Emulator_Devices.System.QEMU_Name.isEmpty() )
 		{
 			AQError( "QStringList Virtual_Machine::Build_QEMU_Args()",
-					 "Current_Emulator_Devices == NULL. AQEMU Break :(" );
+					 "Current_Emulator_Devices is empty! AQEMU Break :(" );
 			return Args;
 		}
 	}
 	
 	// SMP Mode
-	if( SMP.SMP_Count <= Current_Emulator_Devices->PSO_SMP_Count )
+	if( SMP.SMP_Count <= Current_Emulator_Devices.PSO_SMP_Count )
 	{
-		if( Current_Emulator_Devices->PSO_SMP_Cores ||
-			Current_Emulator_Devices->PSO_SMP_Threads ||
-			Current_Emulator_Devices->PSO_SMP_Sockets ||
-			Current_Emulator_Devices->PSO_SMP_MaxCPUs )
+		if( Current_Emulator_Devices.PSO_SMP_Cores ||
+			Current_Emulator_Devices.PSO_SMP_Threads ||
+			Current_Emulator_Devices.PSO_SMP_Sockets ||
+			Current_Emulator_Devices.PSO_SMP_MaxCPUs )
 		{
 			if( SMP.SMP_Count > 1 ||
 				SMP.SMP_Cores > 0 ||
@@ -5075,16 +5075,16 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 			{
 				QString smp_args = QString::number( SMP.SMP_Count );
 				
-				if( Current_Emulator_Devices->PSO_SMP_Cores && SMP.SMP_Cores > 0 )
+				if( Current_Emulator_Devices.PSO_SMP_Cores && SMP.SMP_Cores > 0 )
 					smp_args += ",cores=" + QString::number( SMP.SMP_Cores );
 				
-				if( Current_Emulator_Devices->PSO_SMP_Threads && SMP.SMP_Threads > 0 )
+				if( Current_Emulator_Devices.PSO_SMP_Threads && SMP.SMP_Threads > 0 )
 					smp_args += ",threads=" + QString::number( SMP.SMP_Threads );
 				
-				if( Current_Emulator_Devices->PSO_SMP_Sockets && SMP.SMP_Sockets > 0 )
+				if( Current_Emulator_Devices.PSO_SMP_Sockets && SMP.SMP_Sockets > 0 )
 					smp_args += ",sockets=" + QString::number( SMP.SMP_Sockets );
 				
-				if( Current_Emulator_Devices->PSO_SMP_MaxCPUs && SMP.SMP_MaxCPUs > 0 )
+				if( Current_Emulator_Devices.PSO_SMP_MaxCPUs && SMP.SMP_MaxCPUs > 0 )
 					smp_args += ",maxcpus=" + QString::number( SMP.SMP_MaxCPUs );
 				
 				Args << "-smp" << smp_args;
@@ -5098,7 +5098,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// CPU Model
-	if( Current_Emulator_Devices->CPU_List.count() > 1 &&
+	if( Current_Emulator_Devices.CPU_List.count() > 1 &&
 		CPU_Type.isEmpty() == false )
 	{
 		Args << "-cpu" << CPU_Type;
@@ -5107,12 +5107,12 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	// Audio
 	QStringList audio_list;
 	
-	if( Audio_Card.Audio_sb16 &&  Current_Emulator_Devices->Audio_Card_List.Audio_sb16 ) audio_list << "sb16";
-	if( Audio_Card.Audio_es1370 && Current_Emulator_Devices->Audio_Card_List.Audio_es1370 ) audio_list << "es1370";
-	if( Audio_Card.Audio_Adlib && Current_Emulator_Devices->Audio_Card_List.Audio_Adlib ) audio_list << "adlib";
-	if( Audio_Card.Audio_PC_Speaker && Current_Emulator_Devices->Audio_Card_List.Audio_PC_Speaker ) audio_list << "pcspk";
-	if( Audio_Card.Audio_GUS && Current_Emulator_Devices->Audio_Card_List.Audio_GUS ) audio_list << "gus";
-	if( Audio_Card.Audio_AC97 && Current_Emulator_Devices->Audio_Card_List.Audio_AC97 ) audio_list << "ac97";
+	if( Audio_Card.Audio_sb16 &&  Current_Emulator_Devices.Audio_Card_List.Audio_sb16 ) audio_list << "sb16";
+	if( Audio_Card.Audio_es1370 && Current_Emulator_Devices.Audio_Card_List.Audio_es1370 ) audio_list << "es1370";
+	if( Audio_Card.Audio_Adlib && Current_Emulator_Devices.Audio_Card_List.Audio_Adlib ) audio_list << "adlib";
+	if( Audio_Card.Audio_PC_Speaker && Current_Emulator_Devices.Audio_Card_List.Audio_PC_Speaker ) audio_list << "pcspk";
+	if( Audio_Card.Audio_GUS && Current_Emulator_Devices.Audio_Card_List.Audio_GUS ) audio_list << "gus";
+	if( Audio_Card.Audio_AC97 && Current_Emulator_Devices.Audio_Card_List.Audio_AC97 ) audio_list << "ac97";
 	
 	if( audio_list.count() > 0 )
 	{
@@ -5141,14 +5141,14 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		Args << "-k" << Get_Keyboard_Layout();
 	
 	// Video
-	if( Current_Emulator_Devices->PSO_Std_VGA ) // QEMU before 0.10 style
+	if( Current_Emulator_Devices.PSO_Std_VGA ) // QEMU before 0.10 style
 		Args << Video_Card;
 	else if( ! Video_Card.isEmpty() ) // QEMU 0.10 style
 		Args << "-vga" << Video_Card;
 	
 	// Acseleration Mode
-	if( Current_Emulator_Devices->PSO_KVM == false &&
-		Current_Emulator_Devices->PSO_Kernel_KQEMU == true )
+	if( (Current_Emulator_Devices.PSO_KVM == false || Current_Emulator_Devices.PSO_Enable_KVM == false) &&
+		Current_Emulator_Devices.PSO_Kernel_KQEMU == true )
 	{
 		switch( KQEMU_Mode )
 		{
@@ -5166,22 +5166,22 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// KVM Options
-	if( Current_Emulator_Devices->PSO_Enable_KVM && Enable_KVM )
+	if( Current_Emulator_Devices.PSO_Enable_KVM && Enable_KVM )
 		Args << "-enable-kvm";
 	
-	if( Current_Emulator_Devices->PSO_No_KVM_IRQChip && KVM_IRQChip )
+	if( Current_Emulator_Devices.PSO_No_KVM_IRQChip && KVM_IRQChip )
 		Args << "-no-kvm-irqchip";
 	
-	if( Current_Emulator_Devices->PSO_No_KVM_Pit && No_KVM_Pit )
+	if( Current_Emulator_Devices.PSO_No_KVM_Pit && No_KVM_Pit )
 		Args << "-no-kvm-pit";
 	
-	if( Current_Emulator_Devices->PSO_KVM_Shadow_Memory && KVM_Shadow_Memory )
+	if( Current_Emulator_Devices.PSO_KVM_Shadow_Memory && KVM_Shadow_Memory )
 		Args << "-kvm-shadow-memory" << QString::number( KVM_Shadow_Memory_Size );
 	
-	if( Current_Emulator_Devices->PSO_No_KVM_Pit_Reinjection && KVM_No_Pit_Reinjection )
+	if( Current_Emulator_Devices.PSO_No_KVM_Pit_Reinjection && KVM_No_Pit_Reinjection )
 		Args << "-no-kvm-pit-reinjection";
 	
-	if( Current_Emulator_Devices->PSO_Enable_Nesting && KVM_Nesting )
+	if( Current_Emulator_Devices.PSO_Enable_Nesting && KVM_Nesting )
 		Args << "-enable-nesting";
 	
 	// Memory
@@ -5192,15 +5192,15 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		Args << "-full-screen";
 	
 	// Win2000 Hack
-	if( Current_Emulator_Devices->PSO_Win2K_Hack &&
+	if( Current_Emulator_Devices.PSO_Win2K_Hack &&
 		Win2K_Hack ) Args << "-win2k-hack";
 	
 	// No Check FDD boot sector
-	if( Current_Emulator_Devices->PSO_No_FB_Boot_Check &&
+	if( Current_Emulator_Devices.PSO_No_FB_Boot_Check &&
 		Check_FDD_Boot_Sector == false ) Args << "-no-fd-bootchk";
 	
 	// No ACPI
-	if( Current_Emulator_Devices->PSO_No_ACPI &&
+	if( Current_Emulator_Devices.PSO_No_ACPI &&
 		ACPI == false ) Args << "-no-acpi";
 	
 	// Localtime
@@ -5220,16 +5220,16 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		Args << "-no-reboot";
 	
 	// QEMU 0.10.0 Options
-	if( Current_Emulator_Devices->PSO_RTC_TD_Hack && RTC_TD_Hack )
+	if( Current_Emulator_Devices.PSO_RTC_TD_Hack && RTC_TD_Hack )
 		Args << "-rtc-td-hack";
 	
-	if( Current_Emulator_Devices->PSO_Show_Cursor && Show_Cursor )
+	if( Current_Emulator_Devices.PSO_Show_Cursor && Show_Cursor )
 		Args << "-show-cursor";
 	
-	if( Current_Emulator_Devices->PSO_Curses && Curses )
+	if( Current_Emulator_Devices.PSO_Curses && Curses )
 		Args << "-curses";
 	
-	if( Current_Emulator_Devices->PSO_No_Shutdown && No_Shutdown )
+	if( Current_Emulator_Devices.PSO_No_Shutdown && No_Shutdown )
 		Args << "-no-shutdown";
 	
 	// FD0
@@ -5401,7 +5401,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// Storage Devices
-	if( Current_Emulator_Devices->PSO_Drive &&
+	if( Current_Emulator_Devices.PSO_Drive &&
 		Storage_Devices.count() > 0 )
 	{
 		for( int ix = 0; ix < Storage_Devices.count(); ++ix )
@@ -5411,7 +5411,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// Boot Device
-	if( Current_Emulator_Devices->PSO_Boot_Order )
+	if( Current_Emulator_Devices.PSO_Boot_Order )
 	{
 		int bootDevCount = 0;
 		int onceBootDeviceIndex = -1;
@@ -5575,14 +5575,14 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						
 					// -net vde[,vlan=n][,name=str][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
 					case VM::Net_Mode_Nativ_VDE:
-						if( Current_Emulator_Devices->PSO_Net_type_vde ) continue;
+						if( Current_Emulator_Devices.PSO_Net_type_vde ) continue;
 						nic_str += "vde";
 						u_vlan = u_name = u_sock = u_port = u_group = u_mode = true;
 						break;
 						
 					// -net dump[,vlan=n][,file=file][,len=len]
 					case VM::Net_Mode_Nativ_Dump:
-						if( Current_Emulator_Devices->PSO_Net_type_dump ) continue;
+						if( Current_Emulator_Devices.PSO_Net_type_dump ) continue;
 						nic_str += "dump";
 						u_vlan = u_file = u_len = true;
 						break;
@@ -5601,7 +5601,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 				if( Network_Cards_Nativ[ nc ].Get_Card_Model().isEmpty() == false && u_model )
 					nic_str += ",model=" + Network_Cards_Nativ[ nc ].Get_Card_Model();
 				
-				if( Network_Cards_Nativ[nc].Use_Name() && u_name && Current_Emulator_Devices->PSO_Net_name )
+				if( Network_Cards_Nativ[nc].Use_Name() && u_name && Current_Emulator_Devices.PSO_Net_name )
 					nic_str += ",name=\"" + Network_Cards_Nativ[ nc ].Get_Name() + "\"";
 				
 				if( Network_Cards_Nativ[nc].Use_Hostname() && u_hostname )
@@ -5613,10 +5613,10 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 				if( Network_Cards_Nativ[nc].Use_File_Descriptor() && u_fd )
 					nic_str += ",fd=" + QString::number( Network_Cards_Nativ[nc].Get_File_Descriptor() );
 				
-				if( Network_Cards_Nativ[nc].Use_Interface_Name() && u_ifname && Current_Emulator_Devices->PSO_Net_ifname )
+				if( Network_Cards_Nativ[nc].Use_Interface_Name() && u_ifname && Current_Emulator_Devices.PSO_Net_ifname )
 					nic_str += ",ifname=" + Network_Cards_Nativ[ nc ].Get_Interface_Name();
 				
-				if( u_script && Current_Emulator_Devices->PSO_Net_script )
+				if( u_script && Current_Emulator_Devices.PSO_Net_script )
 				{
 					QString s_script;
 					
@@ -5631,7 +5631,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						nic_str += ",script=" + s_script;
 				}
 				
-				if( u_downscript && Current_Emulator_Devices->PSO_Net_downscript )
+				if( u_downscript && Current_Emulator_Devices.PSO_Net_downscript )
 				{
 					QString s_downscript;
 					
@@ -5646,28 +5646,28 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						nic_str += ",downscript=" + s_downscript;
 				}
 				
-				if( Network_Cards_Nativ[nc].Use_Listen() && u_listen && Current_Emulator_Devices->PSO_Net_listen )
+				if( Network_Cards_Nativ[nc].Use_Listen() && u_listen && Current_Emulator_Devices.PSO_Net_listen )
 					nic_str += ",listen=" + Network_Cards_Nativ[ nc ].Get_Listen();
 				
-				if( Network_Cards_Nativ[nc].Use_Connect() && u_connect && Current_Emulator_Devices->PSO_Net_connect )
+				if( Network_Cards_Nativ[nc].Use_Connect() && u_connect && Current_Emulator_Devices.PSO_Net_connect )
 					nic_str += ",connect=" + Network_Cards_Nativ[ nc ].Get_Connect();
 				
-				if( Network_Cards_Nativ[nc].Use_MCast() && u_mcast && Current_Emulator_Devices->PSO_Net_mcast )
+				if( Network_Cards_Nativ[nc].Use_MCast() && u_mcast && Current_Emulator_Devices.PSO_Net_mcast )
 					nic_str += ",mcast=" + Network_Cards_Nativ[ nc ].Get_MCast();
 				
-				if( Network_Cards_Nativ[nc].Use_Sock() && u_sock && Current_Emulator_Devices->PSO_Net_sock )
+				if( Network_Cards_Nativ[nc].Use_Sock() && u_sock && Current_Emulator_Devices.PSO_Net_sock )
 					nic_str += ",sock=" + Network_Cards_Nativ[ nc ].Get_Sock();
 				
-				if( Network_Cards_Nativ[nc].Use_Port() && u_port && Current_Emulator_Devices->PSO_Net_port )
+				if( Network_Cards_Nativ[nc].Use_Port() && u_port && Current_Emulator_Devices.PSO_Net_port )
 					nic_str += ",port=" + QString::number( Network_Cards_Nativ[ nc ].Get_Port() );
 				
-				if( Network_Cards_Nativ[nc].Use_Group() && u_group && Current_Emulator_Devices->PSO_Net_group )
+				if( Network_Cards_Nativ[nc].Use_Group() && u_group && Current_Emulator_Devices.PSO_Net_group )
 					nic_str += ",group=" + Network_Cards_Nativ[ nc ].Get_Group();
 				
-				if( Network_Cards_Nativ[nc].Use_Mode() && u_mode && Current_Emulator_Devices->PSO_Net_mode )
+				if( Network_Cards_Nativ[nc].Use_Mode() && u_mode && Current_Emulator_Devices.PSO_Net_mode )
 					nic_str += ",mode=" + Network_Cards_Nativ[ nc ].Get_Mode();
 				
-				if( Network_Cards_Nativ[nc].Use_File() && u_file && Current_Emulator_Devices->PSO_Net_file )
+				if( Network_Cards_Nativ[nc].Use_File() && u_file && Current_Emulator_Devices.PSO_Net_file )
 				{
 					if( Build_QEMU_Args_for_Script_Mode )
 						nic_str += ",file=\"" + Network_Cards_Nativ[ nc ].Get_File() + "\"";
@@ -5675,31 +5675,31 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						nic_str += ",file=" + Network_Cards_Nativ[ nc ].Get_File();
 				}
 				
-				if( Network_Cards_Nativ[nc].Use_Len() && u_len && Current_Emulator_Devices->PSO_Net_len )
+				if( Network_Cards_Nativ[nc].Use_Len() && u_len && Current_Emulator_Devices.PSO_Net_len )
 					nic_str += ",len=" + QString::number( Network_Cards_Nativ[nc].Get_Len() );
 				
-				if( Network_Cards_Nativ[nc].Use_Addr() && u_addr && Current_Emulator_Devices->PSO_Net_addr )
+				if( Network_Cards_Nativ[nc].Use_Addr() && u_addr && Current_Emulator_Devices.PSO_Net_addr )
 					nic_str += ",addr=" + Network_Cards_Nativ[ nc ].Get_Addr();
 				
-				if( Network_Cards_Nativ[nc].Use_Vectors() && u_vectors && Current_Emulator_Devices->PSO_Net_vectors )
+				if( Network_Cards_Nativ[nc].Use_Vectors() && u_vectors && Current_Emulator_Devices.PSO_Net_vectors )
 					nic_str += ",vectors=" + QString::number( Network_Cards_Nativ[ nc ].Get_Vectors() );
 				
-				if( Network_Cards_Nativ[nc].Use_Net() && u_net && Current_Emulator_Devices->PSO_Net_net )
+				if( Network_Cards_Nativ[nc].Use_Net() && u_net && Current_Emulator_Devices.PSO_Net_net )
 					nic_str += ",net=" + Network_Cards_Nativ[ nc ].Get_Net();
 				
-				if( Network_Cards_Nativ[nc].Use_Host() && u_host && Current_Emulator_Devices->PSO_Net_host )
+				if( Network_Cards_Nativ[nc].Use_Host() && u_host && Current_Emulator_Devices.PSO_Net_host )
 					nic_str += ",host=" + Network_Cards_Nativ[ nc ].Get_Host();
 				
-				if( Network_Cards_Nativ[nc].Use_Restrict() && u_restrict && Current_Emulator_Devices->PSO_Net_restrict )
+				if( Network_Cards_Nativ[nc].Use_Restrict() && u_restrict && Current_Emulator_Devices.PSO_Net_restrict )
 					nic_str += ",restrict=" + Network_Cards_Nativ[nc].Get_Restrict() ? "y" : "n";
 				
-				if( Network_Cards_Nativ[nc].Use_DHCPstart() && u_dhcpstart && Current_Emulator_Devices->PSO_Net_dhcpstart )
+				if( Network_Cards_Nativ[nc].Use_DHCPstart() && u_dhcpstart && Current_Emulator_Devices.PSO_Net_dhcpstart )
 					nic_str += ",dhcpstart=" + Network_Cards_Nativ[ nc ].Get_DHCPstart();
 				
-				if( Network_Cards_Nativ[nc].Use_DNS() && u_dns && Current_Emulator_Devices->PSO_Net_dns )
+				if( Network_Cards_Nativ[nc].Use_DNS() && u_dns && Current_Emulator_Devices.PSO_Net_dns )
 					nic_str += ",dns=" + Network_Cards_Nativ[ nc ].Get_DNS();
 				
-				if( Network_Cards_Nativ[nc].Use_Tftp() && u_tftp && Current_Emulator_Devices->PSO_Net_tftp )
+				if( Network_Cards_Nativ[nc].Use_Tftp() && u_tftp && Current_Emulator_Devices.PSO_Net_tftp )
 				{
 					if( Build_QEMU_Args_for_Script_Mode )
 						nic_str += ",tftp=\"" + Network_Cards_Nativ[ nc ].Get_Tftp() + "\"";
@@ -5707,7 +5707,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						nic_str += ",tftp=" + Network_Cards_Nativ[ nc ].Get_Tftp();
 				}
 				
-				if( Network_Cards_Nativ[nc].Use_Bootfile() && u_bootfile && Current_Emulator_Devices->PSO_Net_bootfile )
+				if( Network_Cards_Nativ[nc].Use_Bootfile() && u_bootfile && Current_Emulator_Devices.PSO_Net_bootfile )
 				{
 					if( Build_QEMU_Args_for_Script_Mode )
 						nic_str += ",bootfile=\"" + Network_Cards_Nativ[ nc ].Get_Bootfile() + "\"";
@@ -5715,13 +5715,13 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						nic_str += ",bootfile=" + Network_Cards_Nativ[ nc ].Get_Bootfile();
 				}
 				
-				if( Network_Cards_Nativ[nc].Use_HostFwd() && u_hostfwd && Current_Emulator_Devices->PSO_Net_hostfwd )
+				if( Network_Cards_Nativ[nc].Use_HostFwd() && u_hostfwd && Current_Emulator_Devices.PSO_Net_hostfwd )
 					nic_str += ",hostfwd=" + Network_Cards_Nativ[ nc ].Get_HostFwd();
 				
-				if( Network_Cards_Nativ[nc].Use_GuestFwd() && u_guestfwd && Current_Emulator_Devices->PSO_Net_guestfwd )
+				if( Network_Cards_Nativ[nc].Use_GuestFwd() && u_guestfwd && Current_Emulator_Devices.PSO_Net_guestfwd )
 					nic_str += ",guestfwd=" + Network_Cards_Nativ[ nc ].Get_GuestFwd();
 				
-				if( Network_Cards_Nativ[nc].Use_SMB() && u_smb && Current_Emulator_Devices->PSO_Net_smb )
+				if( Network_Cards_Nativ[nc].Use_SMB() && u_smb && Current_Emulator_Devices.PSO_Net_smb )
 				{
 					if( Build_QEMU_Args_for_Script_Mode )
 						nic_str += ",smb=\"" + Network_Cards_Nativ[ nc ].Get_SMB() + "\"";
@@ -5732,16 +5732,16 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						nic_str += ",smbserver=" + Network_Cards_Nativ[ nc ].Get_SMBserver();
 				}
 				
-				if( Network_Cards_Nativ[nc].Use_Sndbuf() && u_sndbuf && Current_Emulator_Devices->PSO_Net_sndbuf )
+				if( Network_Cards_Nativ[nc].Use_Sndbuf() && u_sndbuf && Current_Emulator_Devices.PSO_Net_sndbuf )
 					nic_str += ",sndbuf=" + QString::number( Network_Cards_Nativ[nc].Get_Sndbuf() );
 				
-				if( Network_Cards_Nativ[nc].Use_VNet_hdr() && u_vnet_hdr && Current_Emulator_Devices->PSO_Net_vnet_hdr )
+				if( Network_Cards_Nativ[nc].Use_VNet_hdr() && u_vnet_hdr && Current_Emulator_Devices.PSO_Net_vnet_hdr )
 					nic_str += ",vnet_hdr=" + Network_Cards_Nativ[ nc ].Get_VNet_hdr() ? "on" : "off";
 				
-				if( Network_Cards_Nativ[nc].Get_VHost() && u_vhost && Current_Emulator_Devices->PSO_Net_vhost )
+				if( Network_Cards_Nativ[nc].Get_VHost() && u_vhost && Current_Emulator_Devices.PSO_Net_vhost )
 					nic_str += ",vhost=" + Network_Cards_Nativ[ nc ].Get_VHost() ? "on" : "off";
 				
-				if( Network_Cards_Nativ[nc].Use_VHostFd() && u_vhostfd && Current_Emulator_Devices->PSO_Net_vhostfd )
+				if( Network_Cards_Nativ[nc].Use_VHostFd() && u_vhostfd && Current_Emulator_Devices.PSO_Net_vhostfd )
 					nic_str += ",vhostfd=" + QString::number( Network_Cards_Nativ[nc].Get_VHostFd() );
 				
 				// Add to Args
@@ -6194,7 +6194,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	
 	// QEMU 0.9.1 Options
 	// on-board Flash memory image
-	if( Current_Emulator_Devices->PSO_MTDBlock && MTDBlock )
+	if( Current_Emulator_Devices.PSO_MTDBlock && MTDBlock )
 	{
 		if( Build_QEMU_Args_for_Script_Mode )
 			Args << "-mtdblock" << "\"" + MTDBlock_File + "\"";
@@ -6203,7 +6203,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// SecureDigital card image
-	if( Current_Emulator_Devices->PSO_SD && SecureDigital )
+	if( Current_Emulator_Devices.PSO_SD && SecureDigital )
 	{
 		if( Build_QEMU_Args_for_Script_Mode )
 			Args << "-sd" << "\"" + SecureDigital_File + "\"";
@@ -6212,7 +6212,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// parallel flash image
-	if( Current_Emulator_Devices->PSO_PFlash && PFlash )
+	if( Current_Emulator_Devices.PSO_PFlash && PFlash )
 	{
 		if( Build_QEMU_Args_for_Script_Mode )
 			Args << "-pflash" << "\"" + PFlash_File + "\"";
@@ -6221,7 +6221,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// Set the initial graphical resolution and depth
-	if( Current_Emulator_Devices->PSO_Initial_Graphic_Mode &&
+	if( Current_Emulator_Devices.PSO_Initial_Graphic_Mode &&
 		Init_Graphic_Mode.Get_Enabled() )
 	{
 		Args << "-g" << QString::number( Init_Graphic_Mode.Get_Width() ) + "x" +
@@ -6230,23 +6230,23 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	
 	// open SDL window without a frame and window decorations
-	if( Current_Emulator_Devices->PSO_No_Frame && No_Frame )
+	if( Current_Emulator_Devices.PSO_No_Frame && No_Frame )
 		Args << "-no-frame";
 	
 	// use Ctrl-Alt-Shift to grab mouse (instead of Ctrl-Alt)
-	if( Current_Emulator_Devices->PSO_Alt_Grab && Alt_Grab )
+	if( Current_Emulator_Devices.PSO_Alt_Grab && Alt_Grab )
 		Args << "-alt-grab";
 	
 	// disable SDL window close capability
-	if( Current_Emulator_Devices->PSO_No_Quit && No_Quit )
+	if( Current_Emulator_Devices.PSO_No_Quit && No_Quit )
 		Args << "-no-quit";
 	
 	// rotate graphical output 90 deg left (only PXA LCD)
-	if( Current_Emulator_Devices->PSO_Portrait && Portrait )
+	if( Current_Emulator_Devices.PSO_Portrait && Portrait )
 		Args << "-portrait";
 	
 	// VM Name
-	if( Current_Emulator_Devices->PSO_Name )
+	if( Current_Emulator_Devices.PSO_Name )
 		Args << "-name" << "\"" + Machine_Name + "\"";
 	
 	// SPICE
@@ -6254,7 +6254,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	if( SPICE.Use_SPICE() )
 	{
 		// QLX devices count and RAM size
-		if( Current_Emulator_Devices->PSO_QXL )
+		if( Current_Emulator_Devices.PSO_QXL )
 			Args << "-qxl" << QString( "%1,ram=%2" ).arg( SPICE.Get_GXL_Devices_Count() ).arg( SPICE.Get_RAM_Size() );
 		
 		// Basic SPICE options
@@ -6613,7 +6613,7 @@ bool Virtual_Machine::Start()
 	QEMU_Error_Win = new Error_Log_Window();
 	
 	// Check KVM
-	if( Current_Emulator_Devices->PSO_KVM &&
+	if( (Current_Emulator_Devices.PSO_KVM || Current_Emulator_Devices.PSO_Enable_KVM ) &&
 		Settings.value("Disable_KVM_Module_Check", "no").toString() != "yes" )
 	{
 		QProcess lsmod;
@@ -6699,7 +6699,11 @@ bool Virtual_Machine::Start()
 										   QMessageBox::Yes | QMessageBox::No | QMessageBox::YesToAll,
 	 									   QMessageBox::No );
 					
-					if( retVal == QMessageBox::No ) return false;
+					if( retVal == QMessageBox::No )
+					{
+						Start_Snapshot_Tag = "";
+						return false;
+					}
 					else if( retVal == QMessageBox::YesToAll )
 					{
 						Settings.setValue( "Disable_KVM_Module_Check", "yes" );
@@ -6712,7 +6716,7 @@ bool Virtual_Machine::Start()
 			}
 		}
 	}
-	else if( Current_Emulator_Devices->PSO_Kernel_KQEMU ) // Check KQEMU
+	else if( Current_Emulator_Devices.PSO_Kernel_KQEMU ) // Check KQEMU
 	{
 		// KQEMU Module
 		if( KQEMU_Mode != VM::KQEMU_Disabled &&
@@ -6748,6 +6752,7 @@ bool Virtual_Machine::Start()
 										   "For Loading KQEMU Module Type In Root Mode:\n"
 										   "\"modprobe kqemu\"\n"
 										   "Or Disable Acceleration in Tab \"Other->Hardware Virtualization\".") );
+						Start_Snapshot_Tag = "";
 						return false;
 					}
 				}
@@ -6761,11 +6766,6 @@ bool Virtual_Machine::Start()
 		QStringList tmp_env = QProcess::systemEnvironment();
 		tmp_env << "QEMU_AUDIO_DRV=" + Settings.value("QEMU_AUDIO/QEMU_AUDIO_DRV", "alsa").toString();
 		QEMU_Process->setEnvironment( tmp_env );
-	}
-	
-	if( (Start_Snapshot_Tag.isEmpty() == false) || (State == VM::VMS_Saved) )
-	{
-		Show_VM_Load_Window();
 	}
 	
 	// User Args Only
@@ -6787,7 +6787,7 @@ bool Virtual_Machine::Start()
 	{
 		// Get bin path
 		QMap<QString, QString> bin_list = Current_Emulator.Get_Binary_Files();
-		QString find_name = Current_Emulator_Devices->System.QEMU_Name;
+		QString find_name = Current_Emulator_Devices.System.QEMU_Name;
 		QString bin_path = "";
 		
 		for( QMap<QString, QString>::const_iterator iter = bin_list.constBegin(); iter != bin_list.constEnd(); iter++ )
@@ -6805,6 +6805,7 @@ bool Virtual_Machine::Start()
 		{
 			AQGraphic_Error( "bool Virtual_Machine::Start()", tr("Error!"),
 							 tr("Cannot start emulator! Binary path is empty!"), false );
+			Start_Snapshot_Tag = "";
 			return false;
 		}
 		
@@ -6851,6 +6852,13 @@ bool Virtual_Machine::Start()
 	Emu_Ctl->Use_Minimal_Size( true );
 	Emu_Ctl->Set_Current_VM( this );
 	Emu_Ctl->Init();
+	
+	// Show vm loading window?
+	if( Start_Snapshot_Tag.isEmpty() == false ||
+		State == VM::VMS_Saved )
+	{
+		Show_VM_Load_Window();
+	}
 	
 	return true;
 }
@@ -7172,47 +7180,47 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 		switch( Current_Emulator.Get_Version() )
 		{
 			case VM::QEMU_0_9_0:
-				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_9_0[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::Emulator_QEMU_0_9_0[ Computer_Type ];
 				break;
 					
 			case VM::QEMU_0_9_1:
-				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_9_1[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::Emulator_QEMU_0_9_1[ Computer_Type ];
 				break;
 	
 			case VM::QEMU_0_10:
-				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_10[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::Emulator_QEMU_0_10[ Computer_Type ];
 				break;
 	
 			case VM::QEMU_0_11:
-				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_11[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::Emulator_QEMU_0_11[ Computer_Type ];
 				break;
 	
 			case VM::QEMU_0_12:
-				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_12[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::Emulator_QEMU_0_12[ Computer_Type ];
 				break;
 				
 			case VM::QEMU_0_13:
-				Current_Emulator_Devices = &System_Info::Emulator_QEMU_0_13[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::Emulator_QEMU_0_13[ Computer_Type ];
 				break;
 	
 			case VM::KVM_7X:
-				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_7X[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::System_Info::Emulator_KVM_7X[ Computer_Type ];
 				break;
 	
 			case VM::KVM_8X:
-				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_8X[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::System_Info::Emulator_KVM_8X[ Computer_Type ];
 				break;
 	
 			case VM::KVM_0_11:
-				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_0_11[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::System_Info::Emulator_KVM_0_11[ Computer_Type ];
 				break;
 	
 			case VM::KVM_0_12:
-				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_0_12[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::System_Info::Emulator_KVM_0_12[ Computer_Type ];
 				break;
 				
 			case VM::KVM_0_13:
-				Current_Emulator_Devices = &System_Info::System_Info::Emulator_KVM_0_13[ Computer_Type ];
+				Current_Emulator_Devices = System_Info::System_Info::Emulator_KVM_0_13[ Computer_Type ];
 				break;
 	
 			default:
@@ -7222,13 +7230,11 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 	}
 	else
 	{
-		static Available_Devices tmp = Current_Emulator.Get_Devices()[ Computer_Type ];
-		tmp = Current_Emulator.Get_Devices()[ Computer_Type ]; // it not bug :)
-		Current_Emulator_Devices = &tmp;
+		Current_Emulator_Devices = Current_Emulator.Get_Devices()[ Computer_Type ];
 	}
 	
 	// Loading Info Complete?
-	if( ! Current_Emulator_Devices )
+	if( Current_Emulator_Devices.System.QEMU_Name.isEmpty() )
 	{
 		AQError( "void Update_Current_Emulator_Devices()",
 				 "Cannot Load Info About This Emulator! AQEMU Don't Work!" );
@@ -7237,14 +7243,14 @@ void Virtual_Machine::Update_Current_Emulator_Devices()
 
 const Available_Devices *Virtual_Machine::Get_Current_Emulator_Devices() const
 {
-	if( ! Current_Emulator_Devices )
+	if( Current_Emulator_Devices.System.QEMU_Name.isEmpty() )
 	{
 		AQError( "const Virtual_Machine::Available_Devices *Get_Current_Emulator_Devices() const",
 				 "Cannot get valid devices!" );
 		return new Available_Devices();
 	}
 	
-	return Current_Emulator_Devices;
+	return &Current_Emulator_Devices;
 }
 
 QString Virtual_Machine::Get_Current_Emulator_Binary_Path( const QString &names ) const
@@ -8609,6 +8615,7 @@ void Virtual_Machine::QEMU_Finished( int exitCode, QProcess::ExitStatus exitStat
 	
 	emit QEMU_End();
 	
+	Start_Snapshot_Tag = "";
 	Set_State( VM::VMS_Power_Off );
 	
 	if( exitCode != 0 || exitStatus == QProcess::CrashExit )
@@ -8688,7 +8695,7 @@ void Virtual_Machine::Suspend_Finished( const QString &returned_text )
 
 void Virtual_Machine::Started_Booting( const QString &text )
 {
-	if( text.contains("VNC") || text.contains("Server: disabled") )
+	if( text.contains("VNC") || text.contains("Server") )
 	{
 		disconnect( this, SIGNAL(Ready_StdOut(const QString&) ),
 				    this, SLOT(Started_Booting(const QString&)) );

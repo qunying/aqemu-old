@@ -1143,6 +1143,7 @@ bool System_Info::Update_VM_Computers_List()
 	//PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = false;
+	ad.PSO_Enable_KVM = false;
 	ad.PSO_RTC_TD_Hack = true;
 	
 	ad.PSO_MTDBlock = true;
@@ -1226,6 +1227,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_Win2K_Hack = true;
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = true;
+	ad.PSO_Enable_KVM = true;
 	System_Info::Emulator_KVM_7X[ "qemu-kvm" ] = ad;
 	
 	// KVM 8X
@@ -1244,6 +1246,7 @@ bool System_Info::Update_VM_Computers_List()
 	ad.PSO_RTC_TD_Hack = true;
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = true;
+	ad.PSO_Enable_KVM = true;
 	System_Info::Emulator_KVM_8X[ "qemu-kvm" ] = ad;
 	
 	// FIXME
@@ -1287,6 +1290,7 @@ bool System_Info::Update_VM_Computers_List()
 	//PSO_Kernel_KQEMU = true;
 	ad.PSO_No_ACPI = true;
 	ad.PSO_KVM = true;
+	ad.PSO_Enable_KVM = true;
 	ad.PSO_RTC_TD_Hack = true;
 	
 	ad.PSO_MTDBlock = true;

@@ -42,6 +42,7 @@ Emulator_Control_Window::Emulator_Control_Window( QWidget *parent )
 	ui.setupUi( this );
 	
 	First_Start = true;
+	Fullscreen_Menu_Added = false;
 	
 	Show_Close_Warning = true;
 	Mon_Win = new Monitor_Window();
@@ -856,12 +857,10 @@ void Emulator_Control_Window::on_actionFullscreen_Mode_triggered()
 			Settings.setValue( "Show_Fullscreen_Warning", "no" );
 	}
 	
-	static bool act_add = true;
-	
-	if( act_add )
+	if( ! Fullscreen_Menu_Added )
 	{
 		Machine_View->addAction( ui.actionFullscreen_Mode );
-		act_add = false;
+		Fullscreen_Menu_Added = true;
 	}
 	
 	setMaximumSize( 4096, 2048 );

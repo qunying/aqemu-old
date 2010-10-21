@@ -26,7 +26,7 @@
 #include <QMutexLocker>
 #include <QTimer>
 
-static QString outputErrorMessageString;
+static QString outputErrorMessageString; // FIXME test it (static?)
 
 rfbBool VncClientThread::newclient(rfbClient *cl)
 {

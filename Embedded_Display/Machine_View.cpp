@@ -44,6 +44,9 @@ MachineView::MachineView( QWidget *parent ) : QScrollArea( parent )
 	Scaling = false;
 	Reinit_Timer = new QTimer( this );
 	VNC_Connected = false;
+	Init_Count = 0;
+	VNC_Width = 0;
+	VNC_Height = 0;
 }
 
 void MachineView::Set_VNC_URL( const QString &host, int port )
@@ -133,14 +136,12 @@ void MachineView::reinitVNC()
 {
 	if( stop_reinit ) return;
 	
-	static int init_count = 0;
-	
 	AQWarning( "void MachineView::reinitVNC()",
-			   "Reinit VNC. Attempt #" + QString::number(init_count+1) );
+			   "Reinit VNC. Attempt #" + QString::number(Init_Count+1) );
 	
-	if( init_count < 10 )
+	if( Init_Count < 10 )
 	{
-		++init_count;
+		++Init_Count;
 		
 		disconnect( View, SIGNAL(connected()),
 					this, SIGNAL(Connected()) );
@@ -264,19 +265,16 @@ void MachineView::sendKey( QKeyEvent *event )
 
 void MachineView::newViewSize( int w, int h )
 {
-	static int vnc_width = 0;
-	static int vnc_height = 0;
-	
 	if( w > 0 && h > 0 )
 	{
-		vnc_width = w;
-		vnc_height = h;
+		VNC_Width = w;
+		VNC_Height = h;
 	}
 	
 	resizeView( maximumViewportSize().width(),
 				maximumViewportSize().height() );
 	
-	emit Full_Size( vnc_width, vnc_height );
+	emit Full_Size( VNC_Width, VNC_Height );
 }
 
 bool MachineView::event( QEvent *event )

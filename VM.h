@@ -463,7 +463,7 @@ class Virtual_Machine: public QObject
 		
 		VM::Emulator_Type Emulator_Type;
 		Emulator Current_Emulator;
-		const Available_Devices *Current_Emulator_Devices;
+		Available_Devices Current_Emulator_Devices;
 		
 		QString Snapshot_Name_String;
 		QString Last_Output;
