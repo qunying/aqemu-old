@@ -77,6 +77,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -90,16 +91,17 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="205"/>
+        <location filename="About_Window.ui" line="206"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="220"/>
+        <location filename="About_Window.ui" line="221"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -291,12 +293,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="415"/>
+        <location filename="About_Window.ui" line="416"/>
         <source>Links</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="427"/>
+        <location filename="About_Window.ui" line="428"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -304,6 +306,7 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
@@ -324,7 +327,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="518"/>
+        <location filename="About_Window.ui" line="486"/>
+        <source>Update Links Form Internet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="520"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -332,16 +340,11 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 Beta1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 Beta2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="484"/>
-        <source>Update Links Form Internet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="545"/>
+        <location filename="About_Window.ui" line="547"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3059,7 +3062,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     </message>
     <message>
         <location filename="Emulator_Control_Window.ui" line="488"/>
-        <location filename="Emulator_Control_Window.cpp" line="314"/>
+        <location filename="Emulator_Control_Window.cpp" line="315"/>
         <source>Save Screenshot As...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3146,145 +3149,145 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="82"/>
+        <location filename="Emulator_Control_Window.cpp" line="83"/>
         <source> [Paused]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="86"/>
+        <location filename="Emulator_Control_Window.cpp" line="87"/>
         <source> [Saved]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="113"/>
+        <location filename="Emulator_Control_Window.cpp" line="114"/>
         <source>Power Off This VM?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="114"/>
+        <location filename="Emulator_Control_Window.cpp" line="115"/>
         <source>This VM is Running, Off Power?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="170"/>
+        <location filename="Emulator_Control_Window.cpp" line="171"/>
         <source> (Emulator Control)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="315"/>
+        <location filename="Emulator_Control_Window.cpp" line="316"/>
         <source>All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="354"/>
-        <location filename="Emulator_Control_Window.cpp" line="366"/>
+        <location filename="Emulator_Control_Window.cpp" line="355"/>
+        <location filename="Emulator_Control_Window.cpp" line="367"/>
         <source>You Sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="355"/>
+        <location filename="Emulator_Control_Window.cpp" line="356"/>
         <source>Shutdown VM &quot;%1&quot;?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="367"/>
+        <location filename="Emulator_Control_Window.cpp" line="368"/>
         <source>Reboot VM &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Emulator_Control_Window.cpp" line="418"/>
-        <location filename="Emulator_Control_Window.cpp" line="485"/>
-        <location filename="Emulator_Control_Window.cpp" line="552"/>
-        <source>Open Device or Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="419"/>
         <location filename="Emulator_Control_Window.cpp" line="486"/>
+        <location filename="Emulator_Control_Window.cpp" line="553"/>
+        <source>Open Device or Image File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Emulator_Control_Window.cpp" line="420"/>
+        <location filename="Emulator_Control_Window.cpp" line="487"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="553"/>
+        <location filename="Emulator_Control_Window.cpp" line="554"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="624"/>
-        <location filename="Emulator_Control_Window.cpp" line="677"/>
+        <location filename="Emulator_Control_Window.cpp" line="625"/>
+        <location filename="Emulator_Control_Window.cpp" line="678"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="624"/>
+        <location filename="Emulator_Control_Window.cpp" line="625"/>
         <source>Cannot Find USB Device!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="678"/>
+        <location filename="Emulator_Control_Window.cpp" line="679"/>
         <source>Cannot Get USB Information From System!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="725"/>
+        <location filename="Emulator_Control_Window.cpp" line="726"/>
         <source>Disconnect USB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="726"/>
+        <location filename="Emulator_Control_Window.cpp" line="727"/>
         <source>Enter You Bus.Address VM USB Value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="767"/>
+        <location filename="Emulator_Control_Window.cpp" line="768"/>
         <source>Send Keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="768"/>
+        <location filename="Emulator_Control_Window.cpp" line="769"/>
         <source>Enter You Keys as ctrl-alt-delete or alt-f2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="851"/>
+        <location filename="Emulator_Control_Window.cpp" line="852"/>
         <source>Fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="852"/>
+        <location filename="Emulator_Control_Window.cpp" line="853"/>
         <source>For switch to window mode press Ctrl-Alt-F
 Show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="901"/>
+        <location filename="Emulator_Control_Window.cpp" line="900"/>
         <source>About Emulator Control...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="902"/>
+        <location filename="Emulator_Control_Window.cpp" line="901"/>
         <source>Emulator Control is a Tool for Managing QEMU in Runtime.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="911"/>
-        <location filename="Emulator_Control_Window.cpp" line="926"/>
-        <location filename="Emulator_Control_Window.cpp" line="942"/>
+        <location filename="Emulator_Control_Window.cpp" line="910"/>
+        <location filename="Emulator_Control_Window.cpp" line="925"/>
+        <location filename="Emulator_Control_Window.cpp" line="941"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="911"/>
+        <location filename="Emulator_Control_Window.cpp" line="910"/>
         <source>In This VM Floppy 1 Not Found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="926"/>
+        <location filename="Emulator_Control_Window.cpp" line="925"/>
         <source>In This VM Floppy 2 Not Found!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="942"/>
+        <location filename="Emulator_Control_Window.cpp" line="941"/>
         <source>In This VM CD-ROM Not Found!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3726,12 +3729,12 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
 <context>
     <name>MachineView</name>
     <message>
-        <location filename="Embedded_Display/Machine_View.cpp" line="187"/>
+        <location filename="Embedded_Display/Machine_View.cpp" line="188"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Embedded_Display/Machine_View.cpp" line="188"/>
+        <location filename="Embedded_Display/Machine_View.cpp" line="189"/>
         <source>Cannot Reinit VNC Connection!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9016,9 +9019,9 @@ Load This File?</source>
         <location filename="VM.cpp" line="6180"/>
         <location filename="VM.cpp" line="6453"/>
         <location filename="VM.cpp" line="6695"/>
-        <location filename="VM.cpp" line="6745"/>
+        <location filename="VM.cpp" line="6749"/>
         <location filename="VM.cpp" line="6806"/>
-        <location filename="VM.cpp" line="8684"/>
+        <location filename="VM.cpp" line="8691"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9040,7 +9043,7 @@ Ignore This Error?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6746"/>
+        <location filename="VM.cpp" line="6750"/>
         <source>KQEMU Kernel Module Not Loaded!
 This Module Provide Acceleration for QEMU.
 For Loading KQEMU Module Type In Root Mode:
@@ -9054,32 +9057,32 @@ Or Disable Acceleration in Tab &quot;Other-&gt;Hardware Virtualization&quot;.</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6970"/>
+        <location filename="VM.cpp" line="6978"/>
         <source>QEMU Error Log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="7006"/>
+        <location filename="VM.cpp" line="7014"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="7007"/>
+        <location filename="VM.cpp" line="7015"/>
         <source>Loading Virtual Machine. Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="7039"/>
+        <location filename="VM.cpp" line="7047"/>
         <source>Saving...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="7040"/>
+        <location filename="VM.cpp" line="7048"/>
         <source>Saving Virtual Machine. Please wait...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="8685"/>
+        <location filename="VM.cpp" line="8692"/>
         <source>To save a virtual machine, you need to add HDD image in QCOW2 format!</source>
         <translation type="unfinished"></translation>
     </message>

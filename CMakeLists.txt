@@ -190,24 +190,6 @@ ENDIF( UPDATE_TRANSLATIONS )
 ADD_CUSTOM_TARGET( translations_target DEPENDS ${qm_files} )
 
 
-# Build RCC files (GUI icons)
-ADD_CUSTOM_COMMAND(
-   OUTPUT crystalsvg_icons.rcc
-   COMMAND rcc
-   ARGS ${CMAKE_CURRENT_SOURCE_DIR}/crystalsvg_icons.qrc -binary -o crystalsvg_icons.rcc
-   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/crystalsvg_icons.qrc
-)
-
-ADD_CUSTOM_COMMAND(
-   OUTPUT oxygen_icons.rcc
-   COMMAND rcc
-   ARGS ${CMAKE_CURRENT_SOURCE_DIR}/oxygen_icons.qrc -binary -o oxygen_icons.rcc
-   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/oxygen_icons.qrc
-)
-
-ADD_CUSTOM_TARGET( gui_icons ALL DEPENDS crystalsvg_icons.rcc oxygen_icons.rcc )
-
-
 # Building
 INCLUDE_DIRECTORIES(
 	${QT_INCLUDES}
@@ -250,9 +232,6 @@ INSTALL( TARGETS aqemu DESTINATION bin )
 
 INSTALL( FILES ${qm_files} DESTINATION share/aqemu )
 
-FILE( GLOB gui_icons "${CMAKE_CURRENT_SOURCE_DIR}/*.rcc" )
-INSTALL( FILES ${gui_icons} DESTINATION share/aqemu )
-
 FILE( GLOB os_icons "${CMAKE_CURRENT_SOURCE_DIR}/os_icons/*.*" )
 INSTALL( FILES ${os_icons} DESTINATION share/aqemu/os_icons )
 
@@ -286,7 +265,23 @@ MACRO( create_docs _sources )
 ENDMACRO( create_docs )
 
 CREATE_DOCS( docs_bz2 AUTHORS CHANGELOG README TODO )
-
 ADD_CUSTOM_TARGET( docs ALL DEPENDS ${docs_bz2} )
-
 INSTALL( FILES ${docs_bz2} DESTINATION share/doc/aqemu )
+
+# Build RCC files (GUI icons)
+MACRO( pack_icons _sources )
+	FOREACH( curFile ${ARGN} )
+		GET_FILENAME_COMPONENT( _in ${curFile} ABSOLUTE )
+		GET_FILENAME_COMPONENT( _basename ${curFile} NAME_WE )
+		
+		SET( _out ${CMAKE_CURRENT_SOURCE_DIR}/${_basename}.rcc )
+		
+		ADD_CUSTOM_COMMAND( OUTPUT ${_out} COMMAND rcc ARGS ${_in} -binary -o ${_out} DEPENDS ${_in} )
+		
+		SET( ${_sources} ${${_sources}} ${_out} )
+	ENDFOREACH( curFile )
+ENDMACRO( pack_icons )
+
+PACK_ICONS( gui_icons crystalsvg_icons.qrc oxygen_icons.qrc )
+ADD_CUSTOM_TARGET( icons ALL DEPENDS ${gui_icons} )
+INSTALL( FILES ${gui_icons} DESTINATION share/doc/aqemu )
