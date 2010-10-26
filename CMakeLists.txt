@@ -284,4 +284,4 @@ ENDMACRO( pack_icons )
 
 PACK_ICONS( gui_icons crystalsvg_icons.qrc oxygen_icons.qrc )
 ADD_CUSTOM_TARGET( icons ALL DEPENDS ${gui_icons} )
-INSTALL( FILES ${gui_icons} DESTINATION share/doc/aqemu )
+INSTALL( FILES ${gui_icons} DESTINATION share/aqemu )
