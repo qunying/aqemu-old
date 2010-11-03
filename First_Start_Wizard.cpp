@@ -302,7 +302,22 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				
 				// Create new emulator
 				Emulator emul;
-				emul.Set_Name( Emulator_Version_To_String(qemu_version) );
+				
+				// Emulator name
+				QString emulName = Emulator_Version_To_String( qemu_version );
+				int emulDublicateNameCount = 1;
+				for( int ix = 0; ix < qemuEmulatorsList.count(); ++ix )
+				{
+					if( emulName == qemuEmulatorsList[ix].Get_Name() )
+					{
+						++emulDublicateNameCount;
+						emulName = QString("%1 #%2").arg( Emulator_Version_To_String(qemu_version) )
+													.arg( emulDublicateNameCount );
+						ix = 0;
+					}
+				}
+				emul.Set_Name( emulName );
+				
 				emul.Set_Type( VM::QEMU );
 				emul.Set_Version( qemu_version );
 				emul.Set_Path( paths[qx] );
@@ -393,7 +408,22 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				
 				// Create new emulator
 				Emulator emul;
-				emul.Set_Name( Emulator_Version_To_String(kvm_version) );
+				
+				// Emulator name
+				QString emulName = Emulator_Version_To_String( kvm_version );
+				int emulDublicateNameCount = 1;
+				for( int ix = 0; ix < qemuEmulatorsList.count(); ++ix )
+				{
+					if( emulName == qemuEmulatorsList[ix].Get_Name() )
+					{
+						++emulDublicateNameCount;
+						emulName = QString("%1 #%2").arg( Emulator_Version_To_String(kvm_version) )
+													.arg( emulDublicateNameCount );
+						ix = 0;
+					}
+				}
+				emul.Set_Name( emulName );
+				
 				emul.Set_Type( VM::KVM );
 				emul.Set_Version( kvm_version );
 				emul.Set_Path( paths[kx] );
