@@ -3995,7 +3995,7 @@ VM_SPICE::VM_SPICE()
 	GXL_Devices_Count = 1;
 	RAM_Size = 64;
 	
-	Port = 1;
+	Port = 5930;
 	_Use_SPort = false;
 	SPort = 1;
 	_Use_Hostname = false;
@@ -4003,12 +4003,12 @@ VM_SPICE::VM_SPICE()
 	
 	_Use_Image_Compression = false;
 	Image_Compression = VM::SPICE_IC_Type_on;
-	_Use_Video_Stream_Compression = false;
+	_Use_Video_Stream_Compression = true;
 	_Use_Renderer = false;
 	Renderer_List << VM::SPICE_Renderer_cairo
 				  << VM::SPICE_Renderer_oglpbuf
 				  << VM::SPICE_Renderer_oglpixmap;
-	_Use_Playback_Compression = false;
+	_Use_Playback_Compression = true;
 	
 	_Use_Password = false;
 	Password = "";
