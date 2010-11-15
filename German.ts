@@ -3694,70 +3694,70 @@ Diese Nachricht erneut anzeigen?</translation>
         <translation>Внимание!</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="318"/>
+        <location filename="First_Start_Wizard.cpp" line="333"/>
         <source>Finded QEMU in %1, version: %2</source>
         <translation>Найден QEMU в %1, версия: %2</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="409"/>
+        <location filename="First_Start_Wizard.cpp" line="439"/>
         <source>Finded KVM in %1, version: %2</source>
         <translation>Найден KVM в %1, версия: %2</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="494"/>
+        <location filename="First_Start_Wizard.cpp" line="524"/>
         <source>&amp;Finish</source>
         <translation>&amp;Конец</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="498"/>
-        <location filename="First_Start_Wizard.cpp" line="614"/>
+        <location filename="First_Start_Wizard.cpp" line="528"/>
+        <location filename="First_Start_Wizard.cpp" line="644"/>
         <source>&amp;Next</source>
         <translation>&amp;Далее</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="293"/>
-        <location filename="First_Start_Wizard.cpp" line="388"/>
-        <location filename="First_Start_Wizard.cpp" line="555"/>
+        <location filename="First_Start_Wizard.cpp" line="403"/>
+        <location filename="First_Start_Wizard.cpp" line="585"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="555"/>
+        <location filename="First_Start_Wizard.cpp" line="585"/>
         <source>Cannot Create New Folder!</source>
         <translation>Не могу создать новую папку!</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="606"/>
+        <location filename="First_Start_Wizard.cpp" line="636"/>
         <source>Welcome</source>
         <translation>Добро пожаловать</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="607"/>
+        <location filename="First_Start_Wizard.cpp" line="637"/>
         <source>General Settings</source>
         <translation>Настройки AQEMU</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="608"/>
+        <location filename="First_Start_Wizard.cpp" line="638"/>
         <source>Find Emulators</source>
         <translation>Поиск эмуляторов</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="609"/>
+        <location filename="First_Start_Wizard.cpp" line="639"/>
         <source>Finish</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="613"/>
+        <location filename="First_Start_Wizard.cpp" line="643"/>
         <source>&amp;Back</source>
         <translation>На&amp;зад</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="615"/>
+        <location filename="First_Start_Wizard.cpp" line="645"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="617"/>
+        <location filename="First_Start_Wizard.cpp" line="647"/>
         <source>Welcome to AQEMU settings wizard!
 This wizard will help you to choose options that need to AQEMU work correctly.
 Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button to go back to previous page.</source>
@@ -3766,42 +3766,42 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
 Нажмите кнопку Далее, чтобы перейти к следующей странице мастера, или кнопку Назад для возврата на предыдущую страницу.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="618"/>
+        <location filename="First_Start_Wizard.cpp" line="648"/>
         <source>Here you can choose interface language</source>
         <translation>Вы можете выбрать язык интерфейса AQEMU</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="619"/>
+        <location filename="First_Start_Wizard.cpp" line="649"/>
         <source>Please select folder for AQEMU virtual machines</source>
         <translation>Укажите папку где будут храниться настройки виртуальных машин</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="620"/>
+        <location filename="First_Start_Wizard.cpp" line="650"/>
         <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will displayed in virtual machine as icons, like in file manager window.</source>
         <translation>Если включён режим &quot;менеджер устройств&quot;, то устройства хранения данных (Floppy, CD/DVD, HDD) будут отображаться в виртуальной машине в виде значков, как в окне файлового менеджера.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="621"/>
+        <location filename="First_Start_Wizard.cpp" line="651"/>
         <source>Use Device manager</source>
         <translation>Использовать Менеджер устройств</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="622"/>
+        <location filename="First_Start_Wizard.cpp" line="652"/>
         <source>New experimental work mode is accessible in AQEMU. In this mode QEMU/KVM display will displayed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this function you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
         <translation>В AQEMU доступен новый экспериментальный режим работы, при котором экран QEMU/KVM отображаться в окне AQEMU. Пока это не совсем стабильная и завершённая функция, поэтому при её работе возможны проблемы. Для её включения отметьте &quot;Встроить VNC дисплей в главное окно&quot;.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="623"/>
+        <location filename="First_Start_Wizard.cpp" line="653"/>
         <source>Include Emdedded VNC Display in Main Window</source>
         <translation>Встроить VNC дисплей в главное окно</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="624"/>
+        <location filename="First_Start_Wizard.cpp" line="654"/>
         <source>To work correctly, AQEMU must know your emulators&apos; arrangement and its&apos; versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you must configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
         <translation>Для правильной работы AQEMU должна знать расположение установленных в вашей системе эмуляторов и их версии. Для поиска нажмите &quot;Поиск&quot;. Если автоматический поиск не сможет определить какие эмуляторы установлены, то вам придётся настроить AQEMU в ручную позже. Для этого необходимо открыть &quot;Файл-&gt;Дополнительные настройки&quot;.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="628"/>
+        <location filename="First_Start_Wizard.cpp" line="658"/>
         <source>Congratulations! The Wizard has got all necessary settings for configuring AQEMU. Push &quot;Finish&quot; button to save your settings.</source>
         <translation>Поздравляю! Мастер получил всё необходимые сведения для настройки AQEMU. Нажмите &quot;Готово&quot; для сохранения настроек.</translation>
     </message>
@@ -3821,12 +3821,12 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Вы уверены? Позже Вы сможете настроить это в окне настроек.</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="625"/>
+        <location filename="First_Start_Wizard.cpp" line="655"/>
         <source>&amp;Search</source>
         <translation>&amp;Поиск</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="626"/>
+        <location filename="First_Start_Wizard.cpp" line="656"/>
         <source>S&amp;kip Search</source>
         <translation>П&amp;ропустить поиск</translation>
     </message>
@@ -3836,12 +3836,12 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Выберите папку для ваших ВМ</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="482"/>
+        <location filename="First_Start_Wizard.cpp" line="512"/>
         <source>Emulator Version Modified By User</source>
         <translation>Версия эмулятора изменена пользователем</translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="627"/>
+        <location filename="First_Start_Wizard.cpp" line="657"/>
         <source>Set &amp;Versions Manualy</source>
         <translation>Установить версию &amp;вручную</translation>
     </message>
@@ -3857,7 +3857,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="294"/>
-        <location filename="First_Start_Wizard.cpp" line="388"/>
+        <location filename="First_Start_Wizard.cpp" line="403"/>
         <source>Cannot get emulator info! For file: %1</source>
         <translation>Не могу получить информацию о эмуляторе! Файл: %1</translation>
     </message>

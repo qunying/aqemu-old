@@ -3591,137 +3591,137 @@ Show this message again?</source>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="293"/>
-        <location filename="First_Start_Wizard.cpp" line="388"/>
-        <location filename="First_Start_Wizard.cpp" line="555"/>
+        <location filename="First_Start_Wizard.cpp" line="403"/>
+        <location filename="First_Start_Wizard.cpp" line="585"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="294"/>
-        <location filename="First_Start_Wizard.cpp" line="388"/>
+        <location filename="First_Start_Wizard.cpp" line="403"/>
         <source>Cannot get emulator info! For file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="318"/>
+        <location filename="First_Start_Wizard.cpp" line="333"/>
         <source>Finded QEMU in %1, version: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="409"/>
+        <location filename="First_Start_Wizard.cpp" line="439"/>
         <source>Finded KVM in %1, version: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="482"/>
+        <location filename="First_Start_Wizard.cpp" line="512"/>
         <source>Emulator Version Modified By User</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="494"/>
+        <location filename="First_Start_Wizard.cpp" line="524"/>
         <source>&amp;Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="498"/>
-        <location filename="First_Start_Wizard.cpp" line="614"/>
+        <location filename="First_Start_Wizard.cpp" line="528"/>
+        <location filename="First_Start_Wizard.cpp" line="644"/>
         <source>&amp;Next</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="555"/>
+        <location filename="First_Start_Wizard.cpp" line="585"/>
         <source>Cannot Create New Folder!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="606"/>
+        <location filename="First_Start_Wizard.cpp" line="636"/>
         <source>Welcome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="607"/>
+        <location filename="First_Start_Wizard.cpp" line="637"/>
         <source>General Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="608"/>
+        <location filename="First_Start_Wizard.cpp" line="638"/>
         <source>Find Emulators</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="609"/>
+        <location filename="First_Start_Wizard.cpp" line="639"/>
         <source>Finish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="613"/>
+        <location filename="First_Start_Wizard.cpp" line="643"/>
         <source>&amp;Back</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="615"/>
+        <location filename="First_Start_Wizard.cpp" line="645"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="617"/>
+        <location filename="First_Start_Wizard.cpp" line="647"/>
         <source>Welcome to AQEMU settings wizard!
 This wizard will help you to choose options that need to AQEMU work correctly.
 Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button to go back to previous page.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="618"/>
+        <location filename="First_Start_Wizard.cpp" line="648"/>
         <source>Here you can choose interface language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="619"/>
+        <location filename="First_Start_Wizard.cpp" line="649"/>
         <source>Please select folder for AQEMU virtual machines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="620"/>
+        <location filename="First_Start_Wizard.cpp" line="650"/>
         <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will displayed in virtual machine as icons, like in file manager window.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="621"/>
+        <location filename="First_Start_Wizard.cpp" line="651"/>
         <source>Use Device manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="622"/>
+        <location filename="First_Start_Wizard.cpp" line="652"/>
         <source>New experimental work mode is accessible in AQEMU. In this mode QEMU/KVM display will displayed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this function you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="623"/>
+        <location filename="First_Start_Wizard.cpp" line="653"/>
         <source>Include Emdedded VNC Display in Main Window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="624"/>
+        <location filename="First_Start_Wizard.cpp" line="654"/>
         <source>To work correctly, AQEMU must know your emulators&apos; arrangement and its&apos; versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you must configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="625"/>
+        <location filename="First_Start_Wizard.cpp" line="655"/>
         <source>&amp;Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="626"/>
+        <location filename="First_Start_Wizard.cpp" line="656"/>
         <source>S&amp;kip Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="627"/>
+        <location filename="First_Start_Wizard.cpp" line="657"/>
         <source>Set &amp;Versions Manualy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="628"/>
+        <location filename="First_Start_Wizard.cpp" line="658"/>
         <source>Congratulations! The Wizard has got all necessary settings for configuring AQEMU. Push &quot;Finish&quot; button to save your settings.</source>
         <translation type="unfinished"></translation>
     </message>

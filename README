@@ -16,38 +16,47 @@ AQEMU Minimal Version Dependencies:
 In AQEMU 0.7 added support "Embedded VNC Display".
 This is experimental function, many bugs not fixed!
 
-In QEMU 0.9.1 with patch "CVE-2008-0928" is NOT correct work save VM, and snapshots!
+When you upgrade from version 0.5 or above, simply
+click "Apply" for each VM to keep it in the new version.
 
 Installation is now verifies the existence of previous versions AQEMU
 and remove them before installing (If you installed AQEMU not in /usr/share/aqemu
 or /usr/share/apps/aqemu, you will have to delete a folder with the
 resources last version AQEMU manually!)
 
-Files VM versions below 0.5 are NOT supported!
-When you upgrade from version 0.5 or above, simply
-click "Apply" for each VM to keep it in the new version.
-
 
 INSTALLATION:
 
  1. Extract AQEMU source code.
 
- 2. `cd' to AQEMU directory and `cmake -DCMAKE_INSTALL_PREFIX=/usr/'
- 
-    For change AQEMU installation path, you be run:
-	`cmake -DCMAKE_INSTALL_PREFIX="your_path_to_folder"'
-    Sample `cmake -DCMAKE_INSTALL_PREFIX=/usr/local/' this install AQEMU binary in /usr/local/bin
-    and install data in /usr/local/share/aqemu
-	
-    For build without support "Embedded VNC Display" run: `cmake -DWITHOUT_EMBEDDED_DISPLAY=on'
+ 2. `cd' to AQEMU source directory.
 
-    For build in debug mode run: `cmake -DDEBUG=on'
+ 3. Configure:
 
- 3. type `make'
+    -DCMAKE_INSTALL_PREFIX = Path to installation directory (Default is: /usr/local)
+        Sample `cmake -DCMAKE_INSTALL_PREFIX=/usr/local/' this install AQEMU binary
+        in /usr/local/bin and install data in /usr/local/share/aqemu
 
- 4. Enter root mode and `make install'
+    -DWITHOUT_EMBEDDED_DISPLAY = on | off (Default is: on)
+        For building without support Embedded VNC Display.
 
- 5. Installation complete! For start AQEMU type: `aqemu' in shell.
+    -DDEBUG = on | off (Default is: off)
+        For build in debug mode run: `cmake -DDEBUG=on'
+
+    -DINSTALL_MAN = on | off (Default is: on)
+        Install AQEMU man page file.
+
+    -DMAN_PAGE_COMPRESSOR = gzip | bzip2 | lzma | off (Default is: off)
+        Set compressor for AQEMU man page file.
+
+    Example:
+        cmake cmake -DCMAKE_INSTALL_PREFIX=/usr -DMAN_PAGE_COMPRESSOR=bzip2
+
+ 4. type `make'
+
+ 5. Enter root mode and type `make install'
+
+ 6. Installation complete! For start AQEMU type: `aqemu' in shell.
 
 
-Sorry For Bad English.
+Sorry for bad English.

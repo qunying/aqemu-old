@@ -7,9 +7,13 @@
 PROJECT( AQEMU )
 CMAKE_MINIMUM_REQUIRED( VERSION 2.4.0 )
 
-# Debug mode
+# Available options
 OPTION( DEBUG "Build with debug information" )
+OPTION( WITHOUT_EMBEDDED_DISPLAY "Build without support Embedded VNC Display" )
+OPTION( UPDATE_TRANSLATIONS "Update source translation files (WARNING: make clean will delete the source .ts files!)" )
+OPTION( INSTALL_MAN "Install MAN page file" "ON" )
 
+# Debug mode
 IF( DEBUG )
 	# Verbose compiler output
 	SET( CMAKE_VERBOSE_MAKEFILE ON )
@@ -136,9 +140,7 @@ SET( aqemu_ui
 )
 
 SET( aqemu_resouces shared_images.qrc )
-
 SET( translations German.ts Russian.ts Ukrainian.ts )
-
 SET( files_to_translate ${files_to_translate} ${aqemu_headers} ${aqemu_sources} ${aqemu_ui} )
 
 
@@ -152,8 +154,6 @@ SET( QT_USE_QTTEST TRUE )
 
 
 # Embedded VNC display
-OPTION( WITHOUT_EMBEDDED_DISPLAY "Build without support Embedded VNC Display" )
-
 IF( NOT WITHOUT_EMBEDDED_DISPLAY )
 	FIND_PACKAGE( LibVNCServer REQUIRED )
 	
@@ -179,8 +179,6 @@ QT4_ADD_RESOURCES( moc_srcs ${aqemu_resouces} )
 
 
 # For translation
-OPTION( UPDATE_TRANSLATIONS "Update source translation files (WARNING: make clean will delete the source .ts files!)" )
-
 IF( UPDATE_TRANSLATIONS )
 	QT4_CREATE_TRANSLATION( qm_files ${CMAKE_CURRENT_SOURCE_DIR} ${files_to_translate} ${translations} )
 ELSE( UPDATE_TRANSLATIONS )
@@ -247,9 +245,6 @@ INSTALL( FILES ${pixmaps} DESTINATION share/pixmaps )
 FILE( GLOB app_menu "${CMAKE_CURRENT_SOURCE_DIR}/menu_data/aqemu.desktop" )
 INSTALL( FILES ${app_menu} DESTINATION share/applications )
 
-FILE( GLOB app_menu "${CMAKE_CURRENT_SOURCE_DIR}/aqemu.1.gz" )
-INSTALL( FILES ${app_menu} DESTINATION share/man/man1 )
-
 # Create docs .bz2 files
 MACRO( create_docs _sources )
 	FOREACH( curFile ${ARGN} )
@@ -285,3 +280,42 @@ ENDMACRO( pack_icons )
 PACK_ICONS( gui_icons crystalsvg_icons.qrc oxygen_icons.qrc )
 ADD_CUSTOM_TARGET( icons ALL DEPENDS ${gui_icons} )
 INSTALL( FILES ${gui_icons} DESTINATION share/aqemu )
+
+# Compress and install MAN page file
+IF( MAN_PAGE_COMPRESSOR STREQUAL "gzip" )
+	SET( COMPRESSOR_SUFFIX gz )
+ELSEIF( MAN_PAGE_COMPRESSOR STREQUAL "bzip2" )
+	SET( COMPRESSOR_SUFFIX bz2 )
+ELSEIF( MAN_PAGE_COMPRESSOR STREQUAL "lzma" )
+	SET( COMPRESSOR_SUFFIX lzma )
+ELSE( MAN_PAGE_COMPRESSOR STREQUAL "gzip" )
+	MESSAGE( STATUS "${MAN_PAGE_COMPRESSOR} not supported!" )
+	MESSAGE( FATAL_ERROR "Correct values: gzip, bzip2, lzma" )
+ENDIF( MAN_PAGE_COMPRESSOR STREQUAL "gzip" )
+
+# Compress MAN file?
+IF( INSTALL_MAN )
+	IF( COMPRESSOR_SUFFIX )
+		# Find gzip, bzip or lzma
+		FIND_PROGRAM( COMPRESSOR_BIN NAMES ${MAN_PAGE_COMPRESSOR} )
+		
+		IF( ${COMPRESSOR_BIN} MATCHES COMPRESSOR_BIN-NOTFOUND )
+			MESSAGE( STATUS "${MAN_PAGE_COMPRESSOR} - NOT FOUND!" )
+			MESSAGE( FATAL_ERROR "Please install ${MAN_PAGE_COMPRESSOR} package!" )
+		ENDIF( ${COMPRESSOR_BIN} MATCHES COMPRESSOR_BIN-NOTFOUND )
+		
+		# Compress
+		EXECUTE_PROCESS( OUTPUT_FILE aqemu.1.${COMPRESSOR_SUFFIX}
+						COMMAND "${COMPRESSOR_BIN}" -9
+						INPUT_FILE aqemu.1
+						WORKING_DIRECTORY ${CMAKE_SOURCE_DIR} )
+		
+		# Install MAN
+		INSTALL( FILES ${CMAKE_SOURCE_DIR}/aqemu.1.${COMPRESSOR_SUFFIX} DESTINATION share/man/man1 )
+	ELSE( COMPRESSOR_SUFFIX )
+		MESSAGE( STATUS "MAN_PAGE_COMPRESSOR flag not set. Available values: gzip, bzip2, lzma" )
+		MESSAGE( STATUS "Will be installed not compressed MAN pages" )
+		
+		INSTALL( FILES ${CMAKE_SOURCE_DIR}/aqemu.1 DESTINATION share/man/man1 )
+	ENDIF( COMPRESSOR_SUFFIX )
+ENDIF( INSTALL_MAN )
