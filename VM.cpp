@@ -6524,6 +6524,10 @@ QStringList Virtual_Machine::Build_Nativ_Device_Args( VM_Nativ_Storage_Device de
 				opt << "if=pflash";
 				break;
 				
+			case VM::DI_Virtio:
+				opt << "if=virtio";
+				break;
+				
 			default:
 				AQError( "QStringList Virtual_Machine::Build_Nativ_Device_Args( VM_Nativ_Storage_Device device, bool Build_QEMU_Args_for_Script_Mode )",
 						 "Storage Device Interface Default Section!" );
@@ -6540,9 +6544,7 @@ QStringList Virtual_Machine::Build_Nativ_Device_Args( VM_Nativ_Storage_Device de
 	
 	// Index
 	if( device.Use_Index() )
-	{
 		opt << "index=" + QString::number( device.Get_Index() );
-	}
 	
 	// Media
 	if( device.Use_Media() )

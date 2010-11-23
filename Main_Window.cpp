@@ -345,60 +345,51 @@ void Main_Window::Connect_Signals()
 	connect( ui.CH_No_Shutdown, SIGNAL(clicked()),
 			 this, SLOT(VM_Changet()) );
 	
-	// Devices Widgets
-	if( Settings.value("Use_Device_Manager", "no").toString() == "yes" )
-	{
-		if( Dev_Manager ) connect( Dev_Manager, SIGNAL(Device_Changet()), this, SLOT(VM_Changet()) );
-		else AQError( "void Main_Window::Connect_Signals()", "Dev_Manager == NULL" );
-	}
-	else
-	{
-		// Hard Drives
-		connect( ui.GB_HDA, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.Edit_HDA_Image_Path, SIGNAL(textChanged(const QString &)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.GB_HDB, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.Edit_HDB_Image_Path, SIGNAL(textChanged(const QString &)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.GB_HDC, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.Edit_HDC_Image_Path, SIGNAL(textChanged(const QString &)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.GB_HDD, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.Edit_HDD_Image_Path, SIGNAL(textChanged(const QString &)),
-				 this, SLOT(VM_Changet()) );
-		
-		// CD-ROM
-		connect( ui.CH_CDROM, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.CB_CDROM_Devices, SIGNAL(currentIndexChanged(int)),
-				 this, SLOT(VM_Changet()) );
-		
-		// FDD 1
-		connect( ui.CH_Floppy0, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.CB_FD0_Devices, SIGNAL(currentIndexChanged(int)),
-				 this, SLOT(VM_Changet()) );
-		
-		// FDD 2
-		connect( ui.CH_Floppy1, SIGNAL(toggled(bool)),
-				 this, SLOT(VM_Changet()) );
-		
-		connect( ui.CB_FD1_Devices, SIGNAL(currentIndexChanged(int)),
-				 this, SLOT(VM_Changet()) );
-	}
+	// Hard Drives
+	connect( ui.GB_HDA, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.Edit_HDA_Image_Path, SIGNAL(textChanged(const QString &)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.GB_HDB, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.Edit_HDB_Image_Path, SIGNAL(textChanged(const QString &)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.GB_HDC, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.Edit_HDC_Image_Path, SIGNAL(textChanged(const QString &)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.GB_HDD, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.Edit_HDD_Image_Path, SIGNAL(textChanged(const QString &)),
+	        this, SLOT(VM_Changet()) );
+	
+	// CD-ROM
+	connect( ui.CH_CDROM, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.CB_CDROM_Devices, SIGNAL(currentIndexChanged(int)),
+	        this, SLOT(VM_Changet()) );
+	
+	// FDD 1
+	connect( ui.CH_Floppy0, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.CB_FD0_Devices, SIGNAL(currentIndexChanged(int)),
+	        this, SLOT(VM_Changet()) );
+	
+	// FDD 2
+	connect( ui.CH_Floppy1, SIGNAL(toggled(bool)),
+	        this, SLOT(VM_Changet()) );
+	
+	connect( ui.CB_FD1_Devices, SIGNAL(currentIndexChanged(int)),
+	        this, SLOT(VM_Changet()) );
 	
 	// Network Tab
 	connect( ui.CH_Use_Network, SIGNAL(clicked()),
@@ -1138,6 +1129,9 @@ bool Main_Window::Load_Settings()
 		// Apply Settings...
 		if( Settings.value( "Use_Device_Manager", "yes" ).toString() == "yes" )
 		{
+			connect( Dev_Manager, SIGNAL(Device_Changet()),
+			         this, SLOT(VM_Changet()) );
+			
 			if( ui.Tabs->indexOf(ui.Tab_HDD) != -1 ) // delete
 				ui.Tabs->removeTab( ui.Tabs->indexOf(ui.Tab_HDD) );
 			
@@ -1151,6 +1145,9 @@ bool Main_Window::Load_Settings()
 		}
 		else
 		{
+			disconnect( Dev_Manager, SIGNAL(Device_Changet()),
+			            this, SLOT(VM_Changet()) );
+			
 			if( ui.Tabs->indexOf(Dev_Manager) != -1 ) // delete
 				ui.Tabs->removeTab( ui.Tabs->indexOf(Dev_Manager) );
 			
