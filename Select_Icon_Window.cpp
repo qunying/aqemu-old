@@ -33,7 +33,7 @@ Select_Icon_Window::Select_Icon_Window( QWidget *parent )
 	ui.setupUi( this );
 	
 	// load all icons
-	QDir *icons_dir = new QDir( Settings.value("AQEMU_Data_Folder", "").toString() + "os_icons/" );
+	QDir *icons_dir = new QDir( QDir::toNativeSeparators(Settings.value("AQEMU_Data_Folder", "").toString() + "/os_icons/") );
 	QFileInfoList icon_files = icons_dir->entryInfoList( QDir::Files, QDir::Name | QDir::IgnoreCase );
 	
 	for( int ix = 0; ix < icon_files.count(); ++ix )
@@ -52,7 +52,7 @@ void Select_Icon_Window::Set_Previous_Icon_Path( const QString& path )
 		else if( path.indexOf("windows") > 0 ) ui.RB_Icon_Windows->setChecked( true );
 		else ui.RB_Icon_Other->setChecked( true );
 	}
-	else if( path.indexOf(Settings.value("AQEMU_Data_Folder", "").toString() + "os_icons/") == 0 ) // AQEMU Icons Folder
+	else if( path.indexOf(QDir::toNativeSeparators(Settings.value("AQEMU_Data_Folder", "").toString() + "/os_icons/")) == 0 ) // AQEMU Icons Folder
 	{
 		ui.RB_All_System_Icons->setChecked( true );
 		
@@ -118,29 +118,28 @@ void Select_Icon_Window::on_Button_OK_clicked()
 		}
 		else
 		{
-			AQGraphic_Warning( tr("Error!"), tr("Icon File Not Exists!") );
+			AQGraphic_Warning( tr("Error!"), tr("Icon file doesn't exist!") );
 		}
 	}
 }
 
 void Select_Icon_Window::on_Button_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
+	QString iconPath = QFileDialog::getOpenFileName( this, tr("Select Icon File:"),
+													 Get_Last_Dir_Path(ui.Edit_Other_Icon_Path->text()),
+													 tr("PNG Images (*.png)") );
 	
-	QString icon_path = QFileDialog::getOpenFileName( this, tr("Select Icon File:"), QDir::homePath(),
-													  tr("PNG Images (*.png)"), &selectedFilter, options );
-	
-	if( icon_path.isEmpty() ) return;
-	
-	if( ! QFile::exists(icon_path) )
+	if( iconPath.isEmpty() ) return;
+	iconPath = QDir::toNativeSeparators( iconPath );
+
+	if( ! QFile::exists(iconPath) )
 	{
 		AQError( "void Select_Icon_Window::on_Button_Browse_clicked()",
 				 "File No Exists!" );
 	}
 	else
 	{
-		ui.Edit_Other_Icon_Path->setText( icon_path );
+		ui.Edit_Other_Icon_Path->setText( iconPath );
 	}
 }
 

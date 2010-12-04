@@ -91,28 +91,22 @@ void Create_HDD_Image_Window::Set_Image_Size( double gb )
 
 void Create_HDD_Image_Window::on_Button_Browse_Base_Image_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString fileName = QFileDialog::getOpenFileName( this, tr("Select Base HDD Image File"), QDir::homePath(),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Select Base HDD Image File"),
+													 Get_Last_Dir_Path(ui.Edit_Base_Image_File_Name->text()),
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_Base_Image_File_Name->setText( fileName );
+		ui.Edit_Base_Image_File_Name->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Create_HDD_Image_Window::on_Button_Browse_New_Image_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString fileName = QFileDialog::getSaveFileName( this, tr("Create HDD Image File"), QDir::homePath(),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+	QString fileName = QFileDialog::getSaveFileName( this, tr("Create HDD Image File"),
+													 Get_Last_Dir_Path(ui.Edit_File_Name->text()),
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_File_Name->setText( fileName );
+		ui.Edit_File_Name->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Create_HDD_Image_Window::on_CB_Format_currentIndexChanged( const QString &text )
@@ -137,7 +131,7 @@ void Create_HDD_Image_Window::on_Button_Create_clicked()
 	
 	if( ui.SB_Size->value() < 1 || ui.SB_Size->value() > 1024 )
 	{
-		AQGraphic_Warning( tr("Error!"), tr("Image Size Invalid!") );
+		AQGraphic_Warning( tr("Error!"), tr("Invalid image size!") );
 		return;
 	}
 	
@@ -165,7 +159,7 @@ void Create_HDD_Image_Window::on_Button_Create_clicked()
 	{
 		if( ! QFile::exists(ui.Edit_Base_Image_File_Name->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"), tr("Base Image File Not Exists!") );
+			AQGraphic_Warning( tr("Error!"), tr("Base Image File doesn't Exists!") );
 			return;
 		}
 		else
@@ -186,7 +180,7 @@ void Create_HDD_Image_Window::on_Button_Create_clicked()
 	}
 	else
 	{
-		AQGraphic_Warning( tr("Error!"), tr("Image Not Created!") );
+		AQGraphic_Warning( tr("Error!"), tr("Image was Not Created!") );
 		return;
 	}
 }

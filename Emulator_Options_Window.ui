@@ -22,7 +22,7 @@
    <item>
     <widget class="QLabel" name="Label_Name">
      <property name="text">
-      <string>Name (This be identifier for it emulator):</string>
+      <string>Name (Emulator identifier)</string>
      </property>
     </widget>
    </item>
@@ -391,7 +391,7 @@
         <item>
          <widget class="QRadioButton" name="RB_Save_Options">
           <property name="text">
-           <string>Use saved emulator available options (Recomend refind after update emulator)</string>
+           <string>Use saved available emulator options (Recomended to choose it again after emulator updating)</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -401,14 +401,14 @@
         <item>
          <widget class="QRadioButton" name="RB_Check_Options">
           <property name="text">
-           <string>Check available emulator options always start AQEMU (Slowly)</string>
+           <string>Always check available emulator options while starting AQEMU (Slow)</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QRadioButton" name="RB_Check_Version">
           <property name="text">
-           <string>Check emulator version always start AQEMU</string>
+           <string>Always check emulator version while starting AQEMU</string>
           </property>
           <property name="checked">
            <bool>false</bool>

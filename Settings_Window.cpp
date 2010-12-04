@@ -77,7 +77,7 @@ Settings_Window::Settings_Window( QWidget *parent )
 #endif
 	
 	// Virtual Machines Folder
-	ui.Edit_VM_Folder->setText( Settings->value("VM_Directory", QDir::homePath() + "/.aqemu/").toString() );
+	ui.Edit_VM_Folder->setText( QDir::toNativeSeparators(Settings->value("VM_Directory", QDir::homePath() + "/.aqemu/").toString()) );
 	
 	// Use Device Manager
 	ui.CH_Use_Device_Manager->setChecked( Settings->value("Use_Device_Manager", "no").toString() == "yes" );
@@ -194,7 +194,7 @@ void Settings_Window::on_Button_Create_Template_from_VM_clicked()
 	if( templ_win->exec() == QDialog::Accepted )
 	{
 		Load_Templates();
-		QMessageBox::information( this, tr("Information"), tr("New Template Created!") );
+		QMessageBox::information( this, tr("Information"), tr("New template was created!") );
 	}
 	
 	delete templ_win;
@@ -202,21 +202,15 @@ void Settings_Window::on_Button_Create_Template_from_VM_clicked()
 
 void Settings_Window::on_TB_VM_Folder_clicked()
 {
-	QString folder = QFileDialog::getExistingDirectory( this, tr("Set Folder for you VM's"),
-														Settings->value("VM_Directory", "~").toString() );
+	QString folder = QFileDialog::getExistingDirectory( this, tr("Set your VM folder"),
+														Get_Last_Dir_Path(ui.Edit_VM_Folder->text()) );
 	
 	if( ! folder.isEmpty() )
 	{
-		if( ! folder.endsWith("/") || folder.endsWith("\\") )
-		{
-			#ifdef Q_OS_WIN32
-			folder += "\\";
-			#else
+		if( ! (folder.endsWith("/") || folder.endsWith("\\")) )
 			folder += "/";
-			#endif
-		}
 		
-		ui.Edit_VM_Folder->setText( folder );
+		ui.Edit_VM_Folder->setText( QDir::toNativeSeparators(folder) );
 	}
 }
 
@@ -225,7 +219,7 @@ void Settings_Window::CB_Language_currentIndexChanged( int index )
 	if( Settings->value("Show_Language_Warning", "yes").toString() == "yes" )
 	{
 		if( QMessageBox::information(this, tr("Information"),
-			tr("Language be set after restart AQEMU\nShow this message in future?"),
+			tr("Language will set after restarting AQEMU\nShow this message in future?"),
 			QMessageBox::Yes | QMessageBox::No) == QMessageBox::No )
 		{
 			Settings->setValue( "Show_Language_Warning", "no" );
@@ -249,28 +243,30 @@ void Settings_Window::CB_Icons_Theme_currentIndexChanged( int index )
 void Settings_Window::on_Button_OK_clicked()
 {
 	QDir dir; // For Check on valid
-	
 	Settings->setValue( "Default_VM_Template", ui.CB_Default_VM_Template->currentText() );
-	
+	ui.Edit_VM_Folder->setText( QDir::toNativeSeparators(ui.Edit_VM_Folder->text()) );
+
 	// VM Folder
-	if( ! ui.Edit_VM_Folder->text().endsWith("/") ) ui.Edit_VM_Folder->setText( ui.Edit_VM_Folder->text() + "/" );
+	if( ! (ui.Edit_VM_Folder->text().endsWith("/") || ui.Edit_VM_Folder->text().endsWith("\\")) )
+		ui.Edit_VM_Folder->setText( ui.Edit_VM_Folder->text() + QDir::toNativeSeparators("/") );
 	
 	if( dir.exists(ui.Edit_VM_Folder->text()) )
 	{
-		if( ! dir.exists(ui.Edit_VM_Folder->text() + "os_templates/") ) dir.mkdir( ui.Edit_VM_Folder->text() + "os_templates/" );
+		if( ! dir.exists(ui.Edit_VM_Folder->text() + QDir::toNativeSeparators("/os_templates/")) )
+			dir.mkdir( ui.Edit_VM_Folder->text() + QDir::toNativeSeparators("/os_templates/") );
 		
 		Settings->setValue( "VM_Directory", ui.Edit_VM_Folder->text() );
 	}
 	else
 	{
 		int mes_res = QMessageBox::question( this, tr("Invalid Value!"),
-											 tr("Folder for AQEMU VM is Not Exists! Create It?"),
+											 tr("AQEMU VM folder doesn't exist! Do you want to create it?"),
 											 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 		
 		if( mes_res == QMessageBox::Yes )
 		{
 			if( ! (dir.mkdir(ui.Edit_VM_Folder->text()) &&
-							dir.mkdir(ui.Edit_VM_Folder->text() + "os_templates/")) )
+				   dir.mkdir(ui.Edit_VM_Folder->text() + QDir::toNativeSeparators("/os_templates/"))) )
 			{
 				AQGraphic_Warning( tr("Error!"), tr("Cannot Create New Folder!") );
 				return;
@@ -278,15 +274,6 @@ void Settings_Window::on_Button_OK_clicked()
 			else Settings->setValue( "VM_Directory", ui.Edit_VM_Folder->text() );
 		}
 		else return;
-	}
-	
-	// Check Log
-	if( Settings->value("Use_Log", "yes").toString() == "yes" )
-	{
-		if( Settings->value("Log_Path", "aqemu.log").toString() == "aqemu.log" )
-		{
-			Settings->setValue( "Log_Path", Settings->value("VM_Directory", "").toString() + "aqemu.log" );
-		}
 	}
 	
 	// Use Device Manager

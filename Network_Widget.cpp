@@ -791,24 +791,22 @@ void Network_Widget::on_TB_Help_clicked()
 
 void Network_Widget::on_TB_Browse_script_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Select script"),
+													 Get_Last_Dir_Path(ui.Edit_script->text()),
+													 tr("All Files (*);;Scripts (*.sh)") );
 	
-	QString fileName = QFileDialog::getOpenFileName( this, tr("Select script"), Get_Last_Dir_Path(ui.Edit_script->text()),
-													 tr("All Files (*);;Scripts (*.sh)"), &selectedFilter, options );
-	
-	if( ! fileName.isEmpty() ) ui.Edit_script->setText( fileName );
+	if( ! fileName.isEmpty() )
+		ui.Edit_script->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Network_Widget::on_TB_Browse_downscript_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Select script"),
+													 Get_Last_Dir_Path(ui.Edit_downscript->text()),
+													 tr("All Files (*);;Scripts (*.sh)") );
 	
-	QString fileName = QFileDialog::getOpenFileName( this, tr("Select script"), Get_Last_Dir_Path(ui.Edit_downscript->text()),
-													 tr("All Files (*);;Scripts (*.sh)"), &selectedFilter, options );
-	
-	if( ! fileName.isEmpty() ) ui.Edit_downscript->setText( fileName );
+	if( ! fileName.isEmpty() )
+		ui.Edit_downscript->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Network_Widget::on_CB_Network_Type_currentIndexChanged( int index )
@@ -1327,20 +1325,21 @@ void Network_Widget::on_TB_Generate_New_MAC_clicked()
 
 void Network_Widget::on_TB_Browse_bootfile_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Boot file"),
+													 Get_Last_Dir_Path(ui.Edit_bootfile->text()),
+													 tr("All Files (*)") );
 	
-	QString fileName = QFileDialog::getOpenFileName( this, tr("Boot file"), Get_Last_Dir_Path(ui.Edit_bootfile->text()),
-													 tr("All Files (*)"), &selectedFilter, options );
-	
-	if( ! fileName.isEmpty() ) ui.Edit_bootfile->setText( fileName );
+	if( ! fileName.isEmpty() )
+		ui.Edit_bootfile->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Network_Widget::on_TB_Browse_smb_clicked()
 {
-	QString dirName = QFileDialog::getExistingDirectory( this, tr("SMB directory"), Get_Last_Dir_Path(ui.Edit_bootfile->text()) );
+	QString dirName = QFileDialog::getExistingDirectory( this, tr("SMB directory"),
+														 Get_Last_Dir_Path(ui.Edit_bootfile->text()) );
 	
-	if( ! dirName.isEmpty() ) ui.Edit_smb->setText( dirName );
+	if( ! dirName.isEmpty() )
+		ui.Edit_smb->setText( QDir::toNativeSeparators(dirName) );
 }
 
 void Network_Widget::on_CH_smb_toggled( bool checked )
@@ -1867,7 +1866,7 @@ bool Network_Widget::Net_Card_is_Valid()
 		
 		if( ! rx.exactMatch(ui.Edit_macaddr->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"), tr("MAC Address Incorrect!") );
+			AQGraphic_Warning( tr("Error!"), tr("Incorrect MAC address!") );
 			return false;
 		}
 	}
@@ -1878,7 +1877,7 @@ bool Network_Widget::Net_Card_is_Valid()
 		
 		if( ! rx.exactMatch(ui.Edit_name->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"), tr("Name Invalid! Valid Characters Are Only: a-z A-Z 0-9 _ -") );
+			AQGraphic_Warning( tr("Error!"), tr("Invalid name! Valid characters are:: a-z A-Z 0-9 _ -") );
 			return false;
 		}
 	}
@@ -1889,7 +1888,7 @@ bool Network_Widget::Net_Card_is_Valid()
 		
 		if( ! rx.exactMatch(ui.Edit_hostname->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"), tr("Hostname Invalid! Valid Characters Are Only: a-z A-Z 0-9 _ -") );
+			AQGraphic_Warning( tr("Error!"), tr("Invalid Hostname! Valid characters are:: a-z A-Z 0-9 _ -") );
 			return false;
 		}
 	}
@@ -1961,7 +1960,7 @@ bool Network_Widget::Net_Card_is_Valid()
 bool Network_Widget::No_File_Found( const QString &name, const QString &path )
 {
 	int retVal = QMessageBox::critical( this, tr("Error!"),
-										tr("%1 File \"%2\" Not Exist! Continue Without It File?").arg(name).arg(path),
+										tr("%1 File \"%2\" doesn't Exist! Continue Without this File?").arg(name).arg(path),
 										QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 	
 	if( retVal == QMessageBox::No ) return false;

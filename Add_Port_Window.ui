@@ -29,7 +29,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Select redirect virtual port to:</string>
+        <string>Redirect virtual port to:</string>
        </property>
       </widget>
      </item>

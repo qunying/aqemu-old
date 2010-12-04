@@ -21,11 +21,9 @@
 ****************************************************************************/
 
 #include <QTextStream>
-#include <QFileDialog>
 #include <QSettings>
 #include <QFile>
 #include <QProcess>
-#include <QFileDialog>
 #include <QHeaderView>
 
 #include "Utils.h"
@@ -362,7 +360,7 @@ void Ports_Tab_Widget::on_TB_Delete_Port_clicked()
 {
 	if( ui.Ports_Table->currentRow() < 0 )
 	{
-		AQGraphic_Warning( tr("Warning"), tr("Device not select!") );
+		AQGraphic_Warning( tr("Warning"), tr("Device doesn't selected!") );
 		return;
 	}
 	else

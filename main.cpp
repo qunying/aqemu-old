@@ -46,7 +46,66 @@ int main( int argc, char *argv[] )
 	// Set QSettings Data
 	QCoreApplication::setOrganizationName( "ANDronSoft" );
 	QCoreApplication::setApplicationName( "AQEMU" );
+	#ifdef Q_OS_WIN32
+	QSettings::setDefaultFormat( QSettings::IniFormat );
+	#endif
 	QSettings settings;
+	
+	// Use Log?
+	if( settings.value( "Log/Save_In_File", "yes" ).toString() == "yes" )
+	{
+		settings.setValue( "Log/Save_In_File", "yes" );
+		AQUse_Log( true );
+		
+		if( settings.value("Log/Log_Path", "").toString().isEmpty() )
+		{
+			QFileInfo logFileDir( settings.fileName() );
+			QString logDirPath = logFileDir.absolutePath();
+			
+			// Dir for log file exists?
+			if( ! QFile::exists(logDirPath) )
+			{
+				QDir dir;
+				if( ! dir.mkpath(logDirPath) )
+					AQGraphic_Warning( QObject::tr("Error"),
+									   QObject::tr("Cannot create directory for log file! Path: %1").arg(logDirPath) );
+			}
+			
+			settings.setValue( "Log/Log_Path", QDir::toNativeSeparators(logDirPath + "/aqemu.log") );
+		}
+		else
+		{
+			// Log Size
+			if( QFile::exists(settings.value("Log/Log_Path", "").toString()) )
+			{
+				QFileInfo log_info( settings.value("Log/Log_Path", "").toString() );
+				
+				// Log > 1MB
+				if( log_info.size() > (1 * 1024 * 1024) )
+				{
+					// FIXME Delete Half Log Size
+					QFile::remove( settings.value("Log/Log_Path", "").toString() );
+				}
+			}
+		}
+	}
+	else AQUse_Log( false );
+	
+	// Log File Name
+	AQLog_Path( settings.value("Log/Log_Path", "").toString() );
+	
+	// Log Filter
+	#ifdef Q_OS_WIN32
+	AQUse_Debug_Output( settings.value("Log/Print_In_STDOUT", "no").toString() == "yes",
+						settings.value("Log/Save_Debug", "no").toString() == "yes",
+						settings.value("Log/Save_Warning", "yes").toString() == "yes",
+						settings.value("Log/Save_Error", "yes").toString() == "yes" );
+	#else
+	AQUse_Debug_Output( settings.value("Log/Print_In_STDOUT", "yes").toString() == "yes",
+						settings.value("Log/Save_Debug", "yes").toString() == "yes",
+						settings.value("Log/Save_Warning", "yes").toString() == "yes",
+						settings.value("Log/Save_Error", "yes").toString() == "yes" );
+	#endif
 	
 	// Create QApplication
 	QApplication app( argc, argv );
@@ -55,12 +114,6 @@ int main( int argc, char *argv[] )
 	
 	// Init emulators settings "data base"
 	System_Info::Update_VM_Computers_List();
-	
-	// Log Filter
-	AQUse_Debug_Output( settings.value("Log/Print_In_STDOUT", "yes").toString() == "yes",
-						settings.value("Log/Save_Debug", "yes").toString() == "yes",
-						settings.value("Log/Save_Warning", "yes").toString() == "yes",
-						settings.value("Log/Save_Error", "yes").toString() == "yes" );
 	
 	// Check For First Start in root Mode
 	#ifdef Q_OS_LINUX
@@ -71,8 +124,8 @@ int main( int argc, char *argv[] )
 		if( user_uid == 0 )
 		{
 			int ret = QMessageBox::question( NULL, QObject::tr("Warning!"),
-											 QObject::tr("This is a first start AQEMU and program running in root mode.\n"
-														 "In some Linux distributions it can lead to inability to save configuration!\n"
+											 QObject::tr("This is a first AQEMU start and program running in root mode.\n"
+														 "In some Linux distributions you may have problems with configuration saving.\n"
 														 "Close AQEMU?"),
 											 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 			
@@ -82,7 +135,8 @@ int main( int argc, char *argv[] )
 	#endif
 	
 	// This is Upgrade AQEMU? Find Previous Confing...
-	if( QFile::exists(QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf") )
+	//FIXME if( QFile::exists(QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf") )
+	if( QFile::exists(settings.fileName()) )
 	{
 		QString conf_ver = settings.value( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION ).toString();
 		
@@ -100,7 +154,7 @@ int main( int argc, char *argv[] )
 					 "AQEMU Config Version: 0.7.X\nStart Emulators Search..." );
 			
 			QMessageBox::information( NULL, QObject::tr("AQEMU emulators search"),
-									  QObject::tr("After the update AQEMU should perform a search of emulators. Please wait."),
+									  QObject::tr("AQEMU will search for emulators after uptating. Please wait."),
 									  QMessageBox::Ok );
 			
 			First_Start_Wizard *first_start_win = new First_Start_Wizard( NULL );
@@ -110,7 +164,7 @@ int main( int argc, char *argv[] )
 						 "Find Emulators and Save Settings Complete" );
 			else
 				AQGraphic_Error( "int main( int argc, char *argv[] )", QObject::tr("Error!"),
-								 QObject::tr("Cannot Find Emulators in This System! You Most Set It In Advanced Settings!"), false );
+								 QObject::tr("Cannot Find any Emulators installed in your OS! You should choose them In Advanced Settings!"), false );
 			
 			delete first_start_win;
 			
@@ -124,8 +178,9 @@ int main( int argc, char *argv[] )
 		else
 		{
 			// Remove Old Config!
-			if( QFile::copy(QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf",
-				QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf.bak") )
+			//FIXME if( QFile::copy(QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf",
+			//	QDir::homePath() + "/.config/ANDronSoft/AQEMU.conf.bak") )
+			if( QFile::copy(settings.fileName(), settings.fileName() + ".bak") )
 			{
 				AQWarning( "int main( int argc, char *argv[] )",
 						   "AQEMU Configuration File No Version 0.5. File Saved: AQEMU.conf.bak" );
@@ -144,29 +199,6 @@ int main( int argc, char *argv[] )
 		settings.setValue( "AQEMU_Config_Version", CURRENT_AQEMU_VERSION );
 	}
 	
-	// Use Log
-	if( settings.value( "Log/Save_In_File", "yes" ).toString() == "yes" )
-	{
-		// Log Size
-		if( QFile::exists(settings.value("Log/Log_Path", "").toString()) )
-		{
-			QFileInfo log_info( settings.value("Log/Log_Path", "").toString() );
-			
-			// Log > 1MB
-			if( log_info.size() > 1 * 1024 * 1024 )
-			{
-				// FIXME Delete Half Log Size
-				QFile::remove( settings.value("Log/Log_Path", "").toString() );
-			}
-		}
-		
-		AQUse_Log( true );
-	}
-	else AQUse_Log( false );
-	
-	// Log File Name
-	AQLog_Path( settings.value("Log/Log_Path", "").toString() );
-	
 	// Find Data Folder
 	if( settings.value("AQEMU_Data_Folder", "").toString().isEmpty() )
 	{
@@ -174,7 +206,7 @@ int main( int argc, char *argv[] )
 		if( QDir(QDir::currentPath() + "\\os_icons").exists() &&
 			QDir(QDir::currentPath() + "\\os_templates").exists() )
 		{
-			settings.setValue( "AQEMU_Data_Folder", QDir::currentPath() );
+			settings.setValue( "AQEMU_Data_Folder", QDir::toNativeSeparators(QDir::currentPath()) );
 			AQDebug( "int main( int argc, char *argv[] )", "Use Data Folder: " + QDir::currentPath() );
 		}
 		else
@@ -211,12 +243,12 @@ int main( int argc, char *argv[] )
 									  QMessageBox::Ok );
 			
 			QString aqemuDataDir = QFileDialog::getExistingDirectory( NULL, QObject::tr("Please Select AQEMU Data Folder:"),
-																		"/", QFileDialog::ShowDirsOnly );
+																	  "/", QFileDialog::ShowDirsOnly );
 			
 			if( aqemuDataDir.isEmpty() )
 			{
 				QMessageBox::critical( NULL, QObject::tr("Error!"),
-									   QObject::tr("AQEMU Doesn't Work If Data Folder Not Selected!") );
+									   QObject::tr("AQEMU won't Work If Data Folder isn't Selected!") );
 				return -1;
 			}
 			else
@@ -232,9 +264,9 @@ int main( int argc, char *argv[] )
 	QString iconsThemeFile = "";
 	
 	if( settings.value("Icon_Theme", "").toString() == "crystalsvg" )
-		iconsThemeFile = settings.value( "AQEMU_Data_Folder", "" ).toString() + "crystalsvg_icons.rcc";
+		iconsThemeFile = QDir::toNativeSeparators( settings.value("AQEMU_Data_Folder", "").toString() + "/crystalsvg_icons.rcc" );
 	else
-		iconsThemeFile = settings.value( "AQEMU_Data_Folder", "" ).toString() + "oxygen_icons.rcc";
+		iconsThemeFile = QDir::toNativeSeparators( settings.value("AQEMU_Data_Folder", "").toString() + "/oxygen_icons.rcc" );
 		
 	if( ! QResource::registerResource(iconsThemeFile) )
 	{
@@ -269,11 +301,17 @@ int main( int argc, char *argv[] )
 	if( ! vm_dir.exists(settings.value("VM_Directory", "").toString()) )
 	{
 		int ret = QMessageBox::question( NULL, QObject::tr("Warning!"),
-										 QObject::tr("AQEMU VM Folder Not Exists! Create It?"),
+										 QObject::tr("AQEMU VM Folder doesn't Exists! Create It?"),
 										 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 		
 		if( ret == QMessageBox::Yes )
-			vm_dir.mkdir( QDir::homePath() + "/.aqemu" );
+		{
+			#ifdef Q_OS_WIN32
+			vm_dir.mkpath( QDir::toNativeSeparators(QDir::homePath() + "/AQEMU_VM/") );
+			#else
+			vm_dir.mkpath( QDir::homePath() + "/.aqemu" );
+			#endif
+		}
 	}
 	
 	// Check QEMU and KVM Versions

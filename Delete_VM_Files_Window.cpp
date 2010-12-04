@@ -344,7 +344,7 @@ void Delete_VM_Files_Window::on_Button_Delete_clicked()
 		// Show Errors
 		if( ! no_Delete_Files_List.isEmpty() )
 		{
-			QMessageBox::information( this, tr("During removal errors occurred"),
+			QMessageBox::information( this, tr("An error occurred while deleting files"),
 									tr("This Files Not Deleted:\n") + no_Delete_Files_List + tr("Please Check Permissions!"),
 									QMessageBox::Ok );
 		}

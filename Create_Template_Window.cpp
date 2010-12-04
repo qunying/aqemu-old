@@ -34,7 +34,7 @@ Create_Template_Window::Create_Template_Window( QWidget *parent )
 {
 	ui.setupUi( this );
 	
-	ui.Edit_Template_Folder->setText( Settings.value("VM_Directory","").toString() + "os_templates/" );
+	ui.Edit_Template_Folder->setText( QDir::toNativeSeparators(Settings.value("VM_Directory","").toString() + "/os_templates/") );
 }
 
 void Create_Template_Window::Set_VM_Path( const QString &path )
@@ -44,15 +44,12 @@ void Create_Template_Window::Set_VM_Path( const QString &path )
 
 void Create_Template_Window::on_TB_VM_File_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open VM File"),
-													 Settings.value("VM_Directory","").toString() + "os_templates/",
-													 tr("AQEMU VM Files (*.aqemu)"), &selectedFilter, options );
+													 QDir::toNativeSeparators(Settings.value("VM_Directory","").toString() + "/os_templates/"),
+													 tr("AQEMU VM Files (*.aqemu)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_VM_File->setText( fileName );
+		ui.Edit_VM_File->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Create_Template_Window::on_TB_Template_Folder_Browse_clicked()
@@ -62,7 +59,7 @@ void Create_Template_Window::on_TB_Template_Folder_Browse_clicked()
 														  QFileDialog::ShowDirsOnly );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_Template_Folder->setText( fileName );
+		ui.Edit_Template_Folder->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Create_Template_Window::on_Button_Create_clicked()
@@ -85,7 +82,7 @@ void Create_Template_Window::on_Button_Create_clicked()
 	if( ! QFile::exists(ui.Edit_VM_File->text()) )
 	{
 		AQGraphic_Warning( tr("Warning!"),
-						   tr("VM File Not Exists!") );
+						   tr("VM file doesn't exist!") );
 		return;
 	}
 	
@@ -98,7 +95,7 @@ void Create_Template_Window::on_Button_Create_clicked()
 	
 	if( ui.Edit_Template_Folder->text().at(ui.Edit_Template_Folder->text().count()-1) != '/' )
 	{
-		ui.Edit_Template_Folder->setText( ui.Edit_Template_Folder->text() + "/" );
+		ui.Edit_Template_Folder->setText( QDir::toNativeSeparators(ui.Edit_Template_Folder->text() + "/") );
 	}
 	
 	// All OK. Creating new template
@@ -159,7 +156,7 @@ void Create_Template_Window::on_Button_Create_clicked()
 bool Create_Template_Window::Name_is_Unique()
 {
 	if( ui.CH_Use_Default_Folder->isChecked() ||
-	    ui.Edit_Template_Folder->text() == Settings.value("VM_Directory","").toString() + "os_templates/" )
+		ui.Edit_Template_Folder->text() == QDir::toNativeSeparators(Settings.value("VM_Directory", "").toString() + "/os_templates/") )
 	{
 		List_Templates = Get_Templates_List();
 		
@@ -177,7 +174,7 @@ bool Create_Template_Window::Name_is_Unique()
 			if( tmp_info.completeBaseName() == new_template_name )
 			{
 				int mes_ret = QMessageBox::question( this, tr("Replace"),
-						tr("You Name For Template in Not Unique! Replace Previous Template?"),
+						tr("Your template name is already used! Do you want replace previous template?"),
 						QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 				
 				if( mes_ret == QMessageBox::Yes )

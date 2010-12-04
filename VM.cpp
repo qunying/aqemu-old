@@ -30,9 +30,13 @@
 #include <QMessageBox>
 #include <QSettings>
 #include <QUuid>
-#include <QTest>
 #include <QPainter>
+
+#ifdef Q_OS_WIN32
+#include <windows.h>
+#else
 #include <QTest>
+#endif
 
 #include <QRect>
 #include <QLabel>
@@ -71,6 +75,10 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 	AQDebug( "Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )", "Begin" );
 	
 	this->QEMU_Process = new QProcess();
+	Monitor_Socket = new QTcpSocket( this );
+	Use_Monitor_TCP = false;
+	Monitor_Hostname = "localhost";
+	Monitor_Port = 6000;
 	this->State = vm.Get_State();
 	this->Emu_Ctl = new Emulator_Control_Window();
 	this->VM_Dom_Document = QDomDocument();
@@ -90,6 +98,9 @@ Virtual_Machine::Virtual_Machine( const Virtual_Machine &vm )
 					  this, SLOT(Parse_StdErr()) );
 	
 	QObject::connect( QEMU_Process, SIGNAL(readyReadStandardOutput()),
+					  this, SLOT(Parse_StdOut()) );
+
+	QObject::connect( Monitor_Socket, SIGNAL(readyRead()),
 					  this, SLOT(Parse_StdOut()) );
 	
 	QObject::connect( QEMU_Process, SIGNAL(started()),
@@ -272,6 +283,10 @@ Virtual_Machine::~Virtual_Machine()
 void Virtual_Machine::Shared_Constructor()
 {
 	QEMU_Process = new QProcess();
+	Monitor_Socket = new QTcpSocket( this );
+	Use_Monitor_TCP = false;
+	Monitor_Hostname = "localhost";
+	Monitor_Port = 6000;
 	this->State = VM::VMS_Power_Off;
 	Emu_Ctl = new Emulator_Control_Window();
 	VM_Dom_Document = QDomDocument();
@@ -292,6 +307,9 @@ void Virtual_Machine::Shared_Constructor()
 					  this, SLOT(Parse_StdErr()) );
 	
 	QObject::connect( QEMU_Process, SIGNAL(readyReadStandardOutput()),
+					  this, SLOT(Parse_StdOut()) );
+
+	QObject::connect( Monitor_Socket, SIGNAL(readyRead()),
 					  this, SLOT(Parse_StdOut()) );
 	
 	QObject::connect( QEMU_Process, SIGNAL(started()),
@@ -529,8 +547,8 @@ bool Virtual_Machine::operator==( const Virtual_Machine &vm ) const
 		{
 			for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
 			{
-				if( Boot_Order_List[bx].Enabled != vm.Get_Boot_Order_List()[bx].Enabled ||
-					Boot_Order_List[bx].Type != vm.Get_Boot_Order_List()[bx].Type ) return false;
+				if( (Boot_Order_List[bx].Enabled != vm.Get_Boot_Order_List()[bx].Enabled) ||
+					(Boot_Order_List[bx].Type != vm.Get_Boot_Order_List()[bx].Type) ) return false;
 			}
 		}
 		else return false;
@@ -627,6 +645,10 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 	AQDebug( "Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )", "Begin" );
 	
 	this->QEMU_Process = new QProcess();
+	Monitor_Socket = new QTcpSocket( this );
+	Use_Monitor_TCP = false;
+	Monitor_Hostname = "localhost";
+	Monitor_Port = 6000;
 	this->Emu_Ctl = new Emulator_Control_Window();
 	this->VM_Dom_Document = QDomDocument();
 	this->VM_XML_File_Path = vm.Get_VM_XML_File_Path();
@@ -646,6 +668,9 @@ Virtual_Machine &Virtual_Machine::operator=( const Virtual_Machine &vm )
 					  this, SLOT(Parse_StdErr()) );
 	
 	QObject::connect( QEMU_Process, SIGNAL(readyReadStandardOutput()),
+					  this, SLOT(Parse_StdOut()) );
+
+	QObject::connect( Monitor_Socket, SIGNAL(readyRead()),
 					  this, SLOT(Parse_StdOut()) );
 	
 	QObject::connect( QEMU_Process, SIGNAL(started()),
@@ -3454,7 +3479,7 @@ bool Virtual_Machine::Load_VM( const QString &file_name )
 						 "This is AQEMU VM File Version Not Support!" );
 				
 				int ret_but = QMessageBox::question( NULL, tr("Version Invalid!"),
-													 tr("This Version on AQEMU VM File no 0.5\nLoad This File?"),
+													 tr("Version of this AQEMU VM File isn't 0.5\nLoad This File anyway?"),
 													 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 				
 				if( ret_but != QMessageBox::Yes ) return false;
@@ -5026,8 +5051,29 @@ bool Virtual_Machine::Save_VM( const QString &file_name )
 QStringList Virtual_Machine::Build_QEMU_Args()
 {
 	QStringList Args;
-	
-	Args << "-monitor" << "stdio";
+
+	#ifdef Q_OS_WIN32
+	Args << "-monitor" << QString("tcp:%1:%2,server,nowait")
+						  .arg(Settings.value("Emulator_Monitor_Hostname", "localhost").toString() )
+						  .arg(Settings.value("Emulator_MonGitor_Port", 6000).toInt() + Embedded_Display_Port);
+
+	Monitor_Hostname = Settings.value("Emulator_Monitor_Hostname", "localhost").toString();
+	Monitor_Port = (unsigned int)Settings.value("Emulator_MonGitor_Port", 6000).toInt() + Embedded_Display_Port;
+	#else
+	if( Settings.value("Emulator_Monitor_Type", "stdio").toString() == "tcp" )
+	{
+		Args << "-monitor" << QString("tcp:%1:%2,server,nowait")
+							  .arg(Settings.value("Emulator_Monitor_Hostname", "localhost").toString() )
+							  .arg(Settings.value("Emulator_MonGitor_Port", 6000).toInt() + Embedded_Display_Port);
+
+		Monitor_Hostname = Settings.value("Emulator_Monitor_Hostname", "localhost").toString();
+		Monitor_Port = (unsigned int)Settings.value("Emulator_MonGitor_Port", 6000).toInt() + Embedded_Display_Port;
+	}
+	else
+	{
+		Args << "-monitor" << "stdio";
+	}
+	#endif
 	
 	// Saved?
 	if( ! Start_Snapshot_Tag.isEmpty() )
@@ -5474,7 +5520,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 	}
 	else // old QEMU/KVM versions style
 	{
-		VM::Boot_Device bootDev;
+		VM::Boot_Device bootDev = VM::Boot_None;
 		for( int bx = 0; bx < Boot_Order_List.count(); bx++ )
 		{
 			if( Boot_Order_List[bx].Enabled == true ) bootDev = Boot_Order_List[ bx ].Type;
@@ -6177,7 +6223,7 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 		if( QFile::exists(ROM_File) == false &&
 			Build_QEMU_Args_for_Tab_Info == false )
 		{
-			AQGraphic_Warning( tr("Error!"), tr("ROM File Not Exists! QEMU Cannot Run!") );
+			AQGraphic_Warning( tr("Error!"), tr("ROM File doesn't Exists! Can't run emulator!") );
 		}
 		else
 		{
@@ -6696,7 +6742,7 @@ bool Virtual_Machine::Start()
 				{
 					int retVal = QMessageBox::question( NULL, tr("Error!"),
 										   tr("KVM Kernel Module Not Loaded!\n"
-										   "For Loading KVM Module, Enter in Terminal by User \"root\": \"modprobe kvm-intel\". "
+										   "To load this Module, Enter in Terminal with root privileges: \"modprobe kvm-intel\". "
 										   "Or If Use AMD Processor: \"modprobe kvm-amd\".\nIgnore This Error?"),
 										   QMessageBox::Yes | QMessageBox::No | QMessageBox::YesToAll,
 	 									   QMessageBox::No );
@@ -6750,10 +6796,11 @@ bool Virtual_Machine::Start()
 					{
 						AQGraphic_Warning( tr("Error!"),
 										   tr("KQEMU Kernel Module Not Loaded!\n"
-										   "This Module Provide Acceleration for QEMU.\n"
-										   "For Loading KQEMU Module Type In Root Mode:\n"
-										   "\"modprobe kqemu\"\n"
-										   "Or Disable Acceleration in Tab \"Other->Hardware Virtualization\".") );
+											  "This Module Provides Acceleration for QEMU.\n"
+											  "For Loading KQEMU Module Type:\n"
+											  "\"modprobe kqemu\"\n"
+											  "in root mode\n"
+											  "Or Disable Acceleration in \"Other->Hardware Virtualization\" tab.") );
 						Start_Snapshot_Tag = "";
 						return false;
 					}
@@ -6837,7 +6884,7 @@ bool Virtual_Machine::Start()
 		connect( this, SIGNAL(Ready_StdOut(const QString&)),
 				 this, SLOT(Started_Booting(const QString&)) );
 		
-		QEMU_Process->write( "info vnc\n" );
+		Send_Emulator_Command( "info vnc\n" );
 	}
 	
 	// Init Emulator Control Window
@@ -6870,12 +6917,12 @@ void Virtual_Machine::Pause()
 	switch( State )
 	{
 		case VM::VMS_Pause:
-			QEMU_Process->write( "c\n" );
+			Send_Emulator_Command( "c\n" );
 			Set_State( VM::VMS_Running );
 			break;
 			
 		case VM::VMS_Running:
-			QEMU_Process->write( "stop\n" );
+			Send_Emulator_Command( "stop\n" );
 			Set_State( VM::VMS_Pause );
 			break;
 			
@@ -6891,7 +6938,7 @@ void Virtual_Machine::Stop()
 	if( State == VM::VMS_Saved )
 		Set_State( VM::VMS_Power_Off, true );
 	else
-		QEMU_Process->write( "quit\n" );
+		Send_Emulator_Command( "quit\n" );
 }
 
 void Virtual_Machine::Reset()
@@ -6904,7 +6951,7 @@ void Virtual_Machine::Reset()
 	}
 	else
 	{
-		QEMU_Process->write( "system_reset\n" );
+		Send_Emulator_Command( "system_reset\n" );
 	}
 }
 
@@ -6924,7 +6971,7 @@ void Virtual_Machine::Save_VM_State( const QString &tag, bool quit )
 		if( Take_Screenshot(scrn_file, 64, 64) ) Screenshot_Path = scrn_file;
 	}
 	
-	QEMU_Process->write( qPrintable("savevm " + tag + "\n") );
+	Send_Emulator_Command( qPrintable("savevm " + tag + "\n") );
 	
 	connect( this, SIGNAL(Ready_StdOut(const QString&)),
 			 this, SLOT(Suspend_Finished(const QString&)) );
@@ -6937,7 +6984,7 @@ void Virtual_Machine::Load_VM_State( const QString &tag )
 	connect( this, SIGNAL(Ready_StdOut(const QString&)),
 			 this, SLOT(Resume_Finished(const QString&)) );
 	
-	QEMU_Process->write( qPrintable("loadvm " + tag + "\n") );
+	Send_Emulator_Command( qPrintable("loadvm " + tag + "\n") );
 }
 
 bool Virtual_Machine::Start_Snapshot( const QString &tag )
@@ -6949,7 +6996,7 @@ bool Virtual_Machine::Start_Snapshot( const QString &tag )
 
 void Virtual_Machine::Delete_Snapshot( const QString &tag )
 {
-	QEMU_Process->write( qPrintable("delvm " + tag + "\n") );
+	Send_Emulator_Command( qPrintable("delvm " + tag + "\n") );
 }
 
 const QString &Virtual_Machine::Get_UID() const
@@ -7073,8 +7120,12 @@ bool Virtual_Machine::Take_Screenshot( const QString &file_name, int width, int 
 	
 	Execute_Emu_Ctl_Command( "screendump \"" + file_name + "\"" );
 	
+	#ifdef Q_OS_WIN32
+	Sleep( 100 );
+	#else
 	QTest::qWait( 100 );
-	
+	#endif
+
 	QImage im = QImage();
 	
 	bool load_ok = false;
@@ -7088,7 +7139,11 @@ bool Virtual_Machine::Take_Screenshot( const QString &file_name, int width, int 
 			break;
 		}
 		
+		#ifdef Q_OS_WIN32
+		Sleep( 100 );
+		#else
 		QTest::qWait( 100 );
+		#endif
 	}
 	
 	// Loading Complete?
@@ -7924,7 +7979,7 @@ void Virtual_Machine::Set_Parallel_Ports( const QList<VM_Port> &list )
 QString Virtual_Machine::Get_USB_Bus_Address( const QString &id )
 {
 	// Find Device Name by vendor_id:device_id
-	QEMU_Process->write( "info usbhost\n" );
+	Send_Emulator_Command( "info usbhost\n" );
 	QTest::qSleep(200);
 	
 	QString info_usbhost_res = QEMU_Process->readAll();
@@ -7989,7 +8044,7 @@ QString Virtual_Machine::Get_USB_Bus_Address( const QString &id )
 	AQWarning( "id == " + id, "name == " + dev_name );
 	
 	// Find Bus.Address by Device Name
-	QEMU_Process->write( "info usb\n" );
+	Send_Emulator_Command( "info usb\n" );
 	QTest::qSleep(200);
 	QString info_usb_res = QEMU_Process->readAll();
 	
@@ -8542,7 +8597,15 @@ void Virtual_Machine::Use_No_Use_Embedded_Display( bool use )
 
 void Virtual_Machine::Parse_StdOut()
 {
-	QString convOutput = QEMU_Process->readAllStandardOutput();
+	QString convOutput = "";
+
+	#ifndef Q_OS_WIN32
+	if( Use_Monitor_TCP == false )
+		convOutput = QEMU_Process->readAllStandardOutput();
+	else
+	#endif
+		convOutput = Monitor_Socket->readAll();
+
 	QStringList splitOutput = convOutput.split( "[K" );
 	QString cleanOutput = splitOutput.last().remove( QRegExp("\[[KD].") );
 	
@@ -8554,6 +8617,7 @@ void Virtual_Machine::Parse_StdOut()
 
 void Virtual_Machine::Parse_StdErr()
 {
+	// FIXME in monitor tcp mode no possible get error strings
 	QString convOutput = QEMU_Process->readAllStandardError();
 	
 	emit Clean_Console( convOutput );
@@ -8584,6 +8648,28 @@ void Virtual_Machine::Parse_StdErr()
 	Output_Parts = Last_Output.split( "(qemu)" );*/
 }
 
+void Virtual_Machine::Send_Emulator_Command( const QString &text )
+{
+	#ifndef Q_OS_WIN32
+	if( Use_Monitor_TCP == false )
+	{
+		QEMU_Process->write( qPrintable(text) );
+	}
+	else
+	#endif
+	{
+		if( Monitor_Socket->state() != QAbstractSocket::ConnectedState )
+		{
+			AQError( "void Virtual_Machine::Send_Emulator_Command( const QString &text )",
+					 "Monitor socket not connected!" );
+		}
+		else
+		{
+			Monitor_Socket->write( qPrintable(text) );
+		}
+	}
+}
+
 void Virtual_Machine::QEMU_Started()
 {
 	AQDebug( "void Virtual_Machine::QEMU_Started()",
@@ -8607,6 +8693,14 @@ void Virtual_Machine::QEMU_Started()
 		before_proc->start( Settings.value("Run_Before_QEMU", "").toString() );
 	}
 	
+	// Connect monitor?
+	#ifndef Q_OS_WIN32
+	if( Use_Monitor_TCP == true )
+	#endif
+	{
+		Monitor_Socket->connectToHost( Monitor_Hostname, Monitor_Port, QIODevice::ReadWrite );
+	}
+
 	emit QEMU_Start();
 }
 
@@ -8620,7 +8714,7 @@ void Virtual_Machine::QEMU_Finished( int exitCode, QProcess::ExitStatus exitStat
 	Start_Snapshot_Tag = "";
 	Set_State( VM::VMS_Power_Off );
 	
-	if( exitCode != 0 || exitStatus == QProcess::CrashExit )
+	if( (exitCode != 0) || (exitStatus == QProcess::CrashExit) )
 	{
 		AQError( "QEMU Crashed!", QEMU_Process->readAll() );
 	}
@@ -8675,7 +8769,7 @@ void Virtual_Machine::Suspend_Finished( const QString &returned_text )
 		
 		if( Quit_Before_Save )
 		{
-			QEMU_Process->write( "quit\n" );
+			Send_Emulator_Command( "quit\n" );
 			Hide_Emu_Ctl_Win();
 			Set_State( VM::VMS_Saved );
 		}
@@ -8691,7 +8785,7 @@ void Virtual_Machine::Suspend_Finished( const QString &returned_text )
 		
 		Hide_VM_Save_Window();
 		AQGraphic_Warning( tr("Error!"),
-						   tr("To save a virtual machine, you need to add HDD image in QCOW2 format!") );
+						   tr("You must add HDD image in QCOW2 format to save virtual machine!") );
 	}
 }
 
@@ -8711,7 +8805,7 @@ void Virtual_Machine::Started_Booting( const QString &text )
 
 void Virtual_Machine::Execute_Emu_Ctl_Command( const QString &com )
 {
-	QEMU_Process->write( qPrintable(com + "\n") );
+	Send_Emulator_Command( qPrintable(com + "\n") );
 	
 	AQDebug( "void Virtual_Machine::Execute_Emu_Ctl_Command( const QString &com )",
 			 "Run: " + com );

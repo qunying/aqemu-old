@@ -171,6 +171,16 @@ Advanced_Settings_Window::Advanced_Settings_Window( QWidget *parent )
 	// First VNC Port for Embedded Display
 	ui.SB_First_VNC_Port->setValue( Settings.value("First_VNC_Port", "5910").toString().toInt() );
 	
+	// QEMU/KVM Monitor Type
+	#ifdef Q_OS_WIN32
+	ui.RB_Monitor_STDIO->setEnabled( false );
+	ui.RB_Monitor_TCP->setChecked( true );
+	#else
+	ui.RB_Monitor_TCP->setChecked( Settings.value("Emulator_Monitor_Type", "stdio").toString() == "tcp" );
+	#endif
+	ui.CB_Monitor_Hostname->setEditText( Settings.value("Emulator_Monitor_Hostname", "localhost").toString() );
+	ui.SB_Monitor_Port->setValue( Settings.value("Emulator_MonGitor_Port", 6000).toInt() );
+
 	// QEMU_AUDIO
 	ui.CH_Audio_Default->setChecked( Settings.value("QEMU_AUDIO/Use_Default_Driver", "yes").toString() == "no" );
 	
@@ -209,7 +219,7 @@ void Advanced_Settings_Window::on_Button_OK_clicked()
 		}
 		else
 		{
-			AQGraphic_Warning( tr("Invalid Value!"), tr("Shared Folder for Screenshots is Not Exists!") );
+			AQGraphic_Warning( tr("Invalid Value!"), tr("Shared screenshot folder doesn't exist!") );
 			return;
 		}
 	}
@@ -357,6 +367,15 @@ void Advanced_Settings_Window::on_Button_OK_clicked()
 	// First VNC Port for Embedded Display
 	Settings.setValue( "First_VNC_Port", QString::number(ui.SB_First_VNC_Port->value()) );
 	
+	// QEMU/KVM Monitor Type
+	#ifdef Q_OS_WIN32
+	Settings.setValue( "Emulator_Monitor_Type", "tcp" );
+	#else
+	Settings.setValue( "Emulator_Monitor_Type", ui.RB_Monitor_TCP->isChecked() ? "tcp" : "stdio" );
+	#endif
+	Settings.setValue( "Emulator_Monitor_Hostname", ui.CB_Monitor_Hostname->currentText() );
+	Settings.setValue( "Emulator_Monitor_Port", ui.SB_Monitor_Port->value() );
+
 	// All OK?
 	if( Settings.status() != QSettings::NoError )
 		AQError( "void Advanced_Settings_Window::on_Button_OK_clicked()", "QSettings Error!" );
@@ -366,54 +385,42 @@ void Advanced_Settings_Window::on_Button_OK_clicked()
 
 void Advanced_Settings_Window::on_TB_Browse_Before_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Select executable"),
 													 Get_Last_Dir_Path(ui.Edit_Before_Start_Command->text()),
-													 tr("All Files (*);;Scripts (*.sh)"), &selectedFilter, options );
+													 tr("All Files (*);;Scripts (*.sh)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_Before_Start_Command->setText( fileName );
+		ui.Edit_Before_Start_Command->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Advanced_Settings_Window::on_TB_Browse_After_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Select executable"),
 													 Get_Last_Dir_Path(ui.Edit_After_Stop_Command->text()),
-													 tr("All Files (*);;Scripts (*.sh)"), &selectedFilter, options );
+													 tr("All Files (*);;Scripts (*.sh)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_After_Stop_Command->setText( fileName );
+		ui.Edit_After_Stop_Command->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Advanced_Settings_Window::on_TB_Log_File_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getSaveFileName( this, tr("Select or Create Log File"),
 													 Get_Last_Dir_Path(ui.Edit_Log_Path->text()),
-													 tr("All Files (*)"), &selectedFilter, options );
+													 tr("All Files (*)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_Log_Path->setText( fileName );
+		ui.Edit_Log_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Advanced_Settings_Window::on_TB_QEMU_IMG_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Select executable"),
 													 Get_Last_Dir_Path(ui.Edit_After_Stop_Command->text()),
-													 tr("All Files (*)"), &selectedFilter, options );
+													 tr("All Files (*)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_QEMU_IMG_Path->setText( fileName );
+		ui.Edit_QEMU_IMG_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Advanced_Settings_Window::on_TB_Add_Emulator_clicked()
@@ -559,8 +566,8 @@ void Advanced_Settings_Window::on_TB_Find_All_Emulators_clicked()
 	}
 	else
 	{
-		AQGraphic_Error( "void Advanced_Settings_Window::on_TB_Find_All_Emulators_clicked()", QObject::tr("Error!"),
-						 QObject::tr("Cannot Find Emulators in This System! Please Add Emulators Manual!"), false );
+		AQGraphic_Error( "void Advanced_Settings_Window::on_TB_Find_All_Emulators_clicked()", tr("Error!"),
+						 tr("Cannot find any emulators installed on your OS! Please add them manually!"), false );
 	}
 	
 	delete first_start_win;
@@ -574,7 +581,7 @@ void Advanced_Settings_Window::on_Emulators_Table_cellDoubleClicked( int row, in
 void Advanced_Settings_Window::on_Button_CDROM_Add_clicked()
 {
 	bool ok = false;
-	QString text = QInputDialog::getText( this, tr("Add CD/DVD Device"), tr("Enter Device Name. Sample: /dev/cdrom"),
+	QString text = QInputDialog::getText( this, tr("Add CD/DVD Device"), tr("Enter Device Name. Example: /dev/cdrom"),
 										  QLineEdit::Normal, "", &ok );
 	
 	if( ok && ! text.isEmpty() ) ui.CDROM_List->addItem( text );
@@ -633,13 +640,13 @@ bool Advanced_Settings_Window::Save_Emulators_Info()
 	
 	if( installed_qemu && default_qemu == false )
 	{
-		AQGraphic_Warning( tr("Error!"), tr("Not Select Default QEMU Emulator!") );
+		AQGraphic_Warning( tr("Error!"), tr("Default QEMU Emulator isn't selected!") );
 		return false;
 	}
 	
 	if( installed_kvm && default_kvm == false )
 	{
-		AQGraphic_Warning( tr("Error!"), tr("Not Select Default KVM Emulator!") );
+		AQGraphic_Warning( tr("Error!"), tr("Default KVM Emulator isn't selected!") );
 		return false;
 	}
 	
@@ -688,11 +695,11 @@ void Advanced_Settings_Window::Update_Emulators_Info()
 
 void Advanced_Settings_Window::on_TB_Screenshot_Folder_clicked()
 {
-	QString folder = QFileDialog::getExistingDirectory( this, tr("Select Folder for Screenshots"),
+	QString folder = QFileDialog::getExistingDirectory( this, tr("Choose screenshot folder"),
 														Settings.value("Screenshot_Folder_Path", "~").toString() );
 	
 	if( ! folder.isEmpty() )
-		ui.Edit_Screenshot_Folder->setText( folder );
+		ui.Edit_Screenshot_Folder->setText( QDir::toNativeSeparators(folder) );
 }
 
 QStringList Advanced_Settings_Window::Get_All_Emulators_Names() const

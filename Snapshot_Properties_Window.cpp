@@ -53,7 +53,7 @@ void Snapshot_Properties_Window::on_Button_OK_clicked()
 {
 	if( ui.Edit_Name->text().isEmpty() )
 	{
-		AQGraphic_Warning( tr("Warning"), tr("Name for Snapshot is Empty!") );
+		AQGraphic_Warning( tr("Warning"), tr("Snapshot name is empty!") );
 		return;
 	}
 	else accept();

@@ -24,6 +24,7 @@
 #define FIRST_START_WIZARD_H
 
 #include <QSettings>
+#include "VM_Devices.h"
 #include "ui_First_Start_Wizard.h"
 
 class First_Start_Wizard: public QDialog
@@ -45,6 +46,12 @@ class First_Start_Wizard: public QDialog
 		void on_Button_Skip_Find_clicked();
 		void on_Button_Edit_clicked();
 		
+		#ifdef Q_OS_WIN32
+		void on_TB_Add_Emulator_Browse_clicked();
+		void on_Button_Add_Emulator_Find_clicked();
+		void on_Button_Add_Emulator_Manual_Mode_clicked();
+		#endif
+		
 		void on_All_Pages_currentChanged( int index );
 		
 		void Load_Settings();
@@ -57,6 +64,7 @@ class First_Start_Wizard: public QDialog
 		bool Emulators_Find_Done;
 		QStringList Header_Captions;
 		QSettings Settings;
+		Emulator Emul;
 };
 
 #endif

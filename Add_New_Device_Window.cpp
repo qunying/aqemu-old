@@ -340,14 +340,12 @@ void Add_New_Device_Window::on_CB_Interface_currentIndexChanged( const QString &
 
 void Add_New_Device_Window::on_TB_File_Path_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString file_name = QFileDialog::getOpenFileName( this, tr("Select You Device"), "/", tr("All Files (*)"),
-													  &selectedFilter, options );
+	QString file_name = QFileDialog::getOpenFileName( this, tr("Select your device"),
+													  Get_Last_Dir_Path(ui.Edit_File_Path->text()),
+													  tr("All Files (*)") );
 	
 	if( ! file_name.isEmpty() )
-		ui.Edit_File_Path->setText( file_name );
+		ui.Edit_File_Path->setText( QDir::toNativeSeparators(file_name) );
 }
 
 void Add_New_Device_Window::on_Button_OK_clicked()
@@ -417,7 +415,7 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 	{
 		if( ! QFile::exists(ui.Edit_File_Path->text()) )
 		{
-			AQGraphic_Warning( tr("Error!"), tr("File Not Exists!") );
+			AQGraphic_Warning( tr("Error!"), tr("File does not exist!") );
 			return;
 		}
 	}
@@ -458,28 +456,28 @@ void Add_New_Device_Window::on_Button_OK_clicked()
 		qulonglong cyls = ui.Edit_Cyls->text().toULongLong( &ok, 10 );
 		if( ! ok )
 		{
-			AQGraphic_Warning( tr("Warning!"), tr("\"Cyls\" Value Incorrect!") );
+			AQGraphic_Warning( tr("Warning!"), tr("\"Cyls\" value is incorrect!") );
 			return;
 		}
 		
 		qulonglong heads = ui.Edit_Heads->text().toULongLong( &ok, 10 );
 		if( ! ok )
 		{
-			AQGraphic_Warning( tr("Warning!"), tr("\"Heads\" Value Incorrect!") );
+			AQGraphic_Warning( tr("Warning!"), tr("\"Heads\" value is incorrect!") );
 			return;
 		}
 		
 		qulonglong secs = ui.Edit_Secs->text().toULongLong( &ok, 10) ;
 		if( ! ok )
 		{
-			AQGraphic_Warning( tr("Warning!"), tr("\"Secs\" Value Incorrect!") );
+			AQGraphic_Warning( tr("Warning!"), tr("\"Secs\" value is incorrect!") );
 			return;
 		}
 		
 		qulonglong trans = ui.Edit_Trans->text().toULongLong( &ok, 10 );
 		if( ! ok )
 		{
-			AQGraphic_Warning( tr("Warning!"), tr("\"Trans\" Value Incorrect!") );
+			AQGraphic_Warning( tr("Warning!"), tr("\"Trans\" value is incorrect!") );
 			return;
 		}
 		

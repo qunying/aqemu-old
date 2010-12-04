@@ -26,6 +26,7 @@
 #include <QDateTime>
 #include <QDomElement>
 #include <QProcess>
+#include <QTcpSocket>
 
 #include "VM_Devices.h"
 #include "Error_Log_Window.h"
@@ -433,6 +434,8 @@ class Virtual_Machine: public QObject
 		void Parse_StdErr();
 		void Parse_StdOut();
 		
+		void Send_Emulator_Command( const QString &text );
+
 		void QEMU_Started();
 		void QEMU_Finished( int exitCode, QProcess::ExitStatus exitStatus );
 		
@@ -449,6 +452,12 @@ class Virtual_Machine: public QObject
 		
 	private:
 		QProcess *QEMU_Process;
+
+		QTcpSocket *Monitor_Socket; // Used for "-monitor tcp" connection type
+		bool Use_Monitor_TCP; // This value set in VM start time and no changes after
+		QString Monitor_Hostname;
+		unsigned int Monitor_Port;
+
 		VM::VM_State State; // Saved, Running, etc...
 		VM::VM_State Old_State;
 		QDomDocument VM_Dom_Document; // vm xml file

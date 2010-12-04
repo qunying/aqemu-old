@@ -1541,6 +1541,7 @@ VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path )
 {
 	QMap<QString, QString> emulFiles;
+	
 	emulFiles[ "qemu" ] = "";
 	emulFiles[ "qemu-system-x86_64" ] = "";
 	emulFiles[ "qemu-system-arm" ] = "";
@@ -1576,7 +1577,11 @@ QMap<QString, QString> System_Info::Find_QEMU_Binary_Files( const QString &path 
 	QMap<QString, QString>::iterator iter = emulFiles.begin();
 	while( iter != emulFiles.end() )
 	{
+		#ifdef Q_OS_WIN32
+		if( QFile::exists(dirPath + iter.key() + ".exe") ) iter.value() = dirPath + iter.key() + ".exe";
+		#else
 		if( QFile::exists(dirPath + iter.key()) ) iter.value() = dirPath + iter.key();
+		#endif
 		
 		++iter;
 	}
@@ -3110,14 +3115,15 @@ QStringList System_Info::Get_Host_CDROM_List()
 #include <windows.h>
 #include <tchar.h>
 
-int System_Info::Get_Free_Memory_Size() // FIXME new style
+void System_Info::Get_Free_Memory_Size( int &allRAM, int &freeRAM )
 {
 	MEMORYSTATUS mem;
 	memset( (void*)&mem, 0, sizeof(mem) );
 	mem.dwLength = sizeof( mem );
 	GlobalMemoryStatus( &mem );
 	
-	return (int) mem.dwAvailPhys / 1024.0 / 1024.0;
+	freeRAM = (int)mem.dwAvailPhys / 1024.0 / 1024.0;
+	allRAM = (int)mem.dwTotalPhys / 1024.0 / 1024.0;
 }
 
 QStringList System_Info::Get_Host_FDD_List()

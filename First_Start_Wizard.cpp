@@ -33,6 +33,7 @@
 #include "Settings_Window.h"
 #include "Advanced_Settings_Window.h"
 #include "Edit_Emulator_Version_Window.h"
+#include "Emulator_Options_Window.h"
 
 First_Start_Wizard::First_Start_Wizard( QWidget *parent )
 	: QDialog( parent )
@@ -55,7 +56,7 @@ bool First_Start_Wizard::Find_Emulators()
 
 void First_Start_Wizard::on_Button_Cancel_clicked()
 {
-	if( QMessageBox::information(this, tr("Warning!"), tr("You sure? You Can Configure These Options In The Settings Window."),
+	if( QMessageBox::information(this, tr("Warning!"), tr("Are you sure? You can configure these options later in Settings windows."),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::Yes )
 	{
 		reject();
@@ -65,7 +66,13 @@ void First_Start_Wizard::on_Button_Cancel_clicked()
 void First_Start_Wizard::on_Button_Back_clicked()
 {
 	Next_Move = false;
-	ui.All_Pages->setCurrentIndex( ui.All_Pages->currentIndex() -1 );
+
+	if( ui.All_Pages->currentWidget() == ui.Find_Emulators_Page ||
+		ui.All_Pages->currentWidget() == ui.Add_Emulator_Page )
+		ui.All_Pages->setCurrentWidget( ui.General_Settings_Page );
+	else
+		ui.All_Pages->setCurrentIndex( ui.All_Pages->currentIndex() -1 );
+
 	ui.Button_Next->setEnabled( true );
 }
 
@@ -74,6 +81,16 @@ void First_Start_Wizard::on_Button_Next_clicked()
 	if( ui.All_Pages->currentWidget() == ui.Welcome_Page )
 	{
 		retranslateUi();
+	}
+	else if( ui.All_Pages->currentWidget() == ui.General_Settings_Page )
+	{
+		#ifdef Q_OS_WIN32
+		ui.All_Pages->setCurrentWidget( ui.Add_Emulator_Page );
+		#else
+		ui.All_Pages->setCurrentWidget( ui.Find_Emulators_Page );
+		#endif
+
+		return;
 	}
 	else if( ui.All_Pages->currentIndex() == ui.All_Pages->count()-1 )
 	{
@@ -112,16 +129,10 @@ void First_Start_Wizard::on_TB_Browse_VM_Dir_clicked()
 	
 	if( ! folder.isEmpty() )
 	{
-		if( ! folder.endsWith("/") || folder.endsWith("\\") )
-		{
-			#ifdef Q_OS_WIN32
-			folder += "\\";
-			#else
+		if( ! (folder.endsWith("/") || folder.endsWith("\\")) )
 			folder += "/";
-			#endif
-		}
 		
-		ui.Edit_VM_Dir->setText( folder );
+		ui.Edit_VM_Dir->setText( QDir::toNativeSeparators(folder) );
 	}
 }
 
@@ -330,7 +341,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				qemuEmulatorsList << emul;
 				
 				// Add Text
-				ui.Edit_Enulators_List->appendPlainText( tr("Finded QEMU in %1, version: %2").
+				ui.Edit_Enulators_List->appendPlainText( tr("QEMU Found in \"%1\", version: %2").
 														 arg(paths[qx]).
 														 arg(Emulator_Version_To_String(qemu_version)) );
 			}
@@ -436,7 +447,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				kvmEmulatorsList << emul;
 				
 				// Add Text
-				ui.Edit_Enulators_List->appendPlainText( tr("Finded KVM in %1, version: %2").
+				ui.Edit_Enulators_List->appendPlainText( tr("KVM Found in \"%1\", version: %2").
 														 arg(paths[kx]).
 														 arg(Emulator_Version_To_String(kvm_version)) );
 			}
@@ -515,6 +526,43 @@ void First_Start_Wizard::on_Button_Edit_clicked()
 	delete edit_win;
 }
 
+#ifdef Q_OS_WIN32
+void First_Start_Wizard::on_TB_Add_Emulator_Browse_clicked()
+{
+	QString emulatorDirPath = QFileDialog::getExistingDirectory( this, tr("Select QEMU emulator directory"),
+																 Get_Last_Dir_Path(ui.Edit_Add_Emulator_Path->text()) );
+
+	if( ! emulatorDirPath.isEmpty() )
+		ui.Edit_Add_Emulator_Path->setText( QDir::toNativeSeparators(emulatorDirPath) );
+}
+
+void First_Start_Wizard::on_Button_Add_Emulator_Find_clicked()
+{
+
+}
+
+void First_Start_Wizard::on_Button_Add_Emulator_Manual_Mode_clicked()
+{
+	Emulator_Options_Window *emulatorOptionsWin = new Emulator_Options_Window( this );
+
+	Emul.Set_Name( ui.CB_Add_Emulator_Version->currentText() );
+	Emul.Set_Path( ui.Edit_Add_Emulator_Path->text() );
+	Emul.Set_Version( String_To_Emulator_Version(ui.CB_Add_Emulator_Version->currentText()) );
+	Emul.Set_Force_Version( true );
+	emulatorOptionsWin->Set_Emulator( Emul );
+
+	if( emulatorOptionsWin->exec() == QDialog::Accepted )
+	{
+		Emul = emulatorOptionsWin->Get_Emulator();
+
+		ui.Edit_Add_Emulator_Path->setText( Emul.Get_Path() );
+		ui.CB_Add_Emulator_Version->setEditText( Emulator_Version_To_String(Emul.Get_Version()) );
+	}
+
+	delete emulatorOptionsWin;
+}
+#endif
+
 void First_Start_Wizard::on_All_Pages_currentChanged( int index )
 {
 	// Back, Next Buttons State
@@ -555,13 +603,19 @@ void First_Start_Wizard::Load_Settings()
 	}
 	
 	// Virtual Machines Folder
-	ui.Edit_VM_Dir->setText( Settings.value("VM_Directory", QDir::homePath() + "/.aqemu/").toString() );
-	
+	#ifdef Q_OS_WIN32
+	ui.Edit_Add_Emulator_Path->setText( QDir::toNativeSeparators(QDir::currentPath() + "/QEMU/") );
+	ui.Edit_VM_Dir->setText( QDir::toNativeSeparators(Settings.value("VM_Directory", QDir::homePath() + "/AQEMU_VM/").toString()) );
+	#else
+	ui.Edit_VM_Dir->setText( QDir::toNativeSeparators(Settings.value("VM_Directory", QDir::homePath() + "/.aqemu/").toString()) );
+	#endif
+
 	// Use Device Manager
 	ui.CH_Device_Manager->setChecked( Settings.value("Use_Device_Manager", "no").toString() == "yes" );
 	
 	// Use VNC Embedded Display
 	#ifdef VNC_DISPLAY
+	ui.Label_Embedded_VNC->setEnabled( true );
 	ui.CH_Embedded_VNC->setEnabled( true );
 	ui.CH_Embedded_VNC->setChecked( Settings.value("Use_VNC_Display", "no").toString() == "yes" );
 	#endif
@@ -572,15 +626,17 @@ bool First_Start_Wizard::Save_Settings()
 	// Virtual Machines Folder
 	QDir dir;
 	
-	if( ! ui.Edit_VM_Dir->text().endsWith("/") )
-		ui.Edit_VM_Dir->setText( ui.Edit_VM_Dir->text() + "/" );
+	ui.Edit_VM_Dir->setText( QDir::toNativeSeparators(ui.Edit_VM_Dir->text()) );
+
+	if( ! (ui.Edit_VM_Dir->text().endsWith("/") || ui.Edit_VM_Dir->text().endsWith("\\")) )
+		ui.Edit_VM_Dir->setText( ui.Edit_VM_Dir->text() + QDir::toNativeSeparators("/") );
 	
 	if( dir.exists(ui.Edit_VM_Dir->text()) )
 	{
-		if( ! dir.exists(ui.Edit_VM_Dir->text() + "os_templates/") )
-			dir.mkdir( ui.Edit_VM_Dir->text() + "os_templates/" );
+		if( ! dir.exists(ui.Edit_VM_Dir->text() + QDir::toNativeSeparators("/os_templates/")) )
+			dir.mkdir( ui.Edit_VM_Dir->text() + QDir::toNativeSeparators("/os_templates/") );
 	}
-	else if( ! (dir.mkdir(ui.Edit_VM_Dir->text()) && dir.mkdir(ui.Edit_VM_Dir->text() + "os_templates/")) )
+	else if( ! (dir.mkdir(ui.Edit_VM_Dir->text()) && dir.mkdir(ui.Edit_VM_Dir->text() + QDir::toNativeSeparators("/os_templates/"))) )
 	{
 		AQGraphic_Warning( tr("Error!"), tr("Cannot Create New Folder!") );
 		return false;
@@ -611,6 +667,65 @@ bool First_Start_Wizard::Save_Settings()
 	// Off First Start
 	Settings.setValue( "First_Start", "no" );
 	
+	#ifdef Q_OS_WIN32
+	// Check emulator
+	if( Emul.Get_Name().isEmpty() )
+	{
+		Emul.Set_Name( ui.CB_Add_Emulator_Version->currentText() );
+		Emul.Set_Path( ui.Edit_Add_Emulator_Path->text() );
+		Emul.Set_Version( String_To_Emulator_Version(ui.CB_Add_Emulator_Version->currentText()) );
+		Emul.Set_Force_Version( true );
+		
+		bool foundEmulBinary = false;
+		bool searchAgain = true;
+		
+		while( true )
+		{
+			QList<QString> emulBinPaths = Emul.Get_Binary_Files().values();
+			for( int ix = 0; ix < emulBinPaths.count(); ++ix )
+			{
+				if( QFile::exists(emulBinPaths[ix]) )
+				{
+					foundEmulBinary = true;
+					break;
+				}
+			}
+			
+			if( ! foundEmulBinary )
+			{
+				if( ! searchAgain ) break;
+				
+				searchAgain = false;
+				Emul.Set_Binary_Files( System_Info::Find_QEMU_Binary_Files(ui.Edit_Add_Emulator_Path->text()) );
+			}
+			else break;
+		}
+		
+		if( ! foundEmulBinary )
+		{
+			AQGraphic_Warning( tr("Error"), tr("Emulator binary files not exists! Please click Back and set it manual.") );
+			return false;
+		}
+		
+		// qemu-img
+		if( ! QFile::exists(Settings.value("QEMU-IMG_Path", "").toString()) )
+		{
+			QString qemuImgPath = (ui.Edit_Add_Emulator_Path->text().endsWith("/") || ui.Edit_Add_Emulator_Path->text().endsWith("\\"))
+								  ? ui.Edit_Add_Emulator_Path->text() + "qemu-img.exe"
+								  : ui.Edit_Add_Emulator_Path->text() + QDir::toNativeSeparators("/qemu-img.exe");
+			
+			if( QFile::exists(qemuImgPath) )
+				Settings.setValue( "QEMU-IMG_Path", QDir::toNativeSeparators(qemuImgPath) );
+			else
+				AQGraphic_Warning( tr("Warning!"),
+								   tr("Cannot find qemu-img.exe! You most set it path in: File->Advanced Settings->Advanced->qemu-img path") );
+		}
+	}
+	
+	Remove_All_Emulators_Files();
+	Emul.Save();
+	#endif
+	
 	return true;
 }
 
@@ -621,7 +736,8 @@ void First_Start_Wizard::retranslateUi()
 	
 	if( ui.CB_Language->currentIndex() != 0 )
 	{
-		if( appTranslator.load(Settings.value("AQEMU_Data_Folder", "").toString() + ui.CB_Language->itemText(ui.CB_Language->currentIndex()) + ".qm") )
+		if( appTranslator.load(Settings.value("AQEMU_Data_Folder", "").toString() +
+							   ui.CB_Language->itemText(ui.CB_Language->currentIndex()) + ".qm") )
 		{
 			QCoreApplication::installTranslator( &appTranslator );
 			
@@ -636,6 +752,7 @@ void First_Start_Wizard::retranslateUi()
 	Header_Captions << tr( "Welcome" );
 	Header_Captions << tr( "General Settings" );
 	Header_Captions << tr( "Find Emulators" );
+	Header_Captions << tr( "Setup Emulator" );
 	Header_Captions << tr( "Finish" );
 	
 	ui.Label_Caption->setText( Header_Captions[0] );
@@ -644,16 +761,21 @@ void First_Start_Wizard::retranslateUi()
 	ui.Button_Next->setText( tr("&Next") );
 	ui.Button_Cancel->setText( tr("&Cancel") );
 	
-	ui.Label_Welcome_Text->setText( tr("Welcome to AQEMU settings wizard!\nThis wizard will help you to choose options that need to AQEMU work correctly.\nPush the \"Next\" button to go to next page or \"Back\" button to go back to previous page.") );
+	ui.Label_Welcome_Text->setText( tr("Welcome to AQEMU settings wizard!\nThis wizard will help you to choose options AQEMU needed to work correctly.\nPush the \"Next\" button to go to next page or \"Back\" button to go back to previous page.") );
 	ui.Label_Select_Language->setText( tr("Here you can choose interface language") );
 	ui.Label_VM_Dir->setText( tr("Please select folder for AQEMU virtual machines") );
-	ui.Label_Device_Manager->setText( tr("If the \"Device manager\" mode is active, storage devices (Floppy, CD/DVD, HDD) will displayed in virtual machine as icons, like in file manager window.") );
+	ui.Label_Device_Manager->setText( tr("If the \"Device manager\" mode is active, storage devices (Floppy, CD/DVD, HDD) will be displayed in virtual machine as icons, like in file manager window.") );
 	ui.CH_Device_Manager->setText( tr("Use Device manager") );
-	ui.Label_Embedded_VNC->setText( tr("New experimental work mode is accessible in AQEMU. In this mode QEMU/KVM display will displayed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this function you must mark the \"Include Emdedded VNC Display in Main Window\" flag.") );
+	ui.Label_Embedded_VNC->setText( tr("New experimental work mode is available in AQEMU. In this mode QEMU/KVM display will be showed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this feature you must mark the \"Include Emdedded VNC Display in Main Window\" flag.") );
 	ui.CH_Embedded_VNC->setText( tr("Include Emdedded VNC Display in Main Window") );
-	ui.Label_Find_Emulators->setText( tr("To work correctly, AQEMU must know your emulators' arrangement and its' versions. For searching push the \"Search\" button. If automatic search can't find out your emulators, you must configure AQEMU yourself later. You can do it in \"File->Advanced Settings\" menu.") );
+	ui.Label_Find_Emulators->setText( tr("For correct working AQEMU must know your emulators locations and versions. For searching push the \"Search\" button. If automatic search can't find out your emulators, you should configure AQEMU yourself later. You can do it in \"File->Advanced Settings\" menu.") );
 	ui.Button_Find_Emulators->setText( tr("&Search") );
 	ui.Button_Skip_Find->setText( tr("S&kip Search") );
 	ui.Button_Edit->setText( tr("Set &Versions Manualy") );
+	ui.Label_Add_Emulator_Help->setText( "Help text (not writed...)" );
+	ui.Label_Add_Emulator_Path->setText( "Path to emulator directory" );
+	ui.Label_Add_Emulator_Version->setText( "Emulator version" );
+	ui.Button_Add_Emulator_Find->setText( "Start &searching" );
+	ui.Button_Add_Emulator_Manual_Mode->setText( "Show all settings..." );
 	ui.Label_Finish_Text->setText( tr("Congratulations! The Wizard has got all necessary settings for configuring AQEMU. Push \"Finish\" button to save your settings.") );
 }

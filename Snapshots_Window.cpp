@@ -136,7 +136,7 @@ void Snapshots_Window::on_Button_Delete_clicked()
 	
 	if( ui.Snapshots_Tree->currentItem()->text(0).isEmpty() )
 	{
-		AQGraphic_Warning( tr("Warning!"), tr("Before Select Snapshot For Delete!") );
+		AQGraphic_Warning( tr("Warning!"), tr("Please select snapshot that you want to delete!") );
 		return;
 	}
 	
@@ -159,7 +159,7 @@ void Snapshots_Window::on_Button_Start_clicked()
 	{
 		if( ui.Snapshots_Tree->currentItem()->text(0).isEmpty() )
 		{
-			AQGraphic_Warning( tr("Warning!"), tr("Before Select Snapshot For Start!") );
+			AQGraphic_Warning( tr("Warning!"), tr("Please select snapshot that you want to start!") );
 			return;
 		}
 		else
@@ -182,7 +182,7 @@ void Snapshots_Window::on_Button_Start_clicked()
 	}
 	else
 	{
-		int ret = QMessageBox::question( this, tr("Warning"), tr("This VM Running! Stop VM and Load Snapshot?"),
+		int ret = QMessageBox::question( this, tr("Warning"), tr("This VM is Running now! Stop VM and Load Snapshot?"),
 										 QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 		
 		if( ret == QMessageBox::Yes )
@@ -310,7 +310,7 @@ bool Snapshots_Window::Update_Info()
 	if( imagePath.isEmpty() )
 	{
 		AQGraphic_Warning( tr("Error!"),
-						   tr("For use snapshots, you most add HDD image in QCOW2 format!") );
+						   tr("You must add HDD image in QCOW2 format if you want to use snapshots!") );
 		return false;
 	}
 	

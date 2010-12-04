@@ -886,7 +886,7 @@
                    <item>
                     <widget class="QToolButton" name="TB_Update_Available_RAM_Size">
                      <property name="toolTip">
-                      <string>Update information about free memory</string>
+                      <string>Updating free memory information</string>
                      </property>
                      <property name="text">
                       <string>Free memory: 768 MB</string>
@@ -1256,7 +1256,7 @@
                   </sizepolicy>
                  </property>
                  <property name="toolTip">
-                  <string>Set the real time clock to local time. Default=utc</string>
+                  <string>Set real time clock to local time. Default=utc</string>
                  </property>
                  <property name="text">
                   <string>Use &amp;Local Time</string>
@@ -2526,7 +2526,7 @@ Cluster Size: 0</string>
                   <item>
                    <widget class="QRadioButton" name="RB_Network_Mode_New">
                     <property name="text">
-                     <string>Nativ</string>
+                     <string>Native</string>
                     </property>
                     <property name="checked">
                      <bool>false</bool>
@@ -3007,7 +3007,7 @@ Cluster Size: 0</string>
                 <item>
                  <widget class="QCheckBox" name="CH_Win2K_Hack">
                   <property name="toolTip">
-                   <string>Fix Installation Windows 2000 Bug</string>
+                   <string>Fix Windows 2000 install Bug</string>
                   </property>
                   <property name="text">
                    <string>&amp;Windows 2K Hack</string>
@@ -3048,7 +3048,7 @@ Cluster Size: 0</string>
                 <item>
                  <widget class="QCheckBox" name="CH_FDD_Boot">
                   <property name="toolTip">
-                   <string>Check Boot Signature For Floppy Disks in VM BIOS</string>
+                   <string>Check Floppy Disk boot signature in VM BIOS</string>
                   </property>
                   <property name="text">
                    <string>Check Boot Secto&amp;r on FDD</string>
@@ -3156,7 +3156,7 @@ Cluster Size: 0</string>
                 <item>
                  <widget class="QCheckBox" name="CH_Alt_Grab">
                   <property name="text">
-                   <string>Use Ctrl-Alt-Shift to Grab Mouse (Default Ctrl-Alt)</string>
+                   <string>Use Ctrl-Alt-Shift to Grab Mouse (Default is Ctrl-Alt)</string>
                   </property>
                  </widget>
                 </item>
@@ -3184,7 +3184,7 @@ Cluster Size: 0</string>
                 <item>
                  <widget class="QCheckBox" name="CH_Show_Cursor">
                   <property name="text">
-                   <string>Show Cursor (This Work Only in QEMU/KVM SDL Window)</string>
+                   <string>Show Cursor (It Works Only in QEMU/KVM SDL Window)</string>
                   </property>
                  </widget>
                 </item>
@@ -3527,7 +3527,7 @@ Cluster Size: 0</string>
                   <item row="4" column="0" colspan="4">
                    <widget class="QCheckBox" name="CH_KVM_Nesting">
                     <property name="text">
-                     <string>Nesting (Support for Running a VM Inside the VM (AMD Only)</string>
+                     <string>Nesting (Support for Running a VM Inside other VM (AMD Only)</string>
                     </property>
                    </widget>
                   </item>
@@ -3634,7 +3634,7 @@ Cluster Size: 0</string>
                    <widget class="QRadioButton" name="RB_KQEMU_Disabled">
                     <property name="text">
                      <string>Disabled
-(Disable the usage of the QEMU Accelerator module KQEMU)</string>
+(Disable KQEMU Accelerator module)</string>
                     </property>
                    </widget>
                   </item>
@@ -3642,7 +3642,7 @@ Cluster Size: 0</string>
                    <widget class="QRadioButton" name="RB_KQEMU_Use_if_Possible">
                     <property name="text">
                      <string>Use If Possible
-(AQEMU don't check loaded KQEMU module)</string>
+(AQEMU won't check loaded KQEMU module)</string>
                     </property>
                     <property name="checked">
                      <bool>true</bool>
@@ -3653,7 +3653,7 @@ Cluster Size: 0</string>
                    <widget class="QRadioButton" name="RB_KQEMU_Enabled">
                     <property name="text">
                      <string>Enabled
-(AQEMU check loaded KQEMU module, if no loaded QEMU not started)</string>
+(AQEMU checks loaded KQEMU module. If it isn't loaded QEMU won't started)</string>
                     </property>
                    </widget>
                   </item>
@@ -3820,7 +3820,7 @@ Cluster Size: 0</string>
                      <item>
                       <widget class="QCheckBox" name="CH_VNC_Password">
                        <property name="text">
-                        <string>Use Password (You must set a password when you start the VM)</string>
+                        <string>Use Password (You must set a password when you starting the VM)</string>
                        </property>
                       </widget>
                      </item>
@@ -3950,14 +3950,14 @@ Cluster Size: 0</string>
                  <widget class="QLabel" name="Label_VNC_Warning">
                   <property name="text">
                    <string>Warning: Globaly Activated Embedded Display in Emulator Control Window.
-For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&quot;</string>
+To Disable This Function in Current VM choose &quot;Don't Use Embedded VNC Display&quot;</string>
                   </property>
                  </widget>
                 </item>
                 <item>
                  <widget class="QCheckBox" name="CH_No_Use_Embedded_Display">
                   <property name="text">
-                   <string>No Use Embedded VNC Display</string>
+                   <string>Don't use embedded VNC Display</string>
                   </property>
                  </widget>
                 </item>
@@ -4340,7 +4340,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <x>0</x>
      <y>0</y>
      <width>739</width>
-     <height>24</height>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuVM">
@@ -4695,7 +4695,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
      <normaloff>:/wizard.png</normaloff>:/wizard.png</iconset>
    </property>
    <property name="text">
-    <string>Run &amp;First Run Wizard</string>
+    <string>Start &amp;First Run Wizard</string>
    </property>
   </action>
   <action name="actionCreate_Shell_Script">

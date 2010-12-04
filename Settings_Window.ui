@@ -208,7 +208,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="Label_VM_Icons_Size">
        <property name="text">
-        <string>VM Icons Size:</string>
+        <string>VM Icon Size:</string>
        </property>
       </widget>
      </item>
@@ -342,7 +342,7 @@
      <item>
       <widget class="QRadioButton" name="RB_Emul_No_Show">
        <property name="text">
-        <string>No Show</string>
+        <string>Don't show</string>
        </property>
       </widget>
      </item>

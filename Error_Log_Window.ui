@@ -91,7 +91,7 @@
      <item>
       <widget class="QRadioButton" name="RB_No_Show_Forever">
        <property name="text">
-        <string>Do Not Show Forever
+        <string>Never show it
 (For View Error Log Select VM-&gt;Show QEMU/KVM Error Log Window)</string>
        </property>
       </widget>

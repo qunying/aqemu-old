@@ -45,6 +45,10 @@ Emulator_Options_Window::Emulator_Options_Window( QWidget *parent )
 	ui.Table_Systems->setHorizontalHeader( hv );
 	
 	Update_Info = false;
+
+	#ifdef Q_OS_WIN32
+	ui.RB_KVM->setEnabled( false );
+	#endif
 }
 
 void Emulator_Options_Window::on_Button_Find_clicked()
@@ -58,7 +62,7 @@ void Emulator_Options_Window::on_Button_Find_clicked()
 	QDir dir = QDir( ui.Edit_Path_to_Dir->text() );
 	if( ! dir.exists() )
 	{
-		AQGraphic_Warning( tr("Warning"), tr("Path is Not Exists!") );
+		AQGraphic_Warning( tr("Warning"), tr("Path doesn't exist!") );
 		return;
 	}
 	
@@ -101,15 +105,22 @@ void Emulator_Options_Window::on_TB_Browse_clicked()
 													 Get_Last_Dir_Path(ui.Edit_Path_to_Dir->text()),
 													 QFileDialog::ShowDirsOnly );
 	
-	if( ! dir.isEmpty() ) ui.Edit_Path_to_Dir->setText( dir );
+	if( ! dir.isEmpty() )
+		ui.Edit_Path_to_Dir->setText( QDir::toNativeSeparators(dir) );
 }
 
 void Emulator_Options_Window::on_Button_OK_clicked()
 {
 	// Find all Emulators Names
+	if( ui.Edit_Name->text().isEmpty() )
+	{
+		AQGraphic_Warning( tr("Error!"), tr("Enulator Name is Empty!") );
+		return;
+	}
+
 	if( ! Name_Valid(ui.Edit_Name->text()) )
 	{
-		AQGraphic_Warning( tr("Error!"), tr("This Enulator Name is Already Used!") );
+		AQGraphic_Warning( tr("Error!"), tr("This emulator name is already used!") );
 		return;
 	}
 	
@@ -308,17 +319,15 @@ void Emulator_Options_Window::on_Edit_Path_to_Dir_textChanged()
 
 void Emulator_Options_Window::on_Table_Systems_itemDoubleClicked( QTableWidgetItem *item )
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString binName = QFileDialog::getOpenFileName( this, tr("Select QEMU Binary File"), "/usr/",
-													tr("All Files (*)"), &selectedFilter, options );
+	QString binName = QFileDialog::getOpenFileName( this, tr("Select QEMU Binary File"),
+													Get_Last_Dir_Path(ui.Edit_Path_to_Dir->text()),
+													tr("All Files (*)") );
 	
 	if( ! binName.isEmpty() )
 	{
 		if( ui.Table_Systems->currentRow() < 0 ) return;
 		
-		ui.Table_Systems->item( ui.Table_Systems->currentRow(), 1 )->setText( binName );
+		ui.Table_Systems->item( ui.Table_Systems->currentRow(), 1 )->setText( QDir::toNativeSeparators(binName) );
 		
 		Update_Info = true; // Update emulator info
 	}

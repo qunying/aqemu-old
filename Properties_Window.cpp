@@ -177,7 +177,7 @@ void Properties_Window::on_Button_OK_clicked()
 	{
 		if( ! QFile::exists(ui.CB_FD_Devices->lineEdit()->text()) )
 		{
-			AQGraphic_Warning( tr("Warning"), tr("Image File Not Exists!") );
+			AQGraphic_Warning( tr("Warning"), tr("Image file doesn't exist!") );
 		}
 		else
 		{
@@ -189,7 +189,7 @@ void Properties_Window::on_Button_OK_clicked()
 	{
 		if( ! QFile::exists(ui.CB_CDROM_Devices->lineEdit()->text()) )
 		{
-			AQGraphic_Warning( tr("Warning"), tr("Image File Not Exists!") );
+			AQGraphic_Warning( tr("Warning"), tr("Image file doesn't exist!") );
 		}
 		else
 		{
@@ -200,7 +200,7 @@ void Properties_Window::on_Button_OK_clicked()
 	else if( ui.GB_HDD->isEnabled() )
 	{
 		if( ! QFile::exists(ui.Edit_HDD_Image_Path->text()) )
-			AQGraphic_Warning( tr("Warning"), tr("Image File Not Exists!") );
+			AQGraphic_Warning( tr("Warning"), tr("Image file doesn't exist!") );
 		else
 			accept();
 	}
@@ -280,15 +280,14 @@ void Properties_Window::on_Button_Update_Info_clicked()
 
 void Properties_Window::on_TB_FD_Image_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open Floppy Image File"),
 													 Get_Last_Dir_Path(ui.CB_FD_Devices->lineEdit()->text()),
-													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.ima)") );
 	
 	if( ! fileName.isEmpty() )
 	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		ui.CB_FD_Devices->lineEdit()->setText( fileName );
 		Add_To_Recent_FDD_Files( fileName );
 		
@@ -305,15 +304,14 @@ void Properties_Window::on_TB_FD_Image_Browse_clicked()
 
 void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open CD\\DVD-ROM Image File"),
 													 Get_Last_Dir_Path(ui.CB_CDROM_Devices->lineEdit()->text()),
-													 tr("All Files (*);;Images Files (*.iso)"), &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.iso)") );
 	
 	if( ! fileName.isEmpty() )
 	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		ui.CB_CDROM_Devices->lineEdit()->setText( fileName );
 		Add_To_Recent_CD_Files( fileName );
 		
@@ -330,15 +328,12 @@ void Properties_Window::on_TB_CDROM_Image_Browse_clicked()
 
 void Properties_Window::on_TB_HDD_Image_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open HDD Image File"),
 													 Get_Last_Dir_Path(ui.Edit_HDD_Image_Path->text()),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.wmdk)"), &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.qcow *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_HDD_Image_Path->setText( fileName );
+		ui.Edit_HDD_Image_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Properties_Window::on_Button_HDD_New_clicked()

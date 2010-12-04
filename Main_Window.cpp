@@ -144,11 +144,7 @@ Main_Window::Main_Window( QWidget *parent )
 	VM_List_Menu->addAction( ui.actionCreate_HDD_Image );
 	
 	Ports_Tab = new Ports_Tab_Widget();
-	
-	// Ports NOT Working in Windows!
-	#ifndef Q_OS_WIN32
 	ui.Tabs->insertTab( 5, Ports_Tab, tr("Ports") );
-	#endif
 	
 	Dev_Manager = new Device_Manager_Widget();
 	
@@ -723,7 +719,7 @@ bool Main_Window::Create_VM_From_Ui( Virtual_Machine *tmp_vm, Virtual_Machine *o
 		if( ui.Machines_List->item(ix)->data(256).toString() == old_vm->Get_UID() )
 		{
 			if( ui.Machines_List->item(ix)->data(128).toString() ==
-				Settings.value("VM_Directory", "~").toString() + Get_FS_Compatible_VM_Name(ui.Edit_Machine_Name->text()) )
+				QDir::toNativeSeparators(Settings.value("VM_Directory", "~").toString() + Get_FS_Compatible_VM_Name(ui.Edit_Machine_Name->text())) )
 			{
 				tmp_vm->Set_Icon_Path( old_vm->Get_Icon_Path() );
 				tmp_vm->Set_Screenshot_Path( ui.Machines_List->item(ix)->data(128).toString() );
@@ -1121,7 +1117,7 @@ bool Main_Window::Load_Settings()
 								   Settings.value("VM_Icons_Size", "48").toInt()) );
 	
 	// Load CD Exists Images List
-	VM_Folder = Settings.value("VM_Directory", "~").toString();
+	VM_Folder = QDir::toNativeSeparators( Settings.value("VM_Directory", "~").toString() );
 	Load_Recent_Images_List();
 	
 	if( Settings.status() == QSettings::NoError )
@@ -1219,7 +1215,7 @@ bool Main_Window::Load_Virtual_Machines()
 {
 	AQDebug( "bool Main_Window::Load_Virtual_Machines()", "Begin" );
 	
-	QDir vm_dir( Settings.value("VM_Directory", "~").toString() );
+	QDir vm_dir( QDir::toNativeSeparators(Settings.value("VM_Directory", "~").toString()) );
 	QFileInfoList fil = vm_dir.entryInfoList( QStringList("*.aqemu"), QDir::Files, QDir::Name );
 	
 	if( fil.count() <= 0 ) return false;
@@ -1504,7 +1500,7 @@ void Main_Window::Update_VM_Ui()
 	if( tmp_vm->Get_Memory_Size() < 1 )
 	{
 		AQGraphic_Warning( tr("Error!"),
-						   tr("Memory size < 1! Use default value: 256 MB") );
+						   tr("Memory size < 1! Using efault value: 256 MB") );
 		ui.Memory_Size->setValue( 256 );
 	}
 	else if( tmp_vm->Get_Memory_Size() >= ui.Memory_Size->maximum() )
@@ -1862,8 +1858,8 @@ void Main_Window::Update_Info_Text( int info_mode )
 	if( Settings.value("Info/Show_Screenshot_in_Save_Mode", "no").toString() == "yes" )
 	{
 		// Find Full Size Screenshot
-		QString img_path = Settings.value( "VM_Directory", "~" ).toString() +
-				Get_FS_Compatible_VM_Name( tmp_vm->Get_Machine_Name() ) + "_screenshot";
+		QString img_path = QDir::toNativeSeparators( Settings.value("VM_Directory", "~").toString() +
+				Get_FS_Compatible_VM_Name(tmp_vm->Get_Machine_Name()) + "_screenshot" );
 		
 		if( ! QFile::exists(img_path) )
 		{
@@ -3724,7 +3720,7 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 		AQError( "void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem* current, QListWidgetItem* previous )",
 				 "Cannot Create VM!" );
 		
-		int mes_res = QMessageBox::question( this, tr("Warning!"), tr("VM be Changed. Discard Changes?"),
+		int mes_res = QMessageBox::question( this, tr("Warning!"), tr("Current VM was changed. Discard all changes?"),
 											 QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 		
 		if( mes_res == QMessageBox::No )
@@ -3765,7 +3761,7 @@ void Main_Window::on_Machines_List_currentItemChanged( QListWidgetItem *current,
 	if( *old_vm != *tmp_vm &&
 		old_vm->Get_State() != VM::VMS_In_Error )
 	{
-		int mes_res = QMessageBox::question( this, tr("Warning!"), tr("VM be Changed. Save Changes?"),
+		int mes_res = QMessageBox::question( this, tr("Warning!"), tr("Current VM was changed. Save all changes?"),
 											 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 		
 		if( mes_res == QMessageBox::Yes )
@@ -4272,7 +4268,7 @@ bool Main_Window::Boot_Is_Correct( Virtual_Machine *tmp_vm )
 bool Main_Window::No_Device_Found( const QString &name, const QString &path, VM::Boot_Device type )
 {
 	int retVal = QMessageBox::critical( this, tr("Error!"),
-										tr("%1 Image \"%2\" Not Exist! Continue Without It Image?").arg(name).arg(path),
+										tr("%1 Image \"%2\" doesn't Exist! Continue Without this Image?").arg(name).arg(path),
 										QMessageBox::Yes | QMessageBox::No, QMessageBox::No );
 	
 	if( retVal == QMessageBox::No ) return false;
@@ -4512,24 +4508,24 @@ void Main_Window::on_actionAdd_New_VM_triggered()
 	else
 	{
 		AQGraphic_Error( "void Main_Window::on_actionCreate_triggered()", tr("Error!"),
-						 tr("You New VM Name is Empty! VM Not Created!"), false );
+						 tr("Your New VM Name is Empty! VM isn't Created!"), false );
 		return;
 	}
 	
 	Virtual_Machine *new_vm = new Virtual_Machine();
 	
 	// load default template
-	if( QFile::exists( Settings.value("VM_Directory", "").toString() +
-		"os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt") )
+	if( QFile::exists( QDir::toNativeSeparators(Settings.value("VM_Directory", "").toString() +
+		"/os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt")) )
 	{
-		new_vm->Load_VM( Settings.value("VM_Directory", "").toString() +
-			"os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt" );
+		new_vm->Load_VM( QDir::toNativeSeparators(Settings.value("VM_Directory", "").toString() +
+			"/os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt") );
 	}
-	else if( QFile::exists( Settings.value("AQEMU_Data_Folder", "").toString() +
-			 "os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt") )
+	else if( QFile::exists( QDir::toNativeSeparators(Settings.value("AQEMU_Data_Folder", "").toString() +
+			 "/os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt")) )
 	{
-		new_vm->Load_VM( Settings.value("AQEMU_Data_Folder", "").toString() +
-			"os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt" );
+		new_vm->Load_VM( QDir::toNativeSeparators(Settings.value("AQEMU_Data_Folder", "").toString() +
+			"/os_templates/" + Settings.value("Default_VM_Template", "Linux 2.6").toString() + ".aqvmt") );
 	}
 	else
 	{
@@ -4547,7 +4543,7 @@ void Main_Window::on_actionAdd_New_VM_triggered()
 	
 	VM_List << new_vm;
 	
-	connect( new_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
+	QObject::connect( new_vm, SIGNAL(State_Changet(Virtual_Machine*, VM::VM_State)),
 			 this, SLOT(VM_State_Changet(Virtual_Machine*, VM::VM_State)) );
 	
 	QListWidgetItem *item = new QListWidgetItem( new_vm->Get_Machine_Name(), ui.Machines_List );
@@ -4584,7 +4580,7 @@ void Main_Window::on_actionShow_Settings_Window_triggered()
 	{
 		Save_Settings();
 		
-		if( Settings.value("VM_Directory", "~").toString() != VM_Folder )
+		if( QDir::toNativeSeparators(Settings.value("VM_Directory", "~").toString()) != VM_Folder )
 		{
 			// Apply Settings
 			Load_Settings();
@@ -4839,8 +4835,8 @@ void Main_Window::on_actionSave_triggered()
 			return;
 		}
 		
-		QString img_path = Settings.value( "VM_Directory", "~" ).toString() +
-										   Get_FS_Compatible_VM_Name( cur_vm->Get_Machine_Name() ) + "_screenshot";
+		QString img_path = QDir::toNativeSeparators( Settings.value("VM_Directory", "~" ).toString() +
+													 Get_FS_Compatible_VM_Name(cur_vm->Get_Machine_Name()) + "_screenshot" );
 		
 		cur_vm->Take_Screenshot( img_path );
 	}
@@ -4860,7 +4856,7 @@ void Main_Window::on_actionPower_Off_triggered()
 		return;
 	}
 	
-	if( QMessageBox::question(this, tr("You Sure?"),
+	if( QMessageBox::question(this, tr("Are you sure?"),
 		tr("Shutdown VM \"%1\"?").arg(cur_vm->Get_Machine_Name()),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::No )
 	{
@@ -4899,7 +4895,7 @@ void Main_Window::on_actionReset_triggered()
 		return;
 	}
 	
-	if( QMessageBox::question(this, tr("You Sure?"),
+	if( QMessageBox::question(this, tr("Are you sure?"),
 		tr("Reboot VM \"%1\"?").arg(cur_vm->Get_Machine_Name()),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::No )
 	{
@@ -4911,18 +4907,17 @@ void Main_Window::on_actionReset_triggered()
 
 void Main_Window::on_actionLoad_VM_From_File_triggered()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString load_path = QFileDialog::getOpenFileName( this, tr("Open AQEMU VM File"), QDir::homePath(),
-													  tr("AQEMU VM (*.aqemu)"), &selectedFilter, options );
+	QString load_path = QFileDialog::getOpenFileName( this, tr("Open AQEMU VM File"),
+													  QDir::homePath(),
+													  tr("AQEMU VM (*.aqemu)") );
 	
 	if( ! QFile::exists(load_path) ) return;
+	load_path = QDir::toNativeSeparators( load_path );
 	
 	// ok file name valid
 	QFileInfo vm_file( load_path );
 	
-	QString new_file_path = Settings.value("VM_Directory", "~").toString() + vm_file.fileName();
+	QString new_file_path = QDir::toNativeSeparators( Settings.value("VM_Directory", "~").toString() + vm_file.fileName() );
 	
 	if( QFile::exists(new_file_path) )
 	{
@@ -4934,7 +4929,7 @@ void Main_Window::on_actionLoad_VM_From_File_triggered()
 	
 	Virtual_Machine *new_vm = new Virtual_Machine();
 	
-	new_vm->Load_VM( Settings.value("VM_Directory", "~").toString() + vm_file.fileName() );
+	new_vm->Load_VM( QDir::toNativeSeparators(Settings.value("VM_Directory", "~").toString() + vm_file.fileName()) );
 	new_vm->Set_UID( QUuid::createUuid().toString() ); // Create UID
 	
 	VM_List << new_vm;
@@ -5089,7 +5084,7 @@ void Main_Window::on_actionShow_Emulator_Control_triggered()
 	}
 	else
 	{
-		AQGraphic_Warning( tr("Warning"), tr("This Function Work Only On Running VM!") );
+		AQGraphic_Warning( tr("Warning"), tr("This Function Works Only On Running VM!") );
 	}
 }
 
@@ -5151,15 +5146,15 @@ void Main_Window::on_actionCreate_Shell_Script_triggered()
 	}
 	
 	// Save Script
-	QString selectedFilter;
-	QString fileName;
-	
-	fileName = QFileDialog::getSaveFileName( this, tr("Save VM to Script"),
-			"VM_" + Get_FS_Compatible_VM_Name(cur_vm->Get_Machine_Name()),
-			tr("Shell Script Files (*.sh);;All Files (*)"), &selectedFilter );
+	QString selectedFilter = "";
+	QString fileName = QFileDialog::getSaveFileName( this, tr("Save VM to Script"),
+											 "VM_" + Get_FS_Compatible_VM_Name(cur_vm->Get_Machine_Name()),
+											 tr("Shell Script Files (*.sh);;All Files (*)") );
 	
 	if( ! fileName.isEmpty() )
 	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		// Save to File
 		if( selectedFilter.indexOf("(*.sh)") >= 0 &&
 			fileName.endsWith(".sh") == false )
@@ -5241,13 +5236,13 @@ void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 	else
 	{
 		AQGraphic_Warning( tr("Error"),
-						   tr("Cannot convert \"%1\" to size suffix! Valid suffixes: MB, GB").arg(ramStrings[2]) );
+						   tr("Cannot convert \"%1\" to size suffix! Valid suffixes are: MB, GB").arg(ramStrings[2]) );
 		return;
 	}
 	
 	if( value <= 0 )
 	{
-		AQGraphic_Warning( tr("Error"), tr("Memory size < 0! Valid size 1 or more") );
+		AQGraphic_Warning( tr("Error"), tr("Memory size < 0! Valid size is 1 or more") );
 		return;
 	}
 	
@@ -5257,7 +5252,7 @@ void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 	{
 		AQGraphic_Warning( tr("Error"),
 						   tr("Your memory size %1 MB > %2 MB - all free RAM on this system!\n"
-							  "For set it size, check \"Remove limitation on maximum amount of memory\".")
+							  "To set this value, check \"Remove limitation on maximum amount of memory\".")
 						   .arg(value).arg(ui.Memory_Size->maximum()) );
 		
 		on_Memory_Size_valueChanged( ui.Memory_Size->value() ); // Set valid size
@@ -5327,7 +5322,7 @@ void Main_Window::Update_RAM_Size_ComboBox( int freeRAM )
 	else if( freeRAM >= 32 ) maxRamIndex = 1;
 	else
 	{
-		AQGraphic_Warning( tr("Error"), tr("Free memory on this system is low 32 MB!") );
+		AQGraphic_Warning( tr("Error"), tr("Free memory on this system is less than 32 MB!") );
 		return;
 	}
 	
@@ -5348,15 +5343,14 @@ void Main_Window::Update_RAM_Size_ComboBox( int freeRAM )
 
 void Main_Window::on_TB_FD0_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open Floppy Image File"),
 													 Get_Last_Dir_Path(ui.CB_FD0_Devices->lineEdit()->text()),
-													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.ima)") );
 	
 	if( ! fileName.isEmpty() )
 	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		ui.CB_FD0_Devices->lineEdit()->setText( fileName );
 		
 		Add_To_Recent_FDD_Files( fileName );
@@ -5414,15 +5408,14 @@ void Main_Window::on_CB_FD0_Devices_editTextChanged( const QString &text )
 
 void Main_Window::on_TB_FD1_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open Floppy Image File"),
 													 Get_Last_Dir_Path(ui.CB_FD1_Devices->lineEdit()->text()),
-													 tr("All Files (*);;Images Files (*.img *.ima)"), &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.ima)") );
 	
 	if( ! fileName.isEmpty() )
 	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		ui.CB_FD1_Devices->lineEdit()->setText( fileName );
 		
 		Add_To_Recent_FDD_Files( fileName );
@@ -5480,15 +5473,14 @@ void Main_Window::on_CB_FD1_Devices_editTextChanged( const QString &text )
 
 void Main_Window::on_TB_CDROM_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open CD\\DVD-ROM Image File"),
 													 Get_Last_Dir_Path(ui.CB_CDROM_Devices->lineEdit()->text()),
-													 tr("All Files (*);;Images Files (*.iso)"), &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.iso)") );
 	
 	if( ! fileName.isEmpty() )
 	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		ui.CB_CDROM_Devices->lineEdit()->setText( fileName );
 		
 		Add_To_Recent_CD_Files( fileName );
@@ -5546,16 +5538,12 @@ void Main_Window::on_CB_CDROM_Devices_editTextChanged( const QString &text )
 
 void Main_Window::on_TB_HDA_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open HDD Image File"),
 													 Get_Last_Dir_Path(ui.Edit_HDA_Image_Path->text()),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_HDA_Image_Path->setText( fileName );
+		ui.Edit_HDA_Image_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Main_Window::on_TB_HDA_Create_HDD_clicked()
@@ -5634,16 +5622,12 @@ void Main_Window::on_Edit_HDA_Image_Path_textChanged()
 
 void Main_Window::on_TB_HDB_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open HDD Image File"),
 													 Get_Last_Dir_Path(ui.Edit_HDB_Image_Path->text()),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_HDB_Image_Path->setText( fileName );
+		ui.Edit_HDB_Image_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Main_Window::on_TB_HDB_Create_HDD_clicked()
@@ -5723,16 +5707,12 @@ void Main_Window::on_Edit_HDB_Image_Path_textChanged()
 
 void Main_Window::on_TB_HDC_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString fileName = QFileDialog::getOpenFileName( this, tr("Open HDD Image File"),
 													 Get_Last_Dir_Path(ui.Edit_HDC_Image_Path->text()),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_HDC_Image_Path->setText( fileName );
+		ui.Edit_HDC_Image_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Main_Window::on_TB_HDC_Create_HDD_clicked()
@@ -5817,7 +5797,7 @@ void Main_Window::on_TB_HDD_SetPath_clicked()
 													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_HDD_Image_Path->setText( fileName );
+		ui.Edit_HDD_Image_Path->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Main_Window::on_TB_HDD_Create_HDD_clicked()
@@ -6297,7 +6277,7 @@ bool Main_Window::Validate_CPU_Count( const QString &text )
 	int cpuCountTmp = text.toInt( &cpuOk );
 	if( ! cpuOk )
 	{
-		AQGraphic_Warning( tr("Error!"), tr("CPU count value not valid digit!") );
+		AQGraphic_Warning( tr("Error!"), tr("CPU count value is not valid digit!") );
 		return false;
 	}
 	
@@ -6454,8 +6434,8 @@ void Main_Window::Update_Current_Redirection_Item()
 		Settings.value("Ignore_Redirection_Port_Varning", "no").toString() == "no" )
 	{
 		int ret = QMessageBox::question( this, tr("Warning!"),
-										 tr("For Create Socket With Port Number < 1024, in Unix You Need to Run AQEMU in root Mode!\n"
-											"Press button \"Ignore\" for hide this message in future.\nAdd This Record?"),
+										 tr("To Create Socket With Port Number < 1024, in Unix You Need to Run AQEMU in root Mode!\n"
+											"Press \"Ignore\" button for hide this message in future.\nAdd This Record?"),
 										 QMessageBox::Yes | QMessageBox::No | QMessageBox::Ignore, QMessageBox::Yes );
 		
 		if( ret == QMessageBox::No )
@@ -6493,10 +6473,11 @@ void Main_Window::on_Button_Clear_Redirections_clicked()
 void Main_Window::on_TB_Browse_SMB_clicked()
 {
 	QString SMB_Dir = QFileDialog::getExistingDirectory( this, tr("Select SMB Directory"),
-														 "/", QFileDialog::ShowDirsOnly );
+														 Get_Last_Dir_Path(ui.Edit_SMB_Folder->text()),
+														 QFileDialog::ShowDirsOnly );
 	
 	if( ! SMB_Dir.isEmpty() )
-		ui.Edit_SMB_Folder->setText( SMB_Dir );
+		ui.Edit_SMB_Folder->setText( QDir::toNativeSeparators(SMB_Dir) );
 }
 
 void Main_Window::on_CH_Start_Date_toggled( bool on )
@@ -6506,111 +6487,92 @@ void Main_Window::on_CH_Start_Date_toggled( bool on )
 
 void Main_Window::on_TB_VNC_Unix_Socket_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString socket_path = QFileDialog::getOpenFileName( this, tr("UNIX Domain Socket Path"),
+	QString socketPath = QFileDialog::getOpenFileName( this, tr("UNIX Domain Socket Path"),
 														Get_Last_Dir_Path(ui.Edit_Linux_bzImage_Path->text()),
-														tr("All Files (*)"), &selectedFilter, options );
+														tr("All Files (*)") );
 	
-	if( ! socket_path.isEmpty() )
-		ui.Edit_VNC_Unix_Socket->setText( socket_path );
+	if( ! socketPath.isEmpty() )
+		ui.Edit_VNC_Unix_Socket->setText( QDir::toNativeSeparators(socketPath) );
 }
 
 void Main_Window::on_TB_x509_Browse_clicked()
 {
-	QString x509dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Certificate Folder"),
-														 "/", QFileDialog::ShowDirsOnly );
+	QString x509Dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Certificate Folder"),
+														 Get_Last_Dir_Path(ui.Edit_x509verify_Folder->text()),
+														 QFileDialog::ShowDirsOnly );
 	
-	if( ! x509dir.isEmpty() )
-		ui.Edit_x509_Folder->setText( x509dir );
+	if( ! x509Dir.isEmpty() )
+		ui.Edit_x509_Folder->setText( QDir::toNativeSeparators(x509Dir) );
 }
 
 void Main_Window::on_TB_x509verify_Browse_clicked()
 {
-	QString x509verify_dir = QFileDialog::getExistingDirectory( this, tr("Select x509 Verify Certificate Folder"),
-																"/", QFileDialog::ShowDirsOnly );
+	QString x509verifyDir = QFileDialog::getExistingDirectory( this, tr("Select x509 Verify Certificate Folder"),
+															   Get_Last_Dir_Path(ui.Edit_x509verify_Folder->text()),
+															   QFileDialog::ShowDirsOnly );
 	
-	if( ! x509verify_dir.isEmpty() )
-		ui.Edit_x509verify_Folder->setText( x509verify_dir );
+	if( ! x509verifyDir.isEmpty() )
+		ui.Edit_x509verify_Folder->setText( QDir::toNativeSeparators(x509verifyDir) );
 }
 
 void Main_Window::on_TB_Linux_bzImage_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString kernel = QFileDialog::getOpenFileName( this, tr("Select Kernel Image File"),
 												   Get_Last_Dir_Path(ui.Edit_Linux_bzImage_Path->text()),
-												   tr("All Files (*)"), &selectedFilter, options );
+												   tr("All Files (*)") );
 	
 	if( ! kernel.isEmpty() )
-		ui.Edit_Linux_bzImage_Path->setText( kernel );
+		ui.Edit_Linux_bzImage_Path->setText( QDir::toNativeSeparators(kernel) );
 }
 
 void Main_Window::on_TB_Linux_Initrd_SetPath_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString initrd = QFileDialog::getOpenFileName( this, tr("Select InitRD File"),
 												   Get_Last_Dir_Path(ui.Edit_Linux_Initrd_Path->text()),
-												   tr("All Files (*)"), &selectedFilter, options );
+												   tr("All Files (*)") );
 	
 	if( ! initrd.isEmpty() )
-		ui.Edit_Linux_Initrd_Path->setText( initrd );
+		ui.Edit_Linux_Initrd_Path->setText( QDir::toNativeSeparators(initrd) );
 }
 
 void Main_Window::on_TB_ROM_File_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
+	QString romFile = QFileDialog::getOpenFileName( this, tr("Select ROM File"),
+													Get_Last_Dir_Path(ui.Edit_ROM_File->text()),
+													tr("All Files (*)") );
 	
-	QString rom_file = QFileDialog::getOpenFileName( this, tr("Select ROM File"),
-													 Get_Last_Dir_Path(ui.Edit_ROM_File->text()),
-													 tr("All Files (*)"), &selectedFilter, options );
-	
-	if( ! rom_file.isEmpty() )
-		ui.Edit_ROM_File->setText( rom_file );
+	if( ! romFile.isEmpty() )
+		ui.Edit_ROM_File->setText( QDir::toNativeSeparators(romFile) );
 }
 
 void Main_Window::on_TB_MTDBlock_File_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString mtd_file = QFileDialog::getOpenFileName( this, tr("Select On-Board Flash Image"),
 													 Get_Last_Dir_Path(ui.Edit_MTDBlock_File->text()),
-													 tr("All Files (*)"), &selectedFilter, options );
+													 tr("All Files (*)") );
 	
 	if( ! mtd_file.isEmpty() )
-		ui.Edit_MTDBlock_File->setText( mtd_file );
+		ui.Edit_MTDBlock_File->setText( QDir::toNativeSeparators(mtd_file) );
 }
 
 void Main_Window::on_TB_SD_Image_File_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString sd_file = QFileDialog::getOpenFileName( this, tr("Select SecureDigital Card Image"),
 													Get_Last_Dir_Path(ui.Edit_SD_Image_File->text()),
-													tr("All Files (*)"), &selectedFilter, options );
+													tr("All Files (*)") );
 	
 	if( ! sd_file.isEmpty() )
-		ui.Edit_SD_Image_File->setText( sd_file );
+		ui.Edit_SD_Image_File->setText( QDir::toNativeSeparators(sd_file) );
 }
 
 void Main_Window::on_TB_PFlash_File_Browse_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
 	QString flash_file = QFileDialog::getOpenFileName( this, tr("Select Parallel Flash Image"),
 													   Get_Last_Dir_Path(ui.Edit_PFlash_File->text()),
-													   tr("All Files (*)"), &selectedFilter, options );
+													   tr("All Files (*)") );
 	
 	if( ! flash_file.isEmpty() )
-		ui.Edit_PFlash_File->setText( flash_file );
+		ui.Edit_PFlash_File->setText( QDir::toNativeSeparators(flash_file) );
 }
 
 QString Main_Window::Copy_VM_Hard_Drive( const QString &vm_name, const QString &hd_name, const VM_HDD &hd )
@@ -6623,8 +6585,8 @@ QString Main_Window::Copy_VM_Hard_Drive( const QString &vm_name, const QString &
 	}
 	else
 	{
-		QString new_name = Settings.value("VM_Directory", "~").toString() +
-						   Get_FS_Compatible_VM_Name( vm_name ) + "_" + hd_name;
+		QString new_name = QDir::toNativeSeparators( Settings.value("VM_Directory", "~").toString() +
+													 Get_FS_Compatible_VM_Name( vm_name ) + "_" + hd_name );
 		
 		if( QFile::exists(new_name) )
 		{
@@ -6654,8 +6616,8 @@ QString Main_Window::Copy_VM_Floppy( const QString &vm_name, const QString &fd_n
 	}
 	else
 	{
-		QString new_name = Settings.value("VM_Directory", "~").toString() +
-				Get_FS_Compatible_VM_Name( vm_name ) + "_" + fd_name;
+		QString new_name = QDir::toNativeSeparators( Settings.value("VM_Directory", "~").toString() +
+													 Get_FS_Compatible_VM_Name(vm_name) + "_" + fd_name );
 		
 		if( QFile::exists(new_name) )
 		{

@@ -28,7 +28,11 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QDesktopWidget>
+#ifdef Q_OS_WIN32
+// FIXME
+#else
 #include <QTest>
+#endif
 
 #include "Utils.h"
 #include "Ports_Tab_Widget.h"
@@ -112,7 +116,7 @@ void Emulator_Control_Window::closeEvent( QCloseEvent *event )
 	if( Use_VNC() )
 	{
 		int ret = QMessageBox::question( this, tr("Power Off This VM?"),
-										 tr("This VM is Running, Off Power?"),
+										 tr("Selected VM is running now. Shutdown anyway?"),
 										 QMessageBox::Yes | QMessageBox::Save | QMessageBox::Close | QMessageBox::Cancel,
 										 QMessageBox::Cancel );
 		
@@ -309,22 +313,12 @@ void Emulator_Control_Window::on_actionSave_Screenshot_triggered()
 
 void Emulator_Control_Window::on_actionSave_Screenshot_As_triggered()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
+	static QString fileName = QDir::homePath(); // For save value
+	fileName = QFileDialog::getSaveFileName( this, tr("Save Screenshot As..."),
+											 fileName, tr("All Files (*)") );
 	
-	QString file_name = QFileDialog::getSaveFileName( this, tr("Save Screenshot As..."),
-													  QDir::homePath(), tr("All Files (*)"), &selectedFilter, options );
-	
-	if( file_name.isEmpty() )
-	{
-		AQWarning( "void Emulator_Control_Window::on_actionSave_Screenshot_As_triggered()",
-				   "File Name is Empty! Screenshot Cannot be Save!" );
-		return;
-	}
-	else
-	{
-		Cur_VM->Take_Screenshot( file_name );
-	}
+	if( ! fileName.isEmpty() )
+		Cur_VM->Take_Screenshot( QDir::toNativeSeparators(fileName) );
 }
 
 void Emulator_Control_Window::on_actionSave_VM_triggered()
@@ -352,8 +346,8 @@ void Emulator_Control_Window::on_actionPause_VM_triggered()
 
 void Emulator_Control_Window::on_actionPower_Off_triggered()
 {
-	if( QMessageBox::question(this, tr("You Sure?"),
-		tr("Shutdown VM \"%1\"?").arg(Cur_VM->Get_Machine_Name()),
+	if( QMessageBox::question(this, tr("Are you sure?"),
+		tr("Are you sure to shutdown VM \"%1\"?").arg(Cur_VM->Get_Machine_Name()),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::No )
 	{
 		return;
@@ -364,8 +358,8 @@ void Emulator_Control_Window::on_actionPower_Off_triggered()
 
 void Emulator_Control_Window::on_actionReset_VM_triggered()
 {
-	if( QMessageBox::question(this, tr("You Sure?"),
-		tr("Reboot VM \"%1\"?").arg(Cur_VM->Get_Machine_Name()),
+	if( QMessageBox::question(this, tr("Are you sure?"),
+		tr("Are you sure to reboot VM \"%1\"?").arg(Cur_VM->Get_Machine_Name()),
 		QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::No )
 	{
 		return;
@@ -411,28 +405,19 @@ void Emulator_Control_Window::on_actionFD0_Other_triggered()
 {
 	if( ! FD0_Available() ) return;
 	
-	QString prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD0().Get_File_Name() );
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Open Device or Image File"),
+													 Get_Last_Dir_Path(Cur_VM->Get_FD0().Get_File_Name()),
+													 tr("All Files (*);;Images Files (*.img *.ima)") );
 	
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString file_name = QFileDialog::getOpenFileName( this, tr("Open Device or Image File"),
-			   										  prev_file, tr("All Files (*);;Images Files (*.img *.ima)"),
-													  &selectedFilter, options );
-	
-	if( file_name.isEmpty() )
+	if( ! fileName.isEmpty() )
 	{
-		AQWarning( "void Emulator_Control_Window::on_actionFD0_Other_triggered()",
-				   "Floppy Cannot be Changet! File Name is Empty!" );
-		return;
-	}
-	else
-	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		on_actionFD0_Eject_triggered();
-		Set_Device( "fda", file_name );
+		Set_Device( "fda", fileName );
 		
 		// Add to Recent Menu
-		Add_To_Recent_FDD_Files( file_name );
+		Add_To_Recent_FDD_Files( fileName );
 		Update_Recent_Floppy_Images_List();
 	}
 }
@@ -478,28 +463,19 @@ void Emulator_Control_Window::on_actionFD1_Other_triggered()
 {
 	if( ! FD1_Available() ) return;
 	
-	QString prev_file = Get_Last_Dir_Path( Cur_VM->Get_FD1().Get_File_Name() );
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Open Device or Image File"),
+													 Get_Last_Dir_Path(Cur_VM->Get_FD1().Get_File_Name()),
+													 tr("All Files (*);;Images Files (*.img *.ima)") );
 	
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString file_name = QFileDialog::getOpenFileName( this, tr("Open Device or Image File"),
-													  prev_file, tr("All Files (*);;Images Files (*.img *.ima)"),
-													  &selectedFilter, options );
-	
-	if( file_name.isEmpty() )
+	if( ! fileName.isEmpty() )
 	{
-		AQWarning( "void Emulator_Control_Window::on_actionFD1_Other_triggered()",
-				   "Floppy Cannot be Changet! File Name is Empty!" );
-		return;
-	}
-	else
-	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		on_actionFD1_Eject_triggered();
-		Set_Device( "fdb", file_name );
+		Set_Device( "fdb", fileName );
 		
 		// Add to Recent Menu
-		Add_To_Recent_FDD_Files( file_name );
+		Add_To_Recent_FDD_Files( fileName );
 		Update_Recent_Floppy_Images_List();
 	}
 }
@@ -545,28 +521,19 @@ void Emulator_Control_Window::on_actionCDROM_Other_triggered()
 {
 	if( ! CD_ROM_Available() ) return;
 	
-	QString prev_file = Get_Last_Dir_Path( Cur_VM->Get_CD_ROM().Get_File_Name() );
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Open Device or Image File"),
+													 Get_Last_Dir_Path(Cur_VM->Get_CD_ROM().Get_File_Name()),
+													 tr("All Files (*);;Images Files (*.iso)") );
 	
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString file_name = QFileDialog::getOpenFileName( this, tr("Open Device or Image File"),
-													  prev_file, tr("All Files (*);;Images Files (*.iso)"),
-													  &selectedFilter, options );
-	
-	if( file_name.isEmpty() )
+	if( ! fileName.isEmpty() )
 	{
-		AQWarning( "void Emulator_Control_Window::on_actionCDROM_Other_triggered()",
-				   "CD-ROM Cannot be Changet! File Name is Empty!" );
-		return;
-	}
-	else
-	{
+		fileName = QDir::toNativeSeparators( fileName );
+
 		on_actionCDROM_Eject_triggered();
-		Set_Device( "cdrom", file_name );
+		Set_Device( "cdrom", fileName );
 		
 		// Add to Recent Menu
-		Add_To_Recent_CD_Files( file_name );
+		Add_To_Recent_CD_Files( fileName );
 		Update_Recent_CD_ROM_Images_List();
 	}
 }
@@ -766,7 +733,7 @@ void Emulator_Control_Window::on_actionOther_Keys_triggered()
 	bool ok = false;
 	
 	QString keys = QInputDialog::getText( this, tr("Send Keys"),
-			tr("Enter You Keys as ctrl-alt-delete or alt-f2"),
+			tr("Enter your key combinations such as ctrl-alt-del or alt-f2"),
 			QLineEdit::Normal, "", &ok );
 	
 	if( ok && ! keys.isEmpty() )
@@ -850,7 +817,7 @@ void Emulator_Control_Window::on_actionFullscreen_Mode_triggered()
 	if( Settings.value("Show_Fullscreen_Warning", "yes").toString() == "yes" )
 	{
 		int ret = QMessageBox::question( this, tr("Fullscreen mode"),
-										 tr("For switch to window mode press Ctrl-Alt-F\nShow this message again?"),
+										 tr("To enable window mode press Ctrl-Alt-F\nDo you want to show this message again?"),
 										 QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes );
 		
 		if( ret == QMessageBox::No )

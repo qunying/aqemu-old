@@ -166,7 +166,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>Connecting host USB device</string>
+        <string>Connecting USB host device</string>
        </property>
        <property name="checkable">
         <bool>false</bool>
@@ -289,7 +289,7 @@
         <item>
          <widget class="QRadioButton" name="RB_Show_Not_Used_Runtime">
           <property name="text">
-           <string>Only not used in running VM</string>
+           <string>Not used in running VM</string>
           </property>
          </widget>
         </item>
@@ -383,7 +383,7 @@
           <item>
            <widget class="QLabel" name="S_BusAddr">
             <property name="text">
-             <string>bus.addr:</string>
+             <string>Bus.Address:</string>
             </property>
            </widget>
           </item>

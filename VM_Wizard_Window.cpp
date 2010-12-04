@@ -636,7 +636,7 @@ QString VM_Wizard_Window::Find_OS_Icon( const QString os_name )
 	else
 	{
 		// Find all os icons
-		QDir icons_dir( Settings.value("AQEMU_Data_Folder","").toString() + "/os_icons/" );
+		QDir icons_dir( QDir::toNativeSeparators(Settings.value("AQEMU_Data_Folder","").toString() + "/os_icons/") );
 		QFileInfoList all_os_icons = icons_dir.entryInfoList( QStringList("*.png"), QDir::Files, QDir::Unsorted );
 		
 		QRegExp rex;
@@ -793,7 +793,7 @@ void VM_Wizard_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 	
 	if( value <= 0 )
 	{
-		AQGraphic_Warning( tr("Error"), tr("Memory size < 0! Valid size 1 or more") );
+		AQGraphic_Warning( tr("Error"), tr("Memory size < 0! Valid size is 1 or more") );
 		return;
 	}
 	
@@ -803,7 +803,7 @@ void VM_Wizard_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 	{
 		AQGraphic_Warning( tr("Error"),
 						   tr("Your memory size %1 MB > %2 MB - all free RAM on this system!\n"
-							  "For set it size, check \"Remove limitation on maximum amount of memory\".")
+							  "To setup this value, check \"Remove limitation on maximum amount of memory\".")
 						   .arg(value).arg(ui.Memory_Size->maximum()) );
 		
 		on_Memory_Size_valueChanged( ui.Memory_Size->value() ); // Set valid size
@@ -828,7 +828,7 @@ void VM_Wizard_Window::on_CH_Remove_RAM_Size_Limitation_stateChanged( int state 
 		System_Info::Get_Free_Memory_Size( allRAM, freeRAM );
 		
 		if( allRAM < ui.Memory_Size->value() )
-			AQGraphic_Warning( tr("Error"), tr("Current memory size more of all host memory!\nUse the maximum available size.") );
+			AQGraphic_Warning( tr("Error"), tr("Current memory size bigger than all existing host memory!\nUsing maximum available size.") );
 		
 		ui.Memory_Size->setMaximum( allRAM );
 		ui.Label_Available_Free_Memory->setText( QString("%1 MB").arg(allRAM) );
@@ -873,7 +873,7 @@ void VM_Wizard_Window::Update_RAM_Size_ComboBox( int freeRAM )
 	else if( freeRAM >= 32 ) maxRamIndex = 1;
 	else
 	{
-		AQGraphic_Warning( tr("Error"), tr("Free memory on this system is low 32 MB!") );
+		AQGraphic_Warning( tr("Error"), tr("Free memory on this system is lower than 32 MB!") );
 		return;
 	}
 	
@@ -912,10 +912,10 @@ void VM_Wizard_Window::on_Button_New_HDD_clicked()
 
 void VM_Wizard_Window::on_Button_Existing_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString hdd_path = QFileDialog::getOpenFileName( this, tr("Select HDD Image"), "/",
-													 tr("All Files (*)"), &selectedFilter, options );
-	ui.Edit_HDA_File_Name->setText( hdd_path );
+	QString hddPath = QFileDialog::getOpenFileName( this, tr("Select HDD Image"),
+													Get_Last_Dir_Path(ui.Edit_HDA_File_Name->text()),
+													tr("All Files (*)") );
+
+	if( ! hddPath.isEmpty() )
+		ui.Edit_HDA_File_Name->setText( QDir::toNativeSeparators(hddPath) );
 }

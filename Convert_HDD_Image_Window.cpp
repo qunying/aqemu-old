@@ -104,15 +104,13 @@ Convert_HDD_Image_Window::Convert_HDD_Image_Window( QWidget *parent )
 
 void Convert_HDD_Image_Window::on_Button_Browse_Base_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString fileName = QFileDialog::getOpenFileName( this, tr("Select Base HDD Image File"), QDir::homePath(),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+	QString fileName = QFileDialog::getOpenFileName( this, tr("Select Base HDD Image File"),
+													 Get_Last_Dir_Path(ui.Edit_Base_File_Name->text()),
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( fileName.isEmpty() ) return;
-	
+
+	fileName = QDir::toNativeSeparators( fileName );
 	ui.Edit_Base_File_Name->setText( fileName );
 	
 	if( ! QFile::exists(fileName) )
@@ -150,15 +148,12 @@ void Convert_HDD_Image_Window::Update_Info( bool ok )
 
 void Convert_HDD_Image_Window::on_Button_Browse_Output_clicked()
 {
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString fileName = QFileDialog::getSaveFileName( this, tr("Save Out HDD Image File"), QDir::homePath(),
-													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)"),
-													 &selectedFilter, options );
+	QString fileName = QFileDialog::getSaveFileName( this, tr("Save Out HDD Image File"),
+													 Get_Last_Dir_Path(ui.Edit_Output_File_Name->text()),
+													 tr("All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)") );
 	
 	if( ! fileName.isEmpty() )
-		ui.Edit_Output_File_Name->setText( fileName );
+		ui.Edit_Output_File_Name->setText( QDir::toNativeSeparators(fileName) );
 }
 
 void Convert_HDD_Image_Window::on_CB_Output_Format_currentIndexChanged( const QString &text )
@@ -181,7 +176,7 @@ void Convert_HDD_Image_Window::on_Button_Convert_clicked()
 {
 	if( ui.Edit_Output_File_Name->text().isEmpty() )
 	{
-		AQGraphic_Warning( tr("File Name is Empty!"), tr("Please Enter Correct File Name for You HDD Image!") );
+		AQGraphic_Warning( tr("File Name is Empty!"), tr("Please Enter Correct HDD Image filename!") );
 		return;
 	}
 	
@@ -233,7 +228,7 @@ void Convert_HDD_Image_Window::Conversion_Done( bool ok )
 	{
 		ProgDial->accept();
 		Conv_Thread.terminate();
-		QMessageBox::information( this, tr("Information:"), tr("Conversion complete sucess!") );
+		QMessageBox::information( this, tr("Information:"), tr("Conversion completed sucessfuly!") );
 		accept();
 	}
 	else

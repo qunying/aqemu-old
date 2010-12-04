@@ -177,15 +177,12 @@ void Add_Port_Window::Connect_Slots()
 
 void Add_Port_Window::on_TB_Browse_clicked()
 {
-	QString dir = "/";
-	
-	QFileDialog::Options options;
-	QString selectedFilter;
-	
-	QString po = QFileDialog::getOpenFileName( this, tr("Open File"), dir, tr("All Files (*)"), &selectedFilter, options );
+	QString po = QFileDialog::getOpenFileName( this, tr("Open File"),
+											   Get_Last_Dir_Path(ui.Edit_Args->text()),
+											   tr("All Files (*)") );
 	
 	if( ! po.isEmpty() )
-		ui.Edit_Args->setText( po );
+		ui.Edit_Args->setText( QDir::toNativeSeparators(po) );
 }
 
 void Add_Port_Window::Show_Arg_Help()
@@ -194,7 +191,7 @@ void Add_Port_Window::Show_Arg_Help()
 	QStringList argsHelp;
 	
 	argsHelp << tr( "" );
-	argsHelp << tr( "Optionally, a width and height can be given in pixel with\n800x600\nIt is also possible to specify width or height in characters:\n80Cx24C" );
+	argsHelp << tr( "Optionally width and height can be given in pixel with\n800x600\nIt is also possible to specify width or height in characters:\n80Cx24C" );
 	argsHelp << tr( "[Linux only] Pseudo TTY (a new PTY is automatically allocated)" );
 	argsHelp << tr( "No device is allocated." );
 	argsHelp << tr( "Void device" );

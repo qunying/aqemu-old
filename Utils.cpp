@@ -24,7 +24,6 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QFileInfoList>
-#include <QDebug>
 #include <QDateTime>
 #include <QMessageBox>
 #include <QApplication>
@@ -32,6 +31,15 @@
 #include <QRegExp>
 #include <QProcess>
 #include <QStringList>
+#include <QTextStream>
+
+#ifdef Q_OS_WIN32
+#include <iostream>
+#include <windows.h>
+HANDLE Console_HANDLE = GetStdHandle( STD_OUTPUT_HANDLE );
+#else
+#include <QDebug>
+#endif
 
 #include "Utils.h"
 #include "System_Info.h"
@@ -53,9 +61,15 @@ void AQDebug( const QString &sender, const QString &mes )
 {
 	if( Use_Stdout && Stdout_Debug )
 	{
+	#ifdef Q_OS_WIN32
+		SetConsoleTextAttribute( Console_HANDLE, 10 );
+		std::cout << QString( "\nAQEMU Debug [%1] >>>\nSender: %2\nMessage: %3" )
+							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+	#else
 		qDebug( qPrintable(QString(
 			"\n\33[32mAQEMU Debug\33[0m [%1] >>>\n\33[32mSender:\33[0m %2\n\33[32mMessage:\33[0m %3")
 			.arg(Messages_Index).arg(sender).arg(mes)) );
+	#endif
 	}
 	
 	if( Save_Messages_To_Log && Stdout_Debug )
@@ -68,9 +82,15 @@ void AQWarning( const QString &sender, const QString &mes )
 {
 	if( Use_Stdout && Stdout_Warning )
 	{
+	#ifdef Q_OS_WIN32
+		SetConsoleTextAttribute( Console_HANDLE, 14 );
+		std::cout << QString( "\nAQEMU Warning [%1] >>>\nSender: %2\nMessage: %3" )
+							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+	#else
 		qDebug( qPrintable(QString(
 			"\n\33[34mAQEMU Warning\33[0m [%1] >>>\n\33[34mSender:\33[0m %2\n\33[34mMessage:\33[0m %3")
 			.arg(Messages_Index).arg(sender).arg(mes)) );
+	#endif
 	}
 	
 	if( Save_Messages_To_Log && Stdout_Warning )
@@ -83,9 +103,15 @@ void AQError( const QString &sender, const QString &mes )
 {
 	if( Use_Stdout && Stdout_Error )
 	{
+	#ifdef Q_OS_WIN32
+		SetConsoleTextAttribute( Console_HANDLE, 12 );
+		std::cout << QString( "\nAQEMU Error [%1] >>>\nSender: %2\nMessage: %3" )
+							  .arg(Messages_Index).arg(sender).arg(mes).toStdString();
+	#else
 		qDebug( qPrintable(QString(
 			"\n\33[31mAQEMU Error\33[0m [%1] >>>\n\33[31mSender:\33[0m %2\n\33[31mMessage:\33[0m %3")
 			.arg(Messages_Index).arg(sender).arg(mes)) );
+	#endif
 	}
 	
 	if( Save_Messages_To_Log && Stdout_Error )
@@ -125,7 +151,7 @@ void AQGraphic_Error( const QString &sender, const QString &caption, const QStri
 	{
 		QMessageBox::critical( NULL, caption,
 					QString("Sender: %1\nMessage: %2\n").arg(sender).arg(mes) +
-					QObject::tr("This Fatal Error. Recomend Close AQEMU."),
+					QObject::tr("Fatal error. It's recommended to close AQEMU"),
 					QMessageBox::Ok );
 	}
 	else
@@ -160,7 +186,7 @@ void AQLog_Path( const QString& path )
 void AQSave_To_Log( const QString &mes_type, const QString &sender, const QString &mes )
 {
 	if( Log_Path.isEmpty() ) return;
-	
+
 	QFile log_file( Log_Path );
 	
 	if( ! log_file.open(QIODevice::Append | QIODevice::Text) )
@@ -219,7 +245,7 @@ bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 	{
 		AQGraphic_Error( "bool Create_New_HDD_Image( bool encrypted, const QString &base_image,"
 						 "const QString &file_name, const QString &format, VM::Device_Size size, bool verbose )",
-						 QObject::tr("Error!"), QObject::tr("Cannot Start qemu-img! Image not Created!") );
+						 QObject::tr("Error!"), QObject::tr("Cannot Start qemu-img! Image isn't Created!") );
 		return false;
 	}
 	
@@ -227,7 +253,7 @@ bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 	{
 		AQGraphic_Error( "bool Create_New_HDD_Image( bool encrypted, const QString &base_image,"
 						 "const QString &file_name, const QString &format, VM::Device_Size size, bool verbose )",
-						 QObject::tr("Error!"), QObject::tr("qemu-img Cannot Finish! Image not Created!") );
+						 QObject::tr("Error!"), QObject::tr("qemu-img Cannot Finish! Image isn't Created!") );
 		return false;
 	}
 	else
@@ -250,12 +276,12 @@ bool Create_New_HDD_Image( bool encrypted, const QString &base_image,
 			if( rx.exactMatch( out ) )
 			{
 				QMessageBox::information( NULL, QObject::tr("Complete!"),
-						QObject::tr("QEMU-IMG is Create HDD Image.\nAdditional Information:\n") + out );
+						QObject::tr("QEMU-IMG is Creates HDD Image.\nAdditional Information:\n") + out );
 			}
 			else
 			{
 				QMessageBox::information( NULL, QObject::tr("Warning!"),
-						 QObject::tr("QEMU-IMG is Return non Standard Message!.\nAdditional Information:\n") + out );
+						 QObject::tr("QEMU-IMG is Returned non Standard Message!.\nAdditional Information:\n") + out );
 			}
 		}
 		
@@ -302,12 +328,12 @@ QList<QString> Get_Templates_List()
 	QSettings settings;
 	
 	// VM Templates
-	QDir sys_templates_dir( settings.value("AQEMU_Data_Folder", "").toString() + "os_templates/" );
+	QDir sys_templates_dir( QDir::toNativeSeparators(settings.value("AQEMU_Data_Folder", "").toString() + "/os_templates/") );
 	
 	QFileInfoList sys_templates_list = sys_templates_dir.entryInfoList(
 			QStringList("*.aqvmt"), QDir::Files, QDir::Unsorted );
 	
-	QDir user_templates_dir( settings.value("VM_Directory", "").toString() + "os_templates/" );
+	QDir user_templates_dir( QDir::toNativeSeparators(settings.value("VM_Directory", "").toString() + "/os_templates/") );
 	
 	QFileInfoList user_templates_list = user_templates_dir.entryInfoList(
 			QStringList("*.aqvmt"), QDir::Files, QDir::Unsorted );
@@ -408,6 +434,7 @@ bool It_Host_Device( const QString &path )
 {
 	#ifdef Q_OS_WIN32
 	// FIXME
+	return false;
 	#else
 	if( path.startsWith("/dev/") ) return true;
 	else return false;
@@ -461,9 +488,9 @@ void Check_AQEMU_Permissions()
 	}
 	
 	// Check AQEMU Log File Permissions
-	if( ! settings.value("Log_Path", "").toString().isEmpty() )
+	if( ! settings.value("Log/Log_Path", "").toString().isEmpty() )
 	{
-		test_perm = QFileInfo( settings.value("Log_Path", "").toString() );
+		test_perm = QFileInfo( settings.value("Log/Log_Path", "").toString() );
 		
 		if( test_perm.exists() )
 		{
@@ -471,7 +498,7 @@ void Check_AQEMU_Permissions()
 			{
 				AQGraphic_Error( "void Check_AQEMU_Permissions()", QObject::tr("Error!"),
 								 QObject::tr("AQEMU Log File is Read Only!\nCheck Permissions For File: ") +
-								 settings.value("Log_Path", "").toString(), false );
+								 settings.value("Log/Log_Path", "").toString(), false );
 			}
 		}
 	}

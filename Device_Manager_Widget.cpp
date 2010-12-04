@@ -213,18 +213,18 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 						if( size_in_bytes <= 0 )
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number(0) + tr("Kb") );
+									tr("On Disk Size: ") + QString::number(0) + tr("KB") );
 						}
 						else
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number((int)size_in_bytes / 1024.0) + tr("Kb") );
+									tr("On Disk Size: ") + QString::number((int)size_in_bytes / 1024.0) + tr("KB") );
 						}
 					}
 					else
 					{
 						ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-								tr("On Disk Size: ") + QString::number(0) + tr("Kb") );
+								tr("On Disk Size: ") + QString::number(0) + tr("KB") );
 					}
 				}
 			}
@@ -245,18 +245,18 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 						if( size_in_bytes <= 0 )
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number(0) + tr("Kb") );
+									tr("On Disk Size: ") + QString::number(0) + tr("KB") );
 						}
 						else
 						{
 							ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-									tr("On Disk Size: ") + QString::number((int)size_in_bytes / 1024.0) + tr("Kb") );
+									tr("On Disk Size: ") + QString::number((int)size_in_bytes / 1024.0) + tr("KB") );
 						}
 					}
 					else
 					{
 						ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-								tr("On Disk Size: ") + QString::number(0) + tr("Mb") );
+								tr("On Disk Size: ") + QString::number(0) + tr("MB") );
 					}
 				}
 			}
@@ -290,18 +290,18 @@ void Device_Manager_Widget::Update_Enabled_Actions()
 					if( size_in_bytes <= 0 )
 					{
 						ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-								tr("On Disk Size: ") + QString::number(0) + tr("Mb") );
+								tr("On Disk Size: ") + QString::number(0) + tr("MB") );
 					}
 					else
 					{
 						ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-								tr("On Disk Size: ") + QString::number((float)(size_in_bytes / 1024.0 / 1024.0), 'f', 2) + tr("Mb") );
+								tr("On Disk Size: ") + QString::number((float)(size_in_bytes / 1024.0 / 1024.0), 'f', 2) + tr("MB") );
 					}
 				}
 				else
 				{
 					ui.Label_Connected_To->setText( tr("Type: Image") + "\n" +
-							tr("On Disk Size: ") + QString::number(0) + tr("Mb") );
+							tr("On Disk Size: ") + QString::number(0) + tr("MB") );
 				}
 			}
 		}
@@ -591,7 +591,7 @@ void Device_Manager_Widget::on_actionAdd_Floppy_triggered()
 	else
 	{
 		AQGraphic_Warning( tr("Warning!"),
-						   tr("Maximum Floppy's Disk Count is 2") );
+						   tr("Maximum Floppy Disk Count is 2") );
 	}
 }
 
@@ -707,7 +707,7 @@ void Device_Manager_Widget::on_actionAdd_HDD_triggered()
 	else
 	{
 		AQGraphic_Warning( tr("Warning!"),
-						   tr("Maximum Hard Disk Count is 4 Without CD-ROM") );
+						   tr("Maximum Hard Disk Count is 4 excluding CD-ROM") );
 	}
 }
 
