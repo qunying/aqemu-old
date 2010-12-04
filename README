@@ -1,14 +1,14 @@
 AQEMU is a graphical interface to QEMU and KVM emulators.
 
 
-AQEMU compiling and running ONLY on Linux and *BSD systems!
-(Windows port in developing process)
+AQEMU compiling and running Linux, BSD and Windows!
+(Windows support in developing process)
 
 AQEMU Minimal Version Dependencies:
  * Qt >= 4.4.2
- * CMake >= 2.6
+ * CMake >= 2.6 (Not required in Windows)
  * QEMU >= 0.9.0 or KVM or QEMU-KVM
- * GCC >= 3.4 or 4.X
+ * GCC >= 3.4 or 4.X (MinGW in Windows)
 
 
 !!! ATTENTION READ THIS FIRST !!!
@@ -25,7 +25,7 @@ or /usr/share/apps/aqemu, you will have to delete a folder with the
 resources last version AQEMU manually!)
 
 
-INSTALLATION:
+INSTALLATION (For Unix):
 
  1. Extract AQEMU source code.
 
@@ -58,5 +58,14 @@ INSTALLATION:
 
  6. Installation complete! For start AQEMU type: `aqemu' in shell.
 
+INSTALLATION (For Windows):
+
+ 1. Extract AQEMU source code.
+
+ 2. `cd' to AQEMU source directory.
+
+ 3. type `qmake AQEMU-For-Windows.pro'
+
+ 4. type `make'
 
 Sorry for bad English.

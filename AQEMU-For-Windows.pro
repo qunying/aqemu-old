@@ -113,7 +113,7 @@ SOURCES += About_Window.cpp \
            VM_Wizard_Window.cpp \
            VNC_Password_Window.cpp
 
-RESOURCES += images.qrc shared_images.qrc
+RESOURCES += oxygen_icons.qrc shared_images.qrc
 TRANSLATIONS += German.ts Russian.ts Ukrainian.ts
 QT += xml network
 #CONFIG += debug console

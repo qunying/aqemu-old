@@ -56,11 +56,12 @@ About_Window::About_Window( QWidget *parent ): QDialog( parent )
 	"<br>Ignace Mouzannar - Debian Package\n"
 	"<br>Michael Brandstetter - Improvement Scripts\n"
 	"<br>Robert Warnke - German AQEMU Documentation Translation\n"
-	"<br>Michael Schmöller (aka schmoemi) - German Translation\n"
+	"<br>Michael Schmöller (aka schmoemi) - German Translation and Correcting English translation\n"
 	"<br>Guillem Rieu - Patch for Network Redirections\n"
 	"<br>Karol Krenski - IP Address RegExp Fix\n"
 	"<br>Alexander Romanov (aka romale) - Testing, New Ideas and Other Help\n"
 	"<br>Timothy Redaelli - Patch for CMake\n"
+	"<br>Pavel Serebryakov (aka Kronoph) - Correcting English translation\n"
 	
 	"<br><br><b>Special thanks:</b>\n"
 	"<br>Sergey Sinitsa (aka sin)\n"
@@ -69,7 +70,6 @@ About_Window::About_Window( QWidget *parent ): QDialog( parent )
 	"<br>Mihail Parshin (aka Skeeper)\n"
 	"<br>Garret Acott (aka gacott)\n"
 	"<br>Damir Vafin (aka Denver-22)\n"
-	"<br>Pavel Serebryakov (aka Kronoph)\n"
 	
 	"<br><br><b>Thanks all www.nclug.ru group for testing and suggestions for improvement.</b>\n"
 	
