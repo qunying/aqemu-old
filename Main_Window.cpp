@@ -5197,16 +5197,19 @@ void Main_Window::on_actionShow_QEMU_Error_Log_Window_triggered()
 
 void Main_Window::on_Memory_Size_valueChanged( int value )
 {
+	int cursorPos = ui.CB_RAM_Size->lineEdit()->cursorPosition();
+	
 	if( value % 1024 == 0 ) ui.CB_RAM_Size->setEditText( QString("%1 GB").arg(value / 1024) );
 	else ui.CB_RAM_Size->setEditText( QString("%1 MB").arg(value) );
+	
+	ui.CB_RAM_Size->lineEdit()->setCursorPosition( cursorPos );
 }
 
 void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 {
 	if( text.isEmpty() ) return;
 	
-	QRegExp rx( "([\\d]+)\\s*(MB|GB|M|G)" );
-	
+	QRegExp rx( "\\s*([\\d]+)\\s*(MB|GB|M|G|)\\s*" ); // like: 512MB or 512
 	if( ! rx.exactMatch(text.toUpper()) )
 	{
 		AQGraphic_Warning( tr("Error"),
@@ -5215,7 +5218,7 @@ void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 	}
 	
 	QStringList ramStrings = rx.capturedTexts();
-	if( ramStrings.count() < 2 )
+	if( ramStrings.count() != 3 )
 	{
 		AQGraphic_Warning( tr("Error"),
 						   tr("Cannot convert \"%1\" to memory size!").arg(text) );
@@ -5231,7 +5234,7 @@ void Main_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 		return;
 	}
 	
-	if( ramStrings[2] == "MB" || ramStrings[2] == "M" ); // Size in megabytes
+	if( ramStrings[2] == "MB" || ramStrings[2] == "M" || ramStrings[2] == "" ); // Size in megabytes
 	else if( ramStrings[2] == "GB" || ramStrings[2] == "G" ) value *= 1024;
 	else
 	{
@@ -6430,6 +6433,7 @@ void Main_Window::on_Button_Delete_Redirections_clicked()
 void Main_Window::Update_Current_Redirection_Item()
 {
 	// Port < 1024
+	#ifndef Q_OS_WIN32
 	if( ui.SB_Redir_Port->value() < 1024 &&
 		Settings.value("Ignore_Redirection_Port_Varning", "no").toString() == "no" )
 	{
@@ -6443,6 +6447,7 @@ void Main_Window::Update_Current_Redirection_Item()
 		else if( ret == QMessageBox::Ignore )
 			Settings.setValue( "Ignore_Redirection_Port_Varning", "yes" );
 	}
+	#endif
 	
 	QTableWidgetItem *newItem;
 	

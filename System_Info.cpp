@@ -2501,6 +2501,8 @@ bool System_Info::Delete_From_Used_USB_List( const VM_USB &device )
 	return Used_Host_USB.removeOne( device );
 }
 
+#ifdef Q_OS_LINUX
+
 bool System_Info::Update_Host_USB()
 {
 	QList<VM_USB> list;
@@ -2888,8 +2890,6 @@ bool System_Info::Scan_USB_Proc( QList<VM_USB> &list )
 	return true;
 }
 
-#ifdef Q_OS_LINUX
-
 #include <sys/sysinfo.h>
 #include <QDir>
 #include <QFileInfoList>
@@ -3033,7 +3033,8 @@ QStringList System_Info::Get_Host_CDROM_List()
 	
 	return tmp_list;
 }
-#endif
+
+#endif // Linux
 
 #ifdef Q_OS_FREEBSD
 
@@ -3108,7 +3109,15 @@ QStringList System_Info::Get_Host_CDROM_List()
 	
 	return tmp_list;
 }
-#endif
+
+bool System_Info::Update_Host_USB()
+{
+	AQError( "System_Info::Update_Host_USB()",
+			 "Not implemented!" );
+	return false;
+}
+
+#endif // FreeBSD
 
 #ifdef Q_OS_WIN32
 
@@ -3194,4 +3203,11 @@ QStringList System_Info::Get_Host_CDROM_List()
 	return ret_list;
 }
 
-#endif
+bool System_Info::Update_Host_USB()
+{
+	AQError( "System_Info::Update_Host_USB()",
+			 "Not implemented!" );
+	return false;
+}
+
+#endif // Windows

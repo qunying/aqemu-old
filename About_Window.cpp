@@ -83,24 +83,24 @@ About_Window::About_Window( QWidget *parent ): QDialog( parent )
 	"<br>Oxygen - Icon Theme From Oxygen Team\n") );
 	
 	// Load Links
+	QSettings settings;
+	QFileInfo logFileDir( settings.fileName() );
+	linksFilePath = QDir::toNativeSeparators( logFileDir.absolutePath() + "/aqemu_links.html" );
+	
 	Show_Links_File();
 }
 
 void About_Window::on_Button_Update_Links_clicked()
 {
 	QUrl url( "http://aqemu.sourceforge.net/aqemu_links.html" );
-	QString fileName = QDir::homePath() + "/.config/ANDronSoft/aqemu_links.html";
 	
-	if( QFile::exists(fileName) )
-	{
-		QFile::remove( fileName );
-	}
+	//if( QFile::exists(linksFilePath) ) QFile::remove( linksFilePath );
 	
-	File = new QFile( fileName );
+	File = new QFile( linksFilePath );
 	if( ! File->open(QIODevice::WriteOnly) )
 	{
 		AQGraphic_Warning( tr("Error!"),
-						   tr("Unable to save the file %1: %2.").arg(fileName).arg(File->errorString()) );
+						   tr("Unable to save the file %1: %2.").arg(linksFilePath).arg(File->errorString()) );
 		
 		delete File;
 		File = 0;
@@ -123,13 +123,13 @@ void About_Window::Show_Links_File()
 	QSettings settings;
 	QString show_url;
 	
-	if( QFile::exists(QDir::homePath() + "/.config/ANDronSoft/aqemu_links.html") )
+	if( QFile::exists(linksFilePath) )
 	{
-		show_url = QDir::homePath() + "/.config/ANDronSoft/aqemu_links.html";
+		show_url = linksFilePath;
 	}
-	else if( QFile::exists(settings.value("AQEMU_Data_Folder", "").toString() + "/aqemu_links.html") )
+	else if( QFile::exists(QDir::toNativeSeparators(settings.value("AQEMU_Data_Folder", "").toString() + "/aqemu_links.html")) )
 	{
-		show_url = settings.value("AQEMU_Data_Folder", "").toString() + "/aqemu_links.html";
+		show_url = QDir::toNativeSeparators( settings.value("AQEMU_Data_Folder", "").toString() + "/aqemu_links.html" );
 	}
 	else
 	{
@@ -193,11 +193,11 @@ void About_Window::HTTP_Request_Finished( int requestId, bool error )
 	if( ! error ) Show_Links_File();
 }
 
-void About_Window::Read_Response_Header( const QHttpResponseHeader& responseHeader )
+void About_Window::Read_Response_Header( const QHttpResponseHeader &responseHeader )
 {
 	switch( responseHeader.statusCode() )
 	{
-		case 200: // Ok
+		case 200: // OK
 		case 301: // Moved Permanently
 		case 302: // Found
 		case 303: // See Other

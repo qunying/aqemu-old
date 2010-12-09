@@ -96,8 +96,7 @@ void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 		return;
 	}
 	
-	// image:[\s]+(.+).file format:[\s]+([\w\d]+).virtual size:[\s]+([\d]+[.]*[\d]*[KMG]+).*disk size:[\s]+([\d]+[.]*[\d]*[KMG]+).cluster_size:[\s]+([\d]+).*
-	QRegExp RegInfo = QRegExp( "image:[\\s]+(.+).file format:[\\s]+([\\w\\d]+).virtual size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*disk size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).cluster_size:[\\s]+([\\d]+).*" );
+	QRegExp RegInfo = QRegExp( ".*image:[\\s]+([^\n\r]+).*file format:[\\s]+([\\w\\d]+).*virtual size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*disk size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*cluster_size:[\\s]+([\\d]+).*" );
 	
 	bool cluster = true;
 	
@@ -106,7 +105,7 @@ void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 		AQWarning( "void QEMU_IMG_Thread::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )",
 				   "QRegExp With Cluster Size Not Matched!" );
 		
-		RegInfo = QRegExp( "image:[\\s]+(.+).file format:[\\s]+([\\w\\d]+).virtual size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*disk size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*" );
+		RegInfo = QRegExp( ".*image:[\\s]+(.+).+file format:[\\s]+([\\w\\d]+).*virtual size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*disk size:[\\s]+([\\d]+[.]*[\\d]*[KMG]+).*" );
 		
 		if( ! RegInfo.exactMatch(info_str) )
 		{
@@ -138,10 +137,10 @@ void HDD_Image_Info::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )
 		return;
 	}
 	
-	if( info_lines[ 1 ] != Info.Image_File_Name )
+	if( info_lines[1] != Info.Image_File_Name )
 	{
 		AQWarning( "void QEMU_IMG_Thread::Parse_Info( int exitCode, QProcess::ExitStatus exitStatus )",
-				   "info_lines[ 1 ] != Image_File_Name" );
+				   QString("info_lines[1] != Image_File_Name\nDetails:\n[[%1]]\n[[%2]]").arg(info_lines[1]).arg(Info.Image_File_Name) );
 	}
 	
 	Info.Disk_Format = info_lines[ 2 ];

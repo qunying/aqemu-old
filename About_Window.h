@@ -42,6 +42,9 @@ class About_Window: public QDialog
 		
 	private:
 		Ui::About_Window ui;
+		
+		QString linksFilePath;
+		
 		QHttp *HTTP;
 		QFile *File;
 		int HTTP_Get_Id;

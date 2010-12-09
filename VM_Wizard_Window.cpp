@@ -748,16 +748,19 @@ void VM_Wizard_Window::on_CB_Relese_Date_currentIndexChanged( int index )
 
 void VM_Wizard_Window::on_Memory_Size_valueChanged( int value )
 {
+	int cursorPos = ui.CB_RAM_Size->lineEdit()->cursorPosition();
+	
 	if( value % 1024 == 0 ) ui.CB_RAM_Size->setEditText( QString("%1 GB").arg(value / 1024) );
 	else ui.CB_RAM_Size->setEditText( QString("%1 MB").arg(value) );
+	
+	ui.CB_RAM_Size->lineEdit()->setCursorPosition( cursorPos );
 }
 
 void VM_Wizard_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 {
 	if( text.isEmpty() ) return;
 	
-	QRegExp rx( "([\\d]+)\\s*(MB|GB|M|G)" );
-	
+	QRegExp rx( "\\s*([\\d]+)\\s*(MB|GB|M|G|)\\s*" ); // like: 512MB or 512
 	if( ! rx.exactMatch(text.toUpper()) )
 	{
 		AQGraphic_Warning( tr("Error"),
@@ -766,7 +769,7 @@ void VM_Wizard_Window::on_CB_RAM_Size_editTextChanged( const QString &text )
 	}
 	
 	QStringList ramStrings = rx.capturedTexts();
-	if( ramStrings.count() < 2 )
+	if( ramStrings.count() != 3 )
 	{
 		AQGraphic_Warning( tr("Error"),
 						   tr("Cannot convert \"%1\" to memory size!").arg(text) );

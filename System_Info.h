@@ -69,9 +69,11 @@ class System_Info
 		static QMap<QString, Available_Devices> Emulator_KVM_0_13;
 		
 	private:
+		#ifdef Q_OS_LINUX
 		static bool Scan_USB_Sys( QList<VM_USB> &list );
 		static bool Scan_USB_Proc( QList<VM_USB> &list );
 		static bool Read_SysFS_File( const QString &path, QString &data );
+		#endif
 		
 		static QList<VM_USB> All_Host_USB;
 		static QList<VM_USB> Used_Host_USB;
