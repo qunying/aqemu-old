@@ -67,50 +67,32 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="206"/>
-        <source>License</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="221"/>
+        <location filename="About_Window.ui" line="222"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt; Copyright (C) 1989, 1991 Free Software Foundation, Inc.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt; 51 Franklin Steet, Fifth Floor, Boston, MA  02111-1307  USA&lt;/span&gt;&lt;/p&gt;
@@ -293,58 +275,64 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="416"/>
+        <location filename="About_Window.ui" line="429"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="522"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 RC1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="207"/>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="417"/>
         <source>Links</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="428"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="486"/>
+        <location filename="About_Window.ui" line="488"/>
         <source>Update Links Form Internet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="520"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 Beta2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="547"/>
+        <location filename="About_Window.ui" line="549"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -359,11 +347,12 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Ignace Mouzannar - Debian Package
 &lt;br&gt;Michael Brandstetter - Improvement Scripts
 &lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
-&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation
+&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation and Correcting English translation
 &lt;br&gt;Guillem Rieu - Patch for Network Redirections
 &lt;br&gt;Karol Krenski - IP Address RegExp Fix
 &lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
 &lt;br&gt;Timothy Redaelli - Patch for CMake
+&lt;br&gt;Pavel Serebryakov (aka Kronoph) - Correcting English translation
 &lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
 &lt;br&gt;Sergey Sinitsa (aka sin)
 &lt;br&gt;Grigory Pulyaev (aka Rodegast)
@@ -371,7 +360,6 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Mihail Parshin (aka Skeeper)
 &lt;br&gt;Garret Acott (aka gacott)
 &lt;br&gt;Damir Vafin (aka Denver-22)
-&lt;br&gt;Pavel Serebryakov (aka Kronoph)
 &lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
 &lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
 &lt;br&gt;Tim Jansen (tim@tjansen.de)
@@ -390,6 +378,7 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Ignace Mouzannar - Debian Package
 &lt;br&gt;Michael Brandstetter - Improvement Scripts
 &lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
+&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation
 &lt;br&gt;Guillem Rieu - Patch for Network Redirections
 &lt;br&gt;Karol Krenski - IP Address RegExp Fix
 &lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
@@ -972,6 +961,11 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Add_USB_Port_Window.ui" line="386"/>
+        <source>Bus.Address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Add_USB_Port_Window.ui" line="410"/>
         <source>Vendor ID:</source>
         <translation type="unfinished"></translation>
@@ -1029,6 +1023,11 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Add_USB_Port_Window.cpp" line="89"/>
         <location filename="Add_USB_Port_Window.cpp" line="191"/>
         <source>Product ID: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.cpp" line="189"/>
+        <source>Bus.Address: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -5214,8 +5213,8 @@ Terminate All Running VM and Close AQEMU?</source>
         <location filename="Main_Window.cpp" line="4381"/>
         <location filename="Main_Window.cpp" line="4510"/>
         <location filename="Main_Window.cpp" line="5170"/>
-        <location filename="Main_Window.cpp" line="6280"/>
-        <location filename="Main_Window.cpp" line="6355"/>
+        <location filename="Main_Window.cpp" line="6283"/>
+        <location filename="Main_Window.cpp" line="6358"/>
         <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5444,7 +5443,8 @@ The work of the VM is not possible!</source>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="1503"/>
-        <source>Memory size &lt; 1! Using efault value: 256 MB</source>
+        <source>Memory size &lt; 1! Using default value: 256 MB</source>
+        <oldsource>Memory size &lt; 1! Using efault value: 256 MB</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5595,7 +5595,7 @@ The work of the VM is not possible!</source>
         <location filename="Main_Window.cpp" line="2567"/>
         <location filename="Main_Window.cpp" line="2589"/>
         <location filename="Main_Window.cpp" line="2645"/>
-        <location filename="Main_Window.cpp" line="6015"/>
+        <location filename="Main_Window.cpp" line="6018"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5769,33 +5769,33 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5239"/>
+        <location filename="Main_Window.cpp" line="5242"/>
         <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes are: MB, GB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5245"/>
+        <location filename="Main_Window.cpp" line="5248"/>
         <source>Memory size &lt; 0! Valid size is 1 or more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5254"/>
+        <location filename="Main_Window.cpp" line="5257"/>
         <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 To set this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5325"/>
+        <location filename="Main_Window.cpp" line="5328"/>
         <source>Free memory on this system is less than 32 MB!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6280"/>
+        <location filename="Main_Window.cpp" line="6283"/>
         <source>CPU count value is not valid digit!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6437"/>
+        <location filename="Main_Window.cpp" line="6441"/>
         <source>To Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
 Press &quot;Ignore&quot; button for hide this message in future.
 Add This Record?</source>
@@ -5903,7 +5903,7 @@ Add This Record?</source>
         <location filename="Main_Window.cpp" line="3764"/>
         <location filename="Main_Window.cpp" line="4762"/>
         <location filename="Main_Window.cpp" line="4823"/>
-        <location filename="Main_Window.cpp" line="6436"/>
+        <location filename="Main_Window.cpp" line="6440"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -5917,7 +5917,7 @@ Add This Record?</source>
         <location filename="Main_Window.cpp" line="4924"/>
         <location filename="Main_Window.cpp" line="5078"/>
         <location filename="Main_Window.cpp" line="5087"/>
-        <location filename="Main_Window.cpp" line="6296"/>
+        <location filename="Main_Window.cpp" line="6299"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
@@ -6083,185 +6083,185 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5212"/>
-        <location filename="Main_Window.cpp" line="5220"/>
-        <location filename="Main_Window.cpp" line="5229"/>
-        <location filename="Main_Window.cpp" line="5238"/>
-        <location filename="Main_Window.cpp" line="5245"/>
-        <location filename="Main_Window.cpp" line="5253"/>
-        <location filename="Main_Window.cpp" line="5280"/>
-        <location filename="Main_Window.cpp" line="5325"/>
+        <location filename="Main_Window.cpp" line="5215"/>
+        <location filename="Main_Window.cpp" line="5223"/>
+        <location filename="Main_Window.cpp" line="5232"/>
+        <location filename="Main_Window.cpp" line="5241"/>
+        <location filename="Main_Window.cpp" line="5248"/>
+        <location filename="Main_Window.cpp" line="5256"/>
+        <location filename="Main_Window.cpp" line="5283"/>
+        <location filename="Main_Window.cpp" line="5328"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5213"/>
-        <location filename="Main_Window.cpp" line="5221"/>
+        <location filename="Main_Window.cpp" line="5216"/>
+        <location filename="Main_Window.cpp" line="5224"/>
         <source>Cannot convert &quot;%1&quot; to memory size!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5230"/>
+        <location filename="Main_Window.cpp" line="5233"/>
         <source>Cannot convert &quot;%1&quot; to integer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5280"/>
+        <location filename="Main_Window.cpp" line="5283"/>
         <source>Current memory size more of all host memory!
 Use the maximum available size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5292"/>
+        <location filename="Main_Window.cpp" line="5295"/>
         <source>Free memory: %1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5346"/>
-        <location filename="Main_Window.cpp" line="5411"/>
+        <location filename="Main_Window.cpp" line="5349"/>
+        <location filename="Main_Window.cpp" line="5414"/>
         <source>Open Floppy Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5348"/>
-        <location filename="Main_Window.cpp" line="5413"/>
+        <location filename="Main_Window.cpp" line="5351"/>
+        <location filename="Main_Window.cpp" line="5416"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5476"/>
+        <location filename="Main_Window.cpp" line="5479"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5478"/>
+        <location filename="Main_Window.cpp" line="5481"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5541"/>
-        <location filename="Main_Window.cpp" line="5625"/>
-        <location filename="Main_Window.cpp" line="5710"/>
-        <location filename="Main_Window.cpp" line="5795"/>
+        <location filename="Main_Window.cpp" line="5544"/>
+        <location filename="Main_Window.cpp" line="5628"/>
+        <location filename="Main_Window.cpp" line="5713"/>
+        <location filename="Main_Window.cpp" line="5798"/>
         <source>Open HDD Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5543"/>
-        <location filename="Main_Window.cpp" line="5627"/>
-        <location filename="Main_Window.cpp" line="5712"/>
-        <location filename="Main_Window.cpp" line="5797"/>
+        <location filename="Main_Window.cpp" line="5546"/>
+        <location filename="Main_Window.cpp" line="5630"/>
+        <location filename="Main_Window.cpp" line="5715"/>
+        <location filename="Main_Window.cpp" line="5800"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5890"/>
+        <location filename="Main_Window.cpp" line="5893"/>
         <source>Image Format: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5890"/>
+        <location filename="Main_Window.cpp" line="5893"/>
         <source>Allocated Disk Space: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5891"/>
+        <location filename="Main_Window.cpp" line="5894"/>
         <source>Virtual Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5891"/>
+        <location filename="Main_Window.cpp" line="5894"/>
         <source>Cluster Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6009"/>
+        <location filename="Main_Window.cpp" line="6012"/>
         <source>QEMU</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6010"/>
+        <location filename="Main_Window.cpp" line="6013"/>
         <source>KVM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6296"/>
+        <location filename="Main_Window.cpp" line="6299"/>
         <source>CPU count &gt; max CPU count for this emulator!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6355"/>
+        <location filename="Main_Window.cpp" line="6358"/>
         <source>Cannot Save This VM to File!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6400"/>
+        <location filename="Main_Window.cpp" line="6403"/>
         <source>Network Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6402"/>
+        <location filename="Main_Window.cpp" line="6405"/>
         <source>Network Cards</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6475"/>
+        <location filename="Main_Window.cpp" line="6480"/>
         <source>Select SMB Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6490"/>
+        <location filename="Main_Window.cpp" line="6495"/>
         <source>UNIX Domain Socket Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6492"/>
-        <location filename="Main_Window.cpp" line="6522"/>
-        <location filename="Main_Window.cpp" line="6532"/>
-        <location filename="Main_Window.cpp" line="6542"/>
-        <location filename="Main_Window.cpp" line="6552"/>
-        <location filename="Main_Window.cpp" line="6562"/>
-        <location filename="Main_Window.cpp" line="6572"/>
+        <location filename="Main_Window.cpp" line="6497"/>
+        <location filename="Main_Window.cpp" line="6527"/>
+        <location filename="Main_Window.cpp" line="6537"/>
+        <location filename="Main_Window.cpp" line="6547"/>
+        <location filename="Main_Window.cpp" line="6557"/>
+        <location filename="Main_Window.cpp" line="6567"/>
+        <location filename="Main_Window.cpp" line="6577"/>
         <source>All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6500"/>
+        <location filename="Main_Window.cpp" line="6505"/>
         <source>Select x509 Certificate Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6510"/>
+        <location filename="Main_Window.cpp" line="6515"/>
         <source>Select x509 Verify Certificate Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6520"/>
+        <location filename="Main_Window.cpp" line="6525"/>
         <source>Select Kernel Image File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6530"/>
+        <location filename="Main_Window.cpp" line="6535"/>
         <source>Select InitRD File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6540"/>
+        <location filename="Main_Window.cpp" line="6545"/>
         <source>Select ROM File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6550"/>
+        <location filename="Main_Window.cpp" line="6555"/>
         <source>Select On-Board Flash Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6560"/>
+        <location filename="Main_Window.cpp" line="6565"/>
         <source>Select SecureDigital Card Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6570"/>
+        <location filename="Main_Window.cpp" line="6575"/>
         <source>Select Parallel Flash Image</source>
         <translation type="unfinished"></translation>
     </message>
@@ -9059,51 +9059,51 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="763"/>
-        <location filename="VM_Wizard_Window.cpp" line="771"/>
-        <location filename="VM_Wizard_Window.cpp" line="780"/>
-        <location filename="VM_Wizard_Window.cpp" line="789"/>
-        <location filename="VM_Wizard_Window.cpp" line="796"/>
-        <location filename="VM_Wizard_Window.cpp" line="804"/>
-        <location filename="VM_Wizard_Window.cpp" line="831"/>
-        <location filename="VM_Wizard_Window.cpp" line="876"/>
+        <location filename="VM_Wizard_Window.cpp" line="766"/>
+        <location filename="VM_Wizard_Window.cpp" line="774"/>
+        <location filename="VM_Wizard_Window.cpp" line="783"/>
+        <location filename="VM_Wizard_Window.cpp" line="792"/>
+        <location filename="VM_Wizard_Window.cpp" line="799"/>
+        <location filename="VM_Wizard_Window.cpp" line="807"/>
+        <location filename="VM_Wizard_Window.cpp" line="834"/>
+        <location filename="VM_Wizard_Window.cpp" line="879"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="764"/>
-        <location filename="VM_Wizard_Window.cpp" line="772"/>
+        <location filename="VM_Wizard_Window.cpp" line="767"/>
+        <location filename="VM_Wizard_Window.cpp" line="775"/>
         <source>Cannot convert &quot;%1&quot; to memory size!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="781"/>
+        <location filename="VM_Wizard_Window.cpp" line="784"/>
         <source>Cannot convert &quot;%1&quot; to integer!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="790"/>
+        <location filename="VM_Wizard_Window.cpp" line="793"/>
         <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes: MB, GB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="796"/>
+        <location filename="VM_Wizard_Window.cpp" line="799"/>
         <source>Memory size &lt; 0! Valid size is 1 or more</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="831"/>
+        <location filename="VM_Wizard_Window.cpp" line="834"/>
         <source>Current memory size bigger than all existing host memory!
 Using maximum available size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="876"/>
+        <location filename="VM_Wizard_Window.cpp" line="879"/>
         <source>Free memory on this system is lower than 32 MB!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="805"/>
+        <location filename="VM_Wizard_Window.cpp" line="808"/>
         <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 To setup this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
         <oldsource>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
@@ -9111,17 +9111,17 @@ For set it size, check &quot;Remove limitation on maximum amount of memory&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="843"/>
+        <location filename="VM_Wizard_Window.cpp" line="846"/>
         <source>Free memory: %1 MB</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="915"/>
+        <location filename="VM_Wizard_Window.cpp" line="918"/>
         <source>Select HDD Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="917"/>
+        <location filename="VM_Wizard_Window.cpp" line="920"/>
         <source>All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>

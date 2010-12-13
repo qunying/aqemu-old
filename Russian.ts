@@ -9,81 +9,7 @@
         <translation>О программе AQEMU</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="184"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="428"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="520"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 Beta2&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="547"/>
+        <location filename="About_Window.ui" line="549"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
@@ -98,212 +24,41 @@ p, li { white-space: pre-wrap; }
         <translation>Благодарности</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="206"/>
+        <location filename="About_Window.ui" line="184"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="207"/>
         <source>License</source>
         <translation>Лицензия</translation>
     </message>
     <message>
-        <location filename="About_Window.cpp" line="102"/>
-        <location filename="About_Window.cpp" line="136"/>
-        <location filename="About_Window.cpp" line="185"/>
-        <location filename="About_Window.cpp" line="208"/>
-        <source>Error!</source>
-        <translation>Ошибка!</translation>
-    </message>
-    <message>
-        <location filename="About_Window.cpp" line="103"/>
-        <source>Unable to save the file %1: %2.</source>
-        <translation>Не могу сохранить файл %1: %2.</translation>
-    </message>
-    <message>
-        <location filename="About_Window.cpp" line="137"/>
-        <source>Cannot Find AQEMU Links File!</source>
-        <translation>Не могу найти файл ссылок AQEMU!</translation>
-    </message>
-    <message>
-        <location filename="About_Window.cpp" line="186"/>
-        <location filename="About_Window.cpp" line="209"/>
-        <source>Download failed: %1.</source>
-        <translation>Загрузка не удалась: %1.</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="416"/>
-        <source>Links</source>
-        <translation>Ссылки</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="486"/>
-        <source>Update Links Form Internet</source>
-        <translation>Обновить ссылки через Интернет</translation>
-    </message>
-    <message>
-        <location filename="About_Window.cpp" line="48"/>
-        <source>&lt;b&gt;Developers:&lt;/b&gt;
-&lt;br&gt;Andrey Rijov (aka RDron) - Author
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Contributors:&lt;/b&gt;
-&lt;br&gt;Max Brazhnikov - FreeBSD Port
-&lt;br&gt;Boris Savelev - ALTLinux Package
-&lt;br&gt;Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help
-&lt;br&gt;Ignace Mouzannar - Debian Package
-&lt;br&gt;Michael Brandstetter - Improvement Scripts
-&lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
-&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation
-&lt;br&gt;Guillem Rieu - Patch for Network Redirections
-&lt;br&gt;Karol Krenski - IP Address RegExp Fix
-&lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
-&lt;br&gt;Timothy Redaelli - Patch for CMake
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
-&lt;br&gt;Sergey Sinitsa (aka sin)
-&lt;br&gt;Grigory Pulyaev (aka Rodegast)
-&lt;br&gt;Alexander Saifulin (aka Ne01eX)
-&lt;br&gt;Mihail Parshin (aka Skeeper)
-&lt;br&gt;Garret Acott (aka gacott)
-&lt;br&gt;Damir Vafin (aka Denver-22)
-&lt;br&gt;Pavel Serebryakov (aka Kronoph)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
-&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
-&lt;br&gt;Tim Jansen (tim@tjansen.de)
-&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
-&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Icons:&lt;/b&gt;
-&lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
-&lt;br&gt;Oxygen - Icon Theme From Oxygen Team
-</source>
-        <oldsource>&lt;b&gt;Developers:&lt;/b&gt;
-&lt;br&gt;Andrey Rijov (aka RDron) - Author
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Contributors:&lt;/b&gt;
-&lt;br&gt;Max Brazhnikov - FreeBSD Port
-&lt;br&gt;Boris Savelev - ALTLinux Package
-&lt;br&gt;Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help
-&lt;br&gt;Ignace Mouzannar - Debian Package
-&lt;br&gt;Michael Brandstetter - Improvement Scripts
-&lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
-&lt;br&gt;Guillem Rieu - Patch for Network Redirections
-&lt;br&gt;Karol Krenski - IP Address RegExp Fix
-&lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
-&lt;br&gt;Timothy Redaelli - Patch for CMake
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
-&lt;br&gt;Sergey Sinitsa (aka sin)
-&lt;br&gt;Grigory Pulyaev (aka Rodegast)
-&lt;br&gt;Alexander Saifulin (aka Ne01eX)
-&lt;br&gt;Mihail Parshin (aka Skeeper)
-&lt;br&gt;Garret Acott (aka gacott)
-&lt;br&gt;Damir Vafin (aka Denver-22)
-&lt;br&gt;Pavel Serebryakov (aka Kronoph)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
-&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
-&lt;br&gt;Tim Jansen (tim@tjansen.de)
-&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
-&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Icons:&lt;/b&gt;
-&lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
-&lt;br&gt;Oxygen - Icon Theme From Oxygen Team
-</oldsource>
-        <translation>&lt;b&gt;Разработчики:&lt;/b&gt;
-&lt;br&gt;Андрей Рыжов (aka RDron) - Автор
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Помощники:&lt;/b&gt;
-&lt;br&gt;Максим Бражников - Порт для FreeBSD
-&lt;br&gt;Борис Савельев - Пакет для ALTLinux
-&lt;br&gt;Денис Смирнов (aka reMiND) - Пакет для Arch Linux и другая помощь
-&lt;br&gt;Ignace Mouzannar - Пакет для Debian
-&lt;br&gt;Michael Brandstetter - Перевод на немецкий и улучшение скриптов
-&lt;br&gt;Robert Warnke - Немецкий перевод документации по AQEMU
-&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - Перевод интерфейса на немецкий
-&lt;br&gt;Guillem Rieu - Исправление для сетевых перенаправлений
-&lt;br&gt;Karol Krenski - Исправление RegExp для IP адреса
-&lt;br&gt;Александр Романов (aka romale) - Тестирование, новые идеи и другая помощь
-&lt;br&gt;Timothy Redaelli - Исправление для CMake скрипта
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Отдельное спасибо:&lt;/b&gt;
-&lt;br&gt;Сергей Синица (aka sin)
-&lt;br&gt;Григорий Пуляев (aka Rodegast)
-&lt;br&gt;Александр Сайфулин (aka Ne01eX)
-&lt;br&gt;Михаил Паршин (aka Skeeper)
-&lt;br&gt;Garret Acott (aka gacott)
-&lt;br&gt;Дамир Вафин (aka Denver-22)
-&lt;br&gt;Павел Серебряков (aka Kronoph)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Спасибо всей группе www.nclug.ru за тестирование и предложения по улучшению.&lt;/b&gt;
-&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU использует код из QtEMU и Krdc спасибо всем разработчикам этих программ:&lt;/b&gt;
-&lt;br&gt;Tim Jansen (tim@tjansen.de)
-&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
-&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Значки:&lt;/b&gt;
-&lt;br&gt;Crystal SVG - Тема значков от студии дизайна Everaldo.com
-&lt;br&gt;Oxygen - Тема значков от команды Oxygen</translation>
-    </message>
-    <message utf8="true">
-        <location filename="About_Window.ui" line="133"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;b&gt;
-&lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8.1 of ХХ.10.2010&lt;/p&gt;
-&lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
-&lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
-&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Web Site: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Supported Emulators:&lt;br&gt;QEMU 0.9.0-0.13 and KVM 60-88-0.13&lt;/p&gt;
-&lt;/b&gt;
-&lt;/body&gt;
-&lt;/html&gt;</source>
-        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;b&gt;
-&lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8.1 of ХХ.09.2010&lt;/p&gt;
-&lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
-&lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
-&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Web Site: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Supported Emulators:&lt;br&gt;QEMU 0.9.0-0.13 and KVM 60-88-0.13&lt;/p&gt;
-&lt;/b&gt;
-&lt;/body&gt;
-&lt;/html&gt;</oldsource>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;b&gt;
-&lt;p&gt;AQEMU это графический интерфейс для QEMU и KVM&lt;/p
-&lt;p&gt;Версия: 0.8.1 от XX.09.2010&lt;/p&gt;
-&lt;p&gt;Лицензия: General Public License Версия 2&lt;/p&gt;
-&lt;p&gt;Автор: Андрей Рыжов (a.k.a. RDron)&lt;/p&gt;
-&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Веб сайт: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Поддерживаемые эмуляторы:&lt;br&gt;QEMU 0.9.0-0.13 и KVM 60-88-0.13&lt;/p&gt;
-&lt;/b&gt;
-&lt;/body&gt;
-&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="221"/>
+        <location filename="About_Window.ui" line="222"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt; Copyright (C) 1989, 1991 Free Software Foundation, Inc.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt; 51 Franklin Steet, Fifth Floor, Boston, MA  02111-1307  USA&lt;/span&gt;&lt;/p&gt;
@@ -483,7 +238,241 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;  5. You are not required to accept this License, since you have not&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="522"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 RC1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.cpp" line="102"/>
+        <location filename="About_Window.cpp" line="136"/>
+        <location filename="About_Window.cpp" line="185"/>
+        <location filename="About_Window.cpp" line="208"/>
+        <source>Error!</source>
+        <translation>Ошибка!</translation>
+    </message>
+    <message>
+        <location filename="About_Window.cpp" line="103"/>
+        <source>Unable to save the file %1: %2.</source>
+        <translation>Не могу сохранить файл %1: %2.</translation>
+    </message>
+    <message>
+        <location filename="About_Window.cpp" line="137"/>
+        <source>Cannot Find AQEMU Links File!</source>
+        <translation>Не могу найти файл ссылок AQEMU!</translation>
+    </message>
+    <message>
+        <location filename="About_Window.cpp" line="186"/>
+        <location filename="About_Window.cpp" line="209"/>
+        <source>Download failed: %1.</source>
+        <translation>Загрузка не удалась: %1.</translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="417"/>
+        <source>Links</source>
+        <translation>Ссылки</translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="429"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="488"/>
+        <source>Update Links Form Internet</source>
+        <translation>Обновить ссылки через Интернет</translation>
+    </message>
+    <message>
+        <location filename="About_Window.cpp" line="48"/>
+        <source>&lt;b&gt;Developers:&lt;/b&gt;
+&lt;br&gt;Andrey Rijov (aka RDron) - Author
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Contributors:&lt;/b&gt;
+&lt;br&gt;Max Brazhnikov - FreeBSD Port
+&lt;br&gt;Boris Savelev - ALTLinux Package
+&lt;br&gt;Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help
+&lt;br&gt;Ignace Mouzannar - Debian Package
+&lt;br&gt;Michael Brandstetter - Improvement Scripts
+&lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
+&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation and Correcting English translation
+&lt;br&gt;Guillem Rieu - Patch for Network Redirections
+&lt;br&gt;Karol Krenski - IP Address RegExp Fix
+&lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
+&lt;br&gt;Timothy Redaelli - Patch for CMake
+&lt;br&gt;Pavel Serebryakov (aka Kronoph) - Correcting English translation
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
+&lt;br&gt;Sergey Sinitsa (aka sin)
+&lt;br&gt;Grigory Pulyaev (aka Rodegast)
+&lt;br&gt;Alexander Saifulin (aka Ne01eX)
+&lt;br&gt;Mihail Parshin (aka Skeeper)
+&lt;br&gt;Garret Acott (aka gacott)
+&lt;br&gt;Damir Vafin (aka Denver-22)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
+&lt;br&gt;Tim Jansen (tim@tjansen.de)
+&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
+&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Icons:&lt;/b&gt;
+&lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
+&lt;br&gt;Oxygen - Icon Theme From Oxygen Team
+</source>
+        <oldsource>&lt;b&gt;Developers:&lt;/b&gt;
+&lt;br&gt;Andrey Rijov (aka RDron) - Author
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Contributors:&lt;/b&gt;
+&lt;br&gt;Max Brazhnikov - FreeBSD Port
+&lt;br&gt;Boris Savelev - ALTLinux Package
+&lt;br&gt;Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help
+&lt;br&gt;Ignace Mouzannar - Debian Package
+&lt;br&gt;Michael Brandstetter - Improvement Scripts
+&lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
+&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation
+&lt;br&gt;Guillem Rieu - Patch for Network Redirections
+&lt;br&gt;Karol Krenski - IP Address RegExp Fix
+&lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
+&lt;br&gt;Timothy Redaelli - Patch for CMake
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
+&lt;br&gt;Sergey Sinitsa (aka sin)
+&lt;br&gt;Grigory Pulyaev (aka Rodegast)
+&lt;br&gt;Alexander Saifulin (aka Ne01eX)
+&lt;br&gt;Mihail Parshin (aka Skeeper)
+&lt;br&gt;Garret Acott (aka gacott)
+&lt;br&gt;Damir Vafin (aka Denver-22)
+&lt;br&gt;Pavel Serebryakov (aka Kronoph)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
+&lt;br&gt;Tim Jansen (tim@tjansen.de)
+&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
+&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Icons:&lt;/b&gt;
+&lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
+&lt;br&gt;Oxygen - Icon Theme From Oxygen Team
+</oldsource>
+        <translation>&lt;b&gt;Разработчики:&lt;/b&gt;
+&lt;br&gt;Андрей Рыжов (aka RDron) - Автор
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Помощники:&lt;/b&gt;
+&lt;br&gt;Максим Бражников - Порт для FreeBSD
+&lt;br&gt;Борис Савельев - Пакет для ALTLinux
+&lt;br&gt;Денис Смирнов (aka reMiND) - Пакет для Arch Linux и другая помощь
+&lt;br&gt;Ignace Mouzannar - Пакет для Debian
+&lt;br&gt;Michael Brandstetter - Перевод на немецкий и улучшение скриптов
+&lt;br&gt;Robert Warnke - Немецкий перевод документации по AQEMU
+&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - Перевод интерфейса на немецкий и исправления английского перевода
+&lt;br&gt;Guillem Rieu - Исправление для сетевых перенаправлений
+&lt;br&gt;Karol Krenski - Исправление RegExp для IP адреса
+&lt;br&gt;Александр Романов (aka romale) - Тестирование, новые идеи и другая помощь
+&lt;br&gt;Timothy Redaelli - Исправление для CMake скрипта
+&lt;br&gt;Павел Серебряков (aka Kronoph) - Исправления английского перевода
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Отдельное спасибо:&lt;/b&gt;
+&lt;br&gt;Сергей Синица (aka sin)
+&lt;br&gt;Григорий Пуляев (aka Rodegast)
+&lt;br&gt;Александр Сайфулин (aka Ne01eX)
+&lt;br&gt;Михаил Паршин (aka Skeeper)
+&lt;br&gt;Garret Acott (aka gacott)
+&lt;br&gt;Дамир Вафин (aka Denver-22)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Спасибо всей группе www.nclug.ru за тестирование и предложения по улучшению.&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU использует код из QtEMU и Krdc спасибо всем разработчикам этих программ:&lt;/b&gt;
+&lt;br&gt;Tim Jansen (tim@tjansen.de)
+&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
+&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
+&lt;br&gt;&lt;br&gt;&lt;b&gt;Значки:&lt;/b&gt;
+&lt;br&gt;Crystal SVG - Тема значков от студии дизайна Everaldo.com
+&lt;br&gt;Oxygen - Тема значков от команды Oxygen</translation>
+    </message>
+    <message utf8="true">
+        <location filename="About_Window.ui" line="133"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;b&gt;
+&lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
+&lt;p&gt;Version: 0.8.1 of ХХ.10.2010&lt;/p&gt;
+&lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
+&lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
+&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Web Site: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Supported Emulators:&lt;br&gt;QEMU 0.9.0-0.13 and KVM 60-88-0.13&lt;/p&gt;
+&lt;/b&gt;
+&lt;/body&gt;
+&lt;/html&gt;</source>
+        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;b&gt;
+&lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
+&lt;p&gt;Version: 0.8.1 of ХХ.09.2010&lt;/p&gt;
+&lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
+&lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
+&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Web Site: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Supported Emulators:&lt;br&gt;QEMU 0.9.0-0.13 and KVM 60-88-0.13&lt;/p&gt;
+&lt;/b&gt;
+&lt;/body&gt;
+&lt;/html&gt;</oldsource>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;b&gt;
+&lt;p&gt;AQEMU это графический интерфейс для QEMU и KVM&lt;/p
+&lt;p&gt;Версия: 0.8.1 от XX.12.2010&lt;/p&gt;
+&lt;p&gt;Лицензия: General Public License Версия 2&lt;/p&gt;
+&lt;p&gt;Автор: Андрей Рыжов (a.k.a. RDron)&lt;/p&gt;
+&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Веб сайт: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Поддерживаемые эмуляторы:&lt;br&gt;QEMU 0.9.0-0.13 и KVM 60-88-0.13&lt;/p&gt;
+&lt;/b&gt;
+&lt;/body&gt;
+&lt;/html&gt;</translation>
     </message>
 </context>
 <context>
@@ -495,7 +484,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="Add_New_Device_Window.cpp" line="343"/>
         <source>Select your device</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите ваше устройство</translation>
     </message>
     <message>
         <location filename="Add_New_Device_Window.cpp" line="345"/>
@@ -510,27 +499,27 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="Add_New_Device_Window.cpp" line="418"/>
         <source>File does not exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не найден!</translation>
     </message>
     <message>
         <location filename="Add_New_Device_Window.cpp" line="459"/>
         <source>&quot;Cyls&quot; value is incorrect!</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Cyls&quot; неправильное значение!</translation>
     </message>
     <message>
         <location filename="Add_New_Device_Window.cpp" line="466"/>
         <source>&quot;Heads&quot; value is incorrect!</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Heads&quot; неправильное значение!</translation>
     </message>
     <message>
         <location filename="Add_New_Device_Window.cpp" line="473"/>
         <source>&quot;Secs&quot; value is incorrect!</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Secs&quot; неправильное значение!</translation>
     </message>
     <message>
         <location filename="Add_New_Device_Window.cpp" line="480"/>
         <source>&quot;Trans&quot; value is incorrect!</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Trans&quot; неправильное значение!</translation>
     </message>
     <message>
         <source>File Not Exists!</source>
@@ -849,7 +838,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Add_Port_Window.ui" line="32"/>
         <source>Redirect virtual port to:</source>
         <oldsource>Select redirect virtual port to:</oldsource>
-        <translation type="unfinished">Выберите перенаправление виртуального порта:</translation>
+        <translation>Перенаправить виртуальний порт в:</translation>
     </message>
     <message>
         <location filename="Add_Port_Window.ui" line="55"/>
@@ -1000,6 +989,11 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>ID продукта:</translation>
     </message>
     <message>
+        <location filename="Add_USB_Port_Window.cpp" line="189"/>
+        <source>Bus.Address: </source>
+        <translation></translation>
+    </message>
+    <message>
         <location filename="Add_USB_Port_Window.ui" line="14"/>
         <source>Adding USB </source>
         <translation>Добавление USB </translation>
@@ -1042,7 +1036,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Add_USB_Port_Window.ui" line="169"/>
         <source>Connecting USB host device</source>
         <oldsource>Connecting host USB device</oldsource>
-        <translation type="unfinished">Подключить USB устройство хоста</translation>
+        <translation>Подключить USB устройство хоста</translation>
     </message>
     <message>
         <location filename="Add_USB_Port_Window.ui" line="248"/>
@@ -1058,12 +1052,17 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Add_USB_Port_Window.ui" line="292"/>
         <source>Not used in running VM</source>
         <oldsource>Only not used in running VM</oldsource>
-        <translation type="unfinished">Только не занятые в работающих ВМ</translation>
+        <translation>Только не занятые в работающих ВМ</translation>
     </message>
     <message>
         <location filename="Add_USB_Port_Window.ui" line="325"/>
         <source>Selected device</source>
         <translation>Выбранное устройство</translation>
+    </message>
+    <message>
+        <location filename="Add_USB_Port_Window.ui" line="386"/>
+        <source>Bus.Address:</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="Add_USB_Port_Window.ui" line="446"/>
@@ -1347,82 +1346,82 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="512"/>
         <source>Write log to</source>
-        <translation type="unfinished"></translation>
+        <translation>Писать журнал в</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="556"/>
         <source>Print to STDOUT</source>
-        <translation type="unfinished"></translation>
+        <translation>Писать в STDOUT</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="823"/>
         <source>Valid MAC Address (Especial For Each Network Card model)</source>
-        <translation type="unfinished"></translation>
+        <translation>Правильный MAC адрес (Свой для каждой модели сетевой карты)</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="856"/>
         <source>Don&apos;t use default audio driver</source>
-        <translation type="unfinished"></translation>
+        <translation>Не использовать аудио драйвер по умолчанию</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="963"/>
         <source>Start/Stop QEMU/KVM emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Загрузка/остановка QEMU/KVM</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="984"/>
         <source>Execute Before Starting QEMU/KVM:</source>
-        <translation type="unfinished"></translation>
+        <translation>Выполнять до старта QEMU/KVM:</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1008"/>
         <source>Execute After Stoping QEMU/KVM:</source>
-        <translation type="unfinished"></translation>
+        <translation>Выполнять после остановки QEMU/KVM:</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1167"/>
         <source>QEMU/KVM Monitor Connection Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Тип подключения QEMU/KVM Monitor</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1188"/>
         <source>stdio (Does not work with Windows version of QEMU)</source>
-        <translation type="unfinished"></translation>
+        <translation>stdio (Не работает в Windows версии QEMU)</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1200"/>
         <source>TCP Socket</source>
-        <translation type="unfinished">TCP сокет</translation>
+        <translation>TCP сокет</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1226"/>
         <source>Hostname</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1237"/>
         <source>localhost</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1242"/>
         <source>127.0.0.1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1269"/>
         <source>First port</source>
-        <translation type="unfinished"></translation>
+        <translation>Начальный порт</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1601"/>
         <source>Network Redirections</source>
-        <translation type="unfinished"></translation>
+        <translation>Сетевые перенаправления</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1671"/>
         <source>Serial Ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Последовательный порт</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1685"/>
@@ -1432,7 +1431,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1692"/>
         <source>Parallel Ports</source>
-        <translation type="unfinished"></translation>
+        <translation>Параллельный порт</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1699"/>
@@ -1472,12 +1471,12 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1790"/>
         <source>Curses</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1804"/>
         <source>Show cursor</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображать курсор</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1818"/>
@@ -1487,7 +1486,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1839"/>
         <source>Start Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Начальная дата</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1853"/>
@@ -1673,7 +1672,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Advanced_Settings_Window.ui" line="111"/>
         <source>File Format:</source>
         <oldsource>Save Format:</oldsource>
-        <translation type="unfinished">Формат для сохранения:</translation>
+        <translation>Формат файла:</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="121"/>
@@ -1684,7 +1683,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Advanced_Settings_Window.ui" line="128"/>
         <source>JPEG</source>
         <oldsource>Jpeg</oldsource>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="135"/>
@@ -1700,7 +1699,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <location filename="Advanced_Settings_Window.ui" line="227"/>
         <source>Shared screenshot folder</source>
         <oldsource>Shared Folder to Save All Screenshots</oldsource>
-        <translation type="unfinished">Общий каталог для сохранения всех скриншотов</translation>
+        <translation>Общий каталог для скриншотов</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="237"/>
@@ -1774,7 +1773,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="318"/>
         <source>Find All Emulators</source>
-        <translation>Найти все эмуляторы</translation>
+        <translation>Поиск эмуляторов</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="584"/>
@@ -1795,7 +1794,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="222"/>
         <source>Shared screenshot folder doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Общий каталог для скриншотов не найден!</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="490"/>
@@ -1807,22 +1806,22 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="570"/>
         <source>Cannot find any emulators installed on your OS! Please add them manually!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу найти эмуляторы в этой системе! Вы должны добавить их самостоятельно!</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="584"/>
         <source>Enter Device Name. Example: /dev/cdrom</source>
-        <translation type="unfinished"></translation>
+        <translation>Введите имя устройства. Например: /dev/cdrom</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="643"/>
         <source>Default QEMU Emulator isn&apos;t selected!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не выбран QEMU эмулятор используемый по умолчанию!</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="649"/>
         <source>Default KVM Emulator isn&apos;t selected!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не выбран KVM эмулятор используемый по умолчанию!</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="666"/>
@@ -1837,7 +1836,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="698"/>
         <source>Choose screenshot folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите каталог для скриншотов</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="448"/>
@@ -1932,7 +1931,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Boot_Device_Window.ui" line="53"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Boot_Device_Window.ui" line="108"/>
@@ -2036,7 +2035,7 @@ Cluster Size: %3</source>
     <message>
         <location filename="Convert_HDD_Image_Window.cpp" line="179"/>
         <source>Please Enter Correct HDD Image filename!</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста введите корректное имя для вашего образа!</translation>
     </message>
     <message>
         <location filename="Convert_HDD_Image_Window.cpp" line="185"/>
@@ -2046,7 +2045,7 @@ Cluster Size: %3</source>
     <message>
         <location filename="Convert_HDD_Image_Window.cpp" line="231"/>
         <source>Conversion completed sucessfuly!</source>
-        <translation type="unfinished"></translation>
+        <translation>Конвертация завершена успешно!</translation>
     </message>
     <message>
         <source>Conversion complete sucess!</source>
@@ -2229,17 +2228,17 @@ Cluster Size: 0</source>
     <message>
         <location filename="Create_HDD_Image_Window.cpp" line="134"/>
         <source>Invalid image size!</source>
-        <translation type="unfinished"></translation>
+        <translation>Объём образа некорректен!</translation>
     </message>
     <message>
         <location filename="Create_HDD_Image_Window.cpp" line="162"/>
         <source>Base Image File doesn&apos;t Exists!</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл базового образа не найден!</translation>
     </message>
     <message>
         <location filename="Create_HDD_Image_Window.cpp" line="183"/>
         <source>Image was Not Created!</source>
-        <translation type="unfinished"></translation>
+        <translation>Образ не создан!</translation>
     </message>
     <message>
         <location filename="Create_HDD_Image_Window.cpp" line="190"/>
@@ -2442,7 +2441,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Create_Template_Window.cpp" line="85"/>
         <source>VM file doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не найден!</translation>
     </message>
     <message>
         <location filename="Create_Template_Window.cpp" line="92"/>
@@ -2458,7 +2457,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Create_Template_Window.cpp" line="177"/>
         <source>Your template name is already used! Do you want replace previous template?</source>
-        <translation type="unfinished"></translation>
+        <translation>Такое имя для шаблона уже используется! Переписать предыдущий шаблон?</translation>
     </message>
     <message>
         <location filename="Create_Template_Window.cpp" line="199"/>
@@ -2525,22 +2524,22 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="128"/>
         <source>HDA (Primary Master)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="139"/>
         <source>HDB (Primary Slave)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="150"/>
         <source>HDC (Secondary Master)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="161"/>
         <source>HDD (Secondary Slave)</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="172"/>
@@ -2606,7 +2605,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <location filename="Delete_VM_Files_Window.cpp" line="347"/>
         <source>An error occurred while deleting files</source>
         <oldsource>During removal errors occurred</oldsource>
-        <translation type="unfinished">В процессе удаления произошли ошибки</translation>
+        <translation>В процессе удаления произошли ошибки</translation>
     </message>
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="348"/>
@@ -2657,7 +2656,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Delete_VM_Files_Window.ui" line="156"/>
         <source>&amp;Delete selected</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Удалить выбранное</translation>
     </message>
     <message>
         <source>&amp;Delete all selected</source>
@@ -2928,7 +2927,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <location filename="Device_Manager_Widget.cpp" line="248"/>
         <location filename="Device_Manager_Widget.cpp" line="253"/>
         <source>KB</source>
-        <translation type="unfinished">КБ</translation>
+        <translation>КБ</translation>
     </message>
     <message>
         <location filename="Device_Manager_Widget.cpp" line="259"/>
@@ -2936,7 +2935,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <location filename="Device_Manager_Widget.cpp" line="298"/>
         <location filename="Device_Manager_Widget.cpp" line="304"/>
         <source>MB</source>
-        <translation type="unfinished">МБ</translation>
+        <translation>МБ</translation>
     </message>
     <message>
         <location filename="Device_Manager_Widget.cpp" line="329"/>
@@ -2973,7 +2972,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <location filename="Device_Manager_Widget.cpp" line="594"/>
         <source>Maximum Floppy Disk Count is 2</source>
         <oldsource>Maximum Floppy&apos;s Disk Count is 2</oldsource>
-        <translation type="unfinished">Максимальное количество Floppy дисков 2</translation>
+        <translation>Максимальное количество Floppy дисков 2</translation>
     </message>
     <message>
         <location filename="Device_Manager_Widget.cpp" line="625"/>
@@ -2984,7 +2983,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <location filename="Device_Manager_Widget.cpp" line="710"/>
         <source>Maximum Hard Disk Count is 4 excluding CD-ROM</source>
         <oldsource>Maximum Hard Disk Count is 4 Without CD-ROM</oldsource>
-        <translation type="unfinished">Максимальное количество жёстких дисков 4 (без CD-ROM)</translation>
+        <translation>Максимальное количество жёстких дисков 4 (без CD-ROM)</translation>
     </message>
     <message>
         <location filename="Device_Manager_Widget.cpp" line="1057"/>
@@ -3015,7 +3014,7 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Device_Manager_Widget.ui" line="353"/>
         <source>Device List:</source>
-        <translation type="unfinished"></translation>
+        <translation>Список устройств:</translation>
     </message>
     <message>
         <location filename="Device_Manager_Widget.ui" line="510"/>
@@ -3426,23 +3425,23 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Emulator_Control_Window.cpp" line="119"/>
         <source>Selected VM is running now. Shutdown anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Эта ВМ работает! Всё равно выключить?</translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="349"/>
         <location filename="Emulator_Control_Window.cpp" line="361"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены?</translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="350"/>
         <source>Are you sure to shutdown VM &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Выключить ВМ &quot;%1&quot;?</translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="362"/>
         <source>Are you sure to reboot VM &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>Перезагрузить ВМ &quot;%1&quot;?</translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="592"/>
@@ -3478,13 +3477,14 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Emulator_Control_Window.cpp" line="736"/>
         <source>Enter your key combinations such as ctrl-alt-del or alt-f2</source>
-        <translation type="unfinished"></translation>
+        <translation>Вводите ваши клавиши так ctrl-alt-delete или alt-f2</translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="820"/>
         <source>To enable window mode press Ctrl-Alt-F
 Do you want to show this message again?</source>
-        <translation type="unfinished"></translation>
+        <translation>Для перехода в оконный режим нажмите Ctrl-Alt-F
+Показывать это сообщение снова?</translation>
     </message>
     <message>
         <location filename="Emulator_Control_Window.cpp" line="877"/>
@@ -3606,7 +3606,7 @@ Show this message again?</source>
         <location filename="Emulator_Control_Window.ui" line="623"/>
         <location filename="Emulator_Control_Window.ui" line="628"/>
         <source>a</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -3661,17 +3661,17 @@ Show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="65"/>
         <source>Path doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь не существует!</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="117"/>
         <source>Enulator Name is Empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя эмулятора пустое!</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="123"/>
         <source>This emulator name is already used!</source>
-        <translation type="unfinished"></translation>
+        <translation>Это имя эмулятора уже используется!</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="185"/>
@@ -3696,7 +3696,7 @@ Show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="189"/>
         <source>QEMU 0.13.X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="196"/>
@@ -3721,7 +3721,7 @@ Show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="200"/>
         <source>KVM 0.13.X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.cpp" line="322"/>
@@ -3742,7 +3742,7 @@ Show this message again?</source>
         <location filename="Emulator_Options_Window.ui" line="25"/>
         <source>Name (Emulator identifier)</source>
         <oldsource>Name (This be identifier for it emulator):</oldsource>
-        <translation type="unfinished">Имя (Оно будет идентификатором для этого эмулятора):</translation>
+        <translation>Имя (Оно будет идентификатором для этого эмулятора)</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.ui" line="103"/>
@@ -3808,20 +3808,20 @@ Show this message again?</source>
         <location filename="Emulator_Options_Window.ui" line="394"/>
         <source>Use saved available emulator options (Recomended to choose it again after emulator updating)</source>
         <oldsource>Use saved emulator available options (Recomend refind after update emulator)</oldsource>
-        <translation type="unfinished">Использовать сохранённое описание возможностей эмулятора
+        <translation>Использовать сохранённое описание возможностей эмулятора
 (Рекомендуется после обновления эмулятора выполнить заново поиск)</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.ui" line="404"/>
         <source>Always check available emulator options while starting AQEMU (Slow)</source>
         <oldsource>Check available emulator options always start AQEMU (Slowly)</oldsource>
-        <translation type="unfinished">Проверять доступные возможности эмулятора при каждом запуске AQEMU (Медленно)</translation>
+        <translation>Проверять доступные возможности эмулятора при каждом запуске AQEMU (Медленно)</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.ui" line="411"/>
         <source>Always check emulator version while starting AQEMU</source>
         <oldsource>Check emulator version always start AQEMU</oldsource>
-        <translation type="unfinished">Проверять версию эмулятора при каждом запуске AQEMU</translation>
+        <translation>Проверять версию эмулятора при каждом запуске AQEMU</translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.ui" line="429"/>
@@ -3877,7 +3877,8 @@ Show this message again?</source>
 (For View Error Log Select VM-&gt;Show QEMU/KVM Error Log Window)</source>
         <oldsource>Do Not Show Forever
 (For View Error Log Select VM-&gt;Show QEMU/KVM Error Log Window)</oldsource>
-        <translation type="unfinished">Вообще не показывать (Для просмотра выберите ВМ -&gt;Показать окно ошибок QEMU/KVM)</translation>
+        <translation>Вообще не показывать
+(Для просмотра выберите ВМ -&gt;Показать окно ошибок QEMU/KVM)</translation>
     </message>
     <message>
         <location filename="Error_Log_Window.ui" line="130"/>
@@ -3927,22 +3928,22 @@ Show this message again?</source>
     <message>
         <location filename="First_Start_Wizard.cpp" line="59"/>
         <source>Are you sure? You can configure these options later in Settings windows.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены? Позже Вы сможете настроить это в окне настроек.</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="344"/>
         <source>QEMU Found in &quot;%1&quot;, version: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Найден QEMU в %1, версия: %2</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="450"/>
         <source>KVM Found in &quot;%1&quot;, version: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Найден KVM в %1, версия: %2</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="532"/>
         <source>Select QEMU emulator directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите каталог с QEMU эмулятором</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="641"/>
@@ -3952,17 +3953,17 @@ Show this message again?</source>
     <message>
         <location filename="First_Start_Wizard.cpp" line="706"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="706"/>
         <source>Emulator binary files not exists! Please click Back and set it manual.</source>
-        <translation type="unfinished"></translation>
+        <translation>Бинарные файлы эмулятора не найдены! Пожалуйста нажмите &quot;Назад&quot; и укажите путь вручную.</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="721"/>
         <source>Cannot find qemu-img.exe! You most set it path in: File-&gt;Advanced Settings-&gt;Advanced-&gt;qemu-img path</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу найти qemu-img.exe! Вы можете указать путь к файлу в Файл-Дополнительные настройки-Дополнительно-Путь к qemu-img</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="752"/>
@@ -3982,7 +3983,7 @@ Show this message again?</source>
     <message>
         <location filename="First_Start_Wizard.cpp" line="755"/>
         <source>Setup Emulator</source>
-        <translation type="unfinished"></translation>
+        <translation>Установка эмулятора</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="756"/>
@@ -4057,32 +4058,32 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     <message>
         <location filename="First_Start_Wizard.ui" line="469"/>
         <source>QEMU 0.9.0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.ui" line="474"/>
         <source>QEMU 0.9.1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.ui" line="479"/>
         <source>QEMU 0.10.X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.ui" line="484"/>
         <source>QEMU 0.11.X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.ui" line="489"/>
         <source>QEMU 0.12.X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.ui" line="494"/>
         <source>QEMU 0.13.X</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>You sure? You Can Configure These Options In The Settings Window.</source>
@@ -4113,22 +4114,24 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <source>Welcome to AQEMU settings wizard!
 This wizard will help you to choose options AQEMU needed to work correctly.
 Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button to go back to previous page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Добро пожаловать в мастер настройки AQEMU!
+Этот мастер поможет вам установить параметры, необходимые для правильной работы AQEMU.
+Нажмите кнопку Далее, чтобы перейти к следующей странице мастера, или кнопку Назад для возврата на предыдущую страницу.</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="767"/>
         <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will be displayed in virtual machine as icons, like in file manager window.</source>
-        <translation type="unfinished"></translation>
+        <translation>Если включён режим &quot;менеджер устройств&quot;, то устройства хранения данных (Floppy, CD/DVD, HDD) будут отображаться в виртуальной машине в виде значков, как в окне файлового менеджера.</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="769"/>
         <source>New experimental work mode is available in AQEMU. In this mode QEMU/KVM display will be showed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this feature you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
-        <translation type="unfinished"></translation>
+        <translation>В AQEMU доступен новый экспериментальный режим работы, при котором экран QEMU/KVM отображаться в окне AQEMU. Пока это не совсем стабильная и завершённая функция, поэтому при её работе возможны проблемы. Для её включения отметьте &quot;Встроить VNC дисплей в главное окно&quot;.</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="771"/>
         <source>For correct working AQEMU must know your emulators locations and versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you should configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
-        <translation type="unfinished"></translation>
+        <translation>Для правильной работы AQEMU должна знать расположение установленных в вашей системе эмуляторов и их версии. Для поиска нажмите &quot;Поиск&quot;. Если автоматический поиск не сможет определить какие эмуляторы установлены, то вам придётся настроить AQEMU в ручную позже. Для этого необходимо открыть &quot;Файл-&gt;Дополнительные настройки&quot;.</translation>
     </message>
     <message>
         <location filename="First_Start_Wizard.cpp" line="774"/>
@@ -4191,32 +4194,32 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>2048 МБ</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6492"/>
-        <location filename="Main_Window.cpp" line="6522"/>
-        <location filename="Main_Window.cpp" line="6532"/>
-        <location filename="Main_Window.cpp" line="6542"/>
-        <location filename="Main_Window.cpp" line="6552"/>
-        <location filename="Main_Window.cpp" line="6562"/>
-        <location filename="Main_Window.cpp" line="6572"/>
+        <location filename="Main_Window.cpp" line="6497"/>
+        <location filename="Main_Window.cpp" line="6527"/>
+        <location filename="Main_Window.cpp" line="6537"/>
+        <location filename="Main_Window.cpp" line="6547"/>
+        <location filename="Main_Window.cpp" line="6557"/>
+        <location filename="Main_Window.cpp" line="6567"/>
+        <location filename="Main_Window.cpp" line="6577"/>
         <source>All Files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5346"/>
-        <location filename="Main_Window.cpp" line="5411"/>
+        <location filename="Main_Window.cpp" line="5349"/>
+        <location filename="Main_Window.cpp" line="5414"/>
         <source>Open Floppy Image File</source>
         <translation>Открыть файл образа Floppy</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5476"/>
+        <location filename="Main_Window.cpp" line="5479"/>
         <source>Open CD\DVD-ROM Image File</source>
         <translation>Открыть файл образа CD\DVD-ROM</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5541"/>
-        <location filename="Main_Window.cpp" line="5625"/>
-        <location filename="Main_Window.cpp" line="5710"/>
-        <location filename="Main_Window.cpp" line="5795"/>
+        <location filename="Main_Window.cpp" line="5544"/>
+        <location filename="Main_Window.cpp" line="5628"/>
+        <location filename="Main_Window.cpp" line="5713"/>
+        <location filename="Main_Window.cpp" line="5798"/>
         <source>Open HDD Image File</source>
         <translation>Открыть файл образа HDD</translation>
     </message>
@@ -4304,7 +4307,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <location filename="Main_Window.cpp" line="2567"/>
         <location filename="Main_Window.cpp" line="2589"/>
         <location filename="Main_Window.cpp" line="2645"/>
-        <location filename="Main_Window.cpp" line="6015"/>
+        <location filename="Main_Window.cpp" line="6018"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
@@ -4747,7 +4750,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>Конвертировать образ HDD</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6475"/>
+        <location filename="Main_Window.cpp" line="6480"/>
         <source>Select SMB Directory</source>
         <translation>Выберите SMB папку</translation>
     </message>
@@ -4797,7 +4800,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation>&amp;SMB директория:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6402"/>
+        <location filename="Main_Window.cpp" line="6405"/>
         <source>Network Cards</source>
         <translation>Сетевые карты</translation>
     </message>
@@ -4839,13 +4842,13 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <location filename="Main_Window.cpp" line="4381"/>
         <location filename="Main_Window.cpp" line="4510"/>
         <location filename="Main_Window.cpp" line="5170"/>
-        <location filename="Main_Window.cpp" line="6280"/>
-        <location filename="Main_Window.cpp" line="6355"/>
+        <location filename="Main_Window.cpp" line="6283"/>
+        <location filename="Main_Window.cpp" line="6358"/>
         <source>Error!</source>
         <translation>Ошибка!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6355"/>
+        <location filename="Main_Window.cpp" line="6358"/>
         <source>Cannot Save This VM to File!</source>
         <translation>Невозможно сохранить эту ВМ в файл!</translation>
     </message>
@@ -4859,7 +4862,7 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <location filename="Main_Window.cpp" line="3764"/>
         <location filename="Main_Window.cpp" line="4762"/>
         <location filename="Main_Window.cpp" line="4823"/>
-        <location filename="Main_Window.cpp" line="6436"/>
+        <location filename="Main_Window.cpp" line="6440"/>
         <source>Warning!</source>
         <translation>Внимание!</translation>
     </message>
@@ -4976,8 +4979,9 @@ Terminate All Running VM and Close AQEMU?</source>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="1503"/>
-        <source>Memory size &lt; 1! Using efault value: 256 MB</source>
-        <translation type="unfinished"></translation>
+        <source>Memory size &lt; 1! Using default value: 256 MB</source>
+        <oldsource>Memory size &lt; 1! Using efault value: 256 MB</oldsource>
+        <translation>Объём памяти &lt; 1! Используется значение по умолчанию: 256Мб</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2111"/>
@@ -5074,68 +5078,68 @@ Terminate All Running VM and Close AQEMU?</source>
     <message>
         <location filename="Main_Window.cpp" line="2730"/>
         <source>VNC Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>VNC порт:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2743"/>
         <source>SPICE Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>SPICE порт:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2921"/>
         <source>RTC TD Hack:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2945"/>
         <source>No Shutdown:</source>
-        <translation type="unfinished"></translation>
+        <translation>Не выключать:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3006"/>
         <source>Start Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Начальная дата:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3067"/>
         <source>Curses:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3079"/>
         <source>Show Cursor:</source>
-        <translation type="unfinished"></translation>
+        <translation>Отображать курсор:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3092"/>
         <source>Initial Graphical Mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Начальный графический режим:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3723"/>
         <source>Current VM was changed. Discard all changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>ВМ была изменена. Сбросить изменения?</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="3764"/>
         <source>Current VM was changed. Save all changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>ВМ была изменена. Сохранить изменения?</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="4271"/>
         <source>%1 Image &quot;%2&quot; doesn&apos;t Exist! Continue Without this Image?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 образ &quot;%2&quot; не найден! Продолжить без него?</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="4511"/>
         <source>Your New VM Name is Empty! VM isn&apos;t Created!</source>
-        <translation type="unfinished"></translation>
+        <translation>Твоё имя для новой ВМ пустое! ВМ не создана!</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="4859"/>
         <location filename="Main_Window.cpp" line="4898"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы уверены?</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="5054"/>
@@ -5153,17 +5157,17 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation>ROM файл (для EtherBoot)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6520"/>
+        <location filename="Main_Window.cpp" line="6525"/>
         <source>Select Kernel Image File</source>
         <translation>Выберите файл образа ядра</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6530"/>
+        <location filename="Main_Window.cpp" line="6535"/>
         <source>Select InitRD File</source>
         <translation>Выберите файл InitRD</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6540"/>
+        <location filename="Main_Window.cpp" line="6545"/>
         <source>Select ROM File</source>
         <translation>Выберите ROM файл</translation>
     </message>
@@ -5181,7 +5185,7 @@ Terminate All Running VM and Close AQEMU?</source>
         <location filename="Main_Window.ui" line="1259"/>
         <source>Set real time clock to local time. Default=utc</source>
         <oldsource>Set the real time clock to local time. Default=utc</oldsource>
-        <translation type="unfinished">Переводит часы ВМ на локальное время. По умолчанию=utc</translation>
+        <translation>Переводит часы ВМ на локальное время. По умолчанию=utc</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="5118"/>
@@ -5445,7 +5449,7 @@ Terminate All Running VM and Close AQEMU?</source>
         <location filename="Main_Window.ui" line="3159"/>
         <source>Use Ctrl-Alt-Shift to Grab Mouse (Default is Ctrl-Alt)</source>
         <oldsource>Use Ctrl-Alt-Shift to Grab Mouse (Default Ctrl-Alt)</oldsource>
-        <translation type="unfinished">Использовать Ctrl-Alt-Shift для граба мыши (По умолчанию Ctrl-Alt)</translation>
+        <translation>Использовать Ctrl-Alt-Shift для граба мыши (По умолчанию Ctrl-Alt)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3194"/>
@@ -5473,17 +5477,17 @@ Terminate All Running VM and Close AQEMU?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6550"/>
+        <location filename="Main_Window.cpp" line="6555"/>
         <source>Select On-Board Flash Image</source>
         <translation>Выберите образ On-Board Flash</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6560"/>
+        <location filename="Main_Window.cpp" line="6565"/>
         <source>Select SecureDigital Card Image</source>
         <translation>Выберите образ SecureDigital карты</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6570"/>
+        <location filename="Main_Window.cpp" line="6575"/>
         <source>Select Parallel Flash Image</source>
         <translation>Выберите образ Parallel Flash</translation>
     </message>
@@ -5561,7 +5565,7 @@ Terminate All Running VM and Close AQEMU?</source>
     <message>
         <location filename="Main_Window.cpp" line="1979"/>
         <source>Machine Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя машины:</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="2519"/>
@@ -5668,13 +5672,13 @@ Check Permissions!</source>
 Проверьте права доступа!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5348"/>
-        <location filename="Main_Window.cpp" line="5413"/>
+        <location filename="Main_Window.cpp" line="5351"/>
+        <location filename="Main_Window.cpp" line="5416"/>
         <source>All Files (*);;Images Files (*.img *.ima)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.ima)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5478"/>
+        <location filename="Main_Window.cpp" line="5481"/>
         <source>All Files (*);;Images Files (*.iso)</source>
         <translation>Все файлы (*);;Файлы образов (*.iso)</translation>
     </message>
@@ -5683,7 +5687,7 @@ Check Permissions!</source>
         <location filename="Main_Window.cpp" line="4924"/>
         <location filename="Main_Window.cpp" line="5078"/>
         <location filename="Main_Window.cpp" line="5087"/>
-        <location filename="Main_Window.cpp" line="6296"/>
+        <location filename="Main_Window.cpp" line="6299"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
@@ -5693,24 +5697,26 @@ Check Permissions!</source>
         <translation>ВМ с этим именем уже существует!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6437"/>
+        <location filename="Main_Window.cpp" line="6441"/>
         <source>To Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
 Press &quot;Ignore&quot; button for hide this message in future.
 Add This Record?</source>
-        <translation type="unfinished"></translation>
+        <translation>Для создания сокета с номером порта &lt; 1024 в Unix Вам нужно запустить AQEMU с правами root!
+Нажмите &quot;Игнорировать&quot; чтобы скрыть это предупреждение в будущем.
+Добавить эту запись?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6490"/>
+        <location filename="Main_Window.cpp" line="6495"/>
         <source>UNIX Domain Socket Path</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6500"/>
+        <location filename="Main_Window.cpp" line="6505"/>
         <source>Select x509 Certificate Folder</source>
         <translation>Выберите каталог сертификатов x509</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6510"/>
+        <location filename="Main_Window.cpp" line="6515"/>
         <source>Select x509 Verify Certificate Folder</source>
         <translation>Выберите каталог сертификатов x509 для верификации</translation>
     </message>
@@ -5792,7 +5798,7 @@ Add This Record?</source>
         <location filename="Main_Window.ui" line="3823"/>
         <source>Use Password (You must set a password when you starting the VM)</source>
         <oldsource>Use Password (You must set a password when you start the VM)</oldsource>
-        <translation type="unfinished">Установить пароль (Вы должны будете ввести пароль при запуске ВМ)</translation>
+        <translation>Установить пароль (Вы должны будете ввести пароль при запуске ВМ)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="4671"/>
@@ -5849,7 +5855,7 @@ Add This Record?</source>
         <location filename="Main_Window.ui" line="3051"/>
         <source>Check Floppy Disk boot signature in VM BIOS</source>
         <oldsource>Check Boot Signature For Floppy Disks in VM BIOS</oldsource>
-        <translation type="unfinished">BIOS ВМ будет проверять загрузочную сигнатуру на Floppy дисках</translation>
+        <translation>BIOS ВМ будет проверять загрузочную сигнатуру на Floppy дисках</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3054"/>
@@ -5860,7 +5866,7 @@ Add This Record?</source>
         <location filename="Main_Window.ui" line="3010"/>
         <source>Fix Windows 2000 install Bug</source>
         <oldsource>Fix Installation Windows 2000 Bug</oldsource>
-        <translation type="unfinished">Windows 2000 хак (Обходит ошибку инсталляции Windows 2000)</translation>
+        <translation>Windows 2000 хак (Обходит ошибку инсталляции Windows 2000)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3180"/>
@@ -5886,7 +5892,7 @@ Add This Record?</source>
         <location filename="Main_Window.ui" line="3530"/>
         <source>Nesting (Support for Running a VM Inside other VM (AMD Only)</source>
         <oldsource>Nesting (Support for Running a VM Inside the VM (AMD Only)</oldsource>
-        <translation type="unfinished">Nesting (Поддержка запуска ВМ внутри ВМ (Только для AMD)</translation>
+        <translation>Nesting (Поддержка запуска ВМ внутри ВМ (Только для AMD)</translation>
     </message>
     <message>
         <source>Disabled (Disable the usage of the QEMU Accelerator module KQEMU)</source>
@@ -5919,7 +5925,7 @@ Add This Record?</source>
 To Disable This Function in Current VM choose &quot;Don&apos;t Use Embedded VNC Display&quot;</source>
         <oldsource>Warning: Globaly Activated Embedded Display in Emulator Control Window.
 For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&quot;</oldsource>
-        <translation type="unfinished">Внимание:
+        <translation>Внимание:
 Поддержка встроенного дисплея в Emulator Control включена глобально.
 Для того чтобы отключить эту функцию для текущей ВМ отметьте:
 &quot;Не использовать встроенный VNC дисплей&quot;</translation>
@@ -5928,7 +5934,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
         <location filename="Main_Window.ui" line="3960"/>
         <source>Don&apos;t use embedded VNC Display</source>
         <oldsource>No Use Embedded VNC Display</oldsource>
-        <translation type="unfinished">Не использовать встроенный VNC дисплей</translation>
+        <translation>Не использовать встроенный VNC дисплей</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3013"/>
@@ -5949,7 +5955,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
         <location filename="Main_Window.ui" line="4698"/>
         <source>Start &amp;First Run Wizard</source>
         <oldsource>Run &amp;First Run Wizard</oldsource>
-        <translation type="unfinished">Запустить &amp;мастер первого запуска</translation>
+        <translation>Запустить &amp;мастер первого запуска</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="1838"/>
@@ -6007,12 +6013,12 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
         <translation>Аргументы QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6009"/>
+        <location filename="Main_Window.cpp" line="6012"/>
         <source>QEMU</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6010"/>
+        <location filename="Main_Window.cpp" line="6013"/>
         <source>KVM</source>
         <translation></translation>
     </message>
@@ -6040,7 +6046,7 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
         <location filename="Main_Window.ui" line="3187"/>
         <source>Show Cursor (It Works Only in QEMU/KVM SDL Window)</source>
         <oldsource>Show Cursor (This Work Only in QEMU/KVM SDL Window)</oldsource>
-        <translation type="unfinished">Показывать курсор (Это работает только в окне QEMU/KVM с использованием SDL)</translation>
+        <translation>Показывать курсор (Это работает только в окне QEMU/KVM с использованием SDL)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3437"/>
@@ -6094,24 +6100,24 @@ The work of the VM is not possible!</source>
         <translation>Перезагрузить ВМ &quot;%1&quot;?</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5890"/>
+        <location filename="Main_Window.cpp" line="5893"/>
         <source>Image Format: </source>
         <translation>Формат образа: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5890"/>
+        <location filename="Main_Window.cpp" line="5893"/>
         <source>Allocated Disk Space: </source>
-        <translation>Размер на диске: </translation>
+        <translation>Занимает на диске: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5891"/>
+        <location filename="Main_Window.cpp" line="5894"/>
         <source>Virtual Size: </source>
-        <translation>Виртуальный объём: </translation>
+        <translation>Объём: </translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5891"/>
+        <location filename="Main_Window.cpp" line="5894"/>
         <source>Cluster Size: </source>
-        <translation>Размер кластера: </translation>
+        <translation>Кластер: </translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="1363"/>
@@ -6186,44 +6192,45 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.cpp" line="5087"/>
         <source>This Function Works Only On Running VM!</source>
-        <translation type="unfinished"></translation>
+        <translation>Эта функция работает только на включённой ВМ!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5239"/>
+        <location filename="Main_Window.cpp" line="5242"/>
         <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes are: MB, GB</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно преобразовать &quot;%1&quot; в суффикс объёма! Доступные варианты: MB, GB</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5245"/>
+        <location filename="Main_Window.cpp" line="5248"/>
         <source>Memory size &lt; 0! Valid size is 1 or more</source>
-        <translation type="unfinished"></translation>
+        <translation>Объём памяти &lt; 0! Допустимы значение от 1 и выше</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5254"/>
+        <location filename="Main_Window.cpp" line="5257"/>
         <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 To set this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ваш объём памяти %1 MB &gt; %2 MB — всей свободной памяти в системе!
+Для установки этого объёма активируйте: &quot;Убрать ограничение на максимальный объём памяти&quot;.</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5325"/>
+        <location filename="Main_Window.cpp" line="5328"/>
         <source>Free memory on this system is less than 32 MB!</source>
-        <translation type="unfinished"></translation>
+        <translation>Объём свободной памяти в системе меньше 32 Мб!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5543"/>
-        <location filename="Main_Window.cpp" line="5627"/>
-        <location filename="Main_Window.cpp" line="5712"/>
-        <location filename="Main_Window.cpp" line="5797"/>
+        <location filename="Main_Window.cpp" line="5546"/>
+        <location filename="Main_Window.cpp" line="5630"/>
+        <location filename="Main_Window.cpp" line="5715"/>
+        <location filename="Main_Window.cpp" line="5800"/>
         <source>All Files (*);;Images Files (*.img *.qcow *.qcow2 *.wmdk)</source>
         <translation>Все файлы (*);;Файлы образов (*.img *.qcow *.qcow2 *.wmdk)</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6280"/>
+        <location filename="Main_Window.cpp" line="6283"/>
         <source>CPU count value is not valid digit!</source>
-        <translation type="unfinished"></translation>
+        <translation>Количество процессоров не является корректной цифрой!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6400"/>
+        <location filename="Main_Window.cpp" line="6403"/>
         <source>Network Settings</source>
         <translation>Настройки сети</translation>
     </message>
@@ -6262,7 +6269,7 @@ To set this value, check &quot;Remove limitation on maximum amount of memory&quo
         <location filename="Main_Window.ui" line="2529"/>
         <source>Native</source>
         <oldsource>Nativ</oldsource>
-        <translation type="unfinished">Нативный</translation>
+        <translation>Нативный</translation>
     </message>
     <message>
         <location filename="Main_Window.cpp" line="4090"/>
@@ -6398,25 +6405,25 @@ To set this value, check &quot;Remove limitation on maximum amount of memory&quo
         <translation>Нет загрузочного устройства!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5212"/>
-        <location filename="Main_Window.cpp" line="5220"/>
-        <location filename="Main_Window.cpp" line="5229"/>
-        <location filename="Main_Window.cpp" line="5238"/>
-        <location filename="Main_Window.cpp" line="5245"/>
-        <location filename="Main_Window.cpp" line="5253"/>
-        <location filename="Main_Window.cpp" line="5280"/>
-        <location filename="Main_Window.cpp" line="5325"/>
+        <location filename="Main_Window.cpp" line="5215"/>
+        <location filename="Main_Window.cpp" line="5223"/>
+        <location filename="Main_Window.cpp" line="5232"/>
+        <location filename="Main_Window.cpp" line="5241"/>
+        <location filename="Main_Window.cpp" line="5248"/>
+        <location filename="Main_Window.cpp" line="5256"/>
+        <location filename="Main_Window.cpp" line="5283"/>
+        <location filename="Main_Window.cpp" line="5328"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5213"/>
-        <location filename="Main_Window.cpp" line="5221"/>
+        <location filename="Main_Window.cpp" line="5216"/>
+        <location filename="Main_Window.cpp" line="5224"/>
         <source>Cannot convert &quot;%1&quot; to memory size!</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в объём памяти!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5230"/>
+        <location filename="Main_Window.cpp" line="5233"/>
         <source>Cannot convert &quot;%1&quot; to integer!</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в число!</translation>
     </message>
@@ -6435,14 +6442,14 @@ For set it size, check &quot;Remove limitation on maximum amount of memory&quot;
 Для установки этого объёма активируйте: &quot;Убрать ограничение на максимальный объём памяти&quot;.</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5280"/>
+        <location filename="Main_Window.cpp" line="5283"/>
         <source>Current memory size more of all host memory!
 Use the maximum available size.</source>
         <translation>Текущий объём памяти больше чем вся свободная память в системе!
 Используйте максимально доступное значение.</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="5292"/>
+        <location filename="Main_Window.cpp" line="5295"/>
         <source>Free memory: %1 MB</source>
         <translation>Доступно памяти: %1 MB</translation>
     </message>
@@ -6455,7 +6462,7 @@ Use the maximum available size.</source>
         <translation type="obsolete">Количество процессоров не является корректной цифрой!</translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="6296"/>
+        <location filename="Main_Window.cpp" line="6299"/>
         <source>CPU count &gt; max CPU count for this emulator!</source>
         <translation>Количество процессоров &gt; максимально для этого эмулятора!</translation>
     </message>
@@ -6471,7 +6478,7 @@ Add This Record?</source>
         <location filename="Main_Window.ui" line="889"/>
         <source>Updating free memory information</source>
         <oldsource>Update information about free memory</oldsource>
-        <translation type="unfinished">Обновить информацию о объёме свободной памяти</translation>
+        <translation>Обновить информацию о объёме свободной памяти</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="892"/>
@@ -6610,7 +6617,7 @@ Add This Record?</source>
     <message>
         <location filename="Main_Window.ui" line="3499"/>
         <source>Enable KVM</source>
-        <translation type="unfinished"></translation>
+        <translation>Включить KVM</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3636"/>
@@ -6618,7 +6625,8 @@ Add This Record?</source>
 (Disable KQEMU Accelerator module)</source>
         <oldsource>Disabled
 (Disable the usage of the QEMU Accelerator module KQEMU)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Отключена
+(Выключает использование модуля KQEMU в QEMU)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3644"/>
@@ -6626,7 +6634,8 @@ Add This Record?</source>
 (AQEMU won&apos;t check loaded KQEMU module)</source>
         <oldsource>Use If Possible
 (AQEMU don&apos;t check loaded KQEMU module)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Использовать если возможно
+(AQEMU не будет проверять загружен ли KQEMU модуль)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3655"/>
@@ -6634,13 +6643,15 @@ Add This Record?</source>
 (AQEMU checks loaded KQEMU module. If it isn&apos;t loaded QEMU won&apos;t started)</source>
         <oldsource>Enabled
 (AQEMU check loaded KQEMU module, if no loaded QEMU not started)</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>Включена
+(AQEMU будет проверять загружен ли модуль KQEMU)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3663"/>
         <source>Full
 (Enable full virtualization mode for best performances)</source>
-        <translation type="unfinished"></translation>
+        <translation>Полная
+(Включает режим полной виртуализации для максимального быстродействия)</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3717"/>
@@ -6773,12 +6784,12 @@ Add This Record?</source>
     <message>
         <location filename="Monitor_Window.ui" line="284"/>
         <source>Change font</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать шрифт</translation>
     </message>
     <message>
         <location filename="Monitor_Window.ui" line="287"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт</translation>
     </message>
     <message>
         <location filename="Monitor_Window.ui" line="141"/>
@@ -7168,22 +7179,22 @@ dump traffic on vlan &apos;n&apos; to file &apos;f&apos; (max n bytes per packet
     <message>
         <location filename="Network_Widget.cpp" line="1869"/>
         <source>Incorrect MAC address!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не правильный MAC адрес!</translation>
     </message>
     <message>
         <location filename="Network_Widget.cpp" line="1880"/>
         <source>Invalid name! Valid characters are:: a-z A-Z 0-9 _ -</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильное имя! Доступны только: a-z A-Z 0-9 _ -</translation>
     </message>
     <message>
         <location filename="Network_Widget.cpp" line="1891"/>
         <source>Invalid Hostname! Valid characters are:: a-z A-Z 0-9 _ -</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильное имя! Доступны только: a-z A-Z 0-9 _ -</translation>
     </message>
     <message>
         <location filename="Network_Widget.cpp" line="1963"/>
         <source>%1 File &quot;%2&quot; doesn&apos;t Exist! Continue Without this File?</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 образ &quot;%2&quot; не найден! Продолжить без него?</translation>
     </message>
     <message>
         <source>MAC Address Incorrect!</source>
@@ -7497,7 +7508,7 @@ Continue Without It File?</source>
         <location filename="Ports_Tab_Widget.cpp" line="142"/>
         <location filename="Ports_Tab_Widget.cpp" line="288"/>
         <source>USB Port</source>
-        <translation>USB порт</translation>
+        <translation type="unfinished">USB порт</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="175"/>
@@ -7565,7 +7576,7 @@ Continue Without It File?</source>
     <message>
         <location filename="Ports_Tab_Widget.cpp" line="363"/>
         <source>Device doesn&apos;t selected!</source>
-        <translation type="unfinished"></translation>
+        <translation>Устройство не выбрано!</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="31"/>
@@ -7575,27 +7586,32 @@ Continue Without It File?</source>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="45"/>
         <source>Serial (COM)</source>
-        <translation>Последовательный (COM)</translation>
+        <translation>Последовательный
+(COM порт)</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="68"/>
         <source>Parallel (LPT)</source>
-        <translation>Параллельный (LPT)</translation>
+        <translation>Параллельный
+(LPT порт)</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="91"/>
         <source>USB</source>
-        <translation></translation>
+        <translation>USB порт
+</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="168"/>
         <source>Edit Port</source>
-        <translation>Изменить порт</translation>
+        <translation>Изменить порт
+</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="191"/>
         <source>Delete Port</source>
-        <translation>Удалить порт</translation>
+        <translation>Удалить порт
+</translation>
     </message>
     <message>
         <location filename="Ports_Tab_Widget.ui" line="226"/>
@@ -7659,7 +7675,7 @@ On Disk Size: </source>
         <location filename="Properties_Window.cpp" line="192"/>
         <location filename="Properties_Window.cpp" line="203"/>
         <source>Image file doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл образа не найден!</translation>
     </message>
     <message>
         <location filename="Properties_Window.cpp" line="307"/>
@@ -7814,44 +7830,46 @@ On Disk Size: </source>
     <message>
         <location filename="main.cpp" line="70"/>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <location filename="main.cpp" line="71"/>
         <source>Cannot create directory for log file! Path: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу создать каталог для файла журнала Путь %1</translation>
     </message>
     <message>
         <location filename="main.cpp" line="127"/>
         <source>This is a first AQEMU start and program running in root mode.
 In some Linux distributions you may have problems with configuration saving.
 Close AQEMU?</source>
-        <translation type="unfinished"></translation>
+        <translation>Это первый запуск AQEMU и программа работает с правами пользователя root.
+В некоторых дистрибутивах Linux это может привести к невозможности сохранить настройки!
+Закрыть AQEMU?</translation>
     </message>
     <message>
         <location filename="main.cpp" line="157"/>
         <source>AQEMU will search for emulators after uptating. Please wait.</source>
-        <translation type="unfinished"></translation>
+        <translation>После обновления AQEMU нужно провести поиск эмуляторов. Пожалуйста подождите.</translation>
     </message>
     <message>
         <location filename="main.cpp" line="167"/>
         <source>Cannot Find any Emulators installed in your OS! You should choose them In Advanced Settings!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу найти эмуляторы в этой системе! Вы должны указать их в окне &quot;Дополнительные настройки&quot;!</translation>
     </message>
     <message>
         <location filename="main.cpp" line="245"/>
         <source>Please Select AQEMU Data Folder:</source>
-        <translation>Пожалуйста выберите папку данных AQEMU:</translation>
+        <translation>Пожалуйста выберите директорию данных AQEMU:</translation>
     </message>
     <message>
         <location filename="main.cpp" line="251"/>
         <source>AQEMU won&apos;t Work If Data Folder isn&apos;t Selected!</source>
-        <translation type="unfinished"></translation>
+        <translation>AQEMU не может работать если каталог данных не выбран!</translation>
     </message>
     <message>
         <location filename="main.cpp" line="304"/>
         <source>AQEMU VM Folder doesn&apos;t Exists! Create It?</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка для ВМ AQEMU не существует! Создать её?</translation>
     </message>
     <message>
         <source>Cannot Start qemu-img! Image not Created!</source>
@@ -8220,31 +8238,35 @@ Additional Information:
     <message>
         <location filename="Utils.cpp" line="154"/>
         <source>Fatal error. It&apos;s recommended to close AQEMU</source>
-        <translation type="unfinished"></translation>
+        <translation>Это фатальная ошибка. Рекомендуется закрыть AQEMU</translation>
     </message>
     <message>
         <location filename="Utils.cpp" line="248"/>
         <source>Cannot Start qemu-img! Image isn&apos;t Created!</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу запустить qemu-img! Образ не создан!</translation>
     </message>
     <message>
         <location filename="Utils.cpp" line="256"/>
         <source>qemu-img Cannot Finish! Image isn&apos;t Created!</source>
-        <translation type="unfinished"></translation>
+        <translation>qemu-img не завершена! Образ не создан!</translation>
     </message>
     <message>
         <location filename="Utils.cpp" line="279"/>
         <source>QEMU-IMG is Creates HDD Image.
 Additional Information:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>QEMU-IMG создал образ HDD.
+Дополнительная информация:
+</translation>
     </message>
     <message>
         <location filename="Utils.cpp" line="284"/>
         <source>QEMU-IMG is Returned non Standard Message!.
 Additional Information:
 </source>
-        <translation type="unfinished"></translation>
+        <translation>QEMU-IMG возвратил нестандартное сообщение!
+Дополнительная информация:
+</translation>
     </message>
     <message>
         <location filename="Utils.cpp" line="409"/>
@@ -8686,7 +8708,7 @@ Missing (zero) values will be computed.</source>
         <location filename="Select_Icon_Window.ui" line="266"/>
         <source>Your Icon Path:</source>
         <oldsource>You Icon Path:</oldsource>
-        <translation type="unfinished">Путь к твоей иконке:</translation>
+        <translation>Путь к твоей иконке:</translation>
     </message>
     <message>
         <location filename="Select_Icon_Window.cpp" line="121"/>
@@ -8700,7 +8722,7 @@ Missing (zero) values will be computed.</source>
     <message>
         <location filename="Select_Icon_Window.cpp" line="121"/>
         <source>Icon file doesn&apos;t exist!</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл образа не найден!</translation>
     </message>
     <message>
         <location filename="Select_Icon_Window.cpp" line="128"/>
@@ -8754,7 +8776,7 @@ Missing (zero) values will be computed.</source>
         <location filename="Settings_Window.cpp" line="205"/>
         <source>Set your VM folder</source>
         <oldsource>Set Folder for you VM&apos;s</oldsource>
-        <translation type="unfinished">Выберите папку для ваших ВМ</translation>
+        <translation>Выберите папку для ваших ВМ</translation>
     </message>
     <message>
         <location filename="Settings_Window.cpp" line="197"/>
@@ -8803,18 +8825,19 @@ Show this message in future?</source>
     <message>
         <location filename="Settings_Window.cpp" line="197"/>
         <source>New template was created!</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый шаблон создан!</translation>
     </message>
     <message>
         <location filename="Settings_Window.cpp" line="222"/>
         <source>Language will set after restarting AQEMU
 Show this message in future?</source>
-        <translation type="unfinished"></translation>
+        <translation>Изменения вступят в силу после перезапуска AQEMU
+Показывать это сообщение в дальнейшем?</translation>
     </message>
     <message>
         <location filename="Settings_Window.cpp" line="263"/>
         <source>AQEMU VM folder doesn&apos;t exist! Do you want to create it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Папка для ВМ AQEMU не существует! Создать её?</translation>
     </message>
     <message>
         <location filename="Settings_Window.cpp" line="271"/>
@@ -8893,7 +8916,7 @@ Show this message in future?</source>
         <location filename="Settings_Window.ui" line="345"/>
         <source>Don&apos;t show</source>
         <oldsource>No Show</oldsource>
-        <translation type="unfinished">Не показывать</translation>
+        <translation>Не показывать</translation>
     </message>
     <message>
         <location filename="Settings_Window.ui" line="379"/>
@@ -8948,7 +8971,7 @@ Show this message in future?</source>
         <location filename="Settings_Window.ui" line="211"/>
         <source>VM Icon Size:</source>
         <oldsource>VM Icons Size:</oldsource>
-        <translation type="unfinished">Размер значков ВМ:</translation>
+        <translation>Размер значков ВМ:</translation>
     </message>
     <message>
         <location filename="Settings_Window.ui" line="222"/>
@@ -8986,7 +9009,7 @@ Show this message in future?</source>
     <message>
         <location filename="Snapshot_Properties_Window.cpp" line="56"/>
         <source>Snapshot name is empty!</source>
-        <translation type="unfinished"></translation>
+        <translation>Имя для снапшота пустое!</translation>
     </message>
     <message>
         <source>Name for Snapshot is Empty!</source>
@@ -9057,7 +9080,7 @@ Show this message in future?</source>
     <message>
         <location filename="Snapshots_Window.cpp" line="139"/>
         <source>Please select snapshot that you want to delete!</source>
-        <translation type="unfinished"></translation>
+        <translation>Сначало выберите снапшот для удаления!</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.cpp" line="143"/>
@@ -9073,12 +9096,12 @@ Show this message in future?</source>
     <message>
         <location filename="Snapshots_Window.cpp" line="162"/>
         <source>Please select snapshot that you want to start!</source>
-        <translation type="unfinished"></translation>
+        <translation>Сначало выберите снапшот для запуска!</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.cpp" line="185"/>
         <source>This VM is Running now! Stop VM and Load Snapshot?</source>
-        <translation type="unfinished"></translation>
+        <translation>Эта ВМ работает! Остановить ВМ и загрузить снапшот?</translation>
     </message>
     <message>
         <source>Before Select Snapshot For Start!</source>
@@ -9097,7 +9120,7 @@ Show this message in future?</source>
         <location filename="Snapshots_Window.cpp" line="313"/>
         <source>You must add HDD image in QCOW2 format if you want to use snapshots!</source>
         <oldsource>For use snapshots, you most add HDD image in QCOW2 format!</oldsource>
-        <translation type="unfinished">Для использования снапшотов, Вы должны добавить образ жёсткого диска в формате QCOW2!</translation>
+        <translation>Для использования снапшотов, Вы должны добавить образ жёсткого диска в формате QCOW2!</translation>
     </message>
     <message>
         <location filename="Snapshots_Window.ui" line="15"/>
@@ -9184,7 +9207,7 @@ Show this message in future?</source>
         <location filename="VM_Wizard_Window.ui" line="714"/>
         <source>Select the amount of base memory (RAM) in megabytes for virtual machine allocating.</source>
         <oldsource>Select the amount of base memory (RAM) in megabytes to be allocated to the virtual machine.</oldsource>
-        <translation type="unfinished">Выберите количество памяти (RAM) в мегабайтах, которое будет выделено виртуальной машине.</translation>
+        <translation>Выберите количество памяти (RAM) в мегабайтах, которое будет выделено виртуальной машине.</translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="773"/>
@@ -9235,28 +9258,29 @@ Show this message in future?</source>
         <translation>Конец!</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="796"/>
+        <location filename="VM_Wizard_Window.cpp" line="799"/>
         <source>Memory size &lt; 0! Valid size is 1 or more</source>
-        <translation type="unfinished"></translation>
+        <translation>Объём памяти &lt; 0! Допустимы значение от 1 и выше</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="831"/>
+        <location filename="VM_Wizard_Window.cpp" line="834"/>
         <source>Current memory size bigger than all existing host memory!
 Using maximum available size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущий объём памяти больше чем вся свободная память в системе!
+Используйте максимально доступное значение.</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="876"/>
+        <location filename="VM_Wizard_Window.cpp" line="879"/>
         <source>Free memory on this system is lower than 32 MB!</source>
-        <translation type="unfinished"></translation>
+        <translation>Объём свободной памяти в системе меньше 32 Мб!</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="915"/>
+        <location filename="VM_Wizard_Window.cpp" line="918"/>
         <source>Select HDD Image</source>
         <translation>Выберите образ HDD</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="917"/>
+        <location filename="VM_Wizard_Window.cpp" line="920"/>
         <source>All Files (*)</source>
         <translation>Все файлы (*)</translation>
     </message>
@@ -9369,7 +9393,7 @@ Using maximum available size.</source>
         <location filename="VM_Wizard_Window.ui" line="1099"/>
         <source>Select network type using on your new virtual machine.</source>
         <oldsource>Select network type using on you new virtual machine.</oldsource>
-        <translation type="unfinished">Выберите тип сети используемый для твоей новой ВМ.</translation>
+        <translation>Выберите тип сети используемый для твоей новой ВМ.</translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="1222"/>
@@ -9380,7 +9404,7 @@ Using maximum available size.</source>
         <location filename="VM_Wizard_Window.ui" line="1197"/>
         <source>Enter your new virtual machine hard disk capacity.</source>
         <oldsource>Enter you new virtual machine hard disk capacity.</oldsource>
-        <translation type="unfinished">Введите объём для нового виртуального жёсткого диска.</translation>
+        <translation>Введите объём для нового виртуального жёсткого диска.</translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.cpp" line="184"/>
@@ -9456,7 +9480,7 @@ p, li { white-space: pre-wrap; }
         <location filename="VM_Wizard_Window.ui" line="320"/>
         <source>Select Emulator Type For Using In New Virtual Machine</source>
         <oldsource>Select Emulator Type For Use In New Virtual Machine</oldsource>
-        <translation type="unfinished">Выберите тип эмулятора для новой виртуальной машины</translation>
+        <translation>Выберите тип эмулятора для новой виртуальной машины</translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="327"/>
@@ -9482,7 +9506,7 @@ p, li { white-space: pre-wrap; }
         <location filename="VM_Wizard_Window.ui" line="666"/>
         <source>Select a CPU type for your new virtual machine:</source>
         <oldsource>Select a CPU type for you new virtual machine:</oldsource>
-        <translation type="unfinished">Выберите тип CPU для вашей новой виртуальной машины:</translation>
+        <translation>Выберите тип CPU для вашей новой виртуальной машины:</translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="983"/>
@@ -9520,30 +9544,30 @@ p, li { white-space: pre-wrap; }
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;p, li { white-space: pre-wrap; }&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Если Вы считаете, что всё сделано правильно нажмите кнопку &lt;span style=&quot; font-weight:600;&quot;&gt;Конец&lt;/span&gt; Как только Вы нажмёте эту кнопку виртуальная машина будет создана.&lt;/p&gt;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;По окончанию Вы сможете изменить эти и другие настройки в любое время.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="763"/>
-        <location filename="VM_Wizard_Window.cpp" line="771"/>
-        <location filename="VM_Wizard_Window.cpp" line="780"/>
-        <location filename="VM_Wizard_Window.cpp" line="789"/>
-        <location filename="VM_Wizard_Window.cpp" line="796"/>
-        <location filename="VM_Wizard_Window.cpp" line="804"/>
-        <location filename="VM_Wizard_Window.cpp" line="831"/>
-        <location filename="VM_Wizard_Window.cpp" line="876"/>
+        <location filename="VM_Wizard_Window.cpp" line="766"/>
+        <location filename="VM_Wizard_Window.cpp" line="774"/>
+        <location filename="VM_Wizard_Window.cpp" line="783"/>
+        <location filename="VM_Wizard_Window.cpp" line="792"/>
+        <location filename="VM_Wizard_Window.cpp" line="799"/>
+        <location filename="VM_Wizard_Window.cpp" line="807"/>
+        <location filename="VM_Wizard_Window.cpp" line="834"/>
+        <location filename="VM_Wizard_Window.cpp" line="879"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="764"/>
-        <location filename="VM_Wizard_Window.cpp" line="772"/>
+        <location filename="VM_Wizard_Window.cpp" line="767"/>
+        <location filename="VM_Wizard_Window.cpp" line="775"/>
         <source>Cannot convert &quot;%1&quot; to memory size!</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в объём памяти!</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="781"/>
+        <location filename="VM_Wizard_Window.cpp" line="784"/>
         <source>Cannot convert &quot;%1&quot; to integer!</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в число!</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="790"/>
+        <location filename="VM_Wizard_Window.cpp" line="793"/>
         <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes: MB, GB</source>
         <translation>Невозможно преобразовать &quot;%1&quot; в суффикс объёма! Доступные варианты: MB, GB</translation>
     </message>
@@ -9552,12 +9576,12 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Объём памяти &lt; 0! Допустимы значение от 1 и выше</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="805"/>
+        <location filename="VM_Wizard_Window.cpp" line="808"/>
         <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 To setup this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
         <oldsource>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
 For set it size, check &quot;Remove limitation on maximum amount of memory&quot;.</oldsource>
-        <translation type="unfinished">Ваш объём памяти %1 MB &gt; %2 MB — всей свободной памяти в системе!
+        <translation>Ваш объём памяти %1 MB &gt; %2 MB — всей свободной памяти в системе!
 Для установки этого объёма активируйте: &quot;Убрать ограничение на максимальный объём памяти&quot;.</translation>
     </message>
     <message>
@@ -9567,7 +9591,7 @@ Use the maximum available size.</source>
 Используйте максимально доступное значение.</translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="843"/>
+        <location filename="VM_Wizard_Window.cpp" line="846"/>
         <source>Free memory: %1 MB</source>
         <translation>Доступно памяти: %1 MB</translation>
     </message>
@@ -9584,7 +9608,7 @@ Use the maximum available size.</source>
         <location filename="VM_Wizard_Window.ui" line="799"/>
         <source>Update free memory information</source>
         <oldsource>Update information about free memory</oldsource>
-        <translation type="unfinished">Обновить информацию о объёме свободной памяти</translation>
+        <translation>Обновить информацию о объёме свободной памяти</translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="802"/>
@@ -9707,19 +9731,22 @@ Use the maximum available size.</source>
         <location filename="VM.cpp" line="3482"/>
         <source>Version of this AQEMU VM File isn&apos;t 0.5
 Load This File anyway?</source>
-        <translation type="unfinished"></translation>
+        <translation>Эта версия файла AQEMU ВМ не 0.5
+Загрузить этот файл?</translation>
     </message>
     <message>
         <location filename="VM.cpp" line="6226"/>
         <source>ROM File doesn&apos;t Exists! Can&apos;t run emulator!</source>
-        <translation type="unfinished"></translation>
+        <translation>ROM файл не найден! QEMU не может работать!</translation>
     </message>
     <message>
         <location filename="VM.cpp" line="6744"/>
         <source>KVM Kernel Module Not Loaded!
 To load this Module, Enter in Terminal with root privileges: &quot;modprobe kvm-intel&quot;. Or If Use AMD Processor: &quot;modprobe kvm-amd&quot;.
 Ignore This Error?</source>
-        <translation type="unfinished"></translation>
+        <translation>Модуль ядра KVM не загружен!
+Для загрузки KVM модуля введите от пользователя &quot;root&quot; в терминале: &quot;modprobe kvm-intel&quot;. Или при использовании процессора AMD: &quot;modprobe kvm-amd&quot;.
+Игнорировать эту ошибку?</translation>
     </message>
     <message>
         <location filename="VM.cpp" line="6798"/>
@@ -9729,7 +9756,11 @@ For Loading KQEMU Module Type:
 &quot;modprobe kqemu&quot;
 in root mode
 Or Disable Acceleration in &quot;Other-&gt;Hardware Virtualization&quot; tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>Модуль ядра KQEMU не загружен!
+Этот модуль обеспечивает акселерацию для QEMU.
+Для загрузки KQEMU модуля введите в режиме root:
+&quot;modprobe kqemu&quot;
+Или отключите акселерацию на вкладке &quot;Другое-&gt;Аппаратная виртуализация&quot;.</translation>
     </message>
     <message>
         <location filename="VM.cpp" line="7096"/>
@@ -9744,7 +9775,7 @@ Or Disable Acceleration in &quot;Other-&gt;Hardware Virtualization&quot; tab.</s
     <message>
         <location filename="VM.cpp" line="8788"/>
         <source>You must add HDD image in QCOW2 format to save virtual machine!</source>
-        <translation type="unfinished"></translation>
+        <translation>Чтобы сохранить виртуальную машину, вы должны добавить образ HDD в формате QCOW2!</translation>
     </message>
     <message>
         <location filename="VM.cpp" line="7027"/>

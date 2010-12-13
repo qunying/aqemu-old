@@ -1500,7 +1500,7 @@ void Main_Window::Update_VM_Ui()
 	if( tmp_vm->Get_Memory_Size() < 1 )
 	{
 		AQGraphic_Warning( tr("Error!"),
-						   tr("Memory size < 1! Using efault value: 256 MB") );
+						   tr("Memory size < 1! Using default value: 256 MB") );
 		ui.Memory_Size->setValue( 256 );
 	}
 	else if( tmp_vm->Get_Memory_Size() >= ui.Memory_Size->maximum() )
