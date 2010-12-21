@@ -68,4 +68,9 @@ INSTALLATION (For Windows):
 
  4. type `make'
 
+ 5. type `rcc -binary crystalsvg_icons.qrc -o crystalsvg_icons.rcc'
+         `rcc -binary oxygen_icons.qrc -o oxygen_icons.rcc'
+
+ 6. Run aqemu.exe
+
 Sorry for bad English.

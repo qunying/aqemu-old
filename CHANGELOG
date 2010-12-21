@@ -1,12 +1,14 @@
-2010-10-XX Andrey Rijov (Version 0.8.1)
+2010-12-21 Andrey Rijov (Version 0.8.1)
 
 	* Added SPICE support
 	
 	* Added QEMU/KVM 0.13 support
 	
+	* Initial Windows support
+
 	* Improved English localization
 	
-	* Added German localization
+	* Added German localization (Not complete)
 	
 	* Improved Device Manager
 	
