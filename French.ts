@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="uk" sourcelanguage="en">
+<TS version="2.0" language="fr" sourcelanguage="en">
 <context>
     <name>About_Window</name>
     <message>
@@ -35,26 +35,6 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;/b&gt;
 &lt;/body&gt;
 &lt;/html&gt;</source>
-        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#3C6E05}
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;b&gt;
-&lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8.1 of ХХ.10.2010&lt;/p&gt;
-&lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
-&lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
-&lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Web Site: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Supported Emulators:&lt;br&gt;QEMU 0.9.0-0.13 and KVM 60-88-0.13&lt;/p&gt;
-&lt;/b&gt;
-&lt;/body&gt;
-&lt;/html&gt;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -82,22 +62,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -389,37 +353,6 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
 &lt;br&gt;Oxygen - Icon Theme From Oxygen Team
 </source>
-        <oldsource>&lt;b&gt;Developers:&lt;/b&gt;
-&lt;br&gt;Andrey Rijov (aka RDron) - Author
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Contributors:&lt;/b&gt;
-&lt;br&gt;Max Brazhnikov - FreeBSD Port
-&lt;br&gt;Boris Savelev - ALTLinux Package
-&lt;br&gt;Denis Smirnov (aka reMiND) - Arch Linux Package and Other Help
-&lt;br&gt;Ignace Mouzannar - Debian Package
-&lt;br&gt;Michael Brandstetter - Improvement Scripts
-&lt;br&gt;Robert Warnke - German AQEMU Documentation Translation
-&lt;br&gt;Michael SchmÃ¶ller (aka schmoemi) - German Translation
-&lt;br&gt;Guillem Rieu - Patch for Network Redirections
-&lt;br&gt;Karol Krenski - IP Address RegExp Fix
-&lt;br&gt;Alexander Romanov (aka romale) - Testing, New Ideas and Other Help
-&lt;br&gt;Timothy Redaelli - Patch for CMake
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Special thanks:&lt;/b&gt;
-&lt;br&gt;Sergey Sinitsa (aka sin)
-&lt;br&gt;Grigory Pulyaev (aka Rodegast)
-&lt;br&gt;Alexander Saifulin (aka Ne01eX)
-&lt;br&gt;Mihail Parshin (aka Skeeper)
-&lt;br&gt;Garret Acott (aka gacott)
-&lt;br&gt;Damir Vafin (aka Denver-22)
-&lt;br&gt;Pavel Serebryakov (aka Kronoph)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Thanks all www.nclug.ru group for testing and suggestions for improvement.&lt;/b&gt;
-&lt;br&gt;&lt;br&gt;&lt;b&gt;AQEMU used code from QtEMU and Krdc thanks all developers:&lt;/b&gt;
-&lt;br&gt;Tim Jansen (tim@tjansen.de)
-&lt;br&gt;Urs Wolfer (uwolfer@kde.org)
-&lt;br&gt;Ben Klopfenstein (benklop@gmail.com)
-&lt;br&gt;&lt;br&gt;&lt;b&gt;Icons:&lt;/b&gt;
-&lt;br&gt;Crystal SVG - Icon Theme From Everaldo.com Design Studio
-&lt;br&gt;Oxygen - Icon Theme From Oxygen Team
-</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -638,6 +571,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="Add_New_Device_Window.cpp" line="459"/>
+        <location filename="Add_New_Device_Window.cpp" line="466"/>
+        <location filename="Add_New_Device_Window.cpp" line="473"/>
+        <location filename="Add_New_Device_Window.cpp" line="480"/>
+        <source>Warning!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Add_New_Device_Window.cpp" line="459"/>
         <source>&quot;Cyls&quot; value is incorrect!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -656,14 +597,6 @@ p, li { white-space: pre-wrap; }
         <source>&quot;Trans&quot; value is incorrect!</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="Add_New_Device_Window.cpp" line="459"/>
-        <location filename="Add_New_Device_Window.cpp" line="466"/>
-        <location filename="Add_New_Device_Window.cpp" line="473"/>
-        <location filename="Add_New_Device_Window.cpp" line="480"/>
-        <source>Warning!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Add_Port_Window</name>
@@ -675,7 +608,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="Add_Port_Window.ui" line="32"/>
         <source>Redirect virtual port to:</source>
-        <oldsource>Select redirect virtual port to:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -934,7 +866,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Add_USB_Port_Window.ui" line="169"/>
         <source>Connecting USB host device</source>
-        <oldsource>Connecting host USB device</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -967,7 +898,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Add_USB_Port_Window.ui" line="292"/>
         <source>Not used in running VM</source>
-        <oldsource>Only not used in running VM</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1081,7 +1011,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="113"/>
         <source>File Format:</source>
-        <oldsource>Save Format:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1092,7 +1021,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="135"/>
         <source>JPEG</source>
-        <oldsource>Jpeg</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1108,7 +1036,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="245"/>
         <source>Shared screenshot folder</source>
-        <oldsource>Shared Folder to Save All Screenshots</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1180,8 +1107,18 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="520"/>
+        <source>Write log to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="541"/>
         <source>Save in File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="564"/>
+        <source>Print to STDOUT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1230,6 +1167,16 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="831"/>
+        <source>Valid MAC Address (Especial For Each Network Card model)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="864"/>
+        <source>Don&apos;t use default audio driver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="894"/>
         <source>Host Sound System:</source>
         <translation type="unfinished"></translation>
@@ -1275,6 +1222,21 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="971"/>
+        <source>Start/Stop QEMU/KVM emulator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="992"/>
+        <source>Execute Before Starting QEMU/KVM:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1016"/>
+        <source>Execute After Stoping QEMU/KVM:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="1067"/>
         <source>Other Settings</source>
         <translation type="unfinished"></translation>
@@ -1292,116 +1254,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1128"/>
         <source>First VNC Port for Embedded Display</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1339"/>
-        <source>Additional CD/DVD Devices</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1401"/>
-        <source>Information in Info Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1416"/>
-        <source>Show Tab Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1440"/>
-        <source>Show Inside Tab Info Screenshot in Save Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1456"/>
-        <source>Show QEMU/KVM Arguments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1483"/>
-        <source>Machine Details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1497"/>
-        <source>Machine Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1518"/>
-        <source>Emulator Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1532"/>
-        <source>Emulator Version</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1546"/>
-        <source>Computer Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1560"/>
-        <source>Machine Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1525"/>
-        <source>CPU Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1539"/>
-        <source>Number of CPU</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1840"/>
-        <source>Acceleration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1511"/>
-        <source>Boot Priority</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="520"/>
-        <source>Write log to</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="564"/>
-        <source>Print to STDOUT</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="831"/>
-        <source>Valid MAC Address (Especial For Each Network Card model)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="864"/>
-        <source>Don&apos;t use default audio driver</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="971"/>
-        <source>Start/Stop QEMU/KVM emulator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="992"/>
-        <source>Execute Before Starting QEMU/KVM:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1016"/>
-        <source>Execute After Stoping QEMU/KVM:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1440,8 +1292,78 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="1339"/>
+        <source>Additional CD/DVD Devices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1401"/>
+        <source>Information in Info Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1416"/>
+        <source>Show Tab Info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1440"/>
+        <source>Show Inside Tab Info Screenshot in Save Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1456"/>
+        <source>Show QEMU/KVM Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1483"/>
+        <source>Machine Details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1497"/>
+        <source>Machine Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1511"/>
+        <source>Boot Priority</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1518"/>
+        <source>Emulator Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1525"/>
+        <source>CPU Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1532"/>
+        <source>Emulator Version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1539"/>
+        <source>Number of CPU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1546"/>
+        <source>Computer Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="1553"/>
         <source>Video Card</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1560"/>
+        <source>Machine Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1450,8 +1372,53 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="1581"/>
+        <source>Memory Size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1595"/>
+        <source>Network Cards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1602"/>
+        <source>Use Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="1609"/>
         <source>Network Redirections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1623"/>
+        <source>Show Floppy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1637"/>
+        <source>Fullscreen Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1644"/>
+        <source>Show CD-ROM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1651"/>
+        <source>Snapshot Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1658"/>
+        <source>Show HDD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1665"/>
+        <source>Use Local Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1475,123 +1442,13 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1721"/>
-        <source>Use Linux Boot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1763"/>
-        <source>RTC TD Hack</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1777"/>
-        <source>No Shutdown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1798"/>
-        <source>Curses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1812"/>
-        <source>Show cursor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1826"/>
-        <source>Initial graphical mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1847"/>
-        <source>Start Date</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1875"/>
-        <source>ROM File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1868"/>
-        <source>Parallel Flash Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1581"/>
-        <source>Memory Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1602"/>
-        <source>Use Sound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1637"/>
-        <source>Fullscreen Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1833"/>
-        <source>Enable ACPI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1665"/>
-        <source>Use Local Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1805"/>
-        <source>Start CPU at Startup</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1651"/>
-        <source>Snapshot Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1791"/>
-        <source>No Reboot</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Advanced_Settings_Window.ui" line="1714"/>
         <source>USB Ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1861"/>
-        <source>Flash Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1882"/>
-        <source>SD Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1623"/>
-        <source>Show Floppy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1644"/>
-        <source>Show CD-ROM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1658"/>
-        <source>Show HDD</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.ui" line="1595"/>
-        <source>Network Cards</source>
+        <location filename="Advanced_Settings_Window.ui" line="1721"/>
+        <source>Use Linux Boot</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1600,8 +1457,18 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="1749"/>
+        <source>Windows 2K Hack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="1756"/>
         <source>Alt Grab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1763"/>
+        <source>RTC TD Hack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1610,18 +1477,78 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.ui" line="1777"/>
+        <source>No Shutdown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.ui" line="1784"/>
         <source>Portrait</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1749"/>
-        <source>Windows 2K Hack</source>
+        <location filename="Advanced_Settings_Window.ui" line="1791"/>
+        <source>No Reboot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1798"/>
+        <source>Curses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1805"/>
+        <source>Start CPU at Startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1812"/>
+        <source>Show cursor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1819"/>
         <source>Check Boot Sector on FDD</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1826"/>
+        <source>Initial graphical mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1833"/>
+        <source>Enable ACPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1840"/>
+        <source>Acceleration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1847"/>
+        <source>Start Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1861"/>
+        <source>Flash Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1868"/>
+        <source>Parallel Flash Image</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1875"/>
+        <source>ROM File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.ui" line="1882"/>
+        <source>SD Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1666,6 +1593,14 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Advanced_Settings_Window.cpp" line="569"/>
+        <location filename="Advanced_Settings_Window.cpp" line="643"/>
+        <location filename="Advanced_Settings_Window.cpp" line="649"/>
+        <location filename="Advanced_Settings_Window.cpp" line="665"/>
+        <source>Error!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Advanced_Settings_Window.cpp" line="570"/>
         <source>Cannot find any emulators installed on your OS! Please add them manually!</source>
         <translation type="unfinished"></translation>
@@ -1697,19 +1632,6 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.cpp" line="698"/>
-        <source>Choose screenshot folder</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Advanced_Settings_Window.cpp" line="569"/>
-        <location filename="Advanced_Settings_Window.cpp" line="643"/>
-        <location filename="Advanced_Settings_Window.cpp" line="649"/>
-        <location filename="Advanced_Settings_Window.cpp" line="665"/>
-        <source>Error!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Advanced_Settings_Window.cpp" line="666"/>
         <source>Cannot save emulator &quot;%1&quot;!</source>
         <translation type="unfinished"></translation>
@@ -1717,6 +1639,11 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.cpp" line="691"/>
         <source>No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Advanced_Settings_Window.cpp" line="698"/>
+        <source>Choose screenshot folder</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1904,11 +1831,6 @@ Cluster Size: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Convert_HDD_Image_Window.cpp" line="231"/>
-        <source>Conversion completed sucessfuly!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Convert_HDD_Image_Window.cpp" line="185"/>
         <source>Cannot get a valid format for current HDD image!</source>
         <translation type="unfinished"></translation>
@@ -1926,6 +1848,11 @@ Cluster Size: %3</source>
     <message>
         <location filename="Convert_HDD_Image_Window.cpp" line="231"/>
         <source>Information:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Convert_HDD_Image_Window.cpp" line="231"/>
+        <source>Conversion completed sucessfuly!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2450,7 +2377,6 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Delete_VM_Files_Window.cpp" line="347"/>
         <source>An error occurred while deleting files</source>
-        <oldsource>During removal errors occurred</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2673,7 +2599,6 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Device_Manager_Widget.cpp" line="594"/>
         <source>Maximum Floppy Disk Count is 2</source>
-        <oldsource>Maximum Floppy&apos;s Disk Count is 2</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2749,7 +2674,6 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Device_Manager_Widget.cpp" line="710"/>
         <source>Maximum Hard Disk Count is 4 excluding CD-ROM</source>
-        <oldsource>Maximum Hard Disk Count is 4 Without CD-ROM</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3239,6 +3163,11 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Emulator_Control_Window.cpp" line="119"/>
+        <source>Selected VM is running now. Shutdown anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Emulator_Control_Window.cpp" line="175"/>
         <source> (Emulator Control)</source>
         <translation type="unfinished"></translation>
@@ -3246,11 +3175,6 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
     <message>
         <location filename="Emulator_Control_Window.cpp" line="318"/>
         <source>All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Emulator_Control_Window.cpp" line="119"/>
-        <source>Selected VM is running now. Shutdown anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3324,14 +3248,14 @@ Linux Compressed Loop image, useful only to reuse directly compressed CD-ROM ima
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="820"/>
-        <source>To enable window mode press Ctrl-Alt-F
-Do you want to show this message again?</source>
+        <location filename="Emulator_Control_Window.cpp" line="819"/>
+        <source>Fullscreen mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Control_Window.cpp" line="819"/>
-        <source>Fullscreen mode</source>
+        <location filename="Emulator_Control_Window.cpp" line="820"/>
+        <source>To enable window mode press Ctrl-Alt-F
+Do you want to show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3377,7 +3301,6 @@ Do you want to show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.ui" line="25"/>
         <source>Name (Emulator identifier)</source>
-        <oldsource>Name (This be identifier for it emulator):</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3443,19 +3366,16 @@ Do you want to show this message again?</source>
     <message>
         <location filename="Emulator_Options_Window.ui" line="394"/>
         <source>Use saved available emulator options (Recomended to choose it again after emulator updating)</source>
-        <oldsource>Use saved emulator available options (Recomend refind after update emulator)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.ui" line="404"/>
         <source>Always check available emulator options while starting AQEMU (Slow)</source>
-        <oldsource>Check available emulator options always start AQEMU (Slowly)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Emulator_Options_Window.ui" line="411"/>
         <source>Always check emulator version while starting AQEMU</source>
-        <oldsource>Check emulator version always start AQEMU</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3493,13 +3413,13 @@ Do you want to show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="104"/>
-        <source>Select Directory</source>
+        <location filename="Emulator_Options_Window.cpp" line="65"/>
+        <source>Path doesn&apos;t exist!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Emulator_Options_Window.cpp" line="65"/>
-        <source>Path doesn&apos;t exist!</source>
+        <location filename="Emulator_Options_Window.cpp" line="104"/>
+        <source>Select Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3619,8 +3539,6 @@ Do you want to show this message again?</source>
         <location filename="Error_Log_Window.ui" line="94"/>
         <source>Never show it
 (For View Error Log Select VM-&gt;Show QEMU/KVM Error Log Window)</source>
-        <oldsource>Do Not Show Forever
-(For View Error Log Select VM-&gt;Show QEMU/KVM Error Log Window)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3688,6 +3606,11 @@ Do you want to show this message again?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="First_Start_Wizard.cpp" line="59"/>
+        <source>Are you sure? You can configure these options later in Settings windows.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="First_Start_Wizard.cpp" line="127"/>
         <source>Set Folder for you VM&apos;s</source>
         <translation type="unfinished"></translation>
@@ -3713,11 +3636,6 @@ Do you want to show this message again?</source>
         <location filename="First_Start_Wizard.cpp" line="305"/>
         <location filename="First_Start_Wizard.cpp" line="414"/>
         <source>Cannot get emulator info! For file: %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="First_Start_Wizard.cpp" line="59"/>
-        <source>Are you sure? You can configure these options later in Settings windows.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3814,21 +3732,6 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="First_Start_Wizard.cpp" line="767"/>
-        <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will be displayed in virtual machine as icons, like in file manager window.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="First_Start_Wizard.cpp" line="769"/>
-        <source>New experimental work mode is available in AQEMU. In this mode QEMU/KVM display will be showed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this feature you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="First_Start_Wizard.cpp" line="771"/>
-        <source>For correct working AQEMU must know your emulators locations and versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you should configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="First_Start_Wizard.cpp" line="765"/>
         <source>Here you can choose interface language</source>
         <translation type="unfinished"></translation>
@@ -3839,13 +3742,28 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="First_Start_Wizard.cpp" line="767"/>
+        <source>If the &quot;Device manager&quot; mode is active, storage devices (Floppy, CD/DVD, HDD) will be displayed in virtual machine as icons, like in file manager window.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="First_Start_Wizard.cpp" line="768"/>
         <source>Use Device manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="First_Start_Wizard.cpp" line="769"/>
+        <source>New experimental work mode is available in AQEMU. In this mode QEMU/KVM display will be showed in AQEMU main window. Note that this mode is still unstable so here may be some problems. If you want to enable this feature you must mark the &quot;Include Emdedded VNC Display in Main Window&quot; flag.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="First_Start_Wizard.cpp" line="770"/>
         <source>Include Emdedded VNC Display in Main Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="First_Start_Wizard.cpp" line="771"/>
+        <source>For correct working AQEMU must know your emulators locations and versions. For searching push the &quot;Search&quot; button. If automatic search can&apos;t find out your emulators, you should configure AQEMU yourself later. You can do it in &quot;File-&gt;Advanced Settings&quot; menu.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4213,7 +4131,6 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     <message>
         <location filename="Main_Window.ui" line="889"/>
         <source>Updating free memory information</source>
-        <oldsource>Update information about free memory</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4349,7 +4266,6 @@ Push the &quot;Next&quot; button to go to next page or &quot;Back&quot; button t
     <message>
         <location filename="Main_Window.ui" line="1259"/>
         <source>Set real time clock to local time. Default=utc</source>
-        <oldsource>Set the real time clock to local time. Default=utc</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4505,7 +4421,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="2529"/>
         <source>Native</source>
-        <oldsource>Nativ</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4631,7 +4546,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="3010"/>
         <source>Fix Windows 2000 install Bug</source>
-        <oldsource>Fix Installation Windows 2000 Bug</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4667,7 +4581,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="3051"/>
         <source>Check Floppy Disk boot signature in VM BIOS</source>
-        <oldsource>Check Boot Signature For Floppy Disks in VM BIOS</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4703,7 +4616,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="3159"/>
         <source>Use Ctrl-Alt-Shift to Grab Mouse (Default is Ctrl-Alt)</source>
-        <oldsource>Use Ctrl-Alt-Shift to Grab Mouse (Default Ctrl-Alt)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4724,7 +4636,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="3187"/>
         <source>Show Cursor (It Works Only in QEMU/KVM SDL Window)</source>
-        <oldsource>Show Cursor (This Work Only in QEMU/KVM SDL Window)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4806,7 +4717,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="3530"/>
         <source>Nesting (Support for Running a VM Inside other VM (AMD Only)</source>
-        <oldsource>Nesting (Support for Running a VM Inside the VM (AMD Only)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4829,24 +4739,18 @@ Cluster Size: 0</source>
         <location filename="Main_Window.ui" line="3636"/>
         <source>Disabled
 (Disable KQEMU Accelerator module)</source>
-        <oldsource>Disabled
-(Disable the usage of the QEMU Accelerator module KQEMU)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3644"/>
         <source>Use If Possible
 (AQEMU won&apos;t check loaded KQEMU module)</source>
-        <oldsource>Use If Possible
-(AQEMU don&apos;t check loaded KQEMU module)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3655"/>
         <source>Enabled
 (AQEMU checks loaded KQEMU module. If it isn&apos;t loaded QEMU won&apos;t started)</source>
-        <oldsource>Enabled
-(AQEMU check loaded KQEMU module, if no loaded QEMU not started)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4893,7 +4797,6 @@ Cluster Size: 0</source>
     <message>
         <location filename="Main_Window.ui" line="3823"/>
         <source>Use Password (You must set a password when you starting the VM)</source>
-        <oldsource>Use Password (You must set a password when you start the VM)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4915,14 +4818,11 @@ Cluster Size: 0</source>
         <location filename="Main_Window.ui" line="3952"/>
         <source>Warning: Globaly Activated Embedded Display in Emulator Control Window.
 To Disable This Function in Current VM choose &quot;Don&apos;t Use Embedded VNC Display&quot;</source>
-        <oldsource>Warning: Globaly Activated Embedded Display in Emulator Control Window.
-For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&quot;</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="3960"/>
         <source>Don&apos;t use embedded VNC Display</source>
-        <oldsource>No Use Embedded VNC Display</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5181,7 +5081,6 @@ For Disable This Function in Current VM Set &quot;No Use Embedded VNC Display&qu
     <message>
         <location filename="Main_Window.ui" line="4698"/>
         <source>Start &amp;First Run Wizard</source>
-        <oldsource>Run &amp;First Run Wizard</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5265,6 +5164,11 @@ Check Permissions!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="1503"/>
+        <source>Memory size &lt; 1! Using default value: 256 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="1509"/>
         <source>Memory size &gt; all free memory on this system!</source>
         <translation type="unfinished"></translation>
@@ -5311,8 +5215,18 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="1979"/>
+        <source>Machine Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="2027"/>
         <source>Machine Type:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2039"/>
+        <source>Boot Priority:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5321,44 +5235,8 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2099"/>
-        <source>Memory Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Main_Window.cpp" line="2063"/>
         <source>Number of CPU:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2694"/>
-        <source>Acceleration:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2701"/>
-        <location filename="Main_Window.cpp" line="2719"/>
-        <source>Use If Possible</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2705"/>
-        <source>Disabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2709"/>
-        <source>Enabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2713"/>
-        <source>Full</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2039"/>
-        <source>Boot Priority:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5369,6 +5247,11 @@ The work of the VM is not possible!</source>
     <message>
         <location filename="Main_Window.cpp" line="2087"/>
         <source>Keyboard Layout:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2099"/>
+        <source>Memory Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5432,8 +5315,8 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2993"/>
-        <source>Enable ACPI:</source>
+        <location filename="Main_Window.cpp" line="2145"/>
+        <source>Use Snapshot Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5442,29 +5325,8 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="2969"/>
-        <source>Start CPU at Startup:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2145"/>
-        <source>Use Snapshot Mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2957"/>
-        <source>No Reboot:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Main_Window.cpp" line="2184"/>
         <source>Storage Devices</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="1503"/>
-        <source>Memory size &lt; 1! Using default value: 256 MB</source>
-        <oldsource>Memory size &lt; 1! Using efault value: 256 MB</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5708,6 +5570,42 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="2694"/>
+        <source>Acceleration:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2701"/>
+        <location filename="Main_Window.cpp" line="2719"/>
+        <source>Use If Possible</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2705"/>
+        <source>Disabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2709"/>
+        <source>Enabled</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2713"/>
+        <source>Full</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2730"/>
+        <source>VNC Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2743"/>
+        <source>SPICE Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="2756"/>
         <source>Use Linux Boot:</source>
         <translation type="unfinished"></translation>
@@ -5748,6 +5646,46 @@ The work of the VM is not possible!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="2921"/>
+        <source>RTC TD Hack:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2933"/>
+        <source>Windows 2000 Hack:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2945"/>
+        <source>No Shutdown:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2957"/>
+        <source>No Reboot:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2969"/>
+        <source>Start CPU at Startup:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2981"/>
+        <source>Check Boot Sector on FDD:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="2993"/>
+        <source>Enable ACPI:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="3006"/>
+        <source>Start Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="3019"/>
         <source>No Frame:</source>
         <translation type="unfinished"></translation>
@@ -5765,100 +5703,6 @@ The work of the VM is not possible!</source>
     <message>
         <location filename="Main_Window.cpp" line="3055"/>
         <source>Portrait Mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="4271"/>
-        <source>%1 Image &quot;%2&quot; doesn&apos;t Exist! Continue Without this Image?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="4511"/>
-        <source>Your New VM Name is Empty! VM isn&apos;t Created!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="4859"/>
-        <location filename="Main_Window.cpp" line="4898"/>
-        <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="5087"/>
-        <source>This Function Works Only On Running VM!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="5242"/>
-        <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes are: MB, GB</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="5248"/>
-        <source>Memory size &lt; 0! Valid size is 1 or more</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="5257"/>
-        <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
-To set this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="5328"/>
-        <source>Free memory on this system is less than 32 MB!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="6283"/>
-        <source>CPU count value is not valid digit!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="6441"/>
-        <source>To Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
-Press &quot;Ignore&quot; button for hide this message in future.
-Add This Record?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2981"/>
-        <source>Check Boot Sector on FDD:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="1979"/>
-        <source>Machine Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2730"/>
-        <source>VNC Port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2743"/>
-        <source>SPICE Port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2921"/>
-        <source>RTC TD Hack:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2933"/>
-        <source>Windows 2000 Hack:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="2945"/>
-        <source>No Shutdown:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="3006"/>
-        <source>Start Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5928,8 +5772,13 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Main_Window.cpp" line="4762"/>
-        <source>VM be Changed. Save Changes?</source>
+        <location filename="Main_Window.cpp" line="3723"/>
+        <source>Current VM was changed. Discard all changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="3764"/>
+        <source>Current VM was changed. Save all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -5939,16 +5788,6 @@ Add This Record?</source>
         <location filename="Main_Window.cpp" line="5087"/>
         <location filename="Main_Window.cpp" line="6299"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="3723"/>
-        <source>Current VM was changed. Discard all changes?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Main_Window.cpp" line="3764"/>
-        <source>Current VM was changed. Save all changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6002,6 +5841,11 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="4271"/>
+        <source>%1 Image &quot;%2&quot; doesn&apos;t Exist! Continue Without this Image?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="4362"/>
         <source>Delete?</source>
         <translation type="unfinished"></translation>
@@ -6032,8 +5876,24 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="4511"/>
+        <source>Your New VM Name is Empty! VM isn&apos;t Created!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="4762"/>
+        <source>VM be Changed. Save Changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="4823"/>
         <source>QEMU running in snapshot mode. VM can not be saved in this mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="4859"/>
+        <location filename="Main_Window.cpp" line="4898"/>
+        <source>Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6074,6 +5934,11 @@ Add This Record?</source>
     <message>
         <location filename="Main_Window.cpp" line="5078"/>
         <source>Emulator Control Already Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="5087"/>
+        <source>This Function Works Only On Running VM!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6126,6 +5991,22 @@ Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="5242"/>
+        <source>Cannot convert &quot;%1&quot; to size suffix! Valid suffixes are: MB, GB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="5248"/>
+        <source>Memory size &lt; 0! Valid size is 1 or more</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="5257"/>
+        <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
+To set this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="5283"/>
         <source>Current memory size more of all host memory!
 Use the maximum available size.</source>
@@ -6134,6 +6015,11 @@ Use the maximum available size.</source>
     <message>
         <location filename="Main_Window.cpp" line="5295"/>
         <source>Free memory: %1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="5328"/>
+        <source>Free memory on this system is less than 32 MB!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6205,6 +6091,11 @@ Use the maximum available size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Main_Window.cpp" line="6283"/>
+        <source>CPU count value is not valid digit!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Main_Window.cpp" line="6299"/>
         <source>CPU count &gt; max CPU count for this emulator!</source>
         <translation type="unfinished"></translation>
@@ -6222,6 +6113,13 @@ Use the maximum available size.</source>
     <message>
         <location filename="Main_Window.cpp" line="6405"/>
         <source>Network Cards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Main_Window.cpp" line="6441"/>
+        <source>To Create Socket With Port Number &lt; 1024, in Unix You Need to Run AQEMU in root Mode!
+Press &quot;Ignore&quot; button for hide this message in future.
+Add This Record?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -6628,6 +6526,36 @@ Use the maximum available size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Network_Widget.ui" line="901"/>
+        <source>dhcpstart</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="915"/>
+        <source>dns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="929"/>
+        <source>tftp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="943"/>
+        <source>bootfile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="978"/>
+        <source>smb</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Network_Widget.ui" line="1013"/>
+        <source>smbserver</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Network_Widget.ui" line="1027"/>
         <source>sndbuf</source>
         <translation type="unfinished"></translation>
@@ -6667,36 +6595,6 @@ Use the maximum available size.</source>
     <message>
         <location filename="Network_Widget.ui" line="1123"/>
         <source>guestfwd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Network_Widget.ui" line="901"/>
-        <source>dhcpstart</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Network_Widget.ui" line="915"/>
-        <source>dns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Network_Widget.ui" line="929"/>
-        <source>tftp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Network_Widget.ui" line="943"/>
-        <source>bootfile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Network_Widget.ui" line="978"/>
-        <source>smb</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Network_Widget.ui" line="1013"/>
-        <source>smbserver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7397,22 +7295,6 @@ On Disk Size: </source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="Utils.cpp" line="248"/>
-        <location filename="Utils.cpp" line="256"/>
-        <location filename="Utils.cpp" line="268"/>
-        <location filename="Utils.cpp" line="457"/>
-        <location filename="Utils.cpp" line="471"/>
-        <location filename="Utils.cpp" line="484"/>
-        <location filename="Utils.cpp" line="499"/>
-        <location filename="main.cpp" line="166"/>
-        <location filename="main.cpp" line="214"/>
-        <location filename="main.cpp" line="240"/>
-        <location filename="main.cpp" line="250"/>
-        <location filename="main.cpp" line="273"/>
-        <source>Error!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="System_Info.cpp" line="496"/>
         <source>Standard PC</source>
         <translation type="unfinished"></translation>
@@ -7998,26 +7880,24 @@ On Disk Size: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="Utils.cpp" line="268"/>
-        <source>Cannot Create Image!
-Information: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Utils.cpp" line="278"/>
-        <source>Complete!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Utils.cpp" line="283"/>
-        <location filename="main.cpp" line="126"/>
-        <location filename="main.cpp" line="303"/>
-        <source>Warning!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="Utils.cpp" line="154"/>
         <source>Fatal error. It&apos;s recommended to close AQEMU</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Utils.cpp" line="248"/>
+        <location filename="Utils.cpp" line="256"/>
+        <location filename="Utils.cpp" line="268"/>
+        <location filename="Utils.cpp" line="457"/>
+        <location filename="Utils.cpp" line="471"/>
+        <location filename="Utils.cpp" line="484"/>
+        <location filename="Utils.cpp" line="499"/>
+        <location filename="main.cpp" line="166"/>
+        <location filename="main.cpp" line="214"/>
+        <location filename="main.cpp" line="240"/>
+        <location filename="main.cpp" line="250"/>
+        <location filename="main.cpp" line="273"/>
+        <source>Error!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8031,10 +7911,28 @@ Information: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Utils.cpp" line="268"/>
+        <source>Cannot Create Image!
+Information: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Utils.cpp" line="278"/>
+        <source>Complete!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Utils.cpp" line="279"/>
         <source>QEMU-IMG is Creates HDD Image.
 Additional Information:
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Utils.cpp" line="283"/>
+        <location filename="main.cpp" line="126"/>
+        <location filename="main.cpp" line="303"/>
+        <source>Warning!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8096,11 +7994,6 @@ Check Permissions For File: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="156"/>
-        <source>AQEMU emulators search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="main.cpp" line="70"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
@@ -8115,6 +8008,11 @@ Check Permissions For File: </source>
         <source>This is a first AQEMU start and program running in root mode.
 In some Linux distributions you may have problems with configuration saving.
 Close AQEMU?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="156"/>
+        <source>AQEMU emulators search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8149,14 +8047,14 @@ You Should Select This Folder in Next Window!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main.cpp" line="304"/>
-        <source>AQEMU VM Folder doesn&apos;t Exists! Create It?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="main.cpp" line="274"/>
         <source>Cannot Load AQEMU Icon Theme!
 File &quot;%1&quot; Not Found!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="main.cpp" line="304"/>
+        <source>AQEMU VM Folder doesn&apos;t Exists! Create It?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8249,7 +8147,6 @@ Missing (zero) values will be computed.</source>
     <message>
         <location filename="Select_Icon_Window.ui" line="266"/>
         <source>Your Icon Path:</source>
-        <oldsource>You Icon Path:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8353,7 +8250,6 @@ Missing (zero) values will be computed.</source>
     <message>
         <location filename="Settings_Window.ui" line="211"/>
         <source>VM Icon Size:</source>
-        <oldsource>VM Icons Size:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8419,7 +8315,6 @@ Missing (zero) values will be computed.</source>
     <message>
         <location filename="Settings_Window.ui" line="345"/>
         <source>Don&apos;t show</source>
-        <oldsource>No Show</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8456,20 +8351,14 @@ Missing (zero) values will be computed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="Settings_Window.cpp" line="205"/>
+        <source>Set your VM folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="Settings_Window.cpp" line="222"/>
         <source>Language will set after restarting AQEMU
 Show this message in future?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Settings_Window.cpp" line="263"/>
-        <source>AQEMU VM folder doesn&apos;t exist! Do you want to create it?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="Settings_Window.cpp" line="205"/>
-        <source>Set your VM folder</source>
-        <oldsource>Set Folder for you VM&apos;s</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8481,6 +8370,11 @@ Show this message in future?</source>
     <message>
         <location filename="Settings_Window.cpp" line="262"/>
         <source>Invalid Value!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="Settings_Window.cpp" line="263"/>
+        <source>AQEMU VM folder doesn&apos;t exist! Do you want to create it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8650,7 +8544,6 @@ Show This Message Again?</source>
     <message>
         <location filename="Snapshots_Window.cpp" line="313"/>
         <source>You must add HDD image in QCOW2 format if you want to use snapshots!</source>
-        <oldsource>For use snapshots, you most add HDD image in QCOW2 format!</oldsource>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -8717,7 +8610,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="VM_Wizard_Window.ui" line="320"/>
         <source>Select Emulator Type For Using In New Virtual Machine</source>
-        <oldsource>Select Emulator Type For Use In New Virtual Machine</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8812,13 +8704,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="VM_Wizard_Window.ui" line="666"/>
         <source>Select a CPU type for your new virtual machine:</source>
-        <oldsource>Select a CPU type for you new virtual machine:</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="714"/>
         <source>Select the amount of base memory (RAM) in megabytes for virtual machine allocating.</source>
-        <oldsource>Select the amount of base memory (RAM) in megabytes to be allocated to the virtual machine.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8829,7 +8719,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="VM_Wizard_Window.ui" line="799"/>
         <source>Update free memory information</source>
-        <oldsource>Update information about free memory</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8934,13 +8823,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="VM_Wizard_Window.ui" line="1099"/>
         <source>Select network type using on your new virtual machine.</source>
-        <oldsource>Select network type using on you new virtual machine.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="VM_Wizard_Window.ui" line="1122"/>
         <source>&amp;User Mode Network Connection (Uses the user mode network stack)</source>
-        <oldsource>&amp;User Mode Network Connection (Use the user mode network stack)</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -8961,7 +8848,6 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="VM_Wizard_Window.ui" line="1197"/>
         <source>Enter your new virtual machine hard disk capacity.</source>
-        <oldsource>Enter you new virtual machine hard disk capacity.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9112,27 +8998,25 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="VM_Wizard_Window.cpp" line="808"/>
+        <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
+To setup this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="VM_Wizard_Window.cpp" line="834"/>
         <source>Current memory size bigger than all existing host memory!
 Using maximum available size.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM_Wizard_Window.cpp" line="879"/>
-        <source>Free memory on this system is lower than 32 MB!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="VM_Wizard_Window.cpp" line="808"/>
-        <source>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
-To setup this value, check &quot;Remove limitation on maximum amount of memory&quot;.</source>
-        <oldsource>Your memory size %1 MB &gt; %2 MB - all free RAM on this system!
-For set it size, check &quot;Remove limitation on maximum amount of memory&quot;.</oldsource>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="VM_Wizard_Window.cpp" line="846"/>
         <source>Free memory: %1 MB</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="VM_Wizard_Window.cpp" line="879"/>
+        <source>Free memory on this system is lower than 32 MB!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -9193,6 +9077,12 @@ For set it size, check &quot;Remove limitation on maximum amount of memory&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="VM.cpp" line="3482"/>
+        <source>Version of this AQEMU VM File isn&apos;t 0.5
+Load This File anyway?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="VM.cpp" line="6162"/>
         <source>Warning!</source>
         <translation type="unfinished"></translation>
@@ -9213,19 +9103,13 @@ For set it size, check &quot;Remove limitation on maximum amount of memory&quot;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="VM.cpp" line="6499"/>
-        <source>Additional Arguments is Empty! Cannot Use User Arguments!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="VM.cpp" line="3482"/>
-        <source>Version of this AQEMU VM File isn&apos;t 0.5
-Load This File anyway?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="VM.cpp" line="6226"/>
         <source>ROM File doesn&apos;t Exists! Can&apos;t run emulator!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="VM.cpp" line="6499"/>
+        <source>Additional Arguments is Empty! Cannot Use User Arguments!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

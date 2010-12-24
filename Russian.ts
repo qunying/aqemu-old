@@ -9,56 +9,16 @@
         <translation>О программе AQEMU</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="549"/>
-        <source>OK</source>
-        <translation>OK</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="87"/>
-        <source>About</source>
-        <translation>О программе</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="172"/>
-        <source>Thanks To</source>
-        <translation>Благодарности</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="184"/>
+        <location filename="About_Window.ui" line="224"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="207"/>
-        <source>License</source>
-        <translation>Лицензия</translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="222"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:10pt; font-weight:600;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;GNU GENERAL PUBLIC LICENSE&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-weight:600;&quot;&gt;Version 2, June 1991&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt; Copyright (C) 1989, 1991 Free Software Foundation, Inc.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:9pt;&quot;&gt; 51 Franklin Steet, Fifth Floor, Boston, MA  02111-1307  USA&lt;/span&gt;&lt;/p&gt;
@@ -241,7 +201,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="522"/>
+        <location filename="About_Window.ui" line="431"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -249,8 +209,98 @@ p, li { white-space: pre-wrap; }
 &lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
 &lt;tr&gt;
 &lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;Version: 0.8.1 RC1&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="526"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Nimbus Sans L&apos;; font-weight:600; color:#aa0000;&quot;&gt;&lt;/span&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="553"/>
+        <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="87"/>
+        <source>About</source>
+        <translation>О программе</translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="172"/>
+        <source>Thanks To</source>
+        <translation>Благодарности</translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="184"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;DejaVu Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <oldsource>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
+&lt;tr&gt;
+&lt;td style=&quot;border: none;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="About_Window.ui" line="209"/>
+        <source>License</source>
+        <translation>Лицензия</translation>
     </message>
     <message>
         <location filename="About_Window.cpp" line="102"/>
@@ -277,42 +327,12 @@ p, li { white-space: pre-wrap; }
         <translation>Загрузка не удалась: %1.</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="417"/>
+        <location filename="About_Window.ui" line="419"/>
         <source>Links</source>
         <translation>Ссылки</translation>
     </message>
     <message>
-        <location filename="About_Window.ui" line="429"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;table border=&quot;0&quot; style=&quot;-qt-table-type: root; margin-top:4px; margin-bottom:4px; margin-left:4px; margin-right:4px;&quot;&gt;
-&lt;tr&gt;
-&lt;td style=&quot;border: none;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;DejaVu Sans&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Nimbus Sans L&apos;; font-size:10pt;&quot;&gt;&lt;/p&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="About_Window.ui" line="488"/>
+        <location filename="About_Window.ui" line="492"/>
         <source>Update Links Form Internet</source>
         <translation>Обновить ссылки через Интернет</translation>
     </message>
@@ -411,7 +431,7 @@ p, li { white-space: pre-wrap; }
 &lt;br&gt;Crystal SVG - Тема значков от студии дизайна Everaldo.com
 &lt;br&gt;Oxygen - Тема значков от команды Oxygen</translation>
     </message>
-    <message utf8="true">
+    <message>
         <location filename="About_Window.ui" line="133"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;
@@ -424,7 +444,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;body&gt;
 &lt;b&gt;
 &lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8.1 of ХХ.10.2010&lt;/p&gt;
+&lt;p&gt;Version: 0.8.1 of 21.12.2010&lt;/p&gt;
 &lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
 &lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
 &lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
@@ -444,7 +464,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;body&gt;
 &lt;b&gt;
 &lt;p&gt;AQEMU is Frontend for QEMU and KVM Emulators&lt;/p&gt;
-&lt;p&gt;Version: 0.8.1 of ХХ.09.2010&lt;/p&gt;
+&lt;p&gt;Version: 0.8.1 of ХХ.10.2010&lt;/p&gt;
 &lt;p&gt;License: GNU GPL Version 2&lt;/p&gt;
 &lt;p&gt;Author: Andrey Rijov (a.k.a. RDron)&lt;/p&gt;
 &lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
@@ -453,7 +473,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;/b&gt;
 &lt;/body&gt;
 &lt;/html&gt;</oldsource>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
@@ -1162,22 +1182,22 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Дополнительные параметры</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1393"/>
+        <location filename="Advanced_Settings_Window.ui" line="1401"/>
         <source>Information in Info Tab</source>
         <translation>Информация на закладке Инфо</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1475"/>
+        <location filename="Advanced_Settings_Window.ui" line="1483"/>
         <source>Machine Details</source>
         <translation>Описание машины</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1489"/>
+        <location filename="Advanced_Settings_Window.ui" line="1497"/>
         <source>Machine Name</source>
         <translation>Имя машины</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1587"/>
+        <location filename="Advanced_Settings_Window.ui" line="1595"/>
         <source>Network Cards</source>
         <translation>Сетевые карты</translation>
     </message>
@@ -1202,12 +1222,12 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Параллельный порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1706"/>
+        <location filename="Advanced_Settings_Window.ui" line="1714"/>
         <source>USB Ports</source>
         <translation>USB порты</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1867"/>
+        <location filename="Advanced_Settings_Window.ui" line="1875"/>
         <source>ROM File</source>
         <translation>ROM файл</translation>
     </message>
@@ -1216,77 +1236,77 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">GDB порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1538"/>
+        <location filename="Advanced_Settings_Window.ui" line="1546"/>
         <source>Computer Type</source>
         <translation>Тип компьютера</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1552"/>
+        <location filename="Advanced_Settings_Window.ui" line="1560"/>
         <source>Machine Type</source>
         <translation>Тип машины</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1517"/>
+        <location filename="Advanced_Settings_Window.ui" line="1525"/>
         <source>CPU Type</source>
         <translation>Тип процессора</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1531"/>
+        <location filename="Advanced_Settings_Window.ui" line="1539"/>
         <source>Number of CPU</source>
         <translation>Количество процессоров</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1832"/>
+        <location filename="Advanced_Settings_Window.ui" line="1840"/>
         <source>Acceleration</source>
         <translation>Акселерация</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1503"/>
+        <location filename="Advanced_Settings_Window.ui" line="1511"/>
         <source>Boot Priority</source>
         <translation>Порядок загрузки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1545"/>
+        <location filename="Advanced_Settings_Window.ui" line="1553"/>
         <source>Video Card</source>
         <translation>Видео карта</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1559"/>
+        <location filename="Advanced_Settings_Window.ui" line="1567"/>
         <source>Keyboard Layout</source>
         <translation>Раскладка клавиатуры</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1629"/>
+        <location filename="Advanced_Settings_Window.ui" line="1637"/>
         <source>Fullscreen Mode</source>
         <translation>Полноэкранный режим</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1741"/>
+        <location filename="Advanced_Settings_Window.ui" line="1749"/>
         <source>Windows 2K Hack</source>
         <translation>Windows 2000 хак</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1825"/>
+        <location filename="Advanced_Settings_Window.ui" line="1833"/>
         <source>Enable ACPI</source>
         <translation>Активировать ACPI</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1657"/>
+        <location filename="Advanced_Settings_Window.ui" line="1665"/>
         <source>Use Local Time</source>
         <translation>Локальное время</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1811"/>
+        <location filename="Advanced_Settings_Window.ui" line="1819"/>
         <source>Check Boot Sector on FDD</source>
         <translation>Бут сектор на FDD</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1797"/>
+        <location filename="Advanced_Settings_Window.ui" line="1805"/>
         <source>Start CPU at Startup</source>
         <translation>Запускать CPU при старте</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1643"/>
+        <location filename="Advanced_Settings_Window.ui" line="1651"/>
         <source>Snapshot Mode</source>
         <translation>Snapshot режим</translation>
     </message>
@@ -1295,37 +1315,37 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Включить лог QEMU</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1783"/>
+        <location filename="Advanced_Settings_Window.ui" line="1791"/>
         <source>No Reboot</source>
         <translation>Без перезагрузки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1713"/>
+        <location filename="Advanced_Settings_Window.ui" line="1721"/>
         <source>Use Linux Boot</source>
         <translation>Загрузка ядра Linux</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1615"/>
+        <location filename="Advanced_Settings_Window.ui" line="1623"/>
         <source>Show Floppy</source>
         <translation>Отображать Floppy</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1636"/>
+        <location filename="Advanced_Settings_Window.ui" line="1644"/>
         <source>Show CD-ROM</source>
         <translation>Отображать CD-ROM</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1650"/>
+        <location filename="Advanced_Settings_Window.ui" line="1658"/>
         <source>Show HDD</source>
         <translation>Отображать HDD</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1573"/>
+        <location filename="Advanced_Settings_Window.ui" line="1581"/>
         <source>Memory Size</source>
         <translation>Объём памяти</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1594"/>
+        <location filename="Advanced_Settings_Window.ui" line="1602"/>
         <source>Use Sound</source>
         <translation>Использовать звук</translation>
     </message>
@@ -1344,162 +1364,162 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>&amp;Отмена</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="512"/>
+        <location filename="Advanced_Settings_Window.ui" line="520"/>
         <source>Write log to</source>
         <translation>Писать журнал в</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="556"/>
+        <location filename="Advanced_Settings_Window.ui" line="564"/>
         <source>Print to STDOUT</source>
         <translation>Писать в STDOUT</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="823"/>
+        <location filename="Advanced_Settings_Window.ui" line="831"/>
         <source>Valid MAC Address (Especial For Each Network Card model)</source>
         <translation>Правильный MAC адрес (Свой для каждой модели сетевой карты)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="856"/>
+        <location filename="Advanced_Settings_Window.ui" line="864"/>
         <source>Don&apos;t use default audio driver</source>
         <translation>Не использовать аудио драйвер по умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="963"/>
+        <location filename="Advanced_Settings_Window.ui" line="971"/>
         <source>Start/Stop QEMU/KVM emulator</source>
         <translation>Загрузка/остановка QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="984"/>
+        <location filename="Advanced_Settings_Window.ui" line="992"/>
         <source>Execute Before Starting QEMU/KVM:</source>
         <translation>Выполнять до старта QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1008"/>
+        <location filename="Advanced_Settings_Window.ui" line="1016"/>
         <source>Execute After Stoping QEMU/KVM:</source>
         <translation>Выполнять после остановки QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1167"/>
+        <location filename="Advanced_Settings_Window.ui" line="1175"/>
         <source>QEMU/KVM Monitor Connection Type</source>
         <translation>Тип подключения QEMU/KVM Monitor</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1188"/>
+        <location filename="Advanced_Settings_Window.ui" line="1196"/>
         <source>stdio (Does not work with Windows version of QEMU)</source>
         <translation>stdio (Не работает в Windows версии QEMU)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1200"/>
+        <location filename="Advanced_Settings_Window.ui" line="1208"/>
         <source>TCP Socket</source>
         <translation>TCP сокет</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1226"/>
+        <location filename="Advanced_Settings_Window.ui" line="1234"/>
         <source>Hostname</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1237"/>
+        <location filename="Advanced_Settings_Window.ui" line="1245"/>
         <source>localhost</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1242"/>
+        <location filename="Advanced_Settings_Window.ui" line="1250"/>
         <source>127.0.0.1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1269"/>
+        <location filename="Advanced_Settings_Window.ui" line="1277"/>
         <source>First port</source>
         <translation>Начальный порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1601"/>
+        <location filename="Advanced_Settings_Window.ui" line="1609"/>
         <source>Network Redirections</source>
         <translation>Сетевые перенаправления</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1671"/>
+        <location filename="Advanced_Settings_Window.ui" line="1679"/>
         <source>Serial Ports</source>
         <translation>Последовательный порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1685"/>
+        <location filename="Advanced_Settings_Window.ui" line="1693"/>
         <source>VNC</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1692"/>
+        <location filename="Advanced_Settings_Window.ui" line="1700"/>
         <source>Parallel Ports</source>
         <translation>Параллельный порт</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1699"/>
+        <location filename="Advanced_Settings_Window.ui" line="1707"/>
         <source>SPICE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1727"/>
+        <location filename="Advanced_Settings_Window.ui" line="1735"/>
         <source>No Frame</source>
         <translation>Без фрейма</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1748"/>
+        <location filename="Advanced_Settings_Window.ui" line="1756"/>
         <source>Alt Grab</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1755"/>
+        <location filename="Advanced_Settings_Window.ui" line="1763"/>
         <source>RTC TD Hack</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1762"/>
+        <location filename="Advanced_Settings_Window.ui" line="1770"/>
         <source>No Quit</source>
         <translation>Отключить выход</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1769"/>
+        <location filename="Advanced_Settings_Window.ui" line="1777"/>
         <source>No Shutdown</source>
         <translation>Не выключать</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1776"/>
+        <location filename="Advanced_Settings_Window.ui" line="1784"/>
         <source>Portrait</source>
         <translation>Портрет</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1790"/>
+        <location filename="Advanced_Settings_Window.ui" line="1798"/>
         <source>Curses</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1804"/>
+        <location filename="Advanced_Settings_Window.ui" line="1812"/>
         <source>Show cursor</source>
         <translation>Отображать курсор</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1818"/>
+        <location filename="Advanced_Settings_Window.ui" line="1826"/>
         <source>Initial graphical mode</source>
         <translation>Начальный графический режим</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1839"/>
+        <location filename="Advanced_Settings_Window.ui" line="1847"/>
         <source>Start Date</source>
         <translation>Начальная дата</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1853"/>
+        <location filename="Advanced_Settings_Window.ui" line="1861"/>
         <source>Flash Image</source>
         <translation>Flash образ</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1874"/>
+        <location filename="Advanced_Settings_Window.ui" line="1882"/>
         <source>SD Image</source>
         <translation>Образ SD</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1860"/>
+        <location filename="Advanced_Settings_Window.ui" line="1868"/>
         <source>Parallel Flash Image</source>
         <translation>Образ Parallel Flash</translation>
     </message>
@@ -1509,17 +1529,17 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Основные</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="947"/>
+        <location filename="Advanced_Settings_Window.ui" line="955"/>
         <source>Other</source>
         <translation>Другое</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="483"/>
+        <location filename="Advanced_Settings_Window.ui" line="491"/>
         <source>AQEMU Logging</source>
         <translation>Журнал AQEMU</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="533"/>
+        <location filename="Advanced_Settings_Window.ui" line="541"/>
         <source>Save in File</source>
         <translation>Сохранять в файл</translation>
     </message>
@@ -1528,22 +1548,22 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Писать в STDOUT</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="607"/>
+        <location filename="Advanced_Settings_Window.ui" line="615"/>
         <source>Debug Messages</source>
         <translation>Отладка</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="630"/>
+        <location filename="Advanced_Settings_Window.ui" line="638"/>
         <source>Warning Messages</source>
         <translation>Предупреждения</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="653"/>
+        <location filename="Advanced_Settings_Window.ui" line="661"/>
         <source>Error Messages</source>
         <translation>Ошибки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="673"/>
+        <location filename="Advanced_Settings_Window.ui" line="681"/>
         <source>Log Path:</source>
         <translation>Путь к журналу:</translation>
     </message>
@@ -1552,17 +1572,17 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Писать журнал в</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="586"/>
+        <location filename="Advanced_Settings_Window.ui" line="594"/>
         <source>Log Messages</source>
         <translation>Сообщения журнала</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="788"/>
+        <location filename="Advanced_Settings_Window.ui" line="796"/>
         <source>VM Network Card MAC Address</source>
         <translation>MAC адрес сетевой карты ВМ</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="809"/>
+        <location filename="Advanced_Settings_Window.ui" line="817"/>
         <source>Random MAC Address</source>
         <translation>Случайный MAC адрес</translation>
     </message>
@@ -1571,47 +1591,47 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Правильный MAC адрес (Свой для каждой модели сетевой карты)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="886"/>
+        <location filename="Advanced_Settings_Window.ui" line="894"/>
         <source>Host Sound System:</source>
         <translation>Звуковая система хоста:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="906"/>
+        <location filename="Advanced_Settings_Window.ui" line="914"/>
         <source>alsa</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="911"/>
+        <location filename="Advanced_Settings_Window.ui" line="919"/>
         <source>oss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="926"/>
+        <location filename="Advanced_Settings_Window.ui" line="934"/>
         <source>sdl</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="931"/>
+        <location filename="Advanced_Settings_Window.ui" line="939"/>
         <source>wav</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="936"/>
+        <location filename="Advanced_Settings_Window.ui" line="944"/>
         <source>none</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="816"/>
+        <location filename="Advanced_Settings_Window.ui" line="824"/>
         <source>QEMU Segment MAC Address (52:54:00:XX:XX:XX)</source>
         <translation>MAC адрес из QEMU сегмента (52:54:00:XX:XX:XX)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1080"/>
+        <location filename="Advanced_Settings_Window.ui" line="1088"/>
         <source>Recent CD-ROM Images Count</source>
         <translation>Сколько последних CD-ROM образов запоминать</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1408"/>
+        <location filename="Advanced_Settings_Window.ui" line="1416"/>
         <source>Show Tab Info</source>
         <translation>Отображать таб Инфо</translation>
     </message>
@@ -1620,7 +1640,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Не использовать аудио драйвер по умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1120"/>
+        <location filename="Advanced_Settings_Window.ui" line="1128"/>
         <source>First VNC Port for Embedded Display</source>
         <translation>Начальный VNC порт для встроенного дисплея</translation>
     </message>
@@ -1631,78 +1651,78 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Все файлы (*);;Скрипты (*.sh)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="302"/>
+        <location filename="Advanced_Settings_Window.ui" line="312"/>
         <source>Installed Emulators</source>
         <translation>Установленные эмуляторы</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="338"/>
-        <location filename="Advanced_Settings_Window.ui" line="1355"/>
+        <location filename="Advanced_Settings_Window.ui" line="348"/>
+        <location filename="Advanced_Settings_Window.ui" line="1363"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="358"/>
-        <location filename="Advanced_Settings_Window.ui" line="1377"/>
+        <location filename="Advanced_Settings_Window.ui" line="368"/>
+        <location filename="Advanced_Settings_Window.ui" line="1385"/>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="378"/>
-        <location filename="Advanced_Settings_Window.ui" line="1366"/>
+        <location filename="Advanced_Settings_Window.ui" line="388"/>
+        <location filename="Advanced_Settings_Window.ui" line="1374"/>
         <source>Edit</source>
         <translation>Изменить</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="398"/>
+        <location filename="Advanced_Settings_Window.ui" line="408"/>
         <source>Use Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="443"/>
+        <location filename="Advanced_Settings_Window.ui" line="453"/>
         <source>Name</source>
         <translation>Имя</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="453"/>
+        <location filename="Advanced_Settings_Window.ui" line="463"/>
         <source>Path</source>
         <translation>Путь</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="111"/>
+        <location filename="Advanced_Settings_Window.ui" line="113"/>
         <source>File Format:</source>
         <oldsource>Save Format:</oldsource>
         <translation>Формат файла:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="121"/>
+        <location filename="Advanced_Settings_Window.ui" line="128"/>
         <source>Original (PPM)</source>
         <translation>Оригинальный (PPM)</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="128"/>
+        <location filename="Advanced_Settings_Window.ui" line="135"/>
         <source>JPEG</source>
         <oldsource>Jpeg</oldsource>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="135"/>
+        <location filename="Advanced_Settings_Window.ui" line="142"/>
         <source>PNG</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="156"/>
+        <location filename="Advanced_Settings_Window.ui" line="165"/>
         <source>Jpeg Quality:</source>
         <translation>Качество Jpeg:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="227"/>
+        <location filename="Advanced_Settings_Window.ui" line="245"/>
         <source>Shared screenshot folder</source>
         <oldsource>Shared Folder to Save All Screenshots</oldsource>
         <translation>Общий каталог для скриншотов</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="237"/>
+        <location filename="Advanced_Settings_Window.ui" line="260"/>
         <source>Folder Path:</source>
         <translation>Путь к папке:</translation>
     </message>
@@ -1741,37 +1761,37 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Настройки скриншотов</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="469"/>
+        <location filename="Advanced_Settings_Window.ui" line="477"/>
         <source>Advanced</source>
         <translation>Дополнительно</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1059"/>
+        <location filename="Advanced_Settings_Window.ui" line="1067"/>
         <source>Other Settings</source>
         <translation>Другие настройки</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1432"/>
+        <location filename="Advanced_Settings_Window.ui" line="1440"/>
         <source>Show Inside Tab Info Screenshot in Save Mode</source>
         <translation>В сохранённом режиме показывать внутри таба Инфо скриншот</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1448"/>
+        <location filename="Advanced_Settings_Window.ui" line="1456"/>
         <source>Show QEMU/KVM Arguments</source>
         <translation>Показать аргументы QEMU/KVM</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1510"/>
+        <location filename="Advanced_Settings_Window.ui" line="1518"/>
         <source>Emulator Type</source>
         <translation>Тип эмулятора</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1524"/>
+        <location filename="Advanced_Settings_Window.ui" line="1532"/>
         <source>Emulator Version</source>
         <translation>Версия эмулятора</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="318"/>
+        <location filename="Advanced_Settings_Window.ui" line="328"/>
         <source>Find All Emulators</source>
         <translation>Поиск эмуляторов</translation>
     </message>
@@ -1787,7 +1807,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Введите имя устройства. Например: /dev/cdrom</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1331"/>
+        <location filename="Advanced_Settings_Window.ui" line="1339"/>
         <source>Additional CD/DVD Devices</source>
         <translation>Дополнительные CD/DVD устройства</translation>
     </message>
@@ -1839,27 +1859,27 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation>Выберите каталог для скриншотов</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="448"/>
+        <location filename="Advanced_Settings_Window.ui" line="458"/>
         <source>Type and version</source>
         <translation>Тип и версия</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="458"/>
+        <location filename="Advanced_Settings_Window.ui" line="468"/>
         <source>Use default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="725"/>
+        <location filename="Advanced_Settings_Window.ui" line="733"/>
         <source>qemu-img path</source>
         <translation>Путь к qemu-img</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="916"/>
+        <location filename="Advanced_Settings_Window.ui" line="924"/>
         <source>pa</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="921"/>
+        <location filename="Advanced_Settings_Window.ui" line="929"/>
         <source>esd</source>
         <translation></translation>
     </message>
@@ -1876,7 +1896,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
         <translation type="obsolete">Выполнять после остановки QEMU/KVM:</translation>
     </message>
     <message>
-        <location filename="Advanced_Settings_Window.ui" line="1100"/>
+        <location filename="Advanced_Settings_Window.ui" line="1108"/>
         <source>Recent Floppy Images Count</source>
         <translation>Сколько последних Floppy образов запоминать</translation>
     </message>

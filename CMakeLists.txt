@@ -140,7 +140,7 @@ SET( aqemu_ui
 )
 
 SET( aqemu_resouces shared_images.qrc )
-SET( translations German.ts Russian.ts )
+SET( translations German.ts Russian.ts Ukrainian.ts French.ts )
 SET( files_to_translate ${files_to_translate} ${aqemu_headers} ${aqemu_sources} ${aqemu_ui} )
 
 
