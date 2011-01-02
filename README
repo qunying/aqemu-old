@@ -50,7 +50,7 @@ INSTALLATION (For Unix):
         Set compressor for AQEMU man page file.
 
     Example:
-        cmake cmake -DCMAKE_INSTALL_PREFIX=/usr -DMAN_PAGE_COMPRESSOR=bzip2
+        cmake -DCMAKE_INSTALL_PREFIX=/usr -DMAN_PAGE_COMPRESSOR=bzip2
 
  4. type `make'
 
