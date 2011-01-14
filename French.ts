@@ -2077,7 +2077,7 @@ Détails :
     <message>
         <location filename="Create_HDD_Image_Window.cpp" line="94"/>
         <source>Select Base HDD Image File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionnez le fichier d&apos;image disque dur de base</translation>
     </message>
     <message>
         <location filename="Create_HDD_Image_Window.cpp" line="96"/>
@@ -4379,7 +4379,8 @@ Cliquez sur le boutton « Suivant » pour aller à la page suivante ou sur le bo
         <location filename="Main_Window.ui" line="1951"/>
         <source>Image Format: none
 Allocated Disk Space: 0</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Format de l&apos;image : aucun
+Espace disque alloué : 0</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="1390"/>
@@ -4388,7 +4389,8 @@ Allocated Disk Space: 0</source>
         <location filename="Main_Window.ui" line="1978"/>
         <source>Virtual Size: 0
 Cluster Size: 0</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Taille virtuelle : 0
+Taille de cluster : 0</translation>
     </message>
     <message>
         <location filename="Main_Window.ui" line="1419"/>
@@ -6671,7 +6673,7 @@ Add This Record?</source>
     <message>
         <location filename="Network_Widget.cpp" line="687"/>
         <source>Maximum Network Cards Count is 8.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Le nombre maximal de carte réseau est de 8.</translation>
     </message>
     <message>
         <location filename="Network_Widget.cpp" line="693"/>

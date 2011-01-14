@@ -114,7 +114,7 @@ SOURCES += About_Window.cpp \
            VNC_Password_Window.cpp
 
 RESOURCES += oxygen_icons.qrc shared_images.qrc
-TRANSLATIONS += German.ts Russian.ts Ukrainian.ts
+TRANSLATIONS += German.ts Russian.ts Ukrainian.ts French.ts English.ts
 QT += xml network
 #CONFIG += debug console
 CONFIG += release
