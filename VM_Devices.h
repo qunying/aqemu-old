@@ -228,6 +228,8 @@ class Available_Devices
 		bool PSO_SMP_Sockets;
 		bool PSO_SMP_MaxCPUs;
 		
+		bool PSO_Device;
+		
 		bool PSO_Drive;
 		bool PSO_Drive_File;
 		bool PSO_Drive_If;

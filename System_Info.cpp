@@ -1704,6 +1704,10 @@ Available_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 		}
 	}
 	
+	// -device
+	rx = QRegExp( ".*-device\\s.*" );
+	if( rx.exactMatch(all_help) ) tmp_dev.PSO_Device = true;
+	
 	// -drive
 	rx = QRegExp( ".*-drive\\s+(\\[.*\\]).*-.*" );
 	if( rx.exactMatch(all_help) )

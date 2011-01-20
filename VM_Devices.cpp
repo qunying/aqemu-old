@@ -49,6 +49,8 @@ Available_Devices::Available_Devices()
 	PSO_SMP_Sockets = false;
 	PSO_SMP_MaxCPUs = false;
 	
+	PSO_Device = false;
+	
 	PSO_Drive = false;
 	PSO_Drive_File = false;
 	PSO_Drive_If = false;
@@ -472,6 +474,8 @@ bool Emulator::Load( const QString &path )
 			tmpDev.PSO_SMP_Sockets = (childElement.firstChildElement("SMP_Sockets").text() == "yes" );
 			tmpDev.PSO_SMP_MaxCPUs = (childElement.firstChildElement("SMP_MaxCPUs").text() == "yes" );
 			
+			tmpDev.PSO_Device = (childElement.firstChildElement("Device").text() == "yes" );
+			
 			tmpDev.PSO_Drive = (childElement.firstChildElement("Drive").text() == "yes" );
 			tmpDev.PSO_Drive_File = (childElement.firstChildElement("Drive_File").text() == "yes" );
 			tmpDev.PSO_Drive_If = (childElement.firstChildElement("Drive_If").text() == "yes" );
@@ -825,6 +829,11 @@ bool Emulator::Save() const
 		domText = domDocument.createTextNode( (tmpDev.PSO_SMP_MaxCPUs ? "yes" : "no") );
 		deviceElement.appendChild( domText );
 		
+		// PSO_Device
+		deviceElement = domDocument.createElement( "Device" );
+		domElement.appendChild( deviceElement );
+		domText = domDocument.createTextNode( (tmpDev.PSO_Device ? "yes" : "no") );
+		deviceElement.appendChild( domText );
 		
 		// PSO_Drive
 		deviceElement = domDocument.createElement( "Drive" );
