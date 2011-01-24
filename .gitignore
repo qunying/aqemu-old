@@ -32,5 +32,3 @@ AQEMU.kdevses
 .kdbgrc.aqemu
 Doxyfile
 
-# File for correct English traslation
-English.ts
