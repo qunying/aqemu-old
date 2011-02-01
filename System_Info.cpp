@@ -2598,9 +2598,9 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		}
 		else
 		{
-			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "Cannot read manufacturer from /sys/bus/usb/devices/" );
-			continue;
+			AQWarning( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
+					   "Cannot read manufacturer from /sys/bus/usb/devices/" );
+			tmp_usb.Set_Manufacturer_Name( "Unknown Manufacturer" );
 		}
 		
 		// product
@@ -2610,9 +2610,9 @@ bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )
 		}
 		else
 		{
-			AQError( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
-					 "Cannot read product from /sys/bus/usb/devices/" );
-			continue;
+			AQWarning( "bool System_Info::Scan_USB_Sys( QList<VM_USB> &list )",
+					   "Cannot read product from /sys/bus/usb/devices/" );
+			tmp_usb.Set_Product_Name( "Unknown Product" );
 		}
 		
 		// speed
