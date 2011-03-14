@@ -5621,14 +5621,14 @@ QStringList Virtual_Machine::Build_QEMU_Args()
 						
 					// -net vde[,vlan=n][,name=str][,sock=socketpath][,port=n][,group=groupname][,mode=octalmode]
 					case VM::Net_Mode_Nativ_VDE:
-						if( Current_Emulator_Devices.PSO_Net_type_vde ) continue;
+						if( ! Current_Emulator_Devices.PSO_Net_type_vde ) continue;
 						nic_str += "vde";
 						u_vlan = u_name = u_sock = u_port = u_group = u_mode = true;
 						break;
 						
 					// -net dump[,vlan=n][,file=file][,len=len]
 					case VM::Net_Mode_Nativ_Dump:
-						if( Current_Emulator_Devices.PSO_Net_type_dump ) continue;
+						if( ! Current_Emulator_Devices.PSO_Net_type_dump ) continue;
 						nic_str += "dump";
 						u_vlan = u_file = u_len = true;
 						break;
