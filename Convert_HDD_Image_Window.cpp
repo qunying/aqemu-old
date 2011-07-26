@@ -158,7 +158,7 @@ void Convert_HDD_Image_Window::on_Button_Browse_Output_clicked()
 
 void Convert_HDD_Image_Window::on_CB_Output_Format_currentIndexChanged( const QString &text )
 {
-	if( text.indexOf("qcow") != -1 )
+	if( text.contains("qcow", Qt::CaseInsensitive) )
 	{
 		ui.CH_Compressed->setEnabled( true );
 		

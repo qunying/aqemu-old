@@ -236,6 +236,10 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 			ui.CB_Version->setCurrentIndex( 5 );
 			break;
 			
+		case VM::QEMU_0_14:
+			ui.CB_Version->setCurrentIndex( 6 );
+			break;
+			
 		case VM::KVM_7X:
 			ui.CB_Version->setCurrentIndex( 0 );
 			break;
@@ -254,6 +258,10 @@ void Emulator_Options_Window::Set_Emulator( const Emulator &emul )
 			
 		case VM::KVM_0_13:
 			ui.CB_Version->setCurrentIndex( 4 );
+			break;
+			
+		case VM::KVM_0_14:
+			ui.CB_Version->setCurrentIndex( 5 );
 			break;
 			
 		default:

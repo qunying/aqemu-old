@@ -1527,6 +1527,9 @@ const QMap<QString, Available_Devices> &Emulator::Get_Devices() const
 			case VM::QEMU_0_13:
 				return System_Info::Emulator_QEMU_0_13;
 				
+			case VM::QEMU_0_14:
+				return System_Info::Emulator_QEMU_0_14;
+				
 			case VM::KVM_7X:
 				return System_Info::Emulator_KVM_7X;
 				
@@ -1541,6 +1544,9 @@ const QMap<QString, Available_Devices> &Emulator::Get_Devices() const
 				
 			case VM::KVM_0_13:
 				return System_Info::Emulator_KVM_0_13;
+				
+			case VM::KVM_0_14:
+				return System_Info::Emulator_KVM_0_14;
 				
 			default:
 				AQError( "const QMap<QString, Available_Devices> &Emulator::Get_Devices() const",

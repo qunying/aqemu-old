@@ -1206,9 +1206,8 @@ bool System_Info::Update_VM_Computers_List()
 	
 	// QEMU 0.12
 	System_Info::Emulator_QEMU_0_12 = System_Info::Emulator_QEMU_0_11;
-	
-	// QEMU 0.12
-	System_Info::Emulator_QEMU_0_13 = System_Info::Emulator_QEMU_0_12;
+	System_Info::Emulator_QEMU_0_13 = System_Info::Emulator_QEMU_0_11;
+	System_Info::Emulator_QEMU_0_14 = System_Info::Emulator_QEMU_0_11;
 	
 	// KVM 7X
 	ad = Available_Devices();
@@ -1354,6 +1353,7 @@ bool System_Info::Update_VM_Computers_List()
 	System_Info::Emulator_KVM_0_12[ "qemu-kvm" ] = ad;
 	
 	System_Info::Emulator_KVM_0_13 = System_Info::Emulator_KVM_0_12;
+	System_Info::Emulator_KVM_0_14 = System_Info::Emulator_KVM_0_12;
 	
 	return true;
 }
@@ -1480,7 +1480,8 @@ VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 			else if( major_ver == 0 && minor_ver == 11 ) return VM::KVM_0_11;
 			else if( major_ver == 0 && minor_ver == 12 ) return VM::KVM_0_12;
 			else if( major_ver == 0 && minor_ver == 13 ) return VM::KVM_0_13;
-			else if( major_ver >  0 || (major_ver == 0 && minor_ver > 13) ) return VM::KVM_0_13;
+			else if( major_ver == 0 && minor_ver == 14 ) return VM::KVM_0_14;
+			else if( major_ver >  0 || (major_ver == 0 && minor_ver > 13) ) return VM::KVM_0_14;
 			else
 			{
 				AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
@@ -1528,7 +1529,8 @@ VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )
 		else if( major_ver == 0 && minor_ver == 11 ) return VM::QEMU_0_11;
 		else if( major_ver == 0 && minor_ver == 12 ) return VM::QEMU_0_12;
 		else if( major_ver == 0 && minor_ver == 13 ) return VM::QEMU_0_13;
-		else if( major_ver >  0 || (major_ver == 0 && minor_ver > 13) ) return VM::QEMU_0_13;
+		else if( major_ver == 0 && minor_ver == 14 ) return VM::QEMU_0_14;
+		else if( major_ver >  0 || (major_ver == 0 && minor_ver > 13) ) return VM::QEMU_0_14;
 		else
 		{
 			AQError( "VM::Emulator_Version System_Info::Get_Emulator_Version( const QString &path )",
@@ -2082,6 +2084,10 @@ Available_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 			default_device = Emulator_QEMU_0_13[ internalName ];
 			break;
 			
+		case VM::QEMU_0_14:
+			default_device = Emulator_QEMU_0_14[ internalName ];
+			break;
+			
 		case VM::KVM_7X:
 			default_device = Emulator_KVM_7X[ internalName ];
 			break;
@@ -2100,6 +2106,10 @@ Available_Devices System_Info::Get_Emulator_Info( const QString &path, bool *ok,
 			
 		case VM::KVM_0_13:
 			default_device = Emulator_KVM_0_13[ internalName ];
+			break;
+			
+		case VM::KVM_0_14:
+			default_device = Emulator_KVM_0_14[ internalName ];
 			break;
 			
 		default:

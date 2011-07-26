@@ -68,6 +68,10 @@ void SMP_Settings_Window::Set_SMP_Count( int count )
 {
 	Backup_SMP.SMP_Count = count;
 	ui.SB_SMP->setValue( count );
+	ui.SB_Cores->setValue( 0 );
+	ui.SB_Threads->setValue( 0 );
+	ui.SB_Sockets->setValue( 0 );
+	ui.SB_MaxCPUs->setValue( 0 );
 }
 
 void SMP_Settings_Window::on_Button_OK_clicked()

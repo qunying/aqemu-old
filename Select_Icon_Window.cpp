@@ -48,8 +48,8 @@ void Select_Icon_Window::Set_Previous_Icon_Path( const QString& path )
 	// Analise path...
 	if( path[0] == ':' ) // AQEMU Default Icons
 	{
-		if( path.indexOf("linux") > 0 ) ui.RB_Icon_Linux->setChecked( true );
-		else if( path.indexOf("windows") > 0 ) ui.RB_Icon_Windows->setChecked( true );
+		if( path.contains("linux", Qt::CaseInsensitive) ) ui.RB_Icon_Linux->setChecked( true );
+		else if( path.contains("windows", Qt::CaseInsensitive) ) ui.RB_Icon_Windows->setChecked( true );
 		else ui.RB_Icon_Other->setChecked( true );
 	}
 	else if( path.indexOf(QDir::toNativeSeparators(Settings.value("AQEMU_Data_Folder", "").toString() + "/os_icons/")) == 0 ) // AQEMU Icons Folder

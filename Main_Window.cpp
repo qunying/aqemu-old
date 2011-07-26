@@ -56,12 +56,14 @@ QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_10;
 QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_11;
 QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_12;
 QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_13;
+QMap<QString, Available_Devices> System_Info::Emulator_QEMU_0_14;
 
 QMap<QString, Available_Devices> System_Info::Emulator_KVM_7X;
 QMap<QString, Available_Devices> System_Info::Emulator_KVM_8X;
 QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_11;
 QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_12;
 QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_13;
+QMap<QString, Available_Devices> System_Info::Emulator_KVM_0_14;
 
 QList<VM_USB> System_Info::All_Host_USB;
 QList<VM_USB> System_Info::Used_Host_USB;
@@ -6265,11 +6267,31 @@ void Main_Window::on_TB_Show_Boot_Settings_Window_clicked()
 void Main_Window::on_TB_Show_SMP_Settings_Window_clicked()
 {
 	if( ! Validate_CPU_Count(ui.CB_CPU_Count->currentText()) ) return;
-	SMP_Settings.Set_SMP_Count( ui.CB_CPU_Count->currentText().toInt() );
 	
-	SMP_Settings.exec();
+	// New SMP count?
+	if( SMP_Settings.Get_Values().SMP_Count != ui.CB_CPU_Count->currentText().toInt() )
+		SMP_Settings.Set_SMP_Count( ui.CB_CPU_Count->currentText().toInt() );
 	
-	ui.CB_CPU_Count->setEditText( QString::number(SMP_Settings.Get_Values().SMP_Count) );
+	if( SMP_Settings.exec() == QDialog::Accepted )
+	{
+		if( SMP_Settings.Get_Values().SMP_Count != ui.CB_CPU_Count->currentText().toInt() )
+		{
+			// Set new CPU count value
+			disconnect( ui.CB_CPU_Count, SIGNAL(editTextChanged(const QString &)),
+						this, SLOT(Validate_CPU_Count(const QString&)) );
+			
+			ui.CB_CPU_Count->setEditText( QString::number(SMP_Settings.Get_Values().SMP_Count) );
+			
+			connect( ui.CB_CPU_Count, SIGNAL(editTextChanged(const QString &)),
+					 this, SLOT(Validate_CPU_Count(const QString&)) );
+		}
+		else
+		{
+			// Settings changed?
+			if( SMP_Settings.Get_Values() != Get_Current_VM()->Get_SMP() )
+				VM_Changet();
+		}
+	}
 }
 
 bool Main_Window::Validate_CPU_Count( const QString &text )
@@ -6293,7 +6315,14 @@ bool Main_Window::Validate_CPU_Count( const QString &text )
 		return false;
 	}
 	
-	if( cpuCountTmp <= tmpDev.PSO_SMP_Count ) return true;
+	if( cpuCountTmp <= tmpDev.PSO_SMP_Count )
+	{
+		// Reset old SMP options
+		if( SMP_Settings.Get_Values().SMP_Count != ui.CB_CPU_Count->currentText().toInt() )
+			SMP_Settings.Set_SMP_Count( cpuCountTmp );
+		
+		return true;
+	}
 	else
 	{
 		AQGraphic_Warning( tr("Warning"), tr("CPU count > max CPU count for this emulator!") );

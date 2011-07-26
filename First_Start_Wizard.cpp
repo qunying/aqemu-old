@@ -173,8 +173,11 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 		// Delete /usr/bin/X11/ from PATH's list
 		for( int ix = 0; ix < paths.count(); ix++ )
 		{
-			if( paths[ix].indexOf("/usr/bin/X11") >= 0 ) paths.removeAt( ix );
+			if( paths[ix].contains("/usr/bin/X11") ) paths.removeAt( ix );
 		}
+		
+		// Remove duplicates
+		paths.removeDuplicates();
 		
 		// Add / to line end
 		for( int ix = 0; ix < paths.count(); ++ix )
@@ -257,7 +260,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				
 				// Bin files found. Work...
 				AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
-						 "QEMU Finded. Path: " + paths[qx] );
+						 "QEMU Found. Path: " + paths[qx] );
 				
 				// Check Version
 				VM::Emulator_Version qemu_version = VM::Obsolete;
@@ -373,7 +376,7 @@ void First_Start_Wizard::on_Button_Find_Emulators_clicked()
 				
 				// Bin files found. Work...
 				AQDebug( "void First_Start_Wizard::on_Button_Find_clicked()",
-						 "KVM Finded. Path: " + paths[kx] );
+						 "KVM Found. Path: " + paths[kx] );
 				
 				// Check Version
 				VM::Emulator_Version kvm_version = VM::Obsolete;
