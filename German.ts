@@ -480,7 +480,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;/b&gt;
 &lt;/body&gt;
 &lt;/html&gt;</oldsource>
-        <translation type="unfinished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;
 &lt;head&gt;
 &lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;
@@ -491,12 +491,12 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;body&gt;
 &lt;b&gt;
 &lt;p&gt;AQEMU ist eine grafische Benutzeroberfläche für QEMU und KVM&lt;/p&gt;
-&lt;p&gt;Version: 0.8 vom 12.07.2010&lt;/p&gt;
+&lt;p&gt;Version: 0.8.2 vom 2011.07.27&lt;/p&gt;
 &lt;p&gt;Lizenz: General Public License Version 2&lt;/p&gt;
 &lt;p&gt;Autor: Andreij Rijov (a.k.a. RDron)&lt;/p&gt;
 &lt;p&gt;E-Mail: &lt;a href=&quot;mailto:ANDron142@yandex.ru&quot;&gt;ANDron142@yandex.ru&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Webseite: &lt;a href=&quot;http://sourceforge.net/projects/aqemu/&quot;&gt;http://sourceforge.net/projects/aqemu/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Unterstützte Emulatoren:&lt;br&gt;QEMU 0.9.0-0.12.4 und KVM 60-88-0.12.4&lt;/p&gt;
+&lt;p&gt;Unterstützte Emulatoren:&lt;br&gt;QEMU 0.9.0-0.14.1 und KVM 60-88-0.14.1&lt;/p&gt;
 &lt;/b&gt;
 &lt;/body&gt;
 &lt;/html&gt;</translation>

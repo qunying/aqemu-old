@@ -490,7 +490,7 @@ p, a { white-space: pre-wrap; margin-top:0px; margin-bottom:0px; margin-left:0px
 &lt;/head&gt;
 &lt;body&gt;
 &lt;b&gt;
-&lt;p&gt;AQEMU это графический интерфейс для QEMU и KVM&lt;/p
+&lt;p&gt;AQEMU это графический интерфейс для QEMU и KVM&lt;/p&gt;
 &lt;p&gt;Версия: 0.8.2 от 2011.07.27&lt;/p&gt;
 &lt;p&gt;Лицензия: General Public License Версия 2&lt;/p&gt;
 &lt;p&gt;Автор: Андрей Рыжов (a.k.a. RDron)&lt;/p&gt;
