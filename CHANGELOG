@@ -1,3 +1,9 @@
+2011-07-27 Andrey Rijov (Version 0.8.2)
+
+	* Added QEMU/KVM 0.14 support
+	
+	* Bug Fixes
+
 2010-12-21 Andrey Rijov (Version 0.8.1)
 
 	* Added SPICE support

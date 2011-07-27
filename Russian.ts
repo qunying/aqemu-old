@@ -1191,7 +1191,7 @@ This will use BrlAPI to display the braille output on a real or fake device.</so
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1401"/>
         <source>Information in Info Tab</source>
-        <translation>Информация на закладке Инфо</translation>
+        <translation>Информация на вкладке Инфо</translation>
     </message>
     <message>
         <location filename="Advanced_Settings_Window.ui" line="1483"/>
@@ -7120,7 +7120,7 @@ Add This Record?</source>
         <location filename="Network_Widget.cpp" line="755"/>
         <source>-net nic[,vlan=n][,macaddr=addr][,model=type][,name=name] 
 Create a new Network Interface Card and connect it to VLAN n (n = 0 is the default). The NIC is an ne2k_pci by default on the PC target. Optionally, the MAC address can be changed to addr and a name can be assigned for use in monitor commands. If no &apos;-net&apos; option is specified, a single NIC is created. Qemu can emulate several different models of network card. Valid values for type are i82551, i82557b, i82559er, ne2k_pci, ne2k_isa, pcnet, rtl8139, e1000, smc91c111, lance and mcf_fec. Not all devices are supported on all targets. Use -net nic,model=? for a list of available devices for your target.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="Network_Widget.cpp" line="759"/>
