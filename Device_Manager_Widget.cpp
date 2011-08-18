@@ -981,9 +981,10 @@ void Device_Manager_Widget::on_actionDelete_triggered()
 		{
 			if( ui.Devices_List->currentItem()->data(512).toString() == "device" + QString::number(fx) )
 			{
-				finded = true;
-				
 				Storage_Devices.removeAt( fx );
+				ui.Devices_List->takeItem( ui.Devices_List->currentRow() );
+				finded = true;
+				break;
 			}
 		}
 		
@@ -993,10 +994,24 @@ void Device_Manager_Widget::on_actionDelete_triggered()
 					 "Incorrect Device!" );
 			return;
 		}
+		else
+		{
+			// Rename items
+			for( int ix = 0, count = 0; ix < ui.Devices_List->count(); ++ix )
+			{
+				if( ui.Devices_List->item(ix)->data(512).toString().contains("device") )
+				{
+					ui.Devices_List->item(ix)->setData( 512, QString("device%1").arg(count) );
+					++count;
+				}
+			}
+			
+			emit Device_Changet();
+			return;
+		}
 	}
 	
 	ui.Devices_List->takeItem( ui.Devices_List->currentRow() );
-	
 	emit Device_Changet();
 }
 
