@@ -29,6 +29,10 @@ AQEMU.kdevelop
 AQEMU.kdevelop.filelist
 AQEMU.kdevelop.pcs
 AQEMU.kdevses
+AQEMU.config
+AQEMU.creator
+AQEMU.files
+AQEMU.includes
 .kdbgrc.aqemu
 Doxyfile
 
