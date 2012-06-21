@@ -10,15 +10,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>409</width>
-    <height>455</height>
+    <width>407</width>
+    <height>453</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Properties</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset resource="oxygen_icons.qrc">
     <normaloff>:/edit.png</normaloff>:/edit.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -52,7 +52,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="images.qrc">
+           <iconset resource="oxygen_icons.qrc">
             <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
           </property>
           <property name="toolButtonStyle">
@@ -78,10 +78,10 @@
       <item row="1" column="1">
        <widget class="QToolButton" name="TB_FD_Advanced_Settings">
         <property name="text">
-         <string>Advaced settings</string>
+         <string>Advanced settings</string>
         </property>
         <property name="icon">
-         <iconset resource="images.qrc">
+         <iconset resource="oxygen_icons.qrc">
           <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -122,7 +122,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="images.qrc">
+           <iconset resource="oxygen_icons.qrc">
             <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
           </property>
           <property name="toolButtonStyle">
@@ -148,10 +148,10 @@
       <item row="1" column="1">
        <widget class="QToolButton" name="TB_CDROM_Advanced_Settings">
         <property name="text">
-         <string>Advaced settings</string>
+         <string>Advanced settings</string>
         </property>
         <property name="icon">
-         <iconset resource="images.qrc">
+         <iconset resource="oxygen_icons.qrc">
           <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -195,7 +195,7 @@
            <string>...</string>
           </property>
           <property name="icon">
-           <iconset resource="images.qrc">
+           <iconset resource="oxygen_icons.qrc">
             <normaloff>:/open-file.png</normaloff>:/open-file.png</iconset>
           </property>
          </widget>
@@ -208,7 +208,7 @@
          <string>Create &amp;New</string>
         </property>
         <property name="icon">
-         <iconset resource="images.qrc">
+         <iconset resource="oxygen_icons.qrc">
           <normaloff>:/add.png</normaloff>:/add.png</iconset>
         </property>
        </widget>
@@ -219,7 +219,7 @@
          <string>&amp;Format Exist</string>
         </property>
         <property name="icon">
-         <iconset resource="images.qrc">
+         <iconset resource="oxygen_icons.qrc">
           <normaloff>:/eraser.png</normaloff>:/eraser.png</iconset>
         </property>
        </widget>
@@ -227,10 +227,10 @@
       <item row="2" column="2">
        <widget class="QToolButton" name="TB_HDD_Advanced_Settings">
         <property name="text">
-         <string>Advaced settings</string>
+         <string>Advanced settings</string>
         </property>
         <property name="icon">
-         <iconset resource="images.qrc">
+         <iconset resource="oxygen_icons.qrc">
           <normaloff>:/configure.png</normaloff>:/configure.png</iconset>
         </property>
         <property name="toolButtonStyle">
@@ -278,7 +278,7 @@
          <string>Up&amp;date Info</string>
         </property>
         <property name="icon">
-         <iconset resource="images.qrc">
+         <iconset resource="oxygen_icons.qrc">
           <normaloff>:/update.png</normaloff>:/update.png</iconset>
         </property>
        </widget>
@@ -317,7 +317,7 @@
         <string>&amp;OK</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset resource="oxygen_icons.qrc">
          <normaloff>:/ok.png</normaloff>:/ok.png</iconset>
        </property>
       </widget>
@@ -328,7 +328,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset resource="oxygen_icons.qrc">
          <normaloff>:/cancel.png</normaloff>:/cancel.png</iconset>
        </property>
       </widget>
@@ -354,7 +354,7 @@
   <tabstop>Button_Cancel</tabstop>
  </tabstops>
  <resources>
-  <include location="images.qrc"/>
+  <include location="oxygen_icons.qrc"/>
  </resources>
  <connections>
   <connection>
