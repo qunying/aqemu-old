@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>405</height>
+    <width>488</width>
+    <height>403</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Adding USB </string>
   </property>
   <property name="windowIcon">
-   <iconset resource="images.qrc">
+   <iconset>
     <normaloff>:/usb.png</normaloff>:/usb.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -229,7 +229,17 @@
         </column>
         <column>
          <property name="text">
-          <string>bus.addr:</string>
+          <string>bus:</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>addr:</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>path:</string>
          </property>
         </column>
        </widget>
@@ -446,7 +456,7 @@
         <string>Update USB host list</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset>
          <normaloff>:/update.png</normaloff>:/update.png</iconset>
        </property>
       </widget>
@@ -470,7 +480,7 @@
         <string>&amp;OK</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset>
          <normaloff>:/ok.png</normaloff>:/ok.png</iconset>
        </property>
       </widget>
@@ -481,7 +491,7 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset resource="images.qrc">
+        <iconset>
          <normaloff>:/cancel.png</normaloff>:/cancel.png</iconset>
        </property>
       </widget>
@@ -505,9 +515,7 @@
   <tabstop>Button_OK</tabstop>
   <tabstop>Button_Cancel</tabstop>
  </tabstops>
- <resources>
-  <include location="images.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>Button_Cancel</sender>
